@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CWSP AI Literacies — Faculty Workbook</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --red: #CC0000;
+    --black: #1A1A1A;
+    --gray: #444;
+    --lgray: #888;
+    --offwh: #F8F8F8;
+    --border: #DDD;
+  }
+
+  body {
+    font-family: Georgia, serif;
+    font-size: 11pt;
+    color: var(--black);
+    background: #EFEFEF;
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--black);
+    padding: 10px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  nav .brand {
+    font-family: Arial, sans-serif;
+    font-size: 10pt;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  nav .brand span { color: var(--red); }
+  nav .nav-links {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  nav a {
+    font-family: Arial, sans-serif;
+    font-size: 9pt;
+    color: #aaa;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 2px;
+    transition: background 0.15s, color 0.15s;
+  }
+  nav a:hover, nav a.active {
+    background: #333;
+    color: #fff;
+  }
+  nav .progress-bar {
+    margin-left: auto;
+    font-family: Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #666;
+  }
+  nav .progress-fill {
+    display: inline-block;
+    height: 4px;
+    background: var(--red);
+    width: 0%;
+    border-radius: 2px;
+    vertical-align: middle;
+    transition: width 0.4s;
+  }
+  nav .progress-track {
+    display: inline-block;
+    height: 4px;
+    width: 120px;
+    background: #333;
+    border-radius: 2px;
+    vertical-align: middle;
+    overflow: hidden;
+    margin-left: 6px;
+  }
+
+  /* LAYOUT */
+  .workbook {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 36px 24px 80px;
+  }
+
+  /* COVER */
+  .cover {
+    background: var(--black);
+    color: #fff;
+    padding: 52px 52px 44px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--red);
+  }
+  .cover h1 {
+    font-family: Georgia, serif;
+    font-size: 28pt;
+    font-weight: bold;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .cover .subtitle {
+    font-size: 13pt;
+    color: #aaa;
+    font-style: italic;
+    margin-bottom: 28px;
+  }
+  .cover .meta {
+    font-family: Arial, sans-serif;
+    font-size: 9pt;
+    color: #666;
+    line-height: 1.7;
+  }
+  .cover .meta strong { color: #aaa; }
+
+  .cover-note {
+    background: #1e1e1e;
+    border-left: 3px solid var(--red);
+    padding: 14px 18px;
+    margin-top: 22px;
+    font-size: 10pt;
+    color: #bbb;
+    line-height: 1.55;
+  }
+  .cover-note strong { color: #fff; }
+
+  /* SECTION HEADER */
+  .section-block {
+    background: #fff;
+    padding: 36px 44px 40px;
+    margin-bottom: 20px;
+    border-top: 4px solid var(--black);
+  }
+  .section-block.cluster-01 { border-top-color: #aaa; }
+  .section-block.cluster-02 { border-top-color: var(--gray); }
+  .section-block.cluster-03 { border-top-color: var(--red); }
+
+  .cluster-label {
+    font-family: Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 6px;
+  }
+  .section-block h2 {
+    font-family: Georgia, serif;
+    font-size: 20pt;
+    font-weight: bold;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  .section-block .section-intro {
+    font-size: 10.5pt;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 20px;
+  }
+
+  /* ACTIVITY */
+  .activity {
+    margin-bottom: 28px;
+  }
+  .activity-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .activity-num {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    background: var(--offwh);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    color: var(--lgray);
+    margin-top: 1px;
+  }
+  .activity-header .activity-title {
+    font-family: Georgia, serif;
+    font-size: 13pt;
+    font-weight: bold;
+  }
+  .activity-header .level-tag {
+    margin-left: auto;
+    flex-shrink: 0;
+    font-family: Arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    background: var(--offwh);
+    border: 1px solid var(--border);
+    color: var(--lgray);
+  }
+  .level-tag.l-conceptual { border-color: #ccc; color: #999; }
+  .level-tag.l-structural { border-color: #888; color: #666; }
+  .level-tag.l-operative  { border-color: var(--red); color: var(--red); }
+  .level-tag.l-all        { border-color: var(--black); color: var(--black); }
+
+  .activity-body {
+    padding-left: 42px;
+  }
+  .activity-body p {
+    font-size: 10.5pt;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .activity-body .prompt {
+    font-size: 11pt;
+    color: var(--black);
+    font-style: italic;
+    margin-bottom: 10px;
+    border-left: 2px solid var(--border);
+    padding-left: 12px;
+  }
+
+  /* TEXT INPUTS */
+  .write-field {
+    width: 100%;
+    min-height: 88px;
+    border: 1px solid var(--border);
+    padding: 11px 13px;
+    font-family: Georgia, serif;
+    font-size: 10.5pt;
+    color: var(--black);
+    line-height: 1.55;
+    resize: vertical;
+    background: var(--offwh);
+    margin-bottom: 6px;
+  }
+  .write-field:focus {
+    outline: none;
+    border-color: var(--red);
+    background: #fff;
+  }
+  .write-field::placeholder { color: #bbb; font-style: italic; }
+  .field-label {
+    font-family: Arial, sans-serif;
+    font-size: 8.5pt;
+    color: var(--lgray);
+    margin-bottom: 5px;
+    letter-spacing: 0.3px;
+  }
+  .field-label.required::after {
+    content: ' *';
+    color: var(--red);
+  }
+
+  /* Two column inputs */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .one-col { margin-bottom: 14px; }
+
+  /* Policy template */
+  .policy-template {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    padding: 18px 20px;
+    margin: 14px 0 18px;
+  }
+  .policy-template .pt-label {
+    font-family: Arial, sans-serif;
+    font-size: 8pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+  .policy-template .pt-field {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .policy-template .pt-field .pt-stem {
+    font-size: 10.5pt;
+    color: var(--black);
+    flex-shrink: 0;
+    min-width: 180px;
+  }
+  .policy-template .pt-field input[type="text"] {
+    flex: 1;
+    min-width: 180px;
+    border: none;
+    border-bottom: 1.5px solid var(--border);
+    padding: 2px 4px;
+    font-family: Georgia, serif;
+    font-size: 10.5pt;
+    color: var(--black);
+    background: transparent;
+  }
+  .policy-template .pt-field input[type="text"]:focus {
+    outline: none;
+    border-bottom-color: var(--red);
+  }
+
+  /* Curriculum map table */
+  .map-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin-bottom: 14px;
+  }
+  .map-table th {
+    background: var(--black);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 8.5pt;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  .map-table td {
+    border: 1px solid var(--border);
+    padding: 6px 8px;
+    vertical-align: top;
+  }
+  .map-table td:first-child {
+    background: var(--offwh);
+    font-weight: bold;
+    font-size: 9pt;
+    color: var(--gray);
+    width: 20%;
+  }
+  .map-table td input[type="text"],
+  .map-table td textarea {
+    width: 100%;
+    border: none;
+    font-family: Georgia, serif;
+    font-size: 9pt;
+    color: var(--black);
+    background: transparent;
+    resize: none;
+    padding: 1px 2px;
+    line-height: 1.4;
+  }
+  .map-table td input[type="text"]:focus,
+  .map-table td textarea:focus {
+    outline: none;
+    background: #fffbf0;
+  }
+
+  /* Callout box */
+  .callout {
+    background: var(--offwh);
+    border-left: 3px solid var(--border);
+    padding: 12px 16px;
+    margin: 12px 0 16px;
+    font-size: 9.5pt;
+    color: var(--gray);
+    line-height: 1.55;
+  }
+  .callout.red { border-left-color: var(--red); }
+  .callout strong { color: var(--black); }
+
+  /* Section divider */
+  .cluster-divider {
+    background: var(--black);
+    color: #fff;
+    padding: 20px 44px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .cluster-divider .cd-num {
+    font-size: 32pt;
+    font-weight: bold;
+    color: var(--red);
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+  .cluster-divider .cd-text h3 {
+    font-size: 14pt;
+    font-weight: bold;
+    font-family: Georgia, serif;
+  }
+  .cluster-divider .cd-text p {
+    font-size: 9pt;
+    color: #aaa;
+    margin-top: 3px;
+  }
+
+  /* Save / export controls */
+  .controls {
+    position: fixed;
+    bottom: 20px;
+    right: 24px;
+    display: flex;
+    gap: 8px;
+    z-index: 200;
+  }
+  .btn {
+    padding: 10px 18px;
+    font-family: Arial, sans-serif;
+    font-size: 9.5pt;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background 0.15s;
+  }
+  .btn-primary { background: var(--red); color: #fff; }
+  .btn-primary:hover { background: #aa0000; }
+  .btn-secondary { background: var(--black); color: #fff; }
+  .btn-secondary:hover { background: #333; }
+
+  /* Synthesis */
+  .synthesis {
+    background: #fff;
+    border: 2px solid var(--black);
+    padding: 32px 44px 36px;
+    margin-bottom: 20px;
+  }
+  .synthesis h2 {
+    font-family: Georgia, serif;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  .synthesis .intro {
+    font-size: 10.5pt;
+    color: var(--gray);
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    margin-bottom: 20px;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 10.5pt;
+    color: var(--gray);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    margin-top: 3px;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--red);
+    cursor: pointer;
+  }
+
+  /* ARCHIVE / PLATFORM SECTION */
+  .archive-section {
+    background: #fff;
+    border: 2px solid var(--red);
+    padding: 32px 44px 36px;
+    margin-bottom: 20px;
+  }
+  .archive-section h2 {
+    font-family: Georgia, serif;
+    font-size: 18pt;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .archive-section .archive-sub {
+    font-size: 10pt;
+    color: var(--lgray);
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+  .archive-section .archive-intro {
+    font-size: 10.5pt;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 22px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .archive-section select {
+    width: 100%;
+    border: 1px solid var(--border);
+    padding: 9px 11px;
+    font-family: Georgia, serif;
+    font-size: 10.5pt;
+    color: var(--black);
+    background: var(--offwh);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23888' d='M0 0l6 8 6-8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    cursor: pointer;
+  }
+  .archive-section select:focus {
+    outline: none;
+    border-color: var(--red);
+    background-color: #fff;
+  }
+  .data-notice {
+    background: var(--offwh);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+    font-size: 9pt;
+    color: var(--gray);
+    line-height: 1.55;
+    margin: 16px 0 20px;
+  }
+  .data-notice strong { color: var(--black); }
+  .data-notice ul { margin: 6px 0 0 16px; }
+  .data-notice li { margin-bottom: 3px; }
+  .consent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 10.5pt;
+    color: var(--black);
+  }
+  .consent-row input[type="checkbox"] {
+    margin-top: 3px;
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--red);
+  }
+  .btn-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--red);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .btn-submit:hover:not(:disabled) { background: #aa0000; }
+  .btn-submit:disabled { background: #ccc; cursor: default; }
+  .submit-status {
+    display: none;
+    margin-top: 16px;
+    padding: 14px 18px;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+  .submit-status.success {
+    display: block;
+    background: #f0faf0;
+    border-left: 4px solid #2a7a2a;
+    color: #1a4a1a;
+  }
+  .submit-status.error {
+    display: block;
+    background: #fff0f0;
+    border-left: 4px solid var(--red);
+    color: #660000;
+  }
+  .engagement-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 6px;
+  }
+  .engagement-checks label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10pt;
+    color: var(--gray);
+    cursor: pointer;
+  }
+  .engagement-checks input[type="checkbox"] {
+    accent-color: var(--red);
+    width: 14px;
+    height: 14px;
+  }
+
+  @media print {
+    nav, .controls { display: none; }
+    body { background: #fff; }
+    .workbook { padding: 0; max-width: 100%; }
+    .section-block { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">CWSP &nbsp;<span>|</span>&nbsp; AI Literacies Workbook</div>
+  <div class="nav-links">
+    <a href="#cover">Start</a>
+    <a href="#cluster01">01 Consultations</a>
+    <a href="#cluster02">02 Policy</a>
+    <a href="#cluster03">03 Mapping</a>
+    <a href="#synthesis">Synthesis</a>
+    <a href="#archive" style="color:#CC6666;">↑ Submit to Archive</a>
+  </div>
+  <div class="progress-bar">
+    <span id="progress-label">Progress</span>
+    <span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span>
+  </div>
+</nav>
+
+<div class="workbook">
+
+  <!-- COVER -->
+  <div class="cover" id="cover">
+    <div style="padding-left: 16px;">
+      <h1>AI Literacies for<br>Disciplinary Teaching</h1>
+      <div class="subtitle">Faculty Workbook</div>
+      <div class="meta">
+        <strong>Program:</strong> Campus Writing and Speaking Program, NC State University<br>
+        <strong>Series:</strong> Three clusters — AI Literacy Consultations, Policy Review and Creation, Full Curricular Mapping<br>
+        <strong>Reference:</strong> ai.ncsu.edu
+      </div>
+      <div class="cover-note">
+        <strong>How to use this workbook.</strong> Each cluster has its own section with activities, reflection prompts, and structured writing spaces. You can work through all three in sequence or enter at the cluster most relevant to where you are right now. Your responses are saved in your browser as you type. Use the Print button at the bottom right to export a PDF for your records.
+      </div>
+    </div>
+  </div>
+
+  <!-- CLUSTER 01 -->
+  <div class="cluster-divider" id="cluster01">
+    <div class="cd-num">01</div>
+    <div class="cd-text">
+      <h3>AI Literacy Consultations</h3>
+      <p>Conceptual · Structural · Operative</p>
+    </div>
+  </div>
+
+  <div class="section-block cluster-01">
+    <div class="cluster-label">Cluster 01 · AI Literacy Consultations</div>
+    <h2>Naming the Field</h2>
+    <div class="section-intro">
+      This cluster works through the three-level AI literacy framework in the context of your specific discipline. The goal is not a general orientation to AI tools but a disciplinary analysis — what AI means for how knowledge is made, communicated, and assessed in your field.
+    </div>
+
+    <!-- Activity 1.1 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">1</div>
+        <div class="activity-title">Conceptual Inventory</div>
+        <div class="level-tag l-conceptual">Conceptual</div>
+      </div>
+      <div class="activity-body">
+        <p>Begin with what you can name. A conceptual literacy of AI starts with recognition — what tools exist, what they do, and whose knowledge they encode.</p>
+        <div class="prompt">What AI tools are in use in your field — by researchers, by practitioners, by students in your courses? Name as many as you can, and note what each one does.</div>
+        <div class="one-col">
+          <div class="field-label required">AI tools you know of in your disciplinary or teaching context</div>
+          <textarea class="write-field" id="f-1-1-tools" placeholder="e.g., ChatGPT for drafting, Elicit for literature review, automated grading tools..." rows="4" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+        <div class="prompt">Whose knowledge do these tools encode? Who built them, what training data do they draw from, and whose ways of knowing are centered or marginalized in that data?</div>
+        <div class="one-col">
+          <div class="field-label">Your analysis</div>
+          <textarea class="write-field" id="f-1-1-knowledge" placeholder="Consider: training data composition, whose language patterns are dominant, which disciplinary epistemologies are represented..." rows="4" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity 1.2 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">2</div>
+        <div class="activity-title">Structural Analysis</div>
+        <div class="level-tag l-structural">Structural</div>
+      </div>
+      <div class="activity-body">
+        <p>Structural literacy asks what AI systems reproduce regardless of user behavior. These are conditions built into the infrastructure — not choices individual users make, but effects that follow from the system's design and training.</p>
+        <div class="prompt">What does AI reproduce in your field? Consider: epistemic norms (what counts as evidence), language patterns (whose prose style is centered), authority structures (which sources, voices, or methods are weighted), and knowledge hierarchies (what is systematically underrepresented or excluded).</div>
+        <div class="one-col">
+          <div class="field-label required">What AI systems reproduce in your disciplinary context</div>
+          <textarea class="write-field" id="f-1-2-reproduce" placeholder="e.g., In social science, AI tends to reproduce positivist framings of evidence. In literary studies, it underweights non-Western and multilingual texts..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+        <div class="callout red">
+          <strong>From the research:</strong> Roberto Santiago De Roock (2024) argues that AI encodes linguistic white supremacy as a structural condition — not as a user-level bias that awareness corrects, but as a condition of the system's design. What is the parallel structural condition in your discipline?
+        </div>
+        <div class="one-col">
+          <div class="field-label">The structural condition in your field</div>
+          <textarea class="write-field" id="f-1-2-condition" placeholder="What is inherently true about AI in your field that no amount of individual critical awareness fully corrects?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity 1.3 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">3</div>
+        <div class="activity-title">Operative Judgment</div>
+        <div class="level-tag l-operative">Operative</div>
+      </div>
+      <div class="activity-body">
+        <p>Operative literacy is contextual judgment — not a rule but a capacity. Given your conceptual understanding and structural analysis, what does accountable decision-making look like in your discipline? This includes the conditions under which refusal is warranted.</p>
+        <div class="two-col">
+          <div>
+            <div class="field-label">Contexts where AI use is appropriate in your discipline</div>
+            <textarea class="write-field" id="f-1-3-appropriate" placeholder="Describe the tasks, contexts, or conditions..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+          <div>
+            <div class="field-label">Contexts where principled refusal is warranted</div>
+            <textarea class="write-field" id="f-1-3-refusal" placeholder="Not prohibition as a default — but specific conditions that make AI use epistemically or ethically unjustifiable in your context..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+        </div>
+        <div class="prompt">What does your discipline's commitment to intellectual labor require of students that AI cannot substitute — not because of a rule, but because the substitution would defeat the learning or epistemic purpose?</div>
+        <div class="one-col">
+          <div class="field-label">The irreducible intellectual labor in your discipline</div>
+          <textarea class="write-field" id="f-1-3-labor" placeholder="What is the thing students must do themselves, and why?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLUSTER 02 -->
+  <div class="cluster-divider" id="cluster02">
+    <div class="cd-num">02</div>
+    <div class="cd-text">
+      <h3>Policy Review and Creation</h3>
+      <p>Reviewing and drafting AI policy with the framework</p>
+    </div>
+  </div>
+
+  <div class="section-block cluster-02">
+    <div class="cluster-label">Cluster 02 · Policy Review and Creation</div>
+    <h2>Policy as Argument</h2>
+    <div class="section-intro">
+      Course and program AI policies are not neutral governance documents. They communicate commitments about intellectual labor, disciplinary identity, and what the course values — often more clearly than the learning objectives do. This cluster asks you to read your existing policy (or the absence of one) as a rhetorical act, and to draft better language grounded in your analysis from Cluster 01.
+    </div>
+
+    <!-- Activity 2.1 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">4</div>
+        <div class="activity-title">Reading Your Current Policy</div>
+        <div class="level-tag l-structural">Structural</div>
+      </div>
+      <div class="activity-body">
+        <div class="callout">
+          <strong>From the corpus:</strong> 80+ AI policy documents from 24 institutions reveal consistent patterns. NC State's three-tier DELTA model (prohibit / cite / encourage) encodes contradictory institutional commitments without resolving them. Ohio State reversed a Wave 1 prohibition into a 2025 graduation requirement. Cornell converted governance into downloadable icons. Every document reveals what the institution values — and what it cannot say directly.
+        </div>
+        <div class="prompt">Paste or write your current course AI policy statement below (or write "none" if you don't have one).</div>
+        <div class="one-col">
+          <div class="field-label required">Your current AI policy statement</div>
+          <textarea class="write-field" id="f-2-1-current" placeholder="Copy from your syllabus, or describe what your current practice is if it's not formalized..." rows="4" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+        <p>Now read it against the three literacy levels. What does this policy ask students to <em>know</em> (conceptual), <em>understand about the system</em> (structural), and <em>do as a matter of judgment</em> (operative)?</p>
+        <div class="two-col">
+          <div>
+            <div class="field-label">Conceptual level: what the policy names or defines</div>
+            <textarea class="write-field" id="f-2-1-conceptual" placeholder="Does the policy identify what AI is or which tools it covers?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+          <div>
+            <div class="field-label">Structural level: what the policy says about AI's conditions</div>
+            <textarea class="write-field" id="f-2-1-structural" placeholder="Does the policy address what AI reproduces or what it cannot do?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+        </div>
+        <div class="one-col">
+          <div class="field-label">Operative level: what judgment the policy requires of students</div>
+          <textarea class="write-field" id="f-2-1-operative" placeholder="Does the policy ask for contextual judgment, or does it reduce to permission / prohibition?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+        <div class="one-col">
+          <div class="field-label">What does your current policy reveal about what this course values? What commitment does it make — and is that the commitment you intend?</div>
+          <textarea class="write-field" id="f-2-1-reveals" placeholder="Be specific. What can you see in the policy now that you couldn't see before reading it this way?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity 2.2 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">5</div>
+        <div class="activity-title">Reviewing Against Program SLOs</div>
+        <div class="level-tag l-structural">Structural</div>
+      </div>
+      <div class="activity-body">
+        <p>A course AI policy should be legible against the program's student learning outcomes. Misalignment between the two produces policies that enforce norms the program doesn't actually hold — or ignore norms it does.</p>
+        <div class="one-col">
+          <div class="field-label">List the 2–3 program SLOs most relevant to AI use in your course</div>
+          <textarea class="write-field" id="f-2-2-slos" placeholder="Paste or paraphrase your program's SLOs here..." rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+        <div class="one-col">
+          <div class="field-label">Where is your current AI policy aligned with those SLOs — and where does it diverge?</div>
+          <textarea class="write-field" id="f-2-2-alignment" placeholder="Alignment means the policy enforces what the SLOs require. Divergence means the policy permits or prohibits something the SLOs don't address." rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity 2.3 — Policy Drafting -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">6</div>
+        <div class="activity-title">Drafting New Policy Language</div>
+        <div class="level-tag l-operative">Operative</div>
+      </div>
+      <div class="activity-body">
+        <p>Policy language that works addresses all three levels. It names the relevant AI tools or categories (conceptual), grounds its limits in what AI cannot do for disciplinary learning (structural), and specifies the judgment it requires rather than reducing to permission or prohibition (operative).</p>
+        <div class="callout red">
+          <strong>Alignment note:</strong> All language you draft here should be compatible with NC State's institutional guidance at <a href="https://ai.ncsu.edu" target="_blank" style="color: var(--red);">ai.ncsu.edu</a>. CWSP can review drafts for alignment before finalization.
+        </div>
+
+        <div class="policy-template">
+          <div class="pt-label">Policy Drafting Template</div>
+          <div class="pt-field">
+            <span class="pt-stem">In this course,</span>
+            <input type="text" id="f-pt-course" placeholder="[course name / number]" oninput="saveField(this); updateProgress()">
+          </div>
+          <div class="pt-field">
+            <span class="pt-stem">AI tools such as</span>
+            <input type="text" id="f-pt-tools" placeholder="[name specific tools or categories]" oninput="saveField(this); updateProgress()">
+          </div>
+          <div class="pt-field">
+            <span class="pt-stem">are [permitted / not permitted / permitted with attribution] for</span>
+            <input type="text" id="f-pt-tasks" placeholder="[specific tasks — not 'all work']" oninput="saveField(this); updateProgress()">
+          </div>
+          <div class="pt-field">
+            <span class="pt-stem">because</span>
+            <input type="text" id="f-pt-because" placeholder="[disciplinary rationale — what AI can or cannot do here]" oninput="saveField(this); updateProgress()">
+          </div>
+          <div class="pt-field">
+            <span class="pt-stem">Students are expected to</span>
+            <input type="text" id="f-pt-judgment" placeholder="[specify the judgment required — not just disclosure]" oninput="saveField(this); updateProgress()">
+          </div>
+        </div>
+
+        <div class="one-col">
+          <div class="field-label">Draft your full policy statement here, using the template as a scaffold</div>
+          <textarea class="write-field" id="f-2-3-draft" placeholder="Write a complete policy statement for your syllabus. Aim for 3–5 sentences that would be legible to a student without further explanation." rows="6" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+        <div class="one-col">
+          <div class="field-label">What questions does this draft leave open that you'd want to discuss with CWSP?</div>
+          <textarea class="write-field" id="f-2-3-questions" placeholder="Edge cases, SLO misalignments, disciplinary norms you're not sure how to encode..." rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CLUSTER 03 -->
+  <div class="cluster-divider" id="cluster03">
+    <div class="cd-num">03</div>
+    <div class="cd-text">
+      <h3>Full Curricular Mapping</h3>
+      <p>From introductory through capstone</p>
+    </div>
+  </div>
+
+  <div class="section-block cluster-03">
+    <div class="cluster-label">Cluster 03 · Full Curricular Mapping</div>
+    <h2>The Curriculum as Evidence</h2>
+    <div class="section-intro">
+      Curricular mapping asks where AI literacy currently lives in your program's arc — at which level, in which courses, with what consistency — and what the gaps reveal. The map is evidence, not a grade. Its purpose is a shared picture of the curriculum that the program can act on.
+    </div>
+
+    <!-- Activity 3.1 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">7</div>
+        <div class="activity-title">Curricular Inventory</div>
+        <div class="level-tag l-all">All Levels</div>
+      </div>
+      <div class="activity-body">
+        <p>For each stage of the curriculum, note which courses occupy that stage, whether and how AI literacy appears, and at which level (conceptual, structural, operative). Leave cells blank where AI literacy is absent — that absence is part of the map.</p>
+
+        <table class="map-table">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Courses at this stage</th>
+              <th>AI literacy present? (describe)</th>
+              <th>Level (C / S / O)</th>
+              <th>Where it lives (syllabus, assignment, discussion)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Introductory</td>
+              <td><textarea rows="2" id="m-intro-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea rows="2" id="m-intro-ai" oninput="saveField(this)"></textarea></td>
+              <td><input type="text" id="m-intro-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea rows="2" id="m-intro-where" oninput="saveField(this)"></textarea></td>
+            </tr>
+            <tr>
+              <td>Core requirements</td>
+              <td><textarea rows="2" id="m-core-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea rows="2" id="m-core-ai" oninput="saveField(this)"></textarea></td>
+              <td><input type="text" id="m-core-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea rows="2" id="m-core-where" oninput="saveField(this)"></textarea></td>
+            </tr>
+            <tr>
+              <td>Upper-division electives</td>
+              <td><textarea rows="2" id="m-upper-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea rows="2" id="m-upper-ai" oninput="saveField(this)"></textarea></td>
+              <td><input type="text" id="m-upper-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea rows="2" id="m-upper-where" oninput="saveField(this)"></textarea></td>
+            </tr>
+            <tr>
+              <td>Capstone / thesis</td>
+              <td><textarea rows="2" id="m-cap-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea rows="2" id="m-cap-ai" oninput="saveField(this)"></textarea></td>
+              <td><input type="text" id="m-cap-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea rows="2" id="m-cap-where" oninput="saveField(this)"></textarea></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout">
+          <strong>Note for program-level mapping:</strong> This table works best when completed collaboratively with program faculty. CWSP can facilitate a structured session in which faculty complete this together, using shared SLOs and program documents as anchors. The resulting map becomes a shared program resource.
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity 3.2 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">8</div>
+        <div class="activity-title">Reading the Map</div>
+        <div class="level-tag l-structural">Structural</div>
+      </div>
+      <div class="activity-body">
+        <p>A curricular map is useful only if you read it. Answer these questions based on what you've filled in above.</p>
+        <div class="two-col">
+          <div>
+            <div class="field-label">Where does AI literacy instruction concentrate in this curriculum?</div>
+            <textarea class="write-field" id="f-3-2-concentrate" placeholder="At which stage(s) does it appear most? Least?" rows="4" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+          <div>
+            <div class="field-label">Which literacy level is missing or underrepresented?</div>
+            <textarea class="write-field" id="f-3-2-missing" placeholder="Most curricula have some conceptual exposure and very little operative practice. What does yours show?" rows="4" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+        </div>
+        <div class="one-col">
+          <div class="field-label">What does the distribution reveal about what this program currently values — or assumes — about AI and disciplinary learning?</div>
+          <textarea class="write-field" id="f-3-2-reveals" placeholder="Where is AI treated as a tool to describe versus a system to analyze versus a decision to make?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity 3.3 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">9</div>
+        <div class="activity-title">Curricular Decisions</div>
+        <div class="level-tag l-operative">Operative</div>
+      </div>
+      <div class="activity-body">
+        <p>The map produces choices. Based on what you can see, identify two or three specific curricular decisions the program could make to address what's missing or uneven.</p>
+        <div class="one-col">
+          <div class="field-label required">Curricular decisions this map suggests</div>
+          <textarea class="write-field" id="f-3-3-decisions" placeholder="e.g., Add a structural literacy unit to the 200-level methods course. Shift operative judgment work from the 300-level elective to the capstone. Create a shared assignment scaffold that moves students through all three levels." rows="6" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+        <div class="one-col">
+          <div class="field-label">What would each decision require — faculty time, curricular revision, accreditation language, or program governance work?</div>
+          <textarea class="write-field" id="f-3-3-requires" placeholder="Be specific about what implementation would actually take." rows="4" oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SYNTHESIS -->
+  <div class="synthesis" id="synthesis">
+    <div class="cluster-label">Across All Three Clusters</div>
+    <h2>Synthesis and Next Steps</h2>
+    <div class="intro">
+      The three clusters address the same question at different scales: what does disciplinary, accountable AI literacy look like in your teaching, your course policy, and your program's curriculum? This section asks you to pull the threads together and identify where you want to go next.
+    </div>
+
+    <!-- Activity 4.1 -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">10</div>
+        <div class="activity-title">What Has Shifted</div>
+        <div class="level-tag l-all">Reflection</div>
+      </div>
+      <div class="activity-body">
+        <div class="two-col">
+          <div>
+            <div class="field-label">What do you understand now that you didn't before working through this?</div>
+            <textarea class="write-field" id="f-4-1-shifted" placeholder="About AI in your field, about your current policy, about your curriculum's arc..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+          <div>
+            <div class="field-label">What question is this work opening that you didn't know you needed to ask?</div>
+            <textarea class="write-field" id="f-4-1-question" placeholder="The question you want to bring to CWSP, to your department, or to your own reading..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checklist -->
+    <div class="activity">
+      <div class="activity-header">
+        <div class="activity-num">11</div>
+        <div class="activity-title">Next Steps Checklist</div>
+        <div class="level-tag l-operative">Operative</div>
+      </div>
+      <div class="activity-body">
+        <p style="margin-bottom:12px;">Check what you want to do next. These can anchor a follow-up CWSP consultation.</p>
+        <ul class="checklist">
+          <li><input type="checkbox" id="ck1" onchange="saveCheckbox(this); updateProgress()"><label for="ck1">Revise my course AI policy using the draft I wrote in Cluster 02</label></li>
+          <li><input type="checkbox" id="ck2" onchange="saveCheckbox(this); updateProgress()"><label for="ck2">Schedule a CWSP consultation to finalize policy language and check alignment with ai.ncsu.edu</label></li>
+          <li><input type="checkbox" id="ck3" onchange="saveCheckbox(this); updateProgress()"><label for="ck3">Share the curricular map with my program and propose a faculty discussion</label></li>
+          <li><input type="checkbox" id="ck4" onchange="saveCheckbox(this); updateProgress()"><label for="ck4">Work with CWSP on a full program-level curricular mapping session</label></li>
+          <li><input type="checkbox" id="ck5" onchange="saveCheckbox(this); updateProgress()"><label for="ck5">Redesign one assignment to explicitly address structural or operative AI literacy</label></li>
+          <li><input type="checkbox" id="ck6" onchange="saveCheckbox(this); updateProgress()"><label for="ck6">Bring this framework to a faculty governance or curriculum committee conversation</label></li>
+          <li><input type="checkbox" id="ck7" onchange="saveCheckbox(this); updateProgress()"><label for="ck7">Read further in the three-level framework (Cole, 2026; ai.ncsu.edu)</label></li>
+        </ul>
+        <div class="one-col" style="margin-top:16px;">
+          <div class="field-label">Other next steps you're committing to</div>
+          <textarea class="write-field" id="f-4-2-other" rows="3" placeholder="Specific actions, conversations, or questions you're taking from this workbook..." oninput="saveField(this); updateProgress()"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid var(--border); padding-top: 18px; margin-top: 8px;">
+      <div class="field-label">Contact CWSP to continue this work</div>
+      <p style="font-size:10pt; color: var(--gray); margin-top:4px;">Campus Writing and Speaking Program &nbsp;·&nbsp; NC State University &nbsp;·&nbsp; <a href="https://ai.ncsu.edu" style="color:var(--red)">ai.ncsu.edu</a></p>
+    </div>
+  </div>
+
+  <!-- ARCHIVE / PLATFORM SUBMISSION -->
+  <div class="archive-section" id="archive">
+    <div class="cluster-label">CWSP AI Literacies Platform</div>
+    <h2>Contribute to the Archive</h2>
+    <div class="archive-sub">Anonymous · Discipline-indexed · Researchable over time</div>
+    <div class="archive-intro">
+      This workbook is part of the CWSP AI Literacies Platform — a discipline-indexed archive of how faculty across colleges, departments, and programs are analyzing and governing AI in their teaching. Submitting your responses contributes to a growing record that makes disciplinary patterns visible over time, informs CWSP programming, and grounds ongoing research. No name, email address, or identifying institution is collected. Responses are tagged by discipline, institution type, and engagement stage only.
+    </div>
+
+    <!-- Anonymous metadata -->
+    <div class="two-col" style="margin-bottom:14px;">
+      <div>
+        <div class="field-label">CWSP Program Code <span style="font-weight:normal; color:#888;">(if provided by your liaison)</span></div>
+        <input type="text" class="write-field" id="a-program-code" placeholder="e.g., ENGL-04, PSY-02 — leave blank if self-directed" style="min-height:auto; padding: 9px 11px; font-family: 'Courier New', monospace; letter-spacing: 0.5px;" oninput="saveField(this)">
+        <div style="font-size:8pt; color:#aaa; margin-top:4px;">This code links your submissions across CWSP stages without identifying you or your institution.</div>
+      </div>
+      <div>
+        <div class="field-label required">CWSP Stage</div>
+        <select id="a-stage" onchange="saveField(this); toggleSubmit()">
+          <option value="">— Select —</option>
+          <option value="Stage 1 — Inquiry (Intake)">Stage 1 — Inquiry (Intake)</option>
+          <option value="Stage 2 — Design (Follow-up)">Stage 2 — Design (Follow-up)</option>
+          <option value="Stage 3 — Evidence (Return Visit)">Stage 3 — Evidence (Return Visit)</option>
+          <option value="AI Literacies — Standalone">AI Literacies — Standalone</option>
+        </select>
+        <div style="font-size:8pt; color:#aaa; margin-top:4px;">If you came through AI Literacies independently, select Standalone. If you're unsure, select Stage 1.</div>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:14px;">
+      <div>
+        <div class="field-label required">Discipline or field</div>
+        <input type="text" class="write-field" id="a-discipline" placeholder="e.g., Sociology, English, Communication, Political Science..." style="min-height:auto; padding: 9px 11px;" oninput="saveField(this); toggleSubmit()">
+      </div>
+      <div>
+        <div class="field-label">Department or program (optional)</div>
+        <input type="text" class="write-field" id="a-department" placeholder="e.g., Department of History, MFA in Creative Writing..." style="min-height:auto; padding: 9px 11px;" oninput="saveField(this)">
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-bottom:14px;">
+      <div>
+        <div class="field-label required">Institution type</div>
+        <select id="a-inst-type" onchange="saveField(this); toggleSubmit()">
+          <option value="">— Select —</option>
+          <option>R1 Public</option>
+          <option>R1 Private</option>
+          <option>R2 / Doctoral</option>
+          <option>Comprehensive Regional Public</option>
+          <option>Comprehensive Regional Private</option>
+          <option>Liberal Arts College</option>
+          <option>HBCU</option>
+          <option>HSI</option>
+          <option>Community College</option>
+          <option>Online / Distance</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div>
+        <div class="field-label required">Years teaching at college/university level</div>
+        <select id="a-years" onchange="saveField(this); toggleSubmit()">
+          <option value="">— Select —</option>
+          <option>1–5 years</option>
+          <option>6–15 years</option>
+          <option>16–25 years</option>
+          <option>26+ years</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="field-label required">How did you engage with this workbook?</div>
+      <div class="engagement-checks">
+        <label><input type="checkbox" id="a-eng-cwsp" onchange="saveCheckbox(this)"> Through a CWSP consultation or event</label>
+        <label><input type="checkbox" id="a-eng-self" onchange="saveCheckbox(this)"> Self-directed (shared link or file)</label>
+        <label><input type="checkbox" id="a-eng-dept" onchange="saveCheckbox(this)"> Department or program workshop</label>
+        <label><input type="checkbox" id="a-eng-return" onchange="saveCheckbox(this)"> Return visit (previously submitted)</label>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="field-label">Which clusters did you complete? (check all that apply)</div>
+      <div class="engagement-checks">
+        <label><input type="checkbox" id="a-cl-01" onchange="saveCheckbox(this)"> 01 — AI Literacy Consultations</label>
+        <label><input type="checkbox" id="a-cl-02" onchange="saveCheckbox(this)"> 02 — Policy Review and Creation</label>
+        <label><input type="checkbox" id="a-cl-03" onchange="saveCheckbox(this)"> 03 — Full Curricular Mapping</label>
+      </div>
+    </div>
+
+    <!-- Data use notice -->
+    <div class="data-notice">
+      <strong>What is collected and how it is used.</strong> Submitting this form sends your workbook responses, discipline, institution type, years of teaching experience, and engagement type to a secure CWSP archive. It does not collect your name, email address, NC State affiliation, or any other identifying information.
+      <ul>
+        <li>Responses are used to track disciplinary patterns in AI literacy engagement over time.</li>
+        <li>Aggregate findings inform CWSP programming, workshop design, and ongoing research.</li>
+        <li>Individual responses are not published or shared in identifiable form.</li>
+        <li>This archive may be used as a research dataset. IRB determination is pending. If the project proceeds under IRB review, consent procedures will be updated accordingly.</li>
+      </ul>
+    </div>
+
+    <div class="consent-row">
+      <input type="checkbox" id="a-consent" onchange="toggleSubmit()">
+      <label for="a-consent">I understand what data is collected and consent to its use as described above. I confirm that no personally identifying information appears in my responses.</label>
+    </div>
+
+    <button class="btn-submit" id="submit-btn" disabled onclick="submitToArchive()">Submit Responses to CWSP Archive</button>
+
+    <div class="submit-status" id="submit-success">
+      <strong>Submitted.</strong> Your responses have been added to the CWSP AI Literacies archive. Thank you for contributing to the platform. You can print a copy of your completed workbook using the button below, or close this window.
+    </div>
+    <div class="submit-status" id="submit-error">
+      <strong>Submission did not go through.</strong> This is usually a connection issue. Please try again, or contact CWSP directly to submit your responses. Your work is still saved in this browser.
+    </div>
+  </div>
+
+</div><!-- /workbook -->
+
+<!-- Fixed controls -->
+<div class="controls">
+  <button class="btn btn-secondary" onclick="window.print()">Print / Save PDF</button>
+  <button class="btn btn-primary" onclick="clearAll()">Clear All</button>
+</div>
+
+<script>
+// ─── PERSISTENCE ──────────────────────────────────────────────────────────
+function saveField(el) {
+  localStorage.setItem(el.id, el.value);
+}
+function saveCheckbox(el) {
+  localStorage.setItem(el.id, el.checked ? '1' : '0');
+}
+
+function loadAll() {
+  document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
+    const saved = localStorage.getItem(el.id);
+    if (saved !== null) el.value = saved;
+  });
+  document.querySelectorAll('select').forEach(el => {
+    const saved = localStorage.getItem(el.id);
+    if (saved !== null) el.value = saved;
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    el.checked = localStorage.getItem(el.id) === '1';
+  });
+  toggleSubmit();
+  updateProgress();
+}
+
+function clearAll() {
+  if (!confirm('Clear all your responses? This cannot be undone.')) return;
+  document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
+    el.value = '';
+    localStorage.removeItem(el.id);
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    el.checked = false;
+    localStorage.removeItem(el.id);
+  });
+  updateProgress();
+}
+
+// ─── PROGRESS ─────────────────────────────────────────────────────────────
+function updateProgress() {
+  const required = document.querySelectorAll('textarea[id^="f-"], input[type="text"][id^="f-"]');
+  let filled = 0;
+  required.forEach(el => { if (el.value.trim().length > 10) filled++; });
+  const pct = Math.round((filled / required.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+
+// ─── SUBMIT TOGGLE ────────────────────────────────────────────────────────
+function toggleSubmit() {
+  const consent = document.getElementById('a-consent').checked;
+  const discipline = document.getElementById('a-discipline').value.trim();
+  const instType = document.getElementById('a-inst-type').value;
+  const years = document.getElementById('a-years').value;
+  const stage = document.getElementById('a-stage').value;
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = !(consent && discipline && instType && years && stage);
+}
+
+// ─── SUBMISSION ───────────────────────────────────────────────────────────
+// Replace SCRIPT_URL with your deployed Google Apps Script web app URL
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzAqeLtTtwyZSuWOnjoDcDBChRbs3vmaPVusqFDDNO7xpUtYrKOmHsRxEQRZezuHc6A/exec';
+
+function collectAllFields() {
+  const data = { timestamp: new Date().toISOString() };
+
+  // Anonymous metadata
+  ['a-program-code','a-stage','a-discipline','a-department','a-inst-type','a-years'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.value;
+  });
+
+  // Engagement checkboxes
+  ['a-eng-cwsp','a-eng-self','a-eng-dept','a-eng-return'].forEach(id => {
+    data[id] = document.getElementById(id).checked;
+  });
+
+  // Clusters completed
+  ['a-cl-01','a-cl-02','a-cl-03'].forEach(id => {
+    data[id] = document.getElementById(id).checked;
+  });
+
+  // All workbook field responses
+  document.querySelectorAll('textarea[id^="f-"], input[type="text"][id^="f-"]').forEach(el => {
+    data[el.id] = el.value;
+  });
+
+  // Checklist
+  document.querySelectorAll('input[type="checkbox"][id^="ck"]').forEach(el => {
+    data[el.id] = el.checked;
+  });
+
+  // Map table fields
+  document.querySelectorAll('textarea[id^="m-"], input[type="text"][id^="m-"]').forEach(el => {
+    data[el.id] = el.value;
+  });
+
+  // Policy template
+  ['f-pt-course','f-pt-tools','f-pt-tasks','f-pt-because','f-pt-judgment'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.value;
+  });
+
+  return data;
+}
+
+function submitToArchive() {
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  const payload = collectAllFields();
+
+  // no-cors: request sends but response is opaque — optimistic success display
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(() => {
+    document.getElementById('submit-success').style.display = 'block';
+    document.getElementById('submit-error').style.display = 'none';
+    btn.textContent = '✓ Submitted';
+    localStorage.setItem('cwsp-submitted', new Date().toISOString());
+  })
+  .catch(() => {
+    document.getElementById('submit-error').style.display = 'block';
+    document.getElementById('submit-success').style.display = 'none';
+    btn.disabled = false;
+    btn.textContent = 'Submit Responses to CWSP Archive';
+  });
+}
+
+// ─── NAV ACTIVE STATE ─────────────────────────────────────────────────────
+function updateNav() {
+  const sections = ['cover','cluster01','cluster02','cluster03','synthesis','archive'];
+  const links = document.querySelectorAll('nav a');
+  let current = 'cover';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) current = id;
+  });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateNav, { passive: true });
+
+// ─── INIT ─────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadAll();
+  updateNav();
+});
+</script>
+</body>
+</html>
