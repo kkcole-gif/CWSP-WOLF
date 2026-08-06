@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Module 2: Designing Digital Communication Assignments | RED-ACI</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul, .content-section ol { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+
+/* Design principles grid */
+.principles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.25rem 0; }
+.principle-card { border: 1px solid var(--mgray); border-top: 3px solid var(--accent); padding: 1.25rem; border-radius: 0 0 4px 4px; }
+.principle-card h5 { font-size: 0.88rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; }
+.principle-card p { font-size: 0.87rem; color: var(--dark); margin: 0; }
+
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.activity-block ol { margin: 0.5rem 0 1rem 1.25rem; }
+.activity-block ol li { font-size: 0.92rem; margin-bottom: 0.5rem; }
+
+/* Accessibility checklist */
+.checklist { list-style: none; margin: 1rem 0; }
+.checklist li { display: flex; gap: 0.6rem; padding: 0.5rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; }
+.checklist input[type="checkbox"] { flex-shrink: 0; margin-top: 2px; accent-color: var(--accent); }
+
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
+.btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
+#submit-success { display: none; background: #e8f0fe; border: 1px solid #aec4f5; border-radius: 3px; padding: 1rem; color: #1a3a7a; font-size: 0.9rem; margin-top: 1rem; }
+#submit-error   { display: none; background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 1rem; color: #c62828; font-size: 0.9rem; margin-top: 1rem; }
+
+.next-module { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.next-module:hover { border-color: var(--accent); }
+.next-module .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.next-module .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; } .sidebar { display: none; }
+  .main { padding: 1.5rem; } .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+  .principles-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="digital.html">← Digital Comm Certificate</a>
+    <h1>Module 2: Designing Digital Communication Assignments</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+    <button class="btn-save" onclick="saveAll()">Save</button>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" aria-label="Module navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#overview">Module overview</a>
+      <a href="#principles">Design principles</a>
+      <a href="#tools">Tool selection</a>
+      <a href="#accessibility">Accessibility</a>
+      <a href="#scaffolding">Scaffolding digital projects</a>
+      <a href="#genre">Genre conventions</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1 — Digital Assignment Design</a>
+      <a href="#activity2" class="activity">2 — Accessibility Review</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#submit">Submit &amp; complete</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header" id="overview">
+      <p class="module-eyebrow">Digital Communication Certificate · Module 2 of 3</p>
+      <h2>Designing Digital Communication Assignments</h2>
+      <p>Principles for creating effective digital assignments, strategies for tool selection that serves learning rather than novelty, and accessibility requirements that apply to all digital communication in educational contexts. Estimated time: 3–5 hours over two weeks.</p>
+    </div>
+
+    <section class="content-section" id="principles">
+      <span class="section-tag">Section 1</span>
+      <h3>Principles for Digital Assignment Design</h3>
+      <p>The same frameworks that make print writing assignments effective — clear genre, explicit audience, scaffolded process, transparent criteria — apply to digital assignments. But digital assignments carry additional design considerations: tool friction (what does it cost students in time and money to acquire the technical skill needed?), platform constraints (what does the platform allow and not allow?), and persistence (who owns the work after the semester ends, and where does it live?).</p>
+      <p>Effective digital assignment design starts with the communication goal, not the tool. "I want students to make a podcast" is a tool choice before a pedagogical decision. "I want students to communicate their research findings to a general audience in an engaging, accessible format" is a communication goal that might lead to a podcast, a recorded presentation, a short video, an infographic, or a data visualization — depending on what serves the learning best and what students can realistically produce.</p>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <h5>Genre clarity</h5>
+          <p>Name the genre and provide examples. A "digital story" is not clear. A "3–5 minute documentary-style video with a voiced-over argument" is.</p>
+        </div>
+        <div class="principle-card">
+          <h5>Explicit audience</h5>
+          <p>Identify a real or realistic audience. "Post to the class discussion board" is not an audience. "Write for the parents of children with Type 1 diabetes" is.</p>
+        </div>
+        <div class="principle-card">
+          <h5>Proportionate tool complexity</h5>
+          <p>The tool should add to the communication, not dominate the learning. Students shouldn't spend most of their time fighting software.</p>
+        </div>
+        <div class="principle-card">
+          <h5>Scaffolded process</h5>
+          <p>Build in a draft, a prototype, or a peer review before the final submission. Digital projects have high failure rates without intermediate checkpoints.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="tools">
+      <span class="section-tag">Section 2</span>
+      <h3>Tool Selection: Learning First</h3>
+      <p>The proliferation of digital tools for academic communication creates a genuine design challenge: there are almost always multiple tools that could work for a given assignment, with different affordances, cost structures, learning curves, and accessibility profiles. The decision should be driven by what the tool enables communicatively, not by what is novel, what the instructor prefers, or what looks impressive on a portfolio.</p>
+      <p>Key questions for tool selection: Is this tool free or covered by NC State licensing? Does it run on the devices students actually have? Does it produce accessible output (captioned video, screen-reader-compatible documents, alt-text-enabled images)? Does it require creating accounts on third-party platforms, and if so, what are the privacy implications for student work? Is technical instruction time available, or will students be expected to figure it out independently?</p>
+      <div class="callout">
+        <p class="callout-title">NC State digital tools available to students</p>
+        <p>NC State provides students access to the Adobe Creative Cloud suite, Microsoft 365 (including Teams and Stream), Canvas media tools, and various discipline-specific software through NCSU Libraries. Designing assignments around these tools reduces access friction significantly. CWSP can help identify appropriate tools for specific assignment types — contact kkcole2@ncsu.edu.</p>
+      </div>
+      <p>When a tool has a significant learning curve, that learning is part of the assignment — and should be treated as such. Explicitly scaffolding the technical skill acquisition (a tutorial completion, a practice exercise, a low-stakes prototype) alongside the communication task is what makes the difference between an assignment that develops technical capacity and one that just frustrates students.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="accessibility">
+      <span class="section-tag">Section 3</span>
+      <h3>Accessibility in Digital Communication</h3>
+      <p>WCAG 2.1 (Web Content Accessibility Guidelines) defines the accessibility standards that apply to all digital content in educational contexts — and, increasingly, in professional contexts. Teaching students to produce accessible digital communication is not a compliance requirement layered on top of communication instruction; it is communication instruction. Accessible design requires genuine attention to audience — specifically, to the full range of audiences who might encounter and use a digital artifact.</p>
+      <p>Core accessibility requirements for student-produced digital work include: captions or transcripts for all audio and video content; alt text for all non-decorative images; sufficient color contrast between text and background; keyboard navigability for interactive content; and meaningful link text (not "click here").</p>
+      <p>Faculty who require accessible digital work need to teach it explicitly — most students have never encountered accessibility requirements and many have never read content with a screen reader or navigated a site without a mouse. A brief accessibility audit activity (seeing how their draft works with a free screen reader, running it through a contrast checker) is the most efficient way to build genuine understanding of what accessibility means in practice.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="scaffolding">
+      <span class="section-tag">Section 4</span>
+      <h3>Scaffolding Digital Projects</h3>
+      <p>Digital projects have a particular failure mode that print assignments don't: technical catastrophe close to the deadline. Files become corrupted, platforms go down, students lose hours of work. Scaffolding digital projects with intermediate deliverables — a storyboard, a script, a rough cut, a prototype — reduces this risk and also produces better final work by making the production process visible and teachable.</p>
+      <p>Scaffolding a digital project effectively means sequencing the conceptual work before the technical work. Students should have a clear argument, a defined audience, and a planned structure before they open any software. A one-page planning document or a hand-drawn storyboard that describes what the digital artifact will argue, who it addresses, and what it will look like — before any production begins — dramatically improves the quality and efficiency of digital production.</p>
+      <p>Peer review for digital projects works differently than for written drafts. Peers need guiding questions that are specific to the digital genre: "Is the argument clear in the first 30 seconds?", "Can you navigate without reading?", "What's missing from the caption track?", "Does the color choice communicate the right tone for the audience?" These questions develop both reviewer and producer's understanding of the genre.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="genre">
+      <span class="section-tag">Section 5</span>
+      <h3>Genre Conventions in Digital Communication</h3>
+      <p>Each digital genre has its own conventions that readers and viewers have been trained to expect. A data visualization that violates the conventions of its genre — using 3D charts that distort proportions, omitting axes labels, using misleading scales — communicates inaccuracy or incompetence, regardless of whether the underlying data is correct. A research blog post that reads like a journal article, with dense paragraphs and no headers or visuals, fails the genre even if the content is strong.</p>
+      <p>Teaching genre conventions requires showing students examples — and annotating what makes exemplary examples work. Genre annotation activities, where students analyze three strong examples of a target genre and identify what they share, are highly effective for developing genre awareness before production begins. This approach also surfaces disciplinary variation: the conventions of a science communication blog post are different from those of a humanities public scholarship post, which differ from a professional LinkedIn article.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Activity 1 -->
+    <section class="content-section" id="activity1">
+      <div class="activity-block">
+        <p class="activity-label">Activity 1</p>
+        <h4>Digital Assignment Design Using DAPOE</h4>
+        <p class="activity-meta">Design activity · 60–90 minutes</p>
+        <p>Using the DAPOE framework from the Written Communication certificate (or the version below), design one digital communication assignment for your course. If you haven't completed WC Module 3, the DAPOE framework asks: Discover (what background?), Ask (what question?), Produce (what genre/format?), Own (what is the student's distinctive contribution?), Evaluate (by what criteria?).</p>
+
+        <label for="f-a1-context">Assignment context: <span>(Course, level, where in the semester)</span></label>
+        <input type="text" id="f-a1-context" placeholder="e.g., BIO 495 capstone seminar, senior-level, Week 14">
+
+        <label for="f-a1-goal">Communication goal: <span>(What should students be able to do communicatively after completing this assignment?)</span></label>
+        <textarea id="f-a1-goal" rows="4" placeholder="Not 'make a podcast' but 'communicate research findings to a general audience in an accessible audio format'..."></textarea>
+
+        <label for="f-a1-genre">Genre and format: <span>(Name the digital genre specifically. What will the finished product look like?)</span></label>
+        <textarea id="f-a1-genre" rows="3" placeholder="e.g., A 4–6 minute narrated screencast demonstrating a lab procedure to an undergraduate audience, with captions and a linked written summary..."></textarea>
+
+        <label for="f-a1-tool">Tool choice and rationale: <span>(What tool(s)? Why this tool for this assignment? What technical scaffolding will you provide?)</span></label>
+        <textarea id="f-a1-tool" rows="4" placeholder="Tool, licensing/access notes, and how you'll teach it..."></textarea>
+
+        <label for="f-a1-scaffold">Scaffolding sequence: <span>(3–4 intermediate steps before the final submission)</span></label>
+        <textarea id="f-a1-scaffold" rows="5" placeholder="e.g., Week 10: audience analysis + genre examples annotated; Week 11: storyboard/outline; Week 12: rough draft + peer review; Week 13: final submission..."></textarea>
+
+        <label for="f-a1-criteria">Evaluation criteria: <span>(What makes this assignment succeed? Include at least one accessibility criterion.)</span></label>
+        <textarea id="f-a1-criteria" rows="5" placeholder="Your criteria, rubric language, or descriptor text..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Digital assignment designs — especially with tool selection rationale and scaffolding sequences — are among the most cross-disciplinary useful items in the repository.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a1">
+            <label for="repo-a1">I'd like to share my digital assignment design with the RED-ACI repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity 2 -->
+    <section class="content-section" id="activity2">
+      <div class="activity-block">
+        <p class="activity-label">Activity 2</p>
+        <h4>Accessibility Review of a Student Digital Assignment</h4>
+        <p class="activity-meta">Applied audit · 45 minutes</p>
+        <p>Select one digital artifact you have already assigned or a sample of student work from a previous semester. Run it through the accessibility checklist below. This activity is designed to be done with a real piece of student work — or, if you don't have one available, with your own digital course materials.</p>
+
+        <label for="f-a2-artifact">What artifact are you reviewing? <span>(Brief description — no identifying student information)</span></label>
+        <input type="text" id="f-a2-artifact" placeholder="e.g., Student-produced research infographic from BIO 495, Fall 2025">
+
+        <p style="font-size: 0.88rem; font-weight: 700; margin-top: 1.25rem; margin-bottom: 0.75rem;">Accessibility checklist <span style="font-weight: 400; color: var(--dgray);">— check each item as you review the artifact</span></p>
+        <ul class="checklist">
+          <li><input type="checkbox" id="check-1"><label for="check-1" style="margin: 0; font-weight: 400;">All images have descriptive alt text (not "image" or filename)</label></li>
+          <li><input type="checkbox" id="check-2"><label for="check-2" style="margin: 0; font-weight: 400;">Text color has at least 4.5:1 contrast ratio against background (can check at <a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener" style="color: var(--accent);">WebAIM Contrast Checker</a>)</label></li>
+          <li><input type="checkbox" id="check-3"><label for="check-3" style="margin: 0; font-weight: 400;">Information is not conveyed by color alone (charts use labels or patterns in addition to color)</label></li>
+          <li><input type="checkbox" id="check-4"><label for="check-4" style="margin: 0; font-weight: 400;">All video content has accurate captions (not auto-generated without review)</label></li>
+          <li><input type="checkbox" id="check-5"><label for="check-5" style="margin: 0; font-weight: 400;">All audio content has a written transcript</label></li>
+          <li><input type="checkbox" id="check-6"><label for="check-6" style="margin: 0; font-weight: 400;">Headings are used to organize content (not just bold text or larger font)</label></li>
+          <li><input type="checkbox" id="check-7"><label for="check-7" style="margin: 0; font-weight: 400;">Links have descriptive text ("NC State Writing Program" not "click here")</label></li>
+          <li><input type="checkbox" id="check-8"><label for="check-8" style="margin: 0; font-weight: 400;">Content is legible at 200% zoom</label></li>
+          <li><input type="checkbox" id="check-9"><label for="check-9" style="margin: 0; font-weight: 400;">Font size is at least 12pt / 16px for body text</label></li>
+          <li><input type="checkbox" id="check-10"><label for="check-10" style="margin: 0; font-weight: 400;">Tables have header rows and/or column headers</label></li>
+        </ul>
+
+        <label for="f-a2-findings">What did you find? Which items passed, which failed, and which weren't applicable?</label>
+        <textarea id="f-a2-findings" rows="5" placeholder="Your findings..."></textarea>
+
+        <label for="f-a2-teach">If you were to teach accessibility before this assignment, what three things would be most important to explicitly address — based on what you found?</label>
+        <textarea id="f-a2-teach" rows="4" placeholder="Your three priorities..."></textarea>
+
+        <label for="f-a2-update">Will you update your assignment prompt or rubric to include accessibility requirements? Describe what you'll add.</label>
+        <textarea id="f-a2-update" rows="4" placeholder="Your plan..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Discipline-specific accessibility checklists, tailored to particular digital genres and student production contexts, are needed across the curriculum. Your annotated checklist could become a model for colleagues in your field.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a2">
+            <label for="repo-a2">I'd like to share my accessibility audit findings and adapted checklist with the RED-ACI repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="readings">
+      <h3>Key readings and resources</h3>
+      <ul class="reading-list">
+        <li>★ Ball, C. E. (2004). Show, not tell: The value of new media scholarship. <em>Computers and Composition, 21</em>(4), 403–425.</li>
+        <li>★ WebAIM. (2024). <em>Introduction to Web Accessibility</em>. <a href="https://webaim.org/intro/" target="_blank" rel="noopener" style="color: var(--accent);">webaim.org/intro</a></li>
+        <li>★ Selber, S. A. (2004). <em>Multiliteracies for a digital age</em>. Southern Illinois University Press.</li>
+        <li>Shipka, J. (2011). <em>Toward a composition made whole</em>. University of Pittsburgh Press.</li>
+        <li>Yancey, K. B. (2004). Made not only in words: Composition in a new key. <em>College Composition and Communication, 56</em>(2), 297–328.</li>
+        <li>W3C Web Accessibility Initiative. (2018). <em>Web Content Accessibility Guidelines (WCAG) 2.1</em>. <a href="https://www.w3.org/WAI/WCAG21/quickref/" target="_blank" rel="noopener" style="color: var(--accent);">w3.org/WAI/WCAG21/quickref</a></li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <section id="submit">
+      <div class="submit-section">
+        <h3>Complete Module 2</h3>
+        <p>When you have finished both activities, submit your responses. Module 3 will be available immediately after submission.</p>
+        <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 2 Responses</button>
+        <div id="submit-success"><strong>Submitted.</strong> Your Module 2 responses are received. Proceed to Module 3 when ready.</div>
+        <div id="submit-error">Submission problem — responses saved locally. Try again or email kkcole2@ncsu.edu.</div>
+      </div>
+      <a href="dc-module3.html" class="next-module">
+        <div>
+          <div class="label">Next</div>
+          <div class="title">Module 3: Assessing Digital Communication →</div>
+        </div>
+        <span style="font-size: 1.5rem; color: var(--accent);">→</span>
+      </a>
+    </section>
+  </main>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'dc-module2';
+const FIELDS = ['f-a1-context','f-a1-goal','f-a1-genre','f-a1-tool','f-a1-scaffold','f-a1-criteria',
+                'f-a2-artifact','f-a2-findings','f-a2-teach','f-a2-update'];
+const CHECKBOXES = ['repo-a1','repo-a2','check-1','check-2','check-3','check-4','check-5','check-6','check-7','check-8','check-9','check-10'];
+
+function saveAll() {
+  FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem(MODULE+'-'+id,el.value);});
+  CHECKBOXES.forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem(MODULE+'-'+id,el.checked?'1':'0');});
+  updateProgress();
+}
+function loadAll() {
+  FIELDS.forEach(id=>{const el=document.getElementById(id);const v=localStorage.getItem(MODULE+'-'+id);if(el&&v!==null)el.value=v;});
+  CHECKBOXES.forEach(id=>{const el=document.getElementById(id);const v=localStorage.getItem(MODULE+'-'+id);if(el&&v!==null)el.checked=v==='1';});
+  updateProgress();
+}
+function updateProgress() {
+  const f=FIELDS.map(id=>document.getElementById(id)).filter(Boolean);
+  const pct=Math.round(f.filter(el=>el.value.trim().length>20).length/f.length*100);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=pct+'%';
+}
+function submitModule() {
+  saveAll();
+  const data={module:MODULE,timestamp:new Date().toISOString()};
+  FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
+  CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
+  const btn=document.getElementById('submit-btn');
+  btn.disabled=true;btn.textContent='Submitting…';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(()=>{document.getElementById('submit-success').style.display='block';btn.textContent='✓ Submitted';localStorage.setItem(MODULE+'-submitted',new Date().toISOString());})
+    .catch(()=>{document.getElementById('submit-error').style.display='block';btn.disabled=false;btn.textContent='Submit Module 2 Responses';});
+}
+document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{el.addEventListener('input',saveAll);el.addEventListener('change',saveAll);});
+function updateSidebarActive(){let current='';document.querySelectorAll('[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));}
+window.addEventListener('scroll',updateSidebarActive,{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
+</script>
+</body>
+</html>
