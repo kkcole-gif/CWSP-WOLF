@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Module 3: Assessing Digital Communication | RED-ACI</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --red: #CC0000; --green: #2D6A4F; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.capstone-link { color: var(--green); }
+.sidebar a.capstone-link.active { border-left-color: var(--green); background: #f0f8f4; }
+
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"], input[type="email"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus, input[type="email"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+
+/* Capstone */
+.capstone-section { background: #f0f8f4; border: 2px solid var(--green); border-radius: 6px; padding: 2.5rem; margin-top: 3rem; }
+.capstone-section h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--green); margin-bottom: 0.5rem; }
+.capstone-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem; }
+.capstone-section > p { font-size: 0.95rem; margin-bottom: 1.5rem; }
+.capstone-part { background: var(--white); border: 1px solid #c0ddd0; border-radius: 4px; padding: 1.5rem; margin-bottom: 1.25rem; }
+.capstone-part h4 { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
+.capstone-part p { font-size: 0.9rem; color: var(--dgray); margin: 0; }
+
+.certificate-submit { background: var(--dark); color: var(--white); border-radius: 6px; padding: 2.5rem; margin-top: 2rem; }
+.certificate-submit h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
+.certificate-submit p { font-size: 0.9rem; color: #ccc; margin-bottom: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.certificate-submit label { color: #aaa; }
+.certificate-submit textarea, .certificate-submit input { background: #2a2a2a; border-color: #444; color: white; }
+.certificate-submit textarea:focus, .certificate-submit input:focus { border-color: var(--green); background: #2a2a2a; }
+.btn-certificate { background: var(--green); color: white; border: none; padding: 0.85rem 2.25rem; font-size: 1rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-certificate:hover { opacity: 0.88; }
+.btn-certificate:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
+#cert-success { display: none; background: #1a3d2b; border: 1px solid var(--green); border-radius: 3px; padding: 1.25rem; color: #7dd3a8; font-size: 0.9rem; margin-top: 1rem; }
+#cert-error   { display: none; background: #3d1a1a; border: 1px solid #cc4444; border-radius: 3px; padding: 1rem; color: #ee9999; font-size: 0.9rem; margin-top: 1rem; }
+
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; } .sidebar { display: none; }
+  .main { padding: 1.5rem; } .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="digital.html">← Digital Comm Certificate</a>
+    <h1>Module 3: Assessing Digital Communication</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+    <button class="btn-save" onclick="saveAll()">Save</button>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" aria-label="Module navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#overview">Module overview</a>
+      <a href="#challenge">Assessment challenges</a>
+      <a href="#rubrics">Rubrics for digital work</a>
+      <a href="#portfolio">Portfolio approaches</a>
+      <a href="#peer">Peer feedback for digital</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1 — Multimodal Rubric Design</a>
+      <a href="#activity2" class="activity">2 — Portfolio Assessment Plan</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Capstone &amp; Certificate</span>
+      <a href="#readings">Reading list</a>
+      <a href="#capstone" class="capstone-link">Capstone submission</a>
+      <a href="#certificate" class="capstone-link">Submit &amp; earn certificate</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header" id="overview">
+      <p class="module-eyebrow">Digital Communication Certificate · Module 3 of 3</p>
+      <h2>Assessing Digital Communication</h2>
+      <p>The distinctive challenges of evaluating multimodal and digital work, strategies for rubric design that account for what digital genres actually do, portfolio approaches for cumulative digital learning, and peer feedback protocols calibrated to digital production. Estimated time: 3–5 hours plus capstone.</p>
+    </div>
+
+    <section class="content-section" id="challenge">
+      <span class="section-tag">Section 1</span>
+      <h3>The Assessment Challenges of Digital Work</h3>
+      <p>Digital communication assignments surface assessment challenges that print assignments don't face in the same way. Three stand out as most significant for faculty.</p>
+      <p>First, mode-specificity. A rubric designed for written argument doesn't transfer to video, podcast, or data visualization. The criteria that make a research paper strong — arguable thesis, evidence-to-claim ratio, citation practices — don't map directly onto what makes a 5-minute documentary strong. Faculty often apply print criteria to digital work and produce assessments that miss what the work is actually doing (or failing to do) as digital communication.</p>
+      <p>Second, process invisibility. With a print assignment, revision is visible — earlier drafts exist, tracked changes can be reviewed, and the distance between first draft and final is auditable. Digital production is often less transparent: a final video reveals little about how many takes it took, how the script changed, or what technical choices were made. Assessment that only evaluates the final product misses a significant portion of the learning.</p>
+      <p>Third, technical variation. Students in the same course working on the same digital assignment will have wildly different levels of technical fluency with the relevant tools. An assessment rubric that inadvertently rewards technical polish over communication quality will disadvantage students who spent time on the argument rather than the production values — and may reward the reverse.</p>
+      <div class="callout">
+        <p class="callout-title">The core principle</p>
+        <p>Assess the communication, not the production. A visually polished infographic that makes a weak argument or misrepresents data should score lower than a simply designed infographic with a clear, accurate, well-supported argument. Rubric criteria should be weighted to reflect this priority.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="rubrics">
+      <span class="section-tag">Section 2</span>
+      <h3>Rubrics for Digital and Multimodal Work</h3>
+      <p>Effective rubrics for digital work share the design principles of effective rubrics for any genre — they should describe what the communication does rather than what it fails to do, they should reflect the actual goals of the assignment, and they should be shared with students before they begin. But they also need criteria specific to digital communication.</p>
+      <p>A well-designed rubric for a digital communication assignment typically addresses three clusters of criteria: rhetorical effectiveness (does the artifact achieve its communicative purpose with its intended audience?); mode-specific quality (does it use the specific modes it engages — visual, audio, spatial, linguistic — effectively?); and accessibility and technical execution (is it accessible to the intended audience, including people with disabilities, and does it function as intended?).</p>
+      <p>The relative weight of these clusters should be explicit and justified. Rhetorical effectiveness should typically carry the most weight. Mode-specific quality rewards disciplinary genre knowledge. Accessibility and technical execution ensures students attend to the full communication context — but should not be weighted so heavily that a student who produces a technically flawless artifact with a weak argument receives a high score.</p>
+      <p>Holistic descriptors are particularly useful for digital genres: a paragraph that describes what an "excellent," "proficient," "developing," and "beginning" version of the artifact looks like — as a whole, not a sum of parts — often gives students clearer guidance than an analytic grid and gives faculty more useful interpretive flexibility.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="portfolio">
+      <span class="section-tag">Section 3</span>
+      <h3>Portfolio Approaches for Digital Learning</h3>
+      <p>Digital portfolios — curated collections of student work with reflective commentary — are particularly well suited to digital communication instruction because they can house the digital artifacts themselves, alongside process documentation (storyboards, drafts, peer feedback received) and reflective writing about what students learned. They make digital communication learning visible in a way that individual assignment grades cannot.</p>
+      <p>Effective digital portfolios are curated, not comprehensive. Students select artifacts, revise them for the portfolio context, and write reflective introductions that explain the selection rationale and articulate what was learned. The curation and reflection are where the deepest learning happens — and where faculty can assess metacognitive development alongside the quality of the artifacts.</p>
+      <p>Platform choice matters. GitHub Pages, WordPress (available through NC State), Google Sites, and Adobe Portfolio are all viable platforms with different strengths. The key is that the platform should serve the portfolio's audience and purpose, not be selected because it's familiar to the faculty member or impressive-looking. A portfolio on Google Sites that is easy to navigate and clearly organized will serve students better than a complex platform that students spent most of their time learning to operate.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="peer">
+      <span class="section-tag">Section 4</span>
+      <h3>Peer Feedback Protocols for Digital Work</h3>
+      <p>Peer feedback for digital work requires genre-specific protocols even more than peer review of writing does, because reviewers need explicit guidance about what to look for in a mode they may not be expert in. Without structure, peer feedback on a podcast tends to address voice quality and sound levels ("it was hard to hear you in some parts") rather than argument, audience, and genre conventions.</p>
+      <p>Structured peer review protocols for digital work give reviewers specific listening or viewing tasks: "Describe, in one sentence, the argument you heard. Was there a clear moment when the main claim was stated?" is a more useful prompt than "Was the podcast good?" Protocols that require reviewers to identify specific timestamps or specific visual elements — "At 2:14, the argument shifts — is this transition clear?" — produce more specific, more useful feedback.</p>
+      <p>Reviewer training is also important. Brief exposure to exemplary work in the genre, with discussion of what makes it effective, calibrates peer reviewers before they give feedback. This calibration activity doubles as genre instruction — students who have analyzed three strong data visualizations for what they share are much better positioned to give useful feedback on a peer's data visualization than students who have only seen the assignment prompt.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Activity 1 -->
+    <section class="content-section" id="activity1">
+      <div class="activity-block">
+        <p class="activity-label">Activity 1</p>
+        <h4>Multimodal Rubric Design</h4>
+        <p class="activity-meta">Design activity · 60–90 minutes</p>
+        <p>Design a rubric for the digital assignment you created in Module 2 Activity 1. Your rubric should address the three clusters described in Section 2: rhetorical effectiveness, mode-specific quality, and accessibility/technical execution. Make the weighting explicit and justified.</p>
+
+        <label for="f-a1-assignment">Which assignment from Module 2 are you designing this rubric for? <span>(Brief description)</span></label>
+        <input type="text" id="f-a1-assignment" placeholder="e.g., 4–6 min narrated screencast, BIO 495 senior capstone...">
+
+        <label for="f-a1-rhetorical">Rhetorical effectiveness criteria: <span>(Weight: ___ %). What does "excellent" look like? What does "developing" look like?)</span></label>
+        <textarea id="f-a1-rhetorical" rows="6" placeholder="Criteria, descriptors, and weight rationale..."></textarea>
+
+        <label for="f-a1-modal">Mode-specific quality criteria: <span>(Weight: ___ %). What modes does this assignment engage, and what does effective use of each look like?)</span></label>
+        <textarea id="f-a1-modal" rows="6" placeholder="Mode-specific criteria and descriptors..."></textarea>
+
+        <label for="f-a1-access">Accessibility and technical execution criteria: <span>(Weight: ___ %). What baseline accessibility standards apply, and what does successful execution require?)</span></label>
+        <textarea id="f-a1-access" rows="5" placeholder="Accessibility and execution criteria..."></textarea>
+
+        <label for="f-a1-holistic">Optional: Write a holistic descriptor for "Excellent" work on this assignment. <span>(A paragraph, not a checklist — describe what excellent work does, not what it has.)</span></label>
+        <textarea id="f-a1-holistic" rows="6" placeholder="An Excellent submission..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>A well-designed rubric for a specific digital genre — especially from a STEM or professional discipline — is one of the most useful contributions a faculty member can make to the repository.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a1">
+            <label for="repo-a1">I'd like to share my multimodal rubric with the RED-ACI repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity 2 -->
+    <section class="content-section" id="activity2">
+      <div class="activity-block">
+        <p class="activity-label">Activity 2</p>
+        <h4>Digital Portfolio Assessment Plan</h4>
+        <p class="activity-meta">Design activity · 45–60 minutes</p>
+        <p>Design a digital portfolio framework for one of your courses — either a portfolio that would replace or supplement a final exam, or a portfolio that documents students' digital communication development across a course or program. You don't have to implement this immediately; the goal is to think through what it would take.</p>
+
+        <label for="f-a2-purpose">Portfolio purpose: <span>(What learning will it document? Who is the audience — the instructor only, peers, potential employers, the broader public?)</span></label>
+        <textarea id="f-a2-purpose" rows="4" placeholder="Purpose and audience..."></textarea>
+
+        <label for="f-a2-contents">What will the portfolio contain? <span>(Which artifacts? What process documentation? How much reflective writing? How is it curated?)</span></label>
+        <textarea id="f-a2-contents" rows="5" placeholder="Contents and curation model..."></textarea>
+
+        <label for="f-a2-platform">Platform: <span>(What platform fits the purpose and audience? What's the access model — public, NC State login only, instructor only?)</span></label>
+        <textarea id="f-a2-platform" rows="3" placeholder="Platform choice and rationale..."></textarea>
+
+        <label for="f-a2-assess">How will you assess the portfolio? <span>(What's the evaluation rubric or framework? How much weight does curation carry relative to artifact quality?)</span></label>
+        <textarea id="f-a2-assess" rows="5" placeholder="Assessment approach..."></textarea>
+
+        <label for="f-a2-barriers">What would it take to implement this? What are the main barriers? <span>(Time, platform access, student technical skill, institutional support)</span></label>
+        <textarea id="f-a2-barriers" rows="4" placeholder="Implementation analysis..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Portfolio assessment frameworks are particularly transferable across disciplines. A portfolio model designed for an engineering capstone course can adapt to a communication, public health, or social work context with minimal modification.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a2">
+            <label for="repo-a2">I'd like to share my portfolio assessment framework with the RED-ACI repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="readings">
+      <h3>Key readings and resources</h3>
+      <ul class="reading-list">
+        <li>★ Yancey, K. B. (2004). Made not only in words: Composition in a new key. <em>College Composition and Communication, 56</em>(2), 297–328.</li>
+        <li>★ Ball, C. E., &amp; Charlton, C. (2015). All writing is multimodal. In L. Adler-Kassner &amp; E. Wardle (Eds.), <em>Naming what we know: Threshold concepts of writing studies</em>. Utah State University Press.</li>
+        <li>★ DeVoss, D., Cushman, E., &amp; Grabill, J. T. (2005). Infrastructure and composing: The when of new-media writing. <em>College Composition and Communication, 57</em>(1), 14–44.</li>
+        <li>Sorapure, M. (2006). Between modes: Assessing student new media compositions. <em>Kairos: A Journal of Rhetoric, Technology, and Pedagogy, 10</em>(2).</li>
+        <li>Rhodes, T., &amp; Agre-Kippenhan, S. (2004). A multiplicity of learning: Portfolios in the liberal arts. <em>Assessing Student Learning in General Education</em>.</li>
+        <li>WebAIM. (2024). <em>WAVE Web Accessibility Evaluation Tool</em>. <a href="https://wave.webaim.org" target="_blank" rel="noopener" style="color: var(--accent);">wave.webaim.org</a></li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Capstone -->
+    <div class="capstone-section" id="capstone">
+      <p class="capstone-eyebrow">Certificate Capstone</p>
+      <h2>Digital Communication Capstone Submission</h2>
+      <p>Your capstone is a digital assignment portfolio: a curated collection of 2–3 digital communication assignment designs, with assessment rubrics, scaffolding sequences, and a reflective rationale that demonstrates your application of all three modules.</p>
+
+      <div class="capstone-part">
+        <h4>Part A — Digital assignment portfolio (2–3 assignments)</h4>
+        <p>For each assignment: genre and format (specific), audience (named), tool choice and rationale, scaffolding sequence, and assessment rubric. These should be real assignments you intend to use — not hypothetical exercises. At least one must include an explicit accessibility requirement.</p>
+      </div>
+      <div class="capstone-part">
+        <h4>Part B — Assessment framework</h4>
+        <p>Present the rubric or assessment approach for at least one of your assignments in full. Include the weight of each criterion and a holistic descriptor for at least the "Excellent" level of performance.</p>
+      </div>
+      <div class="capstone-part">
+        <h4>Part C — Reflective rationale</h4>
+        <p>A 1–2 page reflective rationale explaining your design decisions. How do the three modules' frameworks — multimodal theory, digital assignment design principles, assessment strategies — inform what you built? What will you implement immediately, and what needs more development?</p>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--dgray); margin-top: 1rem;">Length: 5–8 pages total. Format: Google Doc link or paste below. You may also email your capstone to kkcole2@ncsu.edu with the subject "RED-ACI DC Capstone Submission."</p>
+    </div>
+
+    <!-- Certificate Submit -->
+    <div class="certificate-submit" id="certificate">
+      <h3>Submit Capstone &amp; Earn Your Certificate</h3>
+      <p>Complete the form below. Your PDF Digital Communication Certificate will be emailed to your NC State address within 24 hours.</p>
+
+      <div class="form-row">
+        <div>
+          <label for="cert-name">Full name <span style="color: #888;">(for certificate)</span></label>
+          <input type="text" id="cert-name" placeholder="As it should appear on the certificate">
+        </div>
+        <div>
+          <label for="cert-email">NC State email</label>
+          <input type="email" id="cert-email" placeholder="youreid@ncsu.edu">
+        </div>
+      </div>
+      <div class="form-row" style="margin-top: 0.75rem;">
+        <div>
+          <label for="cert-department">Department</label>
+          <input type="text" id="cert-department" placeholder="e.g., Department of Communication">
+        </div>
+        <div>
+          <label for="cert-role">Role</label>
+          <input type="text" id="cert-role" placeholder="e.g., Associate Professor, Lecturer">
+        </div>
+      </div>
+
+      <label for="cert-doc-link" style="margin-top: 1rem;">Google Doc link <span style="color: #888;">(or paste text in the fields below)</span></label>
+      <input type="text" id="cert-doc-link" placeholder="https://docs.google.com/document/d/...">
+
+      <label for="cert-parta">Part A — Assignment portfolio <span style="color: #888;">(optional if Google Doc provided)</span></label>
+      <textarea id="cert-parta" rows="5" placeholder="Assignment 1:\n\nAssignment 2:\n\nAssignment 3 (optional):"></textarea>
+
+      <label for="cert-partb">Part B — Assessment framework</label>
+      <textarea id="cert-partb" rows="5" placeholder="Optional if Google Doc provided..."></textarea>
+
+      <label for="cert-partc">Part C — Reflective rationale</label>
+      <textarea id="cert-partc" rows="7" placeholder="Optional if Google Doc provided..."></textarea>
+
+      <div class="checkbox-row" style="margin-top: 1.5rem;">
+        <input type="checkbox" id="repo-capstone" style="accent-color: var(--green);">
+        <label for="repo-capstone" style="color: #ccc; font-weight: 400; margin: 0; font-size: 0.87rem;">I'd like to contribute my capstone to the RED-ACI faculty repository. CWSP will review before posting and will attribute it to me unless I request otherwise.</label>
+      </div>
+
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <button class="btn-certificate" id="cert-btn" onclick="submitCapstone()">Submit Capstone &amp; Earn Certificate</button>
+        <span style="font-size: 0.82rem; color: #888;">Certificate emailed within 24 hours</span>
+      </div>
+
+      <div id="cert-success">
+        <strong>Capstone received.</strong> Congratulations on completing the Digital Communication certificate. Your PDF certificate will be emailed within 24 hours. Thank you for your work.
+      </div>
+      <div id="cert-error">
+        Submission problem — responses saved locally. Try again or email your capstone to kkcole2@ncsu.edu with the subject "RED-ACI DC Capstone Submission."
+      </div>
+
+      <p style="font-size: 0.8rem; color: #888; margin-top: 1.5rem;">Questions? Contact Kirsti Cole at kkcole2@ncsu.edu · NC State Campus Writing and Speaking Program</p>
+    </div>
+
+  </main>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'dc-module3';
+const FIELDS = ['f-a1-assignment','f-a1-rhetorical','f-a1-modal','f-a1-access','f-a1-holistic',
+                'f-a2-purpose','f-a2-contents','f-a2-platform','f-a2-assess','f-a2-barriers',
+                'cert-name','cert-email','cert-department','cert-role','cert-doc-link',
+                'cert-parta','cert-partb','cert-partc'];
+const CHECKBOXES = ['repo-a1','repo-a2','repo-capstone'];
+
+function saveAll() {
+  FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem(MODULE+'-'+id,el.value);});
+  CHECKBOXES.forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem(MODULE+'-'+id,el.checked?'1':'0');});
+  updateProgress();
+}
+function loadAll() {
+  FIELDS.forEach(id=>{const el=document.getElementById(id);const v=localStorage.getItem(MODULE+'-'+id);if(el&&v!==null)el.value=v;});
+  CHECKBOXES.forEach(id=>{const el=document.getElementById(id);const v=localStorage.getItem(MODULE+'-'+id);if(el&&v!==null)el.checked=v==='1';});
+  updateProgress();
+}
+function updateProgress() {
+  const actFields = FIELDS.slice(0,10).map(id=>document.getElementById(id)).filter(Boolean);
+  const pct = Math.round(actFields.filter(el=>el.value.trim().length>20).length/actFields.length*100);
+  document.getElementById('progress-fill').style.width=pct+'%';
+  document.getElementById('progress-label').textContent=pct+'%';
+}
+function submitCapstone() {
+  saveAll();
+  const name = document.getElementById('cert-name').value.trim();
+  const email = document.getElementById('cert-email').value.trim();
+  const docLink = document.getElementById('cert-doc-link').value.trim();
+  const partC = document.getElementById('cert-partc').value.trim();
+  if(!name||!email){alert('Please enter your name and NC State email address before submitting.');return;}
+  if(!docLink&&!partC){alert('Please provide either a Google Doc link or paste your Part C reflective rationale to confirm capstone completion.');return;}
+  const data={module:MODULE,submission_type:'capstone',timestamp:new Date().toISOString(),certificate_name:name,certificate_email:email};
+  FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
+  CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
+  const btn=document.getElementById('cert-btn');
+  btn.disabled=true;btn.textContent='Submitting…';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(()=>{document.getElementById('cert-success').style.display='block';btn.textContent='✓ Submitted';localStorage.setItem(MODULE+'-cert-submitted',new Date().toISOString());})
+    .catch(()=>{document.getElementById('cert-error').style.display='block';btn.disabled=false;btn.textContent='Submit Capstone & Earn Certificate';});
+}
+document.querySelectorAll('textarea,input[type="text"],input[type="email"],input[type="checkbox"]').forEach(el=>{el.addEventListener('input',saveAll);el.addEventListener('change',saveAll);});
+function updateSidebarActive(){let current='';document.querySelectorAll('[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));}
+window.addEventListener('scroll',updateSidebarActive,{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
+</script>
+</body>
+</html>
