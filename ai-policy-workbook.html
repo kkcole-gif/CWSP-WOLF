@@ -44,12 +44,10 @@
       padding: 1.5rem 1.5rem 0.4rem;
     }
     .wb-sidebar .sidebar-part:first-child { padding-top: 0; }
-
     .wb-main {
       padding: 3rem 3.5rem 5rem;
       max-width: 820px;
     }
-
     /* ── PART HEADER ── */
     .part-header {
       margin-bottom: 2rem;
@@ -70,7 +68,6 @@
       letter-spacing: -0.02em;
       color: var(--black);
     }
-
     /* ── SECTION HEADINGS ── */
     .wb-main h3 {
       font-size: 1.05rem;
@@ -79,7 +76,6 @@
       color: var(--black);
     }
     .wb-main p { color: #444; margin-bottom: 0.9rem; line-height: 1.7; }
-
     /* ── FRAMEWORK BOXES ── */
     .step-grid {
       display: grid;
@@ -108,7 +104,6 @@
     }
     .step-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
     .step-card p { font-size: 0.88rem; color: #555; margin: 0; }
-
     .level-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -126,7 +121,6 @@
     .level-card.structural h4 { color: var(--red); }
     .level-card p { font-size: 0.85rem; margin: 0; }
     .level-card.structural p { color: #ccc; }
-
     .callout {
       background: #f4f4f4;
       border-left: 3px solid var(--red);
@@ -135,7 +129,6 @@
       border-radius: 0 4px 4px 0;
     }
     .callout p { font-size: 0.9rem; margin: 0; color: #333; }
-
     /* ── CORPUS ENTRIES ── */
     .corpus-section-label {
       font-size: 0.68rem;
@@ -145,7 +138,6 @@
       color: #999;
       margin: 2.5rem 0 0.75rem;
     }
-
     .entry {
       border: 1px solid #e0e0e0;
       border-radius: 4px;
@@ -178,10 +170,8 @@
     .entry-tags { font-size: 0.8rem; color: #777; margin-top: 0.2rem; }
     .entry-arrow { font-size: 1rem; color: #999; flex-shrink: 0; transition: transform 0.2s; margin-top: 0.2rem; }
     .entry.open .entry-arrow { transform: rotate(90deg); }
-
     .entry-body { display: none; padding: 0 1.25rem 1.25rem; border-top: 1px solid #f0f0f0; }
     .entry.open .entry-body { display: block; }
-
     .entry-quote {
       background: #f4f4f4;
       border-radius: 4px;
@@ -210,7 +200,6 @@
     }
     .step-content h5 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.15rem; }
     .step-content p { font-size: 0.83rem; color: #555; margin: 0; }
-
     .three-level { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; margin: 0.5rem 0 1rem; }
     .level-box { border-radius: 3px; padding: 0.75rem; }
     .level-box.c { background: #f4f4f4; }
@@ -220,7 +209,6 @@
     .level-box.s h5 { color: var(--red); }
     .level-box p { font-size: 0.8rem; margin: 0; }
     .level-box.s p { color: #bbb; }
-
     .discussion-box {
       background: #1a1a1a;
       color: #eee;
@@ -229,7 +217,6 @@
       font-size: 0.88rem;
       line-height: 1.6;
     }
-
     /* ── PART III: TEMPLATES ── */
     .save-indicator {
       font-size: 0.78rem;
@@ -237,7 +224,6 @@
       margin-bottom: 1.5rem;
     }
     .save-indicator.saved { color: #2D6A4F; }
-
     .template-card {
       border: 1px solid #e0e0e0;
       border-radius: 4px;
@@ -263,9 +249,7 @@
       cursor: pointer;
     }
     .template-card-header button:hover { background: rgba(255,255,255,0.1); color: #fff; }
-
     .template-card-body { padding: 1.25rem; }
-
     .meta-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -294,7 +278,6 @@
       outline: none;
       border-color: var(--red);
     }
-
     .field-label {
       font-size: 0.7rem;
       font-weight: 700;
@@ -304,7 +287,6 @@
       margin: 1rem 0 0.35rem;
     }
     .field-hint { font-size: 0.78rem; color: #888; margin-bottom: 0.4rem; }
-
     textarea {
       width: 100%;
       border: 1px solid #e0e0e0;
@@ -317,7 +299,6 @@
       line-height: 1.6;
     }
     textarea:focus { outline: none; border-color: var(--red); }
-
     .step-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
     .step-field-item {}
     .step-field-item .field-label { display: flex; align-items: center; gap: 0.4rem; }
@@ -327,12 +308,10 @@
       border-radius: 50%; font-size: 0.7rem; font-weight: 700;
       display: inline-flex; align-items: center; justify-content: center;
     }
-
     .level-fields { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; }
     .level-field-c .field-label { color: #555; }
     .level-field-s .field-label { color: var(--black); }
     .level-field-o .field-label { color: var(--red); }
-
     /* ── PART IV: POLICY TEMPLATES ── */
     .policy-template {
       border: 1px solid #e0e0e0;
@@ -367,16 +346,61 @@
     }
     .copy-btn:hover { border-color: var(--red); color: var(--red); }
     .copy-btn.copied { border-color: #2D6A4F; color: #2D6A4F; }
-
-    .policy-template pre {
+    /* Part IV editable draft area */
+    .policy-draft-area {
+      width: 100%;
+      min-height: 11rem;
       padding: 1.25rem;
-      font-size: 0.88rem;
-      line-height: 1.75;
-      white-space: pre-wrap;
       font-family: inherit;
+      font-size: 0.88rem;
+      line-height: 1.8;
+      border: none;
+      border-radius: 0;
+      resize: vertical;
       color: #333;
-      margin: 0;
+      background: #fff;
+      display: block;
+      box-sizing: border-box;
     }
+    .policy-draft-area:focus { outline: none; background: #fffef8; border-color: transparent; }
+    .btn-download {
+      font-size: 0.78rem;
+      background: var(--black);
+      border: 1px solid var(--black);
+      color: #fff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: inherit;
+      margin-left: 0.5rem;
+    }
+    .btn-download:hover { background: var(--red); border-color: var(--red); }
+    .p4-header-actions { display: flex; align-items: center; gap: 0; }
+    .p4-save-hint {
+      font-size: 0.78rem;
+      color: #888;
+      margin: 0 0 1.25rem;
+    }
+    .part4-download-all {
+      margin: 1.5rem 0 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-download-all {
+      background: var(--black);
+      color: #fff;
+      border: none;
+      padding: 0.55rem 1.4rem;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-download-all:hover { background: var(--red); }
+    .part4-download-all .p4-save-hint { margin: 0; }
     .policy-template .rationale {
       background: #f9f9f9;
       border-top: 1px solid #e0e0e0;
@@ -386,7 +410,6 @@
       line-height: 1.6;
     }
     .policy-template .rationale strong { color: #333; }
-
     /* ── CORPUS INDEX TABLE ── */
     .corpus-table-wrap { overflow-x: auto; margin: 1rem 0; }
     .corpus-table {
@@ -415,7 +438,6 @@
     .corpus-table tr:hover td { background: #fff0f0; }
     .wave-1 { color: var(--red); font-weight: 600; }
     .wave-2 { color: #555; }
-
     /* ── PRINT ── */
     .btn-print {
       background: transparent;
@@ -429,7 +451,6 @@
       margin-left: 0.75rem;
     }
     .btn-print:hover { border-color: var(--black); color: var(--black); }
-
     /* ── PROGRESS ── */
     .progress-bar-wrap {
       height: 3px;
@@ -438,17 +459,16 @@
       margin: 0.75rem 0 1.5rem;
     }
     .progress-bar { height: 100%; background: var(--red); border-radius: 2px; transition: width 0.3s; }
-
     @media (max-width: 800px) {
       .workbook-wrap { grid-template-columns: 1fr; }
       .wb-sidebar { position: static; height: auto; }
       .wb-main { padding: 2rem 1.25rem 4rem; }
       .step-grid, .level-grid, .four-step, .three-level, .step-fields, .level-fields, .meta-row { grid-template-columns: 1fr; }
+      .part4-download-all { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
-
 <header class="site-header">
   <nav class="nav-inner" aria-label="Main navigation">
     <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
@@ -462,56 +482,44 @@
     </ul>
   </nav>
 </header>
-
 <div class="workbook-wrap">
-
   <!-- ── SIDEBAR ── -->
   <aside class="wb-sidebar">
     <nav aria-label="Workbook navigation">
       <p class="sidebar-part">Overview</p>
       <a href="#intro" class="active">About this workbook</a>
-
       <p class="sidebar-part">Part I — Framework</p>
       <a href="#analytical-procedure">Analytical procedure</a>
       <a href="#three-levels">Three-level framework</a>
       <a href="#glitch">Reading for the glitch</a>
-
       <p class="sidebar-part">Part II — Corpus</p>
       <a href="#nc-state-entries">NC State depth case</a>
       <a href="#comparative-entries">Comparative institutions</a>
-
       <p class="sidebar-part">Part III — Your Analysis</p>
       <a href="#template-1">Template 1</a>
       <a href="#template-2">Template 2</a>
       <a href="#template-3">Template 3</a>
       <a href="#template-4">Template 4</a>
-
       <p class="sidebar-part">Part IV — Draft</p>
       <a href="#course-policy">Course-level</a>
       <a href="#program-policy">Program-level</a>
       <a href="#dept-policy">Department-level</a>
-
       <p class="sidebar-part">Reference</p>
       <a href="#corpus-index">Full corpus index</a>
     </nav>
   </aside>
-
   <!-- ── MAIN ── -->
   <main class="wb-main" id="wb-main">
-
     <!-- INTRO -->
     <section id="intro">
       <div class="part-header">
         <p class="part-eyebrow">AI Policy Lab · Policy Repository Workbook</p>
         <h2>Campus Writing and Speaking Program · NC State University · 2026</h2>
       </div>
-
       <div class="callout">
         <p>This workbook is a working document. Write in it. Argue with it. The annotations in Part II model one reading — not the only possible reading. Your analysis in Part III should challenge, extend, or contradict what you find here.</p>
       </div>
-
       <p>This workbook supports the AI Policy Lab workshop, a faculty professional development experience offered through NC State's Campus Writing and Speaking Program. It has four parts.</p>
-
       <div class="step-grid" style="grid-template-columns:1fr 1fr 1fr 1fr; gap:0.5rem; margin:1.25rem 0;">
         <div class="step-card" style="text-align:center; padding:0.85rem;">
           <div class="step-num-badge" style="margin:0 auto 0.4rem;">I</div>
@@ -534,12 +542,9 @@
           <p>Adaptable policy language</p>
         </div>
       </div>
-
       <p style="font-size:0.85rem; color:#888;">Framework: Cole (2026). Three-Level AI Literacy Model. <em>Pedagogies: An International Journal.</em> · <a href="go.ncsu.edu/cwsp">go.ncsu.edu/cwsp</a></p>
     </section>
-
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
-
     <!-- PART I -->
     <section id="framework">
       <div class="part-header">
@@ -548,7 +553,6 @@
       </div>
       <p>Every annotated policy entry in Part II applies the same four-step analytical procedure and three-level literacy framework. Apply the same procedure to new documents in Part III.</p>
     </section>
-
     <section id="analytical-procedure">
       <h3>The Analytical Procedure</h3>
       <p>Four moves for reading any AI governance document, applied in sequence.</p>
@@ -575,7 +579,6 @@
         </div>
       </div>
     </section>
-
     <section id="three-levels">
       <h3>The Three-Level Framework</h3>
       <p>After applying the four-step procedure, characterize the literacy demands the document makes — or fails to make — at three levels.</p>
@@ -594,7 +597,6 @@
         </div>
       </div>
     </section>
-
     <section id="glitch">
       <h3>Reading for the Glitch</h3>
       <p>Every AI governance document produced under institutional pressure reveals something its authors did not intend. We call this the <strong>glitch</strong> — the moment where the document's language breaks down, hedges, contradicts itself, or produces an unintended meaning.</p>
@@ -603,9 +605,7 @@
         <p><strong>Look for:</strong> hedging language ("strongly discouraged"), contradictions between sections, silences where governance should be explicit, borrowed frameworks applied beyond their scope, and temporal artifacts — language that was accurate when written but is no longer true.</p>
       </div>
     </section>
-
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
-
     <!-- PART II -->
     <section id="corpus">
       <div class="part-header">
@@ -617,11 +617,9 @@
         <p>These annotations model one reading — not the only possible reading. Use them as a starting point, not a conclusion. Discussion notes at the end of each entry suggest how to open the annotation up to disagreement.</p>
       </div>
     </section>
-
     <!-- NC STATE ENTRIES -->
     <section id="nc-state-entries">
       <p class="corpus-section-label">NC State Depth Case · Entries 1–2 of 4</p>
-
       <!-- Entry 1 -->
       <div class="entry" id="entry-1">
         <button class="entry-toggle" onclick="toggleEntry('entry-1')" aria-expanded="false">
@@ -663,7 +661,6 @@
           <div class="discussion-box">Useful entry point for discussing the difference between advisory and policy documents. Ask: what would it take for this document to become policy? Who would have to issue it, and in what form?</div>
         </div>
       </div>
-
       <!-- Entry 2 -->
       <div class="entry" id="entry-2">
         <button class="entry-toggle" onclick="toggleEntry('entry-2')" aria-expanded="false">
@@ -706,11 +703,9 @@
         </div>
       </div>
     </section>
-
     <!-- COMPARATIVE ENTRIES -->
     <section id="comparative-entries">
       <p class="corpus-section-label">Comparative Institutions · Entries 3–6</p>
-
       <!-- Entry 3: Cornell -->
       <div class="entry" id="entry-3">
         <button class="entry-toggle" onclick="toggleEntry('entry-3')" aria-expanded="false">
@@ -752,7 +747,6 @@
           <div class="discussion-box">This is the clearest example in the corpus of governance performed as design. Use it to discuss the relationship between legibility and enforceability. Ask: does making a policy visually clear make it more or less likely to function as governance?</div>
         </div>
       </div>
-
       <!-- Entry 4: Ohio State -->
       <div class="entry" id="entry-4">
         <button class="entry-toggle" onclick="toggleEntry('entry-4')" aria-expanded="false">
@@ -794,7 +788,6 @@
           <div class="discussion-box">Most productive when read in sequence with OSU Wave 1 entries. Ask: what would an honest narrative of this policy reversal look like? What would an institution need to say to its faculty, students, and the public when it moves from prohibition to mandate?</div>
         </div>
       </div>
-
       <!-- Entry 5: UCLA -->
       <div class="entry" id="entry-5">
         <button class="entry-toggle" onclick="toggleEntry('entry-5')" aria-expanded="false">
@@ -836,7 +829,6 @@
           <div class="discussion-box">This is the clearest example in the corpus of the temporal artifact problem. Use it to discuss what happens when named-tool policies go unenforced because the tools have changed. Ask: is this document currently being enforced? If so, against which tools?</div>
         </div>
       </div>
-
       <!-- Entry 6: U Florida -->
       <div class="entry" id="entry-6">
         <button class="entry-toggle" onclick="toggleEntry('entry-6')" aria-expanded="false">
@@ -879,9 +871,7 @@
         </div>
       </div>
     </section>
-
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
-
     <!-- PART III -->
     <section id="templates">
       <div class="part-header">
@@ -892,7 +882,6 @@
       <p id="save-status" class="save-indicator">Your responses are saved automatically in this browser.</p>
       <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
     </section>
-
     <!-- Template 1 -->
     <section id="template-1">
       <div class="template-card">
@@ -919,11 +908,9 @@
               <input type="text" id="t1-stance" placeholder="e.g., Prohibition / Encouragement" oninput="save()">
             </div>
           </div>
-
           <p class="field-label">Key language</p>
           <p class="field-hint">Excerpt or paraphrase — include section reference if available.</p>
           <textarea id="t1-keylang" rows="3" placeholder="Quote or paraphrase the most revealing language in the document." oninput="save()"></textarea>
-
           <p class="field-label">Four-Step Analysis</p>
           <div class="step-fields">
             <div class="step-field-item">
@@ -943,7 +930,6 @@
               <textarea id="t1-s4" rows="3" placeholder="What general claim about AI governance does this document exemplify?" oninput="save()"></textarea>
             </div>
           </div>
-
           <p class="field-label">Three-Level Literacy Read</p>
           <div class="level-fields">
             <div class="level-field-c">
@@ -959,13 +945,11 @@
               <textarea id="t1-l3" rows="4" placeholder="What operative choices does this policy ask faculty and students to make? What judgment does it cultivate or foreclose?" oninput="save()"></textarea>
             </div>
           </div>
-
           <p class="field-label">Discussion notes / what surprised you</p>
           <textarea id="t1-notes" rows="3" placeholder="What was most surprising, contradictory, or analytically useful about this document?" oninput="save()"></textarea>
         </div>
       </div>
     </section>
-
     <!-- Templates 2–4 (same structure) -->
     <section id="template-2">
       <div class="template-card">
@@ -997,7 +981,6 @@
         </div>
       </div>
     </section>
-
     <section id="template-3">
       <div class="template-card">
         <div class="template-card-header"><h4>Template 3</h4><button onclick="clearTemplate(3)">Clear</button></div>
@@ -1028,7 +1011,6 @@
         </div>
       </div>
     </section>
-
     <section id="template-4">
       <div class="template-card">
         <div class="template-card-header"><h4>Template 4</h4><button onclick="clearTemplate(4)">Clear</button></div>
@@ -1059,9 +1041,7 @@
         </div>
       </div>
     </section>
-
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
-
     <!-- PART IV -->
     <section id="policy-draft">
       <div class="part-header">
@@ -1075,56 +1055,64 @@
         <div class="step-card"><h4 style="font-size:0.88rem;">3. Name the revision trigger</h4><p>Specify what would prompt a policy update — tool proliferation, new institutional guidance, evidence that the policy is producing the wrong outcomes.</p></div>
         <div class="step-card"><h4 style="font-size:0.88rem;">4. Explain the reasoning</h4><p>Students comply more with policies they understand. Name why the policy takes the position it does.</p></div>
       </div>
-
       <div class="callout">
-        <p>The templates below are starting points, not models. Replace everything in [brackets]. The most common error in institutional AI policy is importing someone else's governance framework without identifying your own governance glitch first.</p>
+        <p>The templates below are starting points, not models. Replace everything in [brackets]. Edit directly in each template — your changes are saved automatically in this browser. Use the Download PDF button to export your draft.</p>
       </div>
     </section>
-
+    <!-- Course-Level -->
     <section id="course-policy">
       <h3>Course-Level: Syllabus Statement</h3>
       <div class="policy-template">
         <div class="policy-template-header">
           <span class="policy-level-badge">Course · Syllabus</span>
-          <button class="copy-btn" onclick="copyTemplate('course-text', this)">Copy text</button>
+          <div class="p4-header-actions">
+            <button class="copy-btn" onclick="copyTemplate('p4-course', this)">Copy text</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-course', 'Course-Level: Syllabus Statement')">Download PDF</button>
+          </div>
         </div>
-        <pre id="course-text">In this course, I understand AI-generated text to mean [any output produced by a generative AI system, including large language models, image generators, and code assistants, when that output is submitted as your own work without attribution].
+        <textarea id="p4-course" class="policy-draft-area" rows="12" oninput="save()">In this course, I understand AI-generated text to mean [any output produced by a generative AI system, including large language models, image generators, and code assistants, when that output is submitted as your own work without attribution].
 
 AI tools [are / are not] permitted for [specific tasks: e.g., brainstorming, outlining, coding assistance, translation]. They [are / are not] permitted for [specific tasks: e.g., drafting, revision, final submission].
 
 When AI assistance is permitted, you must [describe attribution requirements: e.g., note in a process statement what you used, how, and what you changed].
 
-This policy is in effect for [semester/year]. I will notify you of any changes. It will be reviewed before the following semester.</pre>
+This policy is in effect for [semester/year]. I will notify you of any changes. It will be reviewed before the following semester.</textarea>
         <div class="rationale"><strong>Bracket guidance:</strong> The first bracket requires a functional definition — not a product name. The second and third brackets require you to make a decision about your course, not defer it. The attribution bracket requires you to name what disclosure looks like in practice. The final sentence commits you to revision — build that time into your semester-end review.</div>
       </div>
     </section>
-
+    <!-- Program-Level -->
     <section id="program-policy">
       <h3>Program-Level: Shared Governance Statement</h3>
       <div class="policy-template">
         <div class="policy-template-header">
           <span class="policy-level-badge">Program · Handbook / Sequence Governance</span>
-          <button class="copy-btn" onclick="copyTemplate('program-text', this)">Copy text</button>
+          <div class="p4-header-actions">
+            <button class="copy-btn" onclick="copyTemplate('p4-program', this)">Copy text</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-program', 'Program-Level: Shared Governance Statement')">Download PDF</button>
+          </div>
         </div>
-        <pre id="program-text">The [program name] holds that the communication skills central to [disciplinary practice: e.g., engineering writing, clinical documentation, policy analysis] require [describe the specific human judgment the discipline values: e.g., evidence-based reasoning, rhetorical awareness, contextual decision-making] that AI tools do not reliably produce or assess.
+        <textarea id="p4-program" class="policy-draft-area" rows="12" oninput="save()">The [program name] holds that the communication skills central to [disciplinary practice: e.g., engineering writing, clinical documentation, policy analysis] require [describe the specific human judgment the discipline values: e.g., evidence-based reasoning, rhetorical awareness, contextual decision-making] that AI tools do not reliably produce or assess.
 
 AI tools may be used for [program-level permissions: e.g., literature search, data formatting, accessibility support] across all [program name] courses. Their use for [program-level restrictions: e.g., drafting, analysis, argument construction] requires instructor authorization and student disclosure.
 
 Individual instructors retain authority to apply more specific guidance within their courses. This statement does not supersede course-level policy; it provides the shared framework within which course-level decisions are made.
 
-This statement reflects program consensus as of [date]. It will be reviewed at [faculty meeting / curriculum committee] in [semester/year].</pre>
+This statement reflects program consensus as of [date]. It will be reviewed at [faculty meeting / curriculum committee] in [semester/year].</textarea>
         <div class="rationale"><strong>Bracket guidance:</strong> The program statement does not need to resolve every question — it needs to provide a framework that individual instructors can apply. The key move is naming the discipline-specific literacy the program values. That naming is the governance decision; everything else follows from it.</div>
       </div>
     </section>
-
+    <!-- Department-Level -->
     <section id="dept-policy">
       <h3>Department-Level: Institutional Governance Framework</h3>
       <div class="policy-template">
         <div class="policy-template-header">
           <span class="policy-level-badge">Department · Curriculum Committee / Faculty Governance</span>
-          <button class="copy-btn" onclick="copyTemplate('dept-text', this)">Copy text</button>
+          <div class="p4-header-actions">
+            <button class="copy-btn" onclick="copyTemplate('p4-dept', this)">Copy text</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Department-Level: Institutional Governance Framework')">Download PDF</button>
+          </div>
         </div>
-        <pre id="dept-text">The [department name] adopts the following framework for AI use across its courses and programs, effective [date].
+        <textarea id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department name] adopts the following framework for AI use across its courses and programs, effective [date].
 
 Scope: This framework applies to [describe scope: e.g., all undergraduate courses, graduate seminars, faculty research outputs submitted under department auspices].
 
@@ -1134,17 +1122,19 @@ Governance principle: The department affirms that [name the value: e.g., discipl
 
 Authority: Course-level AI policy is the responsibility of the individual instructor, within the framework above. Program-level guidance is the responsibility of [program director / curriculum committee]. This department-level framework is reviewed by [body] on [schedule].
 
-Revision: This framework was adopted in conditions that are already changing. It will be reviewed at [date] and updated as the technological landscape and the department's pedagogical understanding develop.</pre>
+Revision: This framework was adopted in conditions that are already changing. It will be reviewed at [date] and updated as the technological landscape and the department's pedagogical understanding develop.</textarea>
         <div class="rationale"><strong>Bracket guidance:</strong> The department framework sets the conditions within which course and program policy operate. Its most important function is naming who has authority at each level and establishing a review mechanism. The corpus shows that departments that lack this framework tend to produce contradictory course-level policies — not because instructors disagree, but because no one has named the shared commitments.</div>
       </div>
     </section>
-
-    <div class="callout" style="margin:2rem 0;">
+    <!-- Download all -->
+    <div class="part4-download-all">
+      <button class="btn-download-all" onclick="downloadAllPoliciesPDF()">Download all three as PDF</button>
+      <p class="p4-save-hint">Your edits are saved automatically in this browser.</p>
+    </div>
+    <div class="callout" style="margin:0 0 2rem;">
       <p><strong>The policy your students need is one they can reason from, not just comply with.</strong> The distinction between a policy that explains its reasoning and one that does not is the difference between governance that builds literacy and governance that performs authority.</p>
     </div>
-
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
-
     <!-- CORPUS INDEX -->
     <section id="corpus-index">
       <div class="part-header">
@@ -1153,7 +1143,6 @@ Revision: This framework was adopted in conditions that are already changing. It
       </div>
       <p>All 80 documents in the corpus. Use this index to locate documents by institution, wave, or policy stance. URLs for each document are available in the full corpus database; contact CWSP for access.</p>
       <p style="font-size:0.83rem; color:#888; margin-bottom:1rem;">Status: all entries verified or in verification.</p>
-
       <div class="corpus-table-wrap">
         <table class="corpus-table">
           <thead>
@@ -1238,15 +1227,12 @@ Revision: This framework was adopted in conditions that are already changing. It
       </div>
       <p style="font-size:0.8rem;color:#888;margin-top:1rem;">&#169; 2026 Kirsti Cole. Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" style="color:#888;">CC BY-NC-ND 4.0</a>. &nbsp;·&nbsp; Framework: Cole (2026). <em>Pedagogies: An International Journal.</em></p>
     </section>
-
   </main>
 </div>
-
 <footer class="site-footer">
   <p>RED-ACI is a program of the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program</a> &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
   <p style="margin-top:0.4rem; font-size:0.8em;">&#169; All content on CWSP WOLF © 2026 by Kirsti Cole ACI is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" style="color:inherit;">CC BY-NC-ND 4.0</a>.</p>
 </footer>
-
 <script>
 // ── SAVE / LOAD ──────────────────────────────────────────────────────────────
 const FIELDS = [
@@ -1258,8 +1244,8 @@ const FIELDS = [
   't3-s1','t3-s2','t3-s3','t3-s4','t3-l1','t3-l2','t3-l3','t3-notes',
   't4-institution','t4-doctype','t4-date','t4-stance','t4-keylang',
   't4-s1','t4-s2','t4-s3','t4-s4','t4-l1','t4-l2','t4-l3','t4-notes',
+  'p4-course','p4-program','p4-dept',
 ];
-
 let saveTimer;
 function save() {
   clearTimeout(saveTimer);
@@ -1271,22 +1257,22 @@ function save() {
     });
     localStorage.setItem('aipolicyworkbook', JSON.stringify(data));
     const el = document.getElementById('save-status');
-    el.textContent = 'Saved automatically · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-    el.className = 'save-indicator saved';
+    if (el) {
+      el.textContent = 'Saved automatically · ' + new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+      el.className = 'save-indicator saved';
+    }
   }, 600);
 }
-
 function loadSaved() {
   const raw = localStorage.getItem('aipolicyworkbook');
   if (!raw) return;
   const data = JSON.parse(raw);
   FIELDS.forEach(id => {
     const el = document.getElementById(id);
-    if (el && data[id]) el.value = data[id];
+    if (el && data[id] !== undefined && data[id] !== null) el.value = data[id];
   });
   updateProgress();
 }
-
 function clearTemplate(n) {
   if (!confirm('Clear all fields in Template ' + n + '?')) return;
   const prefix = 't' + n + '-';
@@ -1297,20 +1283,19 @@ function clearTemplate(n) {
   save();
   updateProgress();
 }
-
 // ── PROGRESS ─────────────────────────────────────────────────────────────────
 function updateProgress() {
-  const filled = FIELDS.filter(id => {
+  // Track only Part III analysis fields for progress bar
+  const analysisFields = FIELDS.filter(f => !f.startsWith('p4-'));
+  const filled = analysisFields.filter(id => {
     const el = document.getElementById(id);
     return el && el.value.trim().length > 0;
   }).length;
-  const pct = Math.round((filled / FIELDS.length) * 100);
+  const pct = Math.round((filled / analysisFields.length) * 100);
   const bar = document.getElementById('progress-bar');
   if (bar) bar.style.width = pct + '%';
 }
-
 document.addEventListener('input', updateProgress);
-
 // ── ACCORDION ────────────────────────────────────────────────────────────────
 function toggleEntry(id) {
   const entry = document.getElementById(id);
@@ -1318,17 +1303,44 @@ function toggleEntry(id) {
   entry.classList.toggle('open', !isOpen);
   entry.querySelector('.entry-toggle').setAttribute('aria-expanded', !isOpen);
 }
-
 // ── COPY POLICY TEXT ─────────────────────────────────────────────────────────
 function copyTemplate(id, btn) {
-  const text = document.getElementById(id).textContent;
+  const el = document.getElementById(id);
+  const text = el.tagName === 'TEXTAREA' ? el.value : el.textContent;
   navigator.clipboard.writeText(text).then(() => {
     btn.textContent = 'Copied!';
     btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'Copy text'; btn.classList.remove('copied'); }, 2000);
   });
 }
-
+// ── PDF DOWNLOAD ─────────────────────────────────────────────────────────────
+function downloadPolicyPDF(id, label) {
+  const content = document.getElementById(id).value
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>' + label + ' — AI Policy Lab</title><style>*{margin:0;padding:0;box-sizing:border-box;}@page{margin:2.5cm 3cm;}body{font-family:Georgia,"Times New Roman",serif;color:#111;font-size:11.5pt;line-height:1.8;}.header{border-bottom:2px solid #CC0000;padding-bottom:0.85rem;margin-bottom:1.75rem;}.eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h1{font-size:17pt;font-weight:800;font-family:Arial,sans-serif;letter-spacing:-0.01em;}.policy-body{white-space:pre-wrap;}.footer{margin-top:3.5rem;font-size:8pt;color:#888;border-top:1px solid #ddd;padding-top:0.75rem;font-family:Arial,sans-serif;}</style></head><body><div class="header"><p class="eyebrow">NC State CWSP · AI Policy Lab · Part IV Draft</p><h1>' + label + '</h1></div><div class="policy-body">' + content + '</div><div class="footer">NC State Campus Writing and Speaking Program · cwspwolf.com<br>© 2026 Kirsti Cole. Licensed under CC BY-NC-ND 4.0. Generated from the AI Policy Lab Workbook.</div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>';
+  const win = window.open('', '_blank');
+  if (!win) { alert('Please allow popups for cwspwolf.com to download the PDF.'); return; }
+  win.document.write(html);
+  win.document.close();
+}
+function downloadAllPoliciesPDF() {
+  const templates = [
+    { id: 'p4-course',   label: 'Course-Level: Syllabus Statement',              eyebrow: 'Course-Level' },
+    { id: 'p4-program',  label: 'Program-Level: Shared Governance Statement',     eyebrow: 'Program-Level' },
+    { id: 'p4-dept',     label: 'Department-Level: Institutional Governance Framework', eyebrow: 'Department-Level' },
+  ];
+  let sections = '';
+  templates.forEach((t, i) => {
+    const content = document.getElementById(t.id).value
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    sections += '<div class="section"' + (i > 0 ? ' style="page-break-before:always;"' : '') + '><p class="section-eyebrow">' + t.eyebrow + '</p><h2>' + t.label + '</h2><div class="policy-body">' + content + '</div></div>';
+  });
+  const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>AI Policy Drafts — NC State CWSP AI Policy Lab</title><style>*{margin:0;padding:0;box-sizing:border-box;}@page{margin:2.5cm 3cm;}body{font-family:Georgia,"Times New Roman",serif;color:#111;font-size:11.5pt;line-height:1.8;}.cover-header{border-bottom:2px solid #CC0000;padding-bottom:0.85rem;margin-bottom:1.75rem;}.eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h1{font-size:20pt;font-weight:800;font-family:Arial,sans-serif;letter-spacing:-0.01em;}.section{padding-top:1rem;}.section-eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h2{font-size:15pt;font-weight:800;font-family:Arial,sans-serif;margin-bottom:1.25rem;border-bottom:1px solid #eee;padding-bottom:0.6rem;}.policy-body{white-space:pre-wrap;}.footer{margin-top:3.5rem;font-size:8pt;color:#888;border-top:1px solid #ddd;padding-top:0.75rem;font-family:Arial,sans-serif;}</style></head><body><div class="cover-header"><p class="eyebrow">NC State CWSP · AI Policy Lab · Part IV Drafts</p><h1>AI Policy Language — All Three Levels</h1></div>' + sections + '<div class="footer">NC State Campus Writing and Speaking Program · cwspwolf.com<br>© 2026 Kirsti Cole. Licensed under CC BY-NC-ND 4.0. Generated from the AI Policy Lab Workbook.</div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>';
+  const win = window.open('', '_blank');
+  if (!win) { alert('Please allow popups for cwspwolf.com to download the PDF.'); return; }
+  win.document.write(html);
+  win.document.close();
+}
 // ── SIDEBAR ACTIVE STATE ─────────────────────────────────────────────────────
 function updateSidebar() {
   const sections = document.querySelectorAll('section[id], div[id]');
@@ -1342,15 +1354,12 @@ function updateSidebar() {
     a.classList.toggle('active', href === current);
   });
 }
-
 window.addEventListener('scroll', updateSidebar, { passive: true });
-
 // ── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   loadSaved();
   updateSidebar();
 });
 </script>
-
 </body>
 </html>
