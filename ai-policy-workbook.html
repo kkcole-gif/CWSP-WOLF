@@ -401,6 +401,140 @@
     }
     .btn-download-all:hover { background: var(--red); }
     .part4-download-all .p4-save-hint { margin: 0; }
+    /* ── EXAMPLES BUTTON ── */
+    .btn-examples {
+      font-size: 0.78rem;
+      background: transparent;
+      border: 1px solid #ccc;
+      color: #555;
+      padding: 0.25rem 0.75rem;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: inherit;
+      margin-right: 0.5rem;
+    }
+    .btn-examples:hover { border-color: var(--red); color: var(--red); }
+    /* ── EXAMPLES MODAL ── */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-backdrop[hidden] { display: none; }
+    .modal-box {
+      background: #fff;
+      border-radius: 6px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 82vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #e0e0e0;
+      flex-shrink: 0;
+    }
+    .modal-eyebrow {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.25rem;
+    }
+    .modal-title { font-size: 1.05rem; font-weight: 800; color: var(--black); margin: 0; }
+    .modal-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #aaa;
+      line-height: 1;
+      padding: 0;
+      flex-shrink: 0;
+    }
+    .modal-close:hover { color: var(--black); }
+    .modal-tabs {
+      display: flex;
+      border-bottom: 1px solid #e0e0e0;
+      padding: 0 1.5rem;
+      flex-shrink: 0;
+      overflow-x: auto;
+    }
+    .modal-tab {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.65rem 1rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: #888;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .modal-tab.active { color: var(--red); border-bottom-color: var(--red); }
+    .modal-tab:hover:not(.active) { color: var(--black); }
+    .modal-body { overflow-y: auto; padding: 1.25rem 1.5rem; flex: 1; }
+    .sample-meta { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .sample-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+    }
+    .sample-tag.discipline { background: #f4f4f4; color: #555; }
+    .sample-tag.restrictive { background: #fff0f0; color: var(--red); }
+    .sample-tag.conditional { background: #eff4ff; color: #2244aa; }
+    .sample-tag.integration { background: #f0fff4; color: #2D6A4F; }
+    .sample-text { font-size: 0.88rem; line-height: 1.85; color: #333; white-space: pre-wrap; }
+    .modal-footer {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #e0e0e0;
+      flex-shrink: 0;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .modal-footer-hint { font-size: 0.75rem; color: #aaa; margin-right: auto; }
+    .btn-load-sample {
+      background: var(--black);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.1rem;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .btn-load-sample:hover { background: var(--red); }
+    .btn-modal-close {
+      background: transparent;
+      color: #555;
+      border: 1px solid #ccc;
+      padding: 0.5rem 1.1rem;
+      border-radius: 3px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .btn-modal-close:hover { border-color: var(--black); color: var(--black); }
     .policy-template .rationale {
       background: #f9f9f9;
       border-top: 1px solid #e0e0e0;
@@ -1066,6 +1200,7 @@
         <div class="policy-template-header">
           <span class="policy-level-badge">Course · Syllabus</span>
           <div class="p4-header-actions">
+            <button class="btn-examples" onclick="openExamples('course')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-course', this)">Copy text</button>
             <button class="btn-download" onclick="downloadPolicyPDF('p4-course', 'Course-Level: Syllabus Statement')">Download PDF</button>
           </div>
@@ -1087,6 +1222,7 @@ This policy is in effect for [semester/year]. I will notify you of any changes. 
         <div class="policy-template-header">
           <span class="policy-level-badge">Program · Handbook / Sequence Governance</span>
           <div class="p4-header-actions">
+            <button class="btn-examples" onclick="openExamples('program')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-program', this)">Copy text</button>
             <button class="btn-download" onclick="downloadPolicyPDF('p4-program', 'Program-Level: Shared Governance Statement')">Download PDF</button>
           </div>
@@ -1108,6 +1244,7 @@ This statement reflects program consensus as of [date]. It will be reviewed at [
         <div class="policy-template-header">
           <span class="policy-level-badge">Department · Curriculum Committee / Faculty Governance</span>
           <div class="p4-header-actions">
+            <button class="btn-examples" onclick="openExamples('dept')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-dept', this)">Copy text</button>
             <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Department-Level: Institutional Governance Framework')">Download PDF</button>
           </div>
@@ -1229,6 +1366,28 @@ Revision: This framework was adopted in conditions that are already changing. It
     </section>
   </main>
 </div>
+<!-- ── EXAMPLES MODAL ── -->
+<div id="examples-modal" class="modal-backdrop" onclick="closeExamplesBackdrop(event)" aria-modal="true" role="dialog" aria-label="Sample policies" hidden>
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow" id="modal-eyebrow">Sample Policies</p>
+        <h3 class="modal-title" id="modal-title">Examples</h3>
+      </div>
+      <button class="modal-close" onclick="closeExamples()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-tabs" id="modal-tabs"></div>
+    <div class="modal-body">
+      <div class="sample-meta" id="sample-meta"></div>
+      <div class="sample-text" id="sample-text"></div>
+    </div>
+    <div class="modal-footer">
+      <span class="modal-footer-hint">Replaces your current draft text</span>
+      <button class="btn-modal-close" onclick="closeExamples()">Close</button>
+      <button class="btn-load-sample" onclick="loadSample()">Load into my draft</button>
+    </div>
+  </div>
+</div>
 <footer class="site-footer">
   <p>RED-ACI is a program of the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program</a> &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
   <p style="margin-top:0.4rem; font-size:0.8em;">&#169; All content on CWSP WOLF © 2026 by Kirsti Cole ACI is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" style="color:inherit;">CC BY-NC-ND 4.0</a>.</p>
@@ -1341,6 +1500,165 @@ function downloadAllPoliciesPDF() {
   win.document.write(html);
   win.document.close();
 }
+// ── EXAMPLES DATA ────────────────────────────────────────────────────────────
+const EXAMPLES = {
+  course: [
+    {
+      discipline: 'Writing & Rhetoric',
+      stance: 'Restrictive',
+      stanceClass: 'restrictive',
+      text: `In this course, AI-generated text refers to any prose, argument structure, outline, or revision produced by a generative artificial intelligence system — including systems that generate text from natural language prompts — when submitted as part of your coursework without explicit disclosure.
+
+AI tools are not permitted for drafting, outlining, revising, or producing any part of the written work you submit in this course. This applies to all formal and informal writing assignments. AI tools may be used to generate search terms, locate bibliographic sources, or check citation formatting, provided you note this use in a process statement accompanying the assignment.
+
+This policy reflects a disciplinary commitment: in a writing course, the work of writing — the choices, the false starts, the revisions — is the intellectual development the course is designed to produce. A text generated by an AI system is evidence of a prompt, not of a writer. That distinction matters pedagogically, and I want it to matter analytically to you.
+
+This policy is in effect for Fall 2026 and will be reviewed before Spring 2027. I will update it if institutional policy changes or if the tools available to students change in ways that require clarification. You will receive written notice of any changes.`
+    },
+    {
+      discipline: 'Nursing / Health Sciences',
+      stance: 'Conditional',
+      stanceClass: 'conditional',
+      text: `In this course, AI-generated content refers to any text, summary, or documentation produced by a generative artificial intelligence system — including systems that generate clinical notes, patient education materials, or professional correspondence — when submitted as coursework or used in clinical preparation without disclosure.
+
+AI tools may be used to locate clinical literature, generate initial search strategies, and format citations. They may not be used to draft clinical documentation, patient education materials, discharge summaries, or any text that simulates professional judgment about patient care. These restrictions apply regardless of whether the document is submitted as an assignment or prepared for practicum.
+
+This restriction is not procedural — it is professional. Clinical documentation is a practice of accountability, not a writing task. When you draft a patient education handout or a clinical note, you are developing the judgment that will be legally and ethically yours as a practitioner. AI systems cannot be held accountable for patient outcomes and produce output calibrated to statistical patterns rather than individual clinical evidence. That is why this work must be yours.
+
+This policy is in effect for Spring 2026 and will be reviewed before Fall 2026. It will be revised if accrediting body standards address AI use in clinical education, or if evidence emerges that specific tools can be used appropriately for narrow tasks within clinical preparation.`
+    },
+    {
+      discipline: 'Data Science / Statistics',
+      stance: 'Integration-leaning',
+      stanceClass: 'integration',
+      text: `In this course, AI-generated content refers to any code, analysis, written interpretation, or documentation produced by a generative AI system — including code completion tools, large language models used for analytical scaffolding, and AI-assisted statistical interpretation — when submitted without disclosure of how the tool was used and what you independently verified.
+
+AI tools are permitted for code drafting, debugging, and exploratory analysis across all assignments. They are not permitted to generate the written interpretation, discussion, or conclusions you submit — the analytical reasoning must be your own. When AI tools are used for code or analysis, you must submit a brief process note documenting: which tool, what task you gave it, what output you received, what you changed, and what you independently verified.
+
+This policy treats AI-assisted coding as a professional practice that requires documentation, not as an integrity violation that requires concealment. Data professionals in research, industry, and public policy use AI tools routinely. The skill this course develops is not the ability to work without AI assistance — it is the capacity to evaluate, verify, and take accountability for AI-assisted output. The process note is not a formality. It is the documentation habit that will matter in every professional context you enter.
+
+This policy is in effect for Fall 2026. It will be reviewed before Spring 2027 and will be updated if AI tools develop audit or citation capabilities that change how documentation should work, or if evidence emerges that current verification practices are insufficient.`
+    }
+  ],
+  program: [
+    {
+      discipline: 'Writing Across the Curriculum',
+      stance: 'Conditional',
+      stanceClass: 'conditional',
+      text: `The First-Year and Transfer Writing Program holds that writing is a practice of intellectual development — not a technique for producing text. The communication skills this program develops, including argument construction, evidence integration, revision judgment, and rhetorical awareness, require the kind of iterative cognitive work that AI tools do not reliably produce or assess.
+
+AI tools may be used across all courses in this program for: locating and organizing sources, generating initial search terms, checking citation formatting, and accessibility support including writing assistance tools used by students with documented accommodations. Their use for drafting, outlining, revising, or generating arguments in any assignment requires explicit instructor authorization and must be disclosed in a process statement accompanying the submission.
+
+Individual instructors retain authority to apply more specific guidance within their courses, including extending or restricting the permissions above. This statement does not supersede course-level policy; it provides the shared framework within which course-level decisions are made. Instructors who deviate significantly from this framework should consult with the program director.
+
+This statement reflects program consensus as of Fall 2026. It will be reviewed at the spring program meeting and updated before the following academic year. It will be revised immediately if university-level AI policy changes or if evidence emerges that the current framework is producing inconsistent practices across courses.`
+    },
+    {
+      discipline: 'Health Professions',
+      stance: 'Restrictive on professional documents',
+      stanceClass: 'restrictive',
+      text: `The [Program Name] prepares students for professional practice in contexts where written communication carries clinical, legal, and ethical accountability. The communication competencies central to this preparation — including clinical documentation, patient-facing communication, public health reporting, and evidence synthesis — require disciplinary judgment that AI tools do not replicate.
+
+AI tools may be used across program courses for literature search support, initial bibliographic organization, and administrative formatting. Their use for drafting professional documents — including clinical notes, public health reports, policy briefs, patient education materials, or any document that simulates professional practice — requires explicit instructor authorization and must be disclosed to the program director. Undisclosed use of AI tools for professional documentation is treated as a professional conduct violation, consistent with program standards.
+
+Individual faculty retain authority to apply more specific guidance within their courses. This statement sets the outer boundary; course-level policy determines the specifics. Faculty who authorize AI use for professional document tasks are responsible for including verification and disclosure requirements in their assignment design.
+
+This statement reflects program consensus as of Fall 2026 and will be reviewed at the spring curriculum committee meeting. It will be revised if accreditation standards from the relevant body address AI competency requirements, or if evidence from clinical and public health practice settings indicates that specific AI tools have become standard professional infrastructure requiring explicit training.`
+    }
+  ],
+  dept: [
+    {
+      discipline: 'English / Humanities',
+      stance: 'Moderate',
+      stanceClass: 'conditional',
+      text: `The Department of English adopts the following framework for AI use across its courses and programs, effective Fall 2026.
+
+Scope: This framework applies to all undergraduate and graduate courses offered under the English designation, and to all written work submitted for department credit, including theses, capstone projects, and independent study submissions.
+
+Definition: For the purposes of this framework, "AI-assisted work" means any prose, interpretation, argument, or creative text produced in whole or in part by a generative AI system, where the AI's output constitutes a substantive portion of the submitted text — including cases where AI-generated language has been edited or paraphrased without disclosure.
+
+Governance principle: The Department of English affirms that interpretive and critical judgment — the capacity to read closely, argue from textual evidence, and produce original analysis — is constitutive of the discipline. This capacity is developed through writing, not merely evidenced by it. AI tools that generate prose on a student's behalf foreclose the cognitive process the department's curriculum is designed to develop. Accordingly, AI-generated text may not be submitted as student work without explicit instructor authorization and documented disclosure. Instructors may authorize AI use for specific tasks — research assistance, citation formatting, translation support — provided authorization is documented in the syllabus.
+
+Authority: Course-level AI policy is the responsibility of the individual instructor, within the framework above. The Director of Undergraduate Studies oversees undergraduate courses; the Director of Graduate Studies oversees graduate courses. Questions about this framework should be directed to the relevant director before a conflict arises.
+
+Revision: This framework will be reviewed by the full faculty at the fall department meeting each year and updated as the department's pedagogical understanding develops. The department commits to revising it whenever institutional AI policy changes or when evidence emerges that current practices are producing inconsistent outcomes across courses.`
+    },
+    {
+      discipline: 'Civil & Environmental Engineering',
+      stance: 'Integration-leaning',
+      stanceClass: 'integration',
+      text: `The Department of Civil and Environmental Engineering adopts the following framework for AI use across its courses and programs, effective Spring 2026.
+
+Scope: This framework applies to all undergraduate and graduate courses in civil and environmental engineering, and to all technical reports, design documents, code submissions, and professional communications submitted for department credit.
+
+Definition: For the purposes of this framework, "AI-assisted work" means any text, code, analysis, calculation summary, or design output produced in whole or in part by a generative AI system, where the AI's contribution has not been independently verified and documented by the student submitting the work.
+
+Governance principle: The Department of Civil and Environmental Engineering affirms that professional judgment — the capacity to verify, take accountability for, and communicate technical outputs to clients, regulators, and the public — is central to engineering practice. AI tools may support but do not replace this judgment. An engineer who submits analysis generated by an AI system without independent verification has not met professional accountability standards, regardless of the tool's accuracy. Accordingly, AI tools may be used in department courses provided that their use is disclosed, their outputs are independently verified, and the student accepts full accountability for the accuracy of all submitted work.
+
+Authority: Course-level AI policy is the responsibility of the individual instructor, within the framework above. Instructors may expand or restrict AI use for specific assignment types, provided this is documented in the course syllabus. The Undergraduate Curriculum Committee reviews disputes. Graduate course AI policies are the responsibility of thesis and project advisors, in consultation with program directors.
+
+Revision: This framework was adopted at a moment when AI tools are becoming standard in engineering practice. It will be reviewed by the faculty curriculum committee each spring. The department will revise it if NCEES or state licensing boards issue guidance on AI use in professional practice, or if evidence emerges that current disclosure practices are insufficient.`
+    }
+  ]
+};
+
+// ── EXAMPLES MODAL ───────────────────────────────────────────────────────────
+let currentLevel = null;
+let currentExampleIndex = 0;
+
+function openExamples(level) {
+  currentLevel = level;
+  currentExampleIndex = 0;
+  const modal = document.getElementById('examples-modal');
+  const labels = { course: 'Course-Level', program: 'Program-Level', dept: 'Department-Level' };
+  document.getElementById('modal-eyebrow').textContent = 'Sample Policies · ' + labels[level];
+  document.getElementById('modal-title').textContent = labels[level] + ' Examples';
+  // Build tabs
+  const tabsEl = document.getElementById('modal-tabs');
+  tabsEl.innerHTML = '';
+  EXAMPLES[level].forEach((ex, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'modal-tab' + (i === 0 ? ' active' : '');
+    btn.textContent = ex.discipline;
+    btn.onclick = () => showExample(i);
+    tabsEl.appendChild(btn);
+  });
+  showExample(0);
+  modal.removeAttribute('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function showExample(index) {
+  const ex = EXAMPLES[currentLevel][index];
+  currentExampleIndex = index;
+  document.querySelectorAll('.modal-tab').forEach((t, i) => t.classList.toggle('active', i === index));
+  document.getElementById('sample-meta').innerHTML =
+    '<span class="sample-tag discipline">' + ex.discipline + '</span>' +
+    '<span class="sample-tag ' + ex.stanceClass + '">' + ex.stance + '</span>';
+  document.getElementById('sample-text').textContent = ex.text;
+}
+
+function loadSample() {
+  const ex = EXAMPLES[currentLevel][currentExampleIndex];
+  const fieldMap = { course: 'p4-course', program: 'p4-program', dept: 'p4-dept' };
+  if (!confirm('Load this sample into your draft? Your current draft text will be replaced.')) return;
+  document.getElementById(fieldMap[currentLevel]).value = ex.text;
+  save();
+  closeExamples();
+  document.getElementById(fieldMap[currentLevel]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function closeExamples() {
+  document.getElementById('examples-modal').setAttribute('hidden', '');
+  document.body.style.overflow = '';
+}
+
+function closeExamplesBackdrop(event) {
+  if (event.target === document.getElementById('examples-modal')) closeExamples();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExamples(); });
+
 // ── SIDEBAR ACTIVE STATE ─────────────────────────────────────────────────────
 function updateSidebar() {
   const sections = document.querySelectorAll('section[id], div[id]');
