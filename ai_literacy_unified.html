@@ -517,24 +517,81 @@
   a { color: var(--ncr); text-decoration: underline; }
   a:hover { text-decoration: none; }
 
-  .back-link {
-    display: inline-block;
+  /* ─── PAGE NAV DROPDOWN ─────────────────────────────── */
+  .page-nav { position: relative; display: inline-block; margin-bottom: 1rem; }
+  .nav-dropdown-btn {
+    background: var(--ncr);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 0.4rem 0.9rem;
     font-size: 11px;
     font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--ncr);
-    text-decoration: none;
-    margin-bottom: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: var(--s-font);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    line-height: 1;
   }
-  .back-link:hover { text-decoration: underline; }
+  .nav-dropdown-btn:hover { background: var(--ncr-dark); }
+  .nav-caret { font-size: 10px; transition: transform 0.2s; display: inline-block; }
+  .nav-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.13);
+    list-style: none;
+    min-width: 200px;
+    z-index: 100;
+    overflow: hidden;
+    text-align: left;
+  }
+  .nav-dropdown.open { display: block; animation: fadeIn 0.15s ease; }
+  .nav-dropdown li a {
+    display: block;
+    padding: 0.6rem 1rem;
+    font-size: 12px;
+    color: var(--s-black);
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .nav-dropdown li a:hover { background: var(--s-gray-lt); color: var(--ncr); text-decoration: none; }
+  .nav-dropdown li + li { border-top: 1px solid #f0f0f0; }
+  .nav-dropdown .nav-section-label {
+    display: block;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--s-gray-mid);
+    padding: 0.6rem 1rem 0.2rem;
+  }
 </style>
 </head>
 <body>
 
 <!-- ─── PAGE HEADER ─────────────────────────────────── -->
 <header class="page-header">
-  <a href="https://cwspwolf.com/ai-literacies" class="back-link" target="_blank" rel="noopener">← AI Literacies · cwspwolf.com</a>
+  <nav class="page-nav" aria-label="CWSP WOLF site navigation">
+    <button class="nav-dropdown-btn" onclick="togglePageNav()" id="nav-btn" aria-haspopup="true" aria-expanded="false">
+      CWSP WOLF <span class="nav-caret" id="nav-caret">▾</span>
+    </button>
+    <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+      <li><span class="nav-section-label">AI Literacies</span></li>
+      <li><a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener" role="menuitem">← Back to AI Literacies</a></li>
+      <li><a href="https://cwspwolf.com" target="_blank" rel="noopener" role="menuitem">WOLF Homepage</a></li>
+      <li><a href="mailto:kkcole2@ncsu.edu" role="menuitem">Contact Kirsti Cole</a></li>
+    </ul>
+  </nav>
   <p class="eyebrow">NC State · Campus Writing and Speaking Program</p>
   <h1>AI Literacy Is Not One Thing</h1>
   <p class="subtitle">A three-level framework for higher education governance, faculty development, and institutional decision-making</p>
@@ -1034,6 +1091,37 @@
     var hdr  = body.previousElementSibling;
     body.classList.add('open');
     hdr.classList.add('open');
+  });
+
+  /* ── Page nav dropdown ───────────────────────────────── */
+  function togglePageNav() {
+    var dd    = document.getElementById('nav-dropdown');
+    var btn   = document.getElementById('nav-btn');
+    var caret = document.getElementById('nav-caret');
+    var open  = dd.classList.contains('open');
+    dd.classList.toggle('open', !open);
+    btn.setAttribute('aria-expanded', String(!open));
+    caret.style.transform = open ? '' : 'rotate(180deg)';
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = document.getElementById('nav-btn');
+    if (btn && !btn.contains(e.target)) {
+      var dd    = document.getElementById('nav-dropdown');
+      var caret = document.getElementById('nav-caret');
+      dd.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      caret.style.transform = '';
+    }
+  });
+
+  document.getElementById('nav-btn').addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.getElementById('nav-dropdown').classList.remove('open');
+      this.setAttribute('aria-expanded', 'false');
+      document.getElementById('nav-caret').style.transform = '';
+      this.focus();
+    }
   });
 </script>
 
