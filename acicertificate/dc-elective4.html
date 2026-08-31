@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Elective 4: Multimodal Composition and Digital Narratives | RED-ACI</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link.active { border-left-color: var(--red); background: #fff5f5; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-activity-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+.sub-activity p { font-size: 0.9rem; margin-bottom: 0.6rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+/* Artifact builder */
+.artifact-section { border: 2px solid var(--accent); border-radius: 6px; padding: 2rem; margin: 2.5rem 0; background: #f8faff; }
+.artifact-section-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+.artifact-badge { background: var(--accent); color: white; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 2px; white-space: nowrap; margin-top: 0.15rem; }
+.artifact-section-header-text h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+.artifact-section-header-text p { font-size: 0.9rem; color: var(--dgray); margin: 0; }
+.artifact-section label { margin-top: 1.1rem; }
+.btn-preview { background: var(--accent); color: white; border: none; padding: 0.75rem 1.75rem; font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; margin-top: 1.5rem; }
+.btn-preview:hover { opacity: 0.88; }
+/* Artifact preview overlay */
+#artifact-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 760px; margin: 0 auto; border-radius: 4px; overflow: hidden; }
+#artifact-modal-inner { padding: 0; }
+.art-header { background: var(--accent); color: white; padding: 1.75rem 2.5rem; }
+.art-header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+.art-program { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; }
+.art-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.art-meta { font-size: 0.85rem; color: #b0c4de; }
+.art-body { padding: 2rem 2.5rem; }
+.art-section { margin-bottom: 1.75rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; border-bottom: 1px solid var(--mgray); padding-bottom: 0.4rem; }
+.art-section p { font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; }
+.art-footer { background: var(--lgray); border-top: 1px solid var(--mgray); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+.art-footer-text { font-size: 0.78rem; color: var(--dgray); }
+.art-footer-text strong { color: var(--accent); }
+.modal-btn-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; justify-content: flex-end; padding: 1rem 1.5rem 0; }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.4rem; font-size: 0.88rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.6rem 1.2rem; font-size: 0.88rem; border-radius: 3px; cursor: pointer; }
+/* Reading list */
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+/* Submit */
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
+.btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
+#submit-success { display: none; background: #e8f0fe; border: 1px solid #aec4f5; border-radius: 3px; padding: 1rem; color: #1a3a7a; font-size: 0.9rem; margin-top: 1rem; }
+#submit-error   { display: none; background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 1rem; color: #c62828; font-size: 0.9rem; margin-top: 1rem; }
+.back-link { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.back-link:hover { border-color: var(--accent); }
+.back-link .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.back-link .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+}
+@media print {
+  #artifact-overlay { display: block !important; position: static; background: none; padding: 0; }
+  #artifact-modal { box-shadow: none; }
+  .modal-btn-row { display: none; }
+  body > *:not(#artifact-overlay) { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="digital.html">← Digital Comm Certificate</a>
+    <h1>Elective 4: Multimodal Composition and Digital Narratives</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+    <button class="btn-save" onclick="saveAll()">Save</button>
+  </div>
+</div>
+
+<!-- Artifact preview overlay -->
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div class="modal-btn-row">
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+      <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+    <div id="artifact-modal-inner"></div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" aria-label="Module navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#overview">Overview</a>
+      <a href="#multimodal">What multimodality means</a>
+      <a href="#design">Design decisions and rhetoric</a>
+      <a href="#ai-creative">AI in multimodal composition</a>
+      <a href="#discipline">Multimodality in your discipline</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1 — Multimodal Analysis</a>
+      <a href="#activity2" class="activity">2 — AI Tool Analysis</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Build Your Assignment</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#submit">Submit</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header" id="overview">
+      <p class="module-eyebrow">Digital Communication Certificate · Elective 4</p>
+      <h2>Multimodal Composition and Digital Narratives</h2>
+      <p>How to understand multimodal composition as a rhetorical and design practice, how to apply the AI literacy framework to evaluate AI tools for multimodal work, and how to design assignments that develop disciplinary multimodal communication competency — culminating in a fully formatted assignment you can use immediately. Estimated time: 3–4 hours.</p>
+    </div>
+
+    <section class="content-section" id="multimodal">
+      <span class="section-tag">Section 1</span>
+      <h3>What Multimodality Means</h3>
+      <p>Multimodal composition is the practice of making meaning through multiple semiotic modes — linguistic, visual, aural, spatial, and gestural — in combination. A video essay, a data visualization, a podcast with a transcript, an annotated image, a presentation with a designed slide deck: each combines modes in ways that produce meanings neither mode alone could achieve. Multimodal literacy, then, is the capacity to read and produce such combinations with understanding of how different modes interact and what each contributes.</p>
+      <p>The foundational claim of multimodal composition theory (Kress, 2010; New London Group, 1996) is that there is no neutral mode — each mode carries its own affordances and constraints, its own histories of use, and its own implicit norms for what counts as credible, appropriate, or persuasive in a given context. A graph presents quantitative relationships with an appearance of objectivity that prose does not. A photograph claims evidentiary status that illustration does not. A spoken voice carries embodied presence that text does not. Understanding these mode-specific affordances is the prerequisite for making principled design decisions about which modes to use and how.</p>
+      <div class="callout">
+        <p class="callout-title">The disciplinary dimension</p>
+        <p>What counts as effective multimodal composition is discipline-specific. Engineering reports have visual conventions different from public health infographics, which differ from humanistic essay-films. Students who learn to compose multimodally without learning the disciplinary conventions of their field learn a generic skill that does not transfer to professional practice. The goal of this elective is to develop multimodal composition pedagogy grounded in your discipline's actual communicative conventions.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="design">
+      <span class="section-tag">Section 2</span>
+      <h3>Design Decisions as Rhetorical Choices</h3>
+      <p>Every design decision in multimodal composition is a rhetorical choice: it creates affordances for certain meanings and constraints against others. Font choice, color palette, layout, the relationship between image and text, the pacing of a video, the navigation structure of a website — each of these is a communication act, not merely an aesthetic preference.</p>
+      <p>Faculty who design multimodal assignments need to specify what they are asking for with enough rhetorical precision that students understand the choices they are expected to make and the criteria against which those choices will be evaluated. "Create a video about your research" is not a multimodal assignment; it is an assignment with a format requirement. A multimodal assignment specifies the rhetorical situation, the intended audience, the constraints on mode selection, and the criteria by which design choices will be evaluated — which requires knowing what those design choices are meant to achieve.</p>
+      <p>Teaching multimodal composition therefore requires that faculty themselves be able to articulate the design choices available in a given format, why some choices would serve the communicative purpose better than others, and what evidence of intentional design they will look for in student work. The activities in this elective are structured around developing that capacity for your discipline.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="ai-creative">
+      <span class="section-tag">Section 3</span>
+      <h3>AI Tools in Multimodal Composition: Applying the Literacy Framework</h3>
+      <p>Generative AI tools — text-to-image systems, video generators, audio synthesis tools, AI-assisted design platforms — have rapidly entered the multimodal composition ecosystem. Students are using them; the question for faculty is not whether to engage with them but how to engage with them in ways grounded in both rhetorical understanding and structural analysis.</p>
+      <p>Applying the AI literacy framework (Cole, 2026) to generative AI tools for multimodal composition reveals dimensions that generic AI policy language does not reach.</p>
+      <p><strong>At the conceptual level:</strong> text-to-image systems are diffusion models trained on image-text pairs scraped from the web. They do not generate novel images by reasoning about what a prompt means; they generate images by predicting what visual content tends to co-occur with prompts statistically similar to the input. What they produce reflects the distribution of images and text in their training data — which is dominated by content produced in specific cultural, linguistic, and aesthetic contexts. The images they generate are not neutral representations; they are statistical aggregates of an unrepresentative training corpus.</p>
+      <p><strong>At the structural level:</strong> these training corpora systematically overrepresent certain bodies, aesthetics, cultures, and styles — and those overrepresentations are reproduced in the outputs. Prompts for "professional," "authoritative," or "neutral" visuals tend to reproduce whiteness, Western aesthetics, and conventionally normative bodies. Prompts for concepts drawn from specific cultural traditions tend to produce inaccurate or appropriative outputs. The training data's hierarchies become the tool's defaults. Students who use these tools without structural literacy risk producing visuals whose biases they do not see — and faculty who do not teach that structural analysis are not teaching multimodal composition; they are teaching tool use.</p>
+      <p><strong>At the operative level:</strong> what conditions would make the use of generative AI tools defensible in a multimodal composition assignment? The answer requires specifying what the assignment is for — if it is designed to develop students' capacity to make deliberate design choices, then using a generative AI tool to make those choices undermines the assignment's purpose. If it is designed to develop critical analysis of AI-generated visual content, then using the tools is the point. The operative decision about AI tool use in multimodal assignments requires knowing what the assignment is actually for.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="discipline">
+      <span class="section-tag">Section 4</span>
+      <h3>Multimodal Composition in Your Discipline</h3>
+      <p>Disciplinary multimodal conventions are specific: the relationship between image and caption in a biology lab report is governed by different norms than the relationship between image and text in an art history essay. Scientific visualization follows different truth-claiming conventions than journalistic photography. Disciplinary practitioners learn these conventions through enculturation into professional communities — and students need to learn them explicitly, because they have not yet been enculturated into the discipline's visual rhetoric.</p>
+      <p>A well-designed multimodal assignment makes the disciplinary conventions explicit: what visual genres exist in this field, what rhetorical work they do, what choices are open versus constrained by convention, and what it means to do them well. Activity 2 of this elective asks you to design such an assignment — building directly on the analysis you develop in Activity 1.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Activity 1 -->
+    <section class="content-section" id="activity1">
+      <div class="activity-block">
+        <p class="activity-label">Activity 1</p>
+        <h4>Multimodal Analysis of a Disciplinary Text</h4>
+        <p class="activity-meta">Individual analysis · 45–60 minutes</p>
+        <p>Select one multimodal text from your discipline — a published visualization, a public-facing explainer video, a conference poster, an interactive data tool, a website, or a professional communication example relevant to your field. Analyze it as a multimodal composition, attending to both its design choices and its rhetorical effects.</p>
+
+        <label for="f-a1-text">Describe the text you selected. <span>(Format, medium, creator/publication, intended audience, and rhetorical purpose — what is this text trying to do?)</span></label>
+        <textarea id="f-a1-text" rows="4" placeholder="Text description and context..."></textarea>
+
+        <label for="f-a1-modes">Mode analysis. <span>(What modes are present — linguistic, visual, aural, spatial, gestural? How do they interact? What does the combination achieve that no single mode could achieve alone?)</span></label>
+        <textarea id="f-a1-modes" rows="6" placeholder="Your mode analysis — how do the modes interact?"></textarea>
+
+        <label for="f-a1-design">Design choices. <span>(Identify three or four specific design decisions — font, layout, color, image selection, pacing, navigation, or other choices. For each, articulate the rhetorical work it does: what meaning does it create, and what alternatives would have produced different meanings?)</span></label>
+        <textarea id="f-a1-design" rows="7" placeholder="Specific design choices and their rhetorical functions..."></textarea>
+
+        <label for="f-a1-conventions">Disciplinary conventions. <span>(What conventions of your discipline's visual rhetoric does this text follow? What conventions does it deviate from? How would someone outside your discipline likely read it differently than a practitioner?)</span></label>
+        <textarea id="f-a1-conventions" rows="5" placeholder="Disciplinary conventions this text follows or departs from..."></textarea>
+
+        <label for="f-a1-pedagogical">Pedagogical application. <span>(How would you use this text in your course? As a model to analyze, a professional exemplar, a case study in conventions, or something else? What would you want students to see that they might not see on their own?)</span></label>
+        <textarea id="f-a1-pedagogical" rows="5" placeholder="Your pedagogical framing for this text..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Disciplinary multimodal analyses — especially those identifying field-specific conventions and their rhetorical functions — help faculty across disciplines develop the analytical vocabulary for teaching multimodal composition.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a1">
+            <label for="repo-a1">I am willing to share this multimodal analysis (with my name and discipline) in the RED-ACI teaching repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Activity 2 -->
+    <section class="content-section" id="activity2">
+      <div class="activity-block">
+        <p class="activity-label">Activity 2</p>
+        <h4>AI Tool Analysis: Generative AI in Your Multimodal Context</h4>
+        <p class="activity-meta">Individual analysis · 30–45 minutes</p>
+        <p>Select one generative AI tool relevant to multimodal composition in your discipline — a text-to-image system, an AI-assisted design tool, an audio synthesis tool, a video generator, or an AI writing assistant for visual descriptions. Apply the three-level AI literacy framework (Cole, 2026) to analyze what the tool does, what hierarchies it reproduces, and what operative decision about its use in your multimodal assignments is defensible.</p>
+
+        <label for="f-a2-tool">Identify and describe the tool. <span>(Name, claimed function, and technical description — what kind of generative AI system is it and what training data does it use?)</span></label>
+        <textarea id="f-a2-tool" rows="4" placeholder="Tool identification and conceptual description..."></textarea>
+
+        <label for="f-a2-structural">Structural analysis. <span>(What hierarchies does this tool reproduce in its outputs? Whose aesthetic conventions, bodies, or cultural frameworks does it center? Who bears failure costs — which prompts produce inaccurate, stereotyped, or exclusionary outputs?)</span></label>
+        <textarea id="f-a2-structural" rows="6" placeholder="Structural analysis of the generative AI tool..."></textarea>
+
+        <label for="f-a2-operative">Operative decision: this tool in your multimodal assignments. <span>(Given the structural analysis, what conditions would make using this tool in your assignments defensible? What purposes would its use serve vs. undermine? Would you permit, require, prohibit, or require critical analysis of its use?)</span></label>
+        <textarea id="f-a2-operative" rows="6" placeholder="Your operative decision and the conditions that make it defensible..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Operative decisions about specific generative AI tools — grounded in structural analysis and specific disciplinary assignment contexts — help the RED-ACI community develop coherent and defensible AI use policies for multimodal work.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a2">
+            <label for="repo-a2">I am willing to share this AI tool analysis and operative decision (with my name and discipline) in the RED-ACI teaching repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Artifact Builder -->
+    <section class="content-section" id="artifact">
+      <div class="artifact-section">
+        <div class="artifact-section-header">
+          <span class="artifact-badge">Your Artifact</span>
+          <div class="artifact-section-header-text">
+            <h3>Build Your Multimodal Assignment</h3>
+            <p>Complete the fields below to generate a formatted, print-ready assignment sheet you can deploy in your course. Your analysis from Activities 1 and 2 should inform every field — this is not a separate task but the culminating document your work has prepared you to write.</p>
+          </div>
+        </div>
+
+        <label for="art-title">Assignment title <span>(Specific and descriptive — not "Multimodal Project" but something that signals the rhetorical task to students.)</span></label>
+        <input type="text" id="art-title" placeholder="e.g., Translating Research for a Public Audience: Science Communication Visualization">
+
+        <label for="art-course">Course and audience <span>(Course number and title, and a brief description of the student audience.)</span></label>
+        <input type="text" id="art-course" placeholder="e.g., COMM 320: Science Communication / Upper-level undergraduates in biology, chemistry, and environmental science">
+
+        <label for="art-overview">Assignment overview <span>(2–4 sentences describing the task and its purpose in the course. Write for students — this is what appears at the top of the assignment sheet.)</span></label>
+        <textarea id="art-overview" rows="4" placeholder="In this assignment, you will..."></textarea>
+
+        <label for="art-task">Task description <span>(Specify what students will produce: format, medium, length or duration, and the rhetorical situation — who the audience is, what the purpose is, and what constraint they are working within.)</span></label>
+        <textarea id="art-task" rows="5" placeholder="Detailed task description — what exactly will students produce, for whom, and under what constraints?"></textarea>
+
+        <label for="art-modes">Mode and design requirements <span>(Specify which modes students must include and what design choices they are expected to make deliberately. Draw on the disciplinary conventions from your Activity 1 analysis.)</span></label>
+        <textarea id="art-modes" rows="4" placeholder="Required modes, format specifications, and design expectations..."></textarea>
+
+        <label for="art-ai">AI use policy for this assignment <span>(Your operative decision from Activity 2, stated as a clear policy students can follow. Include what AI use is permitted, prohibited, or required to be documented and reflected upon.)</span></label>
+        <textarea id="art-ai" rows="4" placeholder="e.g., You may use AI-assisted design tools for layout and color work, provided that you document each use and include a 150-word reflection on the tool's outputs..."></textarea>
+
+        <label for="art-criteria">Assessment criteria <span>(3–5 criteria that capture what distinguishes excellent from adequate multimodal composition in this assignment. Frame each as a positive description of quality, not a checklist item.)</span></label>
+        <textarea id="art-criteria" rows="6" placeholder="e.g., Rhetorical coherence: The modes work together to serve the stated purpose and audience, with each design choice contributing to the communicative goal rather than functioning as decoration..."></textarea>
+
+        <label for="art-process">Process requirements <span>(What will students submit or document beyond the final product — a design rationale, a process journal, peer review, a draft? These requirements teach multimodal decision-making, not just multimodal production.)</span></label>
+        <textarea id="art-process" rows="4" placeholder="e.g., Design rationale (400 words): Explain three specific design decisions — why you made them and what alternatives you considered..."></textarea>
+
+        <label for="art-resources">Resources you will provide <span>(What scaffolding, examples, or tools will you make available? List readings, model texts, tool guides, or peer review structures.)</span></label>
+        <textarea id="art-resources" rows="3" placeholder="e.g., Three annotated model visualizations from the field; a guide to Canva's accessible design features; two peer review sessions (weeks 8 and 11)..."></textarea>
+
+        <button class="btn-preview" onclick="previewArtifact()">Preview Your Assignment →</button>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="readings">
+      <span class="section-tag">Reading List</span>
+      <h3>Selected Sources</h3>
+      <ul class="reading-list">
+        <li>Cole, K. (2026). AI literacy for communication instruction. CWSP/RED-ACI. cwspwolf.com/ai_literacy_unified.html</li>
+        <li>Kress, G. (2010). <em>Multimodality: A social semiotic approach to contemporary communication.</em> Routledge.</li>
+        <li>New London Group. (1996). A pedagogy of multiliteracies: Designing social futures. <em>Harvard Educational Review, 66</em>(1), 60–92.</li>
+        <li>Selber, S. A. (2004). <em>Multiliteracies for a digital age.</em> Southern Illinois University Press.</li>
+        <li>Shipka, J. (2011). <em>Toward a composition made whole.</em> University of Pittsburgh Press.</li>
+        <li>Rodrigue, T. K. (2019). Navigating digital multimodal composing. <em>Computers and Composition, 54.</em></li>
+        <li>Bender, E. M., Gebru, T., McMillan-Major, A., &amp; Shmitchell, S. (2021). On the dangers of stochastic parrots. <em>FAccT '21.</em></li>
+        <li>Buolamwini, J., &amp; Gebru, T. (2018). Gender shades: Intersectional accuracy disparities in commercial gender classification. <em>Proceedings of Machine Learning Research, 81.</em></li>
+        <li>Arola, K. L., Sheppard, J., &amp; Ball, C. E. (2014). <em>Writer/Designer: A guide to making multimodal projects.</em> Bedford/St. Martin's.</li>
+      </ul>
+    </section>
+
+    <section id="submit">
+      <div class="submit-section">
+        <h3>Complete Elective 4</h3>
+        <p>When you have finished both activities and built your artifact, submit your responses. Your work is auto-saved in your browser.</p>
+        <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Elective 4 Responses</button>
+        <div id="submit-success"><strong>Submitted.</strong> Your Elective 4 responses are received.</div>
+        <div id="submit-error">Submission problem — responses saved locally. Try again or email kkcole2@ncsu.edu.</div>
+      </div>
+      <a href="digital.html" class="back-link">
+        <div>
+          <div class="label">Return to</div>
+          <div class="title">← Digital Communication Certificate</div>
+        </div>
+      </a>
+    </section>
+  </main>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'dc-elective4';
+const FIELDS = [
+  'f-a1-text','f-a1-modes','f-a1-design','f-a1-conventions','f-a1-pedagogical',
+  'f-a2-tool','f-a2-structural','f-a2-operative',
+  'art-title','art-course','art-overview','art-task','art-modes','art-ai','art-criteria','art-process','art-resources'
+];
+const CHECKBOXES = ['repo-a1','repo-a2'];
+
+function saveAll() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.value); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.checked?'1':'0'); });
+  updateProgress();
+}
+function loadAll() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.value=v; });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.checked=v==='1'; });
+  updateProgress();
+}
+function updateProgress() {
+  const f = FIELDS.map(id=>document.getElementById(id)).filter(Boolean);
+  const pct = Math.round(f.filter(el=>el.value&&el.value.trim().length>20).length/f.length*100);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = pct+'%';
+}
+
+function val(id) { return (document.getElementById(id)||{}).value||''; }
+
+function previewArtifact() {
+  const title = val('art-title') || 'Multimodal Composition Assignment';
+  const course = val('art-course') || '';
+  const overview = val('art-overview');
+  const task = val('art-task');
+  const modes = val('art-modes');
+  const ai = val('art-ai');
+  const criteria = val('art-criteria');
+  const process = val('art-process');
+  const resources = val('art-resources');
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+
+  function section(label, content) {
+    if (!content || !content.trim()) return '';
+    return `<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`;
+  }
+
+  document.getElementById('artifact-modal-inner').innerHTML = `
+    <div class="art-header">
+      <div class="art-header-top">
+        <span class="art-program">RED-ACI · Digital Communication Certificate · Elective 4</span>
+      </div>
+      <div class="art-title">${title}</div>
+      ${course ? `<div class="art-meta">${course}</div>` : ''}
+    </div>
+    <div class="art-body">
+      ${section('Assignment Overview', overview)}
+      ${section('Task Description', task)}
+      ${section('Mode and Design Requirements', modes)}
+      ${section('AI Use Policy', ai)}
+      ${section('Assessment Criteria', criteria)}
+      ${section('Process Requirements', process)}
+      ${section('Resources Provided', resources)}
+    </div>
+    <div class="art-footer">
+      <span class="art-footer-text">Developed through <strong>RED-ACI</strong> · NC State University · CWSP/OFE/DELTA</span>
+      <span class="art-footer-text">${today}</span>
+    </div>
+  `;
+  document.getElementById('artifact-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeArtifact() {
+  document.getElementById('artifact-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+document.getElementById('artifact-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeArtifact();
+});
+
+function submitModule() {
+  saveAll();
+  const data = {module:MODULE, timestamp:new Date().toISOString()};
+  FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
+  CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Submitting…';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 4 Responses'; });
+}
+document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
+function updateSidebarActive() {
+  let current='';
+  document.querySelectorAll('[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});
+  document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+}
+window.addEventListener('scroll',updateSidebarActive,{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
+</script>
+</body>
+</html>

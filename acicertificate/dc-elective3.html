@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Elective 3: Accessibility and Inclusive Design for Digital Media | RED-ACI</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-activity-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+.sub-activity p { font-size: 0.9rem; margin-bottom: 0.6rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
+.btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
+#submit-success { display: none; background: #e8f0fe; border: 1px solid #aec4f5; border-radius: 3px; padding: 1rem; color: #1a3a7a; font-size: 0.9rem; margin-top: 1rem; }
+#submit-error   { display: none; background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 1rem; color: #c62828; font-size: 0.9rem; margin-top: 1rem; }
+.back-link { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.back-link:hover { border-color: var(--accent); }
+.back-link .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.back-link .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+.artifact-section { border: 2px solid var(--accent); border-radius: 6px; padding: 2rem; margin: 2.5rem 0; background: #f8faff; }
+.artifact-section-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+.artifact-badge { background: var(--accent); color: white; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 2px; white-space: nowrap; margin-top: 0.15rem; }
+.artifact-section-header-text h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+.artifact-section-header-text p { font-size: 0.9rem; color: var(--dgray); margin: 0; }
+.artifact-section label { margin-top: 1.1rem; }
+.btn-preview { background: var(--accent); color: white; border: none; padding: 0.75rem 1.75rem; font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; margin-top: 1.5rem; }
+.btn-preview:hover { opacity: 0.88; }
+#artifact-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 760px; margin: 0 auto; border-radius: 4px; overflow: hidden; }
+.art-header { background: var(--accent); color: white; padding: 1.75rem 2.5rem; }
+.art-header-top { margin-bottom: 0.75rem; }
+.art-program { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; }
+.art-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.art-meta { font-size: 0.85rem; color: #b0c4de; }
+.art-body { padding: 2rem 2.5rem; }
+.art-section { margin-bottom: 1.75rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; border-bottom: 1px solid var(--mgray); padding-bottom: 0.4rem; }
+.art-section p { font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; }
+.art-footer { background: var(--lgray); border-top: 1px solid var(--mgray); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+.art-footer-text { font-size: 0.78rem; color: var(--dgray); }
+.art-footer-text strong { color: var(--accent); }
+.modal-btn-row { display: flex; gap: 0.75rem; justify-content: flex-end; padding: 1rem 1.5rem 0; }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.4rem; font-size: 0.88rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.6rem 1.2rem; font-size: 0.88rem; border-radius: 3px; cursor: pointer; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link.active { border-left-color: var(--red); background: #fff5f5; }
+@media print { #artifact-overlay { display: block !important; position: static; background: none; padding: 0; } #artifact-modal { box-shadow: none; } .modal-btn-row { display: none; } body > *:not(#artifact-overlay) { display: none; } }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="digital.html">← Digital Comm Certificate</a>
+    <h1>Elective 3: Accessibility and Inclusive Design</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+    <button class="btn-save" onclick="saveAll()">Save</button>
+  </div>
+</div>
+
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div class="modal-btn-row">
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+      <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+    <div id="artifact-modal-inner"></div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" aria-label="Module navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#overview">Overview</a>
+      <a href="#access">Accessibility as pedagogy</a>
+      <a href="#wcag">Standards and their limits</a>
+      <a href="#ai-access">AI and automated accessibility</a>
+      <a href="#discipline">Inclusive design in your discipline</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1 — Accessibility Audit</a>
+      <a href="#activity2" class="activity">2 — AI Tool Analysis and Assignment Design</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Build Your Assignment</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#submit">Submit</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header" id="overview">
+      <p class="module-eyebrow">Digital Communication Certificate · Elective 3</p>
+      <h2>Accessibility and Inclusive Design for Digital Media</h2>
+      <p>What accessibility requires as a pedagogical practice, how WCAG standards and automated accessibility tools work and where they fall short, and how to apply the AI literacy framework to evaluate AI-based accessibility tools — so that inclusive design becomes a structural analytical practice rather than a compliance checklist. Estimated time: 3–4 hours.</p>
+    </div>
+
+    <section class="content-section" id="access">
+      <span class="section-tag">Section 1</span>
+      <h3>Accessibility as Pedagogical Practice</h3>
+      <p>Accessibility in digital communication is often framed as legal compliance: the ADA, Section 508, and institutional accommodation policies create enforceable obligations, and faculty learn to meet them. That framing is not wrong, but it is inadequate as a pedagogical foundation. Compliance-based accessibility is reactive — it responds to disclosed disabilities and institutional requirements. Inclusive design is proactive — it begins with the recognition that all communication environments exclude some users by default, and that the goal is to reduce that exclusion in advance rather than accommodate it after the fact.</p>
+      <p>The difference matters for course design. A faculty member who makes course materials accessible when a student requests an accommodation has met the legal threshold. A faculty member who designs for accessibility from the outset — captioned video, structured headings, sufficient color contrast, text alternatives for visual content, plain-language summaries — has made materials usable for more students, including students who do not know they are struggling with the default design, students who do not request accommodations they are entitled to, and students whose access needs are not formally recognized.</p>
+      <div class="callout">
+        <p class="callout-title">The curb cut effect in digital media</p>
+        <p>Curb cuts — the sloped curb openings designed for wheelchair users — are used by a majority of pedestrians: people with strollers, delivery workers, cyclists. The same principle applies in digital media. Captions benefit non-native speakers, people watching without audio, and people with processing differences — not only people with hearing impairments. Designing for the margins improves access at the center.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="wcag">
+      <span class="section-tag">Section 2</span>
+      <h3>WCAG Standards and Their Limits</h3>
+      <p>The Web Content Accessibility Guidelines (WCAG) — currently at version 2.2, with 3.0 in development — provide the most widely adopted technical standard for digital accessibility. Organized around four principles (Perceivable, Operable, Understandable, Robust), they establish testable success criteria at three conformance levels (A, AA, AAA). WCAG 2.2 AA is the benchmark required by most institutional and legal frameworks.</p>
+      <p>WCAG conformance is necessary but not sufficient for accessible digital media. The guidelines address technical accessibility — whether a screen reader can interpret the document structure, whether interactive elements are keyboard-navigable, whether captions are present — but not communicative accessibility — whether the content is comprehensible to its intended audience, whether the information architecture makes sense to someone unfamiliar with the subject, whether the cognitive load is appropriate. A document can be fully WCAG-conformant and still exclude users through jargon, complex sentence structure, or poorly organized information architecture.</p>
+      <p>Faculty designing digital course materials need both: technical accessibility (WCAG compliance) and communicative accessibility (plain language, clear structure, appropriate complexity). Neither substitutes for the other. WCAG checklists are tools for the first; careful communicative design is the second and cannot be automated.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="ai-access">
+      <span class="section-tag">Section 3</span>
+      <h3>AI and Automated Accessibility: Applying the Literacy Framework</h3>
+      <p>A growing class of AI tools claims to automate or assist accessibility: automated caption generation, alt-text generation, color contrast checkers, readability scorers, and "accessibility overlays" that claim to make websites automatically compliant. Applying the AI literacy framework (Cole, 2026) to these tools reveals both their genuine utility and their structural limits.</p>
+      <p><strong>At the conceptual level:</strong> automated caption generation systems are speech recognition models — they predict the most probable sequence of words given an audio input, using models trained on speech data. Their accuracy is therefore a function of how well the input audio resembles their training distribution. Speakers with non-standard accents, speakers with speech impairments, technical vocabulary from specialized disciplines, and poor audio quality all represent deviations from the training distribution that produce degraded output. The tool generates captions; it does not guarantee accurate captions.</p>
+      <p><strong>At the structural level:</strong> the hierarchies these systems reproduce track their training data. Automatic caption generators trained primarily on native English speakers with broadcast-standard articulation will underperform on the full range of human speech, concentrating their errors on speakers already underrepresented in that training data. Automatic alt-text generators trained on general image datasets will produce descriptions less accurate for discipline-specific images — a microscopy image, a specialized chart, an archaeological artifact — than for common objects. The failure costs fall on users who most depend on the accessibility feature.</p>
+
+      <div class="callout">
+        <p class="callout-title">Accessibility overlays: a case in automated inaccessibility</p>
+        <p>Automated accessibility overlays — JavaScript tools that claim to make any website compliant by overlaying accessibility features — have been repeatedly challenged by accessibility advocates and shown to fail in practice. They address automated audits without addressing real-world access. Disabled users frequently report that overlays make sites less accessible by interfering with assistive technologies. The tool satisfies the compliance signal while worsening the experience it claims to improve.</p>
+      </div>
+
+      <p><strong>At the operative level:</strong> using AI-assisted accessibility tools does not discharge the obligation to verify accessibility. A faculty member who generates automated captions without reviewing them has not made their video accessible — they have created the appearance of captions. The operative question is not "did we use the tool?" but "does the output serve users who need it?" That question requires human review, not algorithmic generation alone.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="discipline">
+      <span class="section-tag">Section 4</span>
+      <h3>Inclusive Design in Your Discipline</h3>
+      <p>Inclusive design in digital communication is discipline-specific in important ways. What communicative accessibility requires in a data visualization-heavy STEM course differs from what it requires in a document-heavy humanities course or a presentation-heavy professional course. Understanding the access points most likely to exclude students in your disciplinary context — visual complexity, reading density, specialized vocabulary, audio-dependent content — is the starting point for targeted inclusive design practice.</p>
+      <p>Faculty who take this elective from engineering courses face different design challenges than faculty from English literature or public health. The four content sections above provide the conceptual foundation; the activities ask you to apply them to the specific digital media you use and assign. The goal is not to master WCAG as a universal checklist but to develop a disciplinary inclusive design practice grounded in the actual access barriers your students encounter.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Activity 1 -->
+    <section class="content-section" id="activity1">
+      <div class="activity-block">
+        <p class="activity-label">Activity 1</p>
+        <h4>Accessibility Audit of a Course Digital Asset</h4>
+        <p class="activity-meta">Individual audit · 60 minutes</p>
+        <p>Select one substantial digital asset from your course — a recorded lecture, a slide deck, a course website or LMS page, a digital reading or document, or a video resource. Conduct a two-level audit: technical accessibility (WCAG criteria) and communicative accessibility (clarity, structure, cognitive load). You do not need to use automated tools for this audit — close reading and human evaluation are the primary methods.</p>
+
+        <label for="f-a1-asset">Describe the asset you selected. <span>(Type of asset, its role in the course, its primary audience, and the access barriers it is most likely to create.)</span></label>
+        <textarea id="f-a1-asset" rows="4" placeholder="Asset description and context..."></textarea>
+
+        <label for="f-a1-technical">Technical accessibility evaluation. <span>(Evaluate the asset against the four WCAG principles: Is it perceivable? Is the interface operable? Is the content understandable? Is it robust enough for assistive technology? Note specific failures or areas of concern — not just a global pass/fail.)</span></label>
+        <textarea id="f-a1-technical" rows="7" placeholder="Your technical accessibility evaluation..."></textarea>
+
+        <label for="f-a1-communicative">Communicative accessibility evaluation. <span>(Separate from technical compliance: Is the content comprehensible to its intended audience? Is the information architecture clear? Is the language plain where it can be? Are there cognitive load issues — too much information, poor chunking, inadequate signposting?)</span></label>
+        <textarea id="f-a1-communicative" rows="6" placeholder="Your communicative accessibility evaluation..."></textarea>
+
+        <label for="f-a1-revision">Revision plan. <span>(Identify the two or three highest-priority changes to this asset, and specify concretely what you would do to make each change. Prioritize changes that address the most significant barriers — those that would prevent a student from accessing the content at all — before addressing those that would merely improve it.)</span></label>
+        <textarea id="f-a1-revision" rows="6" placeholder="Your prioritized revision plan..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Discipline-specific accessibility audit examples — especially those documenting communicative as well as technical barriers — help faculty in similar disciplines identify access issues they might not otherwise notice.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a1">
+            <label for="repo-a1">I am willing to share this accessibility audit (with my name and discipline) in the RED-ACI teaching repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Activity 2 -->
+    <section class="content-section" id="activity2">
+      <div class="activity-block">
+        <p class="activity-label">Activity 2</p>
+        <h4>AI Accessibility Tool Analysis and Inclusive Assignment Design</h4>
+        <p class="activity-meta">Two parts · 60–75 minutes</p>
+        <p>Part A applies the AI literacy framework to an accessibility tool. Part B asks you to design an assignment that develops students' capacity to produce accessible digital communication.</p>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Part A</span>
+          <h5>Structural Analysis of an AI-Assisted Accessibility Tool</h5>
+          <p>Select one AI-assisted accessibility tool — an automatic caption generator, an alt-text generator, a readability scorer, an accessibility checker, or an accessibility overlay. Apply the three-level AI literacy framework (Cole, 2026) to evaluate what the tool does, what hierarchies it reproduces, and what operative decision about its use is defensible.</p>
+
+          <label for="f-a2-tool">Identify and describe the tool. <span>(Name, what it claims to do, and how it works technically — what kind of AI system is it and what is its objective function?)</span></label>
+          <textarea id="f-a2-tool" rows="4" placeholder="Tool identification and conceptual description..."></textarea>
+
+          <label for="f-a2-hierarchies">Structural analysis. <span>(What hierarchies does this tool reproduce? Who bears failure costs when it produces errors? Whose interests shaped its design? Be specific about which user populations are most exposed to the tool's limitations.)</span></label>
+          <textarea id="f-a2-hierarchies" rows="6" placeholder="Structural analysis of the AI accessibility tool..."></textarea>
+
+          <label for="f-a2-operative">Operative decision and conditions. <span>(Given the structural analysis, what is the defensible operative decision — use with conditions, principled refusal, or deferral? What conditions or verification practices would make its use ethically defensible? What would make it indefensible?)</span></label>
+          <textarea id="f-a2-operative" rows="5" placeholder="Your operative decision and its conditions..."></textarea>
+        </div>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Part B</span>
+          <h5>Inclusive Digital Communication Assignment Design</h5>
+          <p>Design one assignment or activity for your course that requires students to produce accessible digital communication — not to learn about accessibility abstractly, but to practice it as a communicative skill. The assignment should specify accessibility requirements as explicit rhetorical criteria, not as a compliance checklist appended to the rubric.</p>
+
+          <label for="f-a2-assignment">Assignment description. <span>(What will students produce, for what audience, and in what format? Describe the task in terms that a student in your course would understand.)</span></label>
+          <textarea id="f-a2-assignment" rows="5" placeholder="Your assignment description..."></textarea>
+
+          <label for="f-a2-criteria">Accessibility as rhetorical criteria. <span>(State the accessibility requirements as criteria for effective communication — not as a checklist, but as an argument about why these features serve the intended audience. What would excellent accessible design look like in this assignment, and how is that different from minimally adequate?)</span></label>
+          <textarea id="f-a2-criteria" rows="6" placeholder="Accessibility framed as rhetorical criteria for this assignment..."></textarea>
+
+          <label for="f-a2-teach">What would you need to teach first? <span>(What do students need to understand about accessibility, inclusive design, or the AI tools they might use before they can execute this assignment well? Describe the instructional preparation the assignment requires.)</span></label>
+          <textarea id="f-a2-teach" rows="5" placeholder="The instructional preparation this assignment requires..."></textarea>
+        </div>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Assignments that treat accessibility as a rhetorical criterion — especially those from specific disciplines where digital media formats vary significantly — are among the most transferable resources in the RED-ACI collection.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a2">
+            <label for="repo-a2">I am willing to share my assignment design (with my name and discipline) in the RED-ACI teaching repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="artifact">
+      <div class="artifact-section">
+        <div class="artifact-section-header">
+          <span class="artifact-badge">Your Artifact</span>
+          <div class="artifact-section-header-text">
+            <h3>Build Your Accessible Assignment</h3>
+            <p>Design an assignment that requires students to produce accessible digital communication. Complete the fields below — drawing on your audit from Activity 1 and your assignment design from Activity 2 — to generate a formatted, print-ready assignment sheet you can use immediately.</p>
+          </div>
+        </div>
+
+        <label for="art-title">Assignment title <span>(Specific to format and audience — signal that accessibility is a rhetorical criterion, not a compliance tag.)</span></label>
+        <input type="text" id="art-title" placeholder="e.g., Accessible Research Communication: Designing a Video Abstract for a Broad Audience">
+
+        <label for="art-course">Course and audience <span>(Course number and title, and the student audience.)</span></label>
+        <input type="text" id="art-course" placeholder="e.g., BIOL 305: Scientific Communication / Junior biology majors">
+
+        <label for="art-overview">Assignment overview <span>(2–4 sentences for students. Frame accessibility as a communicative and rhetorical responsibility, not a checkbox requirement.)</span></label>
+        <textarea id="art-overview" rows="4" placeholder="In this assignment, you will produce [format] for [audience]. Accessible design is a core component of the task — you will be evaluated on how well your choices serve the full range of your intended audience..."></textarea>
+
+        <label for="art-task">Task description <span>(Specify what students will produce, for whom, in what format. Include the rhetorical situation — audience, purpose, and constraints.)</span></label>
+        <textarea id="art-task" rows="5" placeholder="Produce a [format: video, interactive document, poster, etc.] that communicates [topic] to [audience]. Your submission must include..."></textarea>
+
+        <label for="art-access-reqs">Accessibility requirements <span>(State the technical accessibility requirements as rhetorical criteria — what would serve the audience, not what compliance demands. Draw on your audit and AI tool analysis.)</span></label>
+        <textarea id="art-access-reqs" rows="5" placeholder="e.g., Captions must be human-reviewed for accuracy (automated captions are permitted as a first draft but must be corrected before submission). All visuals must have text alternatives that convey the same information..."></textarea>
+
+        <label for="art-criteria">Assessment criteria <span>(3–5 criteria that capture quality of accessible design. Each criterion should describe what excellence looks like — not what absence of failure looks like.)</span></label>
+        <textarea id="art-criteria" rows="6" placeholder="e.g., Audience reach: The design serves users across a range of access needs without compromising the communicative purpose for any user..."></textarea>
+
+        <label for="art-process">Process requirements <span>(A design rationale, an accessibility review, a peer feedback session? These are where students learn to think about access, not just produce it.)</span></label>
+        <textarea id="art-process" rows="3" placeholder="e.g., 300-word design rationale explaining three accessibility decisions and the audience needs they serve..."></textarea>
+
+        <label for="art-ai">AI use policy <span>(State your operative decision from Activity 2 about AI-assisted accessibility tools as a clear student-facing policy.)</span></label>
+        <textarea id="art-ai" rows="3" placeholder="e.g., AI-generated captions may be submitted only after human review and correction. Alt-text must be authored by you..."></textarea>
+
+        <button class="btn-preview" onclick="previewArtifact()">Preview Your Assignment →</button>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="readings">
+      <span class="section-tag">Reading List</span>
+      <h3>Selected Sources</h3>
+      <ul class="reading-list">
+        <li>Cole, K. (2026). AI literacy for communication instruction. CWSP/RED-ACI. cwspwolf.com/ai_literacy_unified.html</li>
+        <li>Web Content Accessibility Guidelines (WCAG) 2.2. (2023). W3C Recommendation. w3.org/TR/WCAG22/</li>
+        <li>Kimmons, R. (2017). Open educational resources and accessibility. <em>Journal of Interactive Media in Education.</em></li>
+        <li>Disability Rights Advocates. (2021). <em>Challenges to accessibility overlay products.</em> dralegal.org</li>
+        <li>Shew, A. (2023). <em>Against technoableism: Rethinking who needs improvement.</em> Norton.</li>
+        <li>Dolmage, J. T. (2017). <em>Academic ableism: Disability and higher education.</em> University of Michigan Press.</li>
+        <li>Price, M. (2011). <em>Mad at school: Rhetorics of mental disability and academic life.</em> University of Michigan Press.</li>
+        <li>Vanderheiden, G., &amp; Jordan, J. B. (2012). Design for people not like yourself. <em>Ergonomics in Design, 20</em>(1), 4–8.</li>
+        <li>Zdenek, S. (2015). <em>Reading sounds: Closed-captioned media and popular culture.</em> University of Chicago Press.</li>
+      </ul>
+    </section>
+
+    <section id="submit">
+      <div class="submit-section">
+        <h3>Complete Elective 3</h3>
+        <p>When you have finished both activities, submit your responses. Your work is auto-saved in your browser.</p>
+        <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Elective 3 Responses</button>
+        <div id="submit-success"><strong>Submitted.</strong> Your Elective 3 responses are received.</div>
+        <div id="submit-error">Submission problem — responses saved locally. Try again or email kkcole2@ncsu.edu.</div>
+      </div>
+      <a href="digital.html" class="back-link">
+        <div>
+          <div class="label">Return to</div>
+          <div class="title">← Digital Communication Certificate</div>
+        </div>
+      </a>
+    </section>
+  </main>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'dc-elective3';
+const FIELDS = ['f-a1-asset','f-a1-technical','f-a1-communicative','f-a1-revision','f-a2-tool','f-a2-hierarchies','f-a2-operative','f-a2-assignment','f-a2-criteria','f-a2-teach','art-title','art-course','art-overview','art-task','art-access-reqs','art-criteria','art-process','art-ai'];
+const CHECKBOXES = ['repo-a1','repo-a2'];
+function saveAll() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.value); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.checked?'1':'0'); });
+  updateProgress();
+}
+function loadAll() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.value=v; });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.checked=v==='1'; });
+  updateProgress();
+}
+function updateProgress() {
+  const f = FIELDS.map(id=>document.getElementById(id)).filter(Boolean);
+  const pct = Math.round(f.filter(el=>el.value&&el.value.trim().length>20).length/f.length*100);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = pct+'%';
+}
+function submitModule() {
+  saveAll();
+  const data = {module:MODULE, timestamp:new Date().toISOString()};
+  FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
+  CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Submitting…';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 3 Responses'; });
+}
+function val(id){return(document.getElementById(id)||{}).value||'';}
+function artSection(label,content){if(!content||!content.trim())return'';return`<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`;}
+function previewArtifact(){
+  const title=val('art-title')||'Accessible Digital Assignment';
+  const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('artifact-modal-inner').innerHTML=`
+    <div class="art-header"><div class="art-header-top"><span class="art-program">RED-ACI · Digital Communication Certificate · Elective 3</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
+    <div class="art-body">${artSection('Assignment Overview',val('art-overview'))}${artSection('Task Description',val('art-task'))}${artSection('Accessibility Requirements',val('art-access-reqs'))}${artSection('Assessment Criteria',val('art-criteria'))}${artSection('Process Requirements',val('art-process'))}${artSection('AI Use Policy',val('art-ai'))}</div>
+    <div class="art-footer"><span class="art-footer-text">Developed through <strong>RED-ACI</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
+  document.getElementById('artifact-overlay').style.display='block';document.body.style.overflow='hidden';
+}
+function closeArtifact(){document.getElementById('artifact-overlay').style.display='none';document.body.style.overflow='';}
+document.getElementById('artifact-overlay').addEventListener('click',function(e){if(e.target===this)closeArtifact();});
+document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
+function updateSidebarActive() {
+  let current='';
+  document.querySelectorAll('[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});
+  document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+}
+window.addEventListener('scroll',updateSidebarActive,{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
+</script>
+</body>
+</html>

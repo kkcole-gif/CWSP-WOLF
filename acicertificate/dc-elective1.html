@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Elective 1: Social Media and the Attention Economy | RED-ACI</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-activity-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
+.btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
+#submit-success { display: none; background: #e8f0fe; border: 1px solid #aec4f5; border-radius: 3px; padding: 1rem; color: #1a3a7a; font-size: 0.9rem; margin-top: 1rem; }
+#submit-error   { display: none; background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 1rem; color: #c62828; font-size: 0.9rem; margin-top: 1rem; }
+.back-link { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.back-link:hover { border-color: var(--accent); }
+.back-link .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.back-link .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+/* Artifact builder */
+.artifact-section { border: 2px solid var(--accent); border-radius: 6px; padding: 2rem; margin: 2.5rem 0; background: #f8faff; }
+.artifact-section-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; }
+.artifact-badge { background: var(--accent); color: white; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; border-radius: 2px; white-space: nowrap; margin-top: 0.15rem; }
+.artifact-section-header-text h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+.artifact-section-header-text p { font-size: 0.9rem; color: var(--dgray); margin: 0; }
+.artifact-section label { margin-top: 1.1rem; }
+.btn-preview { background: var(--accent); color: white; border: none; padding: 0.75rem 1.75rem; font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; margin-top: 1.5rem; }
+.btn-preview:hover { opacity: 0.88; }
+#artifact-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.55); z-index: 200; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 760px; margin: 0 auto; border-radius: 4px; overflow: hidden; }
+.art-header { background: var(--accent); color: white; padding: 1.75rem 2.5rem; }
+.art-header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+.art-program { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; }
+.art-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; line-height: 1.2; }
+.art-meta { font-size: 0.85rem; color: #b0c4de; }
+.art-body { padding: 2rem 2.5rem; }
+.art-section { margin-bottom: 1.75rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; border-bottom: 1px solid var(--mgray); padding-bottom: 0.4rem; }
+.art-section p { font-size: 0.95rem; line-height: 1.6; white-space: pre-wrap; }
+.art-footer { background: var(--lgray); border-top: 1px solid var(--mgray); padding: 1rem 2.5rem; display: flex; justify-content: space-between; align-items: center; }
+.art-footer-text { font-size: 0.78rem; color: var(--dgray); }
+.art-footer-text strong { color: var(--accent); }
+.modal-btn-row { display: flex; gap: 0.75rem; margin-bottom: 1rem; justify-content: flex-end; padding: 1rem 1.5rem 0; }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.4rem; font-size: 0.88rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.6rem 1.2rem; font-size: 0.88rem; border-radius: 3px; cursor: pointer; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link.active { border-left-color: var(--red); background: #fff5f5; }
+@media print { #artifact-overlay { display: block !important; position: static; background: none; padding: 0; } #artifact-modal { box-shadow: none; } .modal-btn-row { display: none; } body > *:not(#artifact-overlay) { display: none; } }
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="digital.html">← Digital Comm Certificate</a>
+    <h1>Elective 1: Social Media and the Attention Economy</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+    <button class="btn-save" onclick="saveAll()">Save</button>
+  </div>
+</div>
+
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div class="modal-btn-row">
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+      <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+    <div id="artifact-modal-inner"></div>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" aria-label="Module navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#overview">Overview</a>
+      <a href="#attention">The attention economy</a>
+      <a href="#algorithm">Algorithmic systems and AI</a>
+      <a href="#literacy">Platform literacy vs. fluency</a>
+      <a href="#discipline">Social media in your discipline</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1 — Rhetorical Analysis</a>
+      <a href="#activity2" class="activity">2 — Platform Decision</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Build Your Assignment</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#submit">Submit</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header" id="overview">
+      <p class="module-eyebrow">Digital Communication Certificate · Elective 1</p>
+      <h2>Social Media and the Attention Economy in Education</h2>
+      <p>How social media platforms engineer engagement, what their AI recommendation systems reproduce, and how faculty can teach students to analyze and use social media as a critical practice rather than an invisible infrastructure. Estimated time: 3–4 hours.</p>
+    </div>
+
+    <section class="content-section" id="attention">
+      <span class="section-tag">Section 1</span>
+      <h3>The Attention Economy</h3>
+      <p>Your students are not distracted by social media. That framing reverses the causal structure. Social media platforms are engineered — by large teams of behavioral scientists and machine learning researchers — to capture and hold human attention. Notification timing, variable reward ratios, infinite scroll, and algorithmically personalized feeds are not features that happen to be engaging. They are optimized to maximize engagement metrics that, by design, compete directly with sustained concentration, nuanced thinking, and deliberate reflection.</p>
+      <p>The attention economy is the economic system in which human attention is the commodity being bought and sold. Social media companies offer services free of monetary charge because their product — what they sell to advertisers — is user attention and behavioral data. Platform design is optimized for time-on-platform and behavioral data collection, not for users' epistemic wellbeing. These are frequently in tension: outrage, novelty, and social validation reliably outperform nuance, qualification, and careful argument in algorithmic distribution systems.</p>
+      <div class="callout">
+        <p class="callout-title">The pedagogical implication</p>
+        <p>When faculty ask students to engage in slow, deliberate, nuanced thinking, they are asking for exactly the cognitive mode that social media platforms are engineered to interrupt. Understanding this is not an argument against using social media in education. It is the prerequisite for using it with enough critical awareness to teach students to navigate it well.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="algorithm">
+      <span class="section-tag">Section 2</span>
+      <h3>Algorithmic Recommendation Systems as AI</h3>
+      <p>Social media platforms' content recommendation systems are AI systems — specifically, recommendation engines that use machine learning to predict which content a given user is most likely to engage with. Applying the AI literacy framework (Cole, 2026) to these systems reveals their structural dimensions.</p>
+      <p>At the conceptual level: recommendation systems are not neutral curators. They are trained on engagement data — clicks, watch time, shares, comments — to maximize the behaviors that generate that data. They are not trained to surface the most accurate content, the most reliable sources, or the information most relevant to users' educational needs. Their training objective is engagement maximization, and their outputs reflect that objective.</p>
+      <p>At the structural level: these systems reproduce the hierarchies encoded in their training data. Content from accounts with existing large followings gets amplified more readily than content from new accounts — which advantages established voices over emerging ones. Emotional and partisan content reliably outperforms careful, qualified communication in engagement metrics — which advantages inflammatory voices over measured ones. The students most likely to encounter misinformation are those whose platform behavior patterns and social networks have been identified by the algorithm as receptive to it.</p>
+      <p>At the operative level: deploying social media in educational contexts requires a decision grounded in this structural analysis. What does it mean to require students to create accounts on platforms whose recommendation systems are designed to optimize for engagement at the expense of their epistemic wellbeing? What accountability conditions would need to be in place for that requirement to be ethically defensible?</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="literacy">
+      <span class="section-tag">Section 3</span>
+      <h3>Platform Literacy vs. Platform Fluency</h3>
+      <p>Platform fluency — knowing how to use a platform's features effectively — is not the same as platform literacy. A student can be highly fluent in TikTok production (knowing how to use transitions, audio syncing, trending sounds, and hashtag strategy) while having no analytical understanding of how the platform's algorithm distributes content, what data it collects, or how its design encodes specific communicative norms as default.</p>
+      <p>Platform literacy is the capacity to see the platform itself as a rhetorical and structural actor — not just as a channel for communication, but as a system that shapes what communication is possible, what gets amplified, who gets heard, and at what cost. Teaching social media literacy means teaching students to ask the structural questions: What kind of AI system is this recommendation engine? What does it optimize for, and what does that optimization reproduce? Who built it and whose interests does the design serve?</p>
+      <p>Faculty who incorporate social media into their courses without teaching platform literacy are teaching tool use without teaching the tools' structural implications. The goal of this elective is to give you enough platform literacy to teach it — and to design assignments that develop it in students.</p>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="discipline">
+      <span class="section-tag">Section 4</span>
+      <h3>Social Media in Your Discipline</h3>
+      <p>Every discipline has a relationship to social media — as a site of public communication, a source of misinformation about disciplinary findings, a tool for researcher communication, or a professional expectation. Scientists use Twitter/X to communicate findings to public audiences; public health researchers track misinformation on social platforms; journalists produce content for social distribution; educators build professional learning communities on platforms like LinkedIn or Bluesky. Understanding how your discipline uses and navigates social media is the starting point for designing assignments that develop relevant disciplinary social media literacy — not generic media literacy, but the specific literacy your field requires.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Activity 1 -->
+    <section class="content-section" id="activity1">
+      <div class="activity-block">
+        <p class="activity-label">Activity 1</p>
+        <h4>Rhetorical Analysis of Social Media Content</h4>
+        <p class="activity-meta">Individual analysis · 45–60 minutes</p>
+        <p>Select one piece of social media content relevant to your discipline — a viral post about a scientific finding, a thread by a researcher, a TikTok explanation of a disciplinary concept, a professional organization's account, or a widely-shared infographic. Analyze it as both a rhetorical artifact and as a product of the platform's algorithmic system.</p>
+
+        <label for="f-a1-content">Describe the content you selected. <span>(Platform, format, creator/account, approximate reach/engagement, URL if available.)</span></label>
+        <textarea id="f-a1-content" rows="4" placeholder="Content description and platform context..."></textarea>
+
+        <label for="f-a1-rhetoric">Rhetorical analysis: What claims does this content make, and how? <span>(Examine the rhetorical choices — evidence, emotional appeals, format, visual elements — and what makes it persuasive or credible to its intended audience.)</span></label>
+        <textarea id="f-a1-rhetoric" rows="6" placeholder="Your rhetorical analysis..."></textarea>
+
+        <label for="f-a1-algorithm">Algorithmic analysis: What about this content makes it likely to be engaged with algorithmically? <span>(Consider: emotional valence, format for the platform, shareability, how it performs against the platform's engagement metrics — and whether its shareability serves or compromises its accuracy or nuance.)</span></label>
+        <textarea id="f-a1-algorithm" rows="6" placeholder="Your algorithmic analysis — what does the engagement optimization do to this content's claims?"></textarea>
+
+        <label for="f-a1-pedagogical">Pedagogical application: How would you use this content in your course? <span>(As a positive model, a critical case study, or a prompt for analysis? What would you want students to examine rather than simply consume?)</span></label>
+        <textarea id="f-a1-pedagogical" rows="5" placeholder="Your pedagogical framing for this content..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Discipline-specific social media analyses — especially those identifying how algorithmic amplification interacts with disciplinary content — help build a cross-disciplinary resource for teaching platform literacy.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a1">
+            <label for="repo-a1">I'd like to share my analysis with the RED-ACI repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activity 2 -->
+    <section class="content-section" id="activity2">
+      <div class="activity-block">
+        <p class="activity-label">Activity 2</p>
+        <h4>Social Media Platform Decision</h4>
+        <p class="activity-meta">Structural analysis + operative decision · 60–75 minutes</p>
+        <p>Select one social media platform you use or are considering using in your course — whether for student communication, assignment submission, professional community engagement, or content analysis. Apply the AI literacy framework to that platform's recommendation system, then produce an operative decision about whether and how to use it.</p>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Structural analysis</span>
+          <h5>Apply the three structural questions to the platform's AI system</h5>
+          <label for="f-a2-platform">Which platform are you analyzing, and how are you currently or potentially using it in your course?</label>
+          <input type="text" id="f-a2-platform" placeholder="Platform name and proposed use...">
+
+          <label for="f-a2-hierarchies">What social hierarchies does this platform's recommendation system reproduce? <span>(Whose content gets amplified? Whose communicative norms does the algorithm treat as engagement-worthy?)</span></label>
+          <textarea id="f-a2-hierarchies" rows="5" placeholder="Hierarchies reproduced by this platform's recommendation AI..."></textarea>
+
+          <label for="f-a2-costs">Who bears the costs when this platform's recommendation system fails? <span>(Who is exposed to misinformation, harassment, or low-quality content? Are failure costs distributed evenly across user demographics?)</span></label>
+          <textarea id="f-a2-costs" rows="5" placeholder="Failure cost distribution..."></textarea>
+
+          <label for="f-a2-interests">Whose interests does the platform's design serve? <span>(Who owns it, what is the financial model, and where does the platform's financial interest diverge from students' epistemic interests?)</span></label>
+          <textarea id="f-a2-interests" rows="5" placeholder="Interests served by the design..."></textarea>
+        </div>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Operative decision</span>
+          <h5>Your principled decision about this platform in your course</h5>
+          <label for="f-a2-decision">State your operative decision: principled refusal, conditional adoption, or deferred decision — and ground it in the structural analysis above. <span>(If conditional adoption: what specific accountability conditions must be in place? If deferred: what evidence is needed?)</span></label>
+          <textarea id="f-a2-decision" rows="7" placeholder="My operative decision is [Principled Refusal / Conditional Adoption / Deferred Decision] because...&#10;&#10;Accountability conditions or evidence needed:"></textarea>
+        </div>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Assignment design</span>
+          <h5>Design one critical social media assignment</h5>
+          <label for="f-a2-assignment">Design one assignment that treats a social media platform as an object of critical analysis — asking students to apply the structural questions you've practiced here to a platform relevant to your discipline. Include the task prompt and the assessment criteria. <span>(This assignment should develop platform literacy, not platform fluency.)</span></label>
+          <textarea id="f-a2-assignment" rows="10" placeholder="Assignment prompt for students:&#10;&#10;Assessment criteria:"></textarea>
+        </div>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Critical social media assignments that apply structural analysis — especially from disciplines outside communication — help build the RED-ACI repository's resource base for platform literacy instruction.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a2">
+            <label for="repo-a2">I'd like to share my platform decision and assignment design with the RED-ACI repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="artifact">
+      <div class="artifact-section">
+        <div class="artifact-section-header">
+          <span class="artifact-badge">Your Artifact</span>
+          <div class="artifact-section-header-text">
+            <h3>Build Your Platform Literacy Assignment</h3>
+            <p>Complete the fields below to generate a formatted, print-ready assignment sheet grounded in your rhetorical and algorithmic analysis from Activities 1 and 2. This is the document you will walk away with — ready to deploy in your course.</p>
+          </div>
+        </div>
+
+        <label for="art-title">Assignment title <span>(Specific to your discipline and audience — not "Social Media Assignment" but something that signals the rhetorical and analytical task.)</span></label>
+        <input type="text" id="art-title" placeholder="e.g., Algorithmic Amplification and Disciplinary Misinformation: A Platform Literacy Analysis">
+
+        <label for="art-course">Course and audience <span>(Course number and title, and the student audience.)</span></label>
+        <input type="text" id="art-course" placeholder="e.g., ENV 410: Science Communication / Upper-level environmental science majors">
+
+        <label for="art-overview">Assignment overview <span>(2–4 sentences for students describing the task and its purpose. Frame the platform as the object of analysis, not just the medium.)</span></label>
+        <textarea id="art-overview" rows="4" placeholder="In this assignment, you will analyze a piece of social media content from your discipline as both a rhetorical artifact and a product of platform architecture..."></textarea>
+
+        <label for="art-task">Task description <span>(What will students produce, for what purpose, and under what constraints? Draw on your Activity 1 analysis to specify the platform context and analytical framing.)</span></label>
+        <textarea id="art-task" rows="5" placeholder="Select one piece of social media content related to [disciplinary topic]... Analyze it using both rhetorical analysis and algorithmic analysis frameworks..."></textarea>
+
+        <label for="art-platform">Platform and scope constraints <span>(Which platforms are in scope? What kind of content — disciplinary, professional, public-facing? What criteria for selection?)</span></label>
+        <textarea id="art-platform" rows="3" placeholder="Content should be drawn from [platform(s)] and should engage with [disciplinary content area]..."></textarea>
+
+        <label for="art-criteria">Assessment criteria <span>(3–5 criteria that capture quality of rhetorical analysis, algorithmic analysis, and pedagogical application. Write each as a positive description of what excellence looks like.)</span></label>
+        <textarea id="art-criteria" rows="6" placeholder="e.g., Rhetorical precision: The analysis identifies specific rhetorical choices and explains their communicative function, moving beyond summary to interpretation..."></textarea>
+
+        <label for="art-ai">AI use policy <span>(State how students may or may not use AI tools for this assignment — and what the pedagogical reason for that policy is.)</span></label>
+        <textarea id="art-ai" rows="3" placeholder="e.g., AI tools may be used to locate and summarize background information on a platform's algorithm; all analysis must be your own original work..."></textarea>
+
+        <button class="btn-preview" onclick="previewArtifact()">Preview Your Assignment →</button>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <section class="content-section" id="readings">
+      <h3>Key readings and resources</h3>
+      <ul class="reading-list">
+        <li>★ Cole, K. K. (2026). <em>AI Literacy Model</em>. cwspwolf.com/ai_literacy_unified.html. <em>The source framework for Activity 2's structural analysis and operative decision. Read the structural literacy and operative literacy sections before beginning Activity 2.</em></li>
+        <li>★ Carter, G. M., &amp; Matzke, A. (2017). The more digital technology, the better. In <em>Bad Ideas About Writing</em>. WVU Libraries. <em>Foundational critique of uncritical technology adoption — the analytical basis for evaluating social media use in education.</em></li>
+        <li>Daniel-Wariya, J. (2017). Play is not the opposite of work. In <em>Bad Ideas About Writing</em>. WVU Libraries. <em>Procedural rhetoric and platform architecture as rhetorical systems; directly applicable to analyzing how social media platforms design for engagement.</em></li>
+        <li>Noble, S. U. (2018). <em>Algorithms of oppression</em>. NYU Press, Chapters 1–2. <em>Structural analysis of algorithmic systems and the hierarchies they reproduce — the methodological model for Activity 2.</em></li>
+        <li>Writing Spaces, Vol. 3 (writingspaces.org). <em>Chapters on social media, digital audiences, and algorithmic writing environments.</em></li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <section id="submit">
+      <div class="submit-section">
+        <h3>Complete Elective 1</h3>
+        <p>When you have finished both activities, submit your responses. Your work is auto-saved in your browser.</p>
+        <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Elective 1 Responses</button>
+        <div id="submit-success"><strong>Submitted.</strong> Your Elective 1 responses are received.</div>
+        <div id="submit-error">Submission problem — responses saved locally. Try again or email kkcole2@ncsu.edu.</div>
+      </div>
+      <a href="digital.html" class="back-link">
+        <div>
+          <div class="label">Return to</div>
+          <div class="title">← Digital Communication Certificate</div>
+        </div>
+      </a>
+    </section>
+  </main>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'dc-elective1';
+const FIELDS = ['f-a1-content','f-a1-rhetoric','f-a1-algorithm','f-a1-pedagogical','f-a2-platform','f-a2-hierarchies','f-a2-costs','f-a2-interests','f-a2-decision','f-a2-assignment','art-title','art-course','art-overview','art-task','art-platform','art-criteria','art-ai'];
+const CHECKBOXES = ['repo-a1','repo-a2'];
+function saveAll() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.value); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.checked?'1':'0'); });
+  updateProgress();
+}
+function loadAll() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.value=v; });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.checked=v==='1'; });
+  updateProgress();
+}
+function updateProgress() {
+  const f = FIELDS.map(id=>document.getElementById(id)).filter(Boolean);
+  const pct = Math.round(f.filter(el=>el.value&&el.value.trim().length>20).length/f.length*100);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = pct+'%';
+}
+function submitModule() {
+  saveAll();
+  const data = {module:MODULE, timestamp:new Date().toISOString()};
+  FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
+  CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Submitting…';
+  fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 1 Responses'; });
+}
+function val(id) { return (document.getElementById(id)||{}).value||''; }
+function section(label, content) { if (!content||!content.trim()) return ''; return `<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`; }
+function previewArtifact() {
+  const title = val('art-title')||'Platform Literacy Assignment';
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('artifact-modal-inner').innerHTML = `
+    <div class="art-header"><div class="art-header-top"><span class="art-program">RED-ACI · Digital Communication Certificate · Elective 1</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
+    <div class="art-body">${section('Assignment Overview',val('art-overview'))}${section('Task Description',val('art-task'))}${section('Platform and Scope',val('art-platform'))}${section('Assessment Criteria',val('art-criteria'))}${section('AI Use Policy',val('art-ai'))}</div>
+    <div class="art-footer"><span class="art-footer-text">Developed through <strong>RED-ACI</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
+  document.getElementById('artifact-overlay').style.display='block'; document.body.style.overflow='hidden';
+}
+function closeArtifact() { document.getElementById('artifact-overlay').style.display='none'; document.body.style.overflow=''; }
+document.getElementById('artifact-overlay').addEventListener('click',function(e){if(e.target===this)closeArtifact();});
+document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
+function updateSidebarActive() {
+  let current='';
+  document.querySelectorAll('[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});
+  document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+}
+window.addEventListener('scroll',updateSidebarActive,{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
+</script>
+</body>
+</html>
