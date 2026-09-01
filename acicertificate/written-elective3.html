@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WC Elective 3: AI in Writing Instruction | C²TC</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link:hover { background: #fff0f0; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout.ai-callout { border-left-color: var(--red); background: #fff8f8; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout.ai-callout .callout-title { color: var(--red); }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.callout p + p { margin-top: 0.6rem; }
+.callout a { color: var(--red); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(204,0,0,0.3); }
+.callout a:hover { border-bottom-color: var(--red); }
+/* DC bridge panel */
+.dc-bridge { background: var(--accent); color: white; border-radius: 4px; padding: 1.75rem 2rem; margin: 2rem 0; }
+.dc-bridge-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.4rem; }
+.dc-bridge h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: white; }
+.dc-bridge p { font-size: 0.92rem; color: #b0c4de; margin-bottom: 0.75rem; }
+.dc-bridge ul { margin: 0.4rem 0 1rem 1.25rem; }
+.dc-bridge li { font-size: 0.9rem; color: #b0c4de; margin-bottom: 0.3rem; }
+.dc-bridge a { color: #7ea8d8; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(126,168,216,0.4); }
+.dc-bridge a:hover { color: white; border-bottom-color: white; }
+/* Framework comparison grid */
+.with-for-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; margin: 1.5rem 0; border: 1px solid var(--mgray); border-radius: 4px; overflow: hidden; }
+.with-col { background: #f0f4ff; border-right: 1px solid var(--mgray); padding: 1.5rem; }
+.for-col { background: #fff8f8; padding: 1.5rem; }
+.with-col-head { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+.for-col-head { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+.with-col h4, .for-col h4 { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; }
+.with-col ul, .for-col ul { margin: 0 0 0 1.1rem; }
+.with-col li, .for-col li { font-size: 0.88rem; margin-bottom: 0.4rem; line-height: 1.45; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.activity-block.optional { border-top-color: var(--dgray); opacity: 0.88; }
+.activity-block.optional .activity-label { color: var(--dgray); }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+.with-for-task { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1rem 0; }
+.task-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.4rem; display: block; }
+.task-head { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.4rem; }
+.task-body { font-size: 0.88rem; color: #444; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.equity-box { border: 1px solid var(--mgray); border-left: 4px solid #5a7a3a; background: #f6faf3; border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.25rem 0; }
+.equity-box .callout-title { color: #4a6a2a; }
+.artifact-section { border: 2px solid var(--red); border-radius: 4px; padding: 2rem; margin: 2rem 0; background: #fff8f8; }
+.artifact-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.artifact-section h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.artifact-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-artifact { background: var(--red); color: white; border: none; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; margin-top: 0.5rem; }
+.btn-artifact:hover { background: #aa0000; }
+#artifact-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 720px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.art-header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+.art-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.25rem; }
+.art-header h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; }
+.art-body { padding: 1.75rem 2rem; }
+.art-field { margin-bottom: 1.5rem; }
+.art-field-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.35rem; }
+.art-field-value { font-size: 0.95rem; line-height: 1.65; border-bottom: 1px solid var(--mgray); padding-bottom: 0.75rem; min-height: 2rem; color: var(--dark); }
+.art-footer { background: var(--lgray); border-top: 1px solid var(--mgray); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+.art-footer-brand { font-size: 0.75rem; color: var(--dgray); }
+.art-actions { display: flex; gap: 0.75rem; }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.5rem 1.25rem; font-size: 0.82rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close { background: none; border: 1px solid var(--mgray); color: var(--dgray); padding: 0.5rem 1.25rem; font-size: 0.82rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close:hover { border-color: var(--dark); color: var(--dark); }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.5rem; margin-top: 2.5rem; text-align: center; }
+.submit-section p { font-size: 0.88rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.92rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.02em; }
+.btn-submit:hover { background: var(--accent-light); }
+.submit-status { margin-top: 0.75rem; font-size: 0.85rem; color: var(--dgray); min-height: 1.2rem; }
+@media print {
+  .top-bar, .sidebar, .btn-artifact, .submit-section, #artifact-overlay { display: none; }
+  .layout { grid-template-columns: 1fr; }
+  .main { padding: 0; }
+  .module-header { margin: 0 0 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="written.html">← WC Certificate</a>
+    <h1>Elective 3 · AI in Writing Instruction</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">This Elective</span>
+      <a href="#framework" id="nav-framework">The WITH/FOR Framework</a>
+      <a href="#dc-module" id="nav-dc">Deep Dive: DC Module 3</a>
+      <a href="#equity" id="nav-equity">Equity Dimensions</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity" id="nav-a1">Activity 1: WITH vs. FOR</a>
+      <a href="#activity2" class="activity" id="nav-a2">Activity 2: Policy + Assignment</a>
+      <a href="#activity3" class="activity" id="nav-a3">Activity 3: Optional Scenario</a>
+    </div>
+    <div class="sidebar-section">
+      <a href="#artifact" class="artifact-link" id="nav-art">↳ Course Artifact</a>
+    </div>
+  </nav>
+
+  <main class="main" id="main-content">
+    <div class="module-header">
+      <div class="module-eyebrow">Elective 3 · Written Communication Instruction Certificate · C²TC</div>
+      <h2>AI in Writing Instruction</h2>
+      <p>A focused introduction to teaching writing in an AI-mediated environment, built around a distinction that changes how students and instructors understand AI's role in the composing process.</p>
+    </div>
+
+    <!-- Framework Section -->
+    <div class="content-section" id="framework">
+      <span class="section-tag">Core Framework</span>
+      <h3>Writing WITH AI, Not FOR AI</h3>
+      <p>The most consequential question for writing instructors today is not whether students use AI, but <em>how</em> they use it. The WITH/FOR distinction (Cole) names a difference that is pedagogically and rhetorically significant: it is the difference between AI as a tool that extends your thinking and AI as a replacement for it.</p>
+      <p>This framework applies equally to instructors designing assignments and to students completing them. A course that asks students to use AI thoughtfully must also be able to articulate what "thoughtfully" means.</p>
+
+      <div class="with-for-grid">
+        <div class="with-col">
+          <div class="with-col-head">Writing WITH AI</div>
+          <h4>AI as Thinking Partner</h4>
+          <ul>
+            <li>Brainstorm ideas and then select, reject, or revise them based on your own judgment</li>
+            <li>Use AI to generate an outline, then substantially restructure or depart from it</li>
+            <li>Ask AI to challenge your argument; use the pushback to strengthen your position</li>
+            <li>Prompt AI for counterarguments, then decide which deserve incorporation</li>
+            <li>Generate multiple framings of a claim; choose one and articulate why</li>
+            <li>Use AI feedback on a draft as one reader among several</li>
+          </ul>
+        </div>
+        <div class="for-col">
+          <div class="for-col-head">Writing FOR AI</div>
+          <h4>AI as Producer</h4>
+          <ul>
+            <li>Submit AI-generated text with minimal engagement or revision</li>
+            <li>Use AI to complete tasks rather than to think through them</li>
+            <li>Accept AI phrasing, structure, or framing without interrogating it</li>
+            <li>Prompt AI to write the assignment and then copy-edit the result</li>
+            <li>Treat AI output as a draft that needs polishing rather than a starting point that needs thinking</li>
+            <li>Use AI to avoid the difficulty of writing, rather than to navigate it</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>The WITH/FOR distinction is not a policy instrument — it does not tell you what to permit or prohibit in your courses. It is an analytical tool for helping students understand what kind of engagement they are actually having with a task, and for helping instructors design assignments where the WITH engagement is the point.</p>
+
+      <div class="callout">
+        <div class="callout-title">Why This Matters for Writing Pedagogy</div>
+        <p>Writing is thinking. A course designed around writing pedagogy principles understands that the process of drafting, revising, and reconsidering is where learning happens — not in the submission of a final product. AI used FOR writing short-circuits that process. AI used WITH writing, when designed deliberately, can extend and challenge it. The pedagogical question is always: where is the cognitive work happening, and who is doing it?</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- DC Bridge -->
+    <div class="content-section" id="dc-module">
+      <span class="section-tag">Where to Go Deeper</span>
+      <h3>The Digital Communication Certificate as Deep Dive</h3>
+      <p>This elective introduces the WITH/FOR framework and its immediate applications to writing courses. It does not attempt to be a comprehensive treatment of AI in educational contexts — that work belongs to the Digital Communication Instruction Certificate.</p>
+
+      <div class="dc-bridge">
+        <div class="dc-bridge-eyebrow">Digital Communication Instruction Certificate</div>
+        <h3>DC Module 3: Teaching with Digital Tools</h3>
+        <p>DC Module 3 is the program's full treatment of AI in instructional contexts. If you plan to teach AI use extensively, build AI literacy assignments, or lead faculty development around AI, that module is the appropriate venue.</p>
+        <ul>
+          <li>AI literacy as a transferable competency across disciplines</li>
+          <li>Prompt engineering as a rhetorical and pedagogical practice</li>
+          <li>Designing assignments that make AI use visible and assessable</li>
+          <li>Ethical frameworks for AI in academic writing contexts</li>
+          <li>Institutional policy development and course-level policy writing</li>
+          <li>AI and the assessment of student writing: what changes and what doesn't</li>
+        </ul>
+        <p><a href="digital.html">Explore the Digital Communication Instruction Certificate →</a></p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Equity Section -->
+    <div class="content-section" id="equity">
+      <span class="section-tag">Equity Dimensions</span>
+      <h3>AI, Language, and Access</h3>
+      <p>The WITH/FOR framework has particular stakes for students whose linguistic backgrounds differ from the dominant academic register. AI creates a genuine tension here that instructors should be prepared to articulate rather than paper over.</p>
+
+      <div class="equity-box">
+        <div class="callout-title">Two Competing Considerations</div>
+        <p><strong>AI flattens linguistic diversity.</strong> Large language models are trained primarily on text in dominant registers of standard academic English. When students — including multilingual writers — use AI to "fix" their prose, they often receive output that erases the distinctive rhetorical moves and linguistic features of their writing. The result is grammatically conventional but rhetorically impoverished. AI can make writing sound like a genre rather than a person.</p>
+        <p><strong>AI assists students navigating language barriers.</strong> For students writing in an additional language, AI tools for grammar checking, clarification, and translation represent a genuine accommodation. The same tool that flattens one writer's voice helps another writer access academic genres they are still acquiring. These are not contradictory facts — they are both true, and a nuanced AI policy acknowledges both.</p>
+      </div>
+
+      <p>Instructors working with multilingual students should read the WITH/FOR framework alongside Elective 4: Inclusive Practices for Multilingual Writers, which addresses these questions at greater depth, including the code-meshing vs. code-switching debate and the minimal marking principle.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Activity 1 -->
+    <div class="activity-block" id="activity1">
+      <div class="activity-label">Activity 1 · 60 minutes</div>
+      <h4>WITH vs. FOR: Side-by-Side Task Exploration</h4>
+      <div class="activity-meta">Individual reflection, 300–400 word comparative analysis</div>
+      <p>Complete the same writing task twice using the same AI tool — once in a WITH mode and once in a FOR mode — then analyze the difference in your own cognitive engagement.</p>
+
+      <div class="with-for-task">
+        <span class="task-label">The Task</span>
+        <div class="task-head">Choose an assignment prompt from one of your current courses.</div>
+        <div class="task-body">Select a prompt you know well enough to engage with substantively. It should require an argument, analysis, or explanation — not merely a summary. The goal is to experience the difference in your own composing process, so choose something where you have genuine views.</div>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Round 1: Writing FOR AI (15–20 min)</span>
+        <p>Prompt AI to complete the task. Review the output, make light edits for grammar and flow, and treat the result as your response. Do not invest substantially in the ideas — accept them.</p>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Round 2: Writing WITH AI (20–25 min)</span>
+        <p>Use AI as a thinking partner. Brainstorm with it, challenge it, have it argue against your position, generate an outline and then substantially depart from it. Write your own response, informed by but not dependent on AI output.</p>
+      </div>
+
+      <label for="f-a1-with">What did writing WITH AI feel like? What decisions did you make that AI did not make for you? <span>(150–200 words)</span></label>
+      <textarea id="f-a1-with" rows="6" placeholder="Describe the texture of your cognitive engagement in Round 2…"></textarea>
+
+      <label for="f-a1-for">What did writing FOR AI feel like? Where did your thinking stop, and what did AI provide in its place? <span>(100–150 words)</span></label>
+      <textarea id="f-a1-for" rows="5" placeholder="Be honest about what you noticed — including any discomfort…"></textarea>
+
+      <label for="f-a1-compare">Comparative Analysis: What does this experiment reveal about how you would design an assignment that makes WITH engagement visible and assessable? <span>(150–200 words)</span></label>
+      <textarea id="f-a1-compare" rows="7" placeholder="Consider: what features of the assignment made FOR engagement possible? What would change them?"></textarea>
+    </div>
+
+    <!-- Activity 2 -->
+    <div class="activity-block" id="activity2">
+      <div class="activity-label">Activity 2 · 60–75 minutes</div>
+      <h4>Write a Course AI Policy and Redesign One Assignment</h4>
+      <div class="activity-meta">Two-part writing task: policy statement + assignment redesign</div>
+      <p>A course AI policy is a pedagogical statement, not a rulebook. It tells students what you believe about writing, learning, and AI — and it creates the context within which your assignments make sense. A policy that merely permits or prohibits is a missed opportunity.</p>
+
+      <div class="callout">
+        <div class="callout-title">What a Good AI Policy Does</div>
+        <p>A strong course AI policy names the WITH/FOR distinction explicitly or implicitly, connects AI use to the course's learning goals, addresses what counts as academic integrity in this specific context, and anticipates the equity questions that a blanket policy ignores. It is addressed to students as intellectual agents, not as compliance subjects.</p>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part A: Write Your Course AI Policy</span>
+        <h5>A statement to appear in your course syllabus</h5>
+        <p>Write a policy for a specific course you teach or will teach. It should be 150–250 words: substantive enough to communicate your pedagogical values, brief enough to be read.</p>
+
+        <label for="f-a2-course">Which course is this policy for? What is its context? <span>(one to two sentences)</span></label>
+        <textarea id="f-a2-course" rows="3" placeholder="Course title, level, discipline, typical student population…"></textarea>
+
+        <label for="f-a2-policy">Your course AI policy statement <span>(150–250 words)</span></label>
+        <textarea id="f-a2-policy" rows="9" placeholder="Draft a policy that reflects your pedagogical values, connects to learning goals, and addresses the WITH/FOR distinction…"></textarea>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part B: Redesign One Assignment</span>
+        <h5>Identify an existing assignment and redesign it for WITH engagement</h5>
+        <p>Choose an assignment from the same course. Consider how a student would use AI in a FOR mode to complete it, and then redesign it so that WITH engagement becomes both possible and legible.</p>
+
+        <label for="f-a2-original">Describe the original assignment. <span>(3–5 sentences)</span></label>
+        <textarea id="f-a2-original" rows="4" placeholder="What does it ask students to do? What does it assess?"></textarea>
+
+        <label for="f-a2-vulnerability">How does a student use AI in FOR mode on this assignment? What is the path of least resistance? <span>(2–3 sentences)</span></label>
+        <textarea id="f-a2-vulnerability" rows="4" placeholder="Be specific — what would the student actually prompt, and what would they submit?"></textarea>
+
+        <label for="f-a2-redesign">Your redesigned assignment. <span>(5–8 sentences)</span></label>
+        <textarea id="f-a2-redesign" rows="7" placeholder="What changes? Where does the cognitive work now happen? How does WITH engagement become visible in the submission?"></textarea>
+      </div>
+    </div>
+
+    <!-- Activity 3 (Optional) -->
+    <div class="activity-block optional" id="activity3">
+      <div class="activity-label">Activity 3 · Optional · 30 minutes</div>
+      <h4>Evaluate an AI-Generated Response Scenario</h4>
+      <div class="activity-meta">Short analysis and policy reasoning exercise</div>
+      <p>Read the scenario below and respond to the questions. This activity does not have a required length — write until you have said what you think.</p>
+
+      <div class="sub-activity">
+        <span class="sub-label">Scenario</span>
+        <h5>The Revised Draft</h5>
+        <p style="font-size:0.88rem;">A first-year composition student submits a 1,200-word argumentative essay. You notice the prose is unusually polished for this student's previous work — confident transitions, varied sentence rhythm, strong claim structure. You run the text through an AI detection tool and receive a result of 78% "likely AI-generated." The student, when asked, says: "I used ChatGPT to help me brainstorm and organize my ideas, and then I rewrote everything in my own words. I thought that was okay — you didn't say we couldn't."</p>
+      </div>
+
+      <label for="f-a3-policy">Does your current course policy — or the one you drafted in Activity 2 — address this situation? If not, what would you add? <span></span></label>
+      <textarea id="f-a3-policy" rows="5" placeholder="Be specific about what the policy does or does not cover…"></textarea>
+
+      <label for="f-a3-detect">What do you make of AI detection tools as an assessment instrument? What do they measure, and what do they miss? <span></span></label>
+      <textarea id="f-a3-detect" rows="5" placeholder="Consider accuracy, equity implications, and what a 78% score actually tells you…"></textarea>
+
+      <label for="f-a3-response">How would you respond to this student — in writing, in conversation, or both? What is the pedagogical goal of your response? <span></span></label>
+      <textarea id="f-a3-response" rows="6" placeholder="Consider: is this an integrity issue, a learning issue, or both?"></textarea>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Discreet AI Literacy Callout -->
+    <div class="callout ai-callout">
+      <div class="callout-title">AI Literacy Resource</div>
+      <p>The program maintains a unified AI literacy resource for instructors working through these questions across writing, oral, and digital communication contexts. It addresses assignment design, policy language, equity implications, and the evolving landscape of AI tools in academic settings.</p>
+      <p><a href="https://cwspwolf.com/ai_literacy_unified.html">Access the C²TC AI Literacy Resource →</a></p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Artifact -->
+    <div class="artifact-section" id="artifact">
+      <div class="artifact-section-label">Course Artifact</div>
+      <h3>Build Your AI in Writing Artifact</h3>
+      <p>Compile the key deliverables from this elective into a reviewable artifact: your WITH/FOR analysis, your course AI policy, and your redesigned assignment. This artifact feeds into your Written Communication Instruction Certificate completion portfolio.</p>
+
+      <label for="art-course">Course title and context</label>
+      <input type="text" id="art-course" placeholder="e.g., ENG 101: Writing in the Social Sciences, sophomore-level…">
+
+      <label for="art-policy">Your course AI policy statement</label>
+      <textarea id="art-policy" rows="7" placeholder="The final version of your policy from Activity 2…"></textarea>
+
+      <label for="art-original">Original assignment</label>
+      <textarea id="art-original" rows="4" placeholder="Brief description of the assignment before redesign…"></textarea>
+
+      <label for="art-redesign">Redesigned assignment</label>
+      <textarea id="art-redesign" rows="6" placeholder="The assignment as redesigned for WITH engagement…"></textarea>
+
+      <label for="art-reflection">Reflection: What did this elective change or confirm about how you think about AI in your writing courses? <span>(100–150 words)</span></label>
+      <textarea id="art-reflection" rows="6" placeholder="Be specific — name a shift in thinking, a new question, or a decision you've made…"></textarea>
+
+      <button class="btn-artifact" onclick="showArtifact()">Preview Artifact</button>
+    </div>
+
+    <div class="submit-section">
+      <p>When you have completed this elective, submit your responses to the C²TC record. Submission captures all saved fields.</p>
+      <button class="btn-submit" onclick="submitWorkbook()">Submit Elective 3</button>
+      <div class="submit-status" id="submit-status"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Artifact Modal -->
+<div id="artifact-overlay" onclick="closeArtifact(event)">
+  <div id="artifact-modal">
+    <div class="art-header">
+      <div class="art-eyebrow">C²TC · Written Communication Instruction Certificate · AI in Writing Instruction</div>
+      <h3 id="art-modal-title">Course AI Policy and Assignment Redesign</h3>
+    </div>
+    <div class="art-body">
+      <div class="art-field">
+        <div class="art-field-label">Course</div>
+        <div class="art-field-value" id="art-display-course"></div>
+      </div>
+      <div class="art-field">
+        <div class="art-field-label">Course AI Policy</div>
+        <div class="art-field-value" id="art-display-policy"></div>
+      </div>
+      <div class="art-field">
+        <div class="art-field-label">Original Assignment</div>
+        <div class="art-field-value" id="art-display-original"></div>
+      </div>
+      <div class="art-field">
+        <div class="art-field-label">Redesigned Assignment</div>
+        <div class="art-field-value" id="art-display-redesign"></div>
+      </div>
+      <div class="art-field">
+        <div class="art-field-label">Reflection</div>
+        <div class="art-field-value" id="art-display-reflection"></div>
+      </div>
+    </div>
+    <div class="art-footer">
+      <div class="art-footer-brand">NC State Campus Writing and Speaking Program · C²TC</div>
+      <div class="art-actions">
+        <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+        <button class="btn-close" onclick="document.getElementById('artifact-overlay').style.display='none'">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MODULE = 'wc-elective3';
+const FIELDS = ['f-a1-with','f-a1-for','f-a1-compare','f-a2-course','f-a2-policy','f-a2-original','f-a2-vulnerability','f-a2-redesign','f-a3-policy','f-a3-detect','f-a3-response','art-course','art-policy','art-original','art-redesign','art-reflection'];
+const CHECKBOXES = [];
+
+function save(id) {
+  try {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = el.type === 'checkbox' ? el.checked : el.value;
+    localStorage.setItem(MODULE + ':' + id, val);
+  } catch(e) {}
+}
+
+function load() {
+  try {
+    FIELDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const val = localStorage.getItem(MODULE + ':' + id);
+      if (val !== null) el.value = val;
+    });
+    CHECKBOXES.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const val = localStorage.getItem(MODULE + ':' + id);
+      if (val !== null) el.checked = val === 'true';
+    });
+  } catch(e) {}
+}
+
+function updateProgress() {
+  const filled = FIELDS.filter(id => {
+    const el = document.getElementById(id);
+    return el && el.value && el.value.length > 20;
+  }).length;
+  const pct = Math.round((filled / FIELDS.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+
+FIELDS.forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', () => { save(id); updateProgress(); });
+});
+
+function showArtifact() {
+  const map = {
+    'art-display-course': 'art-course',
+    'art-display-policy': 'art-policy',
+    'art-display-original': 'art-original',
+    'art-display-redesign': 'art-redesign',
+    'art-display-reflection': 'art-reflection'
+  };
+  Object.entries(map).forEach(([disp, src]) => {
+    const el = document.getElementById(src);
+    const val = el ? (el.value || '') : '';
+    document.getElementById(disp).textContent = val || '—';
+  });
+  const course = document.getElementById('art-course').value;
+  if (course) document.getElementById('art-modal-title').textContent = course;
+  document.getElementById('artifact-overlay').style.display = 'block';
+}
+
+function closeArtifact(e) {
+  if (e.target === document.getElementById('artifact-overlay')) {
+    document.getElementById('artifact-overlay').style.display = 'none';
+  }
+}
+
+function submitWorkbook() {
+  const status = document.getElementById('submit-status');
+  status.textContent = 'Submitting…';
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.value || '';
+  });
+  CHECKBOXES.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.checked;
+  });
+  fetch('https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(() => {
+    status.textContent = 'Submitted. Thank you.';
+  }).catch(() => {
+    status.textContent = 'Submission failed. Please try again or contact the program coordinator.';
+  });
+}
+
+// Sidebar active state
+const sections = ['framework','dc-module','equity','activity1','activity2','activity3','artifact'];
+const navMap = { 'framework':'nav-framework','dc-module':'nav-dc','equity':'nav-equity','activity1':'nav-a1','activity2':'nav-a2','activity3':'nav-a3','artifact':'nav-art' };
+function onScroll() {
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) current = id;
+  });
+  Object.values(navMap).forEach(nid => {
+    const n = document.getElementById(nid);
+    if (n) n.classList.remove('active');
+  });
+  const active = document.getElementById(navMap[current]);
+  if (active) active.classList.add('active');
+}
+window.addEventListener('scroll', onScroll);
+
+load();
+updateProgress();
+</script>
+</body>
+</html>

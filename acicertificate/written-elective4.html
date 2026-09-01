@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WC Elective 4: Inclusive Practices for Multilingual Writers | C²TC</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link:hover { background: #fff0f0; }
+.sidebar .repo-check { padding: 0.5rem 0.75rem; display: flex; align-items: flex-start; gap: 0.4rem; font-size: 0.78rem; color: var(--dgray); line-height: 1.35; }
+.sidebar .repo-check input { margin-top: 2px; flex-shrink: 0; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout.ai-callout { border-left-color: var(--red); background: #fff8f8; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout.ai-callout .callout-title { color: var(--red); }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.callout p + p { margin-top: 0.6rem; }
+.callout a { color: var(--red); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(204,0,0,0.3); }
+.callout a:hover { border-bottom-color: var(--red); }
+/* Framework pair grid */
+.framework-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.frame-card { border: 1px solid var(--mgray); border-radius: 4px; padding: 1.5rem; }
+.frame-card.asset { border-top: 4px solid #4a7a3a; background: #f6faf3; }
+.frame-card.deficit { border-top: 4px solid #7a4a4a; background: #fff6f6; }
+.frame-card-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.4rem; }
+.frame-card.asset .frame-card-tag { color: #4a7a3a; }
+.frame-card.deficit .frame-card-tag { color: #7a4a4a; }
+.frame-card h4 { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; }
+.frame-card ul { margin: 0 0 0 1.1rem; }
+.frame-card li { font-size: 0.88rem; margin-bottom: 0.4rem; line-height: 1.45; }
+/* Code practices grid */
+.mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.mode-card { border: 1px solid var(--mgray); border-radius: 4px; padding: 1.5rem; background: var(--lgray); }
+.mode-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.mode-card h4 { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.6rem; }
+.mode-card p { font-size: 0.88rem; color: #444; margin-bottom: 0.6rem; }
+.mode-eg { font-size: 0.82rem; color: var(--dgray); border-top: 1px solid var(--mgray); padding-top: 0.6rem; margin-top: 0.5rem; font-style: italic; }
+/* Excerpt block */
+.excerpt-block { background: var(--lgray); border: 1px solid var(--mgray); border-left: 4px solid var(--dgray); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.excerpt-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.4rem; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.excerpt-label span.level { font-weight: 400; font-style: italic; }
+.excerpt-text { font-family: var(--serif); font-size: 0.94rem; line-height: 1.7; color: #333; font-style: italic; }
+/* Marking principle box */
+.marking-box { border: 1px solid var(--mgray); border-left: 4px solid var(--accent); background: #f0f4ff; border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.marking-box .callout-title { color: var(--accent); }
+.marking-box p { font-size: 0.92rem; margin-bottom: 0; }
+.marking-box p + p { margin-top: 0.6rem; }
+/* Resources box */
+.resources-box { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; }
+.resources-box h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+.resources-box ul { margin: 0 0 0 1.1rem; }
+.resources-box li { font-size: 0.9rem; margin-bottom: 0.5rem; }
+.resources-box a { color: var(--accent); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(30,43,74,0.3); }
+.resources-box a:hover { border-bottom-color: var(--accent); }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+.repo-block { background: #f0f4ff; border: 1px solid #c0cce0; border-radius: 4px; padding: 1rem 1.25rem; margin-top: 1.5rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+.repo-block input[type="checkbox"] { margin-top: 2px; flex-shrink: 0; }
+.repo-block-text { font-size: 0.85rem; color: var(--dark); }
+.repo-block-text strong { display: block; margin-bottom: 0.2rem; font-size: 0.82rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.artifact-section { border: 2px solid var(--red); border-radius: 4px; padding: 2rem; margin: 2rem 0; background: #fff8f8; }
+.artifact-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.artifact-section h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.artifact-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-artifact { background: var(--red); color: white; border: none; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; margin-top: 0.5rem; }
+.btn-artifact:hover { background: #aa0000; }
+#artifact-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 720px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.art-header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+.art-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.25rem; }
+.art-header h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; }
+.art-body { padding: 1.75rem 2rem; }
+.art-field { margin-bottom: 1.5rem; }
+.art-field-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.35rem; }
+.art-field-value { font-size: 0.95rem; line-height: 1.65; border-bottom: 1px solid var(--mgray); padding-bottom: 0.75rem; min-height: 2rem; color: var(--dark); }
+.art-footer { background: var(--lgray); border-top: 1px solid var(--mgray); padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+.art-footer-brand { font-size: 0.75rem; color: var(--dgray); }
+.art-actions { display: flex; gap: 0.75rem; }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.5rem 1.25rem; font-size: 0.82rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close { background: none; border: 1px solid var(--mgray); color: var(--dgray); padding: 0.5rem 1.25rem; font-size: 0.82rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close:hover { border-color: var(--dark); color: var(--dark); }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.5rem; margin-top: 2.5rem; text-align: center; }
+.submit-section p { font-size: 0.88rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.92rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.02em; }
+.btn-submit:hover { background: var(--accent-light); }
+.submit-status { margin-top: 0.75rem; font-size: 0.85rem; color: var(--dgray); min-height: 1.2rem; }
+@media print {
+  .top-bar, .sidebar, .btn-artifact, .submit-section, #artifact-overlay { display: none; }
+  .layout { grid-template-columns: 1fr; }
+  .main { padding: 0; }
+  .module-header { margin: 0 0 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="written.html">← WC Certificate</a>
+    <h1>Elective 4 · Inclusive Practices for Multilingual Writers</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Frameworks</span>
+      <a href="#asset" id="nav-asset">Asset vs. Deficit Frameworks</a>
+      <a href="#codemesh" id="nav-codemesh">Code-Switching and Code-Meshing</a>
+      <a href="#marking" id="nav-marking">The Minimal Marking Principle</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity" id="nav-a1">Activity 1: Reading Through L2 Lens</a>
+      <a href="#activity2" class="activity" id="nav-a2">Activity 2: Discipline-Specific Support Plan</a>
+      <a href="#activity3" class="activity" id="nav-a3">Activity 3: Responding to Student Writing</a>
+    </div>
+    <div class="sidebar-section">
+      <a href="#artifact" class="artifact-link" id="nav-art">↳ Course Artifact</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Contribute</span>
+      <label class="repo-check"><input type="checkbox" id="repo-a1"> Share my Activity 1 analysis with the C²TC repository</label>
+      <label class="repo-check"><input type="checkbox" id="repo-a2"> Share my Activity 2 support plan with the C²TC repository</label>
+      <label class="repo-check"><input type="checkbox" id="repo-a3"> Share my Activity 3 response with the C²TC repository</label>
+    </div>
+  </nav>
+
+  <main class="main" id="main-content">
+    <div class="module-header">
+      <div class="module-eyebrow">Elective 4 · Written Communication Instruction Certificate · C²TC</div>
+      <h2>Inclusive Practices for Multilingual Writers</h2>
+      <p>How instructors read, respond to, and support student writing depends substantially on the assumptions they bring to linguistic difference. This elective makes those assumptions visible and offers frameworks for replacing deficit orientations with asset-based approaches.</p>
+    </div>
+
+    <!-- Asset vs Deficit Section -->
+    <div class="content-section" id="asset">
+      <span class="section-tag">Framework</span>
+      <h3>Asset-Based vs. Deficit-Based Orientations</h3>
+      <p>The most fundamental choice in multilingual writing pedagogy is not methodological — it is epistemological. Before deciding how to respond to a multilingual writer's text, an instructor makes a prior decision, usually unconsciously, about what that text represents. Is linguistic difference a problem to be corrected, or a resource to be understood?</p>
+
+      <div class="framework-grid">
+        <div class="frame-card asset">
+          <div class="frame-card-tag">Asset-Based Framework</div>
+          <h4>Linguistic Difference as Resource</h4>
+          <ul>
+            <li>Multilingual writers possess rhetorical repertoires that monolingual writers lack</li>
+            <li>Non-standard features may be intentional or systematic, not random</li>
+            <li>Transfer from other languages shapes argument structure, evidence use, and audience orientation in ways that are disciplinarily legible</li>
+            <li>Students' home languages and dialects are legitimate intellectual and rhetorical resources</li>
+            <li>The goal is to expand students' repertoire, not to erase one register in favor of another</li>
+            <li>Instructor response focuses on meaning-making, argumentation, and rhetorical purpose</li>
+          </ul>
+        </div>
+        <div class="frame-card deficit">
+          <div class="frame-card-tag">Deficit-Based Framework</div>
+          <h4>Linguistic Difference as Problem</h4>
+          <ul>
+            <li>Non-standard features are errors to be marked and corrected</li>
+            <li>The goal is conformity to dominant academic register</li>
+            <li>Surface-level features are treated as primary concerns, regardless of content</li>
+            <li>Students' prior linguistic knowledge is treated as interference rather than resource</li>
+            <li>Writing instruction focuses on eliminating features rather than expanding capacities</li>
+            <li>Instructor response prioritizes correctness over communication</li>
+          </ul>
+        </div>
+      </div>
+
+      <p>The deficit framework is not merely unkind — it is pedagogically counterproductive. Research in second-language acquisition consistently shows that error correction focused on surface features without attention to meaning does not improve writing; it redirects student attention away from argumentation and toward surface compliance. The asset-based framework does not ignore surface features, but it treats them as secondary to the rhetorical and intellectual work of the text.</p>
+
+      <div class="callout">
+        <div class="callout-title">What This Means in Practice</div>
+        <p>An asset-based instructor reads a multilingual student's text and asks first: What is the argument? What evidence does the writer use? How does the writer understand their audience? Only after engaging these questions does the instructor turn to surface features — and then only those that impede communication, not those that merely differ from dominant conventions.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Code-Switching / Code-Meshing -->
+    <div class="content-section" id="codemesh">
+      <span class="section-tag">Framework</span>
+      <h3>Code-Switching and Code-Meshing</h3>
+      <p>The terms "code-switching" and "code-meshing" name different theories of how multilingual writers relate to their linguistic repertoires, and they imply different pedagogical programs.</p>
+
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-tag">Code-Switching</div>
+          <h4>Separation of Codes</h4>
+          <p>The view that different linguistic codes (home language, academic English, disciplinary register) are properly kept separate, and that students must learn to "switch" between them depending on context. Academic writing requires academic English; home language and dialect are appropriate in other contexts.</p>
+          <div class="mode-eg">Pedagogical implication: Students are taught to recognize which register a context demands and to deploy it. Their home language is acknowledged but sequestered from academic writing. The dominant register is treated as a neutral requirement rather than a cultural and political choice.</div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-tag">Code-Meshing</div>
+          <h4>Integration of Codes</h4>
+          <p>The view, associated with scholars including Young and Canagarajah, that writers naturally and legitimately draw on multiple linguistic codes simultaneously — that the "separation" demanded by code-switching is artificial, performative, and often impossible in practice. Code-meshing treats multilingual repertoires as compositional resources.</p>
+          <div class="mode-eg">Pedagogical implication: Instructors recognize that linguistic features from students' home languages may appear in academic writing not as errors but as rhetorical choices. The question is not "is this standard?" but "does this serve the text?" Students are not asked to perform a linguistic identity they do not hold.</div>
+        </div>
+      </div>
+
+      <p>The code-switching/code-meshing debate is not resolved, and instructors need not adopt one position entirely. What matters is awareness: an instructor who has never considered the code-meshing perspective is more likely to mark legitimate rhetorical choices as errors, and more likely to respond to linguistic difference as deficiency rather than difference.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Minimal Marking -->
+    <div class="content-section" id="marking">
+      <span class="section-tag">Principle</span>
+      <h3>The Minimal Marking Principle</h3>
+      <p>Research on error correction in L2 writing (Ferris; Truscott) raises a troubling possibility: comprehensive correction of surface-level errors in student writing may not improve writing over time, and may actively harm it by redirecting student attention from content to compliance, and by producing learned helplessness in revision.</p>
+
+      <div class="marking-box">
+        <div class="callout-title">Mark Patterns, Not Instances</div>
+        <p>The minimal marking principle holds that instructors should identify and respond to <em>patterns</em> of error rather than marking every instance of a recurring feature. If a student consistently confuses the definite and indefinite article, marking every instance does not help them understand the rule — it produces a paper covered in marks, which is both discouraging and pedagogically inefficient.</p>
+        <p>Instead: identify the pattern, name it, explain it once with an example, and ask the student to locate and revise additional instances themselves. This turns error correction into an active learning task. The student does the cognitive work of recognition and revision; the instructor provides the analytical framework.</p>
+      </div>
+
+      <p>Minimal marking also means distinguishing between errors that impede communication and features that merely differ from convention. An instructor reading through an L2 text should ask: does this feature prevent me from understanding what the writer means? If not, it may not warrant correction at all — especially in early drafts, where attending to argumentation and structure is more productive than surface editing.</p>
+
+      <p>This principle applies most directly to formative feedback. Summative assessment — a final grade — involves different considerations, and disciplinary conventions matter for students preparing to write professionally in a field. But in the drafting process, comprehensive error marking is rarely the most effective instructional choice for any writer, multilingual or not.</p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Activity 1 -->
+    <div class="activity-block" id="activity1">
+      <div class="activity-label">Activity 1 · 60–75 minutes</div>
+      <h4>Reading Student Writing Through an L2 Lens</h4>
+      <div class="activity-meta">Three student writing excerpts, close reading and analysis</div>
+      <p>Read each excerpt below and respond to the questions. Your goal is to practice reading multilingual writing through an asset-based lens — identifying what the writer is doing well rhetorically before attending to surface features.</p>
+
+      <!-- Excerpt 1 -->
+      <div class="excerpt-block">
+        <div class="excerpt-label">Excerpt 1 <span class="level">Graduate student, Materials Engineering — nano-composite fabrication report</span></div>
+        <div class="excerpt-text">"The samples were subjected to heat treatment at elevated temperature for the purpose of achieving microstructural homogeneity, which is a necessary condition for the subsequent mechanical testing procedure. The results of the tensile strength measurements, they show a consistent pattern of improvement in the direction that was predicted by our hypothesis, although some deviation was observed at higher loading fractions which may indicate the presence of interfacial defects not accounted for in the theoretical model."</div>
+      </div>
+
+      <label for="f-a1-e1-rhetorical">Excerpt 1: What is the writer doing well rhetorically and scientifically? Where is the argument clear? <span>(3–5 sentences)</span></label>
+      <textarea id="f-a1-e1-rhetorical" rows="5" placeholder="Consider: argument structure, evidence use, appropriate disciplinary register, hedging language, logical sequencing…"></textarea>
+
+      <label for="f-a1-e1-surface">Excerpt 1: What surface-level features do you notice? Are they patterns or isolated instances? Which, if any, impede communication? <span>(3–5 sentences)</span></label>
+      <textarea id="f-a1-e1-surface" rows="5" placeholder="Be specific: note the feature, its frequency, and whether it affects meaning…"></textarea>
+
+      <label for="f-a1-e1-response">Excerpt 1: What feedback would you give this writer — and in what order? What would you prioritize, what would you hold, and what (if anything) would you set aside entirely? <span>(4–6 sentences)</span></label>
+      <textarea id="f-a1-e1-response" rows="6" placeholder="Think about what this writer needs to develop further — not just what needs to be corrected…"></textarea>
+
+      <!-- Excerpt 2 -->
+      <div class="excerpt-block" style="margin-top:2rem;">
+        <div class="excerpt-label">Excerpt 2 <span class="level">Undergraduate, Sociology — paper on debt and social obligation</span></div>
+        <div class="excerpt-text">"In Filipino culture there is a concept called <em>utang na loob</em>, which means a debt of the inside or inner debt. This is not same as financial debt — it is the debt you owe to persons who have given you something important, like your life or your education. My grandmother always say we must never forget this debt, because the person who forgets becomes hollow. I think this concept can help us understand why some communities in the United States do not trust formal financial institutions — because the relationship of trust is different and the obligation runs in different direction than what the bank assumes."</div>
+      </div>
+
+      <label for="f-a1-e2-rhetorical">Excerpt 2: What rhetorical moves is this writer making? What is intellectually interesting or strong about this passage? <span>(3–5 sentences)</span></label>
+      <textarea id="f-a1-e2-rhetorical" rows="5" placeholder="Consider: use of primary cultural knowledge, the argumentative bridge being built, the specificity of the example…"></textarea>
+
+      <label for="f-a1-e2-surface">Excerpt 2: What surface-level features do you notice? How do you distinguish between features that reflect L2 transfer and features that may be intentional rhetorical choices? <span>(3–5 sentences)</span></label>
+      <textarea id="f-a1-e2-surface" rows="5" placeholder="Consider: is 'inside' a translation that does work here? Is 'my grandmother always say' a pattern or a choice?"></textarea>
+
+      <label for="f-a1-e2-asset">Excerpt 2: How does an asset-based reading of this passage differ from a deficit-based one? What would a deficit-oriented instructor likely do with this text — and what would be lost? <span>(4–6 sentences)</span></label>
+      <textarea id="f-a1-e2-asset" rows="6" placeholder="Be specific about what the deficit response would mark and what the asset response would value…"></textarea>
+
+      <!-- Excerpt 3 -->
+      <div class="excerpt-block" style="margin-top:2rem;">
+        <div class="excerpt-label">Excerpt 3 <span class="level">Upper-division, Public Health — policy brief on community health workers</span></div>
+        <div class="excerpt-text">"The community health worker (CHW) model has demonstrated effectiveness in reaching populations that the formal healthcare system cannot reach, because the CHW lives in the community and shares the language and experience of the patient. However, many CHW programs, they face funding instability because the value of this work is not legible to the metrics that funders use. The CHW does not produce a claim or a procedure code — she produces trust, and trust is not billable. This suggest that the policy problem is not about effectiveness but about translation: the program is effective, but its effectiveness is not visible in the language that funding decisions require."</div>
+      </div>
+
+      <label for="f-a1-e3-rhetorical">Excerpt 3: What is this writer doing well at the level of argument and public health analysis? <span>(3–5 sentences)</span></label>
+      <textarea id="f-a1-e3-rhetorical" rows="5" placeholder="Consider: the policy argument, the use of 'legibility' as a conceptual frame, the rhetorical contrast between trust and billing…"></textarea>
+
+      <label for="f-a1-e3-minimal">Excerpt 3: Apply the minimal marking principle. Identify one surface-level pattern you would address, explain it with one example, and describe how you would ask the student to address it themselves. <span></span></label>
+      <textarea id="f-a1-e3-minimal" rows="6" placeholder="Pattern → explanation → revision task. Address one feature only."></textarea>
+
+      <div class="repo-block">
+        <input type="checkbox" id="repo-a1">
+        <div class="repo-block-text"><strong>Contribute to the C²TC Repository</strong>
+        Share your analyses from Activity 1 with the C²TC shared repository, where they may be used (anonymously) in future professional development materials or example sets.</div>
+      </div>
+    </div>
+
+    <!-- Activity 2 -->
+    <div class="activity-block" id="activity2">
+      <div class="activity-label">Activity 2 · 60 minutes</div>
+      <h4>Discipline-Specific Support Plan for Multilingual Writers</h4>
+      <div class="activity-meta">Two-part task: instructor support plan + student-facing version</div>
+      <p>Design a support structure for multilingual writers in a specific course you teach or plan to teach. This plan should reflect an asset-based orientation and apply the minimal marking principle to your feedback practices.</p>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part A: Instructor Support Plan</span>
+        <h5>A document for your own reference, not for student distribution</h5>
+
+        <label for="f-a2-course">Which course is this plan for? What is the disciplinary and rhetorical context? <span>(2–3 sentences)</span></label>
+        <textarea id="f-a2-course" rows="4" placeholder="Course level, discipline, typical writing assignments, likely student population including multilingual writers…"></textarea>
+
+        <label for="f-a2-genres">What disciplinary writing genres does this course require? What conventions are most unfamiliar to students new to the discipline — including but not limited to multilingual writers? <span>(3–5 sentences)</span></label>
+        <textarea id="f-a2-genres" rows="5" placeholder="Be specific: lab reports, policy briefs, art criticism, case studies — what makes each genre specific to this discipline?"></textarea>
+
+        <label for="f-a2-asset-practices">What are 3–4 specific asset-based practices you will use in your feedback on student writing in this course? <span>(one sentence each)</span></label>
+        <textarea id="f-a2-asset-practices" rows="5" placeholder="e.g., Lead all written feedback with a sentence naming what the argument does well before addressing concerns…"></textarea>
+
+        <label for="f-a2-marking">How will you apply the minimal marking principle in this course? Describe your approach to surface-level error correction specifically. <span>(3–5 sentences)</span></label>
+        <textarea id="f-a2-marking" rows="5" placeholder="Consider: how will you identify patterns? When will you address surface features vs. when will you hold them? How will you distinguish impeding errors from non-standard conventions?"></textarea>
+
+        <label for="f-a2-resources">What campus resources will you point multilingual writers toward? How will you integrate this into the course, rather than treating it as an external referral? <span>(3–4 sentences)</span></label>
+        <textarea id="f-a2-resources" rows="5" placeholder="See the campus resources listed below. Which are relevant to your course and student population?"></textarea>
+      </div>
+
+      <div class="resources-box">
+        <h5>NC State Campus Resources for Multilingual Writers</h5>
+        <ul>
+          <li><a href="https://tutorial.dasa.ncsu.edu/writing-speaking-tutorials/">NC State Writing and Speaking Tutorial Center</a> — individual consultations for writing, speaking, and multilingual support</li>
+          <li><a href="https://www.lib.ncsu.edu/">NC State University Libraries</a> — research support including multilingual research services and subject librarian consultations</li>
+          <li><a href="https://oied.ncsu.edu/">Office for Institutional Equity and Diversity</a> — equity-related resources and support</li>
+          <li><a href="https://global.ncsu.edu/">NC State Global Engagement</a> — resources for international students</li>
+        </ul>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part B: Student-Facing Version</span>
+        <h5>A statement for multilingual writers in your course</h5>
+        <p>Draft a 200–300 word statement to include in your syllabus or course introduction that addresses multilingual writers specifically. It should communicate your asset-based orientation, your feedback practices, and the resources available — in language accessible to students.</p>
+
+        <label for="f-a2-student-statement">Your student-facing statement <span>(200–300 words)</span></label>
+        <textarea id="f-a2-student-statement" rows="10" placeholder="Write directly to multilingual students. Do not use jargon — the goal is to communicate your values and your practices in plain language that builds trust rather than compliance…"></textarea>
+      </div>
+
+      <div class="repo-block">
+        <input type="checkbox" id="repo-a2">
+        <div class="repo-block-text"><strong>Contribute to the C²TC Repository</strong>
+        Share your support plan and student-facing statement with the C²TC shared repository, where they may be used (with your permission) as examples for future participants.</div>
+      </div>
+    </div>
+
+    <!-- Activity 3 -->
+    <div class="activity-block" id="activity3">
+      <div class="activity-label">Activity 3 · 45 minutes</div>
+      <h4>Writing a Substantive Response to an L2 Draft</h4>
+      <div class="activity-meta">Applied response writing exercise</div>
+      <p>Return to one of the three excerpts from Activity 1. Write a substantive written response to that student as if you were returning a draft — the kind of response you would actually write at the end of a paper or in a feedback document.</p>
+      <p>Your response should reflect your asset-based orientation and apply the minimal marking principle. It should engage first with the intellectual and rhetorical work of the text, and address surface features only according to the prioritization scheme you developed in Activity 2.</p>
+
+      <label for="f-a3-excerpt">Which excerpt are you responding to, and why did you choose it? <span>(one to two sentences)</span></label>
+      <textarea id="f-a3-excerpt" rows="3" placeholder="Excerpt number and a brief reason for the choice…"></textarea>
+
+      <label for="f-a3-response">Your written response to the student <span>(250–400 words)</span></label>
+      <textarea id="f-a3-response" rows="12" placeholder="Write the response as you would actually send it. Engage the argument, name what works, address one or two areas for development, and apply minimal marking to any surface-level concerns…"></textarea>
+
+      <label for="f-a3-reflect">Reflection: What was difficult about writing this response through an asset-based lens? Where did you feel pulled toward a deficit orientation, and what shifted that? <span>(3–5 sentences)</span></label>
+      <textarea id="f-a3-reflect" rows="6" placeholder="Be honest about the friction — it is informative. Where did it feel harder to lead with the argument rather than the surface?"></textarea>
+
+      <div class="repo-block">
+        <input type="checkbox" id="repo-a3">
+        <div class="repo-block-text"><strong>Contribute to the C²TC Repository</strong>
+        Share your Activity 3 response with the C²TC shared repository, where it may serve as a model response for future participants working with similar excerpts.</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- AI Callout -->
+    <div class="callout ai-callout">
+      <div class="callout-title">AI, Multilingual Writing, and the Deficit Trap</div>
+      <p>AI writing tools present a specific concern in multilingual writing contexts. When a student uses AI to "fix" or "improve" their prose, they frequently receive output in a standardized, unmarked academic register — output that erases the distinctive rhetorical features of their writing. The result can be grammatically normative but rhetorically thin. An instructor who then grades the AI-generated version approvingly, without awareness of what was lost, reinforces the message that the student's own language is insufficient. An asset-based orientation should include explicit conversation with students about what AI editing does and does not do — and whether "fixing" language is the same as improving writing.</p>
+      <p>The Writing WITH AI, Not FOR AI framework (Elective 3) is particularly relevant here: using AI to draft entire texts is a different practice than using AI as a reader or a translator of specific terms. Instructors may need to help multilingual students distinguish between these uses explicitly, rather than assuming the distinction is self-evident.</p>
+      <p><a href="https://cwspwolf.com/ai_literacy_unified.html">Access the C²TC AI Literacy Resource →</a></p>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Artifact -->
+    <div class="artifact-section" id="artifact">
+      <div class="artifact-section-label">Course Artifact</div>
+      <h3>Build Your Multilingual Writers Artifact</h3>
+      <p>Compile your key deliverables from this elective into a reviewable artifact: your discipline-specific support plan and your student-facing statement. This artifact feeds into your Written Communication Instruction Certificate completion portfolio.</p>
+
+      <label for="art-course">Course title and context</label>
+      <input type="text" id="art-course" placeholder="e.g., SOC 250: Sociology of Inequality, junior-level…">
+
+      <label for="art-support-plan">Summary of your instructor support plan <span>(4–6 key practices)</span></label>
+      <textarea id="art-support-plan" rows="7" placeholder="The core of your asset-based approach for this course…"></textarea>
+
+      <label for="art-student-statement">Your student-facing statement for multilingual writers</label>
+      <textarea id="art-student-statement" rows="9" placeholder="The final version of your 200–300 word statement from Activity 2…"></textarea>
+
+      <label for="art-reflection">Reflection: What shifted in how you read multilingual student writing over the course of this elective? <span>(100–150 words)</span></label>
+      <textarea id="art-reflection" rows="6" placeholder="Name a specific change — in what you notice, what you prioritize, or how you respond…"></textarea>
+
+      <button class="btn-artifact" onclick="showArtifact()">Preview Artifact</button>
+    </div>
+
+    <div class="submit-section">
+      <p>When you have completed this elective, submit your responses to the C²TC record. Submission captures all saved fields.</p>
+      <button class="btn-submit" onclick="submitWorkbook()">Submit Elective 4</button>
+      <div class="submit-status" id="submit-status"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Artifact Modal -->
+<div id="artifact-overlay" onclick="closeArtifact(event)">
+  <div id="artifact-modal">
+    <div class="art-header">
+      <div class="art-eyebrow">C²TC · Written Communication Instruction Certificate · Inclusive Practices for Multilingual Writers</div>
+      <h3 id="art-modal-title">Discipline-Specific Support Plan</h3>
+    </div>
+    <div class="art-body">
+      <div class="art-field">
+        <div class="art-field-label">Course</div>
+        <div class="art-field-value" id="art-display-course"></div>
+      </div>
+      <div class="art-field">
+        <div class="art-field-label">Instructor Support Plan (Summary)</div>
+        <div class="art-field-value" id="art-display-support"></div>
+      </div>
+      <div class="art-field">
+        <div class="art-field-label">Student-Facing Statement</div>
+        <div class="art-field-value" id="art-display-statement"></div>
+      </div>
+      <div class="art-field">
+        <div class="art-field-label">Reflection</div>
+        <div class="art-field-value" id="art-display-reflection"></div>
+      </div>
+    </div>
+    <div class="art-footer">
+      <div class="art-footer-brand">NC State Campus Writing and Speaking Program · C²TC</div>
+      <div class="art-actions">
+        <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+        <button class="btn-close" onclick="document.getElementById('artifact-overlay').style.display='none'">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const MODULE = 'wc-elective4';
+const FIELDS = ['f-a1-e1-rhetorical','f-a1-e1-surface','f-a1-e1-response','f-a1-e2-rhetorical','f-a1-e2-surface','f-a1-e2-asset','f-a1-e3-rhetorical','f-a1-e3-minimal','f-a2-course','f-a2-genres','f-a2-asset-practices','f-a2-marking','f-a2-resources','f-a2-student-statement','f-a3-excerpt','f-a3-response','f-a3-reflect','art-course','art-support-plan','art-student-statement','art-reflection'];
+const CHECKBOXES = ['repo-a1','repo-a2','repo-a3'];
+
+function save(id) {
+  try {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const val = el.type === 'checkbox' ? el.checked : el.value;
+    localStorage.setItem(MODULE + ':' + id, val);
+  } catch(e) {}
+}
+
+function load() {
+  try {
+    FIELDS.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const val = localStorage.getItem(MODULE + ':' + id);
+      if (val !== null) el.value = val;
+    });
+    CHECKBOXES.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const val = localStorage.getItem(MODULE + ':' + id);
+      if (val !== null) el.checked = val === 'true';
+    });
+  } catch(e) {}
+}
+
+function updateProgress() {
+  const filled = FIELDS.filter(id => {
+    const el = document.getElementById(id);
+    return el && el.value && el.value.length > 20;
+  }).length;
+  const pct = Math.round((filled / FIELDS.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+
+FIELDS.forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('input', () => { save(id); updateProgress(); });
+});
+CHECKBOXES.forEach(id => {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('change', () => save(id));
+});
+
+function showArtifact() {
+  const map = {
+    'art-display-course': 'art-course',
+    'art-display-support': 'art-support-plan',
+    'art-display-statement': 'art-student-statement',
+    'art-display-reflection': 'art-reflection'
+  };
+  Object.entries(map).forEach(([disp, src]) => {
+    const el = document.getElementById(src);
+    const val = el ? (el.value || '') : '';
+    document.getElementById(disp).textContent = val || '—';
+  });
+  const course = document.getElementById('art-course').value;
+  if (course) document.getElementById('art-modal-title').textContent = course;
+  document.getElementById('artifact-overlay').style.display = 'block';
+}
+
+function closeArtifact(e) {
+  if (e.target === document.getElementById('artifact-overlay')) {
+    document.getElementById('artifact-overlay').style.display = 'none';
+  }
+}
+
+function submitWorkbook() {
+  const status = document.getElementById('submit-status');
+  status.textContent = 'Submitting…';
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.value || '';
+  });
+  CHECKBOXES.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) data[id] = el.checked;
+  });
+  fetch('https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec', {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(() => {
+    status.textContent = 'Submitted. Thank you.';
+  }).catch(() => {
+    status.textContent = 'Submission failed. Please try again or contact the program coordinator.';
+  });
+}
+
+// Sidebar active state
+const sections = ['asset','codemesh','marking','activity1','activity2','activity3','artifact'];
+const navMap = { 'asset':'nav-asset','codemesh':'nav-codemesh','marking':'nav-marking','activity1':'nav-a1','activity2':'nav-a2','activity3':'nav-a3','artifact':'nav-art' };
+function onScroll() {
+  let current = sections[0];
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && window.scrollY >= el.offsetTop - 80) current = id;
+  });
+  Object.values(navMap).forEach(nid => {
+    const n = document.getElementById(nid);
+    if (n) n.classList.remove('active');
+  });
+  const active = document.getElementById(navMap[current]);
+  if (active) active.classList.add('active');
+}
+window.addEventListener('scroll', onScroll);
+
+load();
+updateProgress();
+</script>
+</body>
+</html>
