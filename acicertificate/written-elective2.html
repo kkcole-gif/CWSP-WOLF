@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WC Elective 2: Writing Across the Curriculum Strategies | C²TC</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link:hover { background: #fff0f0; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.mode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+.mode-card { background: var(--lgray); border-top: 3px solid var(--accent); padding: 1.1rem 1rem; border-radius: 0 0 4px 4px; }
+.mode-name { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.mode-card p { font-size: 0.82rem; color: var(--dgray); line-height: 1.4; margin-bottom: 0; }
+.activity-menu { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; }
+.activity-menu h4 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.menu-item { padding: 0.75rem 0; border-bottom: 1px solid var(--mgray); }
+.menu-item:last-child { border-bottom: none; padding-bottom: 0; }
+.menu-item-name { font-size: 0.85rem; font-weight: 700; color: var(--accent); margin-bottom: 0.2rem; }
+.menu-item p { font-size: 0.85rem; color: var(--dgray); margin-bottom: 0; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li:last-child { border-bottom: none; }
+.reading-dot { color: var(--accent); font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 2rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1.25rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; }
+.btn-submit:hover { background: var(--accent-light); }
+.btn-submit:disabled { background: #aaa; cursor: default; }
+.submit-status { font-size: 0.85rem; margin-top: 0.75rem; color: var(--dgray); min-height: 1.2rem; }
+.artifact-section { border: 2px solid var(--red); border-radius: 4px; padding: 2rem; margin: 2rem 0; background: #fff8f8; }
+.artifact-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.artifact-section h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.artifact-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-artifact { background: var(--red); color: white; border: none; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; margin-top: 0.5rem; }
+.btn-artifact:hover { background: #aa0000; }
+#artifact-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 720px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.art-header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+.art-header-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.35rem; }
+.art-header h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; }
+.art-header .art-meta { font-size: 0.8rem; color: #b0c4de; }
+.art-body { padding: 1.75rem 2rem; }
+.art-section { margin-bottom: 1.5rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; border-bottom: 1px solid var(--mgray); padding-bottom: 0.25rem; }
+.art-section p { font-size: 0.92rem; line-height: 1.6; white-space: pre-wrap; }
+.art-footer { background: var(--lgray); padding: 1rem 2rem; font-size: 0.8rem; color: var(--dgray); border-top: 1px solid var(--mgray); display: flex; justify-content: space-between; align-items: center; }
+.modal-btn-row { display: flex; gap: 0.75rem; padding: 1rem 2rem; border-top: 1px solid var(--mgray); }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+.btn-close { background: none; color: var(--dgray); border: 1px solid var(--mgray); padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+@media print {
+  #artifact-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
+  #artifact-modal { box-shadow: none; max-width: 100%; }
+  .modal-btn-row { display: none; }
+  body > *:not(#artifact-overlay) { display: none !important; }
+  #artifact-overlay > *:not(#artifact-modal) { display: none; }
+}
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { padding: 1.5rem; margin: -1.5rem -1.5rem 1.5rem; }
+  .mode-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="written.html">← WC Certificate</a>
+    <h1>Elective 2: WAC Strategies</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#wtlwte">WTL, WTE, WID</a>
+      <a href="#menu">Activity Menu</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1 — Design a WAC Activity</a>
+      <a href="#activity2" class="activity">2 — Implementation Reflection</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Build Your WAC Plan →</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#submit">Submit</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header">
+      <p class="module-eyebrow">Elective 2 · Written Communication Instruction Certificate · C²TC</p>
+      <h2>Writing Across the Curriculum Strategies</h2>
+      <p>Low-stakes writing is not a supplement to teaching — it is a form of teaching. This elective gives you the conceptual framework for WAC and a menu of practical, evidence-based strategies you can implement immediately without restructuring your course.</p>
+    </div>
+
+    <!-- SECTION: WTL, WTE, WID -->
+    <div class="content-section" id="wtlwte">
+      <span class="section-tag">Framework</span>
+      <h3>Three Categories of WAC Activity</h3>
+      <p>Writing Across the Curriculum encompasses three distinct kinds of writing, each serving different learning purposes. Understanding which category you are designing for determines how you should assign, respond to, and grade student writing.</p>
+
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-name">Writing-to-Learn (WTL)</div>
+          <p>Low-stakes writing that helps students process, consolidate, and engage with course content. The audience is the writer; correctness is secondary to engagement. WTL is typically ungraded or graded on completion. Its purpose is cognitive — to help students think by writing, not to demonstrate mastery to an evaluator.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-name">Writing-to-Engage (WTE)</div>
+          <p>Writing that builds community and conversation — in-class responses, discussion posts, peer commentary. WTE is oriented toward exchange rather than learning-in-isolation. It is social and dialogic; students are writing for each other, not just for themselves or the instructor.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-name">Writing-in-Disciplines (WID)</div>
+          <p>Formal writing in disciplinary genres — the research paper, the lab report, the case analysis, the policy brief. WID is evaluated against disciplinary standards and is typically high-stakes. It is the culminating genre for Module 3 of this certificate; WTL and WTE are the scaffolding that prepares students to do it well.</p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-title">The Key Point About Grading</div>
+        <p>Not all writing must be graded. WTL is most effective when students do not feel evaluated on correctness — the evaluative pressure suppresses exactly the exploratory, risk-taking thinking WTL is designed to produce. Grade WTL on completion, or not at all. The pedagogical return comes from the thinking, not the product. This is not a reduction in rigor — it is a redistribution of where rigor belongs.</p>
+      </div>
+
+      <div class="callout" style="border-left-color: var(--red); background: #fff8f8; margin-top: 1rem;">
+        <div class="callout-title" style="color: var(--red);">WAC Activities and AI — A Design Question</div>
+        <p>WAC's low-stakes writing activities — exit tickets, minute papers, freewrites — are often framed as "too easy to fake with AI." The question is worth inverting: an exit ticket that asks "summarize tonight's reading in your own words" is fakeable because it does not require actual engagement with the class's specific intellectual moment. An exit ticket that asks "what was the most surprising claim in today's discussion, and what prior assumption does it challenge for you?" is much harder to complete without having been in the room. WAC activity design that specifies the particular, the situated, and the personal is inherently more resistant to AI substitution — not because it polices for AI, but because it requires genuine presence.</p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem;"><a href="https://cwspwolf.com/ai_literacy_unified.html" target="_blank" rel="noopener" style="color: var(--red); font-weight: 600;">AI Literacy Model (Cole, 2026) →</a></p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ACTIVITY MENU -->
+    <div class="content-section" id="menu">
+      <span class="section-tag">Tools</span>
+      <h3>A Menu of WAC Activities</h3>
+      <p>The following activity types are among the most well-supported in WAC research and practice. Each is briefly described with its purpose and typical logistics. You will select one to design in full in Activity 1.</p>
+
+      <div class="activity-menu">
+        <h4>Seven Evidence-Based WAC Activity Types</h4>
+
+        <div class="menu-item">
+          <div class="menu-item-name">Exit Ticket</div>
+          <p>2–3 minutes at class end. Students write one thing they learned, one thing they are still confused about, or one question they are carrying out. Purpose: consolidation and instructor feedback on comprehension. Grade: completion or ungraded.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-name">Minute Paper</div>
+          <p>5–8 minutes at any class pause. Students respond to a specific question about the material just covered. More targeted than an exit ticket; designed to focus attention on a specific concept. Purpose: comprehension check and active processing. Grade: completion.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-name">Pre-Class Reading Response</div>
+          <p>100–200 words before class. Students summarize what they read, identify the central argument, and bring one question. Purpose: preparation accountability and question generation. Feeds class discussion directly. Grade: completion or brief rubric (arrived with a real question).</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-name">Freewrite</div>
+          <p>5–10 minutes, no interruptions, no correction. Students write continuously on a prompt without stopping. Purpose: generating ideas and bypassing the inner editor. Particularly useful before drafting or before class discussion. Grade: ungraded.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-name">Learning Log / Lab Notebook</div>
+          <p>Ongoing, 3–10 minutes per entry. Students document observations, questions, confusions, and connections over time. Purpose: metacognitive development and pattern recognition across the course. Grade: completion at set intervals.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-name">Explain-It-to-a-Stranger</div>
+          <p>10–15 minutes. Students write an explanation of a complex concept for someone who knows nothing about it. Purpose: testing depth of understanding — if you cannot explain it simply, you do not understand it fully. Grade: ungraded or completion.</p>
+        </div>
+
+        <div class="menu-item">
+          <div class="menu-item-name">Post-Lab / Post-Data Reflection</div>
+          <p>15–20 minutes after an empirical activity. Students write what they observed, what surprised them, what question their results raise, and what they would do differently. Purpose: connecting procedure to interpretation. Grade: completion or brief checkpoint.</p>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ACTIVITY 1 -->
+    <div id="activity1" class="activity-block">
+      <div class="activity-label">Activity 1</div>
+      <h4>Design a Low-Stakes WAC Activity</h4>
+      <p class="activity-meta">Individual design · 45–60 minutes</p>
+      <p>Select one activity type from the menu above and design it in full for a specific course and moment in your curriculum. The design should be specific enough that you or a colleague could implement it directly — not a description of what you would do, but the actual materials.</p>
+      <p>The most effective WAC activities are tied to a specific moment in the course — a particular reading, discussion, or concept — rather than generic across the semester. Specificity is what makes them intellectually substantive.</p>
+
+      <div class="sub-activity">
+        <span class="sub-label">Activity Design</span>
+        <h5>Complete all five design elements.</h5>
+
+        <label for="f-a1-course">Course and moment. <span>Which course, and where in the semester or unit does this activity occur? What has just happened (a lecture, a reading, a lab, a discussion) that this activity responds to?</span></label>
+        <textarea id="f-a1-course" placeholder="Course name, week or unit, what immediately precedes this activity and why this is the right moment for it..." style="min-height: 80px;"></textarea>
+
+        <label for="f-a1-type">Activity type and category. <span>Which activity type from the menu did you select, and which WAC category does it belong to — WTL, WTE, or WID?</span></label>
+        <textarea id="f-a1-type" placeholder="Activity type (from menu), WAC category (WTL / WTE / WID), and why this type fits this moment..." style="min-height: 80px;"></textarea>
+
+        <label for="f-a1-prompt">The prompt. <span>Write the exact prompt students will see — specific to this course, this moment, and this content. Not "what did you learn today" but the precise question or task.</span></label>
+        <textarea id="f-a1-prompt" placeholder="The exact prompt text — specific to this course and moment, not generic..."></textarea>
+
+        <label for="f-a1-logistics">Timing and logistics. <span>How long? When in class (beginning, middle, end, outside class)? What materials? Individual or collaborative?</span></label>
+        <textarea id="f-a1-logistics" placeholder="Timing (exact minutes), when in session, individual vs. collaborative, any materials needed..." style="min-height: 80px;"></textarea>
+
+        <label for="f-a1-grading">Grading approach. <span>Will this be graded? If so, how — completion credit, a specific rubric? If ungraded, how does it count or not count, and why is ungraded appropriate for this activity?</span></label>
+        <textarea id="f-a1-grading" placeholder="Grading decision and rationale — completion, minimal rubric, or ungraded, and why this approach fits the activity's purpose..." style="min-height: 80px;"></textarea>
+
+        <label for="f-a1-rationale">Pedagogical rationale. <span>What specific learning does this activity support — what are students doing cognitively when they complete it? How does it connect to larger course learning goals?</span></label>
+        <textarea id="f-a1-rationale" placeholder="What cognitive work students are doing, how it supports course goals, what evidence base supports this activity type for this purpose..."></textarea>
+      </div>
+
+      <div class="repo-block">
+        <h4>Contribute to the Repository</h4>
+        <p>Share your WAC activity design to build a cross-disciplinary library of low-stakes writing prompts. Discipline-specific prompts are particularly valuable — a post-lab reflection from chemistry, a pre-class reading response from political science, an exit ticket from a music history course.</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="repo-a1">
+          <label for="repo-a1">Yes, include my Activity 1 WAC design in the C²TC repository (your name and field may be credited).</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY 2 -->
+    <div id="activity2" class="activity-block">
+      <div class="activity-label">Activity 2</div>
+      <h4>WAC Implementation Reflection</h4>
+      <p class="activity-meta">Individual reflection · 30 minutes · 300–400 words</p>
+      <p>This activity asks you to think through the implementation of your Activity 1 design — specifically, the obstacles that are most likely to prevent it from working as designed. The goal is not to talk yourself out of it but to anticipate and address those obstacles before they become reasons to abandon the activity mid-semester.</p>
+      <p>The most common WAC implementation failures are not pedagogical but logistical: the activity takes longer than planned, students do not take ungraded work seriously, the activity gets cut when class runs long. Naming these in advance is how you protect against them.</p>
+
+      <label for="f-a2-logistics">Logistics reflection. <span>What are the two or three most likely logistical obstacles to this activity — time, buy-in, technology, physical space, class size? For each, what is your specific mitigation plan?</span></label>
+      <textarea id="f-a2-logistics" placeholder="The most likely logistical obstacles and your specific plan for each — not 'I'll deal with it' but the actual adjustment..."></textarea>
+
+      <label for="f-a2-obstacle">Anticipated pedagogical obstacle. <span>What could go wrong pedagogically — students finding the prompt confusing, the activity not connecting to what you hope it connects to, buy-in collapse? How would you diagnose and address that mid-activity?</span></label>
+      <textarea id="f-a2-obstacle" placeholder="The pedagogical risk — what could fail about the activity itself — and how you would recognize and respond to that failure..."></textarea>
+
+      <label for="f-a2-evidence">Evidence question. <span>How will you know if this activity is working? Not just "students seemed engaged" — what would count as evidence that this activity is actually achieving its learning purpose? What would you look for in subsequent class discussion, assignments, or work?</span></label>
+      <textarea id="f-a2-evidence" placeholder="What evidence of learning you will look for — specifically — that would indicate this activity is doing what it is designed to do..."></textarea>
+
+      <div class="repo-block">
+        <h4>Contribute to the Repository</h4>
+        <p>Implementation reflections are among the most valuable contributions to the repository — they help future participants anticipate obstacles before they encounter them.</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="repo-a2">
+          <label for="repo-a2">Yes, include my Activity 2 implementation reflection in the C²TC repository.</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTIFACT BUILDER -->
+    <div id="artifact" class="artifact-section">
+      <div class="artifact-section-label">Your Artifact</div>
+      <h3>Build a WAC Integration Plan</h3>
+      <p>Use your work from Activities 1 and 2 to design a WAC integration plan for one of your courses — a semester-long plan for where and how you will incorporate low-stakes writing. This is a planning document for your own use, formatted for sharing with a department colleague or CWSP liaison.</p>
+
+      <label for="art-title">Plan title</label>
+      <input type="text" id="art-title" placeholder="e.g., WAC Integration Plan: BIO 320, Spring Semester">
+
+      <label for="art-course">Course name and number</label>
+      <input type="text" id="art-course" placeholder="e.g., BIO 320: Ecology and Science Communication">
+
+      <label for="art-goals">WAC goals for this course. <span>What specific learning goals are you trying to advance with WAC? Where in the course do you most want students to process content more deeply or prepare for formal WID writing?</span></label>
+      <textarea id="art-goals" placeholder="The specific learning goals your WAC activities will serve, and the course moments most in need of low-stakes writing support..."></textarea>
+
+      <label for="art-activities">Activities planned. <span>List 3–5 WAC activities you will incorporate, with approximate timing, type, and grading approach for each.</span></label>
+      <textarea id="art-activities" placeholder="Activity 1: [type, timing, grading]\nActivity 2: [type, timing, grading]\nActivity 3: [type, timing, grading]\n(add more as needed)..." style="min-height: 120px;"></textarea>
+
+      <label for="art-grading">Grading policy. <span>How will WAC activities factor into your course grade — or will they be ungraded? What is your rationale for this approach?</span></label>
+      <textarea id="art-grading" placeholder="How WAC activities are weighted or ungraded, how that decision reflects the learning purpose of each type..." style="min-height: 80px;"></textarea>
+
+      <label for="art-evidence">Evidence of impact. <span>How will you track whether your WAC activities are advancing learning — what changes will you look for in formal writing, in class discussion, in exam performance, or in student self-report?</span></label>
+      <textarea id="art-evidence" placeholder="How you will assess whether the WAC integration is working — what evidence you will gather and when..." style="min-height: 80px;"></textarea>
+
+      <button class="btn-artifact" onclick="previewArtifact()">Preview WAC Plan →</button>
+    </div>
+
+    <!-- READING LIST -->
+    <div id="readings" class="content-section">
+      <span class="section-tag">Resources</span>
+      <h3>Elective 2 Readings</h3>
+      <ul class="reading-list">
+        <li><span class="reading-dot">·</span><span><strong>Stevenson, D.</strong> "Benefits of a Low-Stakes Write-to-Learn Assignment on Exam Performance." 2019. Empirical evidence that WTL assignments improve exam performance — the most accessible evidence-base for making the case to skeptical colleagues.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>Leon, Kenny.</strong> "Low-Stakes Writing as a High-Impact Educational Practice." CWSP resource. Survey of the research literature on low-stakes writing — covers WTL, WTE, and the conditions under which low-stakes writing most reliably improves learning outcomes.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>CWSP Resource: Low-Stakes Writing in an Active-Learning Classroom.</strong> Practical guidance for implementing low-stakes writing in active-learning contexts — addresses the logistics of timing, grouping, and response that most instructors face when adding WAC activities.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>CWSP Resource: Writing for Learning, Not Just Demonstrating.</strong> The theoretical framework for WAC — why writing to learn works, and how to design activities that leverage writing as a cognitive tool rather than a demonstration vehicle.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>CWSP Resource: Leveraging the Power of Low-Stakes Writing.</strong> Practical strategies for WAC across disciplines — organized by course type, class size, and learning goal.</span></li>
+      </ul>
+    </div>
+
+    <!-- SUBMIT -->
+    <div id="submit" class="submit-section">
+      <h3>Submit Elective 2</h3>
+      <p>Submit once you have completed both activities and previewed your WAC integration plan. For questions about implementing WAC in your department, contact your CWSP liaison.</p>
+      <button class="btn-submit" id="submit-btn" onclick="submitWork()">Submit Elective 2</button>
+      <div class="submit-status" id="submit-status"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Artifact Overlay -->
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div id="artifact-modal-inner"></div>
+    <div class="modal-btn-row">
+      <button class="btn-print" onclick="window.print()">Save as PDF / Print</button>
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'wc-elective2';
+const FIELDS = ['f-a1-course','f-a1-type','f-a1-prompt','f-a1-logistics','f-a1-grading','f-a1-rationale',
+                'f-a2-logistics','f-a2-obstacle','f-a2-evidence',
+                'art-title','art-course','art-goals','art-activities','art-grading','art-evidence'];
+const CHECKBOXES = ['repo-a1','repo-a2'];
+
+function save() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+':'+id, el.value); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+':'+id, el.checked); });
+  updateProgress();
+}
+function load() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) { const v = localStorage.getItem(MODULE+':'+id); if (v) el.value = v; } });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) { const v = localStorage.getItem(MODULE+':'+id); if (v) el.checked = (v === 'true'); } });
+  updateProgress();
+}
+function updateProgress() {
+  const f = FIELDS.map(id => document.getElementById(id)).filter(Boolean);
+  const filled = f.filter(el => el.value && el.value.trim().length > 20).length;
+  const pct = Math.round(filled / f.length * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', save); });
+CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('change', save); });
+load();
+
+const sections = document.querySelectorAll('[id]');
+const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  sidebarLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+function val(id) { return (document.getElementById(id)||{}).value||''; }
+function artSection(label, content) {
+  if (!content || !content.trim()) return '';
+  return `<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`;
+}
+function previewArtifact() {
+  const title = val('art-title') || 'WAC Integration Plan';
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('artifact-modal-inner').innerHTML = `
+    <div class="art-header">
+      <div class="art-header-eyebrow">C²TC · Written Communication Instruction Certificate · Elective 2</div>
+      <h2>${title}</h2>
+      <div class="art-meta">${val('art-course') ? val('art-course') + ' · ' : ''}Generated ${today}</div>
+    </div>
+    <div class="art-body">
+      ${artSection('WAC Goals', val('art-goals'))}
+      ${artSection('Planned Activities', val('art-activities'))}
+      ${artSection('Grading Policy', val('art-grading'))}
+      ${artSection('Evidence of Impact', val('art-evidence'))}
+    </div>
+    <div class="art-footer">
+      <span>NC State Campus Writing and Speaking Program · C²TC</span>
+      <span>CWSP · OFE · DELTA</span>
+    </div>`;
+  document.getElementById('artifact-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeArtifact() { document.getElementById('artifact-overlay').style.display='none'; document.body.style.overflow=''; }
+document.getElementById('artifact-overlay').addEventListener('click', function(e) { if (e.target === this) closeArtifact(); });
+
+function submitWork() {
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  status.textContent = '';
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  FIELDS.forEach(id => { data[id] = val(id); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.checked : false; });
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+    .then(() => { status.textContent = 'Submitted. Your certificate coordinator has been notified.'; btn.textContent = 'Submitted ✓'; })
+    .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Elective 2'; });
+}
+</script>
+</body>
+</html>

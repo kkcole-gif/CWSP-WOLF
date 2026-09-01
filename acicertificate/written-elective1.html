@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WC Elective 1: Multimodal and Digital Writing | C²TC</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link:hover { background: #fff0f0; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+/* DC bridge panel */
+.dc-bridge { background: var(--accent); color: white; border-radius: 4px; padding: 1.75rem 2rem; margin: 2rem 0; }
+.dc-bridge-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.4rem; }
+.dc-bridge h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: white; }
+.dc-bridge p { font-size: 0.92rem; color: #b0c4de; margin-bottom: 0.75rem; }
+.dc-bridge ul { margin: 0.4rem 0 1rem 1.25rem; }
+.dc-bridge li { font-size: 0.9rem; color: #b0c4de; margin-bottom: 0.3rem; }
+.dc-bridge a { color: #7ea8d8; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(126,168,216,0.4); }
+.dc-bridge a:hover { color: white; border-bottom-color: white; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.artifact-section { border: 2px solid var(--red); border-radius: 4px; padding: 2rem; margin: 2rem 0; background: #fff8f8; }
+.artifact-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.artifact-section h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.artifact-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-artifact { background: var(--red); color: white; border: none; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; margin-top: 0.5rem; }
+.btn-artifact:hover { background: #aa0000; }
+#artifact-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 720px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.art-header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+.art-header-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.35rem; }
+.art-header h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; }
+.art-header .art-meta { font-size: 0.8rem; color: #b0c4de; }
+.art-body { padding: 1.75rem 2rem; }
+.art-section { margin-bottom: 1.5rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; border-bottom: 1px solid var(--mgray); padding-bottom: 0.25rem; }
+.art-section p { font-size: 0.92rem; line-height: 1.6; white-space: pre-wrap; }
+.art-footer { background: var(--lgray); padding: 1rem 2rem; font-size: 0.8rem; color: var(--dgray); border-top: 1px solid var(--mgray); display: flex; justify-content: space-between; align-items: center; }
+.modal-btn-row { display: flex; gap: 0.75rem; padding: 1rem 2rem; border-top: 1px solid var(--mgray); }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+.btn-close { background: none; color: var(--dgray); border: 1px solid var(--mgray); padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 2rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1.25rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; }
+.btn-submit:hover { background: var(--accent-light); }
+.btn-submit:disabled { background: #aaa; cursor: default; }
+.submit-status { font-size: 0.85rem; margin-top: 0.75rem; color: var(--dgray); min-height: 1.2rem; }
+@media print {
+  #artifact-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
+  #artifact-modal { box-shadow: none; max-width: 100%; }
+  .modal-btn-row { display: none; }
+  body > *:not(#artifact-overlay) { display: none !important; }
+  #artifact-overlay > *:not(#artifact-modal) { display: none; }
+}
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { padding: 1.5rem; margin: -1.5rem -1.5rem 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="written.html">← WC Certificate</a>
+    <h1>Elective 1: Multimodal and Digital Writing</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#intro">The Rhetorical Foundation</a>
+      <a href="#dc-path">DC Certificate Path</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activity</span>
+      <a href="#activity1" class="activity">1 — Disciplinary Multimodal Analysis</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Build Your Assignment →</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#submit">Submit</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header">
+      <p class="module-eyebrow">Elective 1 · Written Communication Instruction Certificate · C²TC</p>
+      <h2>Multimodal and Digital Writing</h2>
+      <p>An introduction to multimodal composition as a rhetorical practice in your discipline — and a clear path forward for those who want the full analytical and pedagogical framework.</p>
+    </div>
+
+    <!-- SECTION: Rhetorical Foundation -->
+    <div class="content-section" id="intro">
+      <span class="section-tag">Framework</span>
+      <h3>Multimodality Is Not a Technology Question</h3>
+      <p>Multimodal composition — writing that combines written language with images, data visualization, audio, video, or interactive elements — is often framed as a matter of tools and platforms. The real question is rhetorical: what does each mode contribute that the others cannot, and how do their relationships shape meaning?</p>
+      <p>Every mode carries distinct affordances. Written language excels at precise argumentation and qualification. Images communicate holistically and quickly, but are harder to make precise. Data visualization reveals patterns in ways neither prose nor images alone can. Audio conveys tone, urgency, and identity in ways text cannot replicate. Multimodal texts work when these modes complement and extend each other; they fail when they simply repeat the same content in different forms.</p>
+      <p>For teaching purposes, the key principle is this: multimodal composition is a rhetorical practice before it is a technical one. Students who understand why each mode is doing what it is doing will produce more intentional multimodal texts than students who are simply told to "add visuals" or "make it engaging."</p>
+      <div class="callout">
+        <div class="callout-title">The Non-Negotiable: Reflection</div>
+        <p>Any multimodal writing assignment should include a reflective component that asks students to explain their modal choices — why this mode for this content, for this audience, toward this purpose. The reflection is not a bonus; it is where rhetorical learning consolidates. Without it, multimodal assignments can produce technically competent texts that students cannot explain or repeat intentionally.</p>
+      </div>
+
+      <div class="callout" style="border-left-color: var(--red); background: #fff8f8; margin-top: 1rem;">
+        <div class="callout-title" style="color: var(--red);">AI and Multimodal Generation — A Note</div>
+        <p>AI image generators, text-to-video tools, and automated data visualization now make multimodal production technically accessible in ways that were not possible even recently. This makes the rhetorical question more important, not less: when any mode can be generated on demand, the question of why this mode, making this choice, for this audience becomes the intellectual core of the assignment. An assignment that can be completed by generating an AI image without any rhetorical deliberation has not specified its rhetorical situation clearly enough. The C²TC AI Literacy Model addresses this dimension directly.</p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem;"><a href="https://cwspwolf.com/ai_literacy_unified.html" target="_blank" rel="noopener" style="color: var(--red); font-weight: 600;">AI Literacy Model (Cole, 2026) →</a></p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- DC BRIDGE -->
+    <div id="dc-path" class="dc-bridge">
+      <div class="dc-bridge-eyebrow">Path Forward</div>
+      <h3>For a Full Framework: The Digital Communication Certificate</h3>
+      <p>This elective provides a disciplinary entry point into multimodal composition. The Digital Communication Instruction Certificate (DC Certificate) is the full treatment — three core modules that give you complete analytical tools for platform affordances, multimodal rhetorical analysis, digital project design, and AI literacy in digital communication contexts.</p>
+      <p>The DC Certificate covers what this elective introduces:</p>
+      <ul>
+        <li><strong>DC Module 1</strong> — Foundations of Digital Rhetoric: platform affordances, networked distribution, multimodality as a rhetorical system</li>
+        <li><strong>DC Module 2</strong> — Designing and Assessing Digital Projects: assignment design, portfolio pedagogy, assessment of multimodal work</li>
+        <li><strong>DC Module 3</strong> — Teaching with Digital Tools: AI literacy, video production, social media, accessibility</li>
+      </ul>
+      <p>If your teaching involves significant digital communication, multimodal composition, or AI in student writing, the DC Certificate is the path forward. This elective gives you the foundational rhetorical frame and one applied activity.</p>
+      <a href="digital.html">Explore the DC Certificate →</a>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ACTIVITY 1 -->
+    <div id="activity1" class="activity-block">
+      <div class="activity-label">Activity 1</div>
+      <h4>Analyzing a Multimodal Text in Your Discipline</h4>
+      <p class="activity-meta">Individual analysis · 45 minutes · 250–350 words</p>
+      <p>Find a multimodal text from your disciplinary context — something students in your field might produce, encounter professionally, or be asked to read. Analyze it across four lenses: what the text is trying to do rhetorically, how the modes work together, what disciplinary conventions it follows, and what a student would need to know to produce something like it.</p>
+      <p>Good candidates include: a research poster, a data-driven report with visualizations, a science communication piece that combines text and images, an engineering design document, a public-facing video summary of research, or a social media campaign with multiple connected posts.</p>
+
+      <div class="sub-activity">
+        <span class="sub-label">Analysis</span>
+        <h5>Four-lens analysis of your selected text.</h5>
+
+        <label for="f-a1-text">Text identification. <span>What is the text? URL or brief description, author/institution, disciplinary context.</span></label>
+        <textarea id="f-a1-text" placeholder="What the text is, where it appears, who produced it, what disciplinary context it belongs to..." style="min-height: 80px;"></textarea>
+
+        <label for="f-a1-rhetorical">Rhetorical purpose and audience. <span>What is this text trying to do — what action is it designed to produce in its audience? Who is that audience, and what do they already know?</span></label>
+        <textarea id="f-a1-rhetorical" placeholder="What the text is trying to accomplish, for whom, and how the audience shapes every modal choice..."></textarea>
+
+        <label for="f-a1-modes">How the modes work together. <span>What modes are present (text, image, data, audio, video, interactive elements)? How do they work together — do they extend each other, or repeat the same content? What would be lost if one mode were removed?</span></label>
+        <textarea id="f-a1-modes" placeholder="Modes present, how they relate, what each contributes that others can't, what the modal relationships communicate..."></textarea>
+
+        <label for="f-a1-conventions">Disciplinary conventions. <span>What conventions does this text follow that are specific to your field — citation practices, visual conventions, genre expectations, what counts as evidence? How would someone from outside your discipline misread it?</span></label>
+        <textarea id="f-a1-conventions" placeholder="Field-specific conventions, what an outsider would miss or misread, what the conventions signal about the disciplinary community..."></textarea>
+
+        <label for="f-a1-student">What a student would need to know. <span>If you asked students to produce something like this, what would they need to know that they probably don't? Where is the largest gap between what this text requires and what students typically bring?</span></label>
+        <textarea id="f-a1-student" placeholder="The knowledge and skill gaps — what explicit instruction would have to address for students to produce something like this..."></textarea>
+      </div>
+    </div>
+
+    <!-- ARTIFACT BUILDER -->
+    <div id="artifact" class="artifact-section">
+      <div class="artifact-section-label">Your Artifact</div>
+      <h3>Design a Low-Stakes Multimodal Writing Assignment</h3>
+      <p>Using your analysis from Activity 1, design one low-stakes multimodal writing assignment for your course. The assignment should require students to make deliberate modal choices and include a reflective component explaining those choices. This is a design document — use the preview to see a formatted version.</p>
+
+      <label for="art-title">Assignment title</label>
+      <input type="text" id="art-title" placeholder="e.g., Research Poster Abstract: Communicating Your Findings for a Public Audience">
+
+      <label for="art-course">Course name and number</label>
+      <input type="text" id="art-course" placeholder="e.g., BIO 320: Ecology and Science Communication">
+
+      <label for="art-task">The task. <span>What format? What modes? What content? Who is the audience? What should the text do for that audience?</span></label>
+      <textarea id="art-task" placeholder="The specific task — format, modes, content, audience, and what the text should accomplish..."></textarea>
+
+      <label for="art-criteria">Assessment criteria. <span>How will you evaluate this? Include criteria for rhetorical effectiveness, modal integration, and the reflective component.</span></label>
+      <textarea id="art-criteria" placeholder="Assessment criteria: rhetorical effectiveness, modal choices, reflective component..."></textarea>
+
+      <label for="art-reflection">Reflective component. <span>What will students reflect on — their modal choices, their awareness of audience, the gap between their intentions and the text they produced?</span></label>
+      <textarea id="art-reflection" placeholder="What the reflective component asks students to explain or analyze about their own multimodal choices..."></textarea>
+
+      <button class="btn-artifact" onclick="previewArtifact()">Preview Assignment →</button>
+    </div>
+
+    <!-- SUBMIT -->
+    <div id="submit" class="submit-section">
+      <h3>Submit Elective 1</h3>
+      <p>Submit once you have completed the activity and previewed your artifact. If you are interested in the full DC Certificate, note that in your submission.</p>
+      <button class="btn-submit" id="submit-btn" onclick="submitWork()">Submit Elective 1</button>
+      <div class="submit-status" id="submit-status"></div>
+    </div>
+  </main>
+</div>
+
+<!-- Artifact Overlay -->
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div id="artifact-modal-inner"></div>
+    <div class="modal-btn-row">
+      <button class="btn-print" onclick="window.print()">Save as PDF / Print</button>
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'wc-elective1';
+const FIELDS = ['f-a1-text','f-a1-rhetorical','f-a1-modes','f-a1-conventions','f-a1-student',
+                'art-title','art-course','art-task','art-criteria','art-reflection'];
+const CHECKBOXES = [];
+
+function save() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+':'+id, el.value); });
+  updateProgress();
+}
+function load() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) { const v = localStorage.getItem(MODULE+':'+id); if (v) el.value = v; } });
+  updateProgress();
+}
+function updateProgress() {
+  const f = FIELDS.map(id => document.getElementById(id)).filter(Boolean);
+  const filled = f.filter(el => el.value && el.value.trim().length > 20).length;
+  const pct = Math.round(filled / f.length * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', save); });
+load();
+
+const sections = document.querySelectorAll('[id]');
+const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  sidebarLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+function val(id) { return (document.getElementById(id)||{}).value||''; }
+function artSection(label, content) {
+  if (!content || !content.trim()) return '';
+  return `<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`;
+}
+function previewArtifact() {
+  const title = val('art-title') || 'Multimodal Writing Assignment';
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('artifact-modal-inner').innerHTML = `
+    <div class="art-header">
+      <div class="art-header-eyebrow">C²TC · Written Communication Instruction Certificate · Elective 1</div>
+      <h2>${title}</h2>
+      <div class="art-meta">${val('art-course') ? val('art-course') + ' · ' : ''}Generated ${today}</div>
+    </div>
+    <div class="art-body">
+      ${artSection('The Task', val('art-task'))}
+      ${artSection('Assessment Criteria', val('art-criteria'))}
+      ${artSection('Reflective Component', val('art-reflection'))}
+    </div>
+    <div class="art-footer">
+      <span>NC State Campus Writing and Speaking Program · C²TC</span>
+      <span>CWSP · OFE · DELTA</span>
+    </div>`;
+  document.getElementById('artifact-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeArtifact() { document.getElementById('artifact-overlay').style.display='none'; document.body.style.overflow=''; }
+document.getElementById('artifact-overlay').addEventListener('click', function(e) { if (e.target === this) closeArtifact(); });
+
+function submitWork() {
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  status.textContent = '';
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  FIELDS.forEach(id => { data[id] = val(id); });
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+    .then(() => { status.textContent = 'Submitted. Your certificate coordinator has been notified.'; btn.textContent = 'Submitted ✓'; })
+    .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Elective 1'; });
+}
+</script>
+</body>
+</html>
