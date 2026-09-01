@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DC Module 3: Assessing Digital Communication | RED-ACI</title>
+<title>DC Module 3: AI Literacy and Critical Digital Practice | C²TC</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --accent: #1E2B4A; --red: #CC0000; --green: #2D6A4F; --dark: #1A1A1A;
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
   --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
   --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
 }
 html { scroll-behavior: smooth; }
 body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
-
 .top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .top-bar-left { display: flex; align-items: center; gap: 1rem; }
 .top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
@@ -22,7 +21,6 @@ body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-h
 .progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
 .progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
-
 .layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
 .sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
 .sidebar-section { padding: 0 1rem 1rem; }
@@ -31,15 +29,12 @@ body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-h
 .sidebar a:hover { background: var(--lgray); color: var(--dark); }
 .sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
 .sidebar a.activity { color: var(--accent); }
-.sidebar a.capstone-link { color: var(--green); }
-.sidebar a.capstone-link.active { border-left-color: var(--green); background: #f0f8f4; }
-
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
 .main { padding: 2.5rem 3rem; background: var(--white); }
 .module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
 .module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
 .module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
 .module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
-
 .content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
 .section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
 .content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
@@ -47,70 +42,101 @@ body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-h
 .content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
 .content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
 .divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
-
 .callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
 .callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
 .callout p { font-size: 0.92rem; margin-bottom: 0; }
-
+.level-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+.level-card { background: var(--lgray); border-top: 3px solid var(--accent); padding: 1.25rem 1rem; border-radius: 0 0 4px 4px; }
+.level-name { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.level-card h4 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+.level-card p { font-size: 0.82rem; color: var(--dgray); line-height: 1.4; margin-bottom: 0; }
+.decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+.decision-card { border: 2px solid var(--accent); padding: 1.25rem 1rem; border-radius: 4px; }
+.decision-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; display: block; }
+.decision-card h4 { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+.decision-card p { font-size: 0.82rem; color: var(--dgray); line-height: 1.4; margin-bottom: 0; }
 .activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
 .activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
 .activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
 .activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
 .activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
-
+.activity-block ul { margin: 0.5rem 0 1rem 1.25rem; }
+.activity-block li { font-size: 0.92rem; margin-bottom: 0.35rem; }
 label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
 label span { font-weight: 400; color: var(--dgray); }
-textarea, input[type="text"], input[type="email"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
-textarea:focus, input[type="text"]:focus, input[type="email"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
 textarea { min-height: 100px; }
-
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-activity-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
 .repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
 .repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
 .repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
 .checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
 .checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
 .checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
-
 .reading-list { list-style: none; margin: 1rem 0; }
 .reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
 .reading-list li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 700; }
-
-/* Capstone */
-.capstone-section { background: #f0f8f4; border: 2px solid var(--green); border-radius: 6px; padding: 2.5rem; margin-top: 3rem; }
-.capstone-section h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; color: var(--green); margin-bottom: 0.5rem; }
-.capstone-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--green); margin-bottom: 0.5rem; }
-.capstone-section > p { font-size: 0.95rem; margin-bottom: 1.5rem; }
-.capstone-part { background: var(--white); border: 1px solid #c0ddd0; border-radius: 4px; padding: 1.5rem; margin-bottom: 1.25rem; }
-.capstone-part h4 { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
-.capstone-part p { font-size: 0.9rem; color: var(--dgray); margin: 0; }
-
-.certificate-submit { background: var(--dark); color: var(--white); border-radius: 6px; padding: 2.5rem; margin-top: 2rem; }
-.certificate-submit h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.75rem; }
-.certificate-submit p { font-size: 0.9rem; color: #ccc; margin-bottom: 1rem; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.certificate-submit label { color: #aaa; }
-.certificate-submit textarea, .certificate-submit input { background: #2a2a2a; border-color: #444; color: white; }
-.certificate-submit textarea:focus, .certificate-submit input:focus { border-color: var(--green); background: #2a2a2a; }
-.btn-certificate { background: var(--green); color: white; border: none; padding: 0.85rem 2.25rem; font-size: 1rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
-.btn-certificate:hover { opacity: 0.88; }
-.btn-certificate:disabled { opacity: 0.4; cursor: not-allowed; }
+.reading-group-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 1.5rem 0 0.25rem; display: block; }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
+.btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
 .btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
-#cert-success { display: none; background: #1a3d2b; border: 1px solid var(--green); border-radius: 3px; padding: 1.25rem; color: #7dd3a8; font-size: 0.9rem; margin-top: 1rem; }
-#cert-error   { display: none; background: #3d1a1a; border: 1px solid #cc4444; border-radius: 3px; padding: 1rem; color: #ee9999; font-size: 0.9rem; margin-top: 1rem; }
-
+#submit-success { display: none; background: #e8f0fe; border: 1px solid #aec4f5; border-radius: 3px; padding: 1rem; color: #1a3a7a; font-size: 0.9rem; margin-top: 1rem; }
+#submit-error   { display: none; background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 1rem; color: #c62828; font-size: 0.9rem; margin-top: 1rem; }
+.next-module { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.next-module:hover { border-color: var(--accent); }
+.next-module .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.next-module .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+.artifact-link { color: var(--red) !important; font-weight: 600; }
+.artifact-section { border: 1px solid var(--mgray); border-top: 4px solid var(--red); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.artifact-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.artifact-section h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.btn-artifact { background: var(--red); color: white; border: none; padding: 0.65rem 1.5rem; font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; margin-top: 0.75rem; display: inline-block; }
+.btn-artifact:hover { opacity: 0.88; }
+#artifact-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 720px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.modal-btn-row { display: flex; gap: 0.75rem; padding: 1.25rem 1.75rem; background: var(--lgray); border-top: 1px solid var(--mgray); justify-content: flex-end; }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.25rem; font-size: 0.88rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-close { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.6rem 1.25rem; font-size: 0.88rem; border-radius: 3px; cursor: pointer; }
+.art-header { background: var(--accent); color: white; padding: 2rem; }
+.art-header-eyebrow { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.art-header h2 { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.35rem; }
+.art-meta { font-size: 0.82rem; color: #b0c4de; }
+.art-body { padding: 1.75rem 2rem; }
+.art-section { margin-bottom: 1.5rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.art-section p { font-size: 0.92rem; color: var(--dark); white-space: pre-wrap; margin: 0; }
+.art-decision-band { background: #f0f4ff; border-left: 4px solid var(--accent); padding: 1rem 1.25rem; border-radius: 0 3px 3px 0; margin-bottom: 1.5rem; }
+.art-decision-tag { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.25rem; }
+.art-decision-band h3 { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; }
+.art-footer { display: flex; justify-content: space-between; padding: 1rem 2rem; background: var(--lgray); border-top: 1px solid var(--mgray); font-size: 0.75rem; color: var(--dgray); }
+@media print {
+  #artifact-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
+  #artifact-modal { box-shadow: none; max-width: 100%; }
+  .modal-btn-row { display: none; }
+  body > *:not(#artifact-overlay) { display: none !important; }
+  #artifact-overlay > *:not(#artifact-modal) { display: none; }
+}
 @media (max-width: 800px) {
-  .layout { grid-template-columns: 1fr; } .sidebar { display: none; }
-  .main { padding: 1.5rem; } .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
-  .form-row { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+  .level-grid, .decision-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
-
 <div class="top-bar">
   <div class="top-bar-left">
     <a href="digital.html">← Digital Comm Certificate</a>
-    <h1>Module 3: Assessing Digital Communication</h1>
+    <h1>Module 3: AI Literacy and Critical Digital Practice</h1>
   </div>
   <div class="progress-wrap">
     <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
@@ -124,73 +150,127 @@ textarea { min-height: 100px; }
     <div class="sidebar-section">
       <span class="sidebar-label">Content</span>
       <a href="#overview">Module overview</a>
-      <a href="#challenge">Assessment challenges</a>
-      <a href="#rubrics">Rubrics for digital work</a>
-      <a href="#portfolio">Portfolio approaches</a>
-      <a href="#peer">Peer feedback for digital</a>
+      <a href="#framework">The three-level framework</a>
+      <a href="#conceptual">Conceptual literacy</a>
+      <a href="#structural">Structural literacy</a>
+      <a href="#operative">Operative literacy</a>
+      <a href="#application">All tools, same lens</a>
     </div>
     <div class="sidebar-section">
       <span class="sidebar-label">Activities</span>
-      <a href="#activity1" class="activity">1 — Multimodal Rubric Design</a>
-      <a href="#activity2" class="activity">2 — Portfolio Assessment Plan</a>
+      <a href="#activity1" class="activity">1 — Conceptual Inventory</a>
+      <a href="#activity2" class="activity">2 — Structural Analysis</a>
+      <a href="#activity3" class="activity">3 — Operative Decision</a>
     </div>
     <div class="sidebar-section">
-      <span class="sidebar-label">Capstone &amp; Certificate</span>
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Operative Decision Document</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
       <a href="#readings">Reading list</a>
-      <a href="#capstone" class="capstone-link">Capstone submission</a>
-      <a href="#certificate" class="capstone-link">Submit &amp; earn certificate</a>
+      <a href="#submit">Submit &amp; complete</a>
     </div>
   </nav>
 
   <main class="main">
     <div class="module-header" id="overview">
       <p class="module-eyebrow">Digital Communication Certificate · Module 3 of 3</p>
-      <h2>Assessing Digital Communication</h2>
-      <p>The distinctive challenges of evaluating multimodal and digital work, strategies for rubric design that account for what digital genres actually do, portfolio approaches for cumulative digital learning, and peer feedback protocols calibrated to digital production. Estimated time: 3–5 hours plus capstone.</p>
+      <h2>AI Literacy and Critical Digital Practice</h2>
+      <p>A three-level framework for analyzing any digital tool — AI or otherwise — and producing principled deployment decisions grounded in structural analysis. The goal: faculty who ask the right questions about every new tool before pressing adopt. Estimated time: 4–5 hours over two weeks.</p>
     </div>
 
-    <section class="content-section" id="challenge">
+    <!-- Section 1: Framework overview -->
+    <section class="content-section" id="framework">
       <span class="section-tag">Section 1</span>
-      <h3>The Assessment Challenges of Digital Work</h3>
-      <p>Digital communication assignments surface assessment challenges that print assignments don't face in the same way. Three stand out as most significant for faculty.</p>
-      <p>First, mode-specificity. A rubric designed for written argument doesn't transfer to video, podcast, or data visualization. The criteria that make a research paper strong — arguable thesis, evidence-to-claim ratio, citation practices — don't map directly onto what makes a 5-minute documentary strong. Faculty often apply print criteria to digital work and produce assessments that miss what the work is actually doing (or failing to do) as digital communication.</p>
-      <p>Second, process invisibility. With a print assignment, revision is visible — earlier drafts exist, tracked changes can be reviewed, and the distance between first draft and final is auditable. Digital production is often less transparent: a final video reveals little about how many takes it took, how the script changed, or what technical choices were made. Assessment that only evaluates the final product misses a significant portion of the learning.</p>
-      <p>Third, technical variation. Students in the same course working on the same digital assignment will have wildly different levels of technical fluency with the relevant tools. An assessment rubric that inadvertently rewards technical polish over communication quality will disadvantage students who spent time on the argument rather than the production values — and may reward the reverse.</p>
+      <h3>The AI Literacy Framework</h3>
+      <p>Every digital tool you encounter in educational contexts raises the same cluster of questions. Who built this, for what purposes, and on whose terms? What communicative practices does it encode as default, and whose are those? Who benefits from its operation, and who bears the cost when it fails? These are not afterthought questions. They determine whether a tool serves pedagogical purposes or undermines them, regardless of how well it works technically.</p>
+      <p>The AI literacy framework developed by Professor Kirsti K. Cole (2026) organizes these questions into three levels, each building on the previous. The levels are not optional stages — they are a prerequisite structure. Operative decisions (Level 3) require structural analysis (Level 2), which requires conceptual accuracy (Level 1). Skipping ahead produces decisions that are technically confident but analytically groundless.</p>
+      <div class="level-grid">
+        <div class="level-card">
+          <div class="level-name">Level 1</div>
+          <h4>Conceptual Literacy</h4>
+          <p>Name tools accurately. Know what a system is, how it works, what it was built from, and what it cannot do. Conceptual literacy is the precondition for analysis — you cannot analyze what you have misdescribed.</p>
+        </div>
+        <div class="level-card">
+          <div class="level-name">Level 2</div>
+          <h4>Structural Literacy</h4>
+          <p>Diagnose what a system reproduces and for whose benefit. Three questions: What hierarchies does this tool encode? Who bears its failure costs? Whose interests does its design serve?</p>
+        </div>
+        <div class="level-card">
+          <div class="level-name">Level 3</div>
+          <h4>Operative Literacy</h4>
+          <p>Exercise principled judgment about deployment. Three possible outcomes: principled refusal, conditional adoption with named accountability conditions, or deferred decision pending completed structural analysis.</p>
+        </div>
+      </div>
       <div class="callout">
-        <p class="callout-title">The core principle</p>
-        <p>Assess the communication, not the production. A visually polished infographic that makes a weak argument or misrepresents data should score lower than a simply designed infographic with a clear, accurate, well-supported argument. Rubric criteria should be weighted to reflect this priority.</p>
+        <p class="callout-title">Why this module focuses on all digital tools, not only AI</p>
+        <p>The emergence of AI tools has made structural questions impossible to avoid — but those questions apply with equal force to every digital tool in your teaching practice. A social annotation platform, a plagiarism detection system, a discussion forum, a video production tool: all encode assumptions, reproduce hierarchies, and cost someone something when they fail. AI has given us the occasion to build a rigorous analytical framework. This module uses AI as the central case while insisting the framework is general.</p>
       </div>
     </section>
 
     <hr class="divider">
 
-    <section class="content-section" id="rubrics">
+    <!-- Section 2: Conceptual Literacy -->
+    <section class="content-section" id="conceptual">
       <span class="section-tag">Section 2</span>
-      <h3>Rubrics for Digital and Multimodal Work</h3>
-      <p>Effective rubrics for digital work share the design principles of effective rubrics for any genre — they should describe what the communication does rather than what it fails to do, they should reflect the actual goals of the assignment, and they should be shared with students before they begin. But they also need criteria specific to digital communication.</p>
-      <p>A well-designed rubric for a digital communication assignment typically addresses three clusters of criteria: rhetorical effectiveness (does the artifact achieve its communicative purpose with its intended audience?); mode-specific quality (does it use the specific modes it engages — visual, audio, spatial, linguistic — effectively?); and accessibility and technical execution (is it accessible to the intended audience, including people with disabilities, and does it function as intended?).</p>
-      <p>The relative weight of these clusters should be explicit and justified. Rhetorical effectiveness should typically carry the most weight. Mode-specific quality rewards disciplinary genre knowledge. Accessibility and technical execution ensures students attend to the full communication context — but should not be weighted so heavily that a student who produces a technically flawless artifact with a weak argument receives a high score.</p>
-      <p>Holistic descriptors are particularly useful for digital genres: a paragraph that describes what an "excellent," "proficient," "developing," and "beginning" version of the artifact looks like — as a whole, not a sum of parts — often gives students clearer guidance than an analytic grid and gives faculty more useful interpretive flexibility.</p>
+      <h3>Level 1: Conceptual Literacy</h3>
+      <p>Conceptual literacy begins with accurate description. The most common failure in educational conversations about AI is category confusion — treating AI as a singular phenomenon when "AI" names a family of distinct systems with radically different architectures, training sources, and failure modes. A facial recognition system, a large language model, an algorithmic grading tool, and a plagiarism detector are all "AI" in common usage. They have almost nothing else in common.</p>
+      <p>Large language models (LLMs) — the systems underlying tools like ChatGPT, Claude, and Gemini — are statistical text prediction systems trained on large corpora of existing text. They predict plausible word sequences given a prompt; they do not retrieve stored knowledge, reason from principles, or hold beliefs. When an LLM produces a confident, fluent, factually incorrect statement, it is doing exactly what it was designed to do: generating plausible-looking text. That is not a malfunction. It is the system's architecture.</p>
+      <p>Conceptual literacy means knowing, for each tool you work with: what category of system it is; what data it was trained or built on; what communicative practices its training centered and therefore encodes as default; what its failure modes are; and what it structurally cannot do. This knowledge is the prerequisite for structural analysis. You cannot ask who bears the failure costs of a system whose failure modes you haven't identified.</p>
+      <div class="callout">
+        <p class="callout-title">A conceptual literacy test</p>
+        <p>When a faculty member says "the AI detected that a student used ChatGPT," multiple conceptual failures may be present simultaneously: AI detection tools are not AI systems detecting AI; they are statistical classifiers trained to identify stylistic patterns. They do not detect AI — they flag features associated (imperfectly, in specific populations) with AI-generated text. The distinction matters because it changes the structural analysis: if the tool does not do what users believe it does, the accountability structure built around it is built on a misdescription.</p>
+      </div>
     </section>
 
     <hr class="divider">
 
-    <section class="content-section" id="portfolio">
+    <!-- Section 3: Structural Literacy -->
+    <section class="content-section" id="structural">
       <span class="section-tag">Section 3</span>
-      <h3>Portfolio Approaches for Digital Learning</h3>
-      <p>Digital portfolios — curated collections of student work with reflective commentary — are particularly well suited to digital communication instruction because they can house the digital artifacts themselves, alongside process documentation (storyboards, drafts, peer feedback received) and reflective writing about what students learned. They make digital communication learning visible in a way that individual assignment grades cannot.</p>
-      <p>Effective digital portfolios are curated, not comprehensive. Students select artifacts, revise them for the portfolio context, and write reflective introductions that explain the selection rationale and articulate what was learned. The curation and reflection are where the deepest learning happens — and where faculty can assess metacognitive development alongside the quality of the artifacts.</p>
-      <p>Platform choice matters. GitHub Pages, WordPress (available through NC State), Google Sites, and Adobe Portfolio are all viable platforms with different strengths. The key is that the platform should serve the portfolio's audience and purpose, not be selected because it's familiar to the faculty member or impressive-looking. A portfolio on Google Sites that is easy to navigate and clearly organized will serve students better than a complex platform that students spent most of their time learning to operate.</p>
+      <h3>Level 2: Structural Literacy</h3>
+      <p>Structural literacy asks three questions about any digital tool. These are not questions about individual uses of the tool — they are questions about what the tool does systematically, at scale, as a product of its design.</p>
+      <p><strong>Question 1: What social hierarchies does this tool reproduce?</strong> Every tool encodes assumptions about who its default user is. LLMs trained predominantly on English text produced within Anglo-American academic conventions encode those conventions as the baseline against which all output is judged. Tools that require high-bandwidth internet access disadvantage students in rural areas or with limited data plans. Tools designed around white-collar knowledge work encode the communicative norms of that labor category. The question is not whether encoding happens — it always does — but which hierarchies are encoded and whether they correspond to or cut against your students' starting positions.</p>
+      <p><strong>Question 2: Who bears the costs when this tool fails?</strong> All tools fail. The structural question is not whether failure occurs but how its costs are distributed. When AI detection software produces a false positive, the cost is borne by the student — an academic integrity process, a failed assignment, a damaged relationship with the faculty member — not by the vendor, the institution, or the faculty member who selected the tool. When that false positive rate is higher for multilingual students, the structural harm is not incidental. It is a predictable outcome of the tool's architecture, concentrated in a population that already faces disproportionate barriers.</p>
+      <p><strong>Question 3: Whose interests does the design serve?</strong> Tools are designed by organizations with interests. Commercial educational technology vendors have financial interests in adoption that create incentive structures around disclosure. A vendor whose revenue depends on institutional contracts has structural incentives to emphasize accuracy evidence that supports adoption and minimize or delay disclosure of accuracy evidence that complicates it. This is not a claim about individual bad actors. It is a structural analysis of how financial incentives and epistemic access interact.</p>
     </section>
 
     <hr class="divider">
 
-    <section class="content-section" id="peer">
+    <!-- Section 4: Operative Literacy -->
+    <section class="content-section" id="operative">
       <span class="section-tag">Section 4</span>
-      <h3>Peer Feedback Protocols for Digital Work</h3>
-      <p>Peer feedback for digital work requires genre-specific protocols even more than peer review of writing does, because reviewers need explicit guidance about what to look for in a mode they may not be expert in. Without structure, peer feedback on a podcast tends to address voice quality and sound levels ("it was hard to hear you in some parts") rather than argument, audience, and genre conventions.</p>
-      <p>Structured peer review protocols for digital work give reviewers specific listening or viewing tasks: "Describe, in one sentence, the argument you heard. Was there a clear moment when the main claim was stated?" is a more useful prompt than "Was the podcast good?" Protocols that require reviewers to identify specific timestamps or specific visual elements — "At 2:14, the argument shifts — is this transition clear?" — produce more specific, more useful feedback.</p>
-      <p>Reviewer training is also important. Brief exposure to exemplary work in the genre, with discussion of what makes it effective, calibrates peer reviewers before they give feedback. This calibration activity doubles as genre instruction — students who have analyzed three strong data visualizations for what they share are much better positioned to give useful feedback on a peer's data visualization than students who have only seen the assignment prompt.</p>
+      <h3>Level 3: Operative Literacy</h3>
+      <p>Operative literacy is the capacity to make principled deployment decisions — decisions grounded in structural analysis and expressed in a form that is publicly accountable. The framework identifies three principled outcomes. All three are accountable; none of them is "I haven't thought about it."</p>
+      <div class="decision-grid">
+        <div class="decision-card">
+          <span class="decision-tag">Decision 1</span>
+          <h4>Principled Refusal</h4>
+          <p>The structural harm analysis is sufficient to ground rejection. The tool's failure costs fall on already-marginalized populations, the demographic distribution is documented, and no accountability condition could adequately redress that distribution while the tool's core architecture remains unchanged. The refusal is named and publicly defensible.</p>
+        </div>
+        <div class="decision-card">
+          <span class="decision-tag">Decision 2</span>
+          <h4>Conditional Adoption</h4>
+          <p>Deployment is appropriate only when specific, verifiable accountability conditions are met — stated in advance, publicly. Conditions might include: demographic breakdown of error rates; mandatory human review before any disciplinary action; student right to appeal; sunset review clause. Adoption without these conditions is not conditional adoption. It is adoption.</p>
+        </div>
+        <div class="decision-card">
+          <span class="decision-tag">Decision 3</span>
+          <h4>Deferred Decision</h4>
+          <p>The structural analysis is incomplete. Additional evidence is needed before a principled decision is possible. Deferral is not delay for its own sake — it is a commitment to return to the analysis with the evidence it actually requires, and not to deploy in the meantime.</p>
+        </div>
+      </div>
+      <p>Note the asymmetry: conditional adoption requires naming specific, verifiable conditions, not general commitments to "ethical use." Principled refusal requires naming the structural harm pattern that grounds it, not expressing general discomfort. Deferred decision requires identifying what evidence would complete the analysis, not indefinitely postponing a decision. All three require work. None of them is costless, and all of them are preferable to an unconsidered one.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- Section 5: Application -->
+    <section class="content-section" id="application">
+      <span class="section-tag">Section 5</span>
+      <h3>All Digital Tools, the Same Lens</h3>
+      <p>The framework applies with equal force to every digital tool in your teaching practice — not as a requirement to be suspicious of all technology, but as a set of questions that produce better decisions about any technology. A social annotation platform like Perusall uses algorithmic engagement scoring to assign participation grades. Apply the three structural questions: the system encodes assumptions about what "engagement" looks like (who does that definition serve?); algorithmic grading errors are borne by students whose participation patterns don't match the training data; and the vendor's interest in demonstrating automated grading capacity creates incentives around how accuracy is reported. None of this means you shouldn't use Perusall. It means you use it with specific knowledge of what it does, and with accountability conditions — like reviewing the algorithmic grades before finalizing them — already in place.</p>
+      <p>The same applies to video production tools, discussion forums, collaborative writing platforms, citation management software, and AI writing assistants. Conceptual literacy means knowing what the tool actually is and does. Structural literacy means knowing what it reproduces and who it costs. Operative literacy means deciding about it deliberately, in a form you can defend. The module's capstone asks you to produce that document for one tool in your course.</p>
     </section>
 
     <hr class="divider">
@@ -198,32 +278,52 @@ textarea { min-height: 100px; }
     <!-- Activity 1 -->
     <section class="content-section" id="activity1">
       <div class="activity-block">
-        <p class="activity-label">Activity 1</p>
-        <h4>Multimodal Rubric Design</h4>
-        <p class="activity-meta">Design activity · 60–90 minutes</p>
-        <p>Design a rubric for the digital assignment you created in Module 2 Activity 1. Your rubric should address the three clusters described in Section 2: rhetorical effectiveness, mode-specific quality, and accessibility/technical execution. Make the weighting explicit and justified.</p>
+        <p class="activity-label">Activity 1 — Conceptual Literacy</p>
+        <h4>Conceptual Inventory: Three Tools</h4>
+        <p class="activity-meta">Individual analysis · 60–75 minutes</p>
+        <p>Select three digital tools you use or could use in your teaching. At least one must be an AI tool (a large language model, an AI detection tool, an automated feedback system, or similar). For each tool, complete the five-dimension conceptual inventory below. The goal is not evaluation — it is accurate description. You are practicing the discipline of knowing what you are working with before you make claims about it.</p>
 
-        <label for="f-a1-assignment">Which assignment from Module 2 are you designing this rubric for? <span>(Brief description)</span></label>
-        <input type="text" id="f-a1-assignment" placeholder="e.g., 4–6 min narrated screencast, BIO 495 senior capstone...">
+        <div class="sub-activity">
+          <span class="sub-activity-label">Tools selected</span>
+          <h5>Which three tools are you analyzing?</h5>
+          <label for="f-a1-tools">Name all three tools, noting which is the AI tool. <span>(Include the AI tool's category: LLM, classifier, recommender system, etc.)</span></label>
+          <textarea id="f-a1-tools" rows="3" placeholder="Tool 1 (AI): e.g., ChatGPT — large language model (LLM)&#10;Tool 2: e.g., Perusall — social annotation with algorithmic engagement scoring&#10;Tool 3: e.g., Kaltura — video production and hosting platform"></textarea>
+        </div>
 
-        <label for="f-a1-rhetorical">Rhetorical effectiveness criteria: <span>(Weight: ___ %). What does "excellent" look like? What does "developing" look like?)</span></label>
-        <textarea id="f-a1-rhetorical" rows="6" placeholder="Criteria, descriptors, and weight rationale..."></textarea>
+        <div class="sub-activity">
+          <span class="sub-activity-label">Tool 1 — Five-dimension inventory</span>
+          <h5>Complete the inventory for Tool 1</h5>
+          <label for="f-a1-t1">For each dimension, describe Tool 1 accurately and specifically. <span>Include: (1) system architecture/type; (2) how it was built or what it was trained on; (3) what communicative practices it encodes as default; (4) its documented failure modes; (5) what it structurally cannot do.</span></label>
+          <textarea id="f-a1-t1" rows="10" placeholder="1. System type / architecture:&#10;&#10;2. Construction / training data:&#10;&#10;3. Communicative practices centered (whose norms are the default?):&#10;&#10;4. Documented failure modes:&#10;&#10;5. What it cannot do:"></textarea>
+        </div>
 
-        <label for="f-a1-modal">Mode-specific quality criteria: <span>(Weight: ___ %). What modes does this assignment engage, and what does effective use of each look like?)</span></label>
-        <textarea id="f-a1-modal" rows="6" placeholder="Mode-specific criteria and descriptors..."></textarea>
+        <div class="sub-activity">
+          <span class="sub-activity-label">Tool 2 — Five-dimension inventory</span>
+          <h5>Complete the inventory for Tool 2</h5>
+          <label for="f-a1-t2">Five-dimension inventory for Tool 2. <span>Same five dimensions: architecture, construction/training, centered communicative practices, failure modes, structural limitations.</span></label>
+          <textarea id="f-a1-t2" rows="10" placeholder="1. System type / architecture:&#10;&#10;2. Construction / training data:&#10;&#10;3. Communicative practices centered (whose norms are the default?):&#10;&#10;4. Documented failure modes:&#10;&#10;5. What it cannot do:"></textarea>
+        </div>
 
-        <label for="f-a1-access">Accessibility and technical execution criteria: <span>(Weight: ___ %). What baseline accessibility standards apply, and what does successful execution require?)</span></label>
-        <textarea id="f-a1-access" rows="5" placeholder="Accessibility and execution criteria..."></textarea>
+        <div class="sub-activity">
+          <span class="sub-activity-label">Tool 3 — Five-dimension inventory</span>
+          <h5>Complete the inventory for Tool 3</h5>
+          <label for="f-a1-t3">Five-dimension inventory for Tool 3. <span>Same five dimensions.</span></label>
+          <textarea id="f-a1-t3" rows="10" placeholder="1. System type / architecture:&#10;&#10;2. Construction / training data:&#10;&#10;3. Communicative practices centered (whose norms are the default?):&#10;&#10;4. Documented failure modes:&#10;&#10;5. What it cannot do:"></textarea>
+        </div>
 
-        <label for="f-a1-holistic">Optional: Write a holistic descriptor for "Excellent" work on this assignment. <span>(A paragraph, not a checklist — describe what excellent work does, not what it has.)</span></label>
-        <textarea id="f-a1-holistic" rows="6" placeholder="An Excellent submission..."></textarea>
+        <div class="sub-activity">
+          <span class="sub-activity-label">Reflection</span>
+          <h5>Across the three inventories</h5>
+          <label for="f-a1-reflection">What did completing these inventories reveal that you didn't know before? Where did you have to look, and what was hardest to find? <span>(This reflection feeds directly into Activity 2's structural analysis.)</span></label>
+          <textarea id="f-a1-reflection" rows="5" placeholder="Your reflection..."></textarea>
+        </div>
 
         <div class="repo-block">
           <h4>Contribute to the repository</h4>
-          <p>A well-designed rubric for a specific digital genre — especially from a STEM or professional discipline — is one of the most useful contributions a faculty member can make to the repository.</p>
+          <p>Conceptual inventories from different disciplines help build a shared resource of accurate tool descriptions that faculty across NC State can use as starting points.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I'd like to share my multimodal rubric with the RED-ACI repository.</label>
+            <label for="repo-a1">I'd like to share my conceptual inventories with the C²TC repository.</label>
           </div>
         </div>
       </div>
@@ -232,180 +332,236 @@ textarea { min-height: 100px; }
     <!-- Activity 2 -->
     <section class="content-section" id="activity2">
       <div class="activity-block">
-        <p class="activity-label">Activity 2</p>
-        <h4>Digital Portfolio Assessment Plan</h4>
-        <p class="activity-meta">Design activity · 45–60 minutes</p>
-        <p>Design a digital portfolio framework for one of your courses — either a portfolio that would replace or supplement a final exam, or a portfolio that documents students' digital communication development across a course or program. You don't have to implement this immediately; the goal is to think through what it would take.</p>
+        <p class="activity-label">Activity 2 — Structural Literacy</p>
+        <h4>Structural Analysis</h4>
+        <p class="activity-meta">Written analysis · 60–75 minutes · 400–500 words</p>
+        <p>Select one of the three tools from Activity 1 — ideally the AI tool, but the framework applies to any of them. Write a 400–500 word structural analysis applying the three structural questions from Section 3. Each question requires specific evidence, not general impressions. Cite vendor documentation, published research, faculty forums, or your own direct investigation. The analysis should be specific enough that someone who hasn't used the tool could understand what it does structurally and what those structural effects cost.</p>
 
-        <label for="f-a2-purpose">Portfolio purpose: <span>(What learning will it document? Who is the audience — the instructor only, peers, potential employers, the broader public?)</span></label>
-        <textarea id="f-a2-purpose" rows="4" placeholder="Purpose and audience..."></textarea>
+        <label for="f-a2-tool">Which tool are you analyzing in this activity? <span>(And why did you choose it?)</span></label>
+        <input type="text" id="f-a2-tool" placeholder="Tool name and brief reason for choosing it...">
 
-        <label for="f-a2-contents">What will the portfolio contain? <span>(Which artifacts? What process documentation? How much reflective writing? How is it curated?)</span></label>
-        <textarea id="f-a2-contents" rows="5" placeholder="Contents and curation model..."></textarea>
+        <label for="f-a2-hierarchies">Structural Question 1: What social hierarchies does this tool reproduce? <span>(Be specific: which communicative norms are encoded as default, who succeeds with the tool as designed, and who is burdened by it?)</span></label>
+        <textarea id="f-a2-hierarchies" rows="7" placeholder="Your analysis of Question 1 — with specific evidence..."></textarea>
 
-        <label for="f-a2-platform">Platform: <span>(What platform fits the purpose and audience? What's the access model — public, NC State login only, instructor only?)</span></label>
-        <textarea id="f-a2-platform" rows="3" placeholder="Platform choice and rationale..."></textarea>
+        <label for="f-a2-costs">Structural Question 2: Who bears the costs when this tool fails? <span>(Identify at least one documented failure mode. Who experiences the consequence? Is there evidence of demographic distribution in that failure?)</span></label>
+        <textarea id="f-a2-costs" rows="7" placeholder="Your analysis of Question 2 — with specific failure mode and evidence..."></textarea>
 
-        <label for="f-a2-assess">How will you assess the portfolio? <span>(What's the evaluation rubric or framework? How much weight does curation carry relative to artifact quality?)</span></label>
-        <textarea id="f-a2-assess" rows="5" placeholder="Assessment approach..."></textarea>
+        <label for="f-a2-interests">Structural Question 3: Whose interests does the design serve? <span>(Who built this tool and what is their financial model? Are there conditions where vendor interests and student interests diverge?)</span></label>
+        <textarea id="f-a2-interests" rows="7" placeholder="Your analysis of Question 3 — with specific organizational and financial context..."></textarea>
 
-        <label for="f-a2-barriers">What would it take to implement this? What are the main barriers? <span>(Time, platform access, student technical skill, institutional support)</span></label>
-        <textarea id="f-a2-barriers" rows="4" placeholder="Implementation analysis..."></textarea>
+        <label for="f-a2-synthesis">Synthesis paragraph <span>(What does this structural analysis, taken as a whole, tell you about this tool? What do you know now that you didn't know after Activity 1?)</span></label>
+        <textarea id="f-a2-synthesis" rows="6" placeholder="Your synthesis — how the three structural questions add up to a picture of what this tool does in the world..."></textarea>
 
         <div class="repo-block">
           <h4>Contribute to the repository</h4>
-          <p>Portfolio assessment frameworks are particularly transferable across disciplines. A portfolio model designed for an engineering capstone course can adapt to a communication, public health, or social work context with minimal modification.</p>
+          <p>Structural analyses of tools used across disciplines — especially from faculty who investigated deeply — are among the most valuable resources in the C²TC repository.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I'd like to share my portfolio assessment framework with the RED-ACI repository.</label>
+            <label for="repo-a2">I'd like to share my structural analysis with the C²TC repository.</label>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Activity 3 -->
+    <section class="content-section" id="activity3">
+      <div class="activity-block">
+        <p class="activity-label">Activity 3 — Operative Literacy (Capstone)</p>
+        <h4>Operative Decision + Assignment Prototype</h4>
+        <p class="activity-meta">Capstone activity · 90–120 minutes</p>
+        <p>Using the structural analysis from Activity 2, produce an operative decision document for the same tool — your principled judgment about whether and how to deploy it in your course. Then, depending on your decision, produce an assignment prototype.</p>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Step 1 — Your decision</span>
+          <h5>Which operative decision applies?</h5>
+          <label for="f-a3-decision">State your decision category and explain in 2–3 sentences why the structural analysis grounds it. <span>Options: Principled Refusal / Conditional Adoption / Deferred Decision</span></label>
+          <textarea id="f-a3-decision" rows="4" placeholder="My operative decision is [Principled Refusal / Conditional Adoption / Deferred Decision] because..."></textarea>
+        </div>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Step 2 — Grounds</span>
+          <h5>The structural analysis that grounds your decision</h5>
+          <label for="f-a3-grounds">Identify the specific findings from Activity 2 that are most decisive. <span>For refusal: the harm pattern that cannot be addressed by conditions. For conditional adoption: the harms that conditions must address. For deferral: the specific evidence still needed.</span></label>
+          <textarea id="f-a3-grounds" rows="5" placeholder="The key structural findings that ground this decision are..."></textarea>
+        </div>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Step 3 — Conditions or evidence (if applicable)</span>
+          <h5>Accountability conditions (conditional adoption) or evidence requirements (deferred decision)</h5>
+          <label for="f-a3-conditions">If conditional adoption: list your specific, verifiable accountability conditions. Each condition should be concrete enough that you would know if it were violated. If deferred decision: identify what specific evidence is needed and who is responsible for producing it. If principled refusal: leave this blank.</label>
+          <textarea id="f-a3-conditions" rows="6" placeholder="Accountability conditions (conditional adoption):&#10;1. [Specific, verifiable condition]&#10;2. [Specific, verifiable condition]&#10;3.&#10;&#10;OR: Evidence needed before decision (deferred):"></textarea>
+        </div>
+
+        <div class="sub-activity">
+          <span class="sub-activity-label">Step 4 — Assignment prototype</span>
+          <h5>Build the prototype</h5>
+          <p style="font-size:0.88rem; color:var(--dgray); margin-bottom:0.75rem;">If your decision is <strong>Conditional Adoption</strong>: design a complete assignment prototype that deploys this tool with your accountability conditions built in. Include the task prompt (as students would receive it), the accountability conditions embedded in how the assignment works, assessment criteria, and a brief rationale explaining the pedagogical purpose.</p>
+          <p style="font-size:0.88rem; color:var(--dgray); margin-bottom:0.75rem;">If your decision is <strong>Principled Refusal or Deferred Decision</strong>: design an alternative assignment that achieves the same learning objectives without the tool — or with a different tool whose structural analysis is more favorable. Include the task prompt, assessment criteria, and a rationale.</p>
+          <label for="f-a3-prompt">Task prompt <span>(as students would receive it)</span></label>
+          <textarea id="f-a3-prompt" rows="7" placeholder="Assignment prompt for students..."></textarea>
+          <label for="f-a3-criteria">Assessment criteria <span>(what you're evaluating and how)</span></label>
+          <textarea id="f-a3-criteria" rows="5" placeholder="Assessment criteria..."></textarea>
+          <label for="f-a3-rationale">Design rationale <span>(200–250 words: the pedagogical purpose, how your operative decision shaped the design, and what the accountability conditions or alternative achieves)</span></label>
+          <textarea id="f-a3-rationale" rows="8" placeholder="Your design rationale — including how your operative decision shaped this prototype..."></textarea>
+        </div>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Operative decision documents and assignment prototypes that integrate structural analysis are the most direct evidence of what critical digital pedagogy looks like in practice across NC State's disciplines.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a3">
+            <label for="repo-a3">I'd like to share my operative decision document and prototype with the C²TC repository.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artifact builder -->
+    <section class="content-section" id="artifact">
+      <div class="artifact-section">
+        <p class="artifact-section-label">Your Artifact</p>
+        <h4>Build Your Operative Decision Document</h4>
+        <p style="font-size:0.92rem; margin-bottom:0.75rem;">Your operative decision document compiles the analysis from Activities 2 and 3 into a formatted, shareable document: the tool you analyzed, the structural grounds for your decision, your accountability conditions or alternative, and the assignment prototype with assessment criteria and rationale.</p>
+        <p style="font-size:0.87rem; color:var(--dgray); margin-bottom:0.5rem;">The document pulls directly from your Activity 2 and 3 responses — no additional input needed. Complete those activities first, then generate the document and save it as a PDF for your teaching portfolio or capstone submission.</p>
+        <button class="btn-artifact" onclick="previewArtifact()">Preview Operative Decision Document →</button>
+      </div>
+    </section>
+
     <hr class="divider">
 
+    <!-- Readings -->
     <section class="content-section" id="readings">
       <h3>Key readings and resources</h3>
+
+      <span class="reading-group-label">Before Activity 1 — Conceptual foundations</span>
       <ul class="reading-list">
-        <li>★ Yancey, K. B. (2004). Made not only in words: Composition in a new key. <em>College Composition and Communication, 56</em>(2), 297–328.</li>
-        <li>★ Ball, C. E., &amp; Charlton, C. (2015). All writing is multimodal. In L. Adler-Kassner &amp; E. Wardle (Eds.), <em>Naming what we know: Threshold concepts of writing studies</em>. Utah State University Press.</li>
-        <li>★ DeVoss, D., Cushman, E., &amp; Grabill, J. T. (2005). Infrastructure and composing: The when of new-media writing. <em>College Composition and Communication, 57</em>(1), 14–44.</li>
-        <li>Sorapure, M. (2006). Between modes: Assessing student new media compositions. <em>Kairos: A Journal of Rhetoric, Technology, and Pedagogy, 10</em>(2).</li>
-        <li>Rhodes, T., &amp; Agre-Kippenhan, S. (2004). A multiplicity of learning: Portfolios in the liberal arts. <em>Assessing Student Learning in General Education</em>.</li>
-        <li>WebAIM. (2024). <em>WAVE Web Accessibility Evaluation Tool</em>. <a href="https://wave.webaim.org" target="_blank" rel="noopener" style="color: var(--accent);">wave.webaim.org</a></li>
+        <li>★ Cole, K. K. (2026). <em>AI Literacy Model</em>. cwspwolf.com/ai_literacy_unified.html. <em>The source framework for this module. Read the full model before beginning the activities; return to it during each activity.</em></li>
+        <li>★ Bender, E. M., Gebru, T., McMillan-Major, A., &amp; Shmitchell, S. (2021). On the dangers of stochastic parrots: Can language models be too big? <em>FAccT 2021</em>, 610–623. <em>Foundational structural analysis of LLMs; directly relevant to the AI tool conceptual inventory.</em></li>
+        <li>Kapoor, S., &amp; Narayanan, A. (2023). Leakage and the reproducibility crisis in ML-based science. <em>Patterns, 4</em>(9). <em>On how machine learning systems fail and how those failures are disclosed (or not).</em></li>
+      </ul>
+
+      <span class="reading-group-label">Before Activity 2 — Structural analysis</span>
+      <ul class="reading-list">
+        <li>★ Noble, S. U. (2018). <em>Algorithms of oppression</em>. NYU Press. <em>Chapters 1 and 2: structural analysis of algorithmic systems and the harm patterns they encode — the methodological model for Activity 2.</em></li>
+        <li>Perkins, M., et al. (2023). Game of trones: Large language models do not detect non-English AI-generated text. <em>arXiv</em>. <em>Empirical documentation of AI detection failure patterns by language — the failure-cost distribution evidence for the governance case.</em></li>
+        <li>Chaka, C. (2023). Detecting AI content in responses generated by ChatGPT, YouChat, and Chatsonic. <em>Journal of Applied Learning and Teaching, 6</em>(1). <em>Comparative false-positive analysis across detection tools.</em></li>
+      </ul>
+
+      <span class="reading-group-label">Recommended — Operative literacy and pedagogical application</span>
+      <ul class="reading-list">
+        <li>Stommel, J. (2023). Undoing the grade: Why we grade, and how to stop. <em>Hybrid Pedagogy</em>. <em>On the structural politics of assessment — relevant context for operative decisions about AI in grading and evaluation.</em></li>
+        <li>Carter, G. M., &amp; Matzke, A. (2017). The more digital technology, the better. In <em>Bad Ideas About Writing</em>. WVU Libraries. <em>Foundational critique of uncritical technology adoption in educational contexts.</em></li>
+        <li>CWSP Resource: Writing WITH AI, Not FOR AI — Cole, K. K. <em>CWSP Framework Document</em>. <em>Discipline-specific guidance for integrating AI in writing courses; model for the conditional adoption prototype.</em></li>
       </ul>
     </section>
 
     <hr class="divider">
 
-    <!-- Capstone -->
-    <div class="capstone-section" id="capstone">
-      <p class="capstone-eyebrow">Certificate Capstone</p>
-      <h2>Digital Communication Capstone Submission</h2>
-      <p>Your capstone is a digital assignment portfolio: a curated collection of 2–3 digital communication assignment designs, with assessment rubrics, scaffolding sequences, and a reflective rationale that demonstrates your application of all three modules.</p>
-
-      <div class="capstone-part">
-        <h4>Part A — Digital assignment portfolio (2–3 assignments)</h4>
-        <p>For each assignment: genre and format (specific), audience (named), tool choice and rationale, scaffolding sequence, and assessment rubric. These should be real assignments you intend to use — not hypothetical exercises. At least one must include an explicit accessibility requirement.</p>
+    <!-- Submit -->
+    <section id="submit">
+      <div class="submit-section">
+        <h3>Complete Module 3</h3>
+        <p>When you have finished all three activities, submit your responses below. Module 3 is the final core module; your capstone activity begins immediately after. Your completed operative decision document and prototype from Activity 3 are strong starting material for the capstone.</p>
+        <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 3 Responses</button>
+        <div id="submit-success"><strong>Submitted.</strong> Your Module 3 responses are received. You may now proceed to the capstone or choose your electives.</div>
+        <div id="submit-error">Submission problem — responses saved locally. Try again or email kkcole2@ncsu.edu.</div>
       </div>
-      <div class="capstone-part">
-        <h4>Part B — Assessment framework</h4>
-        <p>Present the rubric or assessment approach for at least one of your assignments in full. Include the weight of each criterion and a holistic descriptor for at least the "Excellent" level of performance.</p>
-      </div>
-      <div class="capstone-part">
-        <h4>Part C — Reflective rationale</h4>
-        <p>A 1–2 page reflective rationale explaining your design decisions. How do the three modules' frameworks — multimodal theory, digital assignment design principles, assessment strategies — inform what you built? What will you implement immediately, and what needs more development?</p>
-      </div>
-
-      <p style="font-size: 0.88rem; color: var(--dgray); margin-top: 1rem;">Length: 5–8 pages total. Format: Google Doc link or paste below. You may also email your capstone to kkcole2@ncsu.edu with the subject "RED-ACI DC Capstone Submission."</p>
-    </div>
-
-    <!-- Certificate Submit -->
-    <div class="certificate-submit" id="certificate">
-      <h3>Submit Capstone &amp; Earn Your Certificate</h3>
-      <p>Complete the form below. Your PDF Digital Communication Certificate will be emailed to your NC State address within 24 hours.</p>
-
-      <div class="form-row">
+      <a href="digital.html" class="next-module">
         <div>
-          <label for="cert-name">Full name <span style="color: #888;">(for certificate)</span></label>
-          <input type="text" id="cert-name" placeholder="As it should appear on the certificate">
+          <div class="label">Next</div>
+          <div class="title">Choose your electives → Back to Digital Comm Certificate</div>
         </div>
-        <div>
-          <label for="cert-email">NC State email</label>
-          <input type="email" id="cert-email" placeholder="youreid@ncsu.edu">
-        </div>
-      </div>
-      <div class="form-row" style="margin-top: 0.75rem;">
-        <div>
-          <label for="cert-department">Department</label>
-          <input type="text" id="cert-department" placeholder="e.g., Department of Communication">
-        </div>
-        <div>
-          <label for="cert-role">Role</label>
-          <input type="text" id="cert-role" placeholder="e.g., Associate Professor, Lecturer">
-        </div>
-      </div>
-
-      <label for="cert-doc-link" style="margin-top: 1rem;">Google Doc link <span style="color: #888;">(or paste text in the fields below)</span></label>
-      <input type="text" id="cert-doc-link" placeholder="https://docs.google.com/document/d/...">
-
-      <label for="cert-parta">Part A — Assignment portfolio <span style="color: #888;">(optional if Google Doc provided)</span></label>
-      <textarea id="cert-parta" rows="5" placeholder="Assignment 1:\n\nAssignment 2:\n\nAssignment 3 (optional):"></textarea>
-
-      <label for="cert-partb">Part B — Assessment framework</label>
-      <textarea id="cert-partb" rows="5" placeholder="Optional if Google Doc provided..."></textarea>
-
-      <label for="cert-partc">Part C — Reflective rationale</label>
-      <textarea id="cert-partc" rows="7" placeholder="Optional if Google Doc provided..."></textarea>
-
-      <div class="checkbox-row" style="margin-top: 1.5rem;">
-        <input type="checkbox" id="repo-capstone" style="accent-color: var(--green);">
-        <label for="repo-capstone" style="color: #ccc; font-weight: 400; margin: 0; font-size: 0.87rem;">I'd like to contribute my capstone to the RED-ACI faculty repository. CWSP will review before posting and will attribute it to me unless I request otherwise.</label>
-      </div>
-
-      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-        <button class="btn-certificate" id="cert-btn" onclick="submitCapstone()">Submit Capstone &amp; Earn Certificate</button>
-        <span style="font-size: 0.82rem; color: #888;">Certificate emailed within 24 hours</span>
-      </div>
-
-      <div id="cert-success">
-        <strong>Capstone received.</strong> Congratulations on completing the Digital Communication certificate. Your PDF certificate will be emailed within 24 hours. Thank you for your work.
-      </div>
-      <div id="cert-error">
-        Submission problem — responses saved locally. Try again or email your capstone to kkcole2@ncsu.edu with the subject "RED-ACI DC Capstone Submission."
-      </div>
-
-      <p style="font-size: 0.8rem; color: #888; margin-top: 1.5rem;">Questions? Contact Kirsti Cole at kkcole2@ncsu.edu · NC State Campus Writing and Speaking Program</p>
-    </div>
-
+        <span style="font-size: 1.5rem; color: var(--accent);">→</span>
+      </a>
+    </section>
   </main>
+</div>
+
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div id="artifact-modal-inner"></div>
+    <div class="modal-btn-row">
+      <button class="btn-print" onclick="window.print()">Save as PDF</button>
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+    </div>
+  </div>
 </div>
 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'dc-module3';
-const FIELDS = ['f-a1-assignment','f-a1-rhetorical','f-a1-modal','f-a1-access','f-a1-holistic',
-                'f-a2-purpose','f-a2-contents','f-a2-platform','f-a2-assess','f-a2-barriers',
-                'cert-name','cert-email','cert-department','cert-role','cert-doc-link',
-                'cert-parta','cert-partb','cert-partc'];
-const CHECKBOXES = ['repo-a1','repo-a2','repo-capstone'];
-
+const FIELDS = ['f-a1-tools','f-a1-t1','f-a1-t2','f-a1-t3','f-a1-reflection','f-a2-tool','f-a2-hierarchies','f-a2-costs','f-a2-interests','f-a2-synthesis','f-a3-decision','f-a3-grounds','f-a3-conditions','f-a3-prompt','f-a3-criteria','f-a3-rationale'];
+const CHECKBOXES = ['repo-a1','repo-a2','repo-a3'];
 function saveAll() {
-  FIELDS.forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem(MODULE+'-'+id,el.value);});
-  CHECKBOXES.forEach(id=>{const el=document.getElementById(id);if(el)localStorage.setItem(MODULE+'-'+id,el.checked?'1':'0');});
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.value); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+'-'+id, el.checked?'1':'0'); });
   updateProgress();
 }
 function loadAll() {
-  FIELDS.forEach(id=>{const el=document.getElementById(id);const v=localStorage.getItem(MODULE+'-'+id);if(el&&v!==null)el.value=v;});
-  CHECKBOXES.forEach(id=>{const el=document.getElementById(id);const v=localStorage.getItem(MODULE+'-'+id);if(el&&v!==null)el.checked=v==='1';});
+  FIELDS.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.value=v; });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); const v = localStorage.getItem(MODULE+'-'+id); if (el&&v!==null) el.checked=v==='1'; });
   updateProgress();
 }
 function updateProgress() {
-  const actFields = FIELDS.slice(0,10).map(id=>document.getElementById(id)).filter(Boolean);
-  const pct = Math.round(actFields.filter(el=>el.value.trim().length>20).length/actFields.length*100);
-  document.getElementById('progress-fill').style.width=pct+'%';
-  document.getElementById('progress-label').textContent=pct+'%';
+  const f = FIELDS.map(id=>document.getElementById(id)).filter(Boolean);
+  const pct = Math.round(f.filter(el=>el.value&&el.value.trim().length>20).length/f.length*100);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = pct+'%';
 }
-function submitCapstone() {
+function submitModule() {
   saveAll();
-  const name = document.getElementById('cert-name').value.trim();
-  const email = document.getElementById('cert-email').value.trim();
-  const docLink = document.getElementById('cert-doc-link').value.trim();
-  const partC = document.getElementById('cert-partc').value.trim();
-  if(!name||!email){alert('Please enter your name and NC State email address before submitting.');return;}
-  if(!docLink&&!partC){alert('Please provide either a Google Doc link or paste your Part C reflective rationale to confirm capstone completion.');return;}
-  const data={module:MODULE,submission_type:'capstone',timestamp:new Date().toISOString(),certificate_name:name,certificate_email:email};
+  const data = {module:MODULE, timestamp:new Date().toISOString()};
   FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
   CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
-  const btn=document.getElementById('cert-btn');
-  btn.disabled=true;btn.textContent='Submitting…';
+  const btn = document.getElementById('submit-btn');
+  btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{document.getElementById('cert-success').style.display='block';btn.textContent='✓ Submitted';localStorage.setItem(MODULE+'-cert-submitted',new Date().toISOString());})
-    .catch(()=>{document.getElementById('cert-error').style.display='block';btn.disabled=false;btn.textContent='Submit Capstone & Earn Certificate';});
+    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Module 3 Responses'; });
 }
-document.querySelectorAll('textarea,input[type="text"],input[type="email"],input[type="checkbox"]').forEach(el=>{el.addEventListener('input',saveAll);el.addEventListener('change',saveAll);});
-function updateSidebarActive(){let current='';document.querySelectorAll('[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));}
+document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
+function val(id) { return (document.getElementById(id)||{}).value||''; }
+function artSection(label, content) {
+  if (!content || !content.trim()) return '';
+  return `<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`;
+}
+function previewArtifact() {
+  const tool = val('f-a2-tool') || 'Tool';
+  const decision = val('f-a3-decision');
+  let decisionType = 'Operative Decision';
+  if (/refusal|refuse/i.test(decision)) decisionType = 'Principled Refusal';
+  else if (/conditional|adoption/i.test(decision)) decisionType = 'Conditional Adoption';
+  else if (/deferred|defer/i.test(decision)) decisionType = 'Deferred Decision';
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('artifact-modal-inner').innerHTML = `
+    <div class="art-header">
+      <div class="art-header-eyebrow">C²TC · Digital Communication Instruction Certificate · Module 3</div>
+      <h2>Operative Decision Document: ${tool}</h2>
+      <div class="art-meta">Generated ${today}</div>
+    </div>
+    <div class="art-body">
+      ${decision ? `<div class="art-decision-band"><div class="art-decision-tag">Operative Decision</div><h3>${decisionType}</h3></div>` : ''}
+      ${artSection('Decision Statement', decision)}
+      ${artSection('Structural Grounds', val('f-a3-grounds'))}
+      ${artSection('Accountability Conditions / Evidence Required', val('f-a3-conditions'))}
+      ${artSection('Assignment Prototype — Task Prompt', val('f-a3-prompt'))}
+      ${artSection('Assessment Criteria', val('f-a3-criteria'))}
+      ${artSection('Design Rationale', val('f-a3-rationale'))}
+    </div>
+    <div class="art-footer">
+      <span>NC State Campus Writing and Speaking Program · C²TC</span>
+      <span>CWSP · OFE · DELTA</span>
+    </div>`;
+  document.getElementById('artifact-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeArtifact() { document.getElementById('artifact-overlay').style.display='none'; document.body.style.overflow=''; }
+document.getElementById('artifact-overlay').addEventListener('click', function(e) { if (e.target === this) closeArtifact(); });
+function updateSidebarActive() {
+  let current='';
+  document.querySelectorAll('[id]').forEach(s=>{if(window.scrollY>=s.offsetTop-100)current=s.id;});
+  document.querySelectorAll('.sidebar a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current));
+}
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>

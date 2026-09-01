@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DC Elective 2: Ethical Issues in Digital Communication | RED-ACI</title>
+<title>DC Elective 2: Ethical Issues in Digital Communication | C²TC</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -273,7 +273,7 @@ textarea { min-height: 100px; }
           <p>Structural analyses of tools deployed in specific disciplinary contexts — especially where failure cost distributions are not well-documented — build the evidence base that institutions need for governance decisions.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I am willing to share this structural analysis (with my name and discipline) in the RED-ACI teaching repository.</label>
+            <label for="repo-a1">I am willing to share this structural analysis (with my name and discipline) in the C²TC teaching repository.</label>
           </div>
         </div>
       </div>
@@ -322,10 +322,10 @@ textarea { min-height: 100px; }
 
         <div class="repo-block">
           <h4>Contribute to the repository</h4>
-          <p>Governance statements and assignment designs for teaching structural AI ethics — especially those grounded in specific disciplinary contexts — are among the most practically useful resources for the RED-ACI community.</p>
+          <p>Governance statements and assignment designs for teaching structural AI ethics — especially those grounded in specific disciplinary contexts — are among the most practically useful resources for the C²TC community.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I am willing to share my governance statement and assignment design (with my name and discipline) in the RED-ACI teaching repository.</label>
+            <label for="repo-a2">I am willing to share my governance statement and assignment design (with my name and discipline) in the C²TC teaching repository.</label>
           </div>
         </div>
       </div>
@@ -374,7 +374,7 @@ textarea { min-height: 100px; }
       <span class="section-tag">Reading List</span>
       <h3>Selected Sources</h3>
       <ul class="reading-list">
-        <li>Cole, K. (2026). AI literacy for communication instruction. CWSP/RED-ACI. cwspwolf.com/ai_literacy_unified.html</li>
+        <li>Cole, K. (2026). AI literacy for communication instruction. CWSP/C²TC. cwspwolf.com/ai_literacy_unified.html</li>
         <li>Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., &amp; Zou, J. (2023). GPT detectors are biased against non-native English writers. <em>Patterns, 4</em>(7).</li>
         <li>Noble, S. U. (2018). <em>Algorithms of oppression: How search engines reinforce racism.</em> NYU Press.</li>
         <li>Eubanks, V. (2018). <em>Automating inequality: How high-tech tools profile, police, and punish the poor.</em> St. Martin's Press.</li>
@@ -441,9 +441,9 @@ function previewArtifact(){
   const title=val('art-title')||'Structural Ethics Assignment';
   const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
   document.getElementById('artifact-modal-inner').innerHTML=`
-    <div class="art-header"><div class="art-header-top"><span class="art-program">RED-ACI · Digital Communication Certificate · Elective 2</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
+    <div class="art-header"><div class="art-header-top"><span class="art-program">C²TC · Digital Communication Certificate · Elective 2</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
     <div class="art-body">${artSection('Assignment Overview',val('art-overview'))}${artSection('Task Description',val('art-task'))}${artSection('Operative Decision Component',val('art-operative'))}${artSection('Assessment Criteria',val('art-criteria'))}${artSection('AI Use Policy',val('art-ai'))}</div>
-    <div class="art-footer"><span class="art-footer-text">Developed through <strong>RED-ACI</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
+    <div class="art-footer"><span class="art-footer-text">Developed through <strong>C²TC</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
   document.getElementById('artifact-overlay').style.display='block';document.body.style.overflow='hidden';
 }
 function closeArtifact(){document.getElementById('artifact-overlay').style.display='none';document.body.style.overflow='';}

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DC Module 1: Foundations of Digital Rhetoric | RED-ACI</title>
+<title>DC Module 1: Foundations of Digital Rhetoric | C²TC</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -252,7 +252,7 @@ textarea { min-height: 100px; }
         <p>Share your analysis to build a cross-disciplinary library of digital rhetorical examples for future cohorts.</p>
         <div class="checkbox-row">
           <input type="checkbox" id="repo-a1">
-          <label for="repo-a1">Yes, include my Activity 1 analysis in the RED-ACI repository (your name and institution may be credited).</label>
+          <label for="repo-a1">Yes, include my Activity 1 analysis in the C²TC repository (your name and institution may be credited).</label>
         </div>
       </div>
     </div>
@@ -278,7 +278,7 @@ textarea { min-height: 100px; }
         <p>Share your disciplinary reflection to help future cohorts understand digital communication practices across fields.</p>
         <div class="checkbox-row">
           <input type="checkbox" id="repo-a2">
-          <label for="repo-a2">Yes, include my Activity 2 reflection in the RED-ACI repository.</label>
+          <label for="repo-a2">Yes, include my Activity 2 reflection in the C²TC repository.</label>
         </div>
       </div>
     </div>
@@ -329,7 +329,7 @@ textarea { min-height: 100px; }
     <!-- SUBMIT -->
     <div id="submit" class="submit-section">
       <h3>Submit Module 1</h3>
-      <p>Submitting saves your work to the RED-ACI program and notifies your certificate coordinator. Make sure you have completed both activities and previewed your artifact before submitting.</p>
+      <p>Submitting saves your work to the C²TC program and notifies your certificate coordinator. Make sure you have completed both activities and previewed your artifact before submitting.</p>
       <button class="btn-submit" id="submit-btn" onclick="submitWork()">Submit Module 1</button>
       <div class="submit-status" id="submit-status"></div>
     </div>
@@ -398,7 +398,7 @@ function previewArtifact() {
   const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
   document.getElementById('artifact-modal-inner').innerHTML = `
     <div class="art-header">
-      <div class="art-header-eyebrow">RED-ACI · Digital Communication Instruction Certificate · Module 1</div>
+      <div class="art-header-eyebrow">C²TC · Digital Communication Instruction Certificate · Module 1</div>
       <h2>${title}</h2>
       <div class="art-meta">${val('art-course') ? val('art-course') + ' · ' : ''}Generated ${today}</div>
     </div>
@@ -410,7 +410,7 @@ function previewArtifact() {
       ${artSection('Reflective Component', val('art-reflection'))}
     </div>
     <div class="art-footer">
-      <span>NC State Campus Writing and Speaking Program · RED-ACI</span>
+      <span>NC State Campus Writing and Speaking Program · C²TC</span>
       <span>CWSP · OFE · DELTA</span>
     </div>`;
   document.getElementById('artifact-overlay').style.display = 'block';

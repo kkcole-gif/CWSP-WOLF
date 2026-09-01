@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DC Elective 3: Accessibility and Inclusive Design for Digital Media | RED-ACI</title>
+<title>DC Elective 3: Accessibility and Inclusive Design for Digital Media | C²TC</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -247,7 +247,7 @@ textarea { min-height: 100px; }
           <p>Discipline-specific accessibility audit examples — especially those documenting communicative as well as technical barriers — help faculty in similar disciplines identify access issues they might not otherwise notice.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I am willing to share this accessibility audit (with my name and discipline) in the RED-ACI teaching repository.</label>
+            <label for="repo-a1">I am willing to share this accessibility audit (with my name and discipline) in the C²TC teaching repository.</label>
           </div>
         </div>
       </div>
@@ -295,10 +295,10 @@ textarea { min-height: 100px; }
 
         <div class="repo-block">
           <h4>Contribute to the repository</h4>
-          <p>Assignments that treat accessibility as a rhetorical criterion — especially those from specific disciplines where digital media formats vary significantly — are among the most transferable resources in the RED-ACI collection.</p>
+          <p>Assignments that treat accessibility as a rhetorical criterion — especially those from specific disciplines where digital media formats vary significantly — are among the most transferable resources in the C²TC collection.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I am willing to share my assignment design (with my name and discipline) in the RED-ACI teaching repository.</label>
+            <label for="repo-a2">I am willing to share my assignment design (with my name and discipline) in the C²TC teaching repository.</label>
           </div>
         </div>
       </div>
@@ -350,7 +350,7 @@ textarea { min-height: 100px; }
       <span class="section-tag">Reading List</span>
       <h3>Selected Sources</h3>
       <ul class="reading-list">
-        <li>Cole, K. (2026). AI literacy for communication instruction. CWSP/RED-ACI. cwspwolf.com/ai_literacy_unified.html</li>
+        <li>Cole, K. (2026). AI literacy for communication instruction. CWSP/C²TC. cwspwolf.com/ai_literacy_unified.html</li>
         <li>Web Content Accessibility Guidelines (WCAG) 2.2. (2023). W3C Recommendation. w3.org/TR/WCAG22/</li>
         <li>Kimmons, R. (2017). Open educational resources and accessibility. <em>Journal of Interactive Media in Education.</em></li>
         <li>Disability Rights Advocates. (2021). <em>Challenges to accessibility overlay products.</em> dralegal.org</li>
@@ -418,9 +418,9 @@ function previewArtifact(){
   const title=val('art-title')||'Accessible Digital Assignment';
   const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
   document.getElementById('artifact-modal-inner').innerHTML=`
-    <div class="art-header"><div class="art-header-top"><span class="art-program">RED-ACI · Digital Communication Certificate · Elective 3</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
+    <div class="art-header"><div class="art-header-top"><span class="art-program">C²TC · Digital Communication Certificate · Elective 3</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
     <div class="art-body">${artSection('Assignment Overview',val('art-overview'))}${artSection('Task Description',val('art-task'))}${artSection('Accessibility Requirements',val('art-access-reqs'))}${artSection('Assessment Criteria',val('art-criteria'))}${artSection('Process Requirements',val('art-process'))}${artSection('AI Use Policy',val('art-ai'))}</div>
-    <div class="art-footer"><span class="art-footer-text">Developed through <strong>RED-ACI</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
+    <div class="art-footer"><span class="art-footer-text">Developed through <strong>C²TC</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
   document.getElementById('artifact-overlay').style.display='block';document.body.style.overflow='hidden';
 }
 function closeArtifact(){document.getElementById('artifact-overlay').style.display='none';document.body.style.overflow='';}

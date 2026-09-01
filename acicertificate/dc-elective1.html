@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DC Elective 1: Social Media and the Attention Economy | RED-ACI</title>
+<title>DC Elective 1: Social Media and the Attention Economy | C²TC</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -240,7 +240,7 @@ textarea { min-height: 100px; }
           <p>Discipline-specific social media analyses — especially those identifying how algorithmic amplification interacts with disciplinary content — help build a cross-disciplinary resource for teaching platform literacy.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I'd like to share my analysis with the RED-ACI repository.</label>
+            <label for="repo-a1">I'd like to share my analysis with the C²TC repository.</label>
           </div>
         </div>
       </div>
@@ -286,10 +286,10 @@ textarea { min-height: 100px; }
 
         <div class="repo-block">
           <h4>Contribute to the repository</h4>
-          <p>Critical social media assignments that apply structural analysis — especially from disciplines outside communication — help build the RED-ACI repository's resource base for platform literacy instruction.</p>
+          <p>Critical social media assignments that apply structural analysis — especially from disciplines outside communication — help build the C²TC repository's resource base for platform literacy instruction.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I'd like to share my platform decision and assignment design with the RED-ACI repository.</label>
+            <label for="repo-a2">I'd like to share my platform decision and assignment design with the C²TC repository.</label>
           </div>
         </div>
       </div>
@@ -403,9 +403,9 @@ function previewArtifact() {
   const title = val('art-title')||'Platform Literacy Assignment';
   const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
   document.getElementById('artifact-modal-inner').innerHTML = `
-    <div class="art-header"><div class="art-header-top"><span class="art-program">RED-ACI · Digital Communication Certificate · Elective 1</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
+    <div class="art-header"><div class="art-header-top"><span class="art-program">C²TC · Digital Communication Certificate · Elective 1</span></div><div class="art-title">${title}</div>${val('art-course')?`<div class="art-meta">${val('art-course')}</div>`:''}</div>
     <div class="art-body">${section('Assignment Overview',val('art-overview'))}${section('Task Description',val('art-task'))}${section('Platform and Scope',val('art-platform'))}${section('Assessment Criteria',val('art-criteria'))}${section('AI Use Policy',val('art-ai'))}</div>
-    <div class="art-footer"><span class="art-footer-text">Developed through <strong>RED-ACI</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
+    <div class="art-footer"><span class="art-footer-text">Developed through <strong>C²TC</strong> · NC State University · CWSP/OFE/DELTA</span><span class="art-footer-text">${today}</span></div>`;
   document.getElementById('artifact-overlay').style.display='block'; document.body.style.overflow='hidden';
 }
 function closeArtifact() { document.getElementById('artifact-overlay').style.display='none'; document.body.style.overflow=''; }
