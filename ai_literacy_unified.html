@@ -575,6 +575,57 @@
     color: var(--s-gray-mid);
     padding: 0.6rem 1rem 0.2rem;
   }
+
+  /* ─── AUDIENCE TABS (Figure 2) ──────────────────────── */
+  .audience-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.4rem;
+  }
+  .audience-tab {
+    font-family: var(--s-font);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    background: var(--s-gray-lt);
+    color: var(--s-gray);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 0.45rem 1.1rem;
+    cursor: pointer;
+  }
+  .audience-tab:hover { border-color: var(--ncr); color: var(--ncr); }
+  .audience-tab[aria-selected="true"] {
+    background: var(--ncr);
+    color: #fff;
+    border-color: var(--ncr);
+  }
+  .audience-decision {
+    font-size: 13px;
+    color: var(--ink);
+    background: var(--s-gray-lt);
+    border-radius: 6px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+  }
+  .audience-decision strong {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--s-gray-mid);
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+  .key-q {
+    font-size: 12px;
+    color: #3A3A38;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.5px dashed var(--line);
+  }
 </style>
 </head>
 <body>
@@ -818,192 +869,40 @@
 <p class="prose">Liaisons facilitate the extension using the same model as WOLF: sustained conversation, iterative design work, and documentation of decisions and rationale. The workbook is designed for liaison-facilitated use, but faculty are welcome to work through it independently. Contact <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole at CWSP</a> to begin or to connect your work to a full WOLF engagement. More information at <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a>.</p>
 
 <!-- ─── SECTION 3: GOVERNANCE APPLICATION ────────────── -->
-<p class="section-label">Governance Application · AI Detection Software</p>
+<p class="section-label">Governance Application · By Audience</p>
 
-<p class="prose">The three-level framework is not only a faculty development tool. Institutions are currently making procurement and policy decisions about AI-based academic integrity software — decisions with direct consequences for student populations most vulnerable to algorithmic misclassification. The framework below applies the three-level analysis to that specific governance question, making visible what a conceptual-literacy-only governance process misses and what a structurally and operatively informed decision requires.</p>
+<p class="prose">The three-level framework is not only a faculty development tool, and it does not change scale by scale. The same three questions, whose knowledge is encoded, who controls this system, what warrants refusal, apply to an individual student's choice on one assignment, a faculty member's policy for one assignment, a professional's use of a tool on one work product, and an institution's procurement decision. Only the decision changes. Select an audience below to see the same analysis worked through for that decision.</p>
+
+<div class="audience-tabs" role="tablist" aria-label="Governance decision by audience" id="ag-tabs">
+  <button type="button" class="audience-tab" data-audience="student" role="tab" aria-selected="false">Student</button>
+  <button type="button" class="audience-tab" data-audience="faculty" role="tab" aria-selected="false">Faculty</button>
+  <button type="button" class="audience-tab" data-audience="professional" role="tab" aria-selected="false">Professional</button>
+  <button type="button" class="audience-tab" data-audience="institution" role="tab" aria-selected="true">Institution</button>
+</div>
+
+<div class="audience-decision"><strong>Decision</strong><span id="ag-decision"></span></div>
 
 <!-- SHORTCUT WARNING -->
 <div class="shortcut-section">
   <div class="shortcut-header" onclick="toggleShortcut()" id="shortcut-hdr">
-    ⚠ Conceptual-only governance path — click to see what gets missed
+    ⚠ <span id="ag-shortcut-title">Conceptual-only path</span> — click to see what gets missed
     <span class="toggle-icon" id="shortcut-icon">▾</span>
   </div>
   <div class="shortcut-body" id="shortcut-body">
-    <div class="shortcut-flow">
-      <span class="shortcut-step">Is a tool available?</span>
-      <span class="shortcut-arrow">→</span>
-      <span class="shortcut-step">What does it cost?</span>
-      <span class="shortcut-arrow">→</span>
-      <span class="shortcut-step">Budget available?</span>
-      <span class="shortcut-arrow">→</span>
-      <span class="shortcut-step" style="background:#D85A30;color:white;border-color:#993C1D;font-weight:600;">Purchase</span>
-    </div>
-    <p class="shortcut-result">Consequence: a governance body with conceptual literacy but not structural literacy distributes the costs of the tool's failure modes — a 61.3% false positive rate for non-native English writers — onto the students least protected from the consequences of a false accusation of academic misconduct.</p>
+    <div class="shortcut-flow" id="ag-shortcut-flow"></div>
+    <p class="shortcut-result" id="ag-shortcut-result"></p>
   </div>
 </div>
 
 <!-- DECISION TREE -->
-<div class="tree">
+<div class="tree" id="ag-tree"></div><!-- /tree, filled by script -->
 
-  <div class="start-node">Governance decision: AI detection software</div>
-  <div class="connector connector-med"></div>
-
-  <!-- LEVEL 1 -->
-  <div class="level-panel level-1">
-    <div class="f2-panel-header f2-panel-header-1" onclick="togglePanel(1)">
-      <div class="panel-title-group">
-        <span class="panel-level">Level 1</span>
-        <span class="panel-name">Conceptual Literacy</span>
-      </div>
-      <span class="panel-question">What is this tool and how does it function?</span>
-      <span class="toggle-icon" id="icon-1">▾</span>
-    </div>
-    <div class="panel-body" id="body-1">
-      <p style="font-size:12px;color:#3A3A38;margin-bottom:0.5rem;">Before any structural analysis is possible, the governance body must be able to accurately describe what it is being asked to purchase.</p>
-      <ul class="finding-list">
-        <li>AI detection software classifies text by measuring perplexity (the predictability of word sequences) and burstiness (variation in sentence complexity)</li>
-        <li>Its output is a probability score estimating the likelihood of AI generation — not a verdict on authorship and not a determination of academic misconduct</li>
-        <li>These tools are trained on text corpora with specific distributional properties that shape their classification behavior</li>
-        <li>Detectors require regular retraining as language model outputs evolve; accuracy at purchase does not guarantee accuracy at deployment</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="connector connector-short"></div>
-
-  <div class="diamond-outer">
-    <div class="diamond">Can the institution accurately describe what it is purchasing and what the output represents?</div>
-  </div>
-  <div class="branches">
-    <div class="branch-yes">
-      <div class="branch-line"></div>
-      <div class="branch-label yes">Yes → proceed</div>
-      <div class="branch-line"></div>
-    </div>
-    <div class="branch-no" style="align-items:flex-start;padding-left:1rem;">
-      <div class="branch-line"></div>
-      <div class="branch-label no">No → halt</div>
-      <div class="halt-box">Gather conceptual information before proceeding to procurement</div>
-    </div>
-  </div>
-
-  <!-- LEVEL 2 -->
-  <div class="level-panel level-2" style="margin-top:0.3rem;">
-    <div class="f2-panel-header f2-panel-header-2" onclick="togglePanel(2)">
-      <div class="panel-title-group">
-        <span class="panel-level">Level 2</span>
-        <span class="panel-name">Structural Literacy</span>
-      </div>
-      <span class="panel-question">Whose writing does this tool treat equitably?</span>
-      <span class="toggle-icon" id="icon-2">▾</span>
-    </div>
-    <div class="panel-body" id="body-2">
-      <p style="font-size:12px;color:#3A3A38;margin-bottom:0.5rem;">The structural question is not whether the tool works in general. It is whose writing the tool's design encodes as the standard against which all text is measured.</p>
-      <ul class="finding-list">
-        <li>Seven widely-used GPT detectors maintained near-perfect accuracy for US student writing while producing a 61.3% average false positive rate for non-native English speakers <span class="cite">(Liang et al., 2023, Patterns)</span></li>
-        <li>Non-native English writers produce text with characteristics — more predictable vocabulary, simpler syntax, formulaic transitions — that detectors associate with AI output; this is a structural property of what the tools measure, not a calibration error correctable by software update</li>
-        <li>None of 14 tested detection tools reached 80% overall accuracy; accuracy degraded further when text was paraphrased <span class="cite">(Weber-Wulff et al., 2023, International Journal for Educational Integrity)</span></li>
-        <li>A single prompting strategy reduced AI text detection rates from 100% to 13% — the same tools that misidentify non-native English writing are easily circumvented by actual AI use <span class="cite">(Liang et al., 2023)</span></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="connector connector-short"></div>
-
-  <div class="diamond-outer">
-    <div class="diamond">Does this tool encode linguistic hierarchy as a structural property of its design?</div>
-  </div>
-  <div class="branches">
-    <div class="branch-yes">
-      <div class="branch-line"></div>
-      <div class="branch-label yes">Yes → proceed to operative judgment</div>
-      <div class="branch-line"></div>
-    </div>
-    <div class="branch-no" style="align-items:flex-start;padding-left:1rem;">
-      <div class="branch-line"></div>
-      <div class="branch-label" style="color:var(--gray);font-weight:600;">Uncertain →</div>
-      <div class="halt-box">Return to structural analysis with institution-specific population data</div>
-    </div>
-  </div>
-
-  <!-- LEVEL 3 -->
-  <div class="level-panel level-3" style="margin-top:0.3rem;">
-    <div class="f2-panel-header f2-panel-header-3" onclick="togglePanel(3)">
-      <div class="panel-title-group">
-        <span class="panel-level">Level 3</span>
-        <span class="panel-name">Operative Literacy</span>
-      </div>
-      <span class="panel-question">Given the structural analysis, what does a principled decision require?</span>
-      <span class="toggle-icon" id="icon-3">▾</span>
-    </div>
-    <div class="panel-body" id="body-3">
-      <p style="font-size:12px;color:#3A3A38;margin-bottom:0.5rem;">Operative literacy does not prescribe a single answer. It specifies the conditions a principled answer must meet.</p>
-      <ul class="finding-list">
-        <li>Are process-based alternatives available? Revision history tools and writing process portfolios assess authorship by making the writing process visible rather than classifying output characteristics — without encoding the structural bias pattern detection software reproduces</li>
-        <li>What accountability structures is the institution prepared to enforce? Disaggregated reporting by student demographic, vendor accountability clauses, independent auditing, student appeal mechanisms, and sunset review clauses are minimum conditions for defensible adoption</li>
-        <li>Are the structural conditions of this tool remediable by policy overlays? If the bias is a property of what the tool measures — not a deployment error — policy cannot correct it</li>
-        <li>What does the institution communicate to multilingual students by proceeding with procurement without addressing structural findings?</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="connector connector-med"></div>
-
-  <!-- OUTCOMES -->
-  <div class="outcomes-row">
-
-    <div class="outcome-box outcome-decline" onclick="toggleOutcome('decline')">
-      <div class="outcome-box-header">Decline<br><span style="font-size:9.5px;letter-spacing:0;font-weight:400;text-transform:none;font-style:italic;">Principled refusal</span></div>
-      <div class="outcome-body" id="outcome-decline">
-        <p>Warranted when structural conditions reproduce linguistic hierarchy, process-based alternatives exist, and structural conditions are not remediable by policy overlays.</p>
-        <ul style="margin-top:0.5rem;">
-          <li>Grounds the refusal in structural analysis, not preference or risk aversion</li>
-          <li>Articulates the reasoning in terms accountable to the affected student population</li>
-          <li>Names the alternatives the institution will use instead</li>
-        </ul>
-        <p style="margin-top:0.5rem;font-style:italic;font-size:11px;color:var(--gray);">This is principled operative refusal in the framework's specific sense: accountable rejection of conditions that reproduce harm.</p>
-      </div>
-    </div>
-
-    <div class="outcome-box outcome-conditional" onclick="toggleOutcome('conditional')">
-      <div class="outcome-box-header" style="border-color:var(--amber-mid);">Conditional<br><span style="font-size:9.5px;letter-spacing:0;font-weight:400;text-transform:none;font-style:italic;">Adopt with conditions</span></div>
-      <div class="outcome-body" id="outcome-conditional">
-        <p>Requires all of the following to be explicit conditions of the vendor contract:</p>
-        <ul style="margin-top:0.4rem;">
-          <li>Disaggregated score reporting by student demographic group</li>
-          <li>Vendor accountability clauses with performance thresholds</li>
-          <li>Independent third-party auditing at regular intervals</li>
-          <li>Formal institutional review after two academic years</li>
-          <li>Robust student appeal process with non-punitive default</li>
-        </ul>
-        <p style="margin-top:0.5rem;font-style:italic;font-size:11px;color:var(--gray);">Adoption without these conditions in place is not conditional adoption. It is procurement without structural accountability.</p>
-      </div>
-    </div>
-
-    <div class="outcome-box outcome-defer" onclick="toggleOutcome('defer')">
-      <div class="outcome-box-header" style="border-color:var(--gray-mid);">Defer<br><span style="font-size:9.5px;letter-spacing:0;font-weight:400;text-transform:none;font-style:italic;">Incomplete analysis</span></div>
-      <div class="outcome-body" id="outcome-defer">
-        <p>When the structural analysis is incomplete, defer the decision and return to Level 2.</p>
-        <ul style="margin-top:0.4rem;">
-          <li>Obtain demographic data on the institution's non-native English writing population</li>
-          <li>Request vendor-provided bias testing specific to your student population</li>
-          <li>Evaluate process-based alternatives before proceeding to procurement</li>
-        </ul>
-        <p style="margin-top:0.5rem;font-style:italic;font-size:11px;color:var(--gray);">A procurement timeline imposed by institutional urgency is not grounds to skip structural analysis. Urgency distributes costs; it does not eliminate them.</p>
-      </div>
-    </div>
-
-  </div>
-
-</div><!-- /tree -->
-
-<figcaption style="margin-top:2rem;">
-  <strong>Figure 2.</strong> Three-Level AI Literacy Governance Decision Framework applied to AI detection software procurement (Cole, 2026). Click any panel or outcome to expand. The framework applies the three-level definition of AI literacy — conceptual, structural, and operative — to a governance decision currently facing many higher education institutions. The conceptual-only path at the top of the figure shows the governance failure mode: procurement without structural analysis.
-</figcaption>
+<figcaption style="margin-top:2rem;" id="ag-figcaption"></figcaption>
 
 <!-- ─── PAGE FOOTER ───────────────────────────────────── -->
 <footer class="page-footer">
   <p><strong>Key sources:</strong> Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., and Zou, J. (2023). GPT detectors are biased against non-native English writers. <em>Patterns</em>, 4, 100779. — Weber-Wulff, D., et al. (2023). Testing of detection tools for AI-generated text. <em>International Journal for Educational Integrity</em>, 19(1), 26.</p>
+  <p><strong>Refusal theory:</strong> Simpson, A. (2014). <em>Mohawk Interruptus</em>. — Campt, T. (2017). <em>Listening to Images</em>. — Benjamin, R. (2019). <em>Race After Technology</em>. Cited throughout the Decline outcome in Figure 2 as the theoretical grounding for operative literacy's principled refusal.</p>
   <p><strong>Framework:</strong> Cole, K. K. (2026). AI literacy is not one thing: Conceptual, structural, and operative levels for higher education governance. <em>Pedagogies: An International Journal</em>. https://doi.org/[to assign at publication]</p>
   <p><strong>AI Literacies extension:</strong> NC State Campus Writing and Speaking Program · <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a> · <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
   <div class="cc-notice">
@@ -1077,21 +976,349 @@
     icon.style.transform = open ? '' : 'rotate(180deg)';
   }
 
-  /* ── Keyboard accessibility (Figure 2 interactive elements) */
-  document.querySelectorAll('.f2-panel-header, .outcome-box, .shortcut-header').forEach(function(el) {
-    el.setAttribute('tabindex', '0');
-    el.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+  /* ── Figure 2: audience data ─────────────────────────── */
+  var AG_DATA = {
+    student: {
+      decision: "Using a generative AI tool on a writing assignment when the policy doesn't spell out the specifics",
+      shortcutTitle: "Conceptual-only path",
+      shortcutSteps: ["Is it available?", "Will it save time?", "Is the policy silent?", "Use it"],
+      shortcutResult: "Consequence: a student who reaches conceptual literacy, the tool exists and is easy to use, but not structural or operative literacy never asks whose judgment the assignment is actually built to develop, or whether that judgment just moved from the student to the tool's training corpus.",
+      levels: [
+        {
+          name: "Conceptual Literacy",
+          question: "What is this draft actually made of?",
+          keyQ: "The conceptual question is the one the framework asks at any scale: whose knowledge is encoded. At the scale of a sentence, that means asking which corpus's vocabulary and syntax are standing in for the student's own.",
+          points: [
+            "Name the exact function in use: drafting from a prompt, revising a sentence, generating an outline, checking grammar. Each is a different act, not one blanket “using AI.”",
+            "The tool predicts the next most probable word from its training data. It has no access to the assignment's purpose, the course's learning goals, or the writer's own history with the piece.",
+            "A generated draft is not a source, a fact, or a citation. It is one corpus's answer to what a finished sentence sounds like, offered as though it were neutral."
+          ]
+        },
+        {
+          name: "Structural Literacy",
+          question: "Whose standard is the draft actually meeting?",
+          keyQ: "The structural question, who controls this system, is not abstract at the scale of one paragraph. The organization that trained the model controls what counts as fluent in that paragraph, not the student and not the course.",
+          points: [
+            "Generative output favors the most statistically probable phrasing, drawn overwhelmingly from dominant, standardized English. Leaning on it to draft or “fix” prose pulls writing toward that standard and away from a writer's own voice, including dialect and process, a cost multilingual writers carry disproportionately.",
+            "Delegating a sentence to the tool delegates the judgment behind it, and judgment is usually the thing an assignment is built to develop and grade.",
+            "The tool has no sense of what sounds like the person writing. Only the writer does, and only if the writer's own judgment stays in the loop."
+          ]
+        },
+        {
+          name: "Operative Literacy",
+          question: "What does responsible use require here?",
+          keyQ: "Operative literacy asks what warrants refusal. Refusing the tool here is not a blanket rule against it. It is declining to let a training corpus's norms substitute for a developing voice on a task built to assess that voice.",
+          points: [
+            "Writing with the tool keeps a person's own judgment active at every stage: prompting, evaluating, revising, deciding what to keep. Writing for the tool accepts its output as the judgment, then adjusts everything else to match.",
+            "Silence in a policy is not permission. Ask the instructor before assuming.",
+            "Disclosure protects the writer as much as it satisfies a rule. Note what was used and how, the way a source gets cited."
+          ]
+        }
+      ],
+      diamonds: [
+        { q: "Can the specific use be named in one sentence?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Name the use before opening the tool" },
+        { q: "Does using the tool here hand over judgment the assignment is meant to develop?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Reread the assignment's actual learning goal before deciding" }
+      ],
+      outcomes: {
+        decline: {
+          body: "Warranted when the assignment's purpose is the judgment the tool would otherwise supply, not as a default position applied to every task.",
+          points: ["Names which judgment is being protected (a sentence-level choice, an argument's structure, a personal reading of a text)", "Applies to this task, not to AI use generally", "Gets stated to the instructor, not just decided privately"],
+          note: "Refusal theory (Simpson, 2014; Campt, 2017; Benjamin, 2019): accountable rejection of conditions that reproduce harm, grounded in analysis rather than preference."
+        },
+        conditional: {
+          body: "Requires each of the following to be explicit, not assumed:",
+          points: ["The specific function used (outlining, checking grammar) named in the disclosure", "A limit on what the tool touches (a first pass, not a final draft)", "A note on what was used and how, treated the way a source gets cited"],
+          note: "Conditional use without a stated limit is not conditional. It is unexamined use with an explanation attached afterward."
+        },
+        defer: {
+          body: "When the policy is silent, silence is not permission.",
+          points: ["Ask what the assignment is actually trying to develop before assuming an answer", "Treat an unclear policy as an open question, not a loophole"],
+          note: "A deadline is not grounds to skip the question. It only changes how soon the answer is needed."
+        }
+      },
+      caption: "Three-Level AI Literacy Governance Decision Framework, applied to a student's choice about using a generative AI tool on one assignment (Cole, 2026)."
+    },
+    faculty: {
+      decision: "Setting the AI policy for one assignment, not the whole syllabus",
+      shortcutTitle: "Conceptual-only path",
+      shortcutSteps: ["Might students use AI on this?", "Add a line to the syllabus", "Ban or allow, campus default", "Move on"],
+      shortcutResult: "Consequence: a policy written at the conceptual level alone treats every use of the tool as the same act, and leaves the assignment rewarding exactly the fluent, generic surface the tool produces most easily, whichever way the policy line reads.",
+      levels: [
+        {
+          name: "Conceptual Literacy",
+          question: "What is the assignment actually asking the tool to touch?",
+          keyQ: "The conceptual question, whose knowledge is encoded, applies to the assignment before it applies to any student's use of it. A policy has to name what capability is at stake before it can say anything true about it.",
+          points: [
+            "Name it: outlining, drafting full paragraphs, revising for clarity, generating discussion questions, summarizing a source. A blanket allow or ban treats all of these as one thing. They are not.",
+            "Know what the tool can and cannot verify. It does not check facts against the course's actual readings, and it has no access to a rubric."
+          ]
+        },
+        {
+          name: "Structural Literacy",
+          question: "Who controls what counts as good writing here?",
+          keyQ: "The structural question is who controls this system, applied to the assignment's own design. If the assignment rewards the same fluent, generic surface the tool produces easily, control over what counts as good writing has already shifted from the instructor's stated learning goal to whatever the tool outputs.",
+          points: [
+            "If the assignment rewards fluent, conventional surface features, grammar, polish, a familiar structure, AI-generated text clears that bar easily, regardless of the thinking or revision behind it.",
+            "A blanket ban falls hardest on students who already write more slowly or less normatively, including multilingual writers and students using writing tools for reasons unrelated to the assignment's learning goal.",
+            "The assignment's design, not a student's AI use, determines whether the learning goal stays visible."
+          ]
+        },
+        {
+          name: "Operative Literacy",
+          question: "What does the assignment need to make visible?",
+          keyQ: "Operative literacy asks what warrants refusal, at the level of one assignment rather than a syllabus-wide default. Restriction is warranted when the task's purpose is the judgment the tool would otherwise supply, and it is a finding about the assignment, not a verdict on the student.",
+          points: [
+            "A redesign that surfaces process, drafts, a reflection, an in-class component, a revision log, makes the thinking visible again, regardless of which tools were involved.",
+            "State the policy at the assignment level, in the language of what is being assessed, rather than one AI clause bolted onto the syllabus.",
+            "Build an accommodation path in from the start, rather than as an exception requested after the fact."
+          ]
+        }
+      ],
+      diamonds: [
+        { q: "Can the specific AI capability at stake be named?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Name the capability before writing the policy line" },
+        { q: "Would AI-generated text clear this assignment's actual bar?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Compare a generated response against the rubric before deciding" }
+      ],
+      outcomes: {
+        decline: {
+          body: "Warranted when the task's whole purpose is the judgment AI would otherwise supply, stated as reasoning, not as a blanket rule copied from a syllabus template.",
+          points: ["Names the specific capability being restricted, not “AI” generally", "States what the assignment is protecting (a student's own argument, a specific disciplinary skill)", "Applies to this assignment, not automatically to every assignment in the course"],
+          note: "Refusal theory (Simpson, 2014; Campt, 2017; Benjamin, 2019): accountable rejection of conditions that reproduce harm, grounded in analysis rather than preference."
+        },
+        conditional: {
+          body: "Requires the assignment itself, not just the syllabus, to state:",
+          points: ["Which functions are permitted and which are not", "What disclosure looks like and where it goes (a note, an appendix, a reflection)", "How the accommodation path works for students who need it"],
+          note: "A general AI clause in the syllabus is not this. It is the absence of this, with a placeholder standing in for it."
+        },
+        defer: {
+          body: "When AI-generated text could pass the assignment undetected, the design is the finding, not the student.",
+          points: ["Identify what the assignment is actually rewarding right now", "Redesign to surface process before writing a policy for the old version"],
+          note: "A policy decision made before the redesign answers a question the assignment can't yet ask."
+        }
+      },
+      caption: "Three-Level AI Literacy Governance Decision Framework, applied to a faculty member's policy for one assignment (Cole, 2026)."
+    },
+    professional: {
+      decision: "Using AI to help produce a work product with your name on it",
+      shortcutTitle: "Conceptual-only path",
+      shortcutSteps: ["Does it work?", "Is it faster?", "Does the output look right?", "Ship it"],
+      shortcutResult: "Consequence: generic competence gets mistaken for correctness, and the review step that would have caught the difference, this client, this case, never happens, because the draft already looked finished.",
+      levels: [
+        {
+          name: "Conceptual Literacy",
+          question: "What is the tool actually doing to this task?",
+          keyQ: "The conceptual question, whose knowledge is encoded, asks what expertise a generated draft is actually standing in for, before any judgment about risk is possible.",
+          points: [
+            "Name the function: drafting a first pass, summarizing a document, generating boilerplate, checking a section against a style guide. Each carries a different level of risk.",
+            "The output carries no warranty of accuracy and no professional liability. Both stay with the person who signs off on it."
+          ]
+        },
+        {
+          name: "Structural Literacy",
+          question: "Whose standard, and whose information, is this?",
+          keyQ: "The structural question, who controls this system, has two edges in a professional context: who controls the norm the output is measured against, and who controls where the information in it goes next.",
+          points: [
+            "A generated draft reflects the tool's training distribution, not an organization's standards, a client's specific context, or field-specific expertise. It reads as generically competent, not as correct for this case.",
+            "Client, patient, or proprietary information entered into the tool may leave the organization's control, on terms the vendor sets. That is a structural property of the tool, not a setting to adjust after the fact."
+          ]
+        },
+        {
+          name: "Operative Literacy",
+          question: "What does accountability require?",
+          keyQ: "Operative literacy asks what warrants refusal. In a professional context, refusal is warranted when the task is the expertise being paid for, and using the tool first would anchor the outcome to its answer before that expertise gets a turn.",
+          points: [
+            "Whatever review process applies to work produced without AI applies in full to work drafted with it.",
+            "Employer policy, client agreements, and confidentiality obligations set the floor. Check before the material goes in, not after.",
+            "Some tasks are the judgment call itself. Drafting one with the tool first tends to anchor the outcome to its answer, instead of testing the judgment."
+          ]
+        }
+      ],
+      diamonds: [
+        { q: "Can the specific task and its risk level be named?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Name the task before using the tool on it" },
+        { q: "Does the output represent generic competence rather than judgment specific to this client or case?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Compare the draft against this client's history or case file before deciding" }
+      ],
+      outcomes: {
+        decline: {
+          body: "Warranted when the task is the expertise being paid for, and drafting it with the tool first would anchor the outcome to the tool's answer before the professional's own judgment gets a turn.",
+          points: ["Names the specific judgment being protected (a diagnosis, a legal read, a strategic recommendation)", "Applies to this task, not to AI use in the role generally", "Gets documented the same way any professional judgment call does"],
+          note: "Refusal theory (Simpson, 2014; Campt, 2017; Benjamin, 2019): accountable rejection of conditions that reproduce harm, grounded in analysis rather than preference."
+        },
+        conditional: {
+          body: "Requires the same review a non-AI draft would get, applied in full, plus:",
+          points: ["Confirmation that no client, patient, or proprietary information went into the tool without clearance", "A named reviewer, not an assumption that the drafter also reviewed", "Disclosure where employer policy or client agreement requires it"],
+          note: "A faster draft is not a reviewed draft. The review is what the client or employer is actually relying on."
+        },
+        defer: {
+          body: "When employer policy or client confidentiality terms are unclear, proceeding is a bet, not a decision.",
+          points: ["Confirm what the vendor's data terms actually allow for this category of information", "Confirm what the employer's policy says before the material goes in, not after"],
+          note: "A task that feels routine is not evidence the terms have been checked. It is often exactly why they haven't been."
+        }
+      },
+      caption: "Three-Level AI Literacy Governance Decision Framework, applied to a professional's use of a generative AI tool on one work product (Cole, 2026)."
+    },
+    institution: {
+      decision: "Adopting AI detection software for academic integrity",
+      shortcutTitle: "Conceptual-only governance path",
+      shortcutSteps: ["Is a tool available?", "What does it cost?", "Budget available?", "Purchase"],
+      shortcutResult: "Consequence: a governance body with conceptual literacy but not structural literacy distributes the costs of the tool's failure modes, a 61.3% false positive rate for non-native English writers, onto the students least protected from the consequences of a false accusation of academic misconduct.",
+      levels: [
+        {
+          name: "Conceptual Literacy",
+          question: "What is this tool and how does it function?",
+          keyQ: "Before any structural analysis is possible, the governance body must be able to accurately describe what it is being asked to purchase.",
+          points: [
+            "AI detection software classifies text by measuring perplexity (the predictability of word sequences) and burstiness (variation in sentence complexity)",
+            "Its output is a probability score estimating the likelihood of AI generation, not a verdict on authorship and not a determination of academic misconduct",
+            "These tools are trained on text corpora with specific distributional properties that shape their classification behavior",
+            "Detectors require regular retraining as language model outputs evolve; accuracy at purchase does not guarantee accuracy at deployment"
+          ]
+        },
+        {
+          name: "Structural Literacy",
+          question: "Whose writing does this tool treat equitably?",
+          keyQ: "The structural question is not whether the tool works in general. It is whose writing the tool's design encodes as the standard against which all text is measured.",
+          points: [
+            "Seven widely-used GPT detectors maintained near-perfect accuracy for US student writing while producing a 61.3% average false positive rate for non-native English speakers <span class=\"cite\">(Liang et al., 2023, Patterns)</span>",
+            "Non-native English writers produce text with characteristics, more predictable vocabulary, simpler syntax, formulaic transitions, that detectors associate with AI output; this is a structural property of what the tools measure, not a calibration error correctable by software update",
+            "None of 14 tested detection tools reached 80% overall accuracy; accuracy degraded further when text was paraphrased <span class=\"cite\">(Weber-Wulff et al., 2023, International Journal for Educational Integrity)</span>",
+            "A single prompting strategy reduced AI text detection rates from 100% to 13%, the same tools that misidentify non-native English writing are easily circumvented by actual AI use <span class=\"cite\">(Liang et al., 2023)</span>"
+          ]
+        },
+        {
+          name: "Operative Literacy",
+          question: "Given the structural analysis, what does a principled decision require?",
+          keyQ: "Operative literacy does not prescribe a single answer. It specifies the conditions a principled answer must meet.",
+          points: [
+            "Are process-based alternatives available? Revision history tools and writing process portfolios assess authorship by making the writing process visible rather than classifying output characteristics, without encoding the structural bias pattern detection software reproduces",
+            "What accountability structures is the institution prepared to enforce? Disaggregated reporting by student demographic, vendor accountability clauses, independent auditing, student appeal mechanisms, and sunset review clauses are minimum conditions for defensible adoption",
+            "Are the structural conditions of this tool remediable by policy overlays? If the bias is a property of what the tool measures, not a deployment error, policy cannot correct it",
+            "What does the institution communicate to multilingual students by proceeding with procurement without addressing structural findings?"
+          ]
+        }
+      ],
+      diamonds: [
+        { q: "Can the institution accurately describe what it is purchasing and what the output represents?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Gather conceptual information before proceeding to procurement" },
+        { q: "Does this tool encode linguistic hierarchy as a structural property of its design?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Return to structural analysis with institution-specific population data" }
+      ],
+      outcomes: {
+        decline: {
+          body: "Warranted when structural conditions reproduce linguistic hierarchy, process-based alternatives exist, and structural conditions are not remediable by policy overlays.",
+          points: ["Grounds the refusal in structural analysis, not preference or risk aversion", "Articulates the reasoning in terms accountable to the affected student population", "Names the alternatives the institution will use instead"],
+          note: "This is principled operative refusal in the framework's specific sense: accountable rejection of conditions that reproduce harm (Simpson, 2014; Campt, 2017; Benjamin, 2019)."
+        },
+        conditional: {
+          body: "Requires all of the following to be explicit conditions of the vendor contract:",
+          points: ["Disaggregated score reporting by student demographic group", "Vendor accountability clauses with performance thresholds", "Independent third-party auditing at regular intervals", "Formal institutional review after two academic years", "Robust student appeal process with non-punitive default"],
+          note: "Adoption without these conditions in place is not conditional adoption. It is procurement without structural accountability."
+        },
+        defer: {
+          body: "When the structural analysis is incomplete, defer the decision and return to Level 2.",
+          points: ["Obtain demographic data on the institution's non-native English writing population", "Request vendor-provided bias testing specific to your student population", "Evaluate process-based alternatives before proceeding to procurement"],
+          note: "A procurement timeline imposed by institutional urgency is not grounds to skip structural analysis. Urgency distributes costs; it does not eliminate them."
+        }
+      },
+      caption: "Three-Level AI Literacy Governance Decision Framework applied to AI detection software procurement (Cole, 2026)."
+    }
+  };
+  var AG_ORDER = ["student", "faculty", "professional", "institution"];
+
+  function agRenderShortcut(d) {
+    document.getElementById("ag-shortcut-title").textContent = d.shortcutTitle;
+    var flow = document.getElementById("ag-shortcut-flow");
+    flow.innerHTML = "";
+    d.shortcutSteps.forEach(function (step, i) {
+      var span = document.createElement("span");
+      var last = i === d.shortcutSteps.length - 1;
+      span.className = "shortcut-step";
+      if (last) span.style.cssText = "background:#D85A30;color:white;border-color:#993C1D;font-weight:600;";
+      span.textContent = step;
+      flow.appendChild(span);
+      if (!last) {
+        var arrow = document.createElement("span");
+        arrow.className = "shortcut-arrow";
+        arrow.textContent = "→";
+        flow.appendChild(arrow);
+      }
+    });
+    document.getElementById("ag-shortcut-result").textContent = d.shortcutResult;
+  }
+
+  function agRenderDiamond(dia) {
+    return '<div class="diamond-outer"><div class="diamond">' + dia.q + '</div></div>' +
+      '<div class="branches"><div class="branch-yes"><div class="branch-line"></div>' +
+      '<div class="branch-label yes">' + dia.yes + '</div><div class="branch-line"></div></div>' +
+      '<div class="branch-no" style="align-items:flex-start;padding-left:1rem;"><div class="branch-line"></div>' +
+      '<div class="branch-label no">' + dia.noLabel + '</div><div class="halt-box">' + dia.halt + '</div></div></div>';
+  }
+
+  function agRenderOutcome(kind, label, sub, data) {
+    var borderStyle = kind === "conditional" ? ' style="border-color:var(--amber-mid);"' : (kind === "defer" ? ' style="border-color:var(--gray-mid);"' : '');
+    var pts = data.points.map(function (p) { return "<li>" + p + "</li>"; }).join("");
+    return '<div class="outcome-box outcome-' + kind + '" onclick="toggleOutcome(\'' + kind + '\')">' +
+      '<div class="outcome-box-header"' + borderStyle + '>' + label + '<br><span style="font-size:9.5px;letter-spacing:0;font-weight:400;text-transform:none;font-style:italic;">' + sub + '</span></div>' +
+      '<div class="outcome-body" id="outcome-' + kind + '"><p>' + data.body + '</p><ul style="margin-top:0.4rem;">' + pts + '</ul>' +
+      '<p style="margin-top:0.5rem;font-style:italic;font-size:11px;color:var(--gray);">' + data.note + '</p></div></div>';
+  }
+
+  function agRender(audience) {
+    var d = AG_DATA[audience];
+    document.getElementById("ag-decision").textContent = d.decision;
+    agRenderShortcut(d);
+    document.getElementById("shortcut-body").classList.remove("open");
+    document.getElementById("shortcut-icon").style.transform = "";
+
+    var html = '<div class="start-node">Governance decision: ' + d.decision + '</div>';
+    html += '<div class="connector connector-med"></div>';
+
+    d.levels.forEach(function (lvl, i) {
+      var n = i + 1;
+      html += '<div class="level-panel level-' + n + '" style="' + (n > 1 ? 'margin-top:0.3rem;' : '') + '">';
+      html += '<div class="f2-panel-header f2-panel-header-' + n + '" onclick="togglePanel(' + n + ')">';
+      html += '<div class="panel-title-group"><span class="panel-level">Level ' + n + '</span><span class="panel-name">' + lvl.name + '</span></div>';
+      html += '<span class="panel-question">' + lvl.question + '</span>';
+      html += '<span class="toggle-icon" id="icon-' + n + '">▾</span></div>';
+      html += '<div class="panel-body open" id="body-' + n + '">';
+      html += '<p style="font-size:12px;color:#3A3A38;margin-bottom:0.5rem;">' + lvl.keyQ + '</p>';
+      html += '<ul class="finding-list">' + lvl.points.map(function (p) { return "<li>" + p + "</li>"; }).join("") + '</ul>';
+      html += '</div></div>';
+      if (i < d.diamonds.length) {
+        html += '<div class="connector connector-short"></div>';
+        html += agRenderDiamond(d.diamonds[i]);
+      }
+    });
+
+    html += '<div class="connector connector-med"></div>';
+    html += '<div class="outcomes-row">';
+    html += agRenderOutcome("decline", "Decline", "Principled refusal", d.outcomes.decline);
+    html += agRenderOutcome("conditional", "Conditional", "Adopt with conditions", d.outcomes.conditional);
+    html += agRenderOutcome("defer", "Defer", "Incomplete analysis", d.outcomes.defer);
+    html += '</div>';
+
+    document.getElementById("ag-tree").innerHTML = html;
+    document.getElementById("ag-figcaption").innerHTML =
+      '<strong>Figure 2.</strong> ' + d.caption + ' Click any panel or outcome to expand. The conceptual-only path above shows the governance failure mode particular to this audience: a decision made without structural or operative analysis.';
+
+    document.querySelectorAll(".f2-panel-header, .outcome-box").forEach(function (el) {
+      el.setAttribute("tabindex", "0");
+      el.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); }
+      });
+    });
+  }
+
+  document.querySelectorAll(".audience-tab").forEach(function (tab) {
+    tab.addEventListener("click", function () {
+      document.querySelectorAll(".audience-tab").forEach(function (t) { t.setAttribute("aria-selected", "false"); });
+      tab.setAttribute("aria-selected", "true");
+      agRender(tab.getAttribute("data-audience"));
     });
   });
 
-  /* ── Open Figure 2 level panels by default ───────────── */
-  [1, 2, 3].forEach(function(n) {
-    var body = document.getElementById('body-' + n);
-    var hdr  = body.previousElementSibling;
-    body.classList.add('open');
-    hdr.classList.add('open');
+  document.getElementById("shortcut-hdr").setAttribute("tabindex", "0");
+  document.getElementById("shortcut-hdr").addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleShortcut(); }
   });
+
+  agRender("institution");
 
   /* ── Page nav dropdown ───────────────────────────────── */
   function togglePageNav() {
