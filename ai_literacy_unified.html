@@ -626,6 +626,67 @@
     padding-bottom: 0.5rem;
     border-bottom: 0.5px dashed var(--line);
   }
+
+  /* ─── CHECKPOINTS (Figure 2, interactive) ───────────── */
+  .checkpoint {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1rem 1rem;
+    width: 100%;
+  }
+  .checkpoint-tag, .allows-tag {
+    display: inline-block;
+    font-size: 9.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    color: var(--ncr);
+    background: var(--s-gray-lt);
+    border-radius: 3px;
+    padding: 2px 7px;
+    margin-bottom: 0.55rem;
+  }
+  .checkpoint-q {
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 0.75rem;
+  }
+  .checkpoint-btns { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
+  .checkpoint-btn {
+    font-family: var(--s-font);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 0.4rem 1.1rem;
+    border-radius: 20px;
+    border: 1px solid var(--line);
+    background: var(--s-gray-lt);
+    color: var(--s-gray);
+    cursor: pointer;
+  }
+  .checkpoint-btn:hover { border-color: var(--ncr); color: var(--ncr); }
+  .checkpoint-btn.selected.yes { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .checkpoint-btn.selected.no { background: var(--coral-mid); border-color: var(--coral-mid); color: #fff; }
+  .checkpoint-response {
+    font-size: 11.5px;
+    line-height: 1.65;
+    padding: 0.65rem 0.8rem;
+    border-radius: 6px;
+    margin: 0;
+  }
+  .checkpoint-response.yes { background: var(--teal-light); color: #085041; }
+  .checkpoint-response.no { background: var(--warn-light); color: var(--warn); }
+  .locked-hint {
+    font-size: 11px;
+    color: var(--s-gray-mid);
+    text-align: center;
+    font-style: italic;
+    padding: 0.6rem 0;
+    width: 100%;
+  }
+  .allows-lead { font-size: 12px; color: var(--gray); margin: 0.3rem 0 0.9rem; }
 </style>
 </head>
 <body>
@@ -1242,12 +1303,67 @@
     document.getElementById("ag-shortcut-result").textContent = d.shortcutResult;
   }
 
-  function agRenderDiamond(dia) {
-    return '<div class="diamond-outer"><div class="diamond">' + dia.q + '</div></div>' +
-      '<div class="branches"><div class="branch-yes"><div class="branch-line"></div>' +
-      '<div class="branch-label yes">' + dia.yes + '</div><div class="branch-line"></div></div>' +
-      '<div class="branch-no" style="align-items:flex-start;padding-left:1rem;"><div class="branch-line"></div>' +
-      '<div class="branch-label no">' + dia.noLabel + '</div><div class="halt-box">' + dia.halt + '</div></div></div>';
+  function agEsc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+  }
+
+  function agCap(s) {
+    var t = s.trim();
+    t = t.charAt(0).toUpperCase() + t.slice(1);
+    if (!/[.!?]$/.test(t)) t += ".";
+    return t;
+  }
+
+  function agRenderCheckpoint(dia, idx) {
+    var yesLabel = dia.yes.split("→")[0].trim();
+    var noLabel = dia.noLabel.split("→")[0].trim();
+    var yesRest = dia.yes.split("→")[1];
+    var yesText = agCap(yesRest ? yesRest : "continue");
+    return '<div class="checkpoint" id="cp-' + idx + '" data-yes-text="' + agEsc(yesText) + '" data-halt-text="' + agEsc(dia.halt) + '">' +
+      '<span class="checkpoint-tag">Asks</span>' +
+      '<p class="checkpoint-q">' + dia.q + '</p>' +
+      '<div class="checkpoint-btns">' +
+        '<button type="button" class="checkpoint-btn yes" id="cp-' + idx + '-yes" onclick="agAnswer(' + idx + ',\'yes\')">' + yesLabel + '</button>' +
+        '<button type="button" class="checkpoint-btn no" id="cp-' + idx + '-no" onclick="agAnswer(' + idx + ',\'no\')">' + noLabel + '</button>' +
+      '</div>' +
+      '<p class="checkpoint-response" id="cp-' + idx + '-response" hidden></p>' +
+    '</div>';
+  }
+
+  function agAnswer(idx, val) {
+    var cp = document.getElementById('cp-' + idx);
+    var yesBtn = document.getElementById('cp-' + idx + '-yes');
+    var noBtn = document.getElementById('cp-' + idx + '-no');
+    var resp = document.getElementById('cp-' + idx + '-response');
+    var stage = document.getElementById('ag-stage-' + (idx + 1));
+    var hint = document.getElementById('ag-stage-' + (idx + 1) + '-hint');
+    yesBtn.classList.toggle('selected', val === 'yes');
+    noBtn.classList.toggle('selected', val === 'no');
+    resp.hidden = false;
+    if (val === 'yes') {
+      resp.className = 'checkpoint-response yes';
+      resp.textContent = cp.getAttribute('data-yes-text');
+      if (stage) stage.hidden = false;
+      if (hint) hint.hidden = true;
+    } else {
+      resp.className = 'checkpoint-response no';
+      resp.textContent = cp.getAttribute('data-halt-text');
+      if (stage) stage.hidden = true;
+      if (hint) hint.hidden = false;
+    }
+  }
+
+  function agRenderLevelPanel(lvl, n) {
+    var html = '<div class="level-panel level-' + n + '" style="' + (n > 1 ? 'margin-top:0.3rem;' : '') + '">';
+    html += '<div class="f2-panel-header f2-panel-header-' + n + '" onclick="togglePanel(' + n + ')">';
+    html += '<div class="panel-title-group"><span class="panel-level">Level ' + n + '</span><span class="panel-name">' + lvl.name + '</span></div>';
+    html += '<span class="panel-question">' + lvl.question + '</span>';
+    html += '<span class="toggle-icon" id="icon-' + n + '">▾</span></div>';
+    html += '<div class="panel-body open" id="body-' + n + '">';
+    html += '<p style="font-size:12px;color:#3A3A38;margin-bottom:0.5rem;">' + lvl.keyQ + '</p>';
+    html += '<ul class="finding-list">' + lvl.points.map(function (p) { return "<li>" + p + "</li>"; }).join("") + '</ul>';
+    html += '</div></div>';
+    return html;
   }
 
   function agRenderOutcome(kind, label, sub, data) {
@@ -1269,33 +1385,35 @@
     var html = '<div class="start-node">Governance decision: ' + d.decision + '</div>';
     html += '<div class="connector connector-med"></div>';
 
-    d.levels.forEach(function (lvl, i) {
-      var n = i + 1;
-      html += '<div class="level-panel level-' + n + '" style="' + (n > 1 ? 'margin-top:0.3rem;' : '') + '">';
-      html += '<div class="f2-panel-header f2-panel-header-' + n + '" onclick="togglePanel(' + n + ')">';
-      html += '<div class="panel-title-group"><span class="panel-level">Level ' + n + '</span><span class="panel-name">' + lvl.name + '</span></div>';
-      html += '<span class="panel-question">' + lvl.question + '</span>';
-      html += '<span class="toggle-icon" id="icon-' + n + '">▾</span></div>';
-      html += '<div class="panel-body open" id="body-' + n + '">';
-      html += '<p style="font-size:12px;color:#3A3A38;margin-bottom:0.5rem;">' + lvl.keyQ + '</p>';
-      html += '<ul class="finding-list">' + lvl.points.map(function (p) { return "<li>" + p + "</li>"; }).join("") + '</ul>';
-      html += '</div></div>';
-      if (i < d.diamonds.length) {
-        html += '<div class="connector connector-short"></div>';
-        html += agRenderDiamond(d.diamonds[i]);
-      }
-    });
+    html += agRenderLevelPanel(d.levels[0], 1);
+    html += '<div class="connector connector-short"></div>';
+    html += agRenderCheckpoint(d.diamonds[0], 1);
 
+    html += '<p class="locked-hint" id="ag-stage-2-hint">Answer the checkpoint above to continue.</p>';
+    html += '<div id="ag-stage-2" hidden>';
+    html += '<div class="connector connector-short"></div>';
+    html += agRenderLevelPanel(d.levels[1], 2);
+    html += '<div class="connector connector-short"></div>';
+    html += agRenderCheckpoint(d.diamonds[1], 2);
+    html += '</div>';
+
+    html += '<p class="locked-hint" id="ag-stage-3-hint" hidden>Answer the checkpoint above to continue.</p>';
+    html += '<div id="ag-stage-3" hidden>';
+    html += '<div class="connector connector-short"></div>';
+    html += agRenderLevelPanel(d.levels[2], 3);
     html += '<div class="connector connector-med"></div>';
+    html += '<span class="allows-tag">Allows</span>';
+    html += '<p class="allows-lead">These two checkpoints determine which of the following a reader typically lands on. Operative literacy does not prescribe a single answer, so all three stay open to read.</p>';
     html += '<div class="outcomes-row">';
     html += agRenderOutcome("decline", "Decline", "Principled refusal", d.outcomes.decline);
     html += agRenderOutcome("conditional", "Conditional", "Adopt with conditions", d.outcomes.conditional);
     html += agRenderOutcome("defer", "Defer", "Incomplete analysis", d.outcomes.defer);
     html += '</div>';
+    html += '</div>';
 
     document.getElementById("ag-tree").innerHTML = html;
     document.getElementById("ag-figcaption").innerHTML =
-      '<strong>Figure 2.</strong> ' + d.caption + ' Click any panel or outcome to expand. The conceptual-only path above shows the governance failure mode particular to this audience: a decision made without structural or operative analysis.';
+      '<strong>Figure 2.</strong> ' + d.caption + ' Answer each checkpoint (Asks) to work through the levels in order and reach the range of outcomes it allows (Allows). The conceptual-only path above shows the governance failure mode particular to this audience: a decision made without structural or operative analysis.';
 
     document.querySelectorAll(".f2-panel-header, .outcome-box").forEach(function (el) {
       el.setAttribute("tabindex", "0");
