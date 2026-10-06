@@ -1089,7 +1089,7 @@
       ],
       diamonds: [
         { q: "Can the specific use be named in one sentence?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Name the use before opening the tool" },
-        { q: "Does using the tool here hand over judgment the assignment is meant to develop?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Reread the assignment's actual learning goal before deciding" }
+        { q: "Is the judgment this function supplies the same judgment the assignment is built to develop?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Reread the assignment's actual learning goal before deciding" }
       ],
       outcomes: {
         decline: {
@@ -1367,7 +1367,7 @@
   function agRenderLevelPanel(lvl, n) {
     var html = '<div class="level-panel level-' + n + '" style="' + (n > 1 ? 'margin-top:0.3rem;' : '') + '">';
     html += '<div class="f2-panel-header f2-panel-header-' + n + '" onclick="togglePanel(' + n + ')">';
-    html += '<div class="panel-title-group"><span class="panel-level">Level ' + n + '</span><span class="panel-name">' + lvl.name + '</span></div>';
+    html += '<div class="panel-title-group"><span class="panel-level">Level ' + n + ' · ' + ['Describe', 'Analyze', 'Decide'][n - 1] + '</span><span class="panel-name">' + lvl.name + '</span></div>';
     html += '<span class="panel-question">' + lvl.question + '</span>';
     html += '<span class="toggle-icon" id="icon-' + n + '">▾</span></div>';
     html += '<div class="panel-body open" id="body-' + n + '">';
@@ -1414,7 +1414,7 @@
     html += agRenderLevelPanel(d.levels[2], 3);
     html += '<div class="connector connector-med"></div>';
     html += '<span class="allows-tag">Allows</span>';
-    html += '<p class="allows-lead">These two checkpoints determine which of the following a reader typically lands on. Operative literacy does not prescribe a single answer, so all three stay open to read.</p>';
+    html += '<p class="allows-lead">These two checkpoints inform the choice among the following without making it. Operative literacy does not prescribe a single answer, so all three stay open to read.</p>';
     html += '<div class="outcomes-row">';
     html += agRenderOutcome("decline", "Decline", "Principled refusal", d.outcomes.decline);
     html += agRenderOutcome("conditional", "Conditional", "Adopt with conditions", d.outcomes.conditional);
