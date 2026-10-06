@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Literacy Is Not One Thing — Cole (2026)</title>
+<title>AI Literacy Is Not One Thing | Cole (2026)</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -34,7 +34,7 @@
     --ncr-dark:     #990000;
     --s-black:      #1a1a1a;
     --s-gray:       #444444;
-    --s-gray-mid:   #767676;
+    --s-gray-mid:   #595959;
     --s-gray-lt:    #f4f4f4;
     --s-font:       -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
@@ -58,7 +58,7 @@
     border-bottom: 2px solid var(--ncr);
   }
   .eyebrow {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--s-gray-mid);
@@ -87,7 +87,7 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--s-gray-mid);
   }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
@@ -124,7 +124,7 @@
     margin: 1.1rem 0;
   }
   .callout-head {
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--ncr);
@@ -144,14 +144,14 @@
   .area-cell {
     border-radius: 6px;
     padding: 0.75rem 0.9rem;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.65;
     color: #3A3A38;
     border: 0.5px solid var(--line);
     background: var(--white);
   }
   .area-cell-n {
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 600;
@@ -169,8 +169,8 @@
   /* ─── FIGURE WRAPPER ────────────────────────────────── */
   .figure-wrap { margin: 1.75rem 0 0.5rem; }
   .fig-instruction {
-    font-size: 11.5px;
-    color: #888;
+    font-size: 12.5px;
+    color: #595959;
     text-align: center;
     margin-bottom: 8px;
     font-style: italic;
@@ -216,14 +216,14 @@
   .def-title-2 { color: #085041; }
   .def-title-3 { color: #712B13; }
   .def-close {
-    font-size: 11px; color: #aaa; cursor: pointer;
+    font-size: 12px; color: #595959; cursor: pointer;
     background: none; border: none; font-family: Georgia, serif; padding: 0;
   }
-  .def-close:hover { color: #555; }
+  .def-close:hover { color: #1a1a1a; }
   .def-body { color: #333; }
 
   figcaption {
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: #555;
     margin-top: 1.5rem;
     line-height: 1.75;
@@ -232,8 +232,8 @@
   }
   figcaption strong { font-weight: 600; color: #2C2C2A; }
   .citation {
-    font-size: 11px;
-    color: #999;
+    font-size: 12px;
+    color: #595959;
     margin-top: 0.6rem;
     font-style: italic;
   }
@@ -254,7 +254,7 @@
     color: var(--white);
     border-radius: 50px;
     padding: 0.7rem 2rem;
-    font-size: 12.5px;
+    font-size: 13.5px;
     font-weight: 600;
     letter-spacing: 0.03em;
     text-align: center;
@@ -284,7 +284,7 @@
   .f2-panel-header:hover { filter: brightness(0.97); }
   .panel-title-group { display: flex; align-items: baseline; gap: 0.6rem; }
   .panel-level {
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 600;
@@ -296,7 +296,7 @@
   .level-1 .panel-name { color: var(--purple); }
   .level-2 .panel-name { color: var(--teal); }
   .level-3 .panel-name { color: var(--coral); }
-  .panel-question { font-size: 12px; color: var(--gray); font-style: italic; }
+  .panel-question { font-size: 13px; color: var(--gray); font-style: italic; }
   .toggle-icon { font-size: 13px; color: var(--gray); transition: transform 0.2s; flex-shrink: 0; }
   .f2-panel-header.open .toggle-icon { transform: rotate(180deg); }
   .panel-body {
@@ -304,7 +304,7 @@
     padding: 1rem 1.1rem 1.1rem;
     background: var(--white);
     border-top: 0.5px solid var(--line);
-    font-size: 12.5px;
+    font-size: 13.5px;
   }
   .panel-body.open { display: block; animation: fadeIn 0.18s ease; }
 
@@ -324,20 +324,20 @@
     display: flex;
     gap: 0.5rem;
     align-items: flex-start;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.6;
     color: #3A3A38;
   }
   .finding-list li::before {
     content: '→';
     flex-shrink: 0;
-    font-size: 11px;
+    font-size: 12px;
     margin-top: 2px;
   }
   .level-1 .finding-list li::before { color: var(--purple-mid); }
   .level-2 .finding-list li::before { color: var(--teal-mid); }
   .level-3 .finding-list li::before { color: var(--coral-mid); }
-  .cite { font-style: italic; font-size: 11px; color: var(--gray); }
+  .cite { font-style: italic; font-size: 12px; color: var(--gray); }
 
   /* Decision diamond */
   .diamond-outer { width: 100%; display: flex; justify-content: center; padding: 0.5rem 0; }
@@ -348,7 +348,7 @@
     border-radius: 6px;
     padding: 0.6rem 1rem;
     text-align: center;
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--ink);
     line-height: 1.5;
   }
@@ -364,7 +364,7 @@
   }
   .branch-line { width: 2px; height: 22px; background: var(--line); }
   .branch-label {
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.09em;
     color: var(--gray);
@@ -377,7 +377,7 @@
     border: 0.5px solid var(--gray-mid);
     border-radius: 6px;
     padding: 0.5rem 0.8rem;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--gray);
     text-align: center;
     max-width: 140px;
@@ -395,11 +395,10 @@
     border-radius: 8px;
     overflow: hidden;
     border: 0.5px solid var(--line);
-    cursor: pointer;
   }
   .outcome-box-header {
     padding: 0.6rem 0.75rem;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.03em;
     text-align: center;
@@ -408,6 +407,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.4rem;
+    cursor: pointer;
   }
   .outcome-decline .outcome-box-header  { background: var(--coral-light);  color: var(--coral); border-color: var(--coral-mid); }
   .outcome-conditional .outcome-box-header { background: var(--amber-light); color: var(--amber); border-color: var(--amber-mid); }
@@ -415,7 +415,7 @@
   .outcome-body {
     display: none;
     padding: 0.7rem 0.8rem;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.65;
     color: #3A3A38;
     background: var(--white);
@@ -445,7 +445,7 @@
     padding: 0.6rem 1rem;
     background: #FEE8DF;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--warn);
     border-bottom: 0.5px solid #D85A30;
@@ -454,7 +454,7 @@
   .shortcut-body {
     display: none;
     padding: 0.9rem 1rem;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--ink);
     line-height: 1.65;
   }
@@ -471,12 +471,12 @@
     border: 0.5px solid #C9613E;
     border-radius: 20px;
     padding: 0.25rem 0.75rem;
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--warn);
   }
-  .shortcut-arrow { color: var(--coral-mid); font-size: 13px; }
+  .shortcut-arrow { color: var(--coral); font-size: 13px; }
   .shortcut-result {
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--warn);
     font-style: italic;
     margin-top: 0.3rem;
@@ -488,7 +488,7 @@
     padding: 1.5rem 1.5rem 2rem;
     border-top: 2px solid var(--ncr);
     background: var(--s-gray-lt);
-    font-size: 11.5px;
+    font-size: 12.5px;
     color: var(--s-gray-mid);
     line-height: 1.9;
   }
@@ -498,7 +498,7 @@
     margin-top: 1.25rem;
     padding-top: 1rem;
     border-top: 1px solid #ddd;
-    font-size: 11px;
+    font-size: 12px;
     color: var(--s-gray-mid);
     display: flex;
     align-items: center;
@@ -509,7 +509,7 @@
   .cc-icon {
     width: 20px; height: 20px; border-radius: 50%;
     background: var(--s-gray-mid); color: #fff;
-    font-size: 9px; font-weight: 700; display: flex;
+    font-size: 11px; font-weight: 700; display: flex;
     align-items: center; justify-content: center;
     letter-spacing: 0; line-height: 1;
   }
@@ -525,7 +525,7 @@
     border: none;
     border-radius: 4px;
     padding: 0.4rem 0.9rem;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -537,7 +537,7 @@
     line-height: 1;
   }
   .nav-dropdown-btn:hover { background: var(--ncr-dark); }
-  .nav-caret { font-size: 10px; transition: transform 0.2s; display: inline-block; }
+  .nav-caret { font-size: 11px; transition: transform 0.2s; display: inline-block; }
   .nav-dropdown {
     display: none;
     position: absolute;
@@ -557,7 +557,7 @@
   .nav-dropdown li a {
     display: block;
     padding: 0.6rem 1rem;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--s-black);
     text-decoration: none;
     font-weight: 500;
@@ -568,7 +568,7 @@
   .nav-dropdown li + li { border-top: 1px solid #f0f0f0; }
   .nav-dropdown .nav-section-label {
     display: block;
-    font-size: 9.5px;
+    font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -585,7 +585,7 @@
   }
   .audience-tab {
     font-family: var(--s-font);
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.03em;
     background: var(--s-gray-lt);
@@ -596,7 +596,7 @@
     cursor: pointer;
   }
   .audience-tab:hover { border-color: var(--ncr); color: var(--ncr); }
-  .audience-tab[aria-selected="true"] {
+  .audience-tab[aria-pressed="true"] {
     background: var(--ncr);
     color: #fff;
     border-color: var(--ncr);
@@ -612,7 +612,7 @@
   }
   .audience-decision strong {
     display: block;
-    font-size: 10px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--s-gray-mid);
@@ -620,7 +620,7 @@
     margin-bottom: 0.25rem;
   }
   .key-q {
-    font-size: 12px;
+    font-size: 13px;
     color: #3A3A38;
     margin-bottom: 0.6rem;
     padding-bottom: 0.5rem;
@@ -637,7 +637,7 @@
   }
   .checkpoint-tag, .allows-tag {
     display: inline-block;
-    font-size: 9.5px;
+    font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     font-weight: 700;
@@ -648,7 +648,7 @@
     margin-bottom: 0.55rem;
   }
   .checkpoint-q {
-    font-size: 12.5px;
+    font-size: 13.5px;
     color: var(--ink);
     line-height: 1.55;
     margin-bottom: 0.75rem;
@@ -656,7 +656,7 @@
   .checkpoint-btns { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; flex-wrap: wrap; }
   .checkpoint-btn {
     font-family: var(--s-font);
-    font-size: 11.5px;
+    font-size: 12.5px;
     font-weight: 700;
     letter-spacing: 0.02em;
     padding: 0.4rem 1.1rem;
@@ -668,9 +668,9 @@
   }
   .checkpoint-btn:hover { border-color: var(--ncr); color: var(--ncr); }
   .checkpoint-btn.selected.yes { background: var(--teal); border-color: var(--teal); color: #fff; }
-  .checkpoint-btn.selected.no { background: var(--coral-mid); border-color: var(--coral-mid); color: #fff; }
+  .checkpoint-btn.selected.no { background: var(--coral); border-color: var(--coral); color: #fff; }
   .checkpoint-response {
-    font-size: 11.5px;
+    font-size: 12.5px;
     line-height: 1.65;
     padding: 0.65rem 0.8rem;
     border-radius: 6px;
@@ -678,35 +678,94 @@
   }
   .checkpoint-response.yes { background: var(--teal-light); color: #085041; }
   .checkpoint-response.no { background: var(--warn-light); color: var(--warn); }
+  .checkpoint-btn.selected.alt { background: var(--ink); border-color: var(--ink); color: #fff; }
+  .checkpoint-response.alt { background: var(--gray-light); color: var(--ink); }
   .locked-hint {
-    font-size: 11px;
+    font-size: 12px;
     color: var(--s-gray-mid);
     text-align: center;
     font-style: italic;
     padding: 0.6rem 0;
     width: 100%;
   }
-  .allows-lead { font-size: 12px; color: var(--gray); margin: 0.3rem 0 0.9rem; }
+  .allows-lead { font-size: 13px; color: var(--gray); margin: 0.3rem 0 0.9rem; }
+
+  /* ─── ADDED: glosses, focus, headings, phone layout ─── */
+  .skip-link {
+    position: absolute; left: -999px; top: 0;
+    background: var(--s-black); color: #fff; padding: 0.6rem 1rem; z-index: 200;
+  }
+  .skip-link:focus { left: 0; }
+  a:focus-visible, button:focus-visible, [tabindex]:focus-visible, [role="button"]:focus-visible {
+    outline: 3px solid var(--s-black);
+    outline-offset: 2px;
+  }
+  .panel-interactive:focus-visible .panel-border { stroke: #1a1a1a; stroke-width: 2; }
+  h2.callout-head, h3.callout-head { line-height: 1.6; }
+  .level-glosses { list-style: none; margin: 0.3rem 0 0.7rem; }
+  .level-glosses li { margin-bottom: 0.3rem; }
+  .level-glosses .lg-1 { color: #3C3489; }
+  .level-glosses .lg-2 { color: #085041; }
+  .level-glosses .lg-3 { color: #712B13; }
+  .level-gloss {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+  }
+  .def-body + .def-body { margin-top: 0.6rem; }
+
+  .fig1-cards { display: none; }
+  .fig1-card { border: 1px solid var(--gray-mid); border-radius: 10px; overflow: hidden; margin-bottom: 0.8rem; background: var(--white); }
+  .fig1-card-head { padding: 0.65rem 0.9rem; font-weight: 400; }
+  .fig1-card-level { display: block; font-size: 12px; }
+  .fig1-card-name { display: block; font-size: 16px; font-weight: 700; }
+  .fig1-card-1 .fig1-card-head { background: #EEEDFE; color: #3C3489; }
+  .fig1-card-2 .fig1-card-head { background: #E1F5EE; color: #085041; }
+  .fig1-card-3 .fig1-card-head { background: #FAECE7; color: #712B13; }
+  .fig1-card dl { padding: 0.5rem 0.9rem 0.7rem; font-size: 14px; }
+  .fig1-card dt { font-size: 12px; font-style: italic; color: var(--gray); margin-top: 0.45rem; }
+  .fig1-card dd { color: var(--ink); }
+  .fig1-card-btn {
+    font-family: var(--s-font); font-size: 13px; font-weight: 700;
+    margin: 0 0.9rem 0.9rem; padding: 0.5rem 1.1rem;
+    border-radius: 20px; border: 1px solid var(--s-gray-mid);
+    background: var(--s-gray-lt); color: var(--s-black); cursor: pointer;
+  }
+  .fig1-foot { font-size: 12px; color: var(--gray); text-align: center; margin-top: 0.4rem; }
+
+  @media (max-width: 640px) {
+    .fig1-svg { display: none; }
+    .fig1-cards { display: block; }
+    .outcomes-row { grid-template-columns: 1fr; }
+    .area-grid { grid-template-columns: 1fr; }
+    .f2-panel-header { flex-wrap: wrap; gap: 0.25rem 0.6rem; }
+    .panel-title-group { order: 1; flex: 1 1 auto; }
+    .f2-panel-header .toggle-icon { order: 2; }
+    .panel-question { order: 3; flex: 1 1 100%; }
+    .start-node { border-radius: 16px; padding: 0.7rem 1.1rem; }
+  }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <!-- ─── PAGE HEADER ─────────────────────────────────── -->
 <header class="page-header">
   <nav class="page-nav" aria-label="CWSP WOLF site navigation">
-    <button class="nav-dropdown-btn" onclick="togglePageNav()" id="nav-btn" aria-haspopup="true" aria-expanded="false">
-      CWSP WOLF <span class="nav-caret" id="nav-caret">▾</span>
+    <button class="nav-dropdown-btn" onclick="togglePageNav()" id="nav-btn" aria-controls="nav-dropdown" aria-expanded="false">
+      CWSP WOLF <span class="nav-caret" id="nav-caret" aria-hidden="true">▾</span>
     </button>
-    <ul class="nav-dropdown" id="nav-dropdown" role="menu">
+    <ul class="nav-dropdown" id="nav-dropdown">
       <li><span class="nav-section-label">AI Literacies</span></li>
-      <li><a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener" role="menuitem">← Back to AI Literacies</a></li>
-      <li><a href="https://cwspwolf.com" target="_blank" rel="noopener" role="menuitem">WOLF Homepage</a></li>
-      <li><a href="mailto:kkcole2@ncsu.edu" role="menuitem">Contact Kirsti Cole</a></li>
+      <li><a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">← Back to AI Literacies</a></li>
+      <li><a href="https://cwspwolf.com" target="_blank" rel="noopener">WOLF Homepage</a></li>
+      <li><a href="mailto:kkcole2@ncsu.edu">Contact Kirsti Cole</a></li>
     </ul>
   </nav>
   <p class="eyebrow">NC State · Campus Writing and Speaking Program</p>
   <h1>AI Literacy Is Not One Thing</h1>
-  <p class="subtitle">A three-level framework for higher education governance, faculty development, and institutional decision-making</p>
+  <p class="subtitle">A three-level framework for the AI decisions students, faculty, professionals, and institutions make</p>
   <div class="legend">
     <div class="legend-item">
       <div class="legend-dot" style="background:var(--purple)"></div>
@@ -723,14 +782,21 @@
   </div>
 </header>
 
+<main id="main">
+
 <!-- ─── FRAMING ──────────────────────────────────────── -->
-<p class="prose">When institutions describe their goal as building AI literacy, the phrase often obscures more than it reveals. Literacy in relation to AI is not a single capacity that a learner either has or lacks. It is a layered set of competencies — conceptual, structural, and operative — each requiring the preceding level as its analytical foundation. The three-level framework presented here names those layers precisely, so that faculty development programs, governance bodies, and institutional policy work can target the right level for the right purpose.</p>
+<p class="prose">When institutions describe their goal as building AI literacy, the phrase often obscures more than it reveals. Literacy in relation to AI is not a single capacity that a learner either has or lacks. It is a layered set of competencies (conceptual, structural, and operative), each requiring the preceding level as its analytical foundation. The three-level framework presented here names those layers precisely, so that faculty development programs, governance bodies, and institutional policy work can target the right level for the right purpose.</p>
 
 <!-- ─── HOW THE LEVELS DIFFER ────────────────────────── -->
 <div class="callout">
-  <div class="callout-head">How the three levels differ</div>
+  <h2 class="callout-head">How the three levels differ</h2>
   <div class="callout-body">
-    <p>The framework names three kinds of literacy, each defined by what a person does. At the conceptual level, a person describes what kind of system this is and how training data becomes output. At the structural level, a person analyzes the conditions built into the system before anyone opens it: where its training data was sourced, who owns and controls it, which hierarchies its output reproduces. At the operative level, a person decides what to do with the system in one situation, for one purpose, and answers for the decision.</p>
+    <p>The framework names three kinds of literacy, each defined by what a person does.</p>
+    <ul class="level-glosses">
+      <li><strong class="lg-1">Conceptual · Describe.</strong> What the systems are, and how they produce text.</li>
+      <li><strong class="lg-2">Structural · Analyze.</strong> How they are built, and whom they disadvantage.</li>
+      <li><strong class="lg-3">Operative · Decide.</strong> When to use one, how, and when to refuse, with reasons tied to the task.</li>
+    </ul>
     <p>Structural and operative are the two levels most often read as one. One test separates them. A structural question has the same answer for everyone who meets the system. An operative question has an answer only once a particular person or committee, in a particular situation, decides.</p>
     <p>Ethics appears at both levels and does different work at each. Structural literacy studies the harms a system carries into every use. Operative literacy concerns what one person or body owes in a single decision, including the decision to refuse. Structural analysis informs the decision without making it. Two instructors who agree about a model's bias will still reach different, defensible policies for different courses.</p>
     <p>The two words carry these senses. Structural refers to what is built in. Operative is used as in the operative clause of a policy, the part with force.</p>
@@ -738,13 +804,13 @@
 </div>
 
 <!-- ─── SECTION 1: THE FRAMEWORK ─────────────────────── -->
-<p class="section-label">The Three-Level AI Literacy Framework</p>
+<h2 class="section-label">The Three-Level AI Literacy Framework</h2>
 
 <div class="figure-wrap">
-  <p class="fig-instruction">Click any level panel to expand its definition</p>
+  <p class="fig-instruction">Select any level panel to expand its definition</p>
   <figure>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 370"
-         role="img" aria-label="Three-Level AI Literacy Framework: conceptual, structural, and operative levels">
+    <svg class="fig1-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 370"
+         role="group" aria-label="Three-Level AI Literacy Framework: conceptual, structural, and operative levels">
 
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
@@ -773,7 +839,7 @@
       <!-- PANEL 1 -->
       <g id="panel1" class="panel-interactive"
          onclick="toggleDef(1)" role="button" aria-expanded="false" tabindex="0"
-         aria-label="Level 1, Describe: Conceptual literacy — click to expand definition">
+         aria-label="Level 1, Describe: Conceptual literacy, select to expand definition">
         <g clip-path="url(#p1)">
           <rect class="panel-bg" x="30" y="30" width="190" height="58" fill="#EEEDFE"/>
         </g>
@@ -802,7 +868,7 @@
       <!-- PANEL 2 -->
       <g id="panel2" class="panel-interactive"
          onclick="toggleDef(2)" role="button" aria-expanded="false" tabindex="0"
-         aria-label="Level 2, Analyze: Structural literacy — click to expand definition">
+         aria-label="Level 2, Analyze: Structural literacy, select to expand definition">
         <g clip-path="url(#p2)">
           <rect class="panel-bg" x="245" y="30" width="190" height="58" fill="#E1F5EE"/>
         </g>
@@ -831,7 +897,7 @@
       <!-- PANEL 3 -->
       <g id="panel3" class="panel-interactive"
          onclick="toggleDef(3)" role="button" aria-expanded="false" tabindex="0"
-         aria-label="Level 3, Decide: Operative literacy — click to expand definition">
+         aria-label="Level 3, Decide: Operative literacy, select to expand definition">
         <g clip-path="url(#p3)">
           <rect class="panel-bg" x="460" y="30" width="190" height="58" fill="#FAECE7"/>
         </g>
@@ -866,53 +932,129 @@
       <text class="foot" x="340" y="358" text-anchor="middle">Each level requires the preceding levels as its analytical foundation</text>
     </svg>
 
+    <!-- Figure 1 on narrow screens: the same content as stacked cards -->
+    <div class="fig1-cards">
+      <div class="fig1-card fig1-card-1">
+        <h3 class="fig1-card-head"><span class="fig1-card-level">Level 1 · Describe</span><span class="fig1-card-name">Conceptual literacy</span></h3>
+        <dl>
+          <dt>Knowledge character</dt><dd>Vocabulary and concept definition</dd>
+          <dt>Pedagogy</dt><dd>Direct instruction</dd>
+          <dt>Assessment</dt><dd>Correctness-based</dd>
+          <dt>Key question</dt><dd>Whose knowledge is encoded?</dd>
+        </dl>
+        <button type="button" class="fig1-card-btn" id="cardbtn1" onclick="toggleDef(1)" aria-expanded="false" aria-controls="def1">Show definition</button>
+      </div>
+      <div class="fig1-card fig1-card-2">
+        <h3 class="fig1-card-head"><span class="fig1-card-level">Level 2 · Analyze</span><span class="fig1-card-name">Structural literacy</span></h3>
+        <dl>
+          <dt>Knowledge character</dt><dd>Analysis of inherent system conditions</dd>
+          <dt>Pedagogy</dt><dd>Critical analysis</dd>
+          <dt>Assessment</dt><dd>Argumentative quality</dd>
+          <dt>Key question</dt><dd>Who controls this system?</dd>
+        </dl>
+        <button type="button" class="fig1-card-btn" id="cardbtn2" onclick="toggleDef(2)" aria-expanded="false" aria-controls="def2">Show definition</button>
+      </div>
+      <div class="fig1-card fig1-card-3">
+        <h3 class="fig1-card-head"><span class="fig1-card-level">Level 3 · Decide</span><span class="fig1-card-name">Operative literacy</span></h3>
+        <dl>
+          <dt>Knowledge character</dt><dd>Contextual judgment, principled refusal</dd>
+          <dt>Pedagogy</dt><dd>Situated, case-based</dd>
+          <dt>Assessment</dt><dd>Contextual, accountable</dd>
+          <dt>Key question</dt><dd>What warrants refusal?</dd>
+        </dl>
+        <button type="button" class="fig1-card-btn" id="cardbtn3" onclick="toggleDef(3)" aria-expanded="false" aria-controls="def3">Show definition</button>
+      </div>
+      <p class="fig1-foot">Each level requires the preceding levels as its analytical foundation</p>
+    </div>
+
     <!-- EXPANDABLE DEFINITIONS -->
     <div class="definitions-container">
 
       <div id="def1" class="definition definition-1">
         <div class="def-header">
           <span class="def-title def-title-1">Level 1: Conceptual literacy</span>
-          <button class="def-close" onclick="toggleDef(1)" aria-label="Close">close ×</button>
+          <button class="def-close" onclick="toggleDef(1)" aria-label="Close definition">close <span aria-hidden="true">×</span></button>
         </div>
-        <p class="def-body">Conceptual literacy is the capacity to recognize, name, and describe AI systems with precision, identifying system type, tracing the relationship between training data and model output, and distinguishing among architectures, applications, and classification schemes. Knowledge at this level is primarily technical and definitional. Its operative function is to make the vocabulary of AI legible as a site of decision-making: every term in AI discourse encodes a choice about whose cognitive practices count as intelligence, whose outputs count as correct, and whose contributions to the training set are treated as ground truth. Conceptual literacy is present when a practitioner reads a system description and identifies not only what the system does but whose knowledge the system was built to recognize, so that the definitional question "what is this?" becomes inseparable from the power question "whose knowledge is encoded?"</p>
+        <p class="def-body">Conceptual literacy is the capacity to recognize, name, and describe AI systems with precision, identifying system type, tracing the relationship between training data and model output, and distinguishing among architectures, applications, and classification schemes.</p>
+        <p class="def-body">Knowledge at this level is primarily technical and definitional. Its function is to make the vocabulary of AI legible as a site of decision-making: every term in AI discourse encodes a choice about whose cognitive practices count as intelligence, whose outputs count as correct, and whose contributions to the training set are treated as ground truth.</p>
+        <p class="def-body">Conceptual literacy is present when a practitioner reads a system description and identifies not only what the system does but whose knowledge the system was built to recognize, so that the definitional question "what is this?" becomes inseparable from the power question "whose knowledge is encoded?"</p>
       </div>
 
       <div id="def2" class="definition definition-2">
         <div class="def-header">
           <span class="def-title def-title-2">Level 2: Structural literacy</span>
-          <button class="def-close" onclick="toggleDef(2)" aria-label="Close">close ×</button>
+          <button class="def-close" onclick="toggleDef(2)" aria-label="Close definition">close <span aria-hidden="true">×</span></button>
         </div>
-        <p class="def-body">Structural literacy is the capacity to analyze conditions inherent to AI systems as information infrastructure, including the sourcing of training data from dominant-language and dominant-culture texts, the reproduction of existing social hierarchies in model outputs, the concentration of AI development within specific corporate and geopolitical contexts, and the mechanisms by which AI assessment instruments scale linguistic hierarchy as if it were cognitive capacity. Analysis at this level moves from description to diagnosis: not what the system is, but what the system reproduces and for whose benefit. Structural literacy is present when a practitioner traces the chain of production and control behind a system, reads ownership, optimization targets, and data provenance as analytically prior to any question of deployment or use, and treats those conditions as objects of institutional inquiry rather than background facts.</p>
+        <p class="def-body">Structural literacy is the capacity to analyze conditions inherent to AI systems as information infrastructure, including the sourcing of training data from dominant-language and dominant-culture texts, the reproduction of existing social hierarchies in model outputs, the concentration of AI development within specific corporate and geopolitical contexts, and the mechanisms by which AI assessment instruments scale linguistic hierarchy as if it were cognitive capacity.</p>
+        <p class="def-body">Analysis at this level moves from description to diagnosis: not what the system is, but what the system reproduces and for whose benefit.</p>
+        <p class="def-body">Structural literacy is present when a practitioner traces the chain of production and control behind a system, reads ownership, optimization targets, and data provenance as analytically prior to any question of deployment or use, and treats those conditions as objects of institutional inquiry rather than background facts.</p>
       </div>
 
       <div id="def3" class="definition definition-3">
         <div class="def-header">
           <span class="def-title def-title-3">Level 3: Operative literacy</span>
-          <button class="def-close" onclick="toggleDef(3)" aria-label="Close">close ×</button>
+          <button class="def-close" onclick="toggleDef(3)" aria-label="Close definition">close <span aria-hidden="true">×</span></button>
         </div>
-        <p class="def-body">Operative literacy is the capacity to exercise contextual, accountable judgment about AI use in specific situations, including the evaluation of outputs, ethical reasoning about deployment, assessment of institutional governance frameworks, and principled refusal where structural conditions warrant it. Judgment at this level is irreducibly particular: the right action is determined by the specific conditions of a specific situation, analyzed through the structural and conceptual capacities the preceding levels provide. Operative literacy is present when a practitioner articulates not only a decision but the structural analysis grounding it, and accepts institutional accountability for that reasoning. Refusal theory (Simpson, 2014; Campt, 2017; Benjamin, 2019) names what operative literacy looks like at institutional scale: not non-compliance but accountable rejection of conditions that reproduce harm, grounded in analysis rather than preference.</p>
+        <p class="def-body">Operative literacy is the capacity to exercise contextual, accountable judgment about AI use in specific situations, including the evaluation of outputs, ethical reasoning about deployment, assessment of institutional governance frameworks, and principled refusal where structural conditions warrant it.</p>
+        <p class="def-body">Judgment at this level is irreducibly particular: the right action is determined by the specific conditions of a specific situation, analyzed through the structural and conceptual capacities the preceding levels provide.</p>
+        <p class="def-body">Operative literacy is present when a practitioner articulates not only a decision but the structural analysis grounding it, and accepts institutional accountability for that reasoning.</p>
+        <p class="def-body">Refusal theory (Simpson, 2014; Campt, 2017; Benjamin, 2019) names what operative literacy looks like at institutional scale: not non-compliance but accountable rejection of conditions that reproduce harm, grounded in analysis rather than preference.</p>
       </div>
 
     </div>
 
     <figcaption>
-      <strong>Figure 1.</strong> Three-Level AI Literacy Framework (Cole, 2026). Panels show the knowledge character, pedagogical approach, assessment orientation, and central power question for each level. Prerequisite arrows indicate that structural literacy requires conceptual literacy as its analytical foundation, and operative literacy requires structural literacy as its analytical foundation. Click any level panel to expand its full definition.
+      <strong>Figure 1.</strong> Three-Level AI Literacy Framework (Cole, 2026). Panels show the knowledge character, pedagogical approach, assessment orientation, and central power question for each level. Prerequisite arrows indicate that structural literacy requires conceptual literacy as its analytical foundation, and operative literacy requires structural literacy as its analytical foundation. Select any level panel to expand its full definition.
     </figcaption>
     <p class="citation">Cole, K. K. (2026). AI literacy is not one thing: Conceptual, structural, and operative levels for higher education governance. <em>Pedagogies: An International Journal</em>. https://doi.org/[to assign at publication]</p>
   </figure>
 </div>
 
-<!-- ─── SECTION 2: AI LITERACIES EXTENSION ───────────── -->
-<p class="section-label">The AI Literacies Extension · NC State CWSP</p>
+<!-- ─── SECTION 2: GOVERNANCE APPLICATION ────────────── -->
+<h2 class="section-label">Governance Application · By Audience</h2>
 
-<p class="prose">Generative AI has changed what it means to ask students to write. Faculty across disciplines are rethinking assignment design, academic integrity policies, and what authorship requires in their fields. The WOLF AI Literacies extension provides a structured space to work through those questions — not with prescriptive answers, but with frameworks, discussion prompts, and design tools grounded in communication pedagogy.</p>
+<p class="prose">The three-level framework is not only a faculty development tool, and it does not change scale by scale. The same three questions (whose knowledge is encoded, who controls this system, what warrants refusal) apply to an individual student's choice on one assignment, a faculty member's policy for one assignment, a professional's use of a tool on one work product, and an institution's procurement decision. Only the decision changes. Select an audience below to see the same analysis worked through for that decision.</p>
 
-<p class="prose">The extension does not advocate for a single approach to AI in the classroom. It is designed for faculty who want to think carefully about what they actually value in student writing and speaking — and to build assignments that make those values explicit, whether AI tools are permitted, restricted, or somewhere in between. It is built on the same foundations as WOLF: it foregrounds what communication is for, who it is for, and what disciplinary participation requires. It treats AI not as a threat to be managed but as a condition of writing instruction that demands more explicit and intentional pedagogy — which is what WOLF has always argued for.</p>
+<p class="fig-instruction">Choose an audience, then answer each checkpoint to open the next level.</p>
+<div class="audience-tabs" role="group" aria-label="Choose an audience" id="ag-tabs">
+  <button type="button" class="audience-tab" data-audience="student" aria-pressed="false">Student</button>
+  <button type="button" class="audience-tab" data-audience="faculty" aria-pressed="false">Faculty</button>
+  <button type="button" class="audience-tab" data-audience="professional" aria-pressed="false">Professional</button>
+  <button type="button" class="audience-tab" data-audience="institution" aria-pressed="true">Institution</button>
+</div>
+
+<div class="audience-decision"><strong id="ag-decision-label">Decision</strong><span id="ag-decision"></span></div>
+
+<!-- SHORTCUT WARNING -->
+<div class="shortcut-section">
+  <div class="shortcut-header" onclick="toggleShortcut()" id="shortcut-hdr" role="button" aria-expanded="false" aria-controls="shortcut-body">
+    <span aria-hidden="true">⚠</span> <span><span id="ag-shortcut-title">Conceptual-only path</span>: select to see what gets missed</span>
+    <span class="toggle-icon" id="shortcut-icon" aria-hidden="true">▾</span>
+  </div>
+  <div class="shortcut-body" id="shortcut-body">
+    <div class="shortcut-flow" id="ag-shortcut-flow"></div>
+    <p class="shortcut-result" id="ag-shortcut-result"></p>
+  </div>
+</div>
+
+<!-- DECISION TREE -->
+<figure>
+<div class="tree" id="ag-tree"></div><!-- /tree, filled by script -->
+
+<figcaption style="margin-top:2rem;" id="ag-figcaption"></figcaption>
+</figure>
+
+<!-- ─── SECTION 3: AI LITERACIES EXTENSION ───────────── -->
+<h2 class="section-label">The AI Literacies Extension · NC State CWSP</h2>
+
+<p class="prose">Generative AI has changed what it means to ask students to write. Faculty across disciplines are rethinking assignment design, academic integrity policies, and what authorship requires in their fields. The WOLF AI Literacies extension provides a structured space to work through those questions, not with prescriptive answers, but with frameworks, discussion prompts, and design tools grounded in communication pedagogy.</p>
+
+<p class="prose">The extension does not advocate for a single approach to AI in the classroom. It is designed for faculty who want to think carefully about what they value in student writing and speaking, and to build assignments that make those values explicit, whether AI tools are permitted, restricted, or somewhere in between. It is built on the same foundations as WOLF: it foregrounds what communication is for, who it is for, and what disciplinary participation requires. It treats AI not as a threat to be managed but as a condition of writing instruction that demands more explicit and intentional pedagogy, which is what WOLF has always argued for.</p>
 
 <div class="callout">
-  <div class="callout-head">Who this is for</div>
+  <h3 class="callout-head">Who this is for</h3>
   <div class="callout-body">
-    <p>The AI Literacies extension is appropriate for faculty who are revising course policies in response to generative AI tools, redesigning assignments to better assess disciplinary communication rather than AI-generatable outputs, trying to articulate to students (and themselves) what writing and speaking are actually for in their courses, or interested in teaching AI literacies as a transferable skill within their discipline.</p>
+    <p>The AI Literacies extension is appropriate for faculty who are revising course policies in response to generative AI tools, redesigning assignments to better assess disciplinary communication rather than AI-generatable outputs, trying to articulate to students (and themselves) what writing and speaking are for in their courses, or interested in teaching AI literacies as a transferable skill within their discipline.</p>
     <p>It is available as a standalone engagement or as an extension of an ongoing WOLF partnership. Faculty who complete the extension alongside a WOLF engagement often find that it sharpens the Inquiry and Design phases: the questions AI raises about authorship and assessment make visible assumptions about communication that were previously implicit.</p>
   </div>
 </div>
@@ -922,59 +1064,32 @@
 <div class="area-grid">
   <div class="area-cell">
     <div class="area-cell-n">Area 1 · Conceptual</div>
-    Understanding how AI tools produce text — what they are, how they generate output, and what assumptions about language underlie their design.
+    Understanding how AI tools produce text: what they are, how they generate output, and what assumptions about language underlie their design.
   </div>
   <div class="area-cell">
     <div class="area-cell-n">Area 2 · Relational</div>
-    Examining the relationship between AI use and the communication skills the course is designed to develop — what AI does and does not displace.
+    Examining the relationship between AI use and the communication skills the course is designed to develop: what AI does and does not displace.
   </div>
   <div class="area-cell">
     <div class="area-cell-n">Area 3 · Design</div>
-    Designing assignments that are meaningful regardless of what AI tools exist — assessment grounded in disciplinary values rather than AI-avoidance.
+    Designing assignments that are meaningful regardless of what AI tools exist, with assessment grounded in disciplinary values rather than AI-avoidance.
   </div>
   <div class="area-cell">
     <div class="area-cell-n">Area 4 · Policy</div>
-    Building policy language that is honest and enforceable — grounded in the faculty member's own disciplinary reasoning rather than inherited boilerplate.
+    Building policy language that is honest and enforceable, grounded in the faculty member's own disciplinary reasoning rather than inherited boilerplate.
   </div>
 </div>
+
+<p class="prose">The four areas follow the three levels. Area 1 works at the conceptual level, Area 2 at the structural level, and Areas 3 and 4 at the operative level, where an instructor decides on design and policy.</p>
 
 <p class="prose">Liaisons facilitate the extension using the same model as WOLF: sustained conversation, iterative design work, and documentation of decisions and rationale. The workbook is designed for liaison-facilitated use, but faculty are welcome to work through it independently. Contact <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole at CWSP</a> to begin or to connect your work to a full WOLF engagement. More information at <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a>.</p>
 
-<!-- ─── SECTION 3: GOVERNANCE APPLICATION ────────────── -->
-<p class="section-label">Governance Application · By Audience</p>
-
-<p class="prose">The three-level framework is not only a faculty development tool, and it does not change scale by scale. The same three questions, whose knowledge is encoded, who controls this system, what warrants refusal, apply to an individual student's choice on one assignment, a faculty member's policy for one assignment, a professional's use of a tool on one work product, and an institution's procurement decision. Only the decision changes. Select an audience below to see the same analysis worked through for that decision.</p>
-
-<div class="audience-tabs" role="tablist" aria-label="Governance decision by audience" id="ag-tabs">
-  <button type="button" class="audience-tab" data-audience="student" role="tab" aria-selected="false">Student</button>
-  <button type="button" class="audience-tab" data-audience="faculty" role="tab" aria-selected="false">Faculty</button>
-  <button type="button" class="audience-tab" data-audience="professional" role="tab" aria-selected="false">Professional</button>
-  <button type="button" class="audience-tab" data-audience="institution" role="tab" aria-selected="true">Institution</button>
-</div>
-
-<div class="audience-decision"><strong>Decision</strong><span id="ag-decision"></span></div>
-
-<!-- SHORTCUT WARNING -->
-<div class="shortcut-section">
-  <div class="shortcut-header" onclick="toggleShortcut()" id="shortcut-hdr">
-    ⚠ <span id="ag-shortcut-title">Conceptual-only path</span> — click to see what gets missed
-    <span class="toggle-icon" id="shortcut-icon">▾</span>
-  </div>
-  <div class="shortcut-body" id="shortcut-body">
-    <div class="shortcut-flow" id="ag-shortcut-flow"></div>
-    <p class="shortcut-result" id="ag-shortcut-result"></p>
-  </div>
-</div>
-
-<!-- DECISION TREE -->
-<div class="tree" id="ag-tree"></div><!-- /tree, filled by script -->
-
-<figcaption style="margin-top:2rem;" id="ag-figcaption"></figcaption>
+</main>
 
 <!-- ─── PAGE FOOTER ───────────────────────────────────── -->
 <footer class="page-footer">
-  <p><strong>Key sources:</strong> Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., and Zou, J. (2023). GPT detectors are biased against non-native English writers. <em>Patterns</em>, 4, 100779. — Weber-Wulff, D., et al. (2023). Testing of detection tools for AI-generated text. <em>International Journal for Educational Integrity</em>, 19(1), 26.</p>
-  <p><strong>Refusal theory:</strong> Simpson, A. (2014). <em>Mohawk Interruptus</em>. — Campt, T. (2017). <em>Listening to Images</em>. — Benjamin, R. (2019). <em>Race After Technology</em>. Cited throughout the Decline outcome in Figure 2 as the theoretical grounding for operative literacy's principled refusal.</p>
+  <p><strong>Key sources:</strong> Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., and Zou, J. (2023). GPT detectors are biased against non-native English writers. <em>Patterns</em>, 4, 100779. Weber-Wulff, D., et al. (2023). Testing of detection tools for AI-generated text. <em>International Journal for Educational Integrity</em>, 19(1), 26.</p>
+  <p><strong>Refusal theory:</strong> Simpson, A. (2014). <em>Mohawk Interruptus</em>. Campt, T. (2017). <em>Listening to Images</em>. Benjamin, R. (2019). <em>Race After Technology</em>. Cited throughout the Decline outcome in Figure 2 as the theoretical grounding for operative literacy's principled refusal.</p>
   <p><strong>Framework:</strong> Cole, K. K. (2026). AI literacy is not one thing: Conceptual, structural, and operative levels for higher education governance. <em>Pedagogies: An International Journal</em>. https://doi.org/[to assign at publication]</p>
   <p><strong>AI Literacies extension:</strong> NC State Campus Writing and Speaking Program · <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a> · <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
   <div class="cc-notice">
@@ -1014,6 +1129,13 @@
     } else {
       activeDef = null;
     }
+    for (var k = 1; k <= 3; k++) {
+      var cb = document.getElementById('cardbtn' + k);
+      if (cb) {
+        cb.setAttribute('aria-expanded', String(activeDef === k));
+        cb.textContent = (activeDef === k) ? 'Hide definition' : 'Show definition';
+      }
+    }
   }
 
   document.querySelectorAll('.panel-interactive').forEach(function(el, i) {
@@ -1032,11 +1154,14 @@
     var open = body.classList.contains('open');
     body.classList.toggle('open', !open);
     hdr.classList.toggle('open', !open);
+    hdr.setAttribute('aria-expanded', String(!open));
   }
 
   /* ── Figure 2: Outcome toggles ───────────────────────── */
   function toggleOutcome(id) {
-    document.getElementById('outcome-' + id).classList.toggle('open');
+    var ob = document.getElementById('outcome-' + id);
+    var isOpen = ob.classList.toggle('open');
+    document.getElementById('outcome-hdr-' + id).setAttribute('aria-expanded', String(isOpen));
   }
 
   /* ── Figure 2: Shortcut toggle ───────────────────────── */
@@ -1045,20 +1170,23 @@
     var icon = document.getElementById('shortcut-icon');
     var open = body.classList.contains('open');
     body.classList.toggle('open', !open);
+    document.getElementById('shortcut-hdr').setAttribute('aria-expanded', String(!open));
     icon.style.transform = open ? '' : 'rotate(180deg)';
   }
 
   /* ── Figure 2: audience data ─────────────────────────── */
   var AG_DATA = {
     student: {
+      decisionLabel: "Student decision",
+      conditionalSub: "Use with conditions",
       decision: "Using a generative AI tool on a writing assignment when the policy doesn't spell out the specifics",
       shortcutTitle: "Conceptual-only path",
       shortcutSteps: ["Is it available?", "Will it save time?", "Is the policy silent?", "Use it"],
-      shortcutResult: "Consequence: a student who reaches conceptual literacy, the tool exists and is easy to use, but not structural or operative literacy never asks whose judgment the assignment is actually built to develop, or whether that judgment just moved from the student to the tool's training corpus.",
+      shortcutResult: "Consequence: a student who reaches conceptual literacy (the tool exists and is easy to use) but not structural or operative literacy never asks whose judgment the assignment is built to develop, or whether that judgment just moved from the student to the tool's training corpus.",
       levels: [
         {
           name: "Conceptual Literacy",
-          question: "What is this draft actually made of?",
+          question: "What is this draft made of?",
           keyQ: "The conceptual question is the one the framework asks at any scale: whose knowledge is encoded. At the scale of a sentence, that means asking which corpus's vocabulary and syntax are standing in for the student's own.",
           points: [
             "Name the exact function in use: drafting from a prompt, revising a sentence, generating an outline, checking grammar. Each is a different act, not one blanket “using AI.”",
@@ -1068,7 +1196,7 @@
         },
         {
           name: "Structural Literacy",
-          question: "Whose standard is the draft actually meeting?",
+          question: "Whose standard is the draft meeting?",
           keyQ: "The structural question, who controls this system, is not abstract at the scale of one paragraph. The organization that trained the model controls what counts as fluent in that paragraph, not the student and not the course.",
           points: [
             "Generative output favors the most statistically probable phrasing, drawn overwhelmingly from dominant, standardized English. Leaning on it to draft or “fix” prose pulls writing toward that standard and away from a writer's own voice, including dialect and process, a cost multilingual writers carry disproportionately.",
@@ -1089,7 +1217,7 @@
       ],
       diamonds: [
         { q: "Can the specific use be named in one sentence?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Name the use before opening the tool" },
-        { q: "Is the judgment this function supplies the same judgment the assignment is built to develop?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Reread the assignment's actual learning goal before deciding" }
+        { q: "Is the judgment this function supplies the same judgment the assignment is built to develop?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Reread the assignment's actual learning goal before deciding", noProceed: "Proceed to operative judgment. The function leaves this judgment with the writer, and use, limits, and disclosure are still to be decided." }
       ],
       outcomes: {
         decline: {
@@ -1104,13 +1232,15 @@
         },
         defer: {
           body: "When the policy is silent, silence is not permission.",
-          points: ["Ask what the assignment is actually trying to develop before assuming an answer", "Treat an unclear policy as an open question, not a loophole"],
+          points: ["Ask what the assignment is trying to develop before assuming an answer", "Treat an unclear policy as an open question, not a loophole"],
           note: "A deadline is not grounds to skip the question. It only changes how soon the answer is needed."
         }
       },
       caption: "Three-Level AI Literacy Governance Decision Framework, applied to a student's choice about using a generative AI tool on one assignment (Cole, 2026)."
     },
     faculty: {
+      decisionLabel: "Faculty decision",
+      conditionalSub: "Permit with conditions",
       decision: "Setting the AI policy for one assignment, not the whole syllabus",
       shortcutTitle: "Conceptual-only path",
       shortcutSteps: ["Might students use AI on this?", "Add a line to the syllabus", "Ban or allow, campus default", "Move on"],
@@ -1118,7 +1248,7 @@
       levels: [
         {
           name: "Conceptual Literacy",
-          question: "What is the assignment actually asking the tool to touch?",
+          question: "Which AI capability is at stake in this assignment?",
           keyQ: "The conceptual question, whose knowledge is encoded, applies to the assignment before it applies to any student's use of it. A policy has to name what capability is at stake before it can say anything true about it.",
           points: [
             "Name it: outlining, drafting full paragraphs, revising for clarity, generating discussion questions, summarizing a source. A blanket allow or ban treats all of these as one thing. They are not.",
@@ -1130,7 +1260,7 @@
           question: "Who controls what counts as good writing here?",
           keyQ: "The structural question is who controls this system, applied to the assignment's own design. If the assignment rewards the same fluent, generic surface the tool produces easily, control over what counts as good writing has already shifted from the instructor's stated learning goal to whatever the tool outputs.",
           points: [
-            "If the assignment rewards fluent, conventional surface features, grammar, polish, a familiar structure, AI-generated text clears that bar easily, regardless of the thinking or revision behind it.",
+            "If the assignment rewards fluent, conventional surface features (grammar, polish, a familiar structure), AI-generated text clears that bar easily, regardless of the thinking or revision behind it.",
             "A blanket ban falls hardest on students who already write more slowly or less normatively, including multilingual writers and students using writing tools for reasons unrelated to the assignment's learning goal.",
             "The assignment's design, not a student's AI use, determines whether the learning goal stays visible."
           ]
@@ -1140,7 +1270,7 @@
           question: "What will this instructor decide, and on what grounds?",
           keyQ: "Operative literacy asks what warrants refusal, at the level of one assignment rather than a syllabus-wide default. Restriction is warranted when the task's purpose is the judgment the tool would otherwise supply, and it is a finding about the assignment, not a verdict on the student. The analysis above holds for anyone examining this assignment. The decision is this instructor's, and it exists only once made.",
           points: [
-            "Would a redesign make the thinking visible? A redesign that surfaces process, drafts, a reflection, an in-class component, a revision log, makes the thinking visible again, regardless of which tools were involved.",
+            "Would a redesign make the thinking visible? A redesign that surfaces process (drafts, a reflection, an in-class component, a revision log) makes the thinking visible again, regardless of which tools were involved.",
             "Where will the policy be stated? State the policy at the assignment level, in the language of what is being assessed, rather than one AI clause bolted onto the syllabus.",
             "What accommodation path exists from the start? Build an accommodation path in from the start, rather than as an exception requested after the fact."
           ]
@@ -1148,7 +1278,7 @@
       ],
       diamonds: [
         { q: "Can the specific AI capability at stake be named?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Name the capability before writing the policy line" },
-        { q: "Would AI-generated text clear this assignment's actual bar?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Compare a generated response against the rubric before deciding" }
+        { q: "Would AI-generated text clear this assignment's actual bar?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Compare a generated response against the rubric before deciding", noProceed: "Proceed to operative judgment. The assignment asks for more than generated text supplies, and the policy for it is still to be decided." }
       ],
       outcomes: {
         decline: {
@@ -1163,22 +1293,24 @@
         },
         defer: {
           body: "When AI-generated text could pass the assignment undetected, the design is the finding, not the student.",
-          points: ["Identify what the assignment is actually rewarding right now", "Redesign to surface process before writing a policy for the old version"],
+          points: ["Identify what the assignment is rewarding right now", "Redesign to surface process before writing a policy for the old version"],
           note: "A policy decision made before the redesign answers a question the assignment can't yet ask."
         }
       },
       caption: "Three-Level AI Literacy Governance Decision Framework, applied to a faculty member's policy for one assignment (Cole, 2026)."
     },
     professional: {
+      decisionLabel: "Professional decision",
+      conditionalSub: "Use with conditions",
       decision: "Using AI to help produce a work product with your name on it",
       shortcutTitle: "Conceptual-only path",
       shortcutSteps: ["Does it work?", "Is it faster?", "Does the output look right?", "Ship it"],
-      shortcutResult: "Consequence: generic competence gets mistaken for correctness, and the review step that would have caught the difference, this client, this case, never happens, because the draft already looked finished.",
+      shortcutResult: "Consequence: generic competence gets mistaken for correctness, and the review step that would have caught the difference (this client, this case) never happens, because the draft already looked finished.",
       levels: [
         {
           name: "Conceptual Literacy",
-          question: "What is the tool actually doing to this task?",
-          keyQ: "The conceptual question, whose knowledge is encoded, asks what expertise a generated draft is actually standing in for, before any judgment about risk is possible.",
+          question: "What is the tool doing to this task?",
+          keyQ: "The conceptual question, whose knowledge is encoded, asks what expertise a generated draft is standing in for, before any judgment about risk is possible.",
           points: [
             "Name the function: drafting a first pass, summarizing a document, generating boilerplate, checking a section against a style guide. Each carries a different level of risk.",
             "The output carries no warranty of accuracy and no professional liability. Both stay with the person who signs off on it."
@@ -1206,7 +1338,7 @@
       ],
       diamonds: [
         { q: "Can the specific task and its risk level be named?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Name the task before using the tool on it" },
-        { q: "Does the output represent generic competence rather than judgment specific to this client or case?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Compare the draft against this client's history or case file before deciding" }
+        { q: "Does the output represent generic competence rather than judgment specific to this client or case?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Compare the draft against this client's history or case file before deciding", noProceed: "Proceed to operative judgment. The output carries judgment specific to this client or case, and review, confidentiality, and disclosure are still to be decided." }
       ],
       outcomes: {
         decline: {
@@ -1217,21 +1349,23 @@
         conditional: {
           body: "Requires the same review a non-AI draft would get, applied in full, plus:",
           points: ["Confirmation that no client, patient, or proprietary information went into the tool without clearance", "A named reviewer, not an assumption that the drafter also reviewed", "Disclosure where employer policy or client agreement requires it"],
-          note: "A faster draft is not a reviewed draft. The review is what the client or employer is actually relying on."
+          note: "A faster draft is not a reviewed draft. The review is what the client or employer is relying on."
         },
         defer: {
           body: "When employer policy or client confidentiality terms are unclear, proceeding is a bet, not a decision.",
-          points: ["Confirm what the vendor's data terms actually allow for this category of information", "Confirm what the employer's policy says before the material goes in, not after"],
+          points: ["Confirm what the vendor's data terms allow for this category of information", "Confirm what the employer's policy says before the material goes in, not after"],
           note: "A task that feels routine is not evidence the terms have been checked. It is often exactly why they haven't been."
         }
       },
       caption: "Three-Level AI Literacy Governance Decision Framework, applied to a professional's use of a generative AI tool on one work product (Cole, 2026)."
     },
     institution: {
+      decisionLabel: "Institutional decision",
+      conditionalSub: "Adopt with conditions",
       decision: "Adopting AI detection software for academic integrity",
       shortcutTitle: "Conceptual-only governance path",
       shortcutSteps: ["Is a tool available?", "What does it cost?", "Budget available?", "Purchase"],
-      shortcutResult: "Consequence: a governance body with conceptual literacy but not structural literacy distributes the costs of the tool's failure modes, a 61.3% false positive rate for non-native English writers, onto the students least protected from the consequences of a false accusation of academic misconduct.",
+      shortcutResult: "Consequence: a governance body with conceptual literacy but not structural literacy distributes the costs of the tool's failure modes (a 61.3% false positive rate for non-native English writers) onto the students least protected from the consequences of a false accusation of academic misconduct.",
       levels: [
         {
           name: "Conceptual Literacy",
@@ -1250,9 +1384,9 @@
           keyQ: "The structural question is not whether the tool works in general. It is whose writing the tool's design sets as the standard against which all text is measured.",
           points: [
             "Seven widely-used GPT detectors maintained near-perfect accuracy for US student writing while producing a 61.3% average false positive rate for non-native English speakers <span class=\"cite\">(Liang et al., 2023, Patterns)</span>",
-            "Non-native English writers produce text with characteristics, more predictable vocabulary, simpler syntax, formulaic transitions, that detectors associate with AI output; this is a structural property of what the tools measure, not a calibration error correctable by software update",
+            "Non-native English writers produce text with characteristics (more predictable vocabulary, simpler syntax, formulaic transitions) that detectors associate with AI output; this is a structural property of what the tools measure, not a calibration error correctable by software update",
             "None of 14 tested detection tools reached 80% overall accuracy; accuracy degraded further when text was paraphrased <span class=\"cite\">(Weber-Wulff et al., 2023, International Journal for Educational Integrity)</span>",
-            "A single prompting strategy reduced AI text detection rates from 100% to 13%, the same tools that misidentify non-native English writing are easily circumvented by actual AI use <span class=\"cite\">(Liang et al., 2023)</span>"
+            "A single prompting strategy reduced AI text detection rates from 100% to 13%. The same tools that misidentify non-native English writing are easily circumvented by actual AI use <span class=\"cite\">(Liang et al., 2023)</span>"
           ]
         },
         {
@@ -1269,7 +1403,7 @@
       ],
       diamonds: [
         { q: "Can the institution accurately describe what it is purchasing and what the output represents?", yes: "Yes → proceed", noLabel: "No → halt", halt: "Gather conceptual information before proceeding to procurement" },
-        { q: "Does this tool reproduce linguistic hierarchy as a structural property of its design?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Return to structural analysis with institution-specific population data" }
+        { q: "Does this tool reproduce linguistic hierarchy as a structural property of its design?", yes: "Yes → proceed to operative judgment", noLabel: "Uncertain →", halt: "Return to structural analysis with institution-specific population data", noProceed: "Proceed to operative judgment. Record the evidence behind this finding, since alternatives, accountability, and contract terms are still to be decided." }
       ],
       outcomes: {
         decline: {
@@ -1292,6 +1426,11 @@
     }
   };
   var AG_ORDER = ["student", "faculty", "professional", "institution"];
+  var AG_GLOSS = [
+    "What the systems are, and how they produce text.",
+    "How they are built, and whom they disadvantage.",
+    "When to use one, how, and when to refuse, with reasons tied to the task."
+  ];
 
   function agRenderShortcut(d) {
     document.getElementById("ag-shortcut-title").textContent = d.shortcutTitle;
@@ -1301,12 +1440,13 @@
       var span = document.createElement("span");
       var last = i === d.shortcutSteps.length - 1;
       span.className = "shortcut-step";
-      if (last) span.style.cssText = "background:#D85A30;color:white;border-color:#993C1D;font-weight:600;";
+      if (last) span.style.cssText = "background:#993C1D;color:white;border-color:#712B13;font-weight:600;";
       span.textContent = step;
       flow.appendChild(span);
       if (!last) {
         var arrow = document.createElement("span");
         arrow.className = "shortcut-arrow";
+        arrow.setAttribute("aria-hidden", "true");
         arrow.textContent = "→";
         flow.appendChild(arrow);
       }
@@ -1330,14 +1470,15 @@
     var noLabel = dia.noLabel.split("→")[0].trim();
     var yesRest = dia.yes.split("→")[1];
     var yesText = agCap(yesRest ? yesRest : "continue");
-    return '<div class="checkpoint" id="cp-' + idx + '" data-yes-text="' + agEsc(yesText) + '" data-halt-text="' + agEsc(dia.halt) + '">' +
+    return '<div class="checkpoint" id="cp-' + idx + '" data-yes-text="' + agEsc(yesText) + '" data-alt-text="' + agEsc(dia.noProceed || '') + '" data-halt-text="' + agEsc(agCap(dia.halt)) + '">' +
       '<span class="checkpoint-tag">Asks</span>' +
       '<p class="checkpoint-q">' + dia.q + '</p>' +
       '<div class="checkpoint-btns">' +
         '<button type="button" class="checkpoint-btn yes" id="cp-' + idx + '-yes" onclick="agAnswer(' + idx + ',\'yes\')">' + yesLabel + '</button>' +
+        (dia.noProceed ? '<button type="button" class="checkpoint-btn alt" id="cp-' + idx + '-alt" onclick="agAnswer(' + idx + ',\'alt\')">No</button>' : '') +
         '<button type="button" class="checkpoint-btn no" id="cp-' + idx + '-no" onclick="agAnswer(' + idx + ',\'no\')">' + noLabel + '</button>' +
       '</div>' +
-      '<p class="checkpoint-response" id="cp-' + idx + '-response" hidden></p>' +
+      '<p class="checkpoint-response" id="cp-' + idx + '-response" role="status" hidden></p>' +
     '</div>';
   }
 
@@ -1348,30 +1489,33 @@
     var resp = document.getElementById('cp-' + idx + '-response');
     var stage = document.getElementById('ag-stage-' + (idx + 1));
     var hint = document.getElementById('ag-stage-' + (idx + 1) + '-hint');
+    var altBtn = document.getElementById('cp-' + idx + '-alt');
     yesBtn.classList.toggle('selected', val === 'yes');
     noBtn.classList.toggle('selected', val === 'no');
+    if (altBtn) altBtn.classList.toggle('selected', val === 'alt');
     resp.hidden = false;
-    if (val === 'yes') {
-      resp.className = 'checkpoint-response yes';
-      resp.textContent = cp.getAttribute('data-yes-text');
+    if (val === 'yes' || val === 'alt') {
+      resp.className = 'checkpoint-response ' + val;
+      resp.textContent = cp.getAttribute(val === 'yes' ? 'data-yes-text' : 'data-alt-text');
       if (stage) stage.hidden = false;
       if (hint) hint.hidden = true;
     } else {
       resp.className = 'checkpoint-response no';
       resp.textContent = cp.getAttribute('data-halt-text');
       if (stage) stage.hidden = true;
-      if (hint) hint.hidden = false;
+      if (hint) { hint.textContent = 'Take the step above, then answer again to continue.'; hint.hidden = false; }
     }
   }
 
   function agRenderLevelPanel(lvl, n) {
     var html = '<div class="level-panel level-' + n + '" style="' + (n > 1 ? 'margin-top:0.3rem;' : '') + '">';
-    html += '<div class="f2-panel-header f2-panel-header-' + n + '" onclick="togglePanel(' + n + ')">';
+    html += '<div class="f2-panel-header f2-panel-header-' + n + ' open" role="button" aria-expanded="true" aria-controls="body-' + n + '" onclick="togglePanel(' + n + ')">';
     html += '<div class="panel-title-group"><span class="panel-level">Level ' + n + ' · ' + ['Describe', 'Analyze', 'Decide'][n - 1] + '</span><span class="panel-name">' + lvl.name + '</span></div>';
     html += '<span class="panel-question">' + lvl.question + '</span>';
-    html += '<span class="toggle-icon" id="icon-' + n + '">▾</span></div>';
+    html += '<span class="toggle-icon" id="icon-' + n + '" aria-hidden="true">▾</span></div>';
     html += '<div class="panel-body open" id="body-' + n + '">';
-    html += '<p style="font-size:12px;color:#3A3A38;margin-bottom:0.5rem;">' + lvl.keyQ + '</p>';
+    html += '<p class="level-gloss">' + AG_GLOSS[n - 1] + '</p>';
+    html += '<p style="font-size:13px;color:#3A3A38;margin-bottom:0.5rem;">' + lvl.keyQ + '</p>';
     html += '<ul class="finding-list">' + lvl.points.map(function (p) { return "<li>" + p + "</li>"; }).join("") + '</ul>';
     html += '</div></div>';
     return html;
@@ -1380,23 +1524,22 @@
   function agRenderOutcome(kind, label, sub, data) {
     var borderStyle = kind === "conditional" ? ' style="border-color:var(--amber-mid);"' : (kind === "defer" ? ' style="border-color:var(--gray-mid);"' : '');
     var pts = data.points.map(function (p) { return "<li>" + p + "</li>"; }).join("");
-    return '<div class="outcome-box outcome-' + kind + '" onclick="toggleOutcome(\'' + kind + '\')">' +
-      '<div class="outcome-box-header"' + borderStyle + '>' + label + '<br><span style="font-size:9.5px;letter-spacing:0;font-weight:400;text-transform:none;font-style:italic;">' + sub + '</span></div>' +
+    return '<div class="outcome-box outcome-' + kind + '">' +
+      '<div class="outcome-box-header" role="button" aria-expanded="false" aria-controls="outcome-' + kind + '" id="outcome-hdr-' + kind + '" onclick="toggleOutcome(\'' + kind + '\')"' + borderStyle + '>' + label + '<br><span style="font-size:11px;letter-spacing:0;font-weight:400;text-transform:none;font-style:italic;">' + sub + '</span></div>' +
       '<div class="outcome-body" id="outcome-' + kind + '"><p>' + data.body + '</p><ul style="margin-top:0.4rem;">' + pts + '</ul>' +
-      '<p style="margin-top:0.5rem;font-style:italic;font-size:11px;color:var(--gray);">' + data.note + '</p></div></div>';
+      '<p style="margin-top:0.5rem;font-style:italic;font-size:12px;color:var(--gray);">' + data.note + '</p></div></div>';
   }
 
   function agRender(audience) {
     var d = AG_DATA[audience];
+    document.getElementById("ag-decision-label").textContent = d.decisionLabel;
     document.getElementById("ag-decision").textContent = d.decision;
     agRenderShortcut(d);
     document.getElementById("shortcut-body").classList.remove("open");
+    document.getElementById("shortcut-hdr").setAttribute("aria-expanded", "false");
     document.getElementById("shortcut-icon").style.transform = "";
 
-    var html = '<div class="start-node">Governance decision: ' + d.decision + '</div>';
-    html += '<div class="connector connector-med"></div>';
-
-    html += agRenderLevelPanel(d.levels[0], 1);
+    var html = agRenderLevelPanel(d.levels[0], 1);
     html += '<div class="connector connector-short"></div>';
     html += agRenderCheckpoint(d.diamonds[0], 1);
 
@@ -1417,7 +1560,7 @@
     html += '<p class="allows-lead">These two checkpoints inform the choice among the following without making it. Operative literacy does not prescribe a single answer, so all three stay open to read.</p>';
     html += '<div class="outcomes-row">';
     html += agRenderOutcome("decline", "Decline", "Principled refusal", d.outcomes.decline);
-    html += agRenderOutcome("conditional", "Conditional", "Adopt with conditions", d.outcomes.conditional);
+    html += agRenderOutcome("conditional", "Conditional", d.conditionalSub, d.outcomes.conditional);
     html += agRenderOutcome("defer", "Defer", "Incomplete analysis", d.outcomes.defer);
     html += '</div>';
     html += '</div>';
@@ -1426,7 +1569,7 @@
     document.getElementById("ag-figcaption").innerHTML =
       '<strong>Figure 2.</strong> ' + d.caption + ' Answer each checkpoint (Asks) to work through the levels in order and reach the range of outcomes it allows (Allows). The conceptual-only path above shows the governance failure mode particular to this audience: a decision made without structural or operative analysis.';
 
-    document.querySelectorAll(".f2-panel-header, .outcome-box").forEach(function (el) {
+    document.querySelectorAll(".f2-panel-header, .outcome-box-header").forEach(function (el) {
       el.setAttribute("tabindex", "0");
       el.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); }
@@ -1436,8 +1579,8 @@
 
   document.querySelectorAll(".audience-tab").forEach(function (tab) {
     tab.addEventListener("click", function () {
-      document.querySelectorAll(".audience-tab").forEach(function (t) { t.setAttribute("aria-selected", "false"); });
-      tab.setAttribute("aria-selected", "true");
+      document.querySelectorAll(".audience-tab").forEach(function (t) { t.setAttribute("aria-pressed", "false"); });
+      tab.setAttribute("aria-pressed", "true");
       agRender(tab.getAttribute("data-audience"));
     });
   });
