@@ -74,8 +74,14 @@
     if (err) err.hidden = true;
     set(KEY_NAME, name);
     set(KEY_EMAIL, email);
-    data.participant_name = name;
-    data.participant_email = email;
+    /* certificate_name and certificate_email are the keys the CWSP Apps Script
+       writes to the Name and Email columns of the submissions sheet. They go first
+       so they also appear in the sheet's 500-character payload preview. */
+    var rest = {};
+    Object.keys(data).forEach(function (k) { rest[k] = data[k]; delete data[k]; });
+    data.certificate_name = name;
+    data.certificate_email = email;
+    Object.keys(rest).forEach(function (k) { data[k] = rest[k]; });
     return true;
   }
 
