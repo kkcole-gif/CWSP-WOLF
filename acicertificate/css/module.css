@@ -1,0 +1,83 @@
+/* Shared rules for C²TC module and elective pages.
+   Loaded after each page's own styles. */
+
+/* Keep the content column inside the viewport on phones. */
+.layout > *, .main { min-width: 0; }
+.main { overflow-wrap: break-word; }
+.main table { display: block; max-width: 100%; overflow-x: auto; }
+.main img, .main svg, .main video { max-width: 100%; height: auto; }
+
+@media (max-width: 700px) {
+  .top-bar { flex-wrap: wrap; padding: 0.6rem 1rem; }
+  .top-bar-left { flex-wrap: wrap; gap: 0.25rem 1rem; }
+  .progress-wrap { width: 100%; }
+}
+
+.main em, .main a, .main code { overflow-wrap: anywhere; }
+
+@media (max-width: 700px) {
+  .with-for-grid, .framework-grid, .mode-grid, .dim-grid, .trap-grid,
+  .decision-grid, .level-grid, .art-criteria-grid, .feedback-examples {
+    grid-template-columns: 1fr !important;
+  }
+  .dapoe-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* Pages whose own mobile rules were missing or sat inside @media print. */
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr !important; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+  .reading-list li { flex-wrap: wrap; }
+}
+
+/* ── Lighter module chrome and a reading face for long text ── */
+body { background: #fff; }
+.layout { max-width: 1180px; }
+.sidebar { background: #fff; border-right: 1px solid var(--rule, #ddd); }
+.sidebar-label { text-transform: none; letter-spacing: 0; font-size: 0.78rem; }
+.sidebar a.active, .sidebar a.activity.active { background: transparent; color: var(--accent-ink, var(--accent, #CC0000)); border-left-color: var(--accent, #CC0000); }
+.sidebar a.activity { color: var(--muted, #4d4d4d); }
+
+.module-header {
+  background: #fff;
+  color: var(--dark, #1a1a1a);
+  border-bottom: 1px solid var(--rule, #ddd);
+  border-top: 3px solid var(--accent, #CC0000);
+}
+.module-header h2 { color: var(--dark, #1a1a1a); }
+.module-header p { color: var(--muted, #4d4d4d); }
+.module-eyebrow { text-transform: none; letter-spacing: 0; font-size: 0.85rem; color: var(--accent-ink, var(--accent, #CC0000)); }
+
+.content-section > p, .content-section li, .callout p, .activity-block > p {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  max-width: 68ch;
+}
+.section-tag, .activity-label, .callout-title {
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.85rem;
+  color: var(--accent-ink, var(--accent, #CC0000));
+}
+.content-section h3 { font-size: 1.5rem; }
+
+.activity-block {
+  border: 0;
+  border-top: 2px solid var(--accent, #CC0000);
+  border-radius: 0;
+  padding: 1.5rem 0 0.5rem;
+  background: transparent;
+}
+.callout { background: var(--panel, #f5f5f5); border-left-color: var(--accent, #CC0000); border-radius: 0; }
+.repo-block { background: #fff; border: 1px solid var(--rule, #ddd); border-left: 3px solid var(--accent, #CC0000); border-radius: 0; }
+.repo-block h4 { color: var(--dark, #1a1a1a); }
+textarea, input[type="text"], input[type="email"] { background: #fff; }
+.reading-list li { display: block; }
+.reading-list li::before { content: none; }
+.submit-section { background: #fff; border: 1px solid var(--rule, #ddd); border-radius: 0; }
+.btn-submit { background: var(--accent, #CC0000); color: #fff; border-radius: 2px; }
+body[data-track="oral"] .btn-submit { color: var(--black, #1a1a1a); }
+.next-module { border-radius: 0; }

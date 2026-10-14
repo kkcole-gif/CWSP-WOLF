@@ -131,8 +131,13 @@ textarea { min-height: 100px; }
   .level-grid, .decision-grid { grid-template-columns: 1fr; }
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="../css/brand.css">
+<link rel="stylesheet" href="css/module.css">
 </head>
-<body>
+<body data-track="digital">
 <div class="top-bar">
   <div class="top-bar-left">
     <a href="digital.html">← Digital Comm Certificate</a>
@@ -158,9 +163,9 @@ textarea { min-height: 100px; }
     </div>
     <div class="sidebar-section">
       <span class="sidebar-label">Activities</span>
-      <a href="#activity1" class="activity">1 — Conceptual Inventory</a>
-      <a href="#activity2" class="activity">2 — Structural Analysis</a>
-      <a href="#activity3" class="activity">3 — Operative Decision</a>
+      <a href="#activity1" class="activity">1. Conceptual Inventory</a>
+      <a href="#activity2" class="activity">2. Structural Analysis</a>
+      <a href="#activity3" class="activity">3. Operative Decision</a>
     </div>
     <div class="sidebar-section">
       <span class="sidebar-label">Your Artifact</span>
@@ -177,20 +182,20 @@ textarea { min-height: 100px; }
     <div class="module-header" id="overview">
       <p class="module-eyebrow">Digital Communication Certificate · Module 3 of 3</p>
       <h2>AI Literacy and Critical Digital Practice</h2>
-      <p>A three-level framework for analyzing any digital tool — AI or otherwise — and producing principled deployment decisions grounded in structural analysis. The goal: faculty who ask the right questions about every new tool before pressing adopt. Estimated time: 4–5 hours over two weeks.</p>
+      <p>This module gives you a three-level framework for analyzing any digital tool, AI or otherwise, and for making deployment decisions grounded in structural analysis. You will practice asking the right questions about a new tool before you adopt it. Plan on 4–5 hours over two weeks.</p>
     </div>
 
     <!-- Section 1: Framework overview -->
     <section class="content-section" id="framework">
       <span class="section-tag">Section 1</span>
       <h3>The AI Literacy Framework</h3>
-      <p>Every digital tool you encounter in educational contexts raises the same cluster of questions. Who built this, for what purposes, and on whose terms? What communicative practices does it encode as default, and whose are those? Who benefits from its operation, and who bears the cost when it fails? These are not afterthought questions. They determine whether a tool serves pedagogical purposes or undermines them, regardless of how well it works technically.</p>
-      <p>The AI literacy framework developed by Professor Kirsti K. Cole (2026) organizes these questions into three levels, each building on the previous. The levels are not optional stages — they are a prerequisite structure. Operative decisions (Level 3) require structural analysis (Level 2), which requires conceptual accuracy (Level 1). Skipping ahead produces decisions that are technically confident but analytically groundless.</p>
+      <p>Every digital tool you encounter in educational contexts raises the same cluster of questions. Who built this, for what purposes, and on whose terms? What communicative practices does it encode as default, and whose are those? Who benefits from its operation, and who bears the cost when it fails? Ask these questions first. They determine whether a tool serves your teaching or undermines it, no matter how well it works technically.</p>
+      <p>The AI literacy framework developed by Professor Kirsti K. Cole (2026) organizes these questions into three levels. Each level is a prerequisite for the next. Operative decisions (Level 3) require structural analysis (Level 2), which requires conceptual accuracy (Level 1). Faculty who skip ahead make confident decisions with no analysis beneath them.</p>
       <div class="level-grid">
         <div class="level-card">
           <div class="level-name">Level 1</div>
           <h4>Conceptual Literacy</h4>
-          <p>Name tools accurately. Know what a system is, how it works, what it was built from, and what it cannot do. Conceptual literacy is the precondition for analysis — you cannot analyze what you have misdescribed.</p>
+          <p>Name tools accurately. Know what a system is, how it works, what it was built from, and what it cannot do. Conceptual literacy comes before analysis. A tool you have misdescribed is a tool you will misanalyze.</p>
         </div>
         <div class="level-card">
           <div class="level-name">Level 2</div>
@@ -204,8 +209,8 @@ textarea { min-height: 100px; }
         </div>
       </div>
       <div class="callout">
-        <p class="callout-title">Why this module focuses on all digital tools, not only AI</p>
-        <p>The emergence of AI tools has made structural questions impossible to avoid — but those questions apply with equal force to every digital tool in your teaching practice. A social annotation platform, a plagiarism detection system, a discussion forum, a video production tool: all encode assumptions, reproduce hierarchies, and cost someone something when they fail. AI has given us the occasion to build a rigorous analytical framework. This module uses AI as the central case while insisting the framework is general.</p>
+        <p class="callout-title">Why this module covers all digital tools</p>
+        <p>AI tools have made structural questions impossible to avoid. Those questions apply with equal force to every digital tool in your teaching. A social annotation platform, a plagiarism detection system, a discussion forum, a video production tool: all encode assumptions, reproduce hierarchies, and cost someone something when they fail. AI gave us the occasion to build a rigorous analytical framework. This module uses AI as its central case and applies the framework to every tool.</p>
       </div>
     </section>
 
@@ -215,12 +220,12 @@ textarea { min-height: 100px; }
     <section class="content-section" id="conceptual">
       <span class="section-tag">Section 2</span>
       <h3>Level 1: Conceptual Literacy</h3>
-      <p>Conceptual literacy begins with accurate description. The most common failure in educational conversations about AI is category confusion — treating AI as a singular phenomenon when "AI" names a family of distinct systems with radically different architectures, training sources, and failure modes. A facial recognition system, a large language model, an algorithmic grading tool, and a plagiarism detector are all "AI" in common usage. They have almost nothing else in common.</p>
-      <p>Large language models (LLMs) — the systems underlying tools like ChatGPT, Claude, and Gemini — are statistical text prediction systems trained on large corpora of existing text. They predict plausible word sequences given a prompt; they do not retrieve stored knowledge, reason from principles, or hold beliefs. When an LLM produces a confident, fluent, factually incorrect statement, it is doing exactly what it was designed to do: generating plausible-looking text. That is not a malfunction. It is the system's architecture.</p>
-      <p>Conceptual literacy means knowing, for each tool you work with: what category of system it is; what data it was trained or built on; what communicative practices its training centered and therefore encodes as default; what its failure modes are; and what it structurally cannot do. This knowledge is the prerequisite for structural analysis. You cannot ask who bears the failure costs of a system whose failure modes you haven't identified.</p>
+      <p>Conceptual literacy begins with accurate description. A common failure in educational conversations about AI is category confusion. People treat AI as a single phenomenon, when "AI" names a family of distinct systems with different architectures, training sources, and failure modes. A facial recognition system, a large language model, an algorithmic grading tool, and a plagiarism detector are all "AI" in common usage. They have almost nothing else in common.</p>
+      <p>Large language models (LLMs), the systems underlying tools like ChatGPT, Claude, and Gemini, are statistical text prediction systems trained on large corpora of existing text. Given a prompt, they predict plausible word sequences. Bender et al. (2021) describe a language model as &ldquo;a system for haphazardly stitching together sequences of linguistic forms,&rdquo; combined by probability and without reference to meaning. When an LLM produces a confident, fluent, factually incorrect statement, it is doing what it was designed to do: generating plausible text. The error comes from the system's architecture.</p>
+      <p>Conceptual literacy means knowing five things about each tool you work with: what category of system it is, what data it was trained or built on, what communicative practices its training centered and therefore encodes as default, what its failure modes are, and what it structurally cannot do. Structural analysis depends on this knowledge. You cannot ask who bears the failure costs of a system whose failure modes you have not identified.</p>
       <div class="callout">
         <p class="callout-title">A conceptual literacy test</p>
-        <p>When a faculty member says "the AI detected that a student used ChatGPT," multiple conceptual failures may be present simultaneously: AI detection tools are not AI systems detecting AI; they are statistical classifiers trained to identify stylistic patterns. They do not detect AI — they flag features associated (imperfectly, in specific populations) with AI-generated text. The distinction matters because it changes the structural analysis: if the tool does not do what users believe it does, the accountability structure built around it is built on a misdescription.</p>
+        <p>When a faculty member says "the AI detected that a student used ChatGPT," the sentence holds several conceptual errors at once. AI detection tools are statistical classifiers trained to identify stylistic patterns. They flag features associated (imperfectly, and unevenly across populations) with AI-generated text. The distinction changes the structural analysis. If the tool does not do what users believe it does, any accountability structure built around it rests on a misdescription.</p>
       </div>
     </section>
 
@@ -230,10 +235,10 @@ textarea { min-height: 100px; }
     <section class="content-section" id="structural">
       <span class="section-tag">Section 3</span>
       <h3>Level 2: Structural Literacy</h3>
-      <p>Structural literacy asks three questions about any digital tool. These are not questions about individual uses of the tool — they are questions about what the tool does systematically, at scale, as a product of its design.</p>
-      <p><strong>Question 1: What social hierarchies does this tool reproduce?</strong> Every tool encodes assumptions about who its default user is. LLMs trained predominantly on English text produced within Anglo-American academic conventions encode those conventions as the baseline against which all output is judged. Tools that require high-bandwidth internet access disadvantage students in rural areas or with limited data plans. Tools designed around white-collar knowledge work encode the communicative norms of that labor category. The question is not whether encoding happens — it always does — but which hierarchies are encoded and whether they correspond to or cut against your students' starting positions.</p>
-      <p><strong>Question 2: Who bears the costs when this tool fails?</strong> All tools fail. The structural question is not whether failure occurs but how its costs are distributed. When AI detection software produces a false positive, the cost is borne by the student — an academic integrity process, a failed assignment, a damaged relationship with the faculty member — not by the vendor, the institution, or the faculty member who selected the tool. When that false positive rate is higher for multilingual students, the structural harm is not incidental. It is a predictable outcome of the tool's architecture, concentrated in a population that already faces disproportionate barriers.</p>
-      <p><strong>Question 3: Whose interests does the design serve?</strong> Tools are designed by organizations with interests. Commercial educational technology vendors have financial interests in adoption that create incentive structures around disclosure. A vendor whose revenue depends on institutional contracts has structural incentives to emphasize accuracy evidence that supports adoption and minimize or delay disclosure of accuracy evidence that complicates it. This is not a claim about individual bad actors. It is a structural analysis of how financial incentives and epistemic access interact.</p>
+      <p>Structural literacy asks three questions about any digital tool. They concern what the tool does systematically, at scale, as a product of its design. Individual uses come later.</p>
+      <p><strong>Question 1: What social hierarchies does this tool reproduce?</strong> Every tool encodes assumptions about who its default user is. LLMs trained mostly on English text written within Anglo-American academic conventions encode those conventions as the baseline for judging all output. Tools that require high-bandwidth internet access disadvantage students in rural areas or with limited data plans. Tools designed around white-collar knowledge work encode the communicative norms of that work. Every tool encodes something. Ask which hierarchies this one encodes, and whether they match or cut against your students' starting positions.</p>
+      <p><strong>Question 2: Who bears the costs when this tool fails?</strong> All tools fail. The structural question asks how the costs of failure are distributed. When AI detection software produces a false positive, the student pays: an academic integrity process, a failed assignment, a damaged relationship with the instructor. The vendor, the institution, and the faculty member who selected the tool pay nothing. Where the false positive rate runs higher for multilingual students, the harm follows predictably from the tool's architecture. It falls on a population that already faces disproportionate barriers.</p>
+      <p><strong>Question 3: Whose interests does the design serve?</strong> Organizations with interests design tools. Commercial educational technology vendors have a financial stake in adoption, and that stake shapes what they disclose. A vendor whose revenue depends on institutional contracts has reason to emphasize accuracy evidence that supports adoption and to minimize or delay evidence that complicates it. The claim concerns incentives, and it holds whatever the intentions of individual employees. Structural analysis looks at how financial incentives and access to evidence interact.</p>
     </section>
 
     <hr class="divider">
@@ -242,25 +247,25 @@ textarea { min-height: 100px; }
     <section class="content-section" id="operative">
       <span class="section-tag">Section 4</span>
       <h3>Level 3: Operative Literacy</h3>
-      <p>Operative literacy is the capacity to make principled deployment decisions — decisions grounded in structural analysis and expressed in a form that is publicly accountable. The framework identifies three principled outcomes. All three are accountable; none of them is "I haven't thought about it."</p>
+      <p>Operative literacy is the capacity to make principled deployment decisions, grounded in structural analysis and stated in a form you can be held to publicly. The framework identifies three principled outcomes. Each is accountable. "I haven't thought about it" is none of them.</p>
       <div class="decision-grid">
         <div class="decision-card">
           <span class="decision-tag">Decision 1</span>
           <h4>Principled Refusal</h4>
-          <p>The structural harm analysis is sufficient to ground rejection. The tool's failure costs fall on already-marginalized populations, the demographic distribution is documented, and no accountability condition could adequately redress that distribution while the tool's core architecture remains unchanged. The refusal is named and publicly defensible.</p>
+          <p>The structural harm analysis is sufficient to ground rejection. The tool's failure costs fall on already-marginalized populations, the demographic distribution is documented, and no accountability condition would adequately redress that distribution while the tool's core architecture remains unchanged. The refusal is named and publicly defensible.</p>
         </div>
         <div class="decision-card">
           <span class="decision-tag">Decision 2</span>
           <h4>Conditional Adoption</h4>
-          <p>Deployment is appropriate only when specific, verifiable accountability conditions are met — stated in advance, publicly. Conditions might include: demographic breakdown of error rates; mandatory human review before any disciplinary action; student right to appeal; sunset review clause. Adoption without these conditions is not conditional adoption. It is adoption.</p>
+          <p>Deployment is appropriate only when specific, verifiable accountability conditions are met, stated publicly and in advance. Conditions might include a demographic breakdown of error rates, mandatory human review before any disciplinary action, a student right to appeal, and a sunset review clause. Without such conditions, adoption is unconditional.</p>
         </div>
         <div class="decision-card">
           <span class="decision-tag">Decision 3</span>
           <h4>Deferred Decision</h4>
-          <p>The structural analysis is incomplete. Additional evidence is needed before a principled decision is possible. Deferral is not delay for its own sake — it is a commitment to return to the analysis with the evidence it actually requires, and not to deploy in the meantime.</p>
+          <p>The structural analysis is incomplete. You need more evidence before a principled decision is possible. Deferral commits you to return to the analysis with the evidence it requires, and to keep the tool out of your course in the meantime.</p>
         </div>
       </div>
-      <p>Note the asymmetry: conditional adoption requires naming specific, verifiable conditions, not general commitments to "ethical use." Principled refusal requires naming the structural harm pattern that grounds it, not expressing general discomfort. Deferred decision requires identifying what evidence would complete the analysis, not indefinitely postponing a decision. All three require work. None of them is costless, and all of them are preferable to an unconsidered one.</p>
+      <p>Each outcome carries its own obligation. Conditional adoption requires specific, verifiable conditions, and a general commitment to "ethical use" does not meet that bar. Principled refusal requires naming the structural harm pattern that grounds it, which general discomfort does not supply. A deferred decision requires naming the evidence that would complete the analysis and a plan to obtain it. All three take work. Each costs something, and each is preferable to an unconsidered decision.</p>
     </section>
 
     <hr class="divider">
@@ -269,8 +274,8 @@ textarea { min-height: 100px; }
     <section class="content-section" id="application">
       <span class="section-tag">Section 5</span>
       <h3>All Digital Tools, the Same Lens</h3>
-      <p>The framework applies with equal force to every digital tool in your teaching practice — not as a requirement to be suspicious of all technology, but as a set of questions that produce better decisions about any technology. A social annotation platform like Perusall uses algorithmic engagement scoring to assign participation grades. Apply the three structural questions: the system encodes assumptions about what "engagement" looks like (who does that definition serve?); algorithmic grading errors are borne by students whose participation patterns don't match the training data; and the vendor's interest in demonstrating automated grading capacity creates incentives around how accuracy is reported. None of this means you shouldn't use Perusall. It means you use it with specific knowledge of what it does, and with accountability conditions — like reviewing the algorithmic grades before finalizing them — already in place.</p>
-      <p>The same applies to video production tools, discussion forums, collaborative writing platforms, citation management software, and AI writing assistants. Conceptual literacy means knowing what the tool actually is and does. Structural literacy means knowing what it reproduces and who it costs. Operative literacy means deciding about it deliberately, in a form you can defend. The module's capstone asks you to produce that document for one tool in your course.</p>
+      <p>The framework applies with equal force to every digital tool in your teaching. Its questions lead to better decisions about any technology. A social annotation platform like Perusall uses algorithmic engagement scoring to assign participation grades. Apply the three structural questions. The system encodes assumptions about what "engagement" looks like (whom does that definition serve?). Students whose participation patterns do not match the training data absorb the grading errors. The vendor's interest in demonstrating automated grading creates incentives that shape how it reports accuracy. You might still use Perusall. If you do, use it knowing what it does, with accountability conditions (such as reviewing the algorithmic grades before you finalize them) already in place.</p>
+      <p>The same holds for video production tools, discussion forums, collaborative writing platforms, citation management software, and AI writing assistants. Conceptual literacy means knowing what the tool is and does. Structural literacy means knowing what it reproduces and who it costs. Operative literacy means deciding about it deliberately, in a form you can defend. The module's capstone asks you to produce that document for one tool in your course.</p>
     </section>
 
     <hr class="divider">
@@ -278,34 +283,34 @@ textarea { min-height: 100px; }
     <!-- Activity 1 -->
     <section class="content-section" id="activity1">
       <div class="activity-block">
-        <p class="activity-label">Activity 1 — Conceptual Literacy</p>
+        <p class="activity-label">Activity 1. Conceptual Literacy</p>
         <h4>Conceptual Inventory: Three Tools</h4>
         <p class="activity-meta">Individual analysis · 60–75 minutes</p>
-        <p>Select three digital tools you use or could use in your teaching. At least one must be an AI tool (a large language model, an AI detection tool, an automated feedback system, or similar). For each tool, complete the five-dimension conceptual inventory below. The goal is not evaluation — it is accurate description. You are practicing the discipline of knowing what you are working with before you make claims about it.</p>
+        <p>Select three digital tools you use or might use in your teaching. At least one must be an AI tool (a large language model, an AI detection tool, an automated feedback system, or similar). For each tool, complete the five-dimension conceptual inventory below. Aim for accurate description and hold off on evaluation. You are practicing the habit of knowing what you are working with before you make claims about it.</p>
 
         <div class="sub-activity">
           <span class="sub-activity-label">Tools selected</span>
           <h5>Which three tools are you analyzing?</h5>
           <label for="f-a1-tools">Name all three tools, noting which is the AI tool. <span>(Include the AI tool's category: LLM, classifier, recommender system, etc.)</span></label>
-          <textarea id="f-a1-tools" rows="3" placeholder="Tool 1 (AI): e.g., ChatGPT — large language model (LLM)&#10;Tool 2: e.g., Perusall — social annotation with algorithmic engagement scoring&#10;Tool 3: e.g., Kaltura — video production and hosting platform"></textarea>
+          <textarea id="f-a1-tools" rows="3" placeholder="Tool 1 (AI): e.g., ChatGPT, large language model (LLM)&#10;Tool 2: e.g., Perusall, social annotation with algorithmic engagement scoring&#10;Tool 3: e.g., Kaltura, video production and hosting platform"></textarea>
         </div>
 
         <div class="sub-activity">
-          <span class="sub-activity-label">Tool 1 — Five-dimension inventory</span>
+          <span class="sub-activity-label">Tool 1: Five-dimension inventory</span>
           <h5>Complete the inventory for Tool 1</h5>
           <label for="f-a1-t1">For each dimension, describe Tool 1 accurately and specifically. <span>Include: (1) system architecture/type; (2) how it was built or what it was trained on; (3) what communicative practices it encodes as default; (4) its documented failure modes; (5) what it structurally cannot do.</span></label>
           <textarea id="f-a1-t1" rows="10" placeholder="1. System type / architecture:&#10;&#10;2. Construction / training data:&#10;&#10;3. Communicative practices centered (whose norms are the default?):&#10;&#10;4. Documented failure modes:&#10;&#10;5. What it cannot do:"></textarea>
         </div>
 
         <div class="sub-activity">
-          <span class="sub-activity-label">Tool 2 — Five-dimension inventory</span>
+          <span class="sub-activity-label">Tool 2: Five-dimension inventory</span>
           <h5>Complete the inventory for Tool 2</h5>
           <label for="f-a1-t2">Five-dimension inventory for Tool 2. <span>Same five dimensions: architecture, construction/training, centered communicative practices, failure modes, structural limitations.</span></label>
           <textarea id="f-a1-t2" rows="10" placeholder="1. System type / architecture:&#10;&#10;2. Construction / training data:&#10;&#10;3. Communicative practices centered (whose norms are the default?):&#10;&#10;4. Documented failure modes:&#10;&#10;5. What it cannot do:"></textarea>
         </div>
 
         <div class="sub-activity">
-          <span class="sub-activity-label">Tool 3 — Five-dimension inventory</span>
+          <span class="sub-activity-label">Tool 3: Five-dimension inventory</span>
           <h5>Complete the inventory for Tool 3</h5>
           <label for="f-a1-t3">Five-dimension inventory for Tool 3. <span>Same five dimensions.</span></label>
           <textarea id="f-a1-t3" rows="10" placeholder="1. System type / architecture:&#10;&#10;2. Construction / training data:&#10;&#10;3. Communicative practices centered (whose norms are the default?):&#10;&#10;4. Documented failure modes:&#10;&#10;5. What it cannot do:"></textarea>
@@ -332,29 +337,29 @@ textarea { min-height: 100px; }
     <!-- Activity 2 -->
     <section class="content-section" id="activity2">
       <div class="activity-block">
-        <p class="activity-label">Activity 2 — Structural Literacy</p>
+        <p class="activity-label">Activity 2. Structural Literacy</p>
         <h4>Structural Analysis</h4>
         <p class="activity-meta">Written analysis · 60–75 minutes · 400–500 words</p>
-        <p>Select one of the three tools from Activity 1 — ideally the AI tool, but the framework applies to any of them. Write a 400–500 word structural analysis applying the three structural questions from Section 3. Each question requires specific evidence, not general impressions. Cite vendor documentation, published research, faculty forums, or your own direct investigation. The analysis should be specific enough that someone who hasn't used the tool could understand what it does structurally and what those structural effects cost.</p>
+        <p>Select one of the three tools from Activity 1. The AI tool is the best choice, though the framework applies to any of them. Write a 400–500 word structural analysis that applies the three structural questions from Section 3. Answer each question with specific evidence. Cite vendor documentation, published research, faculty forums, or your own direct investigation. Someone who has never used the tool should come away understanding what it does structurally and what those effects cost.</p>
 
         <label for="f-a2-tool">Which tool are you analyzing in this activity? <span>(And why did you choose it?)</span></label>
         <input type="text" id="f-a2-tool" placeholder="Tool name and brief reason for choosing it...">
 
         <label for="f-a2-hierarchies">Structural Question 1: What social hierarchies does this tool reproduce? <span>(Be specific: which communicative norms are encoded as default, who succeeds with the tool as designed, and who is burdened by it?)</span></label>
-        <textarea id="f-a2-hierarchies" rows="7" placeholder="Your analysis of Question 1 — with specific evidence..."></textarea>
+        <textarea id="f-a2-hierarchies" rows="7" placeholder="Your analysis of Question 1, with specific evidence..."></textarea>
 
         <label for="f-a2-costs">Structural Question 2: Who bears the costs when this tool fails? <span>(Identify at least one documented failure mode. Who experiences the consequence? Is there evidence of demographic distribution in that failure?)</span></label>
-        <textarea id="f-a2-costs" rows="7" placeholder="Your analysis of Question 2 — with specific failure mode and evidence..."></textarea>
+        <textarea id="f-a2-costs" rows="7" placeholder="Your analysis of Question 2, with a specific failure mode and evidence..."></textarea>
 
         <label for="f-a2-interests">Structural Question 3: Whose interests does the design serve? <span>(Who built this tool and what is their financial model? Are there conditions where vendor interests and student interests diverge?)</span></label>
-        <textarea id="f-a2-interests" rows="7" placeholder="Your analysis of Question 3 — with specific organizational and financial context..."></textarea>
+        <textarea id="f-a2-interests" rows="7" placeholder="Your analysis of Question 3, with specific organizational and financial context..."></textarea>
 
         <label for="f-a2-synthesis">Synthesis paragraph <span>(What does this structural analysis, taken as a whole, tell you about this tool? What do you know now that you didn't know after Activity 1?)</span></label>
-        <textarea id="f-a2-synthesis" rows="6" placeholder="Your synthesis — how the three structural questions add up to a picture of what this tool does in the world..."></textarea>
+        <textarea id="f-a2-synthesis" rows="6" placeholder="Your synthesis: what the three structural questions, taken together, show about what this tool does in the world..."></textarea>
 
         <div class="repo-block">
           <h4>Contribute to the repository</h4>
-          <p>Structural analyses of tools used across disciplines — especially from faculty who investigated deeply — are among the most valuable resources in the C²TC repository.</p>
+          <p>Structural analyses of tools used across disciplines, especially from faculty who investigated thoroughly, are among the most useful resources in the C²TC repository.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
             <label for="repo-a2">I'd like to share my structural analysis with the C²TC repository.</label>
@@ -366,43 +371,43 @@ textarea { min-height: 100px; }
     <!-- Activity 3 -->
     <section class="content-section" id="activity3">
       <div class="activity-block">
-        <p class="activity-label">Activity 3 — Operative Literacy (Capstone)</p>
+        <p class="activity-label">Activity 3. Operative Literacy (Capstone)</p>
         <h4>Operative Decision + Assignment Prototype</h4>
         <p class="activity-meta">Capstone activity · 90–120 minutes</p>
-        <p>Using the structural analysis from Activity 2, produce an operative decision document for the same tool — your principled judgment about whether and how to deploy it in your course. Then, depending on your decision, produce an assignment prototype.</p>
+        <p>Using the structural analysis from Activity 2, produce an operative decision document for the same tool: your principled judgment about whether and how to deploy it in your course. Then, depending on your decision, produce an assignment prototype.</p>
 
         <div class="sub-activity">
-          <span class="sub-activity-label">Step 1 — Your decision</span>
+          <span class="sub-activity-label">Step 1. Your decision</span>
           <h5>Which operative decision applies?</h5>
           <label for="f-a3-decision">State your decision category and explain in 2–3 sentences why the structural analysis grounds it. <span>Options: Principled Refusal / Conditional Adoption / Deferred Decision</span></label>
           <textarea id="f-a3-decision" rows="4" placeholder="My operative decision is [Principled Refusal / Conditional Adoption / Deferred Decision] because..."></textarea>
         </div>
 
         <div class="sub-activity">
-          <span class="sub-activity-label">Step 2 — Grounds</span>
+          <span class="sub-activity-label">Step 2. Grounds</span>
           <h5>The structural analysis that grounds your decision</h5>
           <label for="f-a3-grounds">Identify the specific findings from Activity 2 that are most decisive. <span>For refusal: the harm pattern that cannot be addressed by conditions. For conditional adoption: the harms that conditions must address. For deferral: the specific evidence still needed.</span></label>
-          <textarea id="f-a3-grounds" rows="5" placeholder="The key structural findings that ground this decision are..."></textarea>
+          <textarea id="f-a3-grounds" rows="5" placeholder="The structural findings that ground this decision are..."></textarea>
         </div>
 
         <div class="sub-activity">
-          <span class="sub-activity-label">Step 3 — Conditions or evidence (if applicable)</span>
+          <span class="sub-activity-label">Step 3. Conditions or evidence (if applicable)</span>
           <h5>Accountability conditions (conditional adoption) or evidence requirements (deferred decision)</h5>
           <label for="f-a3-conditions">If conditional adoption: list your specific, verifiable accountability conditions. Each condition should be concrete enough that you would know if it were violated. If deferred decision: identify what specific evidence is needed and who is responsible for producing it. If principled refusal: leave this blank.</label>
           <textarea id="f-a3-conditions" rows="6" placeholder="Accountability conditions (conditional adoption):&#10;1. [Specific, verifiable condition]&#10;2. [Specific, verifiable condition]&#10;3.&#10;&#10;OR: Evidence needed before decision (deferred):"></textarea>
         </div>
 
         <div class="sub-activity">
-          <span class="sub-activity-label">Step 4 — Assignment prototype</span>
+          <span class="sub-activity-label">Step 4. Assignment prototype</span>
           <h5>Build the prototype</h5>
           <p style="font-size:0.88rem; color:var(--dgray); margin-bottom:0.75rem;">If your decision is <strong>Conditional Adoption</strong>: design a complete assignment prototype that deploys this tool with your accountability conditions built in. Include the task prompt (as students would receive it), the accountability conditions embedded in how the assignment works, assessment criteria, and a brief rationale explaining the pedagogical purpose.</p>
-          <p style="font-size:0.88rem; color:var(--dgray); margin-bottom:0.75rem;">If your decision is <strong>Principled Refusal or Deferred Decision</strong>: design an alternative assignment that achieves the same learning objectives without the tool — or with a different tool whose structural analysis is more favorable. Include the task prompt, assessment criteria, and a rationale.</p>
+          <p style="font-size:0.88rem; color:var(--dgray); margin-bottom:0.75rem;">If your decision is <strong>Principled Refusal or Deferred Decision</strong>: design an alternative assignment that achieves the same learning objectives without the tool, or with a different tool whose structural analysis is more favorable. Include the task prompt, assessment criteria, and a rationale.</p>
           <label for="f-a3-prompt">Task prompt <span>(as students would receive it)</span></label>
           <textarea id="f-a3-prompt" rows="7" placeholder="Assignment prompt for students..."></textarea>
           <label for="f-a3-criteria">Assessment criteria <span>(what you're evaluating and how)</span></label>
           <textarea id="f-a3-criteria" rows="5" placeholder="Assessment criteria..."></textarea>
           <label for="f-a3-rationale">Design rationale <span>(200–250 words: the pedagogical purpose, how your operative decision shaped the design, and what the accountability conditions or alternative achieves)</span></label>
-          <textarea id="f-a3-rationale" rows="8" placeholder="Your design rationale — including how your operative decision shaped this prototype..."></textarea>
+          <textarea id="f-a3-rationale" rows="8" placeholder="Your design rationale, including how your operative decision shaped this prototype..."></textarea>
         </div>
 
         <div class="repo-block">
@@ -422,8 +427,8 @@ textarea { min-height: 100px; }
         <p class="artifact-section-label">Your Artifact</p>
         <h4>Build Your Operative Decision Document</h4>
         <p style="font-size:0.92rem; margin-bottom:0.75rem;">Your operative decision document compiles the analysis from Activities 2 and 3 into a formatted, shareable document: the tool you analyzed, the structural grounds for your decision, your accountability conditions or alternative, and the assignment prototype with assessment criteria and rationale.</p>
-        <p style="font-size:0.87rem; color:var(--dgray); margin-bottom:0.5rem;">The document pulls directly from your Activity 2 and 3 responses — no additional input needed. Complete those activities first, then generate the document and save it as a PDF for your teaching portfolio or capstone submission.</p>
-        <button class="btn-artifact" onclick="previewArtifact()">Preview Operative Decision Document →</button>
+        <p style="font-size:0.87rem; color:var(--dgray); margin-bottom:0.5rem;">The document pulls directly from your Activity 2 and 3 responses, so you do not need to enter anything new. Complete those activities first, then generate the document and save it as a PDF for your teaching portfolio or capstone submission.</p>
+        <button class="btn-artifact" onclick="previewArtifact()">Preview Operative Decision Document</button>
       </div>
     </section>
 
@@ -433,25 +438,25 @@ textarea { min-height: 100px; }
     <section class="content-section" id="readings">
       <h3>Key readings and resources</h3>
 
-      <span class="reading-group-label">Before Activity 1 — Conceptual foundations</span>
+      <span class="reading-group-label">Before Activity 1: Conceptual foundations</span>
       <ul class="reading-list">
         <li>★ Cole, K. K. (2026). <em>AI Literacy Model</em>. cwspwolf.com/ai_literacy_unified.html. <em>The source framework for this module. Read the full model before beginning the activities; return to it during each activity.</em></li>
         <li>★ Bender, E. M., Gebru, T., McMillan-Major, A., &amp; Shmitchell, S. (2021). On the dangers of stochastic parrots: Can language models be too big? <em>FAccT 2021</em>, 610–623. <em>Foundational structural analysis of LLMs; directly relevant to the AI tool conceptual inventory.</em></li>
         <li>Kapoor, S., &amp; Narayanan, A. (2023). Leakage and the reproducibility crisis in ML-based science. <em>Patterns, 4</em>(9). <em>On how machine learning systems fail and how those failures are disclosed (or not).</em></li>
       </ul>
 
-      <span class="reading-group-label">Before Activity 2 — Structural analysis</span>
+      <span class="reading-group-label">Before Activity 2: Structural analysis</span>
       <ul class="reading-list">
-        <li>★ Noble, S. U. (2018). <em>Algorithms of oppression</em>. NYU Press. <em>Chapters 1 and 2: structural analysis of algorithmic systems and the harm patterns they encode — the methodological model for Activity 2.</em></li>
-        <li>Perkins, M., et al. (2023). Game of trones: Large language models do not detect non-English AI-generated text. <em>arXiv</em>. <em>Empirical documentation of AI detection failure patterns by language — the failure-cost distribution evidence for the governance case.</em></li>
+        <li>★ Noble, S. U. (2018). <em>Algorithms of oppression</em>. NYU Press. <em>Chapters 1 and 2: structural analysis of algorithmic systems and the harm patterns they encode, the methodological model for Activity 2.</em></li>
+        <li>Perkins, M., Roe, J., Postma, D., et al. (2023). Game of tones: Faculty detection of GPT-4 generated content in university assessments. <em>arXiv</em>. <em>Faculty and a commercial detector identified only part of the AI-generated submissions, evidence for the governance case against relying on detection.</em></li>
         <li>Chaka, C. (2023). Detecting AI content in responses generated by ChatGPT, YouChat, and Chatsonic. <em>Journal of Applied Learning and Teaching, 6</em>(1). <em>Comparative false-positive analysis across detection tools.</em></li>
       </ul>
 
-      <span class="reading-group-label">Recommended — Operative literacy and pedagogical application</span>
+      <span class="reading-group-label">Recommended: Operative literacy and pedagogical application</span>
       <ul class="reading-list">
-        <li>Stommel, J. (2023). Undoing the grade: Why we grade, and how to stop. <em>Hybrid Pedagogy</em>. <em>On the structural politics of assessment — relevant context for operative decisions about AI in grading and evaluation.</em></li>
+        <li>Stommel, J. (2023). Undoing the grade: Why we grade, and how to stop. <em>Hybrid Pedagogy</em>. <em>On the structural politics of assessment, relevant context for operative decisions about AI in grading and evaluation.</em></li>
         <li>Carter, G. M., &amp; Matzke, A. (2017). The more digital technology, the better. In <em>Bad Ideas About Writing</em>. WVU Libraries. <em>Foundational critique of uncritical technology adoption in educational contexts.</em></li>
-        <li>CWSP Resource: Writing WITH AI, Not FOR AI — Cole, K. K. <em>CWSP Framework Document</em>. <em>Discipline-specific guidance for integrating AI in writing courses; model for the conditional adoption prototype.</em></li>
+        <li>CWSP Resource: Writing WITH AI, Not FOR AI. Cole, K. K. <em>CWSP Framework Document</em>. <em>Discipline-specific guidance for integrating AI in writing courses; model for the conditional adoption prototype.</em></li>
       </ul>
     </section>
 
@@ -463,13 +468,13 @@ textarea { min-height: 100px; }
         <h3>Complete Module 3</h3>
         <p>When you have finished all three activities, submit your responses below. Module 3 is the final core module; your capstone activity begins immediately after. Your completed operative decision document and prototype from Activity 3 are strong starting material for the capstone.</p>
         <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 3 Responses</button>
-        <div id="submit-success"><strong>Submitted.</strong> Your Module 3 responses are received. You may now proceed to the capstone or choose your electives.</div>
-        <div id="submit-error">Submission problem — responses saved locally. Try again or email kkcole2@ncsu.edu.</div>
+        <div id="submit-success"><strong>Sent.</strong> Your Module 3 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu. The capstone and electives are open whenever you are ready.</div>
+        <div id="submit-error">There was a problem submitting. Your responses are saved in this browser. Try again or email kkcole2@ncsu.edu.</div>
       </div>
       <a href="digital.html" class="next-module">
         <div>
           <div class="label">Next</div>
-          <div class="title">Choose your electives → Back to Digital Comm Certificate</div>
+          <div class="title">Choose your electives on the Digital certificate page</div>
         </div>
         <span style="font-size: 1.5rem; color: var(--accent);">→</span>
       </a>
@@ -511,6 +516,7 @@ function updateProgress() {
 function submitModule() {
   saveAll();
   const data = {module:MODULE, timestamp:new Date().toISOString()};
+  if (!C2TC.attach(data)) return;
   FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
   CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
   const btn = document.getElementById('submit-btn');
@@ -544,7 +550,7 @@ function previewArtifact() {
       ${artSection('Decision Statement', decision)}
       ${artSection('Structural Grounds', val('f-a3-grounds'))}
       ${artSection('Accountability Conditions / Evidence Required', val('f-a3-conditions'))}
-      ${artSection('Assignment Prototype — Task Prompt', val('f-a3-prompt'))}
+      ${artSection('Assignment Prototype: Task Prompt', val('f-a3-prompt'))}
       ${artSection('Assessment Criteria', val('f-a3-criteria'))}
       ${artSection('Design Rationale', val('f-a3-rationale'))}
     </div>
@@ -565,5 +571,6 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
+<script src="js/participant.js"></script>
 </body>
 </html>

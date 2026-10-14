@@ -1,0 +1,108 @@
+/* cwspwolf.com shared brand layer.
+   Loaded last on every page so WOLF, C²TC, and the module pages share one system.
+   Colors come from the NC State palette (brand.ncsu.edu/designing-for-nc-state/color):
+   Wolfpack Red leads; Reynolds Red, Pyroman Flame, and Hunt Yellow support.
+   Tracks: Written = red, Digital = Pyroman Flame orange, Oral = Hunt Yellow. */
+
+:root {
+  --red: #CC0000;          /* Wolfpack Red */
+  --red-dark: #990000;     /* Reynolds Red */
+  --flame: #D14905;        /* Pyroman Flame, 4.5:1 on white */
+  --yellow: #FAC800;       /* Hunt Yellow, fills only; black text on it */
+  --flame-dark: #A83A04;   /* hover for Pyroman Flame */
+  --navy: #D14905;         /* older C²TC name for the Digital track color, now Pyroman Flame */
+  --black: #1A1A1A;
+  --dark: #1A1A1A;
+  --text: #2B2B2B;
+  --muted: #4D4D4D;
+  --rule: #DDDDDD;
+  --panel: #F5F5F5;
+
+  --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font: var(--sans);
+}
+
+/* Track color for module pages: set by data-track on <body>. */
+body[data-track="written"] { --accent: var(--red); --accent-light: var(--red-dark); --accent-ink: var(--red); --navy: var(--red-dark); }
+body[data-track="digital"] { --accent: var(--flame); --accent-light: var(--flame-dark); --accent-ink: var(--flame-dark); --navy: var(--flame); }
+/* Hunt Yellow fails as text on white, so the Oral track uses it for rules and fills with black text. */
+body[data-track="oral"]    { --accent: var(--yellow); --accent-light: #E0B400; --accent-ink: var(--black); --navy: var(--yellow); }
+
+body { color: var(--text); }
+
+/* Headings in the serif, across both programs. */
+h1, h2, h3, h4,
+.hero h1, .page-header h1, .section h2 {
+  font-family: var(--serif);
+  letter-spacing: -0.005em;
+}
+h1, .hero h1, .page-header h1 { font-weight: 700; }
+h2, h3 { font-weight: 600; }
+
+/* ── Navigation ── */
+.site-header { background: var(--black); border-bottom: 3px solid var(--red); }
+.nav-logo { font-family: var(--sans); letter-spacing: 0.02em; }
+.nav-links a.active {
+  background: transparent;
+  color: #fff;
+  box-shadow: inset 0 -3px 0 var(--red);
+  border-bottom: 0;
+  border-radius: 0;
+}
+
+/* ── Hero: left-aligned, white, short ── */
+.hero {
+  background: #fff;
+  color: var(--text);
+  text-align: left;
+  display: grid;
+  justify-items: start;
+  padding: 3rem max(1.5rem, calc((100% - 1100px) / 2)) 2.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+.hero h1 { color: var(--black); font-size: clamp(2.25rem, 5vw, 3.25rem); margin-bottom: 0.5rem; }
+.hero img { margin: 0 0 1.25rem !important; max-width: 150px !important; }
+.hero-sub, .hero-sub-title { color: var(--muted); opacity: 1; margin: 0 0 1.5rem; max-width: 40rem; text-align: left; }
+.hero-sub-title { font-family: var(--serif); font-size: 1.25rem; font-style: italic; margin-bottom: 0.75rem; }
+.hero > div { justify-content: flex-start !important; }
+.hero .btn-white { background: var(--red); color: #fff; border: 2px solid var(--red); }
+.hero .btn-red ~ .btn-white { background: #fff; color: var(--red); }
+.hero .btn-red ~ .btn-white:hover { background: var(--red); color: #fff; }
+.hero .btn-white:hover { background: var(--red-dark); border-color: var(--red-dark); color: #fff; }
+.hero .btn-outline-white, .hero .btn-ghost { color: var(--red); border-color: var(--red); }
+
+/* Uppercase eyebrow labels are removed site-wide. */
+.hero-eyebrow, .section-label { display: none; }
+
+/* ── Cards: rules instead of boxes ── */
+.card, .phase, .track-card, .info-card {
+  border: 0;
+  border-top: 2px solid var(--black);
+  border-radius: 0;
+  box-shadow: none;
+  background: transparent;
+}
+.phases { border: 0; gap: 2rem; }
+.phase, .card, .track-card { padding-left: 0; padding-right: 0; }
+.track-card, .track-card.red, .card-red { border-top-color: var(--red); }
+.track-card.navy { border-top-color: var(--flame); }
+.track-card.placeholder { border-top-color: var(--yellow); }
+
+/* ── Buttons ── */
+.btn, .btn-red, .btn-outline, .btn-navy { border-radius: 2px; letter-spacing: 0.01em; }
+.btn-navy { background: var(--flame); border-color: var(--flame); color: #fff; }
+.btn-navy:hover { background: var(--flame-dark); border-color: var(--flame-dark); }
+
+/* ── Footer ── */
+.site-footer { border-top: 3px solid var(--red); }
+
+/* ── Liaison resources without icons ── */
+.resource-icon { display: none; }
+.resource-list li { border-radius: 0; border-left: 3px solid var(--red); }
+
+/* ── People ── */
+.person { display: grid; grid-template-columns: 160px 1fr; gap: 1.5rem; align-items: start; margin: 1rem 0 2rem; }
+.person img { width: 160px; height: 160px; object-fit: cover; border-top: 3px solid var(--red); }
+.person p { margin-bottom: 0.75rem; }
+@media (max-width: 600px) { .person { grid-template-columns: 1fr; } }
