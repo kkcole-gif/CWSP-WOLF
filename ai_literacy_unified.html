@@ -8,27 +8,27 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    /* ── Figure palette (preserved for figure internals) ── */
-    --purple:       #534AB7;
-    --purple-light: #EEEDFE;
-    --purple-mid:   #7F77DD;
-    --teal:         #0F6E56;
-    --teal-light:   #E1F5EE;
-    --teal-mid:     #1D9E75;
-    --coral:        #993C1D;
-    --coral-light:  #FAECE7;
-    --coral-mid:    #D85A30;
-    --amber:        #8A6200;
-    --amber-light:  #FEF5DC;
-    --amber-mid:    #C8920A;
-    --gray:         #5F5E5A;
-    --gray-light:   #F4F3F0;
-    --gray-mid:     #B4B2A9;
-    --ink:          #2C2C2A;
-    --line:         #D3D1C7;
+    /* Level palette: yellow (conceptual), orange (structural), red (operative). Variable names kept from the original figure. */
+    --purple:       #7A5C00;
+    --purple-light: #FFF4CC;
+    --purple-mid:   #FAC800;
+    --teal:         #B23E04;
+    --teal-light:   #FBEBE1;
+    --teal-mid:     #D14905;
+    --coral:        #990000;
+    --coral-light:  #FBE8E8;
+    --coral-mid:    #CC0000;
+    --amber:        #4D4D4D;
+    --amber-light:  #F2F2F2;
+    --amber-mid:    #999999;
+    --gray:         #595959;
+    --gray-light:   #F2F2F2;
+    --gray-mid:     #BBBBBB;
+    --ink:          #1A1A1A;
+    --line:         #DDDDDD;
     --white:        #ffffff;
-    --warn:         #7A2E0B;
-    --warn-light:   #FEF0EB;
+    --warn:         #7A0000;
+    --warn-light:   #FDF0F0;
     /* ── NC State site palette (page chrome) ────────────── */
     --ncr:          #CC0000;
     --ncr-dark:     #990000;
@@ -51,8 +51,8 @@
 
   /* ─── PAGE HEADER ───────────────────────────────────── */
   .page-header {
-    text-align: center;
-    background: var(--s-gray-lt);
+    text-align: left;
+    background: var(--white);
     margin: -2.5rem -1.5rem 2.5rem;
     padding: 2rem 1.5rem 1.75rem;
     border-bottom: 2px solid var(--ncr);
@@ -65,7 +65,8 @@
     margin-bottom: 0.6rem;
   }
   .page-header h1 {
-    font-size: 22px;
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 32px;
     font-weight: 700;
     color: var(--s-black);
     margin-bottom: 0.4rem;
@@ -78,7 +79,7 @@
   }
   .legend {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 1.4rem;
     margin-top: 1rem;
     flex-wrap: wrap;
@@ -106,7 +107,7 @@
 
   /* ─── PROSE ─────────────────────────────────────────── */
   .prose {
-    font-size: 14px;
+    font-size: 16px;
     color: var(--s-gray);
     line-height: 1.9;
     margin-bottom: 1.1rem;
@@ -146,7 +147,7 @@
     padding: 0.75rem 0.9rem;
     font-size: 13px;
     line-height: 1.65;
-    color: #3A3A38;
+    color: #333333;
     border: 0.5px solid var(--line);
     background: var(--white);
   }
@@ -186,9 +187,9 @@
   .panel-interactive .panel-border { transition: stroke 0.15s, stroke-width 0.15s; }
   .panel-interactive:hover .panel-border,
   .panel-interactive.active .panel-border { stroke-width: 1.2; }
-  .panel-interactive.active .panel-border-1 { stroke: #534AB7; }
-  .panel-interactive.active .panel-border-2 { stroke: #0F6E56; }
-  .panel-interactive.active .panel-border-3 { stroke: #993C1D; }
+  .panel-interactive.active .panel-border-1 { stroke: #7A5C00; }
+  .panel-interactive.active .panel-border-2 { stroke: #B23E04; }
+  .panel-interactive.active .panel-border-3 { stroke: #990000; }
   .active-dot { opacity: 0; transition: opacity 0.2s; }
   .panel-interactive.active .active-dot { opacity: 1; }
 
@@ -202,9 +203,9 @@
     font-size: 13px;
   }
   .definition.visible { display: block; animation: fadeIn 0.2s ease; }
-  .definition-1 { background: #F5F4FF; border-left: 3px solid #7F77DD; }
-  .definition-2 { background: #F0FAF6; border-left: 3px solid #1D9E75; }
-  .definition-3 { background: #FEF5F2; border-left: 3px solid #D85A30; }
+  .definition-1 { background: #FFFAE6; border-left: 3px solid #FAC800; }
+  .definition-2 { background: #FDF5F0; border-left: 3px solid #D14905; }
+  .definition-3 { background: #FDF3F3; border-left: 3px solid #CC0000; }
   .def-header {
     display: flex;
     justify-content: space-between;
@@ -212,9 +213,9 @@
     margin-bottom: 0.6rem;
   }
   .def-title { font-size: 13px; font-weight: 600; letter-spacing: 0.01em; }
-  .def-title-1 { color: #3C3489; }
-  .def-title-2 { color: #085041; }
-  .def-title-3 { color: #712B13; }
+  .def-title-1 { color: #5C4500; }
+  .def-title-2 { color: #7A2E03; }
+  .def-title-3 { color: #7A0000; }
   .def-close {
     font-size: 12px; color: #595959; cursor: pointer;
     background: none; border: none; font-family: Georgia, serif; padding: 0;
@@ -230,7 +231,7 @@
     border-top: 0.5px solid #ddd;
     padding-top: 0.9rem;
   }
-  figcaption strong { font-weight: 600; color: #2C2C2A; }
+  figcaption strong { font-weight: 600; color: #1A1A1A; }
   .citation {
     font-size: 12px;
     color: #595959;
@@ -326,7 +327,7 @@
     align-items: flex-start;
     font-size: 13px;
     line-height: 1.6;
-    color: #3A3A38;
+    color: #333333;
   }
   .finding-list li::before {
     content: '→';
@@ -417,7 +418,7 @@
     padding: 0.7rem 0.8rem;
     font-size: 12px;
     line-height: 1.65;
-    color: #3A3A38;
+    color: #333333;
     background: var(--white);
     border-top: 0.5px solid var(--line);
   }
@@ -434,7 +435,7 @@
     width: 100%;
     margin-bottom: 1.8rem;
     background: var(--warn-light);
-    border: 0.5px solid #D85A30;
+    border: 0.5px solid #CC0000;
     border-radius: 8px;
     overflow: hidden;
   }
@@ -448,7 +449,7 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--warn);
-    border-bottom: 0.5px solid #D85A30;
+    border-bottom: 0.5px solid #CC0000;
     user-select: none;
   }
   .shortcut-body {
@@ -621,7 +622,7 @@
   }
   .key-q {
     font-size: 13px;
-    color: #3A3A38;
+    color: #333333;
     margin-bottom: 0.6rem;
     padding-bottom: 0.5rem;
     border-bottom: 0.5px dashed var(--line);
@@ -676,7 +677,7 @@
     border-radius: 6px;
     margin: 0;
   }
-  .checkpoint-response.yes { background: var(--teal-light); color: #085041; }
+  .checkpoint-response.yes { background: var(--teal-light); color: #7A2E03; }
   .checkpoint-response.no { background: var(--warn-light); color: var(--warn); }
   .checkpoint-btn.selected.alt { background: var(--ink); border-color: var(--ink); color: #fff; }
   .checkpoint-response.alt { background: var(--gray-light); color: var(--ink); }
@@ -704,9 +705,9 @@
   h2.callout-head, h3.callout-head { line-height: 1.6; }
   .level-glosses { list-style: none; margin: 0.3rem 0 0.7rem; }
   .level-glosses li { margin-bottom: 0.3rem; }
-  .level-glosses .lg-1 { color: #3C3489; }
-  .level-glosses .lg-2 { color: #085041; }
-  .level-glosses .lg-3 { color: #712B13; }
+  .level-glosses .lg-1 { color: #5C4500; }
+  .level-glosses .lg-2 { color: #7A2E03; }
+  .level-glosses .lg-3 { color: #7A0000; }
   .level-gloss {
     font-size: 13px;
     font-style: italic;
@@ -720,9 +721,9 @@
   .fig1-card-head { padding: 0.65rem 0.9rem; font-weight: 400; }
   .fig1-card-level { display: block; font-size: 12px; }
   .fig1-card-name { display: block; font-size: 16px; font-weight: 700; }
-  .fig1-card-1 .fig1-card-head { background: #EEEDFE; color: #3C3489; }
-  .fig1-card-2 .fig1-card-head { background: #E1F5EE; color: #085041; }
-  .fig1-card-3 .fig1-card-head { background: #FAECE7; color: #712B13; }
+  .fig1-card-1 .fig1-card-head { background: #FFF4CC; color: #5C4500; }
+  .fig1-card-2 .fig1-card-head { background: #FBEBE1; color: #7A2E03; }
+  .fig1-card-3 .fig1-card-head { background: #FBE8E8; color: #7A0000; }
   .fig1-card dl { padding: 0.5rem 0.9rem 0.7rem; font-size: 14px; }
   .fig1-card dt { font-size: 12px; font-style: italic; color: var(--gray); margin-top: 0.45rem; }
   .fig1-card dd { color: var(--ink); }
@@ -772,15 +773,15 @@
   <p class="subtitle">A three-level framework for the AI decisions students, faculty, professionals, and institutions make</p>
   <div class="legend">
     <div class="legend-item">
-      <div class="legend-dot" style="background:var(--purple)"></div>
+      <div class="legend-dot" style="background:var(--purple-mid)"></div>
       <span>Level 1: Conceptual literacy</span>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:var(--teal)"></div>
+      <div class="legend-dot" style="background:var(--teal-mid)"></div>
       <span>Level 2: Structural literacy</span>
     </div>
     <div class="legend-item">
-      <div class="legend-dot" style="background:var(--coral)"></div>
+      <div class="legend-dot" style="background:var(--coral-mid)"></div>
       <span>Level 3: Operative literacy</span>
     </div>
   </div>
@@ -819,7 +820,7 @@
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5"
                 markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-          <path d="M2 1L8 5L2 9" fill="none" stroke="#888780"
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#888888"
                 stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </marker>
         <clipPath id="p1"><rect x="30"  y="30" width="190" height="310" rx="10"/></clipPath>
@@ -828,16 +829,16 @@
       </defs>
 
       <style>
-        text { font-family: Georgia, 'Times New Roman', serif; fill: #2C2C2A; }
-        .lbl  { font-size: 12px; fill: #5F5E5A; font-style: italic; }
-        .val  { font-size: 12px; fill: #2C2C2A; }
-        .n1   { font-size: 11px; fill: #534AB7; }
-        .h1   { font-size: 14px; font-weight: 600; fill: #3C3489; }
-        .n2   { font-size: 11px; fill: #0F6E56; }
-        .h2   { font-size: 14px; font-weight: 600; fill: #085041; }
-        .n3   { font-size: 11px; fill: #993C1D; }
-        .h3   { font-size: 14px; font-weight: 600; fill: #712B13; }
-        .foot { font-size: 11px; fill: #5F5E5A; }
+        text { font-family: Georgia, 'Times New Roman', serif; fill: #1A1A1A; }
+        .lbl  { font-size: 12px; fill: #595959; font-style: italic; }
+        .val  { font-size: 12px; fill: #1A1A1A; }
+        .n1   { font-size: 11px; fill: #7A5C00; }
+        .h1   { font-size: 14px; font-weight: 600; fill: #5C4500; }
+        .n2   { font-size: 11px; fill: #B23E04; }
+        .h2   { font-size: 14px; font-weight: 600; fill: #7A2E03; }
+        .n3   { font-size: 11px; fill: #990000; }
+        .h3   { font-size: 14px; font-weight: 600; fill: #7A0000; }
+        .foot { font-size: 11px; fill: #595959; }
       </style>
 
       <!-- PANEL 1 -->
@@ -845,28 +846,28 @@
          onclick="toggleDef(1)" role="button" aria-expanded="false" tabindex="0"
          aria-label="Level 1, Describe: Conceptual literacy, select to expand definition">
         <g clip-path="url(#p1)">
-          <rect class="panel-bg" x="30" y="30" width="190" height="58" fill="#EEEDFE"/>
+          <rect class="panel-bg" x="30" y="30" width="190" height="58" fill="#FFF4CC"/>
         </g>
         <text class="n1" x="125" y="50" text-anchor="middle">Level 1 · Describe</text>
         <text class="h1" x="125" y="70" text-anchor="middle">Conceptual literacy</text>
-        <line x1="30"  y1="88" x2="220" y2="88"  stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="30"  y1="88" x2="220" y2="88"  stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="125" y="106" text-anchor="middle">Knowledge character</text>
         <text class="val" x="125" y="123" text-anchor="middle">Vocabulary and</text>
         <text class="val" x="125" y="139" text-anchor="middle">concept definition</text>
-        <line x1="50"  y1="153" x2="200" y2="153" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="50"  y1="153" x2="200" y2="153" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="125" y="169" text-anchor="middle">Pedagogy</text>
         <text class="val" x="125" y="186" text-anchor="middle">Direct instruction</text>
-        <line x1="50"  y1="200" x2="200" y2="200" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="50"  y1="200" x2="200" y2="200" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="125" y="216" text-anchor="middle">Assessment</text>
         <text class="val" x="125" y="233" text-anchor="middle">Correctness-based</text>
-        <line x1="50"  y1="248" x2="200" y2="248" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="50"  y1="248" x2="200" y2="248" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="125" y="264" text-anchor="middle">Key question</text>
         <text class="val" x="125" y="281" text-anchor="middle">Whose knowledge</text>
         <text class="val" x="125" y="297" text-anchor="middle">is encoded?</text>
-        <circle class="active-dot" cx="207" cy="43" r="4" fill="#7F77DD"/>
+        <circle class="active-dot" cx="207" cy="43" r="4" fill="#FAC800"/>
         <rect class="panel-border panel-border-1"
               x="30" y="30" width="190" height="310" rx="10"
-              fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+              fill="none" stroke="#BBBBBB" stroke-width="0.5"/>
       </g>
 
       <!-- PANEL 2 -->
@@ -874,28 +875,28 @@
          onclick="toggleDef(2)" role="button" aria-expanded="false" tabindex="0"
          aria-label="Level 2, Analyze: Structural literacy, select to expand definition">
         <g clip-path="url(#p2)">
-          <rect class="panel-bg" x="245" y="30" width="190" height="58" fill="#E1F5EE"/>
+          <rect class="panel-bg" x="245" y="30" width="190" height="58" fill="#FBEBE1"/>
         </g>
         <text class="n2" x="340" y="50" text-anchor="middle">Level 2 · Analyze</text>
         <text class="h2" x="340" y="70" text-anchor="middle">Structural literacy</text>
-        <line x1="245" y1="88" x2="435" y2="88"  stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="245" y1="88" x2="435" y2="88"  stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="340" y="106" text-anchor="middle">Knowledge character</text>
         <text class="val" x="340" y="123" text-anchor="middle">Analysis of inherent</text>
         <text class="val" x="340" y="139" text-anchor="middle">system conditions</text>
-        <line x1="265" y1="153" x2="415" y2="153" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="265" y1="153" x2="415" y2="153" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="340" y="169" text-anchor="middle">Pedagogy</text>
         <text class="val" x="340" y="186" text-anchor="middle">Critical analysis</text>
-        <line x1="265" y1="200" x2="415" y2="200" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="265" y1="200" x2="415" y2="200" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="340" y="216" text-anchor="middle">Assessment</text>
         <text class="val" x="340" y="233" text-anchor="middle">Argumentative quality</text>
-        <line x1="265" y1="248" x2="415" y2="248" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="265" y1="248" x2="415" y2="248" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="340" y="264" text-anchor="middle">Key question</text>
         <text class="val" x="340" y="281" text-anchor="middle">Who controls this</text>
         <text class="val" x="340" y="297" text-anchor="middle">system?</text>
-        <circle class="active-dot" cx="422" cy="43" r="4" fill="#1D9E75"/>
+        <circle class="active-dot" cx="422" cy="43" r="4" fill="#D14905"/>
         <rect class="panel-border panel-border-2"
               x="245" y="30" width="190" height="310" rx="10"
-              fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+              fill="none" stroke="#BBBBBB" stroke-width="0.5"/>
       </g>
 
       <!-- PANEL 3 -->
@@ -903,35 +904,35 @@
          onclick="toggleDef(3)" role="button" aria-expanded="false" tabindex="0"
          aria-label="Level 3, Decide: Operative literacy, select to expand definition">
         <g clip-path="url(#p3)">
-          <rect class="panel-bg" x="460" y="30" width="190" height="58" fill="#FAECE7"/>
+          <rect class="panel-bg" x="460" y="30" width="190" height="58" fill="#FBE8E8"/>
         </g>
         <text class="n3" x="555" y="50" text-anchor="middle">Level 3 · Decide</text>
         <text class="h3" x="555" y="70" text-anchor="middle">Operative literacy</text>
-        <line x1="460" y1="88" x2="650" y2="88"  stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="460" y1="88" x2="650" y2="88"  stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="555" y="106" text-anchor="middle">Knowledge character</text>
         <text class="val" x="555" y="123" text-anchor="middle">Contextual judgment,</text>
         <text class="val" x="555" y="139" text-anchor="middle">principled refusal</text>
-        <line x1="480" y1="153" x2="630" y2="153" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="480" y1="153" x2="630" y2="153" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="555" y="169" text-anchor="middle">Pedagogy</text>
         <text class="val" x="555" y="186" text-anchor="middle">Situated, case-based</text>
-        <line x1="480" y1="200" x2="630" y2="200" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="480" y1="200" x2="630" y2="200" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="555" y="216" text-anchor="middle">Assessment</text>
         <text class="val" x="555" y="233" text-anchor="middle">Contextual, accountable</text>
-        <line x1="480" y1="248" x2="630" y2="248" stroke="#D3D1C7" stroke-width="0.5"/>
+        <line x1="480" y1="248" x2="630" y2="248" stroke="#DDDDDD" stroke-width="0.5"/>
         <text class="lbl" x="555" y="264" text-anchor="middle">Key question</text>
         <text class="val" x="555" y="281" text-anchor="middle">What warrants</text>
         <text class="val" x="555" y="297" text-anchor="middle">refusal?</text>
-        <circle class="active-dot" cx="637" cy="43" r="4" fill="#D85A30"/>
+        <circle class="active-dot" cx="637" cy="43" r="4" fill="#CC0000"/>
         <rect class="panel-border panel-border-3"
               x="460" y="30" width="190" height="310" rx="10"
-              fill="none" stroke="#B4B2A9" stroke-width="0.5"/>
+              fill="none" stroke="#BBBBBB" stroke-width="0.5"/>
       </g>
 
       <!-- PREREQUISITE ARROWS -->
       <line x1="222" y1="192" x2="243" y2="192"
-            stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+            stroke="#888888" stroke-width="1" marker-end="url(#arrow)"/>
       <line x1="437" y1="192" x2="458" y2="192"
-            stroke="#888780" stroke-width="1" marker-end="url(#arrow)"/>
+            stroke="#888888" stroke-width="1" marker-end="url(#arrow)"/>
 
       <text class="foot" x="340" y="358" text-anchor="middle">Each level requires the preceding levels as its analytical foundation</text>
     </svg>
@@ -1186,14 +1187,14 @@
       decision: "Using a generative AI tool on a writing assignment when the policy doesn't spell out the specifics",
       shortcutTitle: "Conceptual-only path",
       shortcutSteps: ["Is it available?", "Will it save time?", "Is the policy silent?", "Use it"],
-      shortcutResult: "Consequence: a student who reaches conceptual literacy (the tool exists and is easy to use) but not structural or operative literacy never asks whose judgment the assignment is built to develop, or whether that judgment just moved from the student to the tool's training corpus.",
+      shortcutResult: "Consequence: a student who reaches conceptual literacy (the tool exists and is easy to use) but not structural or operative literacy never asks whose judgment the assignment is built to develop, or whether that judgment moved from the student to the tool's training corpus.",
       levels: [
         {
           name: "Conceptual Literacy",
           question: "What is this draft made of?",
           keyQ: "The conceptual question is the one the framework asks at any scale: whose knowledge is encoded. At the scale of a sentence, that means asking which corpus's vocabulary and syntax are standing in for the student's own.",
           points: [
-            "Name the exact function in use: drafting from a prompt, revising a sentence, generating an outline, checking grammar. Each is a different act, not one blanket “using AI.”",
+            "Name the exact function in use: drafting from a prompt, revising a sentence, generating an outline, checking grammar. Each is a different act.",
             "The tool predicts the next most probable word from its training data. It has no access to the assignment's purpose, the course's learning goals, or the writer's own history with the piece.",
             "A generated draft is not a source, a fact, or a citation. It is one corpus's answer to what a finished sentence sounds like, offered as though it were neutral."
           ]
@@ -1201,7 +1202,7 @@
         {
           name: "Structural Literacy",
           question: "Whose standard is the draft meeting?",
-          keyQ: "The structural question, who controls this system, is not abstract at the scale of one paragraph. The organization that trained the model controls what counts as fluent in that paragraph, not the student and not the course.",
+          keyQ: "The structural question, who controls this system, stays concrete at the scale of one paragraph. The organization which trained the model controls what counts as fluent in that paragraph.",
           points: [
             "Generative output favors the most statistically probable phrasing, drawn overwhelmingly from dominant, standardized English. Leaning on it to draft or “fix” prose pulls writing toward that standard and away from a writer's own voice, including dialect and process, a cost multilingual writers carry disproportionately.",
             "Delegating a sentence to the tool delegates the judgment behind it, and judgment is usually the thing an assignment is built to develop and grade.",
@@ -1236,7 +1237,7 @@
         },
         defer: {
           body: "When the policy is silent, silence is not permission.",
-          points: ["Ask what the assignment is trying to develop before assuming an answer", "Treat an unclear policy as an open question, not a loophole"],
+          points: ["Ask what the assignment is trying to develop before assuming an answer", "Treat an unclear policy as an open question"],
           note: "A deadline leaves the question in place. It changes only how soon the answer is due."
         }
       },
@@ -1256,7 +1257,7 @@
           keyQ: "The conceptual question, whose knowledge is encoded, applies to the assignment before it applies to any student's use of it. A policy has to name what capability is at stake before it can say anything true about it.",
           points: [
             "Name it: outlining, drafting full paragraphs, revising for clarity, generating discussion questions, summarizing a source. A blanket allow or ban treats all of these as one thing. They are not.",
-            "Know what the tool can and cannot verify. It does not check facts against the course's actual readings, and it has no access to a rubric."
+            "Know what the tool verifies and what it leaves unchecked. It does not check facts against the course's actual readings, and it has no access to a rubric."
           ]
         },
         {
@@ -1296,9 +1297,9 @@
           note: "A general AI clause in the syllabus is not this. It is the absence of this, with a placeholder standing in for it."
         },
         defer: {
-          body: "When AI-generated text could pass the assignment undetected, the design is the finding, not the student.",
+          body: "When AI-generated text would pass the assignment undetected, the finding concerns the design.",
           points: ["Identify what the assignment is rewarding right now", "Redesign to surface process before writing a policy for the old version"],
-          note: "A policy decision made before the redesign answers a question the assignment can't yet ask."
+          note: "A policy decision made before the redesign answers a question the assignment has yet to ask."
         }
       },
       caption: "Three-Level AI Literacy Governance Decision Framework, applied to a faculty member's policy for one assignment (Cole, 2026)."
@@ -1325,8 +1326,8 @@
           question: "Whose standard, and whose information, is this?",
           keyQ: "The structural question, who controls this system, has two edges in a professional context: who controls the norm the output is measured against, and who controls where the information in it goes next.",
           points: [
-            "A generated draft reflects the tool's training distribution, not an organization's standards, a client's specific context, or field-specific expertise. It reads as generically competent, not as correct for this case.",
-            "Client, patient, or proprietary information entered into the tool may leave the organization's control, on terms the vendor sets. That is a structural property of the tool, not a setting to adjust after the fact."
+            "A generated draft reflects the tool's training distribution, not an organization's standards, a client's specific context, or field-specific expertise. It reads as generically competent, which differs from correct for this case.",
+            "Client, patient, or proprietary information entered into the tool may leave the organization's control, on terms the vendor sets. That is a structural property of the tool, fixed before any setting is adjusted."
           ]
         },
         {
@@ -1356,7 +1357,7 @@
           note: "A faster draft is not a reviewed draft. The review is what the client or employer is relying on."
         },
         defer: {
-          body: "When employer policy or client confidentiality terms are unclear, proceeding is a bet, not a decision.",
+          body: "When employer policy or client confidentiality terms are unclear, proceeding is a bet.",
           points: ["Confirm what the vendor's data terms allow for this category of information", "Confirm what the employer's policy says before the material goes in, not after"],
           note: "A task that feels routine is not evidence the terms have been checked. It is often exactly why they haven't been."
         }
@@ -1374,10 +1375,10 @@
         {
           name: "Conceptual Literacy",
           question: "What is this tool and how does it function?",
-          keyQ: "Before any structural analysis is possible, the governance body must be able to accurately describe what it is being asked to purchase.",
+          keyQ: "The governance body first has to describe accurately what it is buying. Structural analysis depends on this description.",
           points: [
             "AI detection software classifies text by measuring perplexity (the predictability of word sequences) and burstiness (variation in sentence complexity)",
-            "Its output is a probability score estimating the likelihood of AI generation, not a verdict on authorship and not a determination of academic misconduct",
+            "Its output is a probability score for AI generation. The score settles neither authorship nor academic misconduct",
             "These tools are trained on text corpora with specific distributional properties that shape their classification behavior",
             "Detectors require regular retraining as language model outputs change. Accuracy at purchase does not guarantee accuracy at deployment"
           ]
@@ -1389,7 +1390,7 @@
           points: [
             "Seven widely-used GPT detectors maintained near-perfect accuracy for US student writing while producing a 61.3% average false positive rate for non-native English speakers <span class=\"cite\">(Liang et al., 2023, Patterns)</span>",
             "Non-native English writers produce text with characteristics (more predictable vocabulary, simpler syntax, formulaic transitions) which detectors associate with AI output. The bias follows from what the tools measure, so a software update will not correct it",
-            "None of 14 tested detection tools reached 80% overall accuracy; accuracy degraded further when text was paraphrased <span class=\"cite\">(Weber-Wulff et al., 2023, International Journal for Educational Integrity)</span>",
+            "None of 14 tested detection tools reached 80% overall accuracy. Accuracy degraded further when text was paraphrased <span class=\"cite\">(Weber-Wulff et al., 2023, International Journal for Educational Integrity)</span>",
             "For college admission essays generated by ChatGPT-3.5, a second prompt asking the model to elevate its own word choices reduced detection rates from 100% to 13%. Tools which misidentify non-native English writing also miss AI text after light revision <span class=\"cite\">(Liang et al., 2023)</span>"
           ]
         },
@@ -1398,9 +1399,9 @@
           question: "What will this institution decide, and on what grounds?",
           keyQ: "Operative literacy does not prescribe a single answer. It specifies the conditions a principled answer must meet. The structural findings above hold for any institution weighing this tool. The decision is this institution's, and it exists only once made.",
           points: [
-            "Are process-based alternatives available? Revision history tools and writing process portfolios assess authorship by making the writing process visible rather than classifying output characteristics, without building in the structural bias pattern detection software reproduces",
+            "Are process-based alternatives available? Revision history tools and writing process portfolios assess authorship by making the writing process visible, without building in the structural bias pattern detection software reproduces",
             "What accountability structures is the institution prepared to enforce? Disaggregated reporting by student demographic, vendor accountability clauses, independent auditing, student appeal mechanisms, and sunset review clauses are minimum conditions for defensible adoption",
-            "Are the structural conditions of this tool remediable by policy overlays? If the bias is a property of what the tool measures, not a deployment error, policy cannot correct it",
+            "Are the structural conditions of this tool remediable by policy overlays? If the bias follows from what the tool measures, no policy will correct it",
             "What does the institution communicate to multilingual students by proceeding with procurement without addressing structural findings?"
           ]
         }
@@ -1412,8 +1413,8 @@
       outcomes: {
         decline: {
           body: "Warranted when structural conditions reproduce linguistic hierarchy, process-based alternatives exist, and structural conditions are not remediable by policy overlays.",
-          points: ["Grounds the refusal in structural analysis, not preference or risk aversion", "Articulates the reasoning in terms accountable to the affected student population", "Names the alternatives the institution will use instead"],
-          note: "This is principled operative refusal in the framework's specific sense: accountable rejection of conditions that reproduce harm (Simpson, 2014; Campt, 2017; Benjamin, 2019)."
+          points: ["Grounds the refusal in structural analysis", "Articulates the reasoning in terms accountable to the affected student population", "Names the alternatives the institution will use instead"],
+          note: "This is principled operative refusal in the framework's specific sense: accountable rejection of conditions which reproduce harm (Simpson, 2014; Campt, 2017; Benjamin, 2019)."
         },
         conditional: {
           body: "Requires all of the following to be explicit conditions of the vendor contract:",
@@ -1444,7 +1445,7 @@
       var span = document.createElement("span");
       var last = i === d.shortcutSteps.length - 1;
       span.className = "shortcut-step";
-      if (last) span.style.cssText = "background:#993C1D;color:white;border-color:#712B13;font-weight:600;";
+      if (last) span.style.cssText = "background:#990000;color:white;border-color:#7A0000;font-weight:600;";
       span.textContent = step;
       flow.appendChild(span);
       if (!last) {
@@ -1519,7 +1520,7 @@
     html += '<span class="toggle-icon" id="icon-' + n + '" aria-hidden="true">▾</span></div>';
     html += '<div class="panel-body open" id="body-' + n + '">';
     html += '<p class="level-gloss">' + AG_GLOSS[n - 1] + '</p>';
-    html += '<p style="font-size:13px;color:#3A3A38;margin-bottom:0.5rem;">' + lvl.keyQ + '</p>';
+    html += '<p style="font-size:13px;color:#333333;margin-bottom:0.5rem;">' + lvl.keyQ + '</p>';
     html += '<ul class="finding-list">' + lvl.points.map(function (p) { return "<li>" + p + "</li>"; }).join("") + '</ul>';
     html += '</div></div>';
     return html;
