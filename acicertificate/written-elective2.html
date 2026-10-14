@@ -122,9 +122,13 @@ textarea { min-height: 100px; }
   .mode-grid { grid-template-columns: 1fr; }
 }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="../css/brand.css">
 <link rel="stylesheet" href="css/module.css">
 </head>
-<body>
+<body data-track="written">
 
 <div class="top-bar">
   <div class="top-bar-left">
@@ -151,7 +155,7 @@ textarea { min-height: 100px; }
     </div>
     <div class="sidebar-section">
       <span class="sidebar-label">Your Artifact</span>
-      <a href="#artifact" class="artifact-link">Build Your WAC Plan →</a>
+      <a href="#artifact" class="artifact-link">Build Your WAC Plan</a>
     </div>
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
@@ -196,7 +200,7 @@ textarea { min-height: 100px; }
       <div class="callout" style="border-left-color: var(--red); background: #fff8f8; margin-top: 1rem;">
         <div class="callout-title" style="color: var(--red);">WAC Activities and AI — A Design Question</div>
         <p>WAC's low-stakes writing activities — exit tickets, minute papers, freewrites — are often framed as "too easy to fake with AI." The question is worth inverting: an exit ticket that asks "summarize tonight's reading in your own words" is fakeable because it does not require actual engagement with the class's specific intellectual moment. An exit ticket that asks "what was the most surprising claim in today's discussion, and what prior assumption does it challenge for you?" is much harder to complete without having been in the room. WAC activity design that specifies the particular, the situated, and the personal is inherently more resistant to AI substitution — not because it polices for AI, but because it requires genuine presence.</p>
-        <p style="margin-top: 0.6rem; font-size: 0.85rem;"><a href="https://cwspwolf.com/ai_literacy_unified.html" target="_blank" rel="noopener" style="color: var(--red); font-weight: 600;">AI Literacy Model (Cole, 2026) →</a></p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem;"><a href="https://cwspwolf.com/ai_literacy_unified.html" target="_blank" rel="noopener" style="color: var(--red); font-weight: 600;">AI Literacy Model (Cole, 2026)</a></p>
       </div>
     </div>
 
@@ -342,7 +346,7 @@ textarea { min-height: 100px; }
       <label for="art-evidence">Evidence of impact. <span>How will you track whether your WAC activities are advancing learning — what changes will you look for in formal writing, in class discussion, in exam performance, or in student self-report?</span></label>
       <textarea id="art-evidence" placeholder="How you will assess whether the WAC integration is working — what evidence you will gather and when..." style="min-height: 80px;"></textarea>
 
-      <button class="btn-artifact" onclick="previewArtifact()">Preview WAC Plan →</button>
+      <button class="btn-artifact" onclick="previewArtifact()">Preview WAC Plan</button>
     </div>
 
     <!-- READING LIST -->
