@@ -1,0 +1,33 @@
+/* Shared rules for C²TC module and elective pages.
+   Loaded after each page's own styles. */
+
+/* Keep the content column inside the viewport on phones. */
+.layout > *, .main { min-width: 0; }
+.main { overflow-wrap: break-word; }
+.main table { display: block; max-width: 100%; overflow-x: auto; }
+.main img, .main svg, .main video { max-width: 100%; height: auto; }
+
+@media (max-width: 700px) {
+  .top-bar { flex-wrap: wrap; padding: 0.6rem 1rem; }
+  .top-bar-left { flex-wrap: wrap; gap: 0.25rem 1rem; }
+  .progress-wrap { width: 100%; }
+}
+
+.main em, .main a, .main code { overflow-wrap: anywhere; }
+
+@media (max-width: 700px) {
+  .with-for-grid, .framework-grid, .mode-grid, .dim-grid, .trap-grid,
+  .decision-grid, .level-grid, .art-criteria-grid, .feedback-examples {
+    grid-template-columns: 1fr !important;
+  }
+  .dapoe-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* Pages whose own mobile rules were missing or sat inside @media print. */
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr !important; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+  .reading-list li { flex-wrap: wrap; }
+}

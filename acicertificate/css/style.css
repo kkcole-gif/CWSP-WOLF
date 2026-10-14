@@ -379,8 +379,12 @@ body {
 .coming-soon p  { color: var(--gray-dark); max-width: 480px; margin: 0 auto; }
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .nav-inner { height: auto; flex-wrap: wrap; gap: 0.25rem 1rem; padding: 0.6rem 1rem; }
+  .nav-links { flex-wrap: wrap; width: 100%; }
+  .nav-links a { padding: 0.35rem 0.55rem; font-size: 0.8rem; }
+}
 @media (max-width: 700px) {
-  .nav-links { display: none; }
   .section   { padding: 2.5rem 1.25rem; }
   .content   { padding: 2rem 1.25rem; }
   .track-cards { grid-template-columns: 1fr; }
