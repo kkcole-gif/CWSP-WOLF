@@ -676,7 +676,7 @@
           <p>Adaptable policy language</p>
         </div>
       </div>
-      <p style="font-size:0.85rem; color:#888;">Framework: Cole (2026). Three-Level AI Literacy Model. <em>Pedagogies: An International Journal.</em> · <a href="go.ncsu.edu/cwsp">go.ncsu.edu/cwsp</a></p>
+      <p style="font-size:0.85rem; color:#888;">Framework: Cole (2026). Three-Level AI Literacy Model. <em>Pedagogies: An International Journal.</em> · <a href="https://go.ncsu.edu/cwsp">go.ncsu.edu/cwsp</a></p>
     </section>
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
     <!-- PART I -->
@@ -1190,7 +1190,7 @@
         <div class="step-card"><h4 style="font-size:0.88rem;">4. Explain the reasoning</h4><p>Students comply more with policies they understand. Name why the policy takes the position it does.</p></div>
       </div>
       <div class="callout">
-        <p>The templates below are starting points, not models. Replace everything in [brackets]. Edit directly in each template — your changes are saved automatically in this browser. Use the Download PDF button to export your draft.</p>
+        <p>The templates below are starting points, not models. Replace everything in [brackets]. Edit directly in each template — your changes are saved automatically in this browser. Use the Print or save as PDF button to export your draft.</p>
       </div>
     </section>
     <!-- Course-Level -->
@@ -1202,7 +1202,7 @@
           <div class="p4-header-actions">
             <button class="btn-examples" onclick="openExamples('course')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-course', this)">Copy text</button>
-            <button class="btn-download" onclick="downloadPolicyPDF('p4-course', 'Course-Level: Syllabus Statement')">Download PDF</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-course', 'Course-Level: Syllabus Statement')">Print or save as PDF</button>
           </div>
         </div>
         <textarea id="p4-course" class="policy-draft-area" rows="12" oninput="save()">In this course, I understand AI-generated text to mean [any output produced by a generative AI system, including large language models, image generators, and code assistants, when that output is submitted as your own work without attribution].
@@ -1224,7 +1224,7 @@ This policy is in effect for [semester/year]. I will notify you of any changes. 
           <div class="p4-header-actions">
             <button class="btn-examples" onclick="openExamples('program')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-program', this)">Copy text</button>
-            <button class="btn-download" onclick="downloadPolicyPDF('p4-program', 'Program-Level: Shared Governance Statement')">Download PDF</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-program', 'Program-Level: Shared Governance Statement')">Print or save as PDF</button>
           </div>
         </div>
         <textarea id="p4-program" class="policy-draft-area" rows="12" oninput="save()">The [program name] holds that the communication skills central to [disciplinary practice: e.g., engineering writing, clinical documentation, policy analysis] require [describe the specific human judgment the discipline values: e.g., evidence-based reasoning, rhetorical awareness, contextual decision-making] that AI tools do not reliably produce or assess.
@@ -1246,7 +1246,7 @@ This statement reflects program consensus as of [date]. It will be reviewed at [
           <div class="p4-header-actions">
             <button class="btn-examples" onclick="openExamples('dept')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-dept', this)">Copy text</button>
-            <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Department-Level: Institutional Governance Framework')">Download PDF</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Department-Level: Institutional Governance Framework')">Print or save as PDF</button>
           </div>
         </div>
         <textarea id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department name] adopts the following framework for AI use across its courses and programs, effective [date].
@@ -1265,7 +1265,7 @@ Revision: This framework was adopted in conditions that are already changing. It
     </section>
     <!-- Download all -->
     <div class="part4-download-all">
-      <button class="btn-download-all" onclick="downloadAllPoliciesPDF()">Download all three as PDF</button>
+      <button class="btn-download-all" onclick="downloadAllPoliciesPDF()">Print or save all three as PDF</button>
       <p class="p4-save-hint">Your edits are saved automatically in this browser.</p>
     </div>
     <div class="callout" style="margin:0 0 2rem;">
@@ -1478,7 +1478,7 @@ function downloadPolicyPDF(id, label) {
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>' + label + ' — AI Policy Lab</title><style>*{margin:0;padding:0;box-sizing:border-box;}@page{margin:2.5cm 3cm;}body{font-family:Georgia,"Times New Roman",serif;color:#111;font-size:11.5pt;line-height:1.8;}.header{border-bottom:2px solid #CC0000;padding-bottom:0.85rem;margin-bottom:1.75rem;}.eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h1{font-size:17pt;font-weight:800;font-family:Arial,sans-serif;letter-spacing:-0.01em;}.policy-body{white-space:pre-wrap;}.footer{margin-top:3.5rem;font-size:8pt;color:#888;border-top:1px solid #ddd;padding-top:0.75rem;font-family:Arial,sans-serif;}</style></head><body><div class="header"><p class="eyebrow">NC State CWSP · AI Policy Lab · Part IV Draft</p><h1>' + label + '</h1></div><div class="policy-body">' + content + '</div><div class="footer">NC State Campus Writing and Speaking Program · cwspwolf.com<br>© 2026 Kirsti Cole. Licensed under CC BY-NC-ND 4.0. Generated from the AI Policy Lab Workbook.</div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>';
   const win = window.open('', '_blank');
-  if (!win) { alert('Please allow popups for cwspwolf.com to download the PDF.'); return; }
+  if (!win) { alert('Please allow popups for cwspwolf.com to print or save the PDF.'); return; }
   win.document.write(html);
   win.document.close();
 }
@@ -1496,7 +1496,7 @@ function downloadAllPoliciesPDF() {
   });
   const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>AI Policy Drafts — NC State CWSP AI Policy Lab</title><style>*{margin:0;padding:0;box-sizing:border-box;}@page{margin:2.5cm 3cm;}body{font-family:Georgia,"Times New Roman",serif;color:#111;font-size:11.5pt;line-height:1.8;}.cover-header{border-bottom:2px solid #CC0000;padding-bottom:0.85rem;margin-bottom:1.75rem;}.eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h1{font-size:20pt;font-weight:800;font-family:Arial,sans-serif;letter-spacing:-0.01em;}.section{padding-top:1rem;}.section-eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h2{font-size:15pt;font-weight:800;font-family:Arial,sans-serif;margin-bottom:1.25rem;border-bottom:1px solid #eee;padding-bottom:0.6rem;}.policy-body{white-space:pre-wrap;}.footer{margin-top:3.5rem;font-size:8pt;color:#888;border-top:1px solid #ddd;padding-top:0.75rem;font-family:Arial,sans-serif;}</style></head><body><div class="cover-header"><p class="eyebrow">NC State CWSP · AI Policy Lab · Part IV Drafts</p><h1>AI Policy Language — All Three Levels</h1></div>' + sections + '<div class="footer">NC State Campus Writing and Speaking Program · cwspwolf.com<br>© 2026 Kirsti Cole. Licensed under CC BY-NC-ND 4.0. Generated from the AI Policy Lab Workbook.</div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>';
   const win = window.open('', '_blank');
-  if (!win) { alert('Please allow popups for cwspwolf.com to download the PDF.'); return; }
+  if (!win) { alert('Please allow popups for cwspwolf.com to print or save the PDF.'); return; }
   win.document.write(html);
   win.document.close();
 }
