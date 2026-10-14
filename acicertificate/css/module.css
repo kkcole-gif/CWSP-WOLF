@@ -37,7 +37,7 @@ body { background: #fff; }
 .layout { max-width: 1180px; }
 .sidebar { background: #fff; border-right: 1px solid var(--rule, #ddd); }
 .sidebar-label { text-transform: none; letter-spacing: 0; font-size: 0.78rem; }
-.sidebar a.active, .sidebar a.activity.active { background: transparent; color: var(--accent, #CC0000); border-left-color: var(--accent, #CC0000); }
+.sidebar a.active, .sidebar a.activity.active { background: transparent; color: var(--accent-ink, var(--accent, #CC0000)); border-left-color: var(--accent, #CC0000); }
 .sidebar a.activity { color: var(--muted, #4d4d4d); }
 
 .module-header {
@@ -48,7 +48,7 @@ body { background: #fff; }
 }
 .module-header h2 { color: var(--dark, #1a1a1a); }
 .module-header p { color: var(--muted, #4d4d4d); }
-.module-eyebrow { text-transform: none; letter-spacing: 0; font-size: 0.85rem; color: var(--accent, #CC0000); }
+.module-eyebrow { text-transform: none; letter-spacing: 0; font-size: 0.85rem; color: var(--accent-ink, var(--accent, #CC0000)); }
 
 .content-section > p, .content-section li, .callout p, .activity-block > p {
   font-family: var(--serif);
@@ -60,7 +60,7 @@ body { background: #fff; }
   text-transform: none;
   letter-spacing: 0;
   font-size: 0.85rem;
-  color: var(--accent, #CC0000);
+  color: var(--accent-ink, var(--accent, #CC0000));
 }
 .content-section h3 { font-size: 1.5rem; }
 
@@ -78,5 +78,6 @@ textarea, input[type="text"], input[type="email"] { background: #fff; }
 .reading-list li { display: block; }
 .reading-list li::before { content: none; }
 .submit-section { background: #fff; border: 1px solid var(--rule, #ddd); border-radius: 0; }
-.btn-submit { background: var(--accent, #CC0000); border-radius: 2px; }
+.btn-submit { background: var(--accent, #CC0000); color: #fff; border-radius: 2px; }
+body[data-track="oral"] .btn-submit { color: var(--black, #1a1a1a); }
 .next-module { border-radius: 0; }
