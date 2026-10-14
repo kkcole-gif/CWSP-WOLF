@@ -367,7 +367,7 @@ textarea { min-height: 100px; }
         <h3>Complete Elective 3</h3>
         <p>When you have finished both activities, submit your responses. Your work is auto-saved in your browser.</p>
         <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Elective 3 Responses</button>
-        <div id="submit-success"><strong>Submitted.</strong> Your Elective 3 responses are received.</div>
+        <div id="submit-success"><strong>Sent.</strong> Your Elective 3 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.</div>
         <div id="submit-error">Submission problem — responses saved locally. Try again or email kkcole2@ncsu.edu.</div>
       </div>
       <a href="digital.html" class="back-link">
@@ -404,6 +404,7 @@ function updateProgress() {
 function submitModule() {
   saveAll();
   const data = {module:MODULE, timestamp:new Date().toISOString()};
+  if (!C2TC.attach(data)) return;
   FIELDS.forEach(id=>{data[id]=(document.getElementById(id)||{}).value||'';});
   CHECKBOXES.forEach(id=>{data[id]=document.getElementById(id)?.checked||false;});
   const btn = document.getElementById('submit-btn');
@@ -434,5 +435,6 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
+<script src="js/participant.js"></script>
 </body>
 </html>

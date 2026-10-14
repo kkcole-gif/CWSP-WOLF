@@ -340,12 +340,12 @@ textarea { min-height: 100px; }
       <div class="submit-section">
         <h3>Complete Module 1</h3>
         <p>When you have completed the three activities and are ready to move on, submit your responses below. Your work is saved locally in your browser — this submission sends a copy to CWSP. You do not need to complete every field to submit, but all three activity reflections should be complete.</p>
-        <p style="font-size: 0.82rem; color: var(--dgray);">Your name and email (from your application) are added automatically. You will receive a confirmation email. Module 2 will be available immediately after submission.</p>
+        <p style="font-size: 0.82rem; color: var(--dgray);">Enter your name and NC State email above the submit button so CWSP can record your progress. Module 2 is open whenever you are ready.</p>
         <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
           <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 1 Responses</button>
         </div>
         <div id="submit-success">
-          <strong>Submitted.</strong> Your Module 1 responses have been received. Proceed to Module 2 when you are ready.
+          <strong>Sent.</strong> Your Module 1 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu. Module 2 is open whenever you are ready.
         </div>
         <div id="submit-error">
           There was a problem submitting. Your responses are saved locally — try again, or contact kkcole2@ncsu.edu if the problem persists.
@@ -411,6 +411,7 @@ function updateProgress() {
 function submitModule() {
   saveAll();
   const data = { module: MODULE, timestamp: new Date().toISOString() };
+  if (!C2TC.attach(data)) return;
   FIELDS.forEach(id => { data[id] = (document.getElementById(id) || {}).value || ''; });
   CHECKBOXES.forEach(id => { data[id] = document.getElementById(id)?.checked || false; });
 
@@ -459,5 +460,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<script src="js/participant.js"></script>
 </body>
 </html>

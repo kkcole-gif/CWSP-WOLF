@@ -427,12 +427,14 @@ function submitWork() {
   btn.textContent = 'Submitting…';
   status.textContent = '';
   const data = { module: MODULE, timestamp: new Date().toISOString() };
+  if (!C2TC.attach(data)) return;
   FIELDS.forEach(id => { data[id] = val(id); });
   CHECKBOXES.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.checked : false; });
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
-    .then(() => { status.textContent = 'Submitted. Your certificate coordinator has been notified.'; btn.textContent = 'Submitted ✓'; })
+    .then(() => { status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.'; btn.textContent = 'Submitted ✓'; })
     .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Module 1'; });
 }
 </script>
+<script src="js/participant.js"></script>
 </body>
 </html>

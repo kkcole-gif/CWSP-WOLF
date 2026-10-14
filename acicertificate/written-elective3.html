@@ -500,6 +500,7 @@ function submitWorkbook() {
   const status = document.getElementById('submit-status');
   status.textContent = 'Submitting…';
   const data = { module: MODULE, timestamp: new Date().toISOString() };
+  if (!C2TC.attach(data)) return;
   FIELDS.forEach(id => {
     const el = document.getElementById(id);
     if (el) data[id] = el.value || '';
@@ -513,9 +514,9 @@ function submitWorkbook() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   }).then(() => {
-    status.textContent = 'Submitted. Thank you.';
+    status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.';
   }).catch(() => {
-    status.textContent = 'Submission failed. Please try again or contact the program coordinator.';
+    status.textContent = 'Submission failed. Your responses are still saved in this browser. Try again, or email kkcole2@ncsu.edu.';
   });
 }
 
@@ -540,5 +541,6 @@ window.addEventListener('scroll', onScroll);
 load();
 updateProgress();
 </script>
+<script src="js/participant.js"></script>
 </body>
 </html>
