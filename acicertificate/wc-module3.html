@@ -561,6 +561,8 @@ function submitCapstone() {
                               'f-a3-context','f-a3-discover','f-a3-ask','f-a3-produce','f-a3-own','f-a3-evaluate','f-a3-scaffold'];
   allActivityFields.forEach(id => { data['activity_' + id] = localStorage.getItem(MODULE + '-' + id) || ''; });
 
+  if (window.C2TC && C2TC.describe) C2TC.describe(data);
+
   const btn = document.getElementById('cert-btn');
   btn.disabled = true;
   btn.textContent = 'Submitting…';

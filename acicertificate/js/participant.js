@@ -85,7 +85,30 @@
     return true;
   }
 
-  window.C2TC = { attach: attach };
+  /* Adds the wording of every question on the page, the activity each one
+     sits under, and the workbook title, so CWSP can return a readable copy. */
+  function describe(data) {
+    var labels = {}, sections = {};
+    document.querySelectorAll('textarea[id], input[id]').forEach(function (el) {
+      if (el.type === 'email' || el.classList.contains('p-identity')) return;
+      var lab = document.querySelector('label[for="' + el.id + '"]');
+      if (lab) labels[el.id] = lab.textContent.replace(/\s+/g, ' ').trim();
+      var block = el.closest('.activity-block, .content-section, section');
+      if (block) {
+        var a = block.querySelector('.activity-label');
+        var h = block.querySelector('h4, h3, h2');
+        var name = [a && a.textContent.trim(), h && h.textContent.trim()].filter(Boolean).join(': ');
+        if (name) sections[el.id] = name;
+      }
+    });
+    var t = document.querySelector('.module-header h2, main h2, h1');
+    data.workbook_title = t ? t.textContent.replace(/\s+/g, ' ').trim() : document.title;
+    data.field_labels = labels;
+    data.field_sections = sections;
+    return data;
+  }
+
+  window.C2TC = { attach: function (data) { var ok = attach(data); if (ok) describe(data); return ok; }, describe: describe };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
