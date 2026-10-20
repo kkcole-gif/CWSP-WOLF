@@ -33,7 +33,10 @@
       '.btn-resume:hover{border-color:#222}' +
       '.resume-status{font-size:.85rem;margin:0}' +
       '.resume-banner{background:#e8f5e9;border:1px solid #a5d6a7;border-radius:3px;padding:.75rem 1rem;margin:0 0 1rem;font-size:.9rem}' +
-      '.resume-banner button{margin-left:.5rem}';
+      '.resume-banner button{margin-left:.5rem}' +
+      '.sidebar-save{padding:0 1rem 1rem;border-bottom:1px solid #e0e0e0;margin-bottom:1rem}' +
+      '.sidebar-save .btn-resume{width:100%;text-align:left;font-size:.82rem;padding:.45rem .75rem}' +
+      '.sidebar-save .resume-status{font-size:.75rem;color:#5a5a5a;margin:.4rem .25rem 0;line-height:1.35}';
     var el = document.createElement('style');
     el.textContent = css;
     document.head.appendChild(el);
@@ -47,6 +50,7 @@
       var first = buttons[0];
       first.parentNode.insertBefore(buildFields(), first);
       first.parentNode.insertBefore(buildResumeRow(), first);
+      addSidebarSave();
     }
     var n = document.getElementById('p-name') || document.getElementById('cert-name');
     var e = document.getElementById('p-email') || document.getElementById('cert-email');
@@ -80,13 +84,30 @@
     row.innerHTML =
       '<button type="button" class="btn-resume">Save and email me a link</button>' +
       '<p class="resume-status" role="status">Not finished? Save your work and continue later on any computer.</p>';
-    row.querySelector('button').addEventListener('click', function () { saveDraft(row); });
+    row.querySelector('button').addEventListener('click', saveDraft);
     return row;
   }
 
-  function saveDraft(row) {
-    var btn = row.querySelector('button');
-    var status = row.querySelector('.resume-status');
+  /* The same save, pinned at the top of the left sidebar so it stays in reach while scrolling. */
+  function addSidebarSave() {
+    var nav = document.querySelector('nav.sidebar');
+    if (!nav) return;
+    var box = document.createElement('div');
+    box.className = 'sidebar-save';
+    box.innerHTML =
+      '<span class="sidebar-label">Your progress</span>' +
+      '<button type="button" class="btn-resume">Save and email me a link</button>' +
+      '<p class="resume-status" role="status">Continue later on any computer.</p>';
+    box.querySelector('button').addEventListener('click', saveDraft);
+    nav.insertBefore(box, nav.firstChild);
+  }
+
+  function setStatus(text, busy) {
+    document.querySelectorAll('.resume-status').forEach(function (el) { el.textContent = text; });
+    document.querySelectorAll('.btn-resume').forEach(function (b) { b.disabled = !!busy; });
+  }
+
+  function saveDraft() {
     var n = document.getElementById('p-name') || document.getElementById('cert-name');
     var e = document.getElementById('p-email') || document.getElementById('cert-email');
     var name = n ? n.value.trim() : '';
@@ -94,7 +115,9 @@
     var err = document.querySelector('.participant-error');
     if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       if (err) err.hidden = false;
-      (name ? e : n).focus();
+      var target = name ? e : n;
+      if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); target.focus({ preventScroll: true }); }
+      setStatus('Enter your name and NC State email at the bottom of the workbook, then save again.');
       return;
     }
     if (err) err.hidden = true;
@@ -110,18 +133,15 @@
       fields: fields
     };
     describe(data);
-    btn.disabled = true;
-    status.textContent = 'Saving…';
+    setStatus('Saving…', true);
     fetch(SCRIPT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data) })
       .then(function () {
-        status.textContent = 'Saved. A link to continue is on its way to ' + email +
-          '. Save again any time, and the same link opens your latest work.';
-        btn.disabled = false;
+        setStatus('Saved at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) +
+          '. A link to continue is on its way to ' + email + '. Save again any time, and the same link opens your latest work.');
       })
       .catch(function () {
-        status.textContent = 'Saving failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.';
-        btn.disabled = false;
+        setStatus('Saving failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.');
       });
   }
 
