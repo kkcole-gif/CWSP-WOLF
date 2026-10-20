@@ -130,7 +130,9 @@ function C2TC_writeDoc_(title, who, where, p, when) {
   body.setMarginTop(54).setMarginBottom(54).setMarginLeft(72).setMarginRight(72);
 
   var heading = p.workbook_title || (where.certificate + ', ' + where.component);
-  body.getParagraphs()[0].setText(heading).setHeading(DocumentApp.ParagraphHeading.TITLE);
+  var first = body.getParagraphs()[0];
+  first.setText(heading);
+  first.setHeading(DocumentApp.ParagraphHeading.TITLE);
   body.appendParagraph('C²TC · ' + where.certificate + ' · ' + where.component)
       .setHeading(DocumentApp.ParagraphHeading.SUBTITLE);
   body.appendParagraph(who.name + ' · ' + who.email + ' · Submitted ' +
