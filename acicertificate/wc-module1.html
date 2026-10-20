@@ -167,13 +167,25 @@ textarea { min-height: 100px; }
       <p>This module covers why writing knowledge stays tied to the context where students learned it, how reflection helps them carry it forward, and what decades of research on low-stakes writing and the writing process mean for your assignments. Plan on 4 to 6 hours over two weeks.</p>
     </div>
 
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this module asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Explain how writing transfer and metacognition shape student writing in a disciplinary course. <span style="color: var(--dgray);">(Sections 1 and 2, Activity 3)</span></li>
+        <li>Evaluate your assumptions about student writing against research on writing development. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Distinguish the writing skills your course must teach explicitly from those students bring from earlier courses. <span style="color: var(--dgray);">(Activity 3)</span></li>
+        <li>Distinguish process-oriented from product-oriented writing assignments in your own course. <span style="color: var(--dgray);">(Activity 1, prompt 5)</span></li>
+        <li>Design three low-stakes writing activities tied to your course goals. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Use one low-stakes activity in a course and report what students did with it. <span style="color: var(--dgray);">(A short follow-up from CWSP near the end of the term after you finish the module)</span></li>
+      </ol>
+    </div>
+
     <!-- ── Transfer ── -->
     <section class="content-section" id="transfer">
       <span class="section-tag">Section 1</span>
       <h3>Writing Transfer</h3>
       <p>Many writing curricula rest on an assumption: a student who learns to write well in one course will write well in the next. Research on transfer shows otherwise. What students learn about writing in high school, in first-year composition, or in another department's courses does not arrive intact in yours.</p>
       <p>You have probably seen the result. A student who wrote capable essays in first-year writing hands in a lab report or a case analysis that misses the mark. The student has not forgotten how to write. What counts as evidence, how an argument is built, and which tone fits the reader all change from one discipline to another, and the student is meeting your discipline's version for the first time.</p>
-      <p>Writing knowledge does not move on its own from one course to the next. Ellen Carillo makes the case in <em>Bad Ideas About Writing</em> (Ball and Loewe 2017), noting that research on teaching for transfer, whatever its method, converges on one recommendation: build metacognitive exercises into writing courses. Yancey, Robertson, and Taczak (2014) tested the claim. Students whose instructors taught explicitly for transfer carried their writing knowledge into new contexts more regularly than students in other writing courses. Their curriculum asked students to build a theory of writing, which they carried into each new situation.</p>
+      <p>Writing knowledge does not move on its own from one course to the next. Ellen Carillo makes the case in a short essay for <em>Bad Ideas About Writing</em> (Ball and Loewe 2017), an edited collection in which writing studies scholars answer common beliefs about writing. Carillo observes that research on teaching for transfer, whatever its method, converges on one recommendation: build metacognitive exercises into writing courses. The empirical studies behind her claim come from Beaufort (2007), who followed one writer from first-year composition into the workplace, and from Yancey, Robertson, and Taczak (2014), who tested the claim in the classroom. Students whose instructors taught explicitly for transfer carried their writing knowledge into new contexts more regularly than students in other writing courses. Their curriculum asked students to build a theory of writing, which they carried into each new situation.</p>
       <div class="callout">
         <p class="callout-title">Practical implications</p>
         <p>Name the conventions you expect, and explain why your field writes this way. Students who understand the reasons behind a convention have something to take into the next course. Watch, too, for habits students bring with them. The five-paragraph essay, for instance, teaches a structure many disciplines do not use.</p>
@@ -240,7 +252,10 @@ textarea { min-height: 100px; }
         <label for="f-a1-q4">How do you currently address writing in your courses? <span>(If you don't address it, what assumptions underlie that choice?)</span></label>
         <textarea id="f-a1-q4" rows="5" placeholder="Your response here..."></textarea>
 
-        <label for="f-a1-reflection">After completing the four prompts above, what surprised you? Where do you see potential tension between your current assumptions and the research in this module?</label>
+        <label for="f-a1-q5">Choose one writing assignment from a course you teach. Is it process-oriented or product-oriented? <span>(Point to the features of the assignment sheet that tell you, and name one change that would move it toward the other.)</span></label>
+        <textarea id="f-a1-q5" rows="5" placeholder="Your response here..."></textarea>
+
+        <label for="f-a1-reflection">After completing the five prompts above, what surprised you? Where do you see potential tension between your current assumptions and the research in this module?</label>
         <textarea id="f-a1-reflection" rows="6" placeholder="Your synthesis here..."></textarea>
 
         <div class="repo-block">
@@ -373,7 +388,7 @@ textarea { min-height: 100px; }
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'wc-module1';
 
-const FIELDS = ['f-a1-q1','f-a1-q2','f-a1-q3','f-a1-q4','f-a1-reflection',
+const FIELDS = ['f-a1-q1','f-a1-q2','f-a1-q3','f-a1-q4','f-a1-q5','f-a1-reflection',
                 'f-a2-course','f-a2-activity1','f-a2-activity2','f-a2-activity3','f-a2-reflection',
                 'f-a3-skills','f-a3-prior','f-a3-explicit','f-a3-interference','f-a3-change'];
 const CHECKBOXES = ['repo-a1','repo-a2','repo-a3'];
