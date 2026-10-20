@@ -73,6 +73,8 @@ L['wc-module3'] = {
     ('f-a2-dapoe', 'The assignment through DAPOE'),
     ('f-a2-gaps', 'Where students go wrong, and why'),
     ('f-a2-revised', 'One revision to the prompt')]),
+  ('Teaching the new assignment', [
+    ('f-a3-commit', 'My commitment: where and when I will assign it')]),
   ('Capstone', [
     ('cert-parta', 'Course description and writing context'),
     ('cert-partb', 'Redesigned assignment sequence'),

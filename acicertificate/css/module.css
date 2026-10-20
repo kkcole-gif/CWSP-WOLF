@@ -88,3 +88,8 @@ body[data-track="oral"] .btn-submit { color: var(--black, #1a1a1a); }
 .reaction-items { display: grid; gap: 0.4rem; max-width: 40rem; }
 .reaction-items label { font-weight: 600; font-size: 0.95rem; margin-top: 0.6rem; }
 .reaction-items select { font: inherit; padding: 0.45rem 0.6rem; border: 1px solid #bbb; border-radius: 3px; background: #fff; max-width: 22rem; }
+.rubric-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.rubric-table th, .rubric-table td { border: 1px solid #c0ddd0; padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.5; }
+.rubric-table thead th { background: #e3f1ea; font-weight: 700; }
+.rubric-table tbody th { font-weight: 600; width: 26%; }
+.rubric-table td:nth-child(2) { width: 9%; white-space: nowrap; }

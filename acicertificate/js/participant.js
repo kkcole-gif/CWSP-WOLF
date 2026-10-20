@@ -39,6 +39,7 @@
       '.sidebar-save .resume-status{font-size:.75rem;color:#5a5a5a;margin:.4rem .25rem 0;line-height:1.35}' +
       'textarea.needs-answer{border-color:#990000;box-shadow:0 0 0 2px rgba(153,0,0,.15)}' +
       '.required-note{color:#990000;font-size:.88rem;margin:.5rem 0 1rem}' +
+      '.certificate-submit .required-note{color:#ffb4b4}' +
       '.req-mark{color:#990000;font-weight:700;margin-left:.2rem}';
     var el = document.createElement('style');
     el.textContent = css;
@@ -286,7 +287,7 @@
     });
   }
 
-  function requireFields(ids, min) {
+  function requireFields(ids, min, button) {
     min = min || 40;
     var missing = ids.map(function (id) { return document.getElementById(id); })
       .filter(function (el) { return el && el.value.trim().length < min; });
@@ -297,7 +298,7 @@
       note = document.createElement('p');
       note.className = 'required-note';
       note.setAttribute('role', 'alert');
-      var btn = document.querySelector('.btn-submit');
+      var btn = button || document.querySelector('.btn-submit');
       if (btn) btn.parentNode.parentNode.insertBefore(note, btn.parentNode);
     }
     note.hidden = false;
