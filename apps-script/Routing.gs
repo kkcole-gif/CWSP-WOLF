@@ -71,6 +71,8 @@ function C2TC_route(payload, docId) {
     var counts = C2TC_fieldCounts_(payload);
     C2TC_log_([stamp, where.certificate, where.component, who.unityId,
                counts.completed, counts.total, file.getUrl(), sent]);
+    try { C2TC_recordFollowUps_(payload, who, where, when); }
+    catch (fuErr) { console.error('C2TC follow-up not recorded:', fuErr); }
     return file.getUrl();
   } finally {
     lock.releaseLock();
@@ -327,6 +329,126 @@ function C2TC_log_(row) {
       "\"select B, C, count(A), sum(E), sum(F) where A is not null group by B, C " +
       "label count(A) 'Submissions', sum(E) 'Fields completed', sum(F) 'Fields total'\", 1)");
   }
+}
+
+/* ---------- end-of-term follow-ups ---------- */
+
+/* Each commitment becomes a row on the Follow-ups tab with a due date two weeks
+   before exams in the term it names. Kirsti checks Approve on rows she wants
+   sent, and C2TC_sendFollowUps (daily trigger) sends approved, unsent rows. */
+var C2TC_FU_TAB = 'Follow-ups';
+var C2TC_FU_HEADERS = ['Logged', 'Due', 'Approve', 'Sent', 'Unity ID', 'Name', 'Email',
+                       'Certificate', 'Component', 'Commitment', 'Question'];
+var C2TC_FU_KEYS = ['f-a2-commit', 'f-a3-commit', 'f-commit', 'cert-elective-use'];
+/* Month and day (0-based month) two weeks before exams. */
+var C2TC_TERM_DATES = { fall: [10, 23], spring: [3, 12], summer: [6, 13] };
+
+function C2TC_fuSheet_() {
+  var ss = SpreadsheetApp.openById(C2TC.SUBMISSIONS_SHEET_ID);
+  var sh = ss.getSheetByName(C2TC_FU_TAB);
+  if (!sh) {
+    sh = ss.insertSheet(C2TC_FU_TAB);
+    sh.appendRow(C2TC_FU_HEADERS);
+    sh.getRange(1, 1, 1, C2TC_FU_HEADERS.length).setFontWeight('bold');
+    sh.setFrozenRows(1);
+    sh.setColumnWidth(10, 380);
+    sh.setColumnWidth(11, 380);
+  }
+  return sh;
+}
+
+function C2TC_dueDate_(text, when) {
+  var m = String(text || '').toLowerCase().match(/(fall|spring|summer)\D{0,3}(\d{4}|\d{2})?/);
+  var candidates = [];
+  var y0 = when.getFullYear();
+  Object.keys(C2TC_TERM_DATES).forEach(function (term) {
+    if (m && term !== m[1]) return;
+    var md = C2TC_TERM_DATES[term];
+    if (m && m[2]) {
+      var y = Number(m[2].length === 2 ? '20' + m[2] : m[2]);
+      candidates.push(new Date(y, md[0], md[1]));
+    } else {
+      [y0, y0 + 1].forEach(function (y) { candidates.push(new Date(y, md[0], md[1])); });
+    }
+  });
+  var future = candidates.filter(function (d) { return d > when; }).sort(function (a, b) { return a - b; });
+  return future[0] || candidates.sort(function (a, b) { return b - a; })[0];
+}
+
+function C2TC_fuQuestion_(where, key) {
+  if (key === 'cert-elective-use') {
+    return 'How did the work from your elective go with students, and what would you change before you use it again?';
+  }
+  if (where.component === 'Module 1') {
+    return 'What did students do with the low-stakes activity you named, and what would you change before you use it again?';
+  }
+  if (where.component === 'Module 2') {
+    return 'How did students use the screencast responses in their revisions, and what would you change about how you record or share them?';
+  }
+  if (where.component === 'Module 3' || where.component === 'Capstone') {
+    return 'What did students produce at each stage of the assignment sequence, and what would you change before you assign it again?';
+  }
+  return 'How did the work you built in ' + where.component + ' go with students, and what would you change before you use it again?';
+}
+
+function C2TC_recordFollowUps_(p, who, where, when) {
+  var rows = [];
+  var seen = {};
+  C2TC_FU_KEYS.forEach(function (key) {
+    var text = String(p[key] || p['activity_' + key] || '').trim();
+    if (!text || seen[text]) return;
+    seen[text] = true;
+    var comp = where.component === 'Capstone' && key === 'f-a3-commit' ? 'Module 3' : where.component;
+    rows.push([when, C2TC_dueDate_(text, when), false, '', who.unityId, who.name, who.email,
+               where.certificate, comp, text.slice(0, 2000), C2TC_fuQuestion_({ component: comp }, key)]);
+  });
+  if (!rows.length) return;
+  var sh = C2TC_fuSheet_();
+  var start = sh.getLastRow() + 1;
+  sh.getRange(start, 1, rows.length, rows[0].length).setValues(rows);
+  sh.getRange(start, 3, rows.length, 1).insertCheckboxes();
+  sh.getRange(start, 1, rows.length, 2).setNumberFormat('yyyy-mm-dd');
+}
+
+function C2TC_sendFollowUps() {
+  var sh = C2TC_fuSheet_();
+  var n = sh.getLastRow() - 1;
+  if (n < 1) return 0;
+  var data = sh.getRange(2, 1, n, C2TC_FU_HEADERS.length).getValues();
+  var sent = 0;
+  data.forEach(function (r, i) {
+    if (r[2] !== true || r[3]) return;
+    var first = String(r[5] || '').split(/\s+/)[0] || 'colleague';
+    var esc = function (t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\n/g, '<br>'); };
+    var html =
+      '<div style="font-family: Garamond, \'EB Garamond\', Georgia, serif; font-size: large; line-height: 1.45;">' +
+      '<p>Dear ' + esc(first) + ',</p>' +
+      '<p>When you completed ' + esc(r[8]) + ' of the ' + esc(String(r[7]).replace(' Certificate', '')) +
+      ' Communication certificate, you wrote this commitment:</p>' +
+      '<blockquote style="margin: 0 0 1em 1.25em; color: #444;">' + esc(r[9]) + '</blockquote>' +
+      '<p>' + esc(r[10]) + '</p>' +
+      '<p>A few sentences in reply to this email are enough. CWSP reads each answer to revise the program.</p>' +
+      '<p>Kirsti Cole<br>Campus Writing and Speaking Program, NC State</p></div>';
+    MailApp.sendEmail({
+      to: r[6],
+      subject: 'C²TC follow-up: ' + r[8],
+      htmlBody: html,
+      name: 'C²TC, Campus Writing and Speaking Program',
+      replyTo: C2TC.REPLY_TO
+    });
+    sh.getRange(i + 2, 4).setValue(new Date()).setNumberFormat('yyyy-mm-dd');
+    sent++;
+  });
+  return sent;
+}
+
+/* Run once from the editor: a daily 7 a.m. run of C2TC_sendFollowUps. */
+function C2TC_installFollowUpTrigger() {
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'C2TC_sendFollowUps') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('C2TC_sendFollowUps').timeBased().everyDays(1).atHour(7).create();
+  C2TC_fuSheet_();
 }
 
 /* ---------- end-of-module reaction items ---------- */
