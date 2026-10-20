@@ -146,6 +146,7 @@ textarea { min-height: 100px; }
     </div>
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
+      <a href="#reaction">Elective feedback</a>
       <a href="#submit">Submit</a>
     </div>
   </nav>
@@ -155,6 +156,16 @@ textarea { min-height: 100px; }
       <p class="module-eyebrow">Elective 1 · Written Communication Instruction Certificate · C²TC</p>
       <h2>Multimodal and Digital Writing</h2>
       <p>This elective introduces multimodal composition as a rhetorical practice in your discipline. If you want the full analytical and teaching framework, it points you to the next step. Plan on 3 to 4 hours.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this elective asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Analyze how the modes of a multimodal text in your field work together for its audience. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Identify the conventions of your field a multimodal text follows. <span style="color: var(--dgray);">(Activity 1, prompt 4)</span></li>
+        <li>Design a low-stakes multimodal assignment with a reflective component. <span style="color: var(--dgray);">(Assignment builder)</span></li>
+        <li>Write criteria for rhetorical effectiveness, modal integration, and the reflection. <span style="color: var(--dgray);">(Assignment builder)</span></li>
+      </ol>
     </div>
 
     <!-- SECTION: Rhetorical Foundation -->
@@ -207,6 +218,16 @@ textarea { min-height: 100px; }
         <span class="sub-label">Analysis</span>
         <h5>Four-lens analysis of your selected text.</h5>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Identifies the text, its source, and its disciplinary context.</li>
+            <li>Names the action the text asks of its audience.</li>
+            <li>Explains how at least two modes work together, with an example of each.</li>
+            <li>Names at least one thing students would need to learn to produce a text like it.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="f-a1-text">Text identification. <span>What is the text? URL or brief description, author/institution, disciplinary context.</span></label>
         <textarea id="f-a1-text" placeholder="What the text is, where it appears, who produced it, what disciplinary context it belongs to..." style="min-height: 80px;"></textarea>
 
@@ -230,7 +251,16 @@ textarea { min-height: 100px; }
       <h3>Design a Low-Stakes Multimodal Writing Assignment</h3>
       <p>Using your analysis from Activity 1, design one low-stakes multimodal writing assignment for your course. The assignment should require students to make deliberate modal choices and include a reflective component explaining those choices. Treat this as a design document. The preview shows a formatted version.</p>
 
-      <label for="art-title">Assignment title</label>
+      <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>States the format, modes, audience, and purpose in the task.</li>
+            <li>Includes criteria for rhetorical effectiveness, modal integration, and the reflection.</li>
+            <li>Asks students to explain their modal choices in the reflection.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
+        <label for="art-title">Assignment title</label>
       <input type="text" id="art-title" placeholder="e.g., Research Poster Abstract: Communicating Your Findings for a Public Audience">
 
       <label for="art-course">Course name and number</label>
@@ -249,6 +279,27 @@ textarea { min-height: 100px; }
     </div>
 
     <!-- SUBMIT -->
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Name the course and term where you will use what you built in this elective, if you know them. <span>(Optional. CWSP sends one question near the end of that term.)</span></label>
+      <textarea id="f-commit" rows="3" placeholder="Course:&#10;Term:"></textarea>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this elective</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your elective responses. CWSP reads them to revise the elective. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the elective take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 3">Fewer than 3</option><option value="3-4">3 to 4</option><option value="4-6">4 to 6</option><option value="over 6">More than 6</option></select>
+        <label for="react-change">What one change would make this elective more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
     <div id="submit" class="submit-section">
       <h3>Submit Elective 1</h3>
       <p>Submit once you have completed the activity and previewed your artifact. If you are interested in the full DC Certificate, note that in your submission.</p>
@@ -272,6 +323,8 @@ textarea { min-height: 100px; }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'wc-elective1';
+const REQUIRED = ['f-a1-modes', 'f-a1-conventions', 'art-task', 'art-criteria'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 const FIELDS = ['f-a1-text','f-a1-rhetorical','f-a1-modes','f-a1-conventions','f-a1-student',
                 'art-title','art-course','art-task','art-criteria','art-reflection'];
 const CHECKBOXES = [];
@@ -335,6 +388,7 @@ function closeArtifact() { document.getElementById('artifact-overlay').style.dis
 document.getElementById('artifact-overlay').addEventListener('click', function(e) { if (e.target === this) closeArtifact(); });
 
 function submitWork() {
+  if (!C2TC.requireFields(REQUIRED)) return;
   const btn = document.getElementById('submit-btn');
   const status = document.getElementById('submit-status');
   btn.disabled = true;
@@ -344,10 +398,11 @@ function submitWork() {
   if (!C2TC.attach(data)) return;
   FIELDS.forEach(id => { data[id] = val(id); });
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
-    .then(() => { status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.'; btn.textContent = 'Submitted ✓'; })
+    .then(() => { C2TC.sendReactions(REACTIONS); status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.'; btn.textContent = 'Submitted ✓'; })
     .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Elective 1'; });
 }
 </script>
-<script src="js/participant.js?v=2026-10-20"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

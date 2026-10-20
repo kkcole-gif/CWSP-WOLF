@@ -546,6 +546,9 @@ textarea { min-height: 100px; }
       <label for="cert-partd">Part D. Reflective rationale</label>
       <textarea id="cert-partd" rows="7" placeholder="Optional if you provided a Google Doc link above..."></textarea>
 
+      <label for="cert-elective-use">Elective work in your teaching <span style="color: #888;">(Optional. Which elective work will you use, and where? Name the elective, what you built in it, and the course and term.)</span></label>
+      <textarea id="cert-elective-use" rows="4" placeholder="Elective:&#10;What I built:&#10;Course and term:"></textarea>
+
       <div class="checkbox-row" style="margin-top: 1.5rem;">
         <input type="checkbox" id="repo-capstone" style="accent-color: var(--green);">
         <label for="repo-capstone" style="color: #ccc; font-weight: 400; margin: 0; font-size: 0.87rem;">I'd like to contribute my capstone to the C²TC faculty repository for other faculty to adapt. I understand CWSP will review before posting and will attribute it to me unless I request otherwise.</label>
@@ -577,7 +580,7 @@ const FIELDS = ['f-a1-genre','f-a1-purpose','f-a1-features','f-a1-invisible','f-
                 'f-a2-assignment','f-a2-dapoe','f-a2-gaps','f-a2-revised',
                 'f-a3-context','f-a3-discover','f-a3-ask','f-a3-produce','f-a3-own','f-a3-evaluate','f-a3-scaffold','f-a3-commit',
                 'cert-name','cert-email','cert-department','cert-role','cert-doc-link',
-                'cert-parta','cert-partb','cert-partc','cert-partd'];
+                'cert-parta','cert-partb','cert-partc','cert-partd','cert-elective-use'];
 const CHECKBOXES = ['repo-a1','repo-a2','repo-a3','repo-capstone'];
 /* Required prompts, in objective order (objective 5 requires the directions and the sequence). */
 const REQUIRED = ['f-a1-features','f-a1-invisible','f-a2-dapoe','f-a2-revised','f-a3-discover','f-a3-scaffold','f-a3-commit'];

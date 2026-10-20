@@ -331,8 +331,36 @@
     }).catch(function () {});
   }
 
+  /* One call per page for the elective pattern: marks required prompts, keeps
+     reaction answers and extra fields in this browser, and adds the extra
+     fields to the submission. */
+  var EXTRA = [];
+  function setup(opts) {
+    opts = opts || {};
+    var store = function (id) { return moduleId() + '-' + id; };
+    var keep = (opts.reactions || []).concat(opts.extra || []);
+    EXTRA = opts.extra || [];
+    keep.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var v = get(store(id));
+      if (v && !el.value) el.value = v;
+      ['input', 'change'].forEach(function (t) {
+        el.addEventListener(t, function () { set(store(id), el.value); });
+      });
+    });
+    if (opts.required) markRequired(opts.required);
+  }
+  function addExtra(data) {
+    EXTRA.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) data[id] = el.value || '';
+    });
+  }
+
   window.C2TC = {
-    attach: function (data) { var ok = attach(data); if (ok) describe(data); return ok; },
+    attach: function (data) { var ok = attach(data); if (ok) { addExtra(data); describe(data); } return ok; },
+    setup: setup,
     describe: describe,
     markRequired: markRequired,
     requireFields: requireFields,

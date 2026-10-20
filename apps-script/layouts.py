@@ -79,7 +79,8 @@ L['wc-module3'] = {
     ('cert-parta', 'Course description and writing context'),
     ('cert-partb', 'Redesigned assignment sequence'),
     ('cert-partc', 'Feedback and assessment plan'),
-    ('cert-partd', 'Reflective rationale')])],
+    ('cert-partd', 'Reflective rationale'),
+    ('cert-elective-use', 'Elective work I will use, and where')])],
  'student_title': 'Assignment sheet',
  'student': [
   {'title': 'Assignment', 'course': ['f-a3-context'], 'framing': None,
@@ -340,8 +341,13 @@ L['dc-capstone'] = {
     ('cert-parta', 'Course and context'),
     ('cert-partb', 'The assignment or module'),
     ('cert-partc', 'Assessment and accessibility'),
-    ('cert-partd', 'Design rationale')])],
+    ('cert-partd', 'Design rationale'),
+    ('cert-elective-use', 'Elective work I will use, and where')])],
  'student_title': None, 'student': []}
+
+for _k in L:
+    if 'elective' in _k:
+        L[_k]['notes'].append(('Using this work', [('f-commit', 'Where I will use this work')]))
 
 if __name__ == '__main__':
     import sys
