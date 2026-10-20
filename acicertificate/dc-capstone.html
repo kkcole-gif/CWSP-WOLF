@@ -125,6 +125,7 @@ textarea { min-height: 120px; resize: vertical; }
   </section>
 </main>
 
+<script src="js/participant.js"></script>
 <script>
 const MODULE = 'dc-module3';
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
@@ -167,6 +168,7 @@ function submitCapstone() {
   FIELDS.forEach(id => { data[id] = document.getElementById(id).value || ''; });
   data['repo-capstone'] = document.getElementById('repo-capstone').checked;
 
+  if (window.C2TC && C2TC.describe) C2TC.describe(data);
   const btn = document.getElementById('cert-btn');
   btn.disabled = true;
   btn.textContent = 'Sending…';
