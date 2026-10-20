@@ -178,6 +178,7 @@ textarea { min-height: 100px; }
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
       <a href="#readings">Reading list</a>
+      <a href="#reaction">Elective feedback</a>
       <a href="#submit">Submit</a>
     </div>
   </nav>
@@ -187,6 +188,16 @@ textarea { min-height: 100px; }
       <p class="module-eyebrow">Digital Communication Certificate · Elective 4</p>
       <h2>Multimodal Composition and Digital Narratives</h2>
       <p>This elective treats multimodal composition as a rhetorical and design practice. You will apply the AI literacy framework to AI tools for multimodal work and design an assignment that teaches the multimodal conventions of your discipline. The elective ends with a formatted assignment sheet ready for your course. Plan on 3 to 4 hours.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this elective asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Analyze how the modes and design choices of a disciplinary text serve its purpose. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Identify the visual conventions of your field a text follows or departs from. <span style="color: var(--dgray);">(Activity 1, prompt 4)</span></li>
+        <li>Analyze a generative AI tool for multimodal work and decide when it belongs in your assignments. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Design a multimodal assignment with mode requirements, criteria, and process steps. <span style="color: var(--dgray);">(Assignment builder)</span></li>
+      </ol>
     </div>
 
     <section class="content-section" id="multimodal">
@@ -241,6 +252,16 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Individual analysis · 45–60 minutes</p>
         <p>Select one multimodal text from your discipline: a published visualization, a public explainer video, a conference poster, an interactive data tool, a website, or another example of professional communication in your field. Analyze it as a multimodal composition, attending to its design choices and their rhetorical effects.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Identifies the text, its audience, and its purpose.</li>
+            <li>Explains how the modes interact.</li>
+            <li>Ties three or four design choices to the text&#8217;s purpose.</li>
+            <li>Names conventions the text follows and departs from.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="f-a1-text">Describe the text you selected. <span>(Format, medium, creator or publication, intended audience, and rhetorical purpose. What is this text trying to do?)</span></label>
         <textarea id="f-a1-text" rows="4" placeholder="Text description and context..."></textarea>
 
@@ -277,6 +298,15 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Individual analysis · 30–45 minutes</p>
         <p>Select one generative AI tool relevant to multimodal composition in your discipline: a text-to-image system, an AI-assisted design tool, an audio synthesis tool, a video generator, or an AI writing assistant for visual descriptions. Use the three-level AI literacy framework (Cole, 2026) to analyze what the tool does, which hierarchies it reproduces, and what decision about its use in your multimodal assignments you are able to defend.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Describes the tool and its training data where known.</li>
+            <li>Names whose conventions the outputs center.</li>
+            <li>States the conditions under which the tool belongs in your assignments.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="f-a2-tool">Identify and describe the tool. <span>(Name, claimed function, and technical description. What kind of generative AI system is it, and what training data does it use?)</span></label>
         <textarea id="f-a2-tool" rows="4" placeholder="Tool identification and conceptual description..."></textarea>
 
@@ -310,6 +340,16 @@ textarea { min-height: 100px; }
           </div>
         </div>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Specifies format, medium, and rhetorical situation.</li>
+            <li>Names the required modes and the design choices students make deliberately.</li>
+            <li>Gives three to five criteria, each describing strong work.</li>
+            <li>Requires a design rationale or process record.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="art-title">Assignment title <span>(Specific and descriptive. Choose a title that signals the rhetorical task to students; "Multimodal Project" does not.)</span></label>
         <input type="text" id="art-title" placeholder="e.g., Translating Research for a Public Audience: Science Communication Visualization">
 
@@ -361,6 +401,27 @@ textarea { min-height: 100px; }
       </ul>
     </section>
 
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Name the course and term where you will use what you built in this elective, if you know them. <span>(Optional. CWSP sends one question near the end of that term.)</span></label>
+      <textarea id="f-commit" rows="3" placeholder="Course:&#10;Term:"></textarea>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this elective</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your elective responses. CWSP reads them to revise the elective. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the elective take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 3">Fewer than 3</option><option value="3-4">3 to 4</option><option value="4-6">4 to 6</option><option value="over 6">More than 6</option></select>
+        <label for="react-change">What one change would make this elective more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
     <section id="submit">
       <div class="submit-section">
         <h3>Complete Elective 4</h3>
@@ -382,6 +443,8 @@ textarea { min-height: 100px; }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'dc-elective4';
+const REQUIRED = ['f-a1-design', 'f-a1-conventions', 'f-a2-operative', 'art-modes', 'art-criteria'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 const FIELDS = [
   'f-a1-text','f-a1-modes','f-a1-design','f-a1-conventions','f-a1-pedagogical',
   'f-a2-tool','f-a2-structural','f-a2-operative',
@@ -461,6 +524,7 @@ document.getElementById('artifact-overlay').addEventListener('click', function(e
 });
 
 function submitModule() {
+  if (!C2TC.requireFields(REQUIRED)) return;
   saveAll();
   const data = {module:MODULE, timestamp:new Date().toISOString()};
   if (!C2TC.attach(data)) return;
@@ -469,7 +533,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 4 Responses'; });
 }
 document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
@@ -481,6 +545,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

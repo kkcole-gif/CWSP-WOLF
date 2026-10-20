@@ -167,6 +167,7 @@ textarea { min-height: 100px; }
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
       <a href="#readings">Reading list</a>
+      <a href="#reaction">Elective feedback</a>
       <a href="#submit">Submit</a>
     </div>
   </nav>
@@ -176,6 +177,16 @@ textarea { min-height: 100px; }
       <p class="module-eyebrow">Digital Communication Certificate · Elective 3</p>
       <h2>Accessibility and Inclusive Design for Digital Media</h2>
       <p>This elective treats accessibility as a teaching practice. It covers how WCAG standards and automated accessibility tools work, where they fall short, and how to use the AI literacy framework to evaluate AI-based accessibility tools, so that inclusive design becomes a structural, analytical part of how you build course materials. Plan on 3 to 4 hours.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this elective asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Audit a course digital asset for technical and communicative accessibility. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Rank revisions to the asset by the barriers they remove. <span style="color: var(--dgray);">(Activity 1, prompt 4)</span></li>
+        <li>Analyze an AI accessibility tool with the structural questions and reach an operative decision. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Design an assignment stating accessibility requirements as rhetorical criteria. <span style="color: var(--dgray);">(Activity 2 and the assignment builder)</span></li>
+      </ol>
     </div>
 
     <section class="content-section" id="access">
@@ -235,6 +246,15 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Individual audit · 60 minutes</p>
         <p>Select one substantial digital asset from your course: a recorded lecture, a slide deck, a course website or LMS page, a digital reading or document, or a video resource. Audit it at two levels, technical accessibility (WCAG criteria) and communicative accessibility (clarity, structure, cognitive load). Automated tools are optional here. Close reading and human evaluation are the primary methods.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Evaluates the asset against all four WCAG principles.</li>
+            <li>Assesses comprehension for the intended audience apart from compliance.</li>
+            <li>Names two or three revisions in priority order, with the barrier each removes.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="f-a1-asset">Describe the asset you selected. <span>(Type of asset, its role in the course, its primary audience, and the access barriers it is most likely to create.)</span></label>
         <textarea id="f-a1-asset" rows="4" placeholder="Asset description and context..."></textarea>
 
@@ -273,7 +293,16 @@ textarea { min-height: 100px; }
           <h5>Structural Analysis of an AI-Assisted Accessibility Tool</h5>
           <p>Select one AI-assisted accessibility tool: an automatic caption generator, an alt-text generator, a readability scorer, an accessibility checker, or an accessibility overlay. Apply the three-level AI literacy framework (Cole, 2026) to evaluate what the tool does, what hierarchies it reproduces, and what operative decision about its use is defensible.</p>
 
-          <label for="f-a2-tool">Identify and describe the tool. <span>(Name, what it claims to do, and how it works technically. What kind of AI system is it, and what is its objective function?)</span></label>
+          <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Describes how the tool works and what it optimizes.</li>
+            <li>Answers the structural questions and states an operative decision with its conditions.</li>
+            <li>States each accessibility requirement as a criterion for communication, with its reason.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
+        <label for="f-a2-tool">Identify and describe the tool. <span>(Name, what it claims to do, and how it works technically. What kind of AI system is it, and what is its objective function?)</span></label>
           <textarea id="f-a2-tool" rows="4" placeholder="Tool identification and conceptual description..."></textarea>
 
           <label for="f-a2-hierarchies">Structural analysis. <span>(What hierarchies does this tool reproduce? Who bears failure costs when it produces errors? Whose interests shaped its design? Be specific about which user populations are most exposed to the tool's limitations.)</span></label>
@@ -321,6 +350,16 @@ textarea { min-height: 100px; }
           </div>
         </div>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Frames accessibility as a responsibility to the audience.</li>
+            <li>States technical requirements as rhetorical criteria.</li>
+            <li>Requires a process step where students review access.</li>
+            <li>States an AI use policy drawn from your Activity 2 decision.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="art-title">Assignment title <span>(Specific to format and audience. Signal that accessibility is a rhetorical criterion.)</span></label>
         <input type="text" id="art-title" placeholder="e.g., Accessible Research Communication: Designing a Video Abstract for a Broad Audience">
 
@@ -367,6 +406,27 @@ textarea { min-height: 100px; }
       </ul>
     </section>
 
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Name the course and term where you will use what you built in this elective, if you know them. <span>(Optional. CWSP sends one question near the end of that term.)</span></label>
+      <textarea id="f-commit" rows="3" placeholder="Course:&#10;Term:"></textarea>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this elective</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your elective responses. CWSP reads them to revise the elective. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the elective take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 3">Fewer than 3</option><option value="3-4">3 to 4</option><option value="4-6">4 to 6</option><option value="over 6">More than 6</option></select>
+        <label for="react-change">What one change would make this elective more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
     <section id="submit">
       <div class="submit-section">
         <h3>Complete Elective 3</h3>
@@ -388,6 +448,8 @@ textarea { min-height: 100px; }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'dc-elective3';
+const REQUIRED = ['f-a1-technical', 'f-a1-revision', 'f-a2-operative', 'f-a2-criteria', 'art-access-reqs'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 const FIELDS = ['f-a1-asset','f-a1-technical','f-a1-communicative','f-a1-revision','f-a2-tool','f-a2-hierarchies','f-a2-operative','f-a2-assignment','f-a2-criteria','f-a2-teach','art-title','art-course','art-overview','art-task','art-access-reqs','art-criteria','art-process','art-ai'];
 const CHECKBOXES = ['repo-a1','repo-a2'];
 function saveAll() {
@@ -407,6 +469,7 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = pct+'%';
 }
 function submitModule() {
+  if (!C2TC.requireFields(REQUIRED)) return;
   saveAll();
   const data = {module:MODULE, timestamp:new Date().toISOString()};
   if (!C2TC.attach(data)) return;
@@ -415,7 +478,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 3 Responses'; });
 }
 function val(id){return(document.getElementById(id)||{}).value||'';}
@@ -440,6 +503,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

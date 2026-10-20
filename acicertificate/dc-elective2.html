@@ -174,6 +174,7 @@ textarea { min-height: 100px; }
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
       <a href="#readings">Reading list</a>
+      <a href="#reaction">Elective feedback</a>
       <a href="#submit">Submit</a>
     </div>
   </nav>
@@ -183,6 +184,16 @@ textarea { min-height: 100px; }
       <p class="module-eyebrow">Digital Communication Certificate · Elective 2</p>
       <h2>Ethical Issues in Digital Communication</h2>
       <p>This elective applies a structural AI literacy framework to ethical questions in digital communication. Its anchor case is the governance of AI-based academic integrity tools. From there, you will make principled operative decisions about digital tools in your own teaching. Plan on 3 to 4 hours.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this elective asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Analyze a digital tool with the three structural questions. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Evaluate the decision path taken in a governance case. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>State and justify an operative decision for the tool you analyzed. <span style="color: var(--dgray);">(Activity 2, prompts 4 and 5)</span></li>
+        <li>Design an assignment teaching structural ethical analysis. <span style="color: var(--dgray);">(Activity 2 and the assignment builder)</span></li>
+      </ol>
     </div>
 
     <section class="content-section" id="framework">
@@ -258,6 +269,15 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Individual analysis · 45–60 minutes</p>
         <p>Select one digital tool in use or under consideration in your teaching or at your institution. Examples include a learning management system's analytics function, an accessibility checker, a plagiarism detection tool, a content moderation system, or any AI-assisted communication or assessment tool. Apply the three questions of structural analysis from the AI literacy framework (Cole, 2026).</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Describes what kind of system the tool is and what it claims to do.</li>
+            <li>Answers each structural question with evidence.</li>
+            <li>States the ethical stakes and holds the decision for Activity 2.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="f-a1-tool">Identify and describe the tool. <span>(Name, function, who deployed it, at what scale, and what it claims to do. Start with conceptual accuracy: what kind of system is this, technically?)</span></label>
         <textarea id="f-a1-tool" rows="5" placeholder="Tool identification and conceptual description..."></textarea>
 
@@ -300,7 +320,16 @@ textarea { min-height: 100px; }
           <p>The structural analysis of AI-based academic integrity detection in Section 4 established three points. The tools are probabilistic classifiers with known false-positive disparities concentrated among multilingual students. Students already at the margins bear the failure costs. The design serves the institution's interest in reducing workload, and student protection is secondary.</p>
           <p>Given this analysis, what operative decision would you recommend for your institution or department? Select a decision path and develop the full grounds for it.</p>
 
-          <label for="f-a2-decision-path">Decision path. <span>(Principled refusal, conditional adoption, or deferred decision, and the main reason you consider this path defensible.)</span></label>
+          <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Ties the case decision to features from the analysis.</li>
+            <li>States conditions or contingencies for the path chosen.</li>
+            <li>Writes your own decision as a governance statement addressed to those who decide.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
+        <label for="f-a2-decision-path">Decision path. <span>(Principled refusal, conditional adoption, or deferred decision, and the main reason you consider this path defensible.)</span></label>
           <textarea id="f-a2-decision-path" rows="4" placeholder="Your decision path and primary grounds..."></textarea>
 
           <label for="f-a2-grounds">Full grounds for your decision. <span>(Tie the path to the structural analysis. Which features (hierarchies reproduced, failure cost distribution, design interests) ground the decision? A good grounds statement lets someone who would choose a different path follow your reasoning.)</span></label>
@@ -348,6 +377,16 @@ textarea { min-height: 100px; }
           </div>
         </div>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Presents structural analysis as steps students follow.</li>
+            <li>Specifies the form of the operative decision students make.</li>
+            <li>Gives three to five criteria separating structural analysis from general critique.</li>
+            <li>States an AI use policy with its reasoning.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="art-title">Assignment title <span>(Name the analytical task: what will students analyze, and what procedure will they use?)</span></label>
         <input type="text" id="art-title" placeholder="e.g., Structural Analysis of an Institutional AI Tool: A Three-Question Procedure">
 
@@ -390,6 +429,27 @@ textarea { min-height: 100px; }
       </ul>
     </section>
 
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Name the course and term where you will use what you built in this elective, if you know them. <span>(Optional. CWSP sends one question near the end of that term.)</span></label>
+      <textarea id="f-commit" rows="3" placeholder="Course:&#10;Term:"></textarea>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this elective</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your elective responses. CWSP reads them to revise the elective. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the elective take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 3">Fewer than 3</option><option value="3-4">3 to 4</option><option value="4-6">4 to 6</option><option value="over 6">More than 6</option></select>
+        <label for="react-change">What one change would make this elective more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
     <section id="submit">
       <div class="submit-section">
         <h3>Complete Elective 2</h3>
@@ -411,6 +471,8 @@ textarea { min-height: 100px; }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'dc-elective2';
+const REQUIRED = ['f-a1-synthesis', 'f-a2-grounds', 'f-a2-own-decision', 'f-a2-own-grounds', 'art-task'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 const FIELDS = ['f-a1-tool','f-a1-hierarchies','f-a1-costs','f-a1-interests','f-a1-synthesis','f-a2-decision-path','f-a2-grounds','f-a2-conditions','f-a2-own-decision','f-a2-own-grounds','f-a2-assignment','art-title','art-course','art-overview','art-task','art-operative','art-criteria','art-ai'];
 const CHECKBOXES = ['repo-a1','repo-a2'];
 function saveAll() {
@@ -430,6 +492,7 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = pct+'%';
 }
 function submitModule() {
+  if (!C2TC.requireFields(REQUIRED)) return;
   saveAll();
   const data = {module:MODULE, timestamp:new Date().toISOString()};
   if (!C2TC.attach(data)) return;
@@ -438,7 +501,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 2 Responses'; });
 }
 function val(id){return(document.getElementById(id)||{}).value||'';}
@@ -463,6 +526,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

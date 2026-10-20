@@ -114,6 +114,9 @@ textarea { min-height: 120px; resize: vertical; }
     <label for="cert-partd">Part D. Design rationale</label>
     <textarea id="cert-partd" rows="7"></textarea>
 
+    <label for="cert-elective-use">Elective work in your teaching <span style="color: #888;">(Optional. Which elective work will you use, and where? Name the elective, what you built in it, and the course and term.)</span></label>
+    <textarea id="cert-elective-use" rows="4" placeholder="Elective:&#10;What I built:&#10;Course and term:"></textarea>
+
     <div class="checkbox-row">
       <input type="checkbox" id="repo-capstone">
       <label for="repo-capstone">I would like to contribute my capstone to the C²TC faculty repository. I understand CWSP will review it before posting and will credit me unless I ask otherwise.</label>
@@ -125,11 +128,11 @@ textarea { min-height: 120px; resize: vertical; }
   </section>
 </main>
 
-<script src="js/participant.js"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
 <script>
 const MODULE = 'dc-module3';
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
-const FIELDS = ['cert-name','cert-email','cert-department','cert-role','cert-doc-link','cert-parta','cert-partb','cert-partc','cert-partd'];
+const FIELDS = ['cert-name','cert-email','cert-department','cert-role','cert-doc-link','cert-parta','cert-partb','cert-partc','cert-partd','cert-elective-use'];
 const KEY = 'dc-capstone-';
 
 function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }

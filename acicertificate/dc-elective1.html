@@ -167,6 +167,7 @@ textarea { min-height: 100px; }
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
       <a href="#readings">Reading list</a>
+      <a href="#reaction">Elective feedback</a>
       <a href="#submit">Submit</a>
     </div>
   </nav>
@@ -176,6 +177,16 @@ textarea { min-height: 100px; }
       <p class="module-eyebrow">Digital Communication Certificate · Elective 1</p>
       <h2>Social Media and the Attention Economy in Education</h2>
       <p>This elective covers how social media platforms design for engagement, what their AI recommendation systems reproduce, and how you teach students to analyze the platforms they use every day and to use them with critical awareness. Plan on 3 to 4 hours.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this elective asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Analyze the rhetorical and algorithmic features of one piece of social media content. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Analyze a platform with the three structural questions. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>State an operative decision about the platform, grounded in your analysis. <span style="color: var(--dgray);">(Activity 2, prompt 6)</span></li>
+        <li>Design an assignment treating a platform as an object of analysis. <span style="color: var(--dgray);">(Activity 2 and the assignment builder)</span></li>
+      </ol>
     </div>
 
     <section class="content-section" id="attention">
@@ -228,6 +239,16 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Individual analysis · 45–60 minutes</p>
         <p>Choose one piece of social media content from your discipline: a viral post about a scientific finding, a researcher's thread, a TikTok explanation of a disciplinary concept, a professional organization's account, or a widely shared infographic. Analyze it as a rhetorical artifact and as a product of the platform's algorithmic system.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Identifies the platform, format, and creator.</li>
+            <li>Names the claims the content makes and the choices carrying them.</li>
+            <li>Explains why the recommendation system promotes the content.</li>
+            <li>States one use of the content in your course.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="f-a1-content">Describe the content you selected. <span>(Platform, format, creator/account, approximate reach/engagement, URL if available.)</span></label>
         <textarea id="f-a1-content" rows="4" placeholder="Content description and platform context..."></textarea>
 
@@ -262,7 +283,16 @@ textarea { min-height: 100px; }
         <div class="sub-activity">
           <span class="sub-activity-label">Structural analysis</span>
           <h5>Apply the three structural questions to the platform's AI system</h5>
-          <label for="f-a2-platform">Which platform are you analyzing, and how are you currently or potentially using it in your course?</label>
+          <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Answers all three structural questions with evidence from the platform.</li>
+            <li>Names one operative decision and ties it to the analysis.</li>
+            <li>Designs one assignment applying the structural questions.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
+        <label for="f-a2-platform">Which platform are you analyzing, and how are you currently or potentially using it in your course?</label>
           <input type="text" id="f-a2-platform" placeholder="Platform name and proposed use...">
 
           <label for="f-a2-hierarchies">What social hierarchies does this platform's recommendation system reproduce? <span>(Whose content gets amplified? Whose communicative norms does the algorithm treat as engagement-worthy?)</span></label>
@@ -312,6 +342,16 @@ textarea { min-height: 100px; }
           </div>
         </div>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Frames the platform as an object of analysis.</li>
+            <li>Sets limits on platforms and content in scope.</li>
+            <li>Gives three to five criteria, each describing strong work.</li>
+            <li>States an AI use policy with its teaching reason.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="art-title">Assignment title <span>(Specific to your discipline and audience. Name the rhetorical and analytical task in the title.)</span></label>
         <input type="text" id="art-title" placeholder="e.g., Algorithmic Amplification and Disciplinary Misinformation: A Platform Literacy Analysis">
 
@@ -354,6 +394,27 @@ textarea { min-height: 100px; }
 
     <hr class="divider">
 
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Name the course and term where you will use what you built in this elective, if you know them. <span>(Optional. CWSP sends one question near the end of that term.)</span></label>
+      <textarea id="f-commit" rows="3" placeholder="Course:&#10;Term:"></textarea>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this elective</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your elective responses. CWSP reads them to revise the elective. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the elective take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 3">Fewer than 3</option><option value="3-4">3 to 4</option><option value="4-6">4 to 6</option><option value="over 6">More than 6</option></select>
+        <label for="react-change">What one change would make this elective more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
     <section id="submit">
       <div class="submit-section">
         <h3>Complete Elective 1</h3>
@@ -375,6 +436,8 @@ textarea { min-height: 100px; }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'dc-elective1';
+const REQUIRED = ['f-a1-rhetoric', 'f-a1-algorithm', 'f-a2-hierarchies', 'f-a2-decision', 'art-task'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 const FIELDS = ['f-a1-content','f-a1-rhetoric','f-a1-algorithm','f-a1-pedagogical','f-a2-platform','f-a2-hierarchies','f-a2-costs','f-a2-interests','f-a2-decision','f-a2-assignment','art-title','art-course','art-overview','art-task','art-platform','art-criteria','art-ai'];
 const CHECKBOXES = ['repo-a1','repo-a2'];
 function saveAll() {
@@ -394,6 +457,7 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = pct+'%';
 }
 function submitModule() {
+  if (!C2TC.requireFields(REQUIRED)) return;
   saveAll();
   const data = {module:MODULE, timestamp:new Date().toISOString()};
   if (!C2TC.attach(data)) return;
@@ -402,7 +466,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 1 Responses'; });
 }
 function val(id) { return (document.getElementById(id)||{}).value||''; }
@@ -427,6 +491,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

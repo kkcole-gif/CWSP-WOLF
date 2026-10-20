@@ -167,6 +167,16 @@ textarea { min-height: 100px; }
       <p>This elective introduces teaching writing in courses where students have AI tools at hand. It centers on one distinction that clarifies, for students and instructors alike, what AI is doing in the composing process. Plan on 3 to 4 hours.</p>
     </div>
 
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this elective asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Compare writing WITH AI and writing FOR AI by completing the same task both ways. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Write a course AI policy statement for one course. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Redesign one assignment so WITH engagement becomes visible and assessable. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Evaluate AI detection tools as an assessment instrument. <span style="color: var(--dgray);">(Activity 3, optional)</span></li>
+      </ol>
+    </div>
+
     <!-- Framework Section -->
     <div class="content-section" id="framework">
       <span class="section-tag">Core Framework</span>
@@ -275,7 +285,16 @@ textarea { min-height: 100px; }
         <p>Use AI as a thinking partner. Brainstorm with it, challenge it, and have it argue against your position. Generate an outline, then depart from it substantially. Write your own response. Let the AI output inform it while the decisions stay yours.</p>
       </div>
 
-      <label for="f-a1-with">What did writing WITH AI feel like? What decisions did you make that AI did not make for you? <span>(150–200 words)</span></label>
+      <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Describes decisions you made in the WITH task and the AI did not.</li>
+            <li>Names where your thinking stopped in the FOR task.</li>
+            <li>Draws one principle for assignment design from the comparison.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
+        <label for="f-a1-with">What did writing WITH AI feel like? What decisions did you make that AI did not make for you? <span>(150–200 words)</span></label>
       <textarea id="f-a1-with" rows="6" placeholder="Describe how your thinking went in Round 2…"></textarea>
 
       <label for="f-a1-for">What did writing FOR AI feel like? Where did your thinking stop, and what did AI provide in its place? <span>(100–150 words)</span></label>
@@ -302,6 +321,16 @@ textarea { min-height: 100px; }
         <h5>A statement to appear in your course syllabus</h5>
         <p>Write a policy for a specific course you teach or will teach. Aim for 150–250 words, long enough to state your teaching values and short enough that students read it.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>States permitted and prohibited uses of AI and the reason for each.</li>
+            <li>Addresses students directly in 150 to 250 words.</li>
+            <li>Names the FOR path of least resistance in the original assignment.</li>
+            <li>Redesigns the assignment so students make and show their own decisions.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+        </div>
         <label for="f-a2-course">Which course is this policy for? What is its context? <span>(one to two sentences)</span></label>
         <textarea id="f-a2-course" rows="3" placeholder="Course title, level, discipline, typical student population…"></textarea>
 
@@ -338,7 +367,15 @@ textarea { min-height: 100px; }
         <p style="font-size:0.88rem;">A first-year composition student submits a 1,200-word argumentative essay. You notice the prose is unusually polished for this student's previous work: confident transitions, varied sentence rhythm, strong claim structure. You run the text through an AI detection tool and receive a result of 78% "likely AI-generated." The student, when asked, says: "I used ChatGPT to help me brainstorm and organize my ideas, and then I rewrote everything in my own words. I thought that was okay. You didn't say we couldn't."</p>
       </div>
 
-      <label for="f-a3-policy">Does your current course policy (or the one you drafted in Activity 2) address this situation? If not, what would you add? <span></span></label>
+      <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Says whether your policy covers the scenario, and what you would add.</li>
+            <li>Names what detection tools measure and what they miss.</li>
+            <li>States the goal of your response to the student.</li>
+          </ul>
+        </div>
+        <label for="f-a3-policy">Does your current course policy (or the one you drafted in Activity 2) address this situation? If not, what would you add? <span></span></label>
       <textarea id="f-a3-policy" rows="5" placeholder="Be specific about what the policy does or does not cover…"></textarea>
 
       <label for="f-a3-detect">What do you make of AI detection tools as an assessment instrument? What do they measure, and what do they miss? <span></span></label>
@@ -382,6 +419,27 @@ textarea { min-height: 100px; }
 
       <button class="btn-artifact" onclick="showArtifact()">Preview Artifact</button>
     </div>
+
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Name the course and term where you will use what you built in this elective, if you know them. <span>(Optional. CWSP sends one question near the end of that term.)</span></label>
+      <textarea id="f-commit" rows="3" placeholder="Course:&#10;Term:"></textarea>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this elective</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your elective responses. CWSP reads them to revise the elective. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the elective take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 3">Fewer than 3</option><option value="3-4">3 to 4</option><option value="4-6">4 to 6</option><option value="over 6">More than 6</option></select>
+        <label for="react-change">What one change would make this elective more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
 
     <div class="submit-section">
       <p>When you have completed this elective, submit your responses to the C²TC record. Submission captures all saved fields.</p>
@@ -432,6 +490,8 @@ textarea { min-height: 100px; }
 
 <script>
 const MODULE = 'wc-elective3';
+const REQUIRED = ['f-a1-compare', 'f-a2-policy', 'f-a2-redesign'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 const FIELDS = ['f-a1-with','f-a1-for','f-a1-compare','f-a2-course','f-a2-policy','f-a2-original','f-a2-vulnerability','f-a2-redesign','f-a3-policy','f-a3-detect','f-a3-response','art-course','art-policy','art-original','art-redesign','art-reflection'];
 const CHECKBOXES = [];
 
@@ -502,6 +562,7 @@ function closeArtifact(e) {
 }
 
 function submitWorkbook() {
+  if (!C2TC.requireFields(REQUIRED)) return;
   const status = document.getElementById('submit-status');
   status.textContent = 'Submitting…';
   const data = { module: MODULE, timestamp: new Date().toISOString() };
@@ -518,7 +579,7 @@ function submitWorkbook() {
     method: 'POST', mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
-  }).then(() => {
+  }).then(() => { C2TC.sendReactions(REACTIONS);
     status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.';
   }).catch(() => {
     status.textContent = 'Submission failed. Your responses are still saved in this browser. Try again, or email kkcole2@ncsu.edu.';
@@ -546,6 +607,7 @@ window.addEventListener('scroll', onScroll);
 load();
 updateProgress();
 </script>
-<script src="js/participant.js"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>
