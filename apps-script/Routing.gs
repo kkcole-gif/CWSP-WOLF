@@ -5,7 +5,7 @@
  * (File > New > Script, name it Routing), then add one line inside doPost,
  * after the payload is parsed:
  *
- *     C2TC_route(payload, docId);   // docId: the Doc the pipeline already made, or null
+ *     try { C2TC_route(payload, null); } catch (routeErr) { console.error('C2TC routing error:', routeErr); }
  *
  * What it does with each submission:
  *   1. Finds the participant's folder in C2TC / 01 Participants by Unity ID.
@@ -25,7 +25,7 @@ var C2TC = {
   SUBMISSIONS_SHEET_ID: '1aEYJC5WoewMUbqEAqRBp1YdUcb0c4uPn8VxdGkHYfGk',
   LOG_TAB: 'Structured Log',
   COUNTS_TAB: 'Counts',
-  META_KEYS: ['module', 'timestamp', 'certificate_name', 'certificate_email', 'type', 'submission_type']
+  META_KEYS: ['module', 'timestamp', 'certificate_name', 'certificate_email', 'participant_name', 'participant_email', 'cert-name', 'cert-email', 'cert-department', 'cert-role', 'type', 'submission_type']
 };
 
 function C2TC_route(payload, docId) {
@@ -58,8 +58,8 @@ function C2TC_route(payload, docId) {
 /* ---------- helpers ---------- */
 
 function C2TC_identity_(p) {
-  var email = String(p.certificate_email || '').trim().toLowerCase();
-  var name = String(p.certificate_name || '').trim();
+  var email = String(p['cert-email'] || p.certificate_email || p.participant_email || '').trim().toLowerCase();
+  var name = String(p['cert-name'] || p.certificate_name || p.participant_name || '').trim();
   return { email: email, name: name, unityId: email.split('@')[0] || 'unknown' };
 }
 
