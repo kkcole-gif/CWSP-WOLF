@@ -16,6 +16,12 @@
  *   4. Adds one row to the "Structured Log" tab of RED-ACI Submissions:
  *      date, certificate, component, Unity ID, fields completed, fields total, Doc link,
  *      copy sent. The "Counts" tab totals the log by component with no identifiers.
+ *
+ * Saved drafts ("Save and email me a link" on each workbook):
+ *   doPost sends payloads with action 'save_draft' to C2TC_saveDraft, which stores the
+ *   draft as a JSON file in the participant's folder, records it on the "Drafts" tab,
+ *   and emails a private link. doGet answers ?resume=KEY through C2TC_loadDraft.
+ *   Code.gs holds two lines for this, at the top of doPost and of doGet(e).
  */
 
 var C2TC = {
@@ -241,6 +247,112 @@ function C2TC_log_(row) {
       "\"select B, C, count(A), sum(E), sum(F) where A is not null group by B, C " +
       "label count(A) 'Submissions', sum(E) 'Fields completed', sum(F) 'Fields total'\", 1)");
   }
+}
+
+/* ---------- saved drafts and resume links ---------- */
+
+var C2TC_DRAFTS_TAB = 'Drafts';
+var C2TC_DRAFT_HEADERS = ['Key', 'Last saved', 'Certificate', 'Component', 'Unity ID', 'Page',
+                          'Fields completed', 'Fields total', 'Draft file'];
+
+function C2TC_draftsSheet_() {
+  var ss = SpreadsheetApp.openById(C2TC.SUBMISSIONS_SHEET_ID);
+  var sh = ss.getSheetByName(C2TC_DRAFTS_TAB);
+  if (!sh) {
+    sh = ss.insertSheet(C2TC_DRAFTS_TAB, 2);
+    sh.appendRow(C2TC_DRAFT_HEADERS);
+    sh.getRange(1, 1, 1, C2TC_DRAFT_HEADERS.length).setFontWeight('bold');
+    sh.setFrozenRows(1);
+  }
+  return sh;
+}
+
+/** Saves a workbook in progress and emails the participant a link to continue. */
+function C2TC_saveDraft(payload) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    var who = C2TC_identity_(payload);
+    if (!who.email) throw new Error('No email on draft');
+    var where = C2TC_component_(payload.module || '');
+    var page = String(payload.page || '').replace(/[^a-z0-9.\-]/gi, '');
+    var fields = payload.fields || {};
+    var now = new Date();
+    var json = JSON.stringify({ savedAt: now.toISOString(), module: payload.module, page: page,
+                                name: who.name, fields: fields });
+
+    var completed = 0, total = 0;
+    Object.keys(fields).forEach(function (k) {
+      if (typeof fields[k] !== 'string') return;
+      total++;
+      if (fields[k].trim()) completed++;
+    });
+
+    var sh = C2TC_draftsSheet_();
+    var rows = sh.getDataRange().getValues();
+    var rowIndex = -1, key = '', fileId = '';
+    for (var i = 1; i < rows.length; i++) {
+      if (rows[i][4] === who.unityId && rows[i][2] === where.certificate && rows[i][3] === where.component) {
+        rowIndex = i + 1; key = rows[i][0]; fileId = rows[i][8]; break;
+      }
+    }
+    var file;
+    if (fileId) {
+      try { file = DriveApp.getFileById(fileId); file.setContent(json); } catch (e) { file = null; }
+    }
+    if (!file) {
+      var folder = C2TC_certificateFolder_(C2TC_participantFolder_(who), where.certificate);
+      file = folder.createFile('Draft in progress · ' + where.component + '.json', json, 'application/json');
+    }
+    if (!key) key = Utilities.getUuid().replace(/-/g, '');
+    var row = [key, now, where.certificate, where.component, who.unityId, page, completed, total, file.getId()];
+    if (rowIndex > 0) sh.getRange(rowIndex, 1, 1, row.length).setValues([row]);
+    else sh.appendRow(row);
+
+    C2TC_sendResumeLink_(who, where, payload, page, key, now, completed, total);
+    return key;
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+/** Returns the saved fields for a resume key, for doGet. */
+function C2TC_loadDraft(key) {
+  if (!/^[a-f0-9]{32}$/.test(String(key))) return { status: 'not_found' };
+  var rows = C2TC_draftsSheet_().getDataRange().getValues();
+  for (var i = 1; i < rows.length; i++) {
+    if (rows[i][0] === key) {
+      var d = JSON.parse(DriveApp.getFileById(rows[i][8]).getBlob().getDataAsString());
+      return { status: 'ok', savedAt: d.savedAt, module: d.module, name: d.name, fields: d.fields };
+    }
+  }
+  return { status: 'not_found' };
+}
+
+function C2TC_sendResumeLink_(who, where, p, page, key, when, completed, total) {
+  var link = C2TC.SITE + page + '?resume=' + key;
+  var what = where.certificate + ', ' + (p.workbook_title || where.component);
+  var date = Utilities.formatDate(when, 'America/New_York', "MMMM d, yyyy 'at' h:mm a");
+  var html =
+    '<div style="font-family: Garamond, \'EB Garamond\', Georgia, serif; font-size: large; line-height: 1.45;">' +
+    '<p>Dear ' + (who.first || 'colleague') + ',</p>' +
+    '<p>Your work on ' + what + ' is saved as of ' + date + ', with ' + completed + ' of ' + total +
+    ' responses started.</p>' +
+    '<p><a href="' + link + '">Continue where you left off</a></p>' +
+    '<p>The link opens the workbook with your responses filled in, on any computer or browser. ' +
+    'Each time you select "Save and email me a link," the same link updates to your latest work. ' +
+    'Keep this email, and keep the link to yourself, since anyone with it sees your responses.</p>' +
+    '<p>When you finish, select Submit at the bottom of the workbook. CWSP then sends you a copy of your responses.</p>' +
+    '<p>Best,<br>Kirsti</p>' +
+    '<p>Kirsti K. Cole<br>Co-Director, Campus Writing and Speaking Program<br>NC State University</p></div>';
+  MailApp.sendEmail({
+    to: who.email,
+    subject: 'Continue your C²TC work: ' + where.certificate + ', ' + where.component,
+    htmlBody: html,
+    body: 'Continue where you left off: ' + link,
+    name: 'C²TC, Campus Writing and Speaking Program',
+    replyTo: C2TC.REPLY_TO
+  });
 }
 
 /** Run once from the editor to confirm the folders and sheets resolve, and to grant permissions. */
