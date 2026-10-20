@@ -335,7 +335,7 @@ function C2TC_log_(row) {
 
 /* Each commitment becomes a row on the Follow-ups tab with a due date two weeks
    before exams in the term it names. Kirsti checks Approve on rows she wants
-   sent, and C2TC_sendFollowUps (daily trigger) sends approved, unsent rows. */
+   sent, and C2TC_sendFollowUps (daily trigger) sends approved, unsent rows once due. */
 var C2TC_FU_TAB = 'Follow-ups';
 var C2TC_FU_HEADERS = ['Logged', 'Due', 'Approve', 'Sent', 'Unity ID', 'Name', 'Email',
                        'Certificate', 'Component', 'Commitment', 'Question'];
@@ -416,8 +416,10 @@ function C2TC_sendFollowUps() {
   if (n < 1) return 0;
   var data = sh.getRange(2, 1, n, C2TC_FU_HEADERS.length).getValues();
   var sent = 0;
+  var today = new Date();
   data.forEach(function (r, i) {
-    if (r[2] !== true || r[3]) return;
+    /* Approved, unsent, and due today or earlier. */
+    if (r[2] !== true || r[3] || !(r[1] instanceof Date) || r[1] > today) return;
     var first = String(r[5] || '').split(/\s+/)[0] || 'colleague';
     var esc = function (t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\n/g, '<br>'); };
     var html =
