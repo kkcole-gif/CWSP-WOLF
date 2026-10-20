@@ -347,7 +347,7 @@ L['dc-capstone'] = {
  'student_title': None, 'student': []}
 
 for _k in L:
-    if 'elective' in _k:
+    if 'elective' in _k or _k in ('dc-module1', 'dc-module2', 'dc-module3'):
         L[_k]['notes'].append(('Using this work', [('f-commit', 'Where I will use this work')]))
 
 if __name__ == '__main__':

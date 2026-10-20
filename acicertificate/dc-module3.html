@@ -174,6 +174,7 @@ textarea { min-height: 100px; }
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
       <a href="#readings">Reading list</a>
+      <a href="#reaction">Module feedback</a>
       <a href="#submit">Submit &amp; complete</a>
     </div>
   </nav>
@@ -183,6 +184,17 @@ textarea { min-height: 100px; }
       <p class="module-eyebrow">Digital Communication Certificate · Module 3 of 3</p>
       <h2>AI Literacy and Critical Digital Practice</h2>
       <p>This module gives you a three-level framework for analyzing any digital tool, AI or otherwise, and for making deployment decisions grounded in structural analysis. You will practice asking the right questions about a new tool before you adopt it. Plan on 4 to 6 hours over two weeks.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this module asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Describe three tools, one of them an AI tool, across five dimensions. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Analyze an AI tool with the three structural questions. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Reach an operative decision grounded in the structural analysis. <span style="color: var(--dgray);">(Activity 3, prompts 1 to 3)</span></li>
+        <li>Design an assignment prototype shaped by the operative decision. <span style="color: var(--dgray);">(Activity 3, prompts 4 to 6)</span></li>
+        <li>Use the prototype in a course and report what students produced. <span style="color: var(--dgray);">(your commitment, and a short follow-up from CWSP near the end of the term)</span></li>
+      </ol>
     </div>
 
     <!-- Section 1: Framework overview -->
@@ -291,7 +303,16 @@ textarea { min-height: 100px; }
         <div class="sub-activity">
           <span class="sub-activity-label">Tools selected</span>
           <h5>Which three tools are you analyzing?</h5>
-          <label for="f-a1-tools">Name all three tools, noting which is the AI tool. <span>(Include the AI tool's category: LLM, classifier, recommender system, etc.)</span></label>
+          <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Names the AI tool&#8217;s category.</li>
+            <li>Describes each tool on all five dimensions with specifics.</li>
+            <li>Names where you found the information and what was hardest to find.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the module.</p>
+        </div>
+        <label for="f-a1-tools">Name all three tools, noting which is the AI tool. <span>(Include the AI tool's category: LLM, classifier, recommender system, etc.)</span></label>
           <textarea id="f-a1-tools" rows="3" placeholder="Tool 1 (AI): e.g., ChatGPT, large language model (LLM)&#10;Tool 2: e.g., Perusall, social annotation with algorithmic engagement scoring&#10;Tool 3: e.g., Kaltura, video production and hosting platform"></textarea>
         </div>
 
@@ -342,6 +363,15 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Written analysis · 60–75 minutes · 400–500 words</p>
         <p>Select one of the three tools from Activity 1. The AI tool is the best choice, though the framework applies to any of them. Write a 400–500 word structural analysis that applies the three structural questions from Section 3. Answer each question with specific evidence. Cite vendor documentation, published research, faculty forums, or your own direct investigation. Someone who has never used the tool should come away understanding what it does structurally and what those effects cost.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Answers each structural question with specific evidence, including one documented failure.</li>
+            <li>Names who built the tool and its financial model.</li>
+            <li>States what the analysis shows as a whole.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the module.</p>
+        </div>
         <label for="f-a2-tool">Which tool are you analyzing in this activity? <span>(And why did you choose it?)</span></label>
         <input type="text" id="f-a2-tool" placeholder="Tool name and brief reason for choosing it...">
 
@@ -379,7 +409,17 @@ textarea { min-height: 100px; }
         <div class="sub-activity">
           <span class="sub-activity-label">Step 1. Your decision</span>
           <h5>Which operative decision applies?</h5>
-          <label for="f-a3-decision">State your decision category and explain in 2–3 sentences why the structural analysis grounds it. <span>Options: Principled Refusal / Conditional Adoption / Deferred Decision</span></label>
+          <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Names one decision category and grounds it in Activity 2 findings.</li>
+            <li>Lists verifiable conditions if adoption is conditional.</li>
+            <li>Gives the task prompt as students receive it, with criteria.</li>
+            <li>Explains in 200 to 250 words how the decision shaped the design.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the module.</p>
+        </div>
+        <label for="f-a3-decision">State your decision category and explain in 2–3 sentences why the structural analysis grounds it. <span>Options: Principled Refusal / Conditional Adoption / Deferred Decision</span></label>
           <textarea id="f-a3-decision" rows="4" placeholder="My operative decision is [Principled Refusal / Conditional Adoption / Deferred Decision] because..."></textarea>
         </div>
 
@@ -463,6 +503,28 @@ textarea { min-height: 100px; }
     <hr class="divider">
 
     <!-- Submit -->
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Your commitment. Name the course and term where you will use this assignment prototype. <span>(Give the course, the term, the approximate due date, and the number of students.)</span></label>
+      <textarea id="f-commit" rows="4" placeholder="Course:&#10;Term:&#10;Due date:&#10;Number of students:"></textarea>
+      <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.25rem;">Near the end of that term, CWSP will email you one question about what students produced. Your answer completes the last objective.</p>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this module</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your module responses. CWSP reads them to revise the module. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the module take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 4">Fewer than 4</option><option value="4-6">4 to 6</option><option value="6-8">6 to 8</option><option value="over 8">More than 8</option></select>
+        <label for="react-change">What one change would make this module more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
     <section id="submit">
       <div class="submit-section">
         <h3>Complete Module 3</h3>
@@ -495,6 +557,8 @@ textarea { min-height: 100px; }
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const MODULE = 'dc-module3';
+const REQUIRED = ['f-a1-t1', 'f-a2-synthesis', 'f-a3-decision', 'f-a3-grounds', 'f-a3-prompt', 'f-commit'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 const FIELDS = ['f-a1-tools','f-a1-t1','f-a1-t2','f-a1-t3','f-a1-reflection','f-a2-tool','f-a2-hierarchies','f-a2-costs','f-a2-interests','f-a2-synthesis','f-a3-decision','f-a3-grounds','f-a3-conditions','f-a3-prompt','f-a3-criteria','f-a3-rationale'];
 const CHECKBOXES = ['repo-a1','repo-a2','repo-a3'];
 function saveAll() {
@@ -514,6 +578,7 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = pct+'%';
 }
 function submitModule() {
+  if (!C2TC.requireFields(REQUIRED)) return;
   saveAll();
   const data = {module:MODULE, timestamp:new Date().toISOString()};
   if (!C2TC.attach(data)) return;
@@ -522,7 +587,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Module 3 Responses'; });
 }
 document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
@@ -571,6 +636,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js?v=2026-10-20"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>
