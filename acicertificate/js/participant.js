@@ -36,7 +36,10 @@
       '.resume-banner button{margin-left:.5rem}' +
       '.sidebar-save{padding:0 1rem 1rem;border-bottom:1px solid #e0e0e0;margin-bottom:1rem}' +
       '.sidebar-save .btn-resume{width:100%;text-align:left;font-size:.82rem;padding:.45rem .75rem}' +
-      '.sidebar-save .resume-status{font-size:.75rem;color:#5a5a5a;margin:.4rem .25rem 0;line-height:1.35}';
+      '.sidebar-save .resume-status{font-size:.75rem;color:#5a5a5a;margin:.4rem .25rem 0;line-height:1.35}' +
+      'textarea.needs-answer{border-color:#990000;box-shadow:0 0 0 2px rgba(153,0,0,.15)}' +
+      '.required-note{color:#990000;font-size:.88rem;margin:.5rem 0 1rem}' +
+      '.req-mark{color:#990000;font-weight:700;margin-left:.2rem}';
     var el = document.createElement('style');
     el.textContent = css;
     document.head.appendChild(el);
@@ -70,11 +73,11 @@
 
   function workFields() {
     return Array.prototype.filter.call(
-      document.querySelectorAll('textarea[id], input[id]'),
+      document.querySelectorAll('textarea[id], input[id], select[id]'),
       function (el) {
         return !el.classList.contains('p-identity') && el.type !== 'email' &&
                ['p-name', 'cert-name', 'cert-email'].indexOf(el.id) === -1 &&
-               (el.tagName === 'TEXTAREA' || el.type === 'text' || el.type === 'checkbox');
+               (el.tagName === 'TEXTAREA' || el.tagName === 'SELECT' || el.type === 'text' || el.type === 'checkbox');
       });
   }
 
@@ -262,7 +265,78 @@
     return data;
   }
 
-  window.C2TC = { attach: function (data) { var ok = attach(data); if (ok) describe(data); return ok; }, describe: describe };
+  /* Required prompts. Each id names a prompt tied to a stated objective.
+     Marks the prompt in the page, then blocks submission until each one
+     holds a response of at least min characters. */
+  function markRequired(ids) {
+    ids.forEach(function (id) {
+      var lab = document.querySelector('label[for="' + id + '"]');
+      if (lab && !lab.querySelector('.req-mark')) {
+        var m = document.createElement('span');
+        m.className = 'req-mark';
+        m.setAttribute('aria-hidden', 'true');
+        m.textContent = '*';
+        lab.insertBefore(m, lab.firstChild.nextSibling);
+      }
+      var el = document.getElementById(id);
+      if (el) {
+        el.setAttribute('aria-required', 'true');
+        el.addEventListener('input', function () { el.classList.remove('needs-answer'); });
+      }
+    });
+  }
+
+  function requireFields(ids, min) {
+    min = min || 40;
+    var missing = ids.map(function (id) { return document.getElementById(id); })
+      .filter(function (el) { return el && el.value.trim().length < min; });
+    var note = document.querySelector('.required-note');
+    if (!missing.length) { if (note) note.hidden = true; return true; }
+    missing.forEach(function (el) { el.classList.add('needs-answer'); });
+    if (!note) {
+      note = document.createElement('p');
+      note.className = 'required-note';
+      note.setAttribute('role', 'alert');
+      var btn = document.querySelector('.btn-submit');
+      if (btn) btn.parentNode.parentNode.insertBefore(note, btn.parentNode);
+    }
+    note.hidden = false;
+    note.textContent = missing.length === 1
+      ? 'One required prompt still needs a response. It is marked in red above.'
+      : missing.length + ' required prompts still need a response. They are marked in red above.';
+    missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    missing[0].focus({ preventScroll: true });
+    return false;
+  }
+
+  /* End-of-module reaction items. Sent on their own, with no name or email,
+     so CWSP reads them as program feedback apart from the participant's work. */
+  function sendReactions(ids) {
+    var items = {}, labels = {}, any = false;
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      items[id] = el.value || '';
+      if (items[id].trim()) any = true;
+      var lab = document.querySelector('label[for="' + id + '"]');
+      if (lab) labels[id] = lab.textContent.replace(/\s+/g, ' ').trim();
+    });
+    if (!any) return;
+    fetch(SCRIPT, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ action: 'reaction', module: moduleId(),
+                             timestamp: new Date().toISOString(), items: items, labels: labels })
+    }).catch(function () {});
+  }
+
+  window.C2TC = {
+    attach: function (data) { var ok = attach(data); if (ok) describe(data); return ok; },
+    describe: describe,
+    markRequired: markRequired,
+    requireFields: requireFields,
+    sendReactions: sendReactions
+  };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();

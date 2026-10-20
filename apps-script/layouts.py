@@ -48,7 +48,8 @@ L['wc-module2'] = {
   ('Screencast feedback', [
     ('f-a2-experience', 'What recording feedback was like'),
     ('f-a2-student', 'What the student said'),
-    ('f-a2-integrate', 'Where screencast feedback fits in my course')]),
+    ('f-a2-integrate', 'Where screencast feedback fits in my course'),
+    ('f-a2-commit', 'My commitment: where I will use screencast response next')]),
   ('Rubric audit', [
     ('f-a3-rubric', 'The rubric I audited'),
     ('f-a3-audit', 'What the audit found')])],
