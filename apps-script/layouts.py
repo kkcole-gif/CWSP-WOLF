@@ -150,7 +150,7 @@ L['wc-elective3'] = {
  'student_title': 'For my students',
  'student': [
   {'title': 'Course AI policy', 'course': ['art-course', 'f-a2-course'],
-   'framing': 'For the syllabus and the course site.',
+   'framing': 'This applies to all work in this course.',
    'blocks': [(['art-policy', 'f-a2-policy'], None)]},
   {'title': 'Assignment', 'course': ['art-course', 'f-a2-course'], 'framing': None,
    'blocks': [(['art-redesign', 'f-a2-redesign'], None)]}]}
@@ -182,7 +182,7 @@ L['wc-elective4'] = {
  'student_title': 'For my students',
  'student': [
   {'title': 'For multilingual writers in this course', 'course': ['art-course', 'f-a2-course'],
-   'framing': 'For the syllabus and the course site.',
+   'framing': None,
    'blocks': [(['art-student-statement', 'f-a2-student-statement'], None)]}]}
 
 L['dc-module1'] = {
