@@ -226,7 +226,7 @@ textarea { min-height: 100px; }
             <li>Explains how at least two modes work together, with an example of each.</li>
             <li>Names at least one thing students would need to learn to produce a text like it.</li>
           </ul>
-          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the elective.</p>
         </div>
         <label for="f-a1-text">Text identification. <span>What is the text? URL or brief description, author/institution, disciplinary context.</span></label>
         <textarea id="f-a1-text" placeholder="What the text is, where it appears, who produced it, what disciplinary context it belongs to..." style="min-height: 80px;"></textarea>
@@ -258,7 +258,7 @@ textarea { min-height: 100px; }
             <li>Includes criteria for rhetorical effectiveness, modal integration, and the reflection.</li>
             <li>Asks students to explain their modal choices in the reflection.</li>
           </ul>
-          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the elective.</p>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the elective.</p>
         </div>
         <label for="art-title">Assignment title</label>
       <input type="text" id="art-title" placeholder="e.g., Research Poster Abstract: Communicating Your Findings for a Public Audience">
@@ -402,7 +402,7 @@ function submitWork() {
     .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Elective 1'; });
 }
 </script>
-<script src="js/participant.js?v=2026-10-20c"></script>
+<script src="js/participant.js?v=2026-10-20d"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

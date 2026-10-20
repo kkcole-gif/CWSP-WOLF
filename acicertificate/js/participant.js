@@ -277,6 +277,7 @@
         m.className = 'req-mark';
         m.setAttribute('aria-hidden', 'true');
         m.textContent = '*';
+        m.title = 'Required: at least one full sentence';
         lab.insertBefore(m, lab.firstChild.nextSibling);
       }
       var el = document.getElementById(id);
@@ -302,9 +303,10 @@
       if (btn) btn.parentNode.parentNode.insertBefore(note, btn.parentNode);
     }
     note.hidden = false;
-    note.textContent = missing.length === 1
-      ? 'One required prompt still needs a response. It is marked in red above.'
-      : missing.length + ' required prompts still need a response. They are marked in red above.';
+    note.textContent = (missing.length === 1
+      ? 'One required prompt, marked in red above, needs a longer response.'
+      : missing.length + ' required prompts, marked in red above, need longer responses.') +
+      ' Each required prompt takes at least ' + min + ' characters, about one full sentence.';
     missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
     missing[0].focus({ preventScroll: true });
     return false;
