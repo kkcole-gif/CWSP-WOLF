@@ -155,6 +155,7 @@ textarea { min-height: 100px; }
     <div class="sidebar-section">
       <span class="sidebar-label">Resources</span>
       <a href="#readings">Reading list</a>
+      <a href="#reaction">Module feedback</a>
       <a href="#submit">Submit &amp; complete</a>
     </div>
   </nav>
@@ -175,7 +176,7 @@ textarea { min-height: 100px; }
         <li>Distinguish the writing skills your course must teach explicitly from those students bring from earlier courses. <span style="color: var(--dgray);">(Activity 3)</span></li>
         <li>Distinguish process-oriented from product-oriented writing assignments in your own course. <span style="color: var(--dgray);">(Activity 1, prompt 5)</span></li>
         <li>Design three low-stakes writing activities tied to your course goals. <span style="color: var(--dgray);">(Activity 2)</span></li>
-        <li>Use one low-stakes activity in a course and report what students did with it. <span style="color: var(--dgray);">(A short follow-up from CWSP near the end of the term after you finish the module)</span></li>
+        <li>Use one low-stakes activity in a course and report what students did with it. <span style="color: var(--dgray);">(Activity 2, your commitment, and a short follow-up from CWSP near the end of the term)</span></li>
       </ol>
     </div>
 
@@ -240,6 +241,16 @@ textarea { min-height: 100px; }
         <p>Everyone who assigns writing works from beliefs about it, most of them formed long before any reading in writing studies. This activity asks you to write those beliefs down and test them against the research in this module.</p>
         <p>Give each prompt at least a paragraph. Describe what you do now in your courses. Nobody grades this.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Names specific conventions, genres, or skills you assume students bring.</li>
+            <li>Traces your standard for good writing to at least one source.</li>
+            <li>Points to features of an assignment sheet showing whether it is process- or product-oriented.</li>
+            <li>Names one tension between your assumptions and the research in Sections 1 to 3.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the module.</p>
+        </div>
         <label for="f-a1-q1">What do you assume students already know about writing when they enter your course? <span>(Name the conventions, genres, or skills you take for granted.)</span></label>
         <textarea id="f-a1-q1" rows="5" placeholder="Your response here..."></textarea>
 
@@ -277,6 +288,16 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Collaborative design activity · 45–60 minutes</p>
         <p>Design three low-stakes writing activities for a course you teach. For each, give the learning goal, the time it takes, how you will respond, and how it connects to the larger goals of the course.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Writes each activity as the prompt students will see.</li>
+            <li>Ties each activity to a goal of the course.</li>
+            <li>States the time each activity takes and how you will respond to it.</li>
+            <li>Names the course and the week where you will first use one activity.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the module.</p>
+        </div>
         <label for="f-a2-course">Which course are you designing for? <span>(Name, level, approximate enrollment)</span></label>
         <input type="text" id="f-a2-course" placeholder="e.g., CHE 301: Transport Phenomena, upper-division, ~35 students">
 
@@ -291,6 +312,10 @@ textarea { min-height: 100px; }
 
         <label for="f-a2-reflection">What would change in your course if you integrated all three of these? What would you have to give up to make room for them?</label>
         <textarea id="f-a2-reflection" rows="5" placeholder="Your reflection here..."></textarea>
+
+        <label for="f-a2-commit">Your commitment. Name one of the three activities you will use, the course, and the week you will first assign it. <span>(Give the activity, the course, the week or date, and the approximate number of students.)</span></label>
+        <textarea id="f-a2-commit" rows="4" placeholder="Activity:&#10;Course:&#10;Week or date:&#10;Number of students:"></textarea>
+        <p style="font-size: 0.85rem; color: var(--dgray); margin-top: -0.25rem;">Near the end of the term, CWSP will email you one question about what students did with the activity. Your answer completes objective 6.</p>
 
         <div class="repo-block">
           <h4>Contribute to the repository</h4>
@@ -311,6 +336,16 @@ textarea { min-height: 100px; }
         <p class="activity-meta">Individual analysis · 30 minutes</p>
         <p>Map the writing knowledge your course requires against what students bring from earlier courses and experience. The gaps show you what to teach explicitly.</p>
 
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Lists three to five writing skills specific enough to teach.</li>
+            <li>Names where students met each skill before, if anywhere.</li>
+            <li>Separates the skills your course must teach from those students bring.</li>
+            <li>Names at least one habit from prior learning likely to interfere, and one change you will make.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> are required to submit the module.</p>
+        </div>
         <label for="f-a3-skills">List 3–5 writing skills or types of knowledge students need for your course <span>(Be specific. For example, "lab reports whose results section reports findings without interpreting them.")</span></label>
         <textarea id="f-a3-skills" rows="5" placeholder="1.&#10;2.&#10;3.&#10;4.&#10;5."></textarea>
 
@@ -356,6 +391,21 @@ textarea { min-height: 100px; }
     <hr class="divider">
 
     <!-- ── Submit ── -->
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this module</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your module responses. CWSP reads them to revise the module. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the module take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 4">Fewer than 4</option><option value="4-6">4 to 6</option><option value="6-8">6 to 8</option><option value="over 8">More than 8</option></select>
+        <label for="react-change">What one change would make this module more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
     <section id="submit">
       <div class="submit-section">
         <h3>Complete Module 1</h3>
@@ -389,10 +439,13 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV7
 const MODULE = 'wc-module1';
 
 const FIELDS = ['f-a1-q1','f-a1-q2','f-a1-q3','f-a1-q4','f-a1-q5','f-a1-reflection',
-                'f-a2-course','f-a2-activity1','f-a2-activity2','f-a2-activity3','f-a2-reflection',
+                'f-a2-course','f-a2-activity1','f-a2-activity2','f-a2-activity3','f-a2-reflection','f-a2-commit',
                 'f-a3-skills','f-a3-prior','f-a3-explicit','f-a3-interference','f-a3-change'];
 const CHECKBOXES = ['repo-a1','repo-a2','repo-a3'];
-const REQUIRED = ['f-a1-reflection','f-a2-reflection','f-a3-change'];
+/* Required prompts, in objective order (objective 5 requires all three activities). */
+const REQUIRED = ['f-a3-interference','f-a1-reflection','f-a3-explicit','f-a1-q5',
+                  'f-a2-activity1','f-a2-activity2','f-a2-activity3','f-a2-commit','f-a3-change'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
 
 function saveAll() {
   FIELDS.forEach(id => {
@@ -421,7 +474,7 @@ function loadAll() {
 }
 
 function updateProgress() {
-  const required = FIELDS.map(id => document.getElementById(id)).filter(Boolean);
+  const required = REQUIRED.map(id => document.getElementById(id)).filter(Boolean);
   let filled = required.filter(el => el.value.trim().length > 20).length;
   const pct = Math.round((filled / required.length) * 100);
   document.getElementById('progress-fill').style.width = pct + '%';
@@ -430,6 +483,7 @@ function updateProgress() {
 
 function submitModule() {
   saveAll();
+  if (!C2TC.requireFields(REQUIRED)) return;
   const data = { module: MODULE, timestamp: new Date().toISOString() };
   if (!C2TC.attach(data)) return;
   FIELDS.forEach(id => { data[id] = (document.getElementById(id) || {}).value || ''; });
@@ -443,7 +497,7 @@ function submitModule() {
     method: 'POST', mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
-  }).then(() => {
+  }).then(() => { C2TC.sendReactions(REACTIONS);
     document.getElementById('submit-success').style.display = 'block';
     document.getElementById('submit-error').style.display = 'none';
     btn.textContent = '✓ Submitted';
@@ -480,6 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="js/participant.js?v=2026-10-20"></script>
+<script src="js/participant.js?v=2026-10-20c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS });</script>
 </body>
 </html>

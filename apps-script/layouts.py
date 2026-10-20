@@ -25,7 +25,8 @@ L['wc-module1'] = {
     ('f-a3-interference', 'Where earlier habits get in the way')]),
   ('Plans', [
     ('f-a3-change', 'What I will change'),
-    ('f-a2-reflection', 'What I will give up to make room for low-stakes writing')])],
+    ('f-a2-reflection', 'What I will give up to make room for low-stakes writing'),
+    ('f-a2-commit', 'My commitment: the activity I will use first, and when')])],
  'student_title': 'Low-stakes writing for my students',
  'student': [
   {'title': 'Exit ticket', 'course': ['f-a2-course'],
