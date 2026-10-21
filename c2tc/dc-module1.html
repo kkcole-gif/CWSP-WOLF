@@ -119,6 +119,10 @@ textarea { min-height: 100px; }
   .module-header { padding: 1.5rem; margin: -1.5rem -1.5rem 1.5rem; }
   .mode-grid { grid-template-columns: 1fr; }
 }
+.next-module { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.next-module:hover { border-color: var(--accent); }
+.next-module .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.next-module .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -130,7 +134,7 @@ textarea { min-height: 100px; }
 
 <div class="top-bar">
   <div class="top-bar-left">
-    <a href="digital.html">← DC Certificate</a>
+    <a href="digital.html">← Digital Communication Certificate</a>
     <h1>Module 1: Foundations of Digital Rhetoric</h1>
   </div>
   <div class="progress-wrap">
@@ -403,6 +407,13 @@ textarea { min-height: 100px; }
       <button class="btn-submit" id="submit-btn" onclick="submitWork()">Submit Module 1</button>
       <div class="submit-status" id="submit-status"></div>
     </div>
+    <a href="dc-module2.html" class="next-module">
+      <div>
+        <div class="label">Next</div>
+        <div class="title">Module 2: Designing and Assessing Digital Projects</div>
+      </div>
+      <span style="font-size: 1.5rem; color: var(--accent);">→</span>
+    </a>
   </main>
 </div>
 

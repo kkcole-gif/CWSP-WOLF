@@ -123,6 +123,22 @@ textarea { min-height: 100px; }
   .dapoe-grid { grid-template-columns: repeat(3, 1fr); }
   .form-row { grid-template-columns: 1fr; }
 }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--red); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
+.btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
+.btn-save:hover { border-color: var(--dark); }
+#submit-success { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 3px; padding: 1rem; color: #2e7d32; font-size: 0.9rem; margin-top: 1rem; }
+#submit-error   { display: none; background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 1rem; color: #c62828; font-size: 0.9rem; margin-top: 1rem; }
+
+.next-module { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.next-module:hover { border-color: var(--red); }
+.next-module .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.2rem; }
+.next-module .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+.next-module .arrow { font-size: 1.5rem; color: var(--red); }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -134,7 +150,7 @@ textarea { min-height: 100px; }
 
 <div class="top-bar">
   <div class="top-bar-left">
-    <a href="written.html">← Written Comm Certificate</a>
+    <a href="written.html">← Written Communication Certificate</a>
     <h1>Module 3: Discipline-Specific Writing Instruction</h1>
   </div>
   <div class="progress-wrap">
@@ -166,8 +182,8 @@ textarea { min-height: 100px; }
       <span class="sidebar-label">Capstone &amp; Certificate</span>
       <a href="#readings">Reading list</a>
       <a href="#reaction">Module feedback</a>
-      <a href="#capstone" class="capstone-link">Capstone submission</a>
-      <a href="#certificate" class="capstone-link">Submit &amp; earn certificate</a>
+      <a href="#submit">Submit Module 3</a>
+      <a href="wc-capstone.html" class="capstone-link">Capstone</a>
     </div>
   </nav>
 
@@ -465,109 +481,27 @@ textarea { min-height: 100px; }
       </div>
     </section>
 
-    <div class="capstone-section" id="capstone">
-      <p class="capstone-eyebrow">Certificate Capstone</p>
-      <h2>Written Communication Capstone Submission</h2>
-      <p>Your capstone is a writing-intensive syllabus redesign or curriculum plan that applies the frameworks from all three modules. Build it for use: a syllabus you will teach from, or a curriculum plan you intend to develop.</p>
-
-      <div class="capstone-part">
-        <h4>Part A. Course description and writing context</h4>
-        <p>Describe the course (or curriculum) you are redesigning. Explain the writing demands of the course as it stands and where students tend to struggle. Draw on Module 1 here: transfer, metacognition, and the relationship between process and product.</p>
+    <div class="submit-section" id="submit">
+      <h3>Complete Module 3</h3>
+      <p>When you have completed the three activities, submit your responses below. Your work is saved in your browser, and this submission sends a copy to CWSP. Submitting Module 3 does not submit your capstone, which has its own page.</p>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+        <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 3 Responses</button>
       </div>
-      <div class="capstone-part">
-        <h4>Part B. Redesigned assignment sequence</h4>
-        <p>Present at least one major writing assignment redesigned with the DAPOE framework, along with its scaffolding sequence. Start from your Activity 3 assignment and revise it. If you are redesigning a whole course, include 2–3 assignments and show how they build on each other.</p>
+      <div id="submit-success">
+        <strong>Submitted.</strong> A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser. The capstone is open whenever you are ready.
       </div>
-      <div class="capstone-part">
-        <h4>Part C. Feedback and assessment plan</h4>
-        <p>Describe how you will respond to student writing in this course. Which Module 2 strategies (minimal marking, screencast feedback, peer review protocols, revised rubrics) will you use, and how? Include any rubric or feedback protocol you have designed.</p>
+      <div id="submit-error">
+        There was a problem submitting. Your responses are saved in this browser. Try again, or contact kkcole2@ncsu.edu if the problem persists.
       </div>
-      <div class="capstone-part">
-        <h4>Part D. Reflective rationale</h4>
-        <p>In 1–2 pages, explain the thinking behind your redesign. Which frameworks from the three modules helped most? What surprised you? What do you expect to be hardest to put into practice? Write in your own voice, as someone who now thinks about writing as a subject.</p>
-      </div>
-
-      <div class="capstone-part" id="capstone-rubric">
-        <h4>How CWSP reviews the capstone</h4>
-        <p style="margin-bottom: 0.75rem;">A reviewer rates each part against the description below. A part earns its full weight when it meets the description, half its weight when one element is missing or underdeveloped, and none when it does not yet address the description. CWSP approves a capstone with a weighted total of 80 percent or more. A capstone below 80 percent comes back with comments on the parts to revise, and you resubmit those parts.</p>
-        <table class="rubric-table">
-          <thead><tr><th scope="col">Part</th><th scope="col">Weight</th><th scope="col">Meets the description when it</th></tr></thead>
-          <tbody>
-            <tr><th scope="row">A. Course and writing context</th><td>20%</td><td>Names the course, its students, and the writing it asks for, and locates where students struggle using at least one Module 1 concept (transfer, metacognition, or process and product).</td></tr>
-            <tr><th scope="row">B. Assignment design</th><td>30%</td><td>Presents at least one assignment with all five DAPOE elements stated for students, a scaffolding sequence of two or three dated stages, and criteria tied to the assignment&#8217;s objectives.</td></tr>
-            <tr><th scope="row">C. Feedback and assessment</th><td>25%</td><td>Names the Module 2 practices you will use, the drafts or stages where each applies, and includes the rubric or feedback protocol itself.</td></tr>
-            <tr><th scope="row">D. Reflective rationale</th><td>25%</td><td>Explains, in your own voice, which frameworks shaped the redesign and why, and names one part you expect to be hard to put into practice and your plan for it.</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <p style="font-size: 0.88rem; color: var(--dgray); margin-top: 1rem;">Length: 5–8 pages total (not counting appendices). Format: share as a Google Doc link, or paste your text into the submission fields below. If you prefer to upload a file, email it to kkcole2@ncsu.edu with the subject "C²TC Capstone Submission."</p>
     </div>
 
-    <!-- ── Certificate Submit ── -->
-    <div class="certificate-submit" id="certificate">
-      <h3>Submit Capstone &amp; Earn Your Certificate</h3>
-      <p>CWSP reviews each capstone before issuing the certificate. Once your capstone is approved, your PDF certificate is emailed to your NC State address. To send a file in place of pasted text, email kkcole2@ncsu.edu.</p>
-
-      <div class="form-row">
-        <div>
-          <label for="cert-name">Your full name</label>
-          <input type="text" id="cert-name" placeholder="As you'd like it to appear on the certificate">
-        </div>
-        <div>
-          <label for="cert-email">Your NC State email</label>
-          <input type="email" id="cert-email" placeholder="youreid@ncsu.edu">
-        </div>
+    <a href="wc-capstone.html" class="next-module">
+      <div>
+        <div class="label">Next</div>
+        <div class="title">Written Communication Capstone</div>
       </div>
-
-      <div class="form-row" style="margin-top: 0.75rem;">
-        <div>
-          <label for="cert-department">Department</label>
-          <input type="text" id="cert-department" placeholder="e.g., Department of Chemistry">
-        </div>
-        <div>
-          <label for="cert-role">Role</label>
-          <input type="text" id="cert-role" placeholder="e.g., Associate Professor, Lecturer, Grad Instructor">
-        </div>
-      </div>
-
-      <label for="cert-doc-link" style="margin-top: 1rem;">Google Doc link to your capstone <span style="color: #888;">(or paste text below)</span></label>
-      <input type="text" id="cert-doc-link" placeholder="https://docs.google.com/document/d/...">
-
-      <label for="cert-parta">Part A. Course description and writing context <span style="color: #888;">(paste if not using a Google Doc link)</span></label>
-      <textarea id="cert-parta" rows="5" placeholder="Optional if you provided a Google Doc link above..."></textarea>
-
-      <label for="cert-partb">Part B. Redesigned assignment sequence</label>
-      <textarea id="cert-partb" rows="5" placeholder="Optional if you provided a Google Doc link above..."></textarea>
-
-      <label for="cert-partc">Part C. Feedback and assessment plan</label>
-      <textarea id="cert-partc" rows="5" placeholder="Optional if you provided a Google Doc link above..."></textarea>
-
-      <label for="cert-partd">Part D. Reflective rationale</label>
-      <textarea id="cert-partd" rows="7" placeholder="Optional if you provided a Google Doc link above..."></textarea>
-
-      <label for="cert-elective-use">Elective work in your teaching <span style="color: #888;">(Optional. Which elective work will you use, and where? Name the elective, what you built in it, and the course and term.)</span></label>
-      <textarea id="cert-elective-use" rows="4" placeholder="Elective:&#10;What I built:&#10;Course and term:"></textarea>
-
-      <div class="checkbox-row" style="margin-top: 1.5rem;">
-        <input type="checkbox" id="repo-capstone" style="accent-color: var(--green);">
-        <label for="repo-capstone" style="color: #ccc; font-weight: 400; margin: 0; font-size: 0.87rem;">Yes, share my capstone with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
-      </div>
-
-      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
-        <button class="btn-certificate" id="cert-btn" onclick="submitCapstone()">Submit Capstone &amp; Earn Certificate</button>
-        <span style="font-size: 0.82rem; color: #888;">Certificate emailed after review</span>
-      </div>
-
-      <div id="cert-success">
-        <strong>Submitted.</strong> A copy of your capstone comes to your NC State email within a few minutes. CWSP will review it and email your Written Communication certificate to the address above once it is approved. Your responses also stay saved in this browser. If you have not heard from CWSP within two weeks, email kkcole2@ncsu.edu.
-      </div>
-      <div id="cert-error">
-        There was a problem submitting. Your responses are saved in this browser. Try again, or email your capstone directly to kkcole2@ncsu.edu with the subject "C²TC Capstone Submission."
-      </div>
-
-      <p class="note">Questions? Contact Kirsti Cole at kkcole2@ncsu.edu · NC State Campus Writing and Speaking Program</p>
-    </div>
+      <span class="arrow">→</span>
+    </a>
 
   </main>
 </div>
@@ -578,10 +512,8 @@ const MODULE = 'wc-module3';
 
 const FIELDS = ['f-a1-genre','f-a1-purpose','f-a1-features','f-a1-invisible','f-a1-teach',
                 'f-a2-assignment','f-a2-dapoe','f-a2-gaps','f-a2-revised',
-                'f-a3-context','f-a3-discover','f-a3-ask','f-a3-produce','f-a3-own','f-a3-evaluate','f-a3-scaffold','f-a3-commit',
-                'cert-name','cert-email','cert-department','cert-role','cert-doc-link',
-                'cert-parta','cert-partb','cert-partc','cert-partd','cert-elective-use'];
-const CHECKBOXES = ['repo-a1','repo-a2','repo-a3','repo-capstone'];
+                'f-a3-context','f-a3-discover','f-a3-ask','f-a3-produce','f-a3-own','f-a3-evaluate','f-a3-scaffold','f-a3-commit'];
+const CHECKBOXES = ['repo-a1','repo-a2','repo-a3'];
 /* Required prompts, in objective order (objective 5 requires the directions and the sequence). */
 const REQUIRED = ['f-a1-features','f-a1-invisible','f-a2-dapoe','f-a2-revised','f-a3-discover','f-a3-scaffold','f-a3-commit'];
 const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
@@ -630,42 +562,15 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = pct + '%';
 }
 
-function submitCapstone() {
+function submitModule() {
   saveAll();
-  const name = document.getElementById('cert-name').value.trim();
-  const email = document.getElementById('cert-email').value.trim();
-  const docLink = document.getElementById('cert-doc-link').value.trim();
-  const partD = document.getElementById('cert-partd').value.trim();
-
-  if (!name || !email) {
-    alert('Please enter your name and NC State email address before submitting.');
-    return;
-  }
-  if (!C2TC.requireFields(REQUIRED, 40, document.getElementById('cert-btn'))) return;
-  if (!docLink && !partD) {
-    alert('Please provide either a Google Doc link or paste your Part D reflective rationale to confirm you have completed the capstone.');
-    return;
-  }
-
-  const data = {
-    module: MODULE,
-    submission_type: 'capstone',
-    timestamp: new Date().toISOString(),
-    certificate_name: name,
-    certificate_email: email
-  };
+  if (!C2TC.requireFields(REQUIRED)) return;
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  if (!C2TC.attach(data)) return;
   FIELDS.forEach(id => { data[id] = (document.getElementById(id) || {}).value || ''; });
   CHECKBOXES.forEach(id => { data[id] = document.getElementById(id)?.checked || false; });
 
-  // Collect all activity responses too
-  const allActivityFields = ['f-a1-genre','f-a1-purpose','f-a1-features','f-a1-invisible','f-a1-teach',
-                              'f-a2-assignment','f-a2-dapoe','f-a2-gaps','f-a2-revised',
-                              'f-a3-context','f-a3-discover','f-a3-ask','f-a3-produce','f-a3-own','f-a3-evaluate','f-a3-scaffold','f-a3-commit'];
-  allActivityFields.forEach(id => { data['activity_' + id] = localStorage.getItem(MODULE + '-' + id) || ''; });
-
-  if (window.C2TC && C2TC.describe) C2TC.describe(data);
-
-  const btn = document.getElementById('cert-btn');
+  const btn = document.getElementById('submit-btn');
   btn.disabled = true;
   btn.textContent = 'Submitting…';
 
@@ -674,15 +579,15 @@ function submitCapstone() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   }).then(() => {
-    document.getElementById('cert-success').style.display = 'block';
-    document.getElementById('cert-error').style.display = 'none';
+    document.getElementById('submit-success').style.display = 'block';
+    document.getElementById('submit-error').style.display = 'none';
     btn.textContent = 'Submitted';
-    localStorage.setItem(MODULE + '-cert-submitted', new Date().toISOString());
     C2TC.sendReactions(REACTIONS);
+    localStorage.setItem(MODULE + '-submitted', new Date().toISOString());
   }).catch(() => {
-    document.getElementById('cert-error').style.display = 'block';
+    document.getElementById('submit-error').style.display = 'block';
     btn.disabled = false;
-    btn.textContent = 'Submit Capstone & Earn Certificate';
+    btn.textContent = 'Submit Module 3 Responses';
   });
 }
 
@@ -701,9 +606,10 @@ function updateSidebarActive() {
 }
 
 window.addEventListener('scroll', updateSidebarActive, { passive: true });
-document.addEventListener('DOMContentLoaded', () => { loadAll(); C2TC.markRequired(REQUIRED); updateSidebarActive(); });
+document.addEventListener('DOMContentLoaded', () => { loadAll(); updateSidebarActive(); });
 </script>
 
 <script src="js/participant.js?v=2026-10-21a"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS });</script>
 </body>
 </html>
