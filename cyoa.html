@@ -159,8 +159,9 @@
   .screen .passage-no span { font-size: 0.9rem; font-weight: 400; font-style: italic; margin-left: 0.5rem; vertical-align: middle; }
   .trail { font-size: 12.5px; margin-top: 0.25rem; }
   .trail b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; margin-right: 0.35rem; }
-  .trail ol { display: inline; list-style: none; }
-  .trail li { display: inline; font-family: var(--serif); font-weight: 600; }
+  .trail:not([hidden]) { display: flex; flex-wrap: wrap; align-items: baseline; }
+  .trail ol { display: flex; flex-wrap: wrap; list-style: none; gap: 0; }
+  .trail li { font-family: var(--serif); font-weight: 600; padding: 0 !important; border: 0 !important; }
   .trail li + li::before { content: "\2192"; font-family: var(--sans); font-weight: 400; margin: 0 0.35rem; }
 
   .actions { flex-direction: column; gap: 0; border-top: 1px solid var(--ochre); max-width: 760px; }
@@ -174,6 +175,44 @@
   .actions .btn[disabled] .turn { color: var(--umber); }
   .choices-lead { font-size: 13px !important; letter-spacing: 0.06em; text-transform: uppercase; margin: 1.6rem 0 0.4rem !important; }
   .outcome-btn .turn { display: block; margin-top: 0.5rem; font-size: 13px; font-weight: 700; color: var(--mred); }
+
+
+  /* Fun, gamebook register. Night is used once, for the cover passage, as a hero band. */
+  :root { --night-ink: #383140; --night-plum: #583B65; --glow: #D9D869; }
+  .screen[data-screen="opening"] { background: var(--night-ink); color: var(--cream); border-radius: 12px; padding: 1.6rem 1.5rem 1.2rem; }
+  .screen[data-screen="opening"] h2, .screen[data-screen="opening"] p { color: var(--cream); }
+  .screen[data-screen="opening"] .passage-no { color: var(--glow); }
+  .screen[data-screen="opening"] .passage-no::before { background: var(--cream); }
+  .screen[data-screen="opening"] .actions { border-top-color: var(--night-plum); }
+  .screen[data-screen="opening"] .actions .btn { color: var(--cream); border-bottom-color: var(--night-plum); }
+  .screen[data-screen="opening"] .actions .btn:hover { background: var(--night-plum); }
+  .screen[data-screen="opening"] .actions .btn .turn { color: var(--cream); text-decoration: underline; }
+  .screen[data-screen="opening"] .choices-lead { color: var(--cream); }
+  .screen[data-screen="opening"] h2:focus-visible, .screen[data-screen="opening"] .btn:focus-visible { outline-color: var(--glow); }
+  .cover-mark { font-size: 12px !important; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem !important; }
+
+  /* A ribbon bookmark marks the passage you are on. */
+  .screen .passage-no { position: relative; padding-left: 1.1rem; }
+  .screen .passage-no::before { content: ""; position: absolute; left: 0; top: -0.2rem; width: 0.55rem; height: 2.9rem;
+    background: var(--mred); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%); }
+
+  /* Page turn */
+  @media (prefers-reduced-motion: no-preference) {
+    .screen:not([hidden]) { animation: turn 220ms ease-out; }
+    @keyframes turn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  }
+
+  /* The ending, and the map of passages read */
+  .the-end { text-align: center; border-top: 1px solid var(--ochre); border-bottom: 1px solid var(--ochre); padding: 1.2rem 0 0.4rem; margin: 2rem 0 1.2rem; max-width: 760px; }
+  .the-end .end-word { font-family: var(--serif); font-size: 2rem !important; font-style: italic; font-weight: 600; margin-bottom: 0.4rem !important; max-width: none; }
+  .the-end p { margin-left: auto; margin-right: auto; }
+  .book-map { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0 0.4rem; max-width: 760px; }
+  .book-map a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 0.4rem;
+    font-family: var(--serif); font-weight: 700; font-size: 1.05rem; text-decoration: none; border-radius: 6px; color: var(--umber); border: 1px dashed var(--clay); background: transparent; }
+  .book-map a.read { background: var(--gold); border: 1px solid var(--gold); }
+  .book-map a:hover { border-color: var(--dred); }
+  .book-map a:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
+  .map-key { font-size: 14px !important; }
 
   @media print {
     .site-header, .beta-band, .crumbs, .steps, .page-header, .page-footer, .screen:not([data-screen="statement"]), .no-print { display: none !important; }
@@ -201,7 +240,7 @@
 </header>
 
 <div class="beta-band" role="note">
-  <p><strong>Beta</strong>This page is in testing with facilitated groups. Nothing you write here leaves this browser tab. Your statement exists until you close the tab, so download it before you leave.</p>
+  <p><strong>Beta</strong>We're testing this book with small groups. Nothing you write leaves this browser tab, so download your statement before you close it.</p>
 </div>
 
 <div class="page-header" id="top">
@@ -235,21 +274,22 @@
 
 <!-- ═══ OPENING, SCREEN 1 ═══ -->
 <section class="screen" data-screen="opening" data-step="opening" aria-labelledby="h-opening">
+  <p class="cover-mark">An adventure in three levels</p>
   <h2 id="h-opening" tabindex="-1">Policy decides for the student</h2>
-  <p class="lede">Policy decides for the student. A syllabus clause permits AI in one place and forbids it in another, and the student's part is to comply. This tool begins with the decisions you make about AI in your own work, one assignment at a time.</p>
-  <p>The French theorist Michel de Certeau distinguished the strategies institutions set from the tactics people improvise inside them. A policy is a strategy. What you do with a tool late at night, with a draft due and a syllabus silent on the question, is a tactic, and it belongs to you. The anthropologist Brian Street drew a related distinction. Earlier accounts treated literacy as a fixed skill a person either has or lacks. Street described it as a practice, carried out in particular situations with particular stakes.</p>
-  <p>The practice asked of you here is distinct from fluency. Fluency names ease with a tool, how quickly and smoothly you get output from it. Operative literacy names accountable judgment, a decision about when, how, and whether to use the tool, with reasons you will stand behind.</p>
+  <p class="lede">Policy decides for the student. That's the usual story, anyway. A syllabus clause permits AI here and forbids it there, and your part is to follow along. This book starts somewhere else, with the decisions you make about AI in your own work, one assignment at a time.</p>
+  <p>The French theorist Michel de Certeau had a useful way to put this. Institutions set strategies, and people improvise tactics inside them. A policy is a strategy. What you do with a tool late at night, draft due in the morning and a syllabus with nothing to say on the matter, is a tactic, and it belongs to you. The anthropologist Brian Street noticed something close to this about literacy. Older accounts treated it as a skill a person has or lacks. Street saw it as a practice, something people do in particular places, for particular reasons, with something at stake.</p>
+  <p>So this book asks for practice, which is a different thing from fluency. Fluency is ease with a tool, how fast and smoothly you get output from it. The framework behind this book calls what you'll exercise here operative literacy: judgment you're willing to stand behind, about when, how, and whether to use the tool, with your reasons attached.</p>
   <div class="actions"><button type="button" class="btn btn-primary" data-go="opening-2">Continue</button></div>
 </section>
 
 <!-- ═══ OPENING, SCREEN 2 ═══ -->
 <section class="screen" data-screen="opening-2" data-step="opening" aria-labelledby="h-opening-2" hidden>
-  <h2 id="h-opening-2" tabindex="-1">Three levels, in order</h2>
-  <p>Practice is the word for what you exercise here. You will move through three levels in order. First you describe what the tool does. Then you analyze how it is built and whom it disadvantages. Last you decide what this situation warrants: use, limits, or refusal. Every new tool or assignment starts the sequence again at the first level.</p>
+  <h2 id="h-opening-2" tabindex="-1">How the book works</h2>
+  <p>You'll move through three levels, in order. First you describe what the tool does. Then you look at how it's built and who it leaves at a disadvantage. Last, you decide what this situation calls for: use, limits, or refusal. Each passage ends with a choice and a passage to turn to. When a new tool or a new assignment comes along, you start again at the first level.</p>
   <div class="level level-1"><span class="level-name">Conceptual · Describe</span><p class="level-gloss">What the systems are, and how they produce text.</p></div>
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
   <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
-  <p>At the end you receive a statement of your decision, in your own words, to keep or to give to your instructor.</p>
+  <p>At the end you'll have a statement of your decision, in your own words, to keep for yourself or to share with your instructor.</p>
   <div class="actions">
     <button type="button" class="btn btn-secondary" data-go="opening">Back</button>
     <button type="button" class="btn btn-primary" data-go="premise">Begin</button>
@@ -258,8 +298,8 @@
 
 <!-- ═══ PREMISE ═══ -->
 <section class="screen" data-screen="premise" data-step="opening" aria-labelledby="h-premise" hidden>
-  <h2 id="h-premise" tabindex="-1">The situation</h2>
-  <div class="position"><p class="position-label">Student decision</p><p style="margin:0">You are working on a writing assignment. The syllabus does not mention AI. You are not sure whether the silence means permission, or means your instructor has not gotten to the question yet.</p></div>
+  <h2 id="h-premise" tabindex="-1">Your situation</h2>
+  <div class="position"><p class="position-label">Student decision</p><p style="margin:0">You're working on a writing assignment, and the syllabus says nothing about AI. Maybe the silence means go ahead. Maybe your instructor hasn't gotten to the question yet. There's no telling which, and you're far from the only one in the pack wondering.</p></div>
   <div class="actions">
     <button type="button" class="btn btn-secondary" data-go="opening-2">Back</button>
     <button type="button" class="btn btn-primary" data-go="cp1">Go to the first level</button>
@@ -270,44 +310,46 @@
 <section class="screen" data-screen="cp1" data-step="describe" aria-labelledby="h-cp1" hidden>
   <div class="level level-1"><span class="level-name">Conceptual · Describe</span><p class="level-gloss">What the systems are, and how they produce text.</p><p class="level-key">Key question: Whose knowledge is encoded?</p></div>
   <h2 id="h-cp1" tabindex="-1">Checkpoint one: name the use</h2>
-  <label for="f-use" class="prompt">Say, in one sentence, what you did with the tool, or what you are about to do.</label>
+  <label for="f-use" class="prompt">In one sentence, what did you do with the tool, or what are you about to do?</label>
   <textarea id="f-use" aria-describedby="cp1-help"></textarea>
-  <p id="cp1-help" class="answer-help">Write your sentence, then choose an answer below. If no sentence comes, choose the second answer.</p>
+  <p id="cp1-help" class="answer-help">Write it the way you'd tell a friend. If no sentence comes yet, choose the second answer, and the next passage will help you find one.</p>
   <p id="cp1-notice" class="notice" role="alert"></p>
   <div class="actions">
-    <button type="button" class="btn btn-primary" id="cp1-yes">I named the use</button>
-    <button type="button" class="btn btn-secondary" data-go="cp1-no">I cannot name it yet</button>
+    <button type="button" class="btn btn-primary" id="cp1-yes">Here's my sentence</button>
+    <button type="button" class="btn btn-secondary" data-go="cp1-no">No sentence yet</button>
   </div>
 </section>
 
 <!-- ═══ CHECKPOINT 1, NO PATH ═══ -->
 <section class="screen" data-screen="cp1-no" data-step="describe" aria-labelledby="h-cp1-no" hidden>
   <div class="level level-1"><span class="level-name">Conceptual · Describe</span><p class="level-gloss">What the systems are, and how they produce text.</p></div>
-  <h2 id="h-cp1-no" tabindex="-1">The use will not name itself</h2>
-  <p>Perhaps you cannot. Worth sitting with, rather than pushing past.</p>
-  <p>Not being able to name the use usually means one of a few things. You asked the tool for something broad, help with this paragraph, make this sound better, and the tool did more than you tracked, restructuring a sentence here, replacing a word there, until you could not point to where its hand ended and yours began. The framework names this as a sign the describing level is missing, treating AI as one thing. Your request named one thing, help. The tool answered it with several functions. Or you have not opened the tool yet, and the plan in your head is not a use at all, it is a feeling, something like get through this faster, with no particular function attached. Or you can name it, and are avoiding saying so, because naming it out loud, even to yourself, feels like the first step toward disclosing it, and disclosure is the part you have been avoiding.</p>
-  <p>Each of these is a different problem, and each calls for a different next move.</p>
+  <h2 id="h-cp1-no" tabindex="-1">No sentence yet</h2>
+  <p>No sentence yet? You're in good company. Plenty of the pack hits this spot, and it's a good place to stop for a minute.</p>
+  <p>Often it happens like this. You asked for something broad, help with this paragraph, make it sound better, and the tool did several things at once. A word swapped here, a sentence turned around there, and by the end it's hard to say where its hand stopped and yours began. The framework has a name for this: treating AI as one thing. You asked for one thing, help, and the tool answered with several.</p>
+  <p>Sometimes there's no use yet at all. The tool isn't open, and what you have is closer to a feeling, something like I need to get through this faster.</p>
+  <p>And sometimes you know the sentence and would rather not write it, because putting it into words feels like the first step toward telling someone. Lots of people feel this, especially when the syllabus says nothing.</p>
+  <p>Each of these has its own way forward.</p>
   <h3>Untraced changes</h3>
-  <p>If you asked for broad help and can no longer tell which changes came from the tool, return to the draft itself and ask where thinking happened. Find one sentence you are unsure about. Ask what the tool did to the sentence specifically, not the paragraph, not the assignment, the sentence. Did it choose the word. Did it choose the order. Did it choose the claim. A use you cannot name at the scale of the whole draft, you can usually still name at the scale of one sentence, and naming it there is enough to answer the checkpoint honestly.</p>
+  <p>If you asked for broad help and lost track of what the tool changed, go back to the draft and ask where the thinking happened. Pick one sentence you're unsure about. What did the tool do to this sentence? Did it choose the word? The order? The claim? A use too blurry to name across a whole draft usually comes into focus at the size of one sentence, and one sentence is enough to answer the checkpoint.</p>
   <h3>No use yet</h3>
-  <p>If there is no use yet, only a feeling of wanting to move faster, the feeling is not nothing, but it is not a plan either. Ask which part of the assignment is slow for you, generating an opening line, organizing a source, turning research notes into sentences, and name the part. Speed is not a function. Wanting to draft faster tells you nothing about what the tool would be doing to your thinking. Naming the function tells you both what it does and what it costs.</p>
+  <p>If what you have is a wish to move faster, start with the slow part. Which piece of the assignment drags for you? Writing an opening line, sorting out a source, turning notes into sentences? Name the piece. Wanting speed tells you nothing about what the tool would do to your thinking. Naming the task tells you what the tool would do, and what it would cost.</p>
   <h3>Avoiding the name</h3>
-  <p>If you can name it and are avoiding saying so because naming feels like confession, the discomfort is information, not an obstacle to get past. An unclear policy is not a dare. The discomfort is a sign the use is not one you are certain you can defend, and worth knowing before the sentence goes into the draft rather than after.</p>
-  <p>None of these three moves is a penalty for reaching this checkpoint with no answer. Refusal theory treats declining to act, or declining to answer yet, as a position with its own standing, not a failure to comply. Sitting here, working out why the use will not name itself, is already the practice this checkpoint asks you to build. It is not a detour on the way to the real work. It is the real work, at this scale.</p>
-  <p>When you have worked through which of these you are facing, return to the checkpoint. Try naming the use again, in one sentence. If you can now, continue. If you still cannot, this is an answer too, and one worth bringing to your instructor directly. A use without a name gives you nothing yet to defend, to yourself or to anyone else.</p>
+  <p>If you know the sentence and don't want to write it, take the reluctance seriously. It's information. Often it means you're unsure you'd defend the use, and better to learn so now, before the sentence goes into the draft.</p>
+  <p>None of these counts against you. Refusal theory, the work this book draws on, treats declining to act, or declining to answer yet, as a position with standing of its own. Working out why the use won't name itself is the practice, at this scale.</p>
+  <p>When you've figured out which of these fits, come back to the checkpoint and try the sentence again. If it comes, carry on. If it still won't come, you've learned something worth bringing to your instructor. A use without a name gives you nothing yet to defend, to yourself or to anyone else.</p>
   <div class="actions"><button type="button" class="btn btn-primary" data-go="cp1">Return to checkpoint one</button></div>
 </section>
 
 <!-- ═══ CHECKPOINT 1, YES PATH: STRUCTURAL ANALYSIS ═══ -->
 <section class="screen" data-screen="analyze" data-step="analyze" aria-labelledby="h-analyze" hidden>
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p><p class="level-key">Key question: Who controls this system?</p></div>
-  <h2 id="h-analyze" tabindex="-1">Whose standard the sentence meets</h2>
-  <p>You named it. Whatever the sentence was, revising a paragraph for clarity, generating three possible openings, checking a citation format, you can point to where the tool's hand went and where yours went. Hold onto the sentence. The next question does not test whether the use was permitted. It tests whose standard the sentence is meeting once the tool has touched it.</p>
-  <p>The tool was trained on an enormous body of writing, and the sentence it produced, or the revision it offered, reflects what was most common in it, not what is most true to you. Generative output favors the most statistically likely phrasing, and the most likely phrasing is drawn overwhelmingly from dominant, standardized English. Lean on the tool to draft or fix a sentence, and the sentence drifts toward the tool's standard, away from your own voice, your own dialect, your own way of getting to a point. If English is not the language you think in first, this cost lands on you more heavily than on a classmate for whom the standard the tool defaults to is already home.</p>
-  <p>The evidence for this drift is recent. Moon and colleagues compared 372,793 admissions essays written before and after the release of ChatGPT (2025, preprint). The later essays gained vocabulary and lost ideas. The steepest losses in ideas fell on international applicants, Black applicants, and students from non-English-speaking households. A second study completes the pattern. Liang and colleagues found AI-writing detectors misclassify essays by writers whose first language is not English as machine-generated (2023). Generators flatten these writers first, and detectors then suspect them. One structural condition produces both.</p>
-  <p>Notice what the sentence sounds like now compared to what it sounded like before the tool touched it. Not whether it improved, whether it still sounds like you.</p>
-  <p>There is a second cost, quieter than the first. The judgment behind a sentence, why this word and not another, why this claim goes here and not three lines down, is usually the thing the assignment exists to develop and grade. Hand a sentence to the tool, and the judgment behind it goes with it. The tool has no sense of what sounds like you. Only you have it, and only if your own judgment stays in the sentence rather than the tool's.</p>
-  <p>Ask, of the sentence you are holding: if the judgment behind this sentence disappeared, would the assignment still be doing its job. If the answer is no, the sentence has moved from an act of writing to an act of accepting output, and this is the finding checkpoint two asks you to sit with.</p>
+  <h2 id="h-analyze" tabindex="-1">Whose standard is the sentence meeting?</h2>
+  <p>You named it. Revising a paragraph, generating three openings, checking a citation format, whatever it was, you know where the tool's hand went and where yours did. Hold onto the sentence. The next question has nothing to do with whether the use was allowed. It asks whose standard the sentence meets once the tool has touched it.</p>
+  <p>Here's what's going on underneath. The tool learned from an enormous pile of writing, and what it hands back reflects what was most common in the pile. Generative output leans toward the most statistically likely phrasing, and the most likely phrasing comes overwhelmingly from dominant, standardized English. Lean on the tool to draft or fix a sentence, and the sentence drifts toward its standard, away from your voice, your dialect, your way of getting to a point. If English isn't the language you think in first, the drift costs you more than it costs a classmate who already writes in the tool's default.</p>
+  <p>Researchers have started to measure this. Moon and colleagues compared 372,793 college admissions essays written before and after ChatGPT came out (2025, a preprint). The later essays had bigger vocabularies and fewer ideas. The steepest losses in ideas fell on international applicants, Black applicants, and students from homes where English isn't the main language. Liang and colleagues found the other half of the pattern (2023). AI-writing detectors flag essays by writers whose first language isn't English as machine-written. The same writers get flattened by the generators and then suspected by the detectors. One structural condition produces both.</p>
+  <p>So take a look at your sentence. How does it sound now, next to how it sounded before the tool touched it? Leave aside whether it got better. Does it still sound like you?</p>
+  <p>There's a second cost, quieter than the first. The judgment behind a sentence, why this word, why this claim here and not three lines down, is usually what the assignment is there to build. Hand the sentence over, and the judgment goes with it. The tool has no ear for what sounds like you. You do, as long as your judgment stays in the sentence.</p>
+  <p>Carry one question to the next checkpoint. If the judgment behind this sentence disappeared, would the assignment still be doing its job?</p>
   <div class="actions">
     <button type="button" class="btn btn-secondary" data-go="cp1">Back to checkpoint one</button>
     <button type="button" class="btn btn-primary" data-go="cp2">Go to checkpoint two</button>
@@ -319,7 +361,7 @@
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
   <h2 id="h-cp2" tabindex="-1">Checkpoint two: the judgment test</h2>
   <p class="prompt">Is the judgment the tool supplies, in the use you named, the same judgment this assignment is built to develop?</p>
-  <p>There are three buttons here, yes, no, and uncertain. Yes and no are both findings, and each carries you to the operative level with different information. Uncertain is a position in its own right. It keeps you at this level until a finding comes.</p>
+  <p>Three answers wait below. Yes and no are both findings, and either one takes you to the deciding level with something useful in hand. Uncertain is a fair answer too. It keeps you here a little longer, until a finding turns up.</p>
   <div class="actions">
     <button type="button" class="btn btn-primary" data-go="cp2-yes">Yes</button>
     <button type="button" class="btn btn-primary" data-go="cp2-no">No</button>
@@ -331,12 +373,12 @@
 <section class="screen" data-screen="cp2-yes" data-step="analyze" aria-labelledby="h-cp2-yes" hidden>
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
   <h2 id="h-cp2-yes" tabindex="-1">Your finding: yes</h2>
-  <p>An answer of yes here is not a violation to hide. It brings you to the operative question, what this situation warrants. Before you go, name the finding, so your statement carries it.</p>
+  <p>A yes is nothing to hide. It means the tool would be doing the very thinking this assignment asks of you, which is one of the most useful things to know before you decide. Name it here, so your statement carries it.</p>
   <label for="f-yes-judgment">The judgment the tool would supply, which this assignment is built to develop <span class="hint">For example: the structure of my argument, my reading of the text, my choice of claims.</span></label>
   <textarea id="f-yes-judgment"></textarea>
   <div class="actions">
     <button type="button" class="btn btn-secondary" data-go="cp2">Back to checkpoint two</button>
-    <button type="button" class="btn btn-primary" data-go="decide" data-finding="yes">Go to the operative level</button>
+    <button type="button" class="btn btn-primary" data-go="decide" data-finding="yes">Go to the deciding level</button>
   </div>
 </section>
 
@@ -344,29 +386,29 @@
 <section class="screen" data-screen="cp2-no" data-step="analyze" aria-labelledby="h-cp2-no" hidden>
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
   <h2 id="h-cp2-no" tabindex="-1">Your finding: no. Test it once.</h2>
-  <p>The function you named leaves the assignment's judgment with you. A citation formatted, a comma checked on a paper graded for its argument, a reference list alphabetized, each of these changes the surface of the work and leaves its claims, its order, and its reading of the sources where you put them.</p>
-  <p>Before you move on, test the no once. A no comes easily when the use was named narrowly at checkpoint one, so check what the tool did against what you asked of it. If you asked for a grammar check and a sentence came back making a different claim, the tool did more than the function you named, and the answer here has changed. Return to the checkpoint and answer again.</p>
+  <p>So the function you named leaves the assignment's real work with you. A citation formatted, a comma checked on a paper graded for its argument, a reference list put in order. Each of these changes the surface, and your claims, your order, and your reading of the sources stay where you put them.</p>
+  <p>Before you move on, give the no one quick test. A narrow name at checkpoint one makes a no easy to reach, so compare what you asked for with what came back. If you asked for a grammar check and a sentence returned making a different claim, the tool did more than you named, and the answer has changed. Head back and answer again.</p>
   <label for="f-no-asked">What I asked the tool to do</label>
   <textarea id="f-no-asked"></textarea>
   <label for="f-no-returned">What the tool returned</label>
   <textarea id="f-no-returned"></textarea>
-  <p>If the no holds, it is a finding, and it would be the same for any student using this function on this assignment. It tells you one thing about the decision ahead. The reason for declining named at the operative level, a tool supplying the judgment the assignment exists to develop, is absent here. The decision is still open. The syllabus is as silent as it was when you started. You have yet to choose a limit for the tool, and you have yet to say what you will disclose.</p>
+  <p>If the no holds up, you have a finding, and it would be the same for any student using this function on this assignment. It tells you one thing about what comes next. The strongest reason to decline, a tool doing the thinking the assignment exists to build, doesn't apply here. Plenty is still open. The syllabus is as quiet as it was. You still get to choose a limit for the tool and decide what you'll disclose.</p>
   <div class="actions">
     <button type="button" class="btn btn-secondary" data-go="cp2">The tool did more. Answer again.</button>
-    <button type="button" class="btn btn-primary" data-go="decide" data-finding="no">The no holds. Go to the operative level.</button>
+    <button type="button" class="btn btn-primary" data-go="decide" data-finding="no">The no holds. Go to the deciding level.</button>
   </div>
 </section>
 
 <!-- ═══ CHECKPOINT 2, UNCERTAIN ═══ -->
 <section class="screen" data-screen="cp2-uncertain" data-step="analyze" aria-labelledby="h-cp2-unc" hidden>
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
-  <h2 id="h-cp2-unc" tabindex="-1">Uncertain: stay at this level until a finding comes</h2>
-  <p>Uncertain here usually means the test itself is hard to run, not avoidance. A few ways this happens.</p>
-  <p>You may not know, with any precision, what judgment this specific assignment is built to develop. Courses rarely say it in those terms. The syllabus names a topic, a length, a due date, a citation style, and leaves the actual capacity under all of it unstated, whether it is argument construction, or original interpretation of a text, or the ability to notice something a source did not already say for you. Without naming the capacity, the test, would the assignment still be doing its job without this sentence's judgment, has nothing to check against.</p>
-  <p>You may know the capacity in general and still be unsure whether what the tool did crossed into it. A grammar check and a paragraph reorganized around a claim you did not choose are not the same act, and the line between assisting a mechanical task and absorbing an intellectual one is not always visible from inside the sentence. Reasonable uncertainty here is not evasion. It is what the line looks like up close.</p>
-  <p>You may also suspect the honest answer is yes, and uncertain is where the suspicion goes to avoid becoming a finding. This is close to the discomfort checkpoint one already asked you to notice, and it deserves the same treatment, sit with it rather than resolve it by default toward whichever answer lets you keep going.</p>
-  <p>For the first case, find the assignment's own account of itself, the prompt language beyond the logistics, a rubric line, a comment your instructor made in class about what the paper is for, and put words to the capacity being developed. For the second, take the one sentence again and separate what was corrected from what was decided. A misplaced comma is correction. A claim placed here rather than there is a decision. For the third, ask directly, do I already know the answer and am reluctant to write it down.</p>
-  <p>Reread the assignment with the capacity you named in hand, then return to this checkpoint. An answer of yes here is not a violation to hide. It brings you to the operative question, what this situation warrants, and this question is next.</p>
+  <h2 id="h-cp2-unc" tabindex="-1">Uncertain: stay here a little longer</h2>
+  <p>Uncertain usually means the test is hard to run, and it's an honest place to be. It tends to happen in one of three ways.</p>
+  <p>You might not know what this assignment is built to develop. Courses rarely say so outright. The syllabus lists a topic, a length, a due date, a citation style, and leaves the skill underneath unnamed, whether it's building an argument, interpreting a text, or noticing what a source didn't already tell you. Without a name for the skill, the test has nothing to measure against.</p>
+  <p>You might know the skill and still be unsure whether the tool crossed into it. Fixing grammar and reorganizing a paragraph around a claim you didn't choose are different acts, yet from inside the sentence the line between them is hard to see. Being unsure here is reasonable. This is what the line looks like up close.</p>
+  <p>Or you might suspect the honest answer is yes, and uncertain feels easier to choose. Give this the same attention as the reluctance back at checkpoint one. Sit with it for a moment before settling it in whichever direction lets you keep going.</p>
+  <p>For the first, look for the assignment's own account of itself: the prompt beyond the logistics, a line in the rubric, something your instructor said in class about what the paper is for. Put the skill into words. For the second, take your one sentence and sort what was corrected from what was decided. A misplaced comma is a correction. Putting a claim here instead of there is a decision. For the third, ask yourself plainly whether you already know the answer.</p>
+  <p>Then reread the assignment with the skill in mind, and come back to the checkpoint. If the answer turns out to be yes, it's a finding like any other, and it brings you to the question at the next level: what this situation warrants.</p>
   <div class="actions"><button type="button" class="btn btn-primary" data-go="cp2">Return to checkpoint two</button></div>
 </section>
 
@@ -374,14 +416,15 @@
 <section class="screen" data-screen="decide" data-step="decide" aria-labelledby="h-decide" hidden>
   <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p><p class="level-key">Key question: What does this situation warrant: use, limits, or refusal?</p></div>
   <h2 id="h-decide" tabindex="-1">What will you decide, and on what grounds?</h2>
-  <p>You have named the use. You have worked out whether the judgment the tool supplies is the judgment this assignment is built to develop, either directly or by sitting with the uncertainty until an answer came. Whichever way you arrived here, one question is left, and it is not whether you are allowed to use the tool. It is what you will decide in this particular case, and on what grounds, now that you can see what is at stake. Your answer at checkpoint two would be the same for any student using this function on this assignment. The answer here belongs to you alone, and it exists only once you decide.</p>
-  <p>This is the operative level, and its central question is what this situation warrants: use, limits, or refusal. Declining the tool here is not a blanket position against it, in this assignment or any other. It is a decision not to let the norms embedded in the tool's training stand in for a voice this task exists to develop. Refusal at this level is not a rule you carry into every assignment. It is a judgment you make about this one, worth remaking each time the conditions change.</p>
-  <p>Three questions are yours to answer wherever you land. Are you writing with the tool or writing for it. Writing with the tool keeps your own judgment active at every stage, in what you ask it, what you keep, what you revise. Writing for the tool hands your judgment to its output and adjusts everything else around what it gave you. Have you asked your instructor. A policy's silence is not permission, it is a question still open. What will you disclose, and how. Disclosure protects you as much as it satisfies a rule. Note what you used and how, the way you would note a source.</p>
-  <p>From here, most students land on one of three postures. None is the correct answer waiting to be found. Each is a defensible position, provided you can say why.</p>
+  <p>You've named the use. You've worked out whether the tool's judgment is the judgment this assignment is built to develop, either straight away or after some time with the uncertainty. One question is left, and it's a different one from whether you're allowed to use the tool. It asks what you'll decide in this case, and why, now that you can see what's at stake.</p>
+  <p>Here's a difference worth noticing. Your answer at checkpoint two would be the same for any student using this function on this assignment. The answer here belongs to you, and it exists only once you decide.</p>
+  <p>This level asks what this situation warrants: use, limits, or refusal. All three are open to you. A decision to decline here covers this assignment and no other. It keeps the tool's habits of language from standing in for a voice this task is meant to grow, and you'll weigh it fresh whenever the conditions change.</p>
+  <p>Three questions are worth answering wherever you land. Are you writing with the tool, or writing for it? Writing with it keeps your judgment at work in what you ask, what you keep, and what you revise. Writing for it hands your judgment to the output and arranges everything else around what came back. Have you asked your instructor? A silent policy leaves the question open. What will you disclose, and how? Disclosure protects you as much as it satisfies anyone else. Note what you used and how, the way you'd note a source.</p>
+  <p>From here, most students land on one of three postures. None of them is the answer the book is hoping for. Each one holds up, as long as you have your reasons.</p>
   <div class="outcomes" role="group" aria-label="Choose your decision">
-    <button type="button" class="outcome-btn" data-outcome="decline"><strong>Decline</strong><span>Not on this task, for reasons I name.</span></button>
-    <button type="button" class="outcome-btn" data-outcome="conditional"><strong>Use with conditions</strong><span>A named function, inside a limit set beforehand, disclosed.</span></button>
-    <button type="button" class="outcome-btn" data-outcome="defer"><strong>Defer</strong><span>Find out what the decision depends on first.</span></button>
+    <button type="button" class="outcome-btn" data-outcome="decline"><strong>Decline</strong><span>Not on this task, and here's why.</span></button>
+    <button type="button" class="outcome-btn" data-outcome="conditional"><strong>Use with conditions</strong><span>A named use, inside limits I set first, disclosed.</span></button>
+    <button type="button" class="outcome-btn" data-outcome="defer"><strong>Defer</strong><span>Find out what the decision depends on, then decide.</span></button>
   </div>
   <div class="actions"><button type="button" class="btn btn-secondary" data-go="cp2">Back to checkpoint two</button></div>
 </section>
@@ -392,9 +435,9 @@
   <h2 id="h-decline" tabindex="-1">Your decision: decline</h2>
   <div class="position">
     <p class="position-label">Position taken</p>
-    <p>You decide not to use the tool on this task, not because a rule forbids it, but because the judgment this assignment is built to develop is the exact judgment the tool would supply in your place. A sentence-level choice, the structure of an argument, your own reading of a text, whichever it is, using the tool here would let the tool's training answer where the assignment asks you to.</p>
-    <p>Declining is not a blanket stance you carry to the next assignment. Name, specifically, what you are protecting, so the decision travels with reasons instead of habit. Apply it to this task, not to every task the syllabus contains. The person deciding owes their reasons, and here the person deciding is you. Say so to your instructor rather than deciding privately and hoping the choice goes unnoticed. A refusal nobody knows about protects nothing, and asks nothing of the person who assigned the work.</p>
-    <p style="margin-bottom:0">This is what refusal theory names at the scale of one assignment. Simpson, Campt, and Benjamin describe refusal not as noncompliance but as an accountable rejection of conditions which would otherwise reproduce harm, grounded in analysis rather than preference. Declining the tool here, for this reason, on this task, is refusal in exactly this sense. It is not the absence of an answer. It is the answer, arrived at honestly.</p>
+    <p>You've decided not to use the tool on this task. No rule made the call. You made it, because the judgment this assignment is built to develop is the very judgment the tool would supply in your place, whether it's a sentence-level choice, the shape of an argument, or your own reading of a text.</p>
+    <p>This decision belongs to this task. Name what you're protecting, so the decision travels with its reasons. The person deciding owes their reasons, and here the person deciding is you, so let your instructor know. A refusal nobody hears about protects nothing, and it asks nothing of the person who set the assignment.</p>
+    <p style="margin-bottom:0">This is refusal in the sense Simpson, Campt, and Benjamin describe: an accountable rejection of conditions which would otherwise reproduce harm, grounded in analysis instead of preference. Declining here, for this reason, on this task, is an answer you arrived at honestly.</p>
   </div>
   <label for="f-dec-protect">What judgment I am protecting</label>
   <textarea id="f-dec-protect"></textarea>
@@ -414,9 +457,9 @@
   <h2 id="h-cond" tabindex="-1">Your decision: use with conditions</h2>
   <div class="position">
     <p class="position-label">Position taken</p>
-    <p>You decide to use the tool, but only inside limits you set and state before you start, not limits you discover afterward and describe as though they were always there.</p>
-    <p>Three things have to be explicit for a conditional use to be conditional at all. Name the specific function, outlining, checking grammar, generating alternatives, rather than describing the use in general terms broad enough to cover almost anything. Set a limit on what the tool is allowed to touch, a first pass rather than a final draft, and hold to it. Note what you used and how, treated with the same care you would give a citation, since a source the reader cannot trace is not disclosed, only mentioned.</p>
-    <p style="margin-bottom:0">Conditional use without a stated limit is not conditional use. It is unexamined use with an explanation attached after the fact, and the difference matters more than it looks like it should. The limit is what makes the choice yours rather than the tool's, and a limit set before you open the tool is a different act than a justification written afterward to match what already happened.</p>
+    <p>You've decided to use the tool, inside limits you set and state before you start. Limits written in advance are yours. Limits written afterward to match what already happened are an explanation attached after the fact.</p>
+    <p>Three things make a conditional use conditional. Name the specific function, outlining, checking grammar, generating alternatives, in terms narrow enough to mean something. Set a limit on what the tool is allowed to touch (a first pass, say, and leave the final draft to you) and hold to it. Note what you used and how, with the care you'd give a citation, so a reader knows where it came from.</p>
+    <p style="margin-bottom:0">The limit is what makes the choice yours. Set it before you open the tool.</p>
   </div>
   <label for="f-con-function">Function <span class="hint">The specific function, for example generating alternative openings only.</span></label>
   <input type="text" id="f-con-function">
@@ -436,9 +479,9 @@
   <h2 id="h-defer" tabindex="-1">Your decision: defer</h2>
   <div class="position">
     <p class="position-label">Position taken</p>
-    <p>Something the decision depends on is still unknown, the policy, the assignment's purpose, or what the tool would do to it, and rather than guessing, you decide to find out before you write another sentence.</p>
-    <p>An unclear policy is not permission, and it is not a loophole either. It is an open question, and the deadline pressing on you is not a reason to answer it by default. Deciding by default is the sign the framework gives for a missing operative level, a decision made by the clock in place of the person. Ask what the assignment is trying to develop before assuming you already know. Ask your instructor directly if the syllabus does not say, rather than reading its silence as a decision already made in your favor.</p>
-    <p style="margin-bottom:0">A deadline changes how soon the answer is needed. It does not change whether the question deserves one. Deferring here is not indecision. It is choosing not to let a due date stand in for a choice still yours to make.</p>
+    <p>Something the decision depends on is still unknown, the policy, the assignment's purpose, or what the tool would do to it. You've decided to find out before you write another sentence.</p>
+    <p>A silent policy leaves the question open, and the deadline pressing on you is no reason to answer it by default. The framework has a name for deciding by default: a decision made by the clock in place of the person. So ask what the assignment is trying to develop, and if the syllabus doesn't say, ask your instructor directly.</p>
+    <p style="margin-bottom:0">A deadline changes how soon you need the answer. The question still deserves one. Deferring is a choice, and it keeps a due date from making the choice for you.</p>
   </div>
   <label for="f-def-question">The open question I am bringing to my instructor</label>
   <textarea id="f-def-question"></textarea>
@@ -451,8 +494,8 @@
 <!-- ═══ REVISION TRIGGER AND OWN WORDS ═══ -->
 <section class="screen" data-screen="reopen" data-step="decide" aria-labelledby="h-reopen" hidden>
   <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
-  <h2 id="h-reopen" tabindex="-1">What would reopen this decision</h2>
-  <p>A decision holds for the conditions under which you made it. Name the changes which would send you back to the first level to decide again. A draft list sits in the box. Edit it to fit your case.</p>
+  <h2 id="h-reopen" tabindex="-1">What would reopen this decision?</h2>
+  <p>Your decision holds for the conditions you made it in. What would send you back to the first level to decide again? A draft list is waiting in the box. Change it to fit your case.</p>
   <label for="f-reopen">What would reopen this decision</label>
   <textarea id="f-reopen"></textarea>
   <label for="f-own">In my own words <span class="hint">One or two sentences, in your own voice, on what you decided and why.</span></label>
@@ -466,7 +509,7 @@
 <!-- ═══ STATEMENT ═══ -->
 <section class="screen" data-screen="statement" data-step="statement" aria-labelledby="h-statement" hidden>
   <h2 id="h-statement" tabindex="-1">Your AI practice statement</h2>
-  <p class="no-print">Add your name, course, and date if you will give this to your instructor. Then download or print it. Nothing on this page is saved or sent.</p>
+  <p class="no-print">Here's your decision, in one place. Add your name, course, and date if you plan to share it with your instructor, then download or print it. Nothing on this page is saved or sent.</p>
   <div class="meta-grid no-print">
     <div><label for="f-name">Name</label><input type="text" id="f-name" autocomplete="name"></div>
     <div><label for="f-course">Course and assignment</label><input type="text" id="f-course"></div>
@@ -482,17 +525,26 @@
     <button type="button" class="btn btn-secondary" id="copy-btn">Copy the text</button>
   </div>
   <p id="statement-status" class="answer-help no-print" aria-live="polite"></p>
+  <div class="the-end no-print">
+    <p class="end-word">The end</p>
+    <p>For this tool and this assignment, anyway. A new tool or a new assignment opens the book again at the first level.</p>
+  </div>
+  <div class="no-print">
+    <h3 id="map-head">Your copy of the book</h3>
+    <p class="map-key" id="map-key"></p>
+    <ul class="book-map" id="book-map" aria-labelledby="map-head"></ul>
+  </div>
   <div class="actions no-print">
     <button type="button" class="btn btn-secondary" data-go="reopen">Back</button>
-    <button type="button" class="btn btn-secondary" id="restart-btn">Start a new decision</button>
-    <button type="button" class="btn btn-primary" data-go="feedback">Give beta feedback</button>
+    <button type="button" class="btn btn-secondary" id="restart-btn">Begin again with a new decision</button>
+    <button type="button" class="btn btn-primary" data-go="feedback">Tell us how the beta went</button>
   </div>
 </section>
 
 <!-- ═══ BETA FEEDBACK ═══ -->
 <section class="screen" data-screen="feedback" data-step="feedback" aria-labelledby="h-feedback" hidden>
-  <h2 id="h-feedback" tabindex="-1">Beta feedback</h2>
-  <p>These questions concern the path itself. The form sends only what you write in it. It sends none of your answers from the path, and your statement stays with you.</p>
+  <h2 id="h-feedback" tabindex="-1">How did the book work for you?</h2>
+  <p>Thanks for trying the beta. These questions are about the book itself. The form sends only what you type here, none of your answers from the path, and your statement stays with you.</p>
   <form id="fb-form" novalidate>
     <label for="fb-role">Reading as <span class="hint">Optional</span></label>
     <select id="fb-role" name="role">
@@ -512,19 +564,19 @@
     </select>
     <label for="fb-stall">Where did you stall, reread, or lose the thread?</label>
     <textarea id="fb-stall" name="stall"></textarea>
-    <label for="fb-next">Did any screen leave you unsure what to do next? Which one?</label>
+    <label for="fb-next">Did any passage leave you unsure what to do next? Which one?</label>
     <textarea id="fb-next" name="next"></textarea>
     <label for="fb-made">At the Decide level, did the decision feel already made by the analysis before it? Say how.</label>
     <textarea id="fb-made" name="made"></textarea>
-    <label for="fb-postures">Did decline, use with conditions, and defer read as equally defensible? Which felt favored or penalized?</label>
+    <label for="fb-postures">Did decline, use with conditions, and defer feel equally open to you? Which felt favored or penalized?</label>
     <textarea id="fb-postures" name="postures"></textarea>
-    <label for="fb-statement">Would you hand the statement to an instructor? What would you change first?</label>
+    <label for="fb-statement">Would you share the statement with an instructor? What would you change first?</label>
     <textarea id="fb-statement" name="statement"></textarea>
     <label for="fb-other">Anything else</label>
     <textarea id="fb-other" name="other"></textarea>
     <fieldset>
       <legend>Route</legend>
-      <label class="choice"><input type="checkbox" id="fb-route-ok"> Include the route I took (which screens and which buttons, none of my writing)</label>
+      <label class="choice"><input type="checkbox" id="fb-route-ok"> Include the route I took (which passages and which buttons, none of my writing)</label>
     </fieldset>
     <div class="actions">
       <button type="submit" class="btn btn-primary" id="fb-submit">Send feedback</button>
@@ -604,6 +656,7 @@
   });
   document.getElementById('cp1-yes').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 14</span>');
   document.getElementById('reopen-back').insertAdjacentHTML('beforeend', ' <span class="turn">Turn back</span>');
+  document.getElementById('restart-btn').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 7</span>');
 
   function drawTrail() {
     var list = document.getElementById('trail');
@@ -612,6 +665,28 @@
       var li = document.createElement('li'); li.textContent = PASSAGE[name]; list.appendChild(li);
     });
     document.getElementById('trail-wrap').hidden = state.route.length < 2;
+  }
+
+
+  function drawMap() {
+    var list = document.getElementById('book-map');
+    list.innerHTML = '';
+    var nums = Object.keys(BY_NUMBER).map(Number).sort(function (a, b) { return a - b; });
+    var read = 0;
+    nums.forEach(function (n) {
+      var name = BY_NUMBER[n];
+      var seen = state.route.indexOf(name) !== -1;
+      if (seen) read++;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + n;
+      a.textContent = n;
+      if (seen) a.className = 'read';
+      a.setAttribute('aria-label', 'Passage ' + n + (seen ? ', read' : ', not yet read'));
+      li.appendChild(a); list.appendChild(li);
+    });
+    document.getElementById('map-key').textContent = 'You read ' + read + ' of ' + nums.length +
+      ' passages. Gold marks your path. The dashed passages hold the roads you didn\u2019t take, and every one is open to read. Your statement stays as you wrote it unless you change an answer.';
   }
 
   function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
@@ -630,9 +705,10 @@
       if (i === idx) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
     });
 
-    if (name === 'statement') buildStatement();
+    if (name === 'statement') { buildStatement(); }
     if (state.route[state.route.length - 1] !== name) state.route.push(name);
     drawTrail();
+    if (name === 'statement') drawMap();
 
     var addr = '#' + PASSAGE[name];
     if (!opts.fromHash && location.hash !== addr) history.pushState(null, '', addr);
@@ -663,7 +739,7 @@
   document.getElementById('cp1-yes').addEventListener('click', function () {
     var notice = document.getElementById('cp1-notice');
     if (!val('f-use')) {
-      notice.textContent = 'Write the use in one sentence first, or choose “I cannot name it yet.”';
+      notice.textContent = 'Write your sentence first, or choose “No sentence yet.”';
       document.getElementById('f-use').focus();
       return;
     }
@@ -768,7 +844,7 @@
     } else { sStatus.textContent = 'Copying is unavailable in this browser. Use the download button.'; }
   });
   document.getElementById('restart-btn').addEventListener('click', function () {
-    if (!window.confirm('Clear your answers and start a new decision? Download your statement first if you want to keep it.')) return;
+    if (!window.confirm('Clear your answers and start a new decision? Download your statement first to keep it.')) return;
     Array.prototype.forEach.call(document.querySelectorAll('.screen textarea, .screen input[type="text"], .screen input[type="date"]'), function (el) {
       if (!el.closest('#fb-form')) el.value = '';
     });
@@ -806,7 +882,7 @@
     btn.disabled = true; btn.textContent = 'Sending…';
     fetch(ARCHIVE_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
       .then(function () {
-        fbStatus.textContent = 'Sent. Thank you.';
+        fbStatus.textContent = 'Sent. Thank you for reading.';
         btn.textContent = 'Sent';
       })
       .catch(function () {
