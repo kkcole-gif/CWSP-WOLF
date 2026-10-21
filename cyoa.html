@@ -214,6 +214,42 @@
   .book-map a:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
   .map-key { font-size: 14px !important; }
 
+
+  /* Echo and scene */
+  .echo-quote { font-family: var(--serif); font-size: 1.35rem !important; line-height: 1.45 !important; font-style: italic; border-left: 3px solid var(--gold); padding-left: 0.9rem; }
+  .echo-line { font-size: 15px !important; }
+  .echo-line q { font-style: italic; }
+  .scene-pick { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.8rem 1rem 1rem; margin-bottom: 1.2rem; max-width: 760px; }
+  .scene-pick label { margin-top: 0; }
+  body:not(.from-quick) .only-quick { display: none !important; }
+  body.planned .if-asked, body:not(.planned) .if-planned { display: none; }
+  .inline-choice { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.9rem 1rem; margin: 0.4rem 0 1.4rem; max-width: 760px; }
+  .inline-choice .prompt-small { font-family: var(--serif); font-weight: 600; font-size: 1.1rem !important; margin-bottom: 0.6rem !important; }
+  .inline-choice .row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip { font: inherit; font-size: 15px; background: var(--cream); color: var(--umber); border: 1px solid var(--clay); border-radius: 999px; padding: 0.5rem 0.95rem; min-height: 44px; cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); font-weight: 700; }
+  .chip:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
+  .reply { margin: 0.8rem 0 0 !important; font-size: 16px !important; }
+  .reply:empty { display: none; }
+  details.look-closer { max-width: 760px; background: var(--white); border: 1px solid var(--rule); border-radius: 10px; margin: 0 0 1.2rem; }
+  details.look-closer summary { cursor: pointer; padding: 0.8rem 1rem; font-weight: 600; }
+  details.look-closer summary:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
+  details.look-closer p { padding: 0 1rem; }
+  .time-note { font-size: 15px !important; font-style: italic; }
+
+  /* One-page version */
+  .quick fieldset.level { margin: 0 0 1.4rem; padding: 0.9rem 1.1rem 1.1rem; }
+  .quick legend { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 0.15rem 0.55rem; border-radius: 4px; margin-bottom: 0.35rem; float: left; }
+  .quick legend + * { clear: left; }
+  .quick .level-1 legend { background: var(--gold); color: var(--umber); }
+  .quick .level-2 legend { background: var(--coral); color: var(--umber); }
+  .quick .level-3 legend { background: var(--mred); color: var(--white); }
+  .quick .reveal[hidden] { display: none; }
+  .quick .hold { border-left: 4px solid var(--dteal); background: #EEF4F1; padding: 0.7rem 0.9rem; border-radius: 0 8px 8px 0; margin-top: 0.8rem; }
+  .quick .hold p { margin-bottom: 0.4rem; }
+  .quick-link { font: inherit; background: none; border: 0; color: var(--dteal); text-decoration: underline; cursor: pointer; padding: 0; font-weight: 600; }
+  .quick-link:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
+
   @media print {
     .site-header, .beta-band, .crumbs, .steps, .page-header, .page-footer, .screen:not([data-screen="statement"]), .no-print { display: none !important; }
     body { background: var(--white); }
@@ -290,19 +326,126 @@
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
   <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
   <p>At the end you'll have a statement of your decision, in your own words, to keep for yourself or to share with your instructor.</p>
+  <p class="time-note">First time through? Read the book, about ten minutes. Back with a new tool or a new assignment? The one-page version asks the same questions at all three levels, in about four minutes.</p>
   <div class="actions">
+    <button type="button" class="btn btn-primary" data-go="premise">Read the book</button>
+    <button type="button" class="btn btn-primary" data-go="quick">Use the one-page version</button>
     <button type="button" class="btn btn-secondary" data-go="opening">Back</button>
-    <button type="button" class="btn btn-primary" data-go="premise">Begin</button>
   </div>
 </section>
 
-<!-- ═══ PREMISE ═══ -->
-<section class="screen" data-screen="premise" data-step="opening" aria-labelledby="h-premise" hidden>
-  <h2 id="h-premise" tabindex="-1">Your situation</h2>
-  <div class="position"><p class="position-label">Student decision</p><p style="margin:0">You're working on a writing assignment, and the syllabus says nothing about AI. Maybe the silence means go ahead. Maybe your instructor hasn't gotten to the question yet. There's no telling which, and you're far from the only one in the pack wondering.</p></div>
+
+<!-- ═══ ONE-PAGE VERSION ═══ -->
+<section class="screen quick" data-screen="quick" data-step="describe" aria-labelledby="h-quick" hidden>
+  <h2 id="h-quick" tabindex="-1">The one-page version</h2>
+  <p>The same three levels, in order, on one page. If a question stops you, the passage behind it is one click away.</p>
+
+  <fieldset class="level level-1">
+    <legend>Conceptual · Describe</legend>
+    <p class="level-gloss">What the systems are, and how they produce text.</p>
+    <label for="q-assignment">What's due?</label>
+    <select id="q-assignment">
+      <option value="history essay">An essay for a history class</option>
+      <option value="lab report">A lab report</option>
+      <option value="discussion post">A discussion post</option>
+      <option value="personal statement">A personal statement</option>
+      <option value="assignment">Something else</option>
+    </select>
+    <label for="q-use">What did you ask the tool for, or what would you ask? One sentence, the way you'd type it.</label>
+    <textarea id="q-use"></textarea>
+    <p class="answer-help">No sentence yet? <button type="button" class="quick-link" data-go="cp1-no">Read passage 11</button>.</p>
+  </fieldset>
+
+  <fieldset class="level level-2">
+    <legend>Structural · Analyze</legend>
+    <p class="level-gloss">How they are built, and whom they disadvantage.</p>
+    <p class="prompt" id="q-finding-q">Is the judgment the tool supplies, in this use, the same judgment your assignment is built to develop?</p>
+    <div role="radiogroup" aria-labelledby="q-finding-q">
+      <label class="choice"><input type="radio" name="q-finding" value="yes"> Yes</label>
+      <label class="choice"><input type="radio" name="q-finding" value="no"> No</label>
+      <label class="choice"><input type="radio" name="q-finding" value="uncertain"> Uncertain</label>
+    </div>
+    <div class="reveal" data-when="q-finding:yes" hidden>
+      <label for="q-yes-judgment">The judgment the tool would supply, which this assignment is built to develop</label>
+      <textarea id="q-yes-judgment"></textarea>
+    </div>
+    <div class="reveal" data-when="q-finding:no" hidden>
+      <p class="answer-help">Test the no once. Compare what you asked for with what came back. If the tool did more than you asked, the answer has changed.</p>
+      <label for="q-no-asked">What I asked the tool to do</label>
+      <textarea id="q-no-asked"></textarea>
+      <label for="q-no-returned">What the tool returned</label>
+      <textarea id="q-no-returned"></textarea>
+    </div>
+    <div class="reveal hold" data-when="q-finding:uncertain" hidden>
+      <p>Uncertain keeps you at this level until a finding turns up, so the deciding level waits for now.</p>
+      <p style="margin:0"><button type="button" class="quick-link" data-go="cp2-uncertain">Read passage 21</button> for three ways to reach a finding, then come back here.</p>
+    </div>
+  </fieldset>
+
+  <fieldset class="level level-3" id="q-decide">
+    <legend>Operative · Decide</legend>
+    <p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p>
+    <p>What does this situation warrant: use, limits, or refusal? Before you choose: are you writing with the tool, or for it? Have you asked your instructor? What will you disclose, and how?</p>
+    <div role="radiogroup" aria-label="Your decision">
+      <label class="choice"><input type="radio" name="q-outcome" value="decline"> Decline, on this assignment, for reasons I name</label>
+      <label class="choice"><input type="radio" name="q-outcome" value="conditional"> Use with conditions I set before I start</label>
+      <label class="choice"><input type="radio" name="q-outcome" value="defer"> Defer until I learn what the decision depends on</label>
+    </div>
+    <div class="reveal" data-when="q-outcome:decline" hidden>
+      <label for="q-dec-protect">What judgment I am protecting</label><textarea id="q-dec-protect"></textarea>
+      <label for="q-dec-reasons">How I will give my reasons to my instructor</label><textarea id="q-dec-reasons"></textarea>
+    </div>
+    <div class="reveal" data-when="q-outcome:conditional" hidden>
+      <label for="q-con-function">Function</label><input type="text" id="q-con-function">
+      <label for="q-con-limit">Limit, set before I start</label><input type="text" id="q-con-limit">
+      <label for="q-con-disclosure">Disclosure</label><input type="text" id="q-con-disclosure">
+    </div>
+    <div class="reveal" data-when="q-outcome:defer" hidden>
+      <label for="q-def-question">The open question I am bringing to my instructor</label><textarea id="q-def-question"></textarea>
+    </div>
+    <label for="q-reopen">What would reopen this decision</label>
+    <textarea id="q-reopen"></textarea>
+    <label for="q-own">In my own words <span class="hint">One or two sentences on what you decided and why.</span></label>
+    <textarea id="q-own"></textarea>
+  </fieldset>
+
+  <p id="q-notice" class="notice" role="alert"></p>
   <div class="actions">
+    <button type="button" class="btn btn-primary" id="q-done">See my statement <span class="turn">Turn to 45</span></button>
     <button type="button" class="btn btn-secondary" data-go="opening-2">Back</button>
-    <button type="button" class="btn btn-primary" data-go="cp1">Go to the first level</button>
+  </div>
+</section>
+
+<!-- ═══ PREMISE: THE SCENE ═══ -->
+<section class="screen" data-screen="premise" data-step="opening" aria-labelledby="h-premise" hidden>
+  <h2 id="h-premise" tabindex="-1">Tuesday, 11:40 p.m.</h2>
+  <div class="scene-pick">
+    <label for="f-assignment">First, what's due tomorrow?</label>
+    <select id="f-assignment">
+      <option value="history essay">An essay for a history class</option>
+      <option value="lab report">A lab report</option>
+      <option value="discussion post">A discussion post</option>
+      <option value="personal statement">A personal statement</option>
+      <option value="assignment">Something else</option>
+    </select>
+  </div>
+  <p>You're on the third floor of D. H. Hill, and your <span data-echo="assignment">history essay</span> is due at nine tomorrow morning. Two tabs are open: your draft, and a chat window you haven't typed in yet. The syllabus, which you've checked twice, says nothing about AI. Maybe the silence means go ahead. Maybe your instructor hasn't gotten to the question yet. There's no telling which, and you're far from the only one in the pack wondering.</p>
+  <div class="position"><p class="position-label">Student decision</p><p style="margin:0">Whether, and how, to use the tool on your <span data-echo="assignment">history essay</span>.</p></div>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" data-go="cp1" data-path="asked">You type a request into the chat window</button>
+    <button type="button" class="btn btn-primary" data-go="cp1-wait" data-path="planned">You leave the tab alone and keep drafting</button>
+    <button type="button" class="btn btn-secondary" data-go="opening-2">Back</button>
+  </div>
+</section>
+
+<!-- ═══ PASSAGE 9: THE TAB STAYS OPEN ═══ -->
+<section class="screen" data-screen="cp1-wait" data-step="opening" aria-labelledby="h-wait" hidden>
+  <h2 id="h-wait" tabindex="-1">The tab stays open</h2>
+  <p>You keep drafting. Twenty minutes later, one paragraph still isn't working, and the chat window is still sitting in the other tab. You haven't asked it anything. You still might.</p>
+  <p>If you did, what would you ask for? Hold the thought. The next passage asks you to write it down.</p>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" data-go="cp1">You write down what you'd ask</button>
+    <button type="button" class="btn btn-secondary" data-go="premise">Back</button>
   </div>
 </section>
 
@@ -310,9 +453,9 @@
 <section class="screen" data-screen="cp1" data-step="describe" aria-labelledby="h-cp1" hidden>
   <div class="level level-1"><span class="level-name">Conceptual · Describe</span><p class="level-gloss">What the systems are, and how they produce text.</p><p class="level-key">Key question: Whose knowledge is encoded?</p></div>
   <h2 id="h-cp1" tabindex="-1">Checkpoint one: name the use</h2>
-  <label for="f-use" class="prompt">In one sentence, what did you do with the tool, or what are you about to do?</label>
+  <label for="f-use" class="prompt"><span class="if-asked">What did you ask it for?</span><span class="if-planned">What would you ask it for?</span> Write it the way you'd type it, in one sentence.</label>
   <textarea id="f-use" aria-describedby="cp1-help"></textarea>
-  <p id="cp1-help" class="answer-help">Write it the way you'd tell a friend. If no sentence comes yet, choose the second answer, and the next passage will help you find one.</p>
+  <p id="cp1-help" class="answer-help">For example: make this paragraph sound more academic. If no sentence comes yet, choose the second answer, and the next passage will help you find one.</p>
   <p id="cp1-notice" class="notice" role="alert"></p>
   <div class="actions">
     <button type="button" class="btn btn-primary" id="cp1-yes">Here's my sentence</button>
@@ -337,19 +480,35 @@
   <p>If you know the sentence and don't want to write it, take the reluctance seriously. It's information. Often it means you're unsure you'd defend the use, and better to learn so now, before the sentence goes into the draft.</p>
   <p>None of these counts against you. Refusal theory, the work this book draws on, treats declining to act, or declining to answer yet, as a position with standing of its own. Working out why the use won't name itself is the practice, at this scale.</p>
   <p>When you've figured out which of these fits, come back to the checkpoint and try the sentence again. If it comes, carry on. If it still won't come, you've learned something worth bringing to your instructor. A use without a name gives you nothing yet to defend, to yourself or to anyone else.</p>
-  <div class="actions"><button type="button" class="btn btn-primary" data-go="cp1">Return to checkpoint one</button></div>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" data-go="cp1">Return to checkpoint one</button>
+    <button type="button" class="btn btn-primary only-quick" data-go="quick">Back to the one-page version</button>
+  </div>
 </section>
 
 <!-- ═══ CHECKPOINT 1, YES PATH: STRUCTURAL ANALYSIS ═══ -->
 <section class="screen" data-screen="analyze" data-step="analyze" aria-labelledby="h-analyze" hidden>
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p><p class="level-key">Key question: Who controls this system?</p></div>
   <h2 id="h-analyze" tabindex="-1">Whose standard is the sentence meeting?</h2>
-  <p>You named it. Revising a paragraph, generating three openings, checking a citation format, whatever it was, you know where the tool's hand went and where yours did. Hold onto the sentence. The next question has nothing to do with whether the use was allowed. It asks whose standard the sentence meets once the tool has touched it.</p>
+  <p class="echo-quote">“<span data-echo="use"></span>”</p>
+  <p class="if-asked">Your request, in your words. Now read what came back, then reread your own version of the paragraph. Out loud, if the third floor is quiet enough.</p>
+  <p class="if-planned">Your request, in your words. Picture what would come back: the most common version of what you asked for, written in a confident, finished-sounding voice. Then reread your own version of the paragraph.</p>
+  <div class="inline-choice" role="group" aria-labelledby="ic-q">
+    <p class="prompt-small" id="ic-q"><span class="if-asked">Does the new version still sound like you?</span><span class="if-planned">Would the new version still sound like you?</span></p>
+    <div class="row">
+      <button type="button" class="chip" data-reply="mostly" aria-pressed="false">Yes, mostly</button>
+      <button type="button" class="chip" data-reply="no" aria-pressed="false">Not really</button>
+      <button type="button" class="chip" data-reply="unsure" aria-pressed="false">Hard to tell anymore</button>
+    </div>
+    <p class="reply" id="ic-reply" aria-live="polite"></p>
+  </div>
   <p>Here's what's going on underneath. The tool learned from an enormous pile of writing, and what it hands back reflects what was most common in the pile. Generative output leans toward the most statistically likely phrasing, and the most likely phrasing comes overwhelmingly from dominant, standardized English. Lean on the tool to draft or fix a sentence, and the sentence drifts toward its standard, away from your voice, your dialect, your way of getting to a point. If English isn't the language you think in first, the drift costs you more than it costs a classmate who already writes in the tool's default.</p>
-  <p>Researchers have started to measure this. Moon and colleagues compared 372,793 college admissions essays written before and after ChatGPT came out (2025, a preprint). The later essays had bigger vocabularies and fewer ideas. The steepest losses in ideas fell on international applicants, Black applicants, and students from homes where English isn't the main language. Liang and colleagues found the other half of the pattern (2023). AI-writing detectors flag essays by writers whose first language isn't English as machine-written. The same writers get flattened by the generators and then suspected by the detectors. One structural condition produces both.</p>
-  <p>So take a look at your sentence. How does it sound now, next to how it sounded before the tool touched it? Leave aside whether it got better. Does it still sound like you?</p>
-  <p>There's a second cost, quieter than the first. The judgment behind a sentence, why this word, why this claim here and not three lines down, is usually what the assignment is there to build. Hand the sentence over, and the judgment goes with it. The tool has no ear for what sounds like you. You do, as long as your judgment stays in the sentence.</p>
-  <p>Carry one question to the next checkpoint. If the judgment behind this sentence disappeared, would the assignment still be doing its job?</p>
+  <details class="look-closer">
+    <summary>Look closer: what researchers found</summary>
+    <p>Moon and colleagues compared 372,793 college admissions essays written before and after ChatGPT came out (2025, a preprint). The later essays had bigger vocabularies and fewer ideas. The steepest losses in ideas fell on international applicants, Black applicants, and students from homes where English isn't the main language. Liang and colleagues found the other half of the pattern (2023). AI-writing detectors flag essays by writers whose first language isn't English as machine-written. The same writers get flattened by the generators and then suspected by the detectors. One structural condition produces both.</p>
+  </details>
+  <p>There's a second cost, quieter than the first. The judgment behind a sentence, why this word, why this claim here and not three lines down, is usually what your <span data-echo="assignment">history essay</span> is there to build. Hand the sentence over, and the judgment goes with it. The tool has no ear for what sounds like you. You do, as long as your judgment stays in the sentence.</p>
+  <p>Carry one question to the next checkpoint. If the judgment behind this paragraph disappeared, would your <span data-echo="assignment">history essay</span> still be doing its job?</p>
   <div class="actions">
     <button type="button" class="btn btn-secondary" data-go="cp1">Back to checkpoint one</button>
     <button type="button" class="btn btn-primary" data-go="cp2">Go to checkpoint two</button>
@@ -360,7 +519,8 @@
 <section class="screen" data-screen="cp2" data-step="analyze" aria-labelledby="h-cp2" hidden>
   <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
   <h2 id="h-cp2" tabindex="-1">Checkpoint two: the judgment test</h2>
-  <p class="prompt">Is the judgment the tool supplies, in the use you named, the same judgment this assignment is built to develop?</p>
+  <p class="echo-line">Your request: <q data-echo="use"></q></p>
+  <p class="prompt">Is the judgment the tool supplies, in the use you named, the same judgment your <span data-echo="assignment">history essay</span> is built to develop?</p>
   <p>Three answers wait below. Yes and no are both findings, and either one takes you to the deciding level with something useful in hand. Uncertain is a fair answer too. It keeps you here a little longer, until a finding turns up.</p>
   <div class="actions">
     <button type="button" class="btn btn-primary" data-go="cp2-yes">Yes</button>
@@ -409,14 +569,18 @@
   <p>Or you might suspect the honest answer is yes, and uncertain feels easier to choose. Give this the same attention as the reluctance back at checkpoint one. Sit with it for a moment before settling it in whichever direction lets you keep going.</p>
   <p>For the first, look for the assignment's own account of itself: the prompt beyond the logistics, a line in the rubric, something your instructor said in class about what the paper is for. Put the skill into words. For the second, take your one sentence and sort what was corrected from what was decided. A misplaced comma is a correction. Putting a claim here instead of there is a decision. For the third, ask yourself plainly whether you already know the answer.</p>
   <p>Then reread the assignment with the skill in mind, and come back to the checkpoint. If the answer turns out to be yes, it's a finding like any other, and it brings you to the question at the next level: what this situation warrants.</p>
-  <div class="actions"><button type="button" class="btn btn-primary" data-go="cp2">Return to checkpoint two</button></div>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" data-go="cp2">Return to checkpoint two</button>
+    <button type="button" class="btn btn-primary only-quick" data-go="quick">Back to the one-page version</button>
+  </div>
 </section>
 
 <!-- ═══ OPERATIVE LEVEL ═══ -->
 <section class="screen" data-screen="decide" data-step="decide" aria-labelledby="h-decide" hidden>
   <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p><p class="level-key">Key question: What does this situation warrant: use, limits, or refusal?</p></div>
   <h2 id="h-decide" tabindex="-1">What will you decide, and on what grounds?</h2>
-  <p>You've named the use. You've worked out whether the tool's judgment is the judgment this assignment is built to develop, either straight away or after some time with the uncertainty. One question is left, and it's a different one from whether you're allowed to use the tool. It asks what you'll decide in this case, and why, now that you can see what's at stake.</p>
+  <p class="echo-line">Your request: <q data-echo="use"></q> Your finding at checkpoint two: <strong data-echo="finding"></strong>.</p>
+  <p>You've named the use. You've worked out whether the tool's judgment is the judgment your <span data-echo="assignment">history essay</span> is built to develop, either straight away or after some time with the uncertainty. One question is left, and it's a different one from whether you're allowed to use the tool. It asks what you'll decide in this case, and why, now that you can see what's at stake.</p>
   <p>Here's a difference worth noticing. Your answer at checkpoint two would be the same for any student using this function on this assignment. The answer here belongs to you, and it exists only once you decide.</p>
   <p>This level asks what this situation warrants: use, limits, or refusal. All three are open to you. A decision to decline here covers this assignment and no other. It keeps the tool's habits of language from standing in for a voice this task is meant to grow, and you'll weigh it fresh whenever the conditions change.</p>
   <p>Three questions are worth answering wherever you land. Are you writing with the tool, or writing for it? Writing with it keeps your judgment at work in what you ask, what you keep, and what you revise. Writing for it hands your judgment to the output and arranges everything else around what came back. Have you asked your instructor? A silent policy leaves the question open. What will you disclose, and how? Disclosure protects you as much as it satisfies anyone else. Note what you used and how, the way you'd note a source.</p>
@@ -435,7 +599,7 @@
   <h2 id="h-decline" tabindex="-1">Your decision: decline</h2>
   <div class="position">
     <p class="position-label">Position taken</p>
-    <p>You've decided not to use the tool on this task. No rule made the call. You made it, because the judgment this assignment is built to develop is the very judgment the tool would supply in your place, whether it's a sentence-level choice, the shape of an argument, or your own reading of a text.</p>
+    <p>You've decided not to use the tool on your <span data-echo="assignment">history essay</span>. No rule made the call. You made it, because the judgment this assignment is built to develop is the very judgment the tool would supply in your place, whether it's a sentence-level choice, the shape of an argument, or your own reading of a text.</p>
     <p>This decision belongs to this task. Name what you're protecting, so the decision travels with its reasons. The person deciding owes their reasons, and here the person deciding is you, so let your instructor know. A refusal nobody hears about protects nothing, and it asks nothing of the person who set the assignment.</p>
     <p style="margin-bottom:0">This is refusal in the sense Simpson, Campt, and Benjamin describe: an accountable rejection of conditions which would otherwise reproduce harm, grounded in analysis instead of preference. Declining here, for this reason, on this task, is an answer you arrived at honestly.</p>
   </div>
@@ -457,11 +621,11 @@
   <h2 id="h-cond" tabindex="-1">Your decision: use with conditions</h2>
   <div class="position">
     <p class="position-label">Position taken</p>
-    <p>You've decided to use the tool, inside limits you set and state before you start. Limits written in advance are yours. Limits written afterward to match what already happened are an explanation attached after the fact.</p>
+    <p>You've decided to use the tool on your <span data-echo="assignment">history essay</span>, inside limits you set and state before you start. Limits written in advance are yours. Limits written afterward to match what already happened are an explanation attached after the fact.</p>
     <p>Three things make a conditional use conditional. Name the specific function, outlining, checking grammar, generating alternatives, in terms narrow enough to mean something. Set a limit on what the tool is allowed to touch (a first pass, say, and leave the final draft to you) and hold to it. Note what you used and how, with the care you'd give a citation, so a reader knows where it came from.</p>
     <p style="margin-bottom:0">The limit is what makes the choice yours. Set it before you open the tool.</p>
   </div>
-  <label for="f-con-function">Function <span class="hint">The specific function, for example generating alternative openings only.</span></label>
+  <label for="f-con-function">Function <span class="hint">The specific function. Your request was: <q data-echo="use"></q></span></label>
   <input type="text" id="f-con-function">
   <label for="f-con-limit">Limit <span class="hint">What the tool is allowed to touch, set before you start.</span></label>
   <input type="text" id="f-con-limit">
@@ -619,7 +783,7 @@
 
 
   /* Passage numbers, gamebook style. Addresses read #7, and older #screen=cp1 links still resolve. */
-  var PASSAGE = { 'opening': 1, 'opening-2': 2, 'premise': 3, 'cp1': 7, 'cp1-no': 11, 'analyze': 14, 'cp2': 18,
+  var PASSAGE = { 'opening': 1, 'opening-2': 2, 'premise': 3, 'cp1': 7, 'cp1-wait': 9, 'cp1-no': 11, 'analyze': 14, 'cp2': 18,
     'cp2-uncertain': 21, 'cp2-yes': 23, 'cp2-no': 26, 'decide': 30, 'decline': 33, 'conditional': 36, 'defer': 39,
     'reopen': 42, 'statement': 45, 'feedback': 48 };
   var BY_NUMBER = {};
@@ -632,6 +796,7 @@
   /* Number each passage, and tell every choice where it leads. */
   screens.forEach(function (s) {
     var n = PASSAGE[s.getAttribute('data-screen')];
+    if (n == null) return;
     var num = document.createElement('p');
     num.className = 'passage-no';
     num.setAttribute('aria-hidden', 'true');
@@ -648,6 +813,7 @@
     }
   });
   Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
+    if (b.classList.contains('quick-link')) return;
     var n = PASSAGE[b.getAttribute('data-go')];
     if (n) b.insertAdjacentHTML('beforeend', ' <span class="turn">Turn to ' + n + '</span>');
   });
@@ -661,7 +827,7 @@
   function drawTrail() {
     var list = document.getElementById('trail');
     list.innerHTML = '';
-    state.route.forEach(function (name) {
+    state.route.filter(function (n) { return PASSAGE[n] != null; }).forEach(function (name) {
       var li = document.createElement('li'); li.textContent = PASSAGE[name]; list.appendChild(li);
     });
     document.getElementById('trail-wrap').hidden = state.route.length < 2;
@@ -689,6 +855,72 @@
       ' passages. Gold marks your path. The dashed passages hold the roads you didn\u2019t take, and every one is open to read. Your statement stays as you wrote it unless you change an answer.';
   }
 
+  var ASSIGN_LABEL = { 'history essay': 'History essay', 'lab report': 'Lab report', 'discussion post': 'Discussion post',
+    'personal statement': 'Personal statement', 'assignment': '' };
+  var REPLIES = {
+    mostly: 'Good. Keep listening for it as you go. The drift is gradual, and a paragraph which sounds like you tonight might sound like the tool after three more rounds of \u201cmake it better.\u201d',
+    no: 'That\u2019s the drift this level is about. The tool reached for the most common version of what you asked for, and the most common version is usually someone else\u2019s voice. The next paragraph explains who pays for this most.',
+    unsure: 'Late at night, after a few rounds, everyone loses the thread. Try this. Cover the new version and reread your own. Which sentences would you defend in class? Those are the ones carrying your judgment.'
+  };
+  function fillEchoes() {
+    var a = document.getElementById('f-assignment').value;
+    var vals = { use: val('f-use').replace(/[.\s]+$/, '') || 'your request', assignment: a,
+      finding: state.finding === 'yes' ? 'yes' : state.finding === 'no' ? 'no, and the no held' : 'not recorded' };
+    Array.prototype.forEach.call(document.querySelectorAll('[data-echo]'), function (el) {
+      el.textContent = vals[el.getAttribute('data-echo')];
+    });
+  }
+  document.getElementById('f-assignment').addEventListener('change', fillEchoes);
+  Array.prototype.forEach.call(document.querySelectorAll('[data-reply]'), function (c) {
+    c.addEventListener('click', function () {
+      Array.prototype.forEach.call(document.querySelectorAll('[data-reply]'), function (o) { o.setAttribute('aria-pressed', o === c ? 'true' : 'false'); });
+      document.getElementById('ic-reply').textContent = REPLIES[c.getAttribute('data-reply')];
+    });
+  });
+
+  /* One-page version: reveal the fields each answer needs, then hand the answers to the statement. */
+  function radioVal(name) { var r = document.querySelector('input[name="' + name + '"]:checked'); return r ? r.value : ''; }
+  function syncReveals() {
+    Array.prototype.forEach.call(document.querySelectorAll('.quick .reveal'), function (el) {
+      var w = el.getAttribute('data-when').split(':');
+      el.hidden = radioVal(w[0]) !== w[1];
+    });
+    var held = radioVal('q-finding') === 'uncertain';
+    Array.prototype.forEach.call(document.querySelectorAll('#q-decide input, #q-decide textarea'), function (el) { el.disabled = held; });
+    document.getElementById('q-done').disabled = held;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.quick input[type="radio"]'), function (r) {
+    r.addEventListener('change', function () {
+      if (r.name === 'q-outcome') {
+        var box = document.getElementById('q-reopen');
+        var wasDefault = !box.value || Object.keys(REOPEN_DEFAULTS).some(function (k) { return box.value === REOPEN_DEFAULTS[k]; });
+        if (wasDefault) box.value = REOPEN_DEFAULTS[r.value];
+      }
+      syncReveals();
+    });
+  });
+  document.getElementById('q-done').addEventListener('click', function () {
+    var notice = document.getElementById('q-notice');
+    var use = document.getElementById('q-use').value.trim(), finding = radioVal('q-finding'), outcome = radioVal('q-outcome');
+    if (!use) { notice.textContent = 'Write your one sentence at the first level first.'; document.getElementById('q-use').focus(); return; }
+    if (!finding) { notice.textContent = 'Choose an answer at the second level.'; return; }
+    if (!outcome) { notice.textContent = 'Choose a decision at the third level.'; return; }
+    notice.textContent = '';
+    var map = { 'q-assignment': 'f-assignment', 'q-use': 'f-use', 'q-yes-judgment': 'f-yes-judgment', 'q-no-asked': 'f-no-asked',
+      'q-no-returned': 'f-no-returned', 'q-dec-protect': 'f-dec-protect', 'q-dec-reasons': 'f-dec-reasons', 'q-con-function': 'f-con-function',
+      'q-con-limit': 'f-con-limit', 'q-con-disclosure': 'f-con-disclosure', 'q-def-question': 'f-def-question', 'q-reopen': 'f-reopen', 'q-own': 'f-own' };
+    Object.keys(map).forEach(function (k) { document.getElementById(map[k]).value = document.getElementById(k).value; });
+    document.getElementById('f-dec-task').value = ASSIGN_LABEL[document.getElementById('q-assignment').value] || '';
+    state.finding = finding; state.outcome = outcome;
+    document.body.classList.remove('planned');
+    show('statement');
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.quick input, .quick textarea, .quick select'), function (el) {
+    el.addEventListener('input', function () { document.getElementById('q-notice').textContent = ''; });
+    el.addEventListener('change', function () { document.getElementById('q-notice').textContent = ''; });
+  });
+  syncReveals();
+
   function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
   function show(name, opts) {
@@ -705,12 +937,17 @@
       if (i === idx) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
     });
 
-    if (name === 'statement') { buildStatement(); }
+    fillEchoes();
+    if (name === 'statement') {
+      var c = document.getElementById('f-course');
+      if (!c.value) c.value = ASSIGN_LABEL[document.getElementById('f-assignment').value] || '';
+      buildStatement();
+    }
     if (state.route[state.route.length - 1] !== name) state.route.push(name);
     drawTrail();
     if (name === 'statement') drawMap();
 
-    var addr = '#' + PASSAGE[name];
+    var addr = '#' + (PASSAGE[name] != null ? PASSAGE[name] : name);
     if (!opts.fromHash && location.hash !== addr) history.pushState(null, '', addr);
     var h = target.querySelector('h2');
     if (!opts.initial) {
@@ -723,6 +960,7 @@
   function screenFromHash() {
     var h = location.hash.replace('#', '');
     if (BY_NUMBER[h]) return BY_NUMBER[h];
+    if (h === 'quick') return 'quick';
     var m = h.match(/screen=([\w-]+)/);
     return m ? m[1] : 'opening';
   }
@@ -732,6 +970,9 @@
     var b = e.target.closest('[data-go]');
     if (!b) return;
     if (b.hasAttribute('data-finding')) state.finding = b.getAttribute('data-finding');
+    if (b.hasAttribute('data-path')) document.body.classList.toggle('planned', b.getAttribute('data-path') === 'planned');
+    if (b.classList.contains('quick-link')) document.body.classList.add('from-quick');
+    if (b.getAttribute('data-go') === 'premise') document.body.classList.remove('from-quick');
     show(b.getAttribute('data-go'));
   });
 
