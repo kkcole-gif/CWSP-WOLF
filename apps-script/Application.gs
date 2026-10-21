@@ -19,7 +19,8 @@
 var C2TC_APP = {
   TITLE: 'C²TC Application',
   SHEET_TITLE: 'C²TC Applications',
-  PROP_FORM_ID: 'C2TC_APPLICATION_FORM_ID'
+  PROP_FORM_ID: 'C2TC_APPLICATION_FORM_ID',
+  INTRO: 'The C²TC Communication Teaching Certificate is free professional development for NC State instructional faculty and graduate instructors, offered by the Campus Writing and Speaking Program.\n\nHow it works. Choose the Written Communication or Digital Communication certificate, or both. Each certificate has three core modules, one elective during the beta, and a capstone you design for a course you teach. Plan on 19 to 28 hours per certificate, self-paced over six to eight weeks or a semester. Four optional cohort sessions on Zoom each semester let you work alongside colleagues. CWSP reviews each capstone and emails your certificate once it is approved. The Oral Communication certificate is in development, and you can join its waitlist below.\n\nWhat applying does. There is no selection process and no prerequisite during the pilot. This form registers you with CWSP, so that we know which certificate you are working on, can send you cohort session dates, and can process the $500 mini-grant for beta participants. Every workbook is open now at cwspwolf.com/c2tc, so you can start before or after you apply.\n\nThe beta mini-grant. Participants in the Spring 2027 beta cohort receive $500 for helping CWSP refine the program. The grant adds one meeting with the CWSP co-directors per semester, and you can choose to help write elective or capstone materials. Payment runs through your department, which is why the form asks for your Faculty ID and your department head.\n\nThe form takes about five minutes. Questions go to Kirsti Cole, kkcole2@ncsu.edu.'
 };
 
 function C2TC_buildApplicationForm() {
@@ -32,11 +33,7 @@ function C2TC_buildApplicationForm() {
   }
 
   var form = FormApp.create(C2TC_APP.TITLE);
-  form.setDescription(
-    'The C²TC Communication Teaching Certificate is free for NC State instructional faculty and graduate instructors. ' +
-    'There is no selection process. This form registers you with the Campus Writing and Speaking Program, so that we know ' +
-    'which certificate you are working on, can send you cohort session dates, and can process the $500 mini-grant for beta participants. ' +
-    'Every workbook is open now at cwspwolf.com/c2tc, so you can start before or after you apply. The form takes about five minutes.');
+  form.setDescription(C2TC_APP.INTRO);
   form.setRequireLogin(true);
   form.setCollectEmail(true);
   form.setLimitOneResponsePerUser(false);
@@ -57,6 +54,7 @@ function C2TC_buildApplicationForm() {
     .setTitle('Faculty ID')
     .setHelpText('Your NC State employee ID. CWSP uses it only to process the $500 mini-grant payment for beta participants.')
     .setRequired(true);
+  C2TC_addDepartmentHeadItems_(form);
   form.addCheckboxItem()
     .setTitle('Which certificate or certificates do you plan to start?')
     .setChoiceValues([
@@ -91,6 +89,40 @@ function C2TC_buildApplicationForm() {
   Logger.log('Form (public link for apply.html): ' + form.getPublishedUrl());
   Logger.log('Responses sheet: ' + sheet.getUrl());
   return form.getPublishedUrl();
+}
+
+/* The department head approves the mini-grant payment, so the form asks who that is.
+   Adds two questions after Faculty ID. */
+function C2TC_addDepartmentHeadItems_(form) {
+  form.addTextItem()
+    .setTitle('Department head name')
+    .setHelpText('CWSP sends the mini-grant paperwork to your department head for approval.')
+    .setRequired(true);
+  form.addTextItem()
+    .setTitle('Department head email')
+    .setValidation(FormApp.createTextValidation().requireTextIsEmail().build())
+    .setRequired(true);
+}
+
+/* For the form built before the department head questions existed. Run once. */
+function C2TC_addDepartmentHeadToExistingForm() {
+  var id = PropertiesService.getScriptProperties().getProperty(C2TC_APP.PROP_FORM_ID);
+  var form = FormApp.openById(id);
+  var titles = form.getItems().map(function (it) { return it.getTitle(); });
+  if (titles.indexOf('Department head name') !== -1) { Logger.log('Already added.'); return; }
+  var at = titles.indexOf('Faculty ID') + 1;
+  C2TC_addDepartmentHeadItems_(form);
+  var items = form.getItems();
+  form.moveItem(items[items.length - 2], at);
+  form.moveItem(form.getItems()[items.length - 1], at + 1);
+  Logger.log('Added department head questions after Faculty ID: ' + form.getItems().map(function (it) { return it.getTitle(); }).join(' | '));
+}
+
+/* Rewrites the form's introduction from C2TC_APP.INTRO. Safe to run again after editing it. */
+function C2TC_updateApplicationIntro() {
+  var form = FormApp.openById(PropertiesService.getScriptProperties().getProperty(C2TC_APP.PROP_FORM_ID));
+  form.setDescription(C2TC_APP.INTRO);
+  Logger.log('Introduction updated (' + C2TC_APP.INTRO.length + ' characters).');
 }
 
 /* Submit trigger. Emails the applicant a confirmation and sends Kirsti a copy. */
