@@ -22,6 +22,10 @@
  * Doc per stage, with every response listed under its activity (no layout yet; Stage 2 will add a
  * WSCP layout so the curriculum plan comes out as a document the chair can sign).
  *
+ * Shared Google Docs on demand ("Create a shared Google Doc" in the WOLF Workbook sidebar):
+ *   doPost sends action 'wolf_doc' to C2TC_wolfDoc, which writes the Doc, shares it with the liaison
+ *   as an editor, and emails the link. One line in Code.gs, beside the save_draft line.
+ *
  * Saved drafts ("Save and email me a link" on each workbook):
  *   doPost sends payloads with action 'save_draft' to C2TC_saveDraft, which stores the
  *   draft as a JSON file in the participant's folder, records it on the "Drafts" tab,
@@ -698,6 +702,54 @@ function C2TC_sendResumeLink_(who, where, p, page, key, when, completed, total) 
     name: (where.certificate === 'WOLF' ? 'WOLF' : 'C²TC') + ', Campus Writing and Speaking Program',
     replyTo: C2TC.REPLY_TO
   });
+}
+
+/* ---------- WOLF: a shared Google Doc on demand ---------- */
+
+/* "Create a shared Google Doc" in the WOLF Workbook sidebar. doPost sends payloads with
+   action 'wolf_doc' here (one line in Code.gs, beside the save_draft line):
+       if (payload.action === 'wolf_doc') { C2TC_wolfDoc(payload); return ContentService.createTextOutput('ok'); }
+   Writes the current answers as a Doc with the stage's layout (the plan itself for Stage 2),
+   files it in the liaison's WOLF folder, shares it with the liaison as an editor, emails the link,
+   and logs a row. Nothing is submitted; a later submission makes its own document. */
+function C2TC_wolfDoc(payload) {
+  var lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    var who = C2TC_identity_(payload);
+    if (!who.email) throw new Error('No email on wolf_doc');
+    var where = C2TC_component_(payload.module || 'wolf-stage2');
+    var folder = C2TC_certificateFolder_(C2TC_participantFolder_(who), where.certificate);
+    var when = new Date(payload.timestamp || Date.now());
+    var stamp = Utilities.formatDate(when, 'America/New_York', 'yyyy-MM-dd');
+    var title = stamp + ' · WOLF · ' + where.component + ' · shared draft';
+    var p = payload.fields || {};
+    ['module', 'workbook_title', 'field_labels', 'field_sections', 'wscp_table', 'certificate_name', 'certificate_email'].forEach(function (k) {
+      if (payload[k] !== undefined) p[k] = payload[k];
+    });
+    var id = C2TC_writeDoc_(title, who, where, p, when);
+    var file = DriveApp.getFileById(id);
+    folder.addFile(file);
+    try { DriveApp.getRootFolder().removeFile(file); } catch (e) {}
+    file.addEditor(who.email);
+    var url = file.getUrl();
+    var html =
+      '<div style="font-family: Garamond, \'EB Garamond\', Georgia, serif; font-size: large; line-height: 1.45;">' +
+      '<p>Dear ' + (who.first || 'colleague') + ',</p>' +
+      '<p>Your WOLF ' + where.component + ' answers are now a Google Doc you edit, at ' +
+      '<a href="' + url + '">' + url + '</a>. Share it with colleagues from the Doc\'s Share button, and revise it there together. ' +
+      'CWSP owns the file and sees your revisions.</p>' +
+      '<p>The workbook keeps your answers as you typed them. When the department settles the text, carry it back into the workbook and submit the stage; the submission makes its own document for the record.</p>' +
+      '<p>Best,<br>Kirsti</p>' +
+      '<p>Kirsti K. Cole<br>Co-Director, Campus Writing and Speaking Program<br>NC State University</p></div>';
+    MailApp.sendEmail({ to: who.email, subject: 'Your WOLF ' + where.component + ' shared Google Doc', htmlBody: html,
+      body: 'Your WOLF ' + where.component + ' answers are a Google Doc at ' + url,
+      name: 'WOLF, Campus Writing and Speaking Program', replyTo: C2TC.REPLY_TO });
+    C2TC_log_([when, where.certificate, where.component + ' (shared draft)', who.unityId, '', '', url, 'link sent']);
+    return url;
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 /** Run once from the editor to confirm the folders and sheets resolve, and to grant permissions. */
