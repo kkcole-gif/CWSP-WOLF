@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CWSP AI Literacies: Faculty Workbook</title>
+<title>AI Literacies Workbook | WOLF · NC State CWSP</title>
+<link rel="stylesheet" href="css/style.css">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -655,6 +656,18 @@
   }
 </style>
 <style>
+.wb-sidebar { top: 60px; height: calc(100vh - 60px); }
+.skip { position: absolute; left: -999px; } .skip:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem; z-index: 200; }
+.side-id { display: grid; gap: .2rem; margin: .25rem 0 .7rem; }
+.side-id label { font-family: Arial, sans-serif; font-size: .72rem; font-weight: 600; color: #3a3a3a; }
+.side-id input { font: inherit; font-size: .8rem; padding: .35rem .45rem; border: 1px solid #bbb; border-radius: 3px; width: 100%; }
+.btn-clear { background: none; border: 0; padding: 0; margin: .5rem 0 0; font-family: Arial, sans-serif; font-size: .75rem; color: #5a5a5a; text-decoration: underline; cursor: pointer; }
+label.field-label { display: block; }
+.ail-toast { position: fixed; left: 50%; transform: translateX(-50%); top: 72px; z-index: 200; max-width: 34rem; width: calc(100% - 2rem); background: #fff; border: 1px solid #990000; border-left: 5px solid #990000; border-radius: 3px; box-shadow: 0 4px 18px rgba(0,0,0,.18); padding: .75rem 2.4rem .75rem 1rem; font-family: Arial, sans-serif; font-size: .9rem; line-height: 1.45; }
+.ail-toast button { position: absolute; top: .35rem; right: .5rem; background: none; border: 0; font-size: 1.2rem; cursor: pointer; color: #5a5a5a; }
+.resume-banner { background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 3px; padding: .75rem 1rem; margin: 0 0 1rem; font-family: Arial, sans-serif; font-size: .9rem; }
+@media print { .site-header, .side-id, .btn-clear, .ail-toast { display: none; } }
+@media (max-width: 800px) { .wb-layout { display: block; } .wb-sidebar { position: static; height: auto; } }
 @media (max-width: 700px) {
   nav { flex-wrap: wrap; height: auto; }
   nav .progress-bar { margin-left: 0; width: 100%; }
@@ -670,14 +683,38 @@
 <link rel="stylesheet" href="css/brand.css">
 </head>
 <body>
+<a class="skip" href="#start">Skip to content</a>
+<header class="site-header">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About WOLF</a></li>
+      <li><a href="liaisons.html">For Liaisons</a></li>
+      <li><a href="ai-literacies.html" class="active">AI Literacies</a></li>
+      <li><a href="ai-policy-lab.html">AI Policy Lab</a></li>
+      <li><a href="c2tc/index.html">C²TC</a></li>
+      <li><a href="get-started.html">Get Started</a></li>
+    </ul>
+  </nav>
+</header>
 
 <div class="wb-layout">
 <aside class="wb-sidebar">
   <div class="sidebar-save">
     <p class="sidebar-part">Your progress</p>
     <div class="progress-bar"><span id="progress-label">0%</span><span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span></div>
+    <div class="side-id">
+      <label for="p-name">Your name</label>
+      <input type="text" id="p-name" class="p-identity" autocomplete="name">
+      <label for="p-email">NC State email</label>
+      <input type="email" id="p-email" class="p-identity" autocomplete="email" placeholder="unityid@ncsu.edu">
+    </div>
+    <button type="button" class="btn-sidebar" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
+    <button type="button" class="btn-sidebar" id="record-btn" onclick="sendRecord()">Send my workbook to CWSP</button>
     <button type="button" class="btn-sidebar" onclick="window.print()">Print or save as PDF</button>
-    <p class="sidebar-status" role="status">This browser saves your work as you type.</p>
+    <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. "Send my workbook to CWSP" files a copy with CWSP and emails it to you. The archive at the end is separate, anonymous, and optional.</p>
+    <button type="button" class="btn-clear" onclick="clearAll()">Clear my work from this browser</button>
   </div>
   <nav aria-label="Workbook navigation">
     <p class="sidebar-part">Start</p>
@@ -698,10 +735,10 @@
     <a href="#act10" class="activity">10. What Has Shifted</a>
     <a href="#act11" class="activity">11. Next Steps Checklist</a>
     <p class="sidebar-part">Archive</p>
-    <a href="#archive" class="archive-link">Submit to the archive</a>
+    <a href="#archive" class="archive-link">Anonymous archive (optional)</a>
   </nav>
 </aside>
-<div class="wb-main">
+<div class="wb-main" id="start">
 
 
 <div class="workbook">
@@ -749,12 +786,12 @@
         <p>Begin by naming what you know. Conceptual literacy of AI starts with recognition: which tools exist, what they do, and whose knowledge they encode.</p>
         <div class="prompt">Which AI tools do researchers, practitioners, and students in your courses use in your field? Name as many as you know, and note what each one does.</div>
         <div class="one-col">
-          <div class="field-label required">AI tools you know of in your disciplinary or teaching context</div>
+          <label class="field-label required" for="f-1-1-tools">AI tools you know of in your disciplinary or teaching context</label>
           <textarea class="write-field" id="f-1-1-tools" placeholder="e.g., ChatGPT for drafting, Elicit for literature review, automated grading tools..." rows="4" oninput="saveField(this); updateProgress()"></textarea>
         </div>
         <div class="prompt">Whose knowledge do these tools encode? Who built them, what training data do they draw from, and whose ways of knowing are centered or marginalized in the data?</div>
         <div class="one-col">
-          <div class="field-label">Your analysis</div>
+          <label class="field-label" for="f-1-1-knowledge">Your analysis</label>
           <textarea class="write-field" id="f-1-1-knowledge" placeholder="Consider: training data composition, whose language patterns are dominant, which disciplinary epistemologies are represented..." rows="4" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -771,14 +808,14 @@
         <p>Structural literacy asks what AI systems reproduce regardless of user behavior. These conditions sit in the infrastructure. They follow from the system's design and training, whatever choices individual users make.</p>
         <div class="prompt">What does AI reproduce in your field? Consider: epistemic norms (what counts as evidence), language patterns (whose prose style is centered), authority structures (which sources, voices, or methods are weighted), and knowledge hierarchies (what is systematically underrepresented or excluded).</div>
         <div class="one-col">
-          <div class="field-label required">What AI systems reproduce in your disciplinary context</div>
+          <label class="field-label required" for="f-1-2-reproduce">What AI systems reproduce in your disciplinary context</label>
           <textarea class="write-field" id="f-1-2-reproduce" placeholder="e.g., In social science, AI tends to reproduce positivist framings of evidence. In literary studies, it underweights non-Western and multilingual texts..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
         </div>
         <div class="callout red">
           <strong>From the research:</strong> Roberto Santiago de Roock (2024), writing from six months of his own critical use of ChatGPT, argues that generative AI carries linguistic white supremacy as a condition of its design. On his account, a critically aware user still works inside the condition. What is the parallel structural condition in your discipline?
         </div>
         <div class="one-col">
-          <div class="field-label">The structural condition in your field</div>
+          <label class="field-label" for="f-1-2-condition">The structural condition in your field</label>
           <textarea class="write-field" id="f-1-2-condition" placeholder="Which condition of AI in your field persists however much critical awareness individual users bring?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -795,17 +832,17 @@
         <p>Operative literacy names a capacity for contextual judgment. Given your conceptual understanding and structural analysis, what does accountable decision-making look like in your discipline? Include the conditions under which refusal is warranted.</p>
         <div class="two-col">
           <div>
-            <div class="field-label">Contexts where AI use is appropriate in your discipline</div>
+            <label class="field-label" for="f-1-3-appropriate">Contexts where AI use is appropriate in your discipline</label>
             <textarea class="write-field" id="f-1-3-appropriate" placeholder="Describe the tasks, contexts, or conditions..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
           </div>
           <div>
-            <div class="field-label">Contexts where principled refusal is warranted</div>
+            <label class="field-label" for="f-1-3-refusal">Contexts where principled refusal is warranted</label>
             <textarea class="write-field" id="f-1-3-refusal" placeholder="Specific conditions under which AI use becomes epistemically or ethically unjustifiable in your context (refusal with reasons, decided case by case)..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
           </div>
         </div>
         <div class="prompt">Which intellectual labor does your discipline require students to do themselves, because handing it to AI would defeat the learning or epistemic purpose?</div>
         <div class="one-col">
-          <div class="field-label">The irreducible intellectual labor in your discipline</div>
+          <label class="field-label" for="f-1-3-labor">The irreducible intellectual labor in your discipline</label>
           <textarea class="write-field" id="f-1-3-labor" placeholder="What must students do themselves, and why?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -842,26 +879,26 @@
         </div>
         <div class="prompt">Paste or write your current course AI policy statement below (or write "none" if you don't have one).</div>
         <div class="one-col">
-          <div class="field-label required">Your current AI policy statement</div>
+          <label class="field-label required" for="f-2-1-current">Your current AI policy statement</label>
           <textarea class="write-field" id="f-2-1-current" placeholder="Copy from your syllabus, or describe your current practice if you have not written it down..." rows="4" oninput="saveField(this); updateProgress()"></textarea>
         </div>
         <p>Now read it against the three literacy levels. What does this policy ask students to <em>know</em> (conceptual), <em>understand about the system</em> (structural), and <em>do as a matter of judgment</em> (operative)?</p>
         <div class="two-col">
           <div>
-            <div class="field-label">Conceptual level: what the policy names or defines</div>
+            <label class="field-label" for="f-2-1-conceptual">Conceptual level: what the policy names or defines</label>
             <textarea class="write-field" id="f-2-1-conceptual" placeholder="Does the policy identify what AI is or which tools it covers?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
           </div>
           <div>
-            <div class="field-label">Structural level: what the policy says about AI's conditions</div>
+            <label class="field-label" for="f-2-1-structural">Structural level: what the policy says about AI's conditions</label>
             <textarea class="write-field" id="f-2-1-structural" placeholder="Does the policy address what AI reproduces or what it cannot do?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
           </div>
         </div>
         <div class="one-col">
-          <div class="field-label">Operative level: what judgment the policy requires of students</div>
+          <label class="field-label" for="f-2-1-operative">Operative level: what judgment the policy requires of students</label>
           <textarea class="write-field" id="f-2-1-operative" placeholder="Does the policy ask for contextual judgment, or does it reduce to permission / prohibition?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
         <div class="one-col">
-          <div class="field-label">What does your current policy reveal about what this course values? What commitment does it make? Is it the commitment you intend?</div>
+          <label class="field-label" for="f-2-1-reveals">What does your current policy reveal about what this course values? What commitment does it make? Is it the commitment you intend?</label>
           <textarea class="write-field" id="f-2-1-reveals" placeholder="Be specific. Reading it this way, what do you now see in the policy?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -877,11 +914,11 @@
       <div class="activity-body">
         <p>A course AI policy should be legible against the program's student learning outcomes. When the two diverge, the policy ends up enforcing norms the program does not hold, or ignoring norms it does.</p>
         <div class="one-col">
-          <div class="field-label">List the 2–3 program SLOs most relevant to AI use in your course</div>
+          <label class="field-label" for="f-2-2-slos">List the 2–3 program SLOs most relevant to AI use in your course</label>
           <textarea class="write-field" id="f-2-2-slos" placeholder="Paste or paraphrase your program's SLOs here..." rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
         <div class="one-col">
-          <div class="field-label">Where does your current AI policy align with those SLOs, and where does it diverge?</div>
+          <label class="field-label" for="f-2-2-alignment">Where does your current AI policy align with those SLOs, and where does it diverge?</label>
           <textarea class="write-field" id="f-2-2-alignment" placeholder="Alignment means the policy enforces what the SLOs require. Divergence means the policy permits or prohibits something the SLOs don't address." rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -904,32 +941,32 @@
           <div class="pt-label">Policy Drafting Template</div>
           <div class="pt-field">
             <span class="pt-stem">In this course,</span>
-            <input type="text" id="f-pt-course" placeholder="[course name / number]" oninput="saveField(this); updateProgress()">
+            <input aria-label="In this course," type="text" id="f-pt-course" placeholder="[course name / number]" oninput="saveField(this); updateProgress()">
           </div>
           <div class="pt-field">
             <span class="pt-stem">AI tools such as</span>
-            <input type="text" id="f-pt-tools" placeholder="[name specific tools or categories]" oninput="saveField(this); updateProgress()">
+            <input aria-label="AI tools such as" type="text" id="f-pt-tools" placeholder="[name specific tools or categories]" oninput="saveField(this); updateProgress()">
           </div>
           <div class="pt-field">
             <span class="pt-stem">are [permitted / not permitted / permitted with attribution] for</span>
-            <input type="text" id="f-pt-tasks" placeholder="[specific tasks (avoid 'all work')]" oninput="saveField(this); updateProgress()">
+            <input aria-label="are [permitted / not permitted / permitted with attribution] for" type="text" id="f-pt-tasks" placeholder="[specific tasks (avoid 'all work')]" oninput="saveField(this); updateProgress()">
           </div>
           <div class="pt-field">
             <span class="pt-stem">because</span>
-            <input type="text" id="f-pt-because" placeholder="[disciplinary rationale: what AI does or cannot do here]" oninput="saveField(this); updateProgress()">
+            <input aria-label="because" type="text" id="f-pt-because" placeholder="[disciplinary rationale: what AI does or cannot do here]" oninput="saveField(this); updateProgress()">
           </div>
           <div class="pt-field">
             <span class="pt-stem">Students are expected to</span>
-            <input type="text" id="f-pt-judgment" placeholder="[the judgment required, in addition to disclosure]" oninput="saveField(this); updateProgress()">
+            <input aria-label="Students are expected to" type="text" id="f-pt-judgment" placeholder="[the judgment required, in addition to disclosure]" oninput="saveField(this); updateProgress()">
           </div>
         </div>
 
         <div class="one-col">
-          <div class="field-label">Draft your full policy statement here, using the template as a scaffold</div>
+          <label class="field-label" for="f-2-3-draft">Draft your full policy statement here, using the template as a scaffold</label>
           <textarea class="write-field" id="f-2-3-draft" placeholder="Write a complete policy statement for your syllabus. Aim for 3–5 sentences a student understands without further explanation." rows="6" oninput="saveField(this); updateProgress()"></textarea>
         </div>
         <div class="one-col">
-          <div class="field-label">Which open questions in this draft would you bring to CWSP?</div>
+          <label class="field-label" for="f-2-3-questions">Which open questions in this draft would you bring to CWSP?</label>
           <textarea class="write-field" id="f-2-3-questions" placeholder="Edge cases, SLO misalignments, disciplinary norms you're not sure how to encode..." rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -976,31 +1013,31 @@
           <tbody>
             <tr>
               <td>Introductory</td>
-              <td><textarea rows="2" id="m-intro-courses" oninput="saveField(this)"></textarea></td>
-              <td><textarea rows="2" id="m-intro-ai" oninput="saveField(this)"></textarea></td>
-              <td><input type="text" id="m-intro-level" oninput="saveField(this)" placeholder="C / S / O"></td>
-              <td><textarea rows="2" id="m-intro-where" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Introductory: Courses at this stage" rows="2" id="m-intro-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Introductory: AI literacy present? (describe)" rows="2" id="m-intro-ai" oninput="saveField(this)"></textarea></td>
+              <td><input aria-label="Introductory: Level (C / S / O)" type="text" id="m-intro-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea aria-label="Introductory: Where it lives (syllabus, assignment, discussion)" rows="2" id="m-intro-where" oninput="saveField(this)"></textarea></td>
             </tr>
             <tr>
               <td>Core requirements</td>
-              <td><textarea rows="2" id="m-core-courses" oninput="saveField(this)"></textarea></td>
-              <td><textarea rows="2" id="m-core-ai" oninput="saveField(this)"></textarea></td>
-              <td><input type="text" id="m-core-level" oninput="saveField(this)" placeholder="C / S / O"></td>
-              <td><textarea rows="2" id="m-core-where" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Core requirements: Courses at this stage" rows="2" id="m-core-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Core requirements: AI literacy present? (describe)" rows="2" id="m-core-ai" oninput="saveField(this)"></textarea></td>
+              <td><input aria-label="Core requirements: Level (C / S / O)" type="text" id="m-core-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea aria-label="Core requirements: Where it lives (syllabus, assignment, discussion)" rows="2" id="m-core-where" oninput="saveField(this)"></textarea></td>
             </tr>
             <tr>
               <td>Upper-division electives</td>
-              <td><textarea rows="2" id="m-upper-courses" oninput="saveField(this)"></textarea></td>
-              <td><textarea rows="2" id="m-upper-ai" oninput="saveField(this)"></textarea></td>
-              <td><input type="text" id="m-upper-level" oninput="saveField(this)" placeholder="C / S / O"></td>
-              <td><textarea rows="2" id="m-upper-where" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Upper-division electives: Courses at this stage" rows="2" id="m-upper-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Upper-division electives: AI literacy present? (describe)" rows="2" id="m-upper-ai" oninput="saveField(this)"></textarea></td>
+              <td><input aria-label="Upper-division electives: Level (C / S / O)" type="text" id="m-upper-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea aria-label="Upper-division electives: Where it lives (syllabus, assignment, discussion)" rows="2" id="m-upper-where" oninput="saveField(this)"></textarea></td>
             </tr>
             <tr>
               <td>Capstone / thesis</td>
-              <td><textarea rows="2" id="m-cap-courses" oninput="saveField(this)"></textarea></td>
-              <td><textarea rows="2" id="m-cap-ai" oninput="saveField(this)"></textarea></td>
-              <td><input type="text" id="m-cap-level" oninput="saveField(this)" placeholder="C / S / O"></td>
-              <td><textarea rows="2" id="m-cap-where" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Capstone / thesis: Courses at this stage" rows="2" id="m-cap-courses" oninput="saveField(this)"></textarea></td>
+              <td><textarea aria-label="Capstone / thesis: AI literacy present? (describe)" rows="2" id="m-cap-ai" oninput="saveField(this)"></textarea></td>
+              <td><input aria-label="Capstone / thesis: Level (C / S / O)" type="text" id="m-cap-level" oninput="saveField(this)" placeholder="C / S / O"></td>
+              <td><textarea aria-label="Capstone / thesis: Where it lives (syllabus, assignment, discussion)" rows="2" id="m-cap-where" oninput="saveField(this)"></textarea></td>
             </tr>
           </tbody>
         </table>
@@ -1022,16 +1059,16 @@
         <p>A curricular map helps only when someone reads it. Answer these questions from what you filled in above.</p>
         <div class="two-col">
           <div>
-            <div class="field-label">Where does AI literacy instruction concentrate in this curriculum?</div>
+            <label class="field-label" for="f-3-2-concentrate">Where does AI literacy instruction concentrate in this curriculum?</label>
             <textarea class="write-field" id="f-3-2-concentrate" placeholder="At which stage(s) does it appear most? Least?" rows="4" oninput="saveField(this); updateProgress()"></textarea>
           </div>
           <div>
-            <div class="field-label">Which literacy level is missing or underrepresented?</div>
+            <label class="field-label" for="f-3-2-missing">Which literacy level is missing or underrepresented?</label>
             <textarea class="write-field" id="f-3-2-missing" placeholder="Curricula often include some conceptual exposure and little operative practice. What does yours show?" rows="4" oninput="saveField(this); updateProgress()"></textarea>
           </div>
         </div>
         <div class="one-col">
-          <div class="field-label">What does the distribution reveal about what this program currently values (or assumes) about AI and disciplinary learning?</div>
+          <label class="field-label" for="f-3-2-reveals">What does the distribution reveal about what this program currently values (or assumes) about AI and disciplinary learning?</label>
           <textarea class="write-field" id="f-3-2-reveals" placeholder="Where is AI treated as a tool to describe versus a system to analyze versus a decision to make?" rows="3" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -1047,11 +1084,11 @@
       <div class="activity-body">
         <p>The map produces choices. From what it shows, identify two or three specific curricular decisions the program might make to address what is missing or uneven.</p>
         <div class="one-col">
-          <div class="field-label required">Curricular decisions this map suggests</div>
+          <label class="field-label required" for="f-3-3-decisions">Curricular decisions this map suggests</label>
           <textarea class="write-field" id="f-3-3-decisions" placeholder="e.g., Add a structural literacy unit to the 200-level methods course. Shift operative judgment work from the 300-level elective to the capstone. Create a shared assignment scaffold to move students through all three levels." rows="6" oninput="saveField(this); updateProgress()"></textarea>
         </div>
         <div class="one-col">
-          <div class="field-label">What would each decision require: faculty time, curricular revision, accreditation language, or program governance work?</div>
+          <label class="field-label" for="f-3-3-requires">What would each decision require: faculty time, curricular revision, accreditation language, or program governance work?</label>
           <textarea class="write-field" id="f-3-3-requires" placeholder="Be specific about what carrying out each decision would take." rows="4" oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
@@ -1077,11 +1114,11 @@
       <div class="activity-body">
         <div class="two-col">
           <div>
-            <div class="field-label">What do you understand now that you didn't before working through this?</div>
+            <label class="field-label" for="f-4-1-shifted">What do you understand now that you didn't before working through this?</label>
             <textarea class="write-field" id="f-4-1-shifted" placeholder="About AI in your field, about your current policy, about your curriculum's arc..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
           </div>
           <div>
-            <div class="field-label">What question has this work opened, one you did not know to ask?</div>
+            <label class="field-label" for="f-4-1-question">What question has this work opened, one you did not know to ask?</label>
             <textarea class="write-field" id="f-4-1-question" placeholder="The question you want to bring to CWSP, to your department, or to your own reading..." rows="5" oninput="saveField(this); updateProgress()"></textarea>
           </div>
         </div>
@@ -1107,14 +1144,14 @@
           <li><input type="checkbox" id="ck7" onchange="saveCheckbox(this); updateProgress()"><label for="ck7">Read further in <a href="ai_literacy_unified.html" target="_blank" rel="noopener">the three-level framework</a> (Cole, 2026) and at <a href="https://ai.ncsu.edu" target="_blank" rel="noopener">ai.ncsu.edu</a></label></li>
         </ul>
         <div class="one-col" style="margin-top:16px;">
-          <div class="field-label">Other next steps you're committing to</div>
+          <label class="field-label" for="f-4-2-other">Other next steps you're committing to</label>
           <textarea class="write-field" id="f-4-2-other" rows="3" placeholder="Specific actions, conversations, or questions you're taking from this workbook..." oninput="saveField(this); updateProgress()"></textarea>
         </div>
       </div>
     </div>
 
     <div style="border-top: 1px solid var(--border); padding-top: 18px; margin-top: 8px;">
-      <div class="field-label">Contact CWSP to continue this work</div>
+      <label class="field-label" for="a-program-code">Contact CWSP to continue this work</div>
       <p style="font-size:10pt; color: var(--gray); margin-top:4px;">Campus Writing and Speaking Program &nbsp;·&nbsp; NC State University &nbsp;·&nbsp; <a href="https://ai.ncsu.edu" style="color:var(--red)">ai.ncsu.edu</a></p>
     </div>
   </div>
@@ -1131,12 +1168,12 @@
     <!-- Anonymous metadata -->
     <div class="two-col" style="margin-bottom:14px;">
       <div>
-        <div class="field-label">CWSP Program Code <span style="font-weight:normal; color:#888;">(if provided by your liaison)</span></div>
+        <div class="field-label">CWSP Program Code <span style="font-weight:normal; color:#888;">(if provided by your liaison)</span></label>
         <input type="text" class="write-field" id="a-program-code" placeholder="e.g., ENGL-04, PSY-02 (leave blank if self-directed)" style="min-height:auto; padding: 9px 11px; font-family: 'Courier New', monospace; letter-spacing: 0.5px;" oninput="saveField(this)">
         <div style="font-size:8pt; color:#aaa; margin-top:4px;">This code links your submissions across CWSP stages without identifying you or your institution.</div>
       </div>
       <div>
-        <div class="field-label required">CWSP Stage</div>
+        <label class="field-label required" for="a-stage">CWSP Stage</label>
         <select id="a-stage" onchange="saveField(this); toggleSubmit()">
           <option value="">Select one</option>
           <option value="Stage 1 — Inquiry (Intake)">Stage 1: Inquiry (Intake)</option>
@@ -1150,18 +1187,18 @@
 
     <div class="two-col" style="margin-bottom:14px;">
       <div>
-        <div class="field-label required">Discipline or field</div>
+        <label class="field-label required" for="a-discipline">Discipline or field</label>
         <input type="text" class="write-field" id="a-discipline" placeholder="e.g., Sociology, English, Communication, Political Science..." style="min-height:auto; padding: 9px 11px;" oninput="saveField(this); toggleSubmit()">
       </div>
       <div>
-        <div class="field-label">Department or program (optional)</div>
+        <label class="field-label" for="a-department">Department or program (optional)</label>
         <input type="text" class="write-field" id="a-department" placeholder="e.g., Department of History, MFA in Creative Writing..." style="min-height:auto; padding: 9px 11px;" oninput="saveField(this)">
       </div>
     </div>
 
     <div class="two-col" style="margin-bottom:14px;">
       <div>
-        <div class="field-label required">Institution type</div>
+        <label class="field-label required" for="a-inst-type">Institution type</label>
         <select id="a-inst-type" onchange="saveField(this); toggleSubmit()">
           <option value="">Select one</option>
           <option>R1 Public</option>
@@ -1178,7 +1215,7 @@
         </select>
       </div>
       <div>
-        <div class="field-label required">Years teaching at college/university level</div>
+        <label class="field-label required" for="a-years">Years teaching at college/university level</label>
         <select id="a-years" onchange="saveField(this); toggleSubmit()">
           <option value="">Select one</option>
           <option>1–5 years</option>
@@ -1239,47 +1276,45 @@
 </div><!-- /wb-main -->
 </div><!-- /wb-layout -->
 
-<!-- Fixed controls -->
-<div class="controls">
-  <button class="btn btn-primary" onclick="clearAll()">Clear All</button>
-</div>
 
 <script>
 // ─── PERSISTENCE ──────────────────────────────────────────────────────────
-function saveField(el) {
-  localStorage.setItem(el.id, el.value);
+const KEY = 'ail:';
+function store(id, v) { try { localStorage.setItem(KEY + id, v); } catch (e) {} }
+/* Answers saved before October 2026 sit under the bare field id. Read them once, then keep them under the prefix. */
+function recall(id) {
+  try {
+    let v = localStorage.getItem(KEY + id);
+    if (v === null && localStorage.getItem(id) !== null) { v = localStorage.getItem(id); localStorage.setItem(KEY + id, v); localStorage.removeItem(id); }
+    return v;
+  } catch (e) { return null; }
 }
-function saveCheckbox(el) {
-  localStorage.setItem(el.id, el.checked ? '1' : '0');
-}
+function saveField(el) { store(el.id, el.value); }
+function saveCheckbox(el) { store(el.id, el.checked ? '1' : '0'); }
 
 function loadAll() {
   document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
-    const saved = localStorage.getItem(el.id);
+    const saved = recall(el.id);
     if (saved !== null) el.value = saved;
   });
   document.querySelectorAll('select').forEach(el => {
-    const saved = localStorage.getItem(el.id);
+    const saved = recall(el.id);
     if (saved !== null) el.value = saved;
   });
   document.querySelectorAll('input[type="checkbox"]').forEach(el => {
-    el.checked = localStorage.getItem(el.id) === '1';
+    el.checked = recall(el.id) === '1';
   });
   toggleSubmit();
   updateProgress();
 }
 
 function clearAll() {
-  if (!confirm('Clear all your responses? This cannot be undone.')) return;
-  document.querySelectorAll('textarea, input[type="text"]').forEach(el => {
-    el.value = '';
-    localStorage.removeItem(el.id);
-  });
-  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
-    el.checked = false;
-    localStorage.removeItem(el.id);
-  });
-  updateProgress();
+  if (!confirm('Remove your answers, name, and email from this browser? Anything you sent to CWSP or the archive stays there.')) return;
+  try { Object.keys(localStorage).filter(k => k.indexOf(KEY) === 0).forEach(k => localStorage.removeItem(k)); } catch (e) {}
+  document.querySelectorAll('textarea, input[type="text"], input[type="email"], select').forEach(el => { el.value = ''; });
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => { el.checked = false; });
+  try { localStorage.removeItem('c2tc-participant-name'); localStorage.removeItem('c2tc-participant-email'); } catch (e) {}
+  updateProgress(); toggleSubmit(); status('Cleared from this browser.');
 }
 
 // ─── PROGRESS ─────────────────────────────────────────────────────────────
@@ -1401,6 +1436,105 @@ document.addEventListener('DOMContentLoaded', () => {
   loadAll();
   updateNav();
 });
+
+/* ─── PERSONAL RECORD ─────────────────────────────────────────────────────
+   The same CWSP pipeline as the WOLF and C²TC workbooks. "Send my workbook" files a
+   formatted copy with CWSP and emails it to the participant. "Save and email me a link"
+   stores a draft and emails a private link. Name and email are shared with the other
+   CWSP workbooks in this browser. The archive below stays anonymous and separate. */
+const PIPE = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'ai-literacies';
+const PAGE = 'CWSP_AI_Literacies_Workbook.html';
+function status(t) { const el = document.getElementById('save-status'); if (el) el.textContent = t; }
+function toast(text) {
+  let t = document.querySelector('.ail-toast');
+  if (!t) {
+    t = document.createElement('div'); t.className = 'ail-toast'; t.setAttribute('role', 'alert');
+    t.innerHTML = '<span></span><button type="button" aria-label="Close message">×</button>';
+    t.querySelector('button').addEventListener('click', () => { t.hidden = true; });
+    document.body.appendChild(t);
+  }
+  t.querySelector('span').textContent = text; t.hidden = false;
+}
+['p-name', 'p-email'].forEach((id, i) => {
+  const key = i ? 'c2tc-participant-email' : 'c2tc-participant-name';
+  const el = document.getElementById(id);
+  try { if (!el.value) el.value = localStorage.getItem(key) || ''; } catch (e) {}
+  el.addEventListener('input', () => { try { localStorage.setItem(key, el.value.trim()); } catch (e) {} });
+});
+function who() {
+  const n = document.getElementById('p-name'), e = document.getElementById('p-email');
+  const name = n.value.trim(), email = e.value.trim();
+  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    const t = name ? e : n; t.focus();
+    toast('Enter your name and NC State email at the top of the sidebar first.');
+    return null;
+  }
+  return { name, email };
+}
+function workFields() {
+  return Array.from(document.querySelectorAll('textarea[id], input[type="text"][id], select[id], input[type="checkbox"][id]'))
+    .filter(el => !el.classList.contains('p-identity') && !/^a-|^sub-/.test(el.id));
+}
+function collect() {
+  const f = {};
+  workFields().forEach(el => { f[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
+  return f;
+}
+function describe(data) {
+  const labels = {}, sections = {};
+  workFields().forEach(el => {
+    const lab = document.querySelector('label[for="' + el.id + '"]');
+    if (lab) labels[el.id] = lab.textContent.replace(/\s+/g, ' ').trim();
+    const act = el.closest('.activity');
+    if (act) {
+      const t = act.querySelector('.activity-title'), c = el.closest('.section-block');
+      const h = c && c.querySelector('h2');
+      sections[el.id] = [h && h.textContent.trim(), t && t.textContent.trim()].filter(Boolean).join(': ');
+    }
+  });
+  data.workbook_title = 'AI Literacies Workbook';
+  data.field_labels = labels; data.field_sections = sections;
+  return data;
+}
+function saveDraft() {
+  const p = who(); if (!p) return;
+  const data = describe({ action: 'save_draft', module: MODULE, page: PAGE, certificate_name: p.name, certificate_email: p.email, timestamp: new Date().toISOString(), fields: collect() });
+  status('Saving…');
+  fetch(PIPE, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    .then(() => status('Saved at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. A link to continue is on its way to ' + p.email + '. Anyone holding the link sees your draft, so keep it to yourself. If no email arrives within an hour, write to kkcole2@ncsu.edu.'))
+    .catch(() => status('Saving failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.'));
+}
+function sendRecord() {
+  const p = who(); if (!p) return;
+  const f = collect();
+  if (!Object.keys(f).some(k => typeof f[k] === 'string' && f[k].trim().length >= 40)) {
+    toast('Write at least one response of a sentence or two before you send the workbook.'); return;
+  }
+  const data = Object.assign({ certificate_name: p.name, certificate_email: p.email, module: MODULE, program: 'AI Literacies', timestamp: new Date().toISOString() }, f);
+  describe(data);
+  const btn = document.getElementById('record-btn'); btn.disabled = true; btn.textContent = 'Sending…';
+  fetch(PIPE, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    .then(() => { btn.textContent = 'Sent'; status('Sent to CWSP. A copy of your workbook comes to ' + p.email + ' within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your work also stays in this browser.'); })
+    .catch(() => { btn.disabled = false; btn.textContent = 'Send my workbook to CWSP'; status('Sending failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.'); });
+}
+function restoreFromLink() {
+  const key = new URLSearchParams(location.search).get('resume');
+  if (!key || !/^[a-f0-9]{32}$/.test(key)) return;
+  const slot = document.querySelector('.wb-main');
+  const banner = html => { const b = document.createElement('div'); b.className = 'resume-banner'; b.setAttribute('role', 'status'); b.innerHTML = html; slot.insertBefore(b, slot.firstChild); return b; };
+  fetch(PIPE + '?resume=' + key).then(r => r.json()).then(d => {
+    if (!d || d.status !== 'ok') { banner('This link has no saved work attached. Email kkcole2@ncsu.edu if you expected some.'); return; }
+    Object.keys(d.fields || {}).forEach(id => {
+      const el = document.getElementById(id); if (!el) return;
+      if (el.type === 'checkbox') { el.checked = !!d.fields[id]; saveCheckbox(el); } else { el.value = d.fields[id]; saveField(el); }
+    });
+    if (d.name && !document.getElementById('p-name').value) document.getElementById('p-name').value = d.name;
+    updateProgress();
+    banner('Your saved work from ' + new Date(d.savedAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' }) + ' is restored.');
+  }).catch(() => banner('Your saved work did not load. Refresh the page to try again.'));
+}
+document.addEventListener('DOMContentLoaded', restoreFromLink);
 </script>
 </body>
 </html>
