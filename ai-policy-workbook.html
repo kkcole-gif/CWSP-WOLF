@@ -632,10 +632,14 @@
     .submit-status.ok { color: #1b5e20; }
     .submit-status.err { color: var(--red); }
     .wb-sidebar nav a.submit-link { color: #990000; }
+  label.field-label { display: block; }
+  h1.part-eyebrow { margin: 0 0 .4rem; line-height: inherit; }
+  .skip { position: absolute; left: -999px; } .skip:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem; z-index: 200; }
 </style>
 <link rel="stylesheet" href="css/brand.css">
 </head>
 <body>
+<a class="skip" href="#wb-main">Skip to content</a>
 <header class="site-header">
   <nav class="nav-inner" aria-label="Main navigation">
     <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
@@ -688,7 +692,7 @@
     <!-- INTRO -->
     <section id="intro">
       <div class="part-header">
-        <p class="part-eyebrow">AI Policy Lab · Policy Repository Workbook</p>
+        <h1 class="part-eyebrow">AI Policy Lab · Policy Repository Workbook</h1>
         <h2>Campus Writing and Speaking Program · NC State University · 2026</h2>
       </div>
       <div class="callout">
@@ -1067,60 +1071,60 @@
         <div class="template-card-body">
           <div class="meta-row">
             <div class="meta-field">
-              <label>Institution</label>
+              <label for="t1-institution">Institution</label>
               <input type="text" id="t1-institution" placeholder="e.g., NC State University" oninput="save()">
             </div>
             <div class="meta-field">
-              <label>Document type</label>
+              <label for="t1-doctype">Document type</label>
               <input type="text" id="t1-doctype" placeholder="e.g., Syllabus guidance, Conduct policy" oninput="save()">
             </div>
             <div class="meta-field">
-              <label>Date / Wave</label>
+              <label for="t1-date">Date / Wave</label>
               <input type="text" id="t1-date" placeholder="e.g., Fall 2023 / Wave 1" oninput="save()">
             </div>
             <div class="meta-field">
-              <label>Policy stance</label>
+              <label for="t1-stance">Policy stance</label>
               <input type="text" id="t1-stance" placeholder="e.g., Prohibition / Encouragement" oninput="save()">
             </div>
           </div>
-          <p class="field-label">Key language</p>
+          <label class="field-label" for="t1-keylang">Key language</label>
           <p class="field-hint">Excerpt or paraphrase. Include a section reference if available.</p>
           <textarea id="t1-keylang" rows="3" placeholder="Quote or paraphrase the most revealing language in the document." oninput="save()"></textarea>
           <p class="field-label">Four-Step Analysis</p>
           <div class="step-fields">
             <div class="step-field-item">
-              <p class="field-label"><span class="step-badge-sm">1</span> Identify the genre</p>
+              <label class="field-label" for="t1-s1"><span class="step-badge-sm">1</span> Identify the genre</label>
               <textarea id="t1-s1" rows="3" placeholder="What type of document is this? Who issued it, and in what institutional capacity?" oninput="save()"></textarea>
             </div>
             <div class="step-field-item">
-              <p class="field-label"><span class="step-badge-sm">2</span> Locate the glitch</p>
+              <label class="field-label" for="t1-s2"><span class="step-badge-sm">2</span> Locate the glitch</label>
               <textarea id="t1-s2" rows="3" placeholder="Where does the document strain, contradict itself, or hedge where it claims to govern?" oninput="save()"></textarea>
             </div>
             <div class="step-field-item">
-              <p class="field-label"><span class="step-badge-sm">3</span> Read the reveal</p>
+              <label class="field-label" for="t1-s3"><span class="step-badge-sm">3</span> Read the reveal</label>
               <textarea id="t1-s3" rows="3" placeholder="What does the glitch expose about what the institution values, fears, or cannot resolve?" oninput="save()"></textarea>
             </div>
             <div class="step-field-item">
-              <p class="field-label"><span class="step-badge-sm">4</span> Name the abstraction</p>
+              <label class="field-label" for="t1-s4"><span class="step-badge-sm">4</span> Name the abstraction</label>
               <textarea id="t1-s4" rows="3" placeholder="What general claim about AI governance does this document support?" oninput="save()"></textarea>
             </div>
           </div>
           <p class="field-label">Three-Level Literacy Read</p>
           <div class="level-fields">
             <div class="level-field-c">
-              <p class="field-label">Conceptual</p>
+              <label class="field-label" for="t1-l1">Conceptual</label>
               <textarea id="t1-l1" rows="4" placeholder="What AI does this policy name? What terms does it use, and what do those terms assume?" oninput="save()"></textarea>
             </div>
             <div class="level-field-s">
-              <p class="field-label">Structural</p>
+              <label class="field-label" for="t1-l2">Structural</label>
               <textarea id="t1-l2" rows="4" placeholder="Whose interests does this governance structure serve? Who authored it, and under what institutional pressures?" oninput="save()"></textarea>
             </div>
             <div class="level-field-o">
-              <p class="field-label">Operative</p>
+              <label class="field-label" for="t1-l3">Operative</label>
               <textarea id="t1-l3" rows="4" placeholder="What operative choices does this policy ask faculty and students to make? What judgment does it cultivate or foreclose?" oninput="save()"></textarea>
             </div>
           </div>
-          <p class="field-label">Discussion notes / what surprised you</p>
+          <label class="field-label" for="t1-notes">Discussion notes / what surprised you</label>
           <textarea id="t1-notes" rows="3" placeholder="What was most surprising, contradictory, or analytically useful about this document?" oninput="save()"></textarea>
         </div>
       </div>
@@ -1131,27 +1135,27 @@
         <div class="template-card-header"><h4>Template 2</h4><button onclick="clearTemplate(2)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
-            <div class="meta-field"><label>Institution</label><input type="text" id="t2-institution" placeholder="Institution" oninput="save()"></div>
-            <div class="meta-field"><label>Document type</label><input type="text" id="t2-doctype" placeholder="Document type" oninput="save()"></div>
-            <div class="meta-field"><label>Date / Wave</label><input type="text" id="t2-date" placeholder="Date / Wave" oninput="save()"></div>
-            <div class="meta-field"><label>Policy stance</label><input type="text" id="t2-stance" placeholder="Stance" oninput="save()"></div>
+            <div class="meta-field"><label for="t2-institution">Institution</label><input type="text" id="t2-institution" placeholder="Institution" oninput="save()"></div>
+            <div class="meta-field"><label for="t2-doctype">Document type</label><input type="text" id="t2-doctype" placeholder="Document type" oninput="save()"></div>
+            <div class="meta-field"><label for="t2-date">Date / Wave</label><input type="text" id="t2-date" placeholder="Date / Wave" oninput="save()"></div>
+            <div class="meta-field"><label for="t2-stance">Policy stance</label><input type="text" id="t2-stance" placeholder="Stance" oninput="save()"></div>
           </div>
-          <p class="field-label">Key language</p>
+          <label class="field-label" for="t2-keylang">Key language</label>
           <textarea id="t2-keylang" rows="3" placeholder="Quote or paraphrase the most revealing language in the document." oninput="save()"></textarea>
           <p class="field-label">Four-Step Analysis</p>
           <div class="step-fields">
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">1</span> Identify the genre</p><textarea id="t2-s1" rows="3" placeholder="What type of document is this?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">2</span> Locate the glitch</p><textarea id="t2-s2" rows="3" placeholder="Where does the document hedge or contradict itself?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">3</span> Read the reveal</p><textarea id="t2-s3" rows="3" placeholder="What does the glitch expose?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">4</span> Name the abstraction</p><textarea id="t2-s4" rows="3" placeholder="What general claim does this support?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t2-s1"><span class="step-badge-sm">1</span> Identify the genre</label><textarea id="t2-s1" rows="3" placeholder="What type of document is this?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t2-s2"><span class="step-badge-sm">2</span> Locate the glitch</label><textarea id="t2-s2" rows="3" placeholder="Where does the document hedge or contradict itself?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t2-s3"><span class="step-badge-sm">3</span> Read the reveal</label><textarea id="t2-s3" rows="3" placeholder="What does the glitch expose?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t2-s4"><span class="step-badge-sm">4</span> Name the abstraction</label><textarea id="t2-s4" rows="3" placeholder="What general claim does this support?" oninput="save()"></textarea></div>
           </div>
           <p class="field-label">Three-Level Literacy Read</p>
           <div class="level-fields">
-            <div class="level-field-c"><p class="field-label">Conceptual</p><textarea id="t2-l1" rows="4" placeholder="Naming and recognition..." oninput="save()"></textarea></div>
-            <div class="level-field-s"><p class="field-label">Structural</p><textarea id="t2-l2" rows="4" placeholder="Power and interests..." oninput="save()"></textarea></div>
-            <div class="level-field-o"><p class="field-label">Operative</p><textarea id="t2-l3" rows="4" placeholder="Judgment and practice..." oninput="save()"></textarea></div>
+            <div class="level-field-c"><label class="field-label" for="t2-l1">Conceptual</label><textarea id="t2-l1" rows="4" placeholder="Naming and recognition..." oninput="save()"></textarea></div>
+            <div class="level-field-s"><label class="field-label" for="t2-l2">Structural</label><textarea id="t2-l2" rows="4" placeholder="Power and interests..." oninput="save()"></textarea></div>
+            <div class="level-field-o"><label class="field-label" for="t2-l3">Operative</label><textarea id="t2-l3" rows="4" placeholder="Judgment and practice..." oninput="save()"></textarea></div>
           </div>
-          <p class="field-label">Discussion notes / what surprised you</p>
+          <label class="field-label" for="t2-notes">Discussion notes / what surprised you</label>
           <textarea id="t2-notes" rows="3" placeholder="What was most analytically useful about this document?" oninput="save()"></textarea>
         </div>
       </div>
@@ -1161,27 +1165,27 @@
         <div class="template-card-header"><h4>Template 3</h4><button onclick="clearTemplate(3)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
-            <div class="meta-field"><label>Institution</label><input type="text" id="t3-institution" placeholder="Institution" oninput="save()"></div>
-            <div class="meta-field"><label>Document type</label><input type="text" id="t3-doctype" placeholder="Document type" oninput="save()"></div>
-            <div class="meta-field"><label>Date / Wave</label><input type="text" id="t3-date" placeholder="Date / Wave" oninput="save()"></div>
-            <div class="meta-field"><label>Policy stance</label><input type="text" id="t3-stance" placeholder="Stance" oninput="save()"></div>
+            <div class="meta-field"><label for="t3-institution">Institution</label><input type="text" id="t3-institution" placeholder="Institution" oninput="save()"></div>
+            <div class="meta-field"><label for="t3-doctype">Document type</label><input type="text" id="t3-doctype" placeholder="Document type" oninput="save()"></div>
+            <div class="meta-field"><label for="t3-date">Date / Wave</label><input type="text" id="t3-date" placeholder="Date / Wave" oninput="save()"></div>
+            <div class="meta-field"><label for="t3-stance">Policy stance</label><input type="text" id="t3-stance" placeholder="Stance" oninput="save()"></div>
           </div>
-          <p class="field-label">Key language</p>
+          <label class="field-label" for="t3-keylang">Key language</label>
           <textarea id="t3-keylang" rows="3" placeholder="Quote or paraphrase the most revealing language in the document." oninput="save()"></textarea>
           <p class="field-label">Four-Step Analysis</p>
           <div class="step-fields">
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">1</span> Identify the genre</p><textarea id="t3-s1" rows="3" placeholder="What type of document is this?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">2</span> Locate the glitch</p><textarea id="t3-s2" rows="3" placeholder="Where does the document hedge or contradict itself?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">3</span> Read the reveal</p><textarea id="t3-s3" rows="3" placeholder="What does the glitch expose?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">4</span> Name the abstraction</p><textarea id="t3-s4" rows="3" placeholder="What general claim does this support?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t3-s1"><span class="step-badge-sm">1</span> Identify the genre</label><textarea id="t3-s1" rows="3" placeholder="What type of document is this?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t3-s2"><span class="step-badge-sm">2</span> Locate the glitch</label><textarea id="t3-s2" rows="3" placeholder="Where does the document hedge or contradict itself?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t3-s3"><span class="step-badge-sm">3</span> Read the reveal</label><textarea id="t3-s3" rows="3" placeholder="What does the glitch expose?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t3-s4"><span class="step-badge-sm">4</span> Name the abstraction</label><textarea id="t3-s4" rows="3" placeholder="What general claim does this support?" oninput="save()"></textarea></div>
           </div>
           <p class="field-label">Three-Level Literacy Read</p>
           <div class="level-fields">
-            <div class="level-field-c"><p class="field-label">Conceptual</p><textarea id="t3-l1" rows="4" placeholder="Naming and recognition..." oninput="save()"></textarea></div>
-            <div class="level-field-s"><p class="field-label">Structural</p><textarea id="t3-l2" rows="4" placeholder="Power and interests..." oninput="save()"></textarea></div>
-            <div class="level-field-o"><p class="field-label">Operative</p><textarea id="t3-l3" rows="4" placeholder="Judgment and practice..." oninput="save()"></textarea></div>
+            <div class="level-field-c"><label class="field-label" for="t3-l1">Conceptual</label><textarea id="t3-l1" rows="4" placeholder="Naming and recognition..." oninput="save()"></textarea></div>
+            <div class="level-field-s"><label class="field-label" for="t3-l2">Structural</label><textarea id="t3-l2" rows="4" placeholder="Power and interests..." oninput="save()"></textarea></div>
+            <div class="level-field-o"><label class="field-label" for="t3-l3">Operative</label><textarea id="t3-l3" rows="4" placeholder="Judgment and practice..." oninput="save()"></textarea></div>
           </div>
-          <p class="field-label">Discussion notes / what surprised you</p>
+          <label class="field-label" for="t3-notes">Discussion notes / what surprised you</label>
           <textarea id="t3-notes" rows="3" placeholder="What was most analytically useful about this document?" oninput="save()"></textarea>
         </div>
       </div>
@@ -1191,27 +1195,27 @@
         <div class="template-card-header"><h4>Template 4</h4><button onclick="clearTemplate(4)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
-            <div class="meta-field"><label>Institution</label><input type="text" id="t4-institution" placeholder="Institution" oninput="save()"></div>
-            <div class="meta-field"><label>Document type</label><input type="text" id="t4-doctype" placeholder="Document type" oninput="save()"></div>
-            <div class="meta-field"><label>Date / Wave</label><input type="text" id="t4-date" placeholder="Date / Wave" oninput="save()"></div>
-            <div class="meta-field"><label>Policy stance</label><input type="text" id="t4-stance" placeholder="Stance" oninput="save()"></div>
+            <div class="meta-field"><label for="t4-institution">Institution</label><input type="text" id="t4-institution" placeholder="Institution" oninput="save()"></div>
+            <div class="meta-field"><label for="t4-doctype">Document type</label><input type="text" id="t4-doctype" placeholder="Document type" oninput="save()"></div>
+            <div class="meta-field"><label for="t4-date">Date / Wave</label><input type="text" id="t4-date" placeholder="Date / Wave" oninput="save()"></div>
+            <div class="meta-field"><label for="t4-stance">Policy stance</label><input type="text" id="t4-stance" placeholder="Stance" oninput="save()"></div>
           </div>
-          <p class="field-label">Key language</p>
+          <label class="field-label" for="t4-keylang">Key language</label>
           <textarea id="t4-keylang" rows="3" placeholder="Quote or paraphrase the most revealing language in the document." oninput="save()"></textarea>
           <p class="field-label">Four-Step Analysis</p>
           <div class="step-fields">
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">1</span> Identify the genre</p><textarea id="t4-s1" rows="3" placeholder="What type of document is this?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">2</span> Locate the glitch</p><textarea id="t4-s2" rows="3" placeholder="Where does the document hedge or contradict itself?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">3</span> Read the reveal</p><textarea id="t4-s3" rows="3" placeholder="What does the glitch expose?" oninput="save()"></textarea></div>
-            <div class="step-field-item"><p class="field-label"><span class="step-badge-sm">4</span> Name the abstraction</p><textarea id="t4-s4" rows="3" placeholder="What general claim does this support?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t4-s1"><span class="step-badge-sm">1</span> Identify the genre</label><textarea id="t4-s1" rows="3" placeholder="What type of document is this?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t4-s2"><span class="step-badge-sm">2</span> Locate the glitch</label><textarea id="t4-s2" rows="3" placeholder="Where does the document hedge or contradict itself?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t4-s3"><span class="step-badge-sm">3</span> Read the reveal</label><textarea id="t4-s3" rows="3" placeholder="What does the glitch expose?" oninput="save()"></textarea></div>
+            <div class="step-field-item"><label class="field-label" for="t4-s4"><span class="step-badge-sm">4</span> Name the abstraction</label><textarea id="t4-s4" rows="3" placeholder="What general claim does this support?" oninput="save()"></textarea></div>
           </div>
           <p class="field-label">Three-Level Literacy Read</p>
           <div class="level-fields">
-            <div class="level-field-c"><p class="field-label">Conceptual</p><textarea id="t4-l1" rows="4" placeholder="Naming and recognition..." oninput="save()"></textarea></div>
-            <div class="level-field-s"><p class="field-label">Structural</p><textarea id="t4-l2" rows="4" placeholder="Power and interests..." oninput="save()"></textarea></div>
-            <div class="level-field-o"><p class="field-label">Operative</p><textarea id="t4-l3" rows="4" placeholder="Judgment and practice..." oninput="save()"></textarea></div>
+            <div class="level-field-c"><label class="field-label" for="t4-l1">Conceptual</label><textarea id="t4-l1" rows="4" placeholder="Naming and recognition..." oninput="save()"></textarea></div>
+            <div class="level-field-s"><label class="field-label" for="t4-l2">Structural</label><textarea id="t4-l2" rows="4" placeholder="Power and interests..." oninput="save()"></textarea></div>
+            <div class="level-field-o"><label class="field-label" for="t4-l3">Operative</label><textarea id="t4-l3" rows="4" placeholder="Judgment and practice..." oninput="save()"></textarea></div>
           </div>
-          <p class="field-label">Discussion notes / what surprised you</p>
+          <label class="field-label" for="t4-notes">Discussion notes / what surprised you</label>
           <textarea id="t4-notes" rows="3" placeholder="What was most analytically useful about this document?" oninput="save()"></textarea>
         </div>
       </div>
@@ -1246,7 +1250,7 @@
             <button class="btn-download" onclick="downloadPolicyPDF('p4-course', 'Course-Level: Syllabus Statement')">Print or save as PDF</button>
           </div>
         </div>
-        <textarea id="p4-course" class="policy-draft-area" rows="12" oninput="save()">In this course, I understand AI-generated text to mean [any output produced by a generative AI system, including large language models, image generators, and code assistants, when that output is submitted as your own work without attribution].
+        <textarea aria-label="Course-level policy draft" id="p4-course" class="policy-draft-area" rows="12" oninput="save()">In this course, I understand AI-generated text to mean [any output produced by a generative AI system, including large language models, image generators, and code assistants, when that output is submitted as your own work without attribution].
 
 AI tools [are / are not] permitted for [specific tasks: e.g., brainstorming, outlining, coding assistance, translation]. They [are / are not] permitted for [specific tasks: e.g., drafting, revision, final submission].
 
@@ -1268,7 +1272,7 @@ This policy is in effect for [semester/year]. I will notify you of any changes. 
             <button class="btn-download" onclick="downloadPolicyPDF('p4-program', 'Program-Level: Shared Governance Statement')">Print or save as PDF</button>
           </div>
         </div>
-        <textarea id="p4-program" class="policy-draft-area" rows="12" oninput="save()">The [program name] holds that the communication skills central to [disciplinary practice: e.g., engineering writing, clinical documentation, policy analysis] require [describe the specific human judgment the discipline values: e.g., evidence-based reasoning, rhetorical awareness, contextual decision-making] that AI tools do not reliably produce or assess.
+        <textarea aria-label="Program-level policy draft" id="p4-program" class="policy-draft-area" rows="12" oninput="save()">The [program name] holds that the communication skills central to [disciplinary practice: e.g., engineering writing, clinical documentation, policy analysis] require [describe the specific human judgment the discipline values: e.g., evidence-based reasoning, rhetorical awareness, contextual decision-making] that AI tools do not reliably produce or assess.
 
 AI tools may be used for [program-level permissions: e.g., literature search, data formatting, accessibility support] across all [program name] courses. Their use for [program-level restrictions: e.g., drafting, analysis, argument construction] requires instructor authorization and student disclosure.
 
@@ -1290,7 +1294,7 @@ This statement reflects program consensus as of [date]. It will be reviewed at [
             <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Department-Level: Institutional Governance Framework')">Print or save as PDF</button>
           </div>
         </div>
-        <textarea id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department name] adopts the following framework for AI use across its courses and programs, effective [date].
+        <textarea aria-label="Department-level policy draft" id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department name] adopts the following framework for AI use across its courses and programs, effective [date].
 
 Scope: This framework applies to [describe scope: e.g., all undergraduate courses, graduate seminars, faculty research outputs submitted under department auspices].
 
