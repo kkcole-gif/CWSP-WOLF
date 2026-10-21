@@ -73,6 +73,14 @@
   .steps-inner { max-width: 900px; margin: 0 auto; padding: 0.45rem 1.5rem; }
   .decision-line { font-size: 12.5px; margin-bottom: 0.25rem; }
   .decision-line b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; margin-right: 0.35rem; }
+  .where { font-size: 15px; margin: 0 0 0.2rem; }
+  .where b { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 0.35rem; font-weight: 700; }
+  .where .code { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; }
+  .levels-line { display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; font-size: 12.5px; margin: 0; }
+  .levels-line .lv { color: #6B5A58; }
+  .levels-line .lv .sw { opacity: 0.45; }
+  .levels-line .lv.now { color: var(--umber); font-weight: 700; }
+  .levels-line .lv.now .sw, .levels-line .lv.past .sw { opacity: 1; }
   .steps ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
   .steps li { font-size: 13px; padding: 0.2rem 0.55rem; border-bottom: 2px solid transparent; color: var(--umber); }
   .steps li.done { color: var(--dred); }
@@ -83,8 +91,8 @@
   .screen { max-width: 900px; }
   .screen[hidden] { display: none; }
   .screen h2 { font-family: var(--serif); font-size: 1.6rem; line-height: 1.3; color: var(--umber); margin: 0.4rem 0 1rem; scroll-margin-top: 1rem; }
-  .screen .passage-no { scroll-margin-top: 7.5rem; }
-  @media (max-width: 480px) { .screen .passage-no { scroll-margin-top: 9rem; } }
+  .screen .passage-no { scroll-margin-top: 6rem; }
+  @media (max-width: 480px) { .screen .passage-no { scroll-margin-top: 7rem; } }
   .screen h2:focus { outline: none; }
   .screen h2:focus-visible { outline: 3px solid var(--dteal); outline-offset: 4px; }
   .screen h3 { font-family: var(--serif); font-size: 1.2rem; margin: 1.6rem 0 0.6rem; }
@@ -332,19 +340,17 @@
 
 <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">WOLF</a><span aria-hidden="true">›</span><a href="ai-literacies.html">AI Literacies</a><span aria-hidden="true">›</span><a href="ai_literacy_unified.html">Framework</a><span aria-hidden="true">›</span><span aria-current="page">Practice Adventure (beta)</span></nav>
 
-<nav class="steps" aria-label="Your progress">
+<div class="steps" role="status" aria-live="polite" aria-atomic="true">
   <div class="steps-inner">
-    <ol id="step-list">
-      <li data-step="opening">Opening</li>
-      <li data-step="describe">Describe</li>
-      <li data-step="analyze">Analyze</li>
-      <li data-step="decide">Decide</li>
-      <li data-step="statement">Statement</li>
-      <li data-step="feedback">Feedback</li>
-    </ol>
-    <div class="trail" id="trail-wrap" hidden><b>Your path</b><ol id="trail"></ol></div>
+    <p class="where" id="where"><b>You are at</b> <span id="where-text"></span></p>
+    <p class="levels-line" aria-hidden="true">
+      <span class="lv" data-lv="1"><span class="sw l1"></span>1 Describe</span>
+      <span class="lv" data-lv="2"><span class="sw l2"></span>2 Analyze</span>
+      <span class="lv" data-lv="3"><span class="sw l3"></span>3 Decide</span>
+      <span class="lv" data-lv="4"><span class="sw l0"></span>4 Statement</span>
+    </p>
   </div>
-</nav>
+</div>
 
 <div id="announcer" class="sr-only" aria-live="polite"></div>
 
@@ -890,7 +896,7 @@
 
   /* Addresses name the level: 1 Describe, 2 Analyze, 3 Decide, 4 the statement. Letters mark the passages inside a level. */
   var BOOK = [
-    ['opening',       'Start', 'Cover',                  0],
+    ['opening',       'Cover', 'Where the book opens',   0],
     ['premise',       '1',     'Tuesday, 11:40 p.m.',    1],
     ['cp1',           '1a',    'Name the use',           1],
     ['cp1-no',        '1b',    'No sentence yet',        1],
@@ -909,7 +915,7 @@
   ];
   var PASSAGE = {}, NAME = {}, LEVEL = {}, BY_NUMBER = {};
   BOOK.forEach(function (r) { PASSAGE[r[0]] = r[1]; NAME[r[0]] = r[2]; LEVEL[r[0]] = r[3]; BY_NUMBER[r[1].toLowerCase()] = r[0]; });
-  BY_NUMBER['one-page'] = 'quick';
+  BY_NUMBER['one-page'] = 'quick'; BY_NUMBER['start'] = 'opening';
   function turnLabel(name) {
     return '<span class="sw l' + LEVEL[name] + '" aria-hidden="true"></span>Turn to ' + PASSAGE[name] + ' <span class="tname">\u00b7 ' + NAME[name] + '</span>';
   }
@@ -928,7 +934,7 @@
   };
 
   var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
-  var stepItems = Array.prototype.slice.call(document.querySelectorAll('#step-list li'));
+
   var announcer = document.getElementById('announcer');
   var current = null;
 
@@ -964,7 +970,7 @@
   /* ── Passage numbers, turn labels, "What do you do?" ── */
   screens.forEach(function (s) {
     var n = PASSAGE[s.getAttribute('data-screen')];
-    if (n == null) return;
+    if (n == null || s.getAttribute('data-screen') === 'opening') return;
     var num = document.createElement('p');
     var sname = s.getAttribute('data-screen');
     num.className = 'passage-no l' + LEVEL[sname]; num.setAttribute('aria-hidden', 'true');
@@ -1042,21 +1048,22 @@
   });
 
   /* ── Trail and map ── */
-  function drawTrail() {
-    var list = document.getElementById('trail');
-    list.innerHTML = '';
-    var names = state.route.filter(function (n) { return PASSAGE[n] != null; });
-    var nums = names.map(function (n) { return PASSAGE[n]; });
-    var shown = names.slice(-4);
-    if (nums.length > 4) {
-      var more = document.createElement('li'); more.className = 'more'; more.textContent = '…'; list.appendChild(more);
-    }
-    shown.forEach(function (n) { var li = document.createElement('li'); li.innerHTML = '<span class="sw l' + LEVEL[n] + '" aria-hidden="true"></span>' + PASSAGE[n]; li.setAttribute('aria-label', PASSAGE[n] + ', ' + NAME[n]); list.appendChild(li); });
-    if (nums.length > 4) {
-      var count = document.createElement('li'); count.className = 'more'; count.textContent = '(' + nums.length + ' moves)'; list.appendChild(count);
-    }
-    document.getElementById('trail-wrap').hidden = nums.length < 2;
+  function drawWhere(name) {
+    var w = document.getElementById('where-text');
+    var lvl = LEVEL[name] != null ? LEVEL[name] : 0;
+    var stage = name === 'statement' ? 4 : lvl;
+    if (name === 'quick') { w.textContent = 'the one-page version, all three levels'; stage = 0; }
+    else if (name === 'opening') { w.textContent = 'the cover'; }
+    else if (name === 'feedback') { w.textContent = 'the end, beta feedback'; stage = 5; }
+    else { w.innerHTML = '<span class="sw l' + lvl + '" aria-hidden="true"></span><span class="code">' + PASSAGE[name] + '</span> \u00b7 ' + NAME[name] + (lvl ? ', the ' + ['', 'Describe', 'Analyze', 'Decide'][lvl] + ' level' : ''); }
+    Array.prototype.forEach.call(document.querySelectorAll('.levels-line .lv'), function (el) {
+      var n = Number(el.getAttribute('data-lv'));
+      el.classList.toggle('now', n === stage);
+      el.classList.toggle('past', n < stage);
+    });
   }
+  function routeNames() { return state.route.filter(function (n) { return PASSAGE[n] != null && n !== 'opening'; }); }
+  function drawTrail() { /* the path now lives on the statement passage only */ }
   function drawMap() {
     var list = document.getElementById('book-map');
     list.innerHTML = '';
@@ -1073,7 +1080,7 @@
     });
     document.getElementById('map-key').textContent = 'You read ' + read + ' of ' + BOOK.length +
       ' passages. Filled passages are your path, in the color of their level. The dashed ones hold the roads you didn’t take, and every one is open to read. Your statement stays as you wrote it unless you change an answer.';
-    document.getElementById('full-path').textContent = 'Your full path: ' + state.route.filter(function (n) { return PASSAGE[n] != null; }).map(function (n) { return PASSAGE[n]; }).join(' → ');
+    document.getElementById('full-path').textContent = 'Your path: ' + routeNames().map(function (n) { return PASSAGE[n]; }).join(' → ');
   }
 
   /* ── Showing a passage ── */
@@ -1085,11 +1092,7 @@
     screens.forEach(function (s) { s.hidden = (s !== target); });
     current = name;
 
-    var idx = STEP_ORDER.indexOf(target.getAttribute('data-step'));
-    stepItems.forEach(function (li, i) {
-      li.classList.toggle('done', i < idx);
-      if (i === idx) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
-    });
+    drawWhere(name);
 
     if (state.route[state.route.length - 1] !== name) state.route.push(name);
     fillEchoes();
@@ -1362,7 +1365,7 @@
       role: val('fb-role'), device: val('fb-device'), stall: val('fb-stall'), next: val('fb-next'), made: val('fb-made'),
       postures: val('fb-postures'), statement: val('fb-statement'), other: val('fb-other') };
     if (document.getElementById('fb-route-ok').checked) {
-      data.route = state.route.filter(function (n) { return PASSAGE[n] != null; }).map(function (n) { return PASSAGE[n] + ' ' + n; }).join(' > ');
+      data.route = routeNames().map(function (n) { return PASSAGE[n] + ' ' + n; }).join(' > ');
       data.finding = state.finding || ''; data.outcome = state.outcome || '';
     }
     return data;
