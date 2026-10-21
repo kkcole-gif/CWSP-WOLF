@@ -130,8 +130,9 @@
     <p class="sidebar-part">Your progress</p>
     <div class="progress-bar"><span id="progress-label">0%</span><span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span></div>
     <button type="button" class="btn-sidebar" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
-    <button type="button" class="btn-sidebar" onclick="window.print()">Print or save as PDF</button>
-    <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. The emailed link opens it on any computer.</p>
+    <button type="button" class="btn-sidebar" onclick="window.print()">Download as PDF, or print</button>
+    <button type="button" class="btn-sidebar" onclick="downloadAnswers()">Download my answers (Word)</button>
+    <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. The emailed link opens it on any computer. For a PDF, choose "Save as PDF" as the destination in the print dialog.</p>
   </div>
   <nav aria-label="Workbook navigation">
     <p class="sidebar-part">Start</p>
@@ -735,6 +736,28 @@ function previewWSCP() {
   if (val('f-2-9-outcomes') || val('f-2-9-where') || val('f-2-9-policy')) h += '<h5>Part 5 · AI literacy integration</h5>' + para('AI literacy outcomes', 'f-2-9-outcomes') + para('Where they appear in the map', 'f-2-9-where') + para('AI policy stance for courses', 'f-2-9-policy');
   h += '<h5>Approval</h5><table><tbody><tr><th>Approved by</th><td>' + esc(val('f-2-10-approver')) + '</td></tr><tr><th>Date approved</th><td>' + esc(val('f-2-10-approved')) + '</td></tr><tr><th>CWSP review completed by</th><td>' + esc(val('f-2-10-cwsp-review')) + '</td></tr><tr><th>Next scheduled review</th><td>' + esc(val('f-2-10-next')) + '</td></tr></tbody></table>';
   const box = document.getElementById('wscp-preview'); box.innerHTML = h; box.hidden = false; box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+/* A Word-compatible file of every answer, labeled, built in the browser with nothing sent anywhere. */
+function downloadAnswers() {
+  const dept = val('s0-department') || 'WOLF Workbook';
+  const when = new Date().toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' });
+  let h = '<h1>WOLF Workbook</h1><p><i>' + esc(dept) + ' · ' + esc(val('p-name')) + ' · ' + when + '</i></p>';
+  let current = '';
+  workFields().forEach(el => {
+    const v = el.type === 'checkbox' ? (el.checked ? 'Yes' : '') : (el.value || '').trim();
+    if (!v) return;
+    const block = el.closest('.activity');
+    const h2 = block ? (block.closest('main') ? [...document.querySelectorAll('main h2')].reverse().find(x => x.compareDocumentPosition(block) & Node.DOCUMENT_POSITION_FOLLOWING) : null) : null;
+    const sec = (h2 ? h2.textContent.trim() : 'Start') + (block && block.querySelector('h3') ? ' · ' + block.querySelector('h3').textContent.trim() : '');
+    if (sec !== current) { current = sec; h += '<h2>' + esc(sec) + '</h2>'; }
+    const lab = document.querySelector('label[for="' + el.id + '"]');
+    h += '<h3>' + esc(lab ? lab.textContent.replace(/\*$/, '').trim() : el.id) + '</h3><p>' + esc(v).replace(/\n/g, '<br>') + '</p>';
+  });
+  const doc = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>WOLF Workbook</title><style>body{font-family:Georgia,serif;font-size:12pt;line-height:1.5}h1{font-size:20pt}h2{font-size:14pt;color:#990000;margin-top:18pt}h3{font-size:11pt;font-family:Arial,sans-serif;margin:10pt 0 2pt}</style></head><body>' + h + '</body></html>';
+  const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'WOLF Workbook - ' + dept.replace(/[^\w\s-]/g, '').trim() + '.doc';
+  document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
 }
 /* Sidebar: current section */
 function updateSidebar() {
