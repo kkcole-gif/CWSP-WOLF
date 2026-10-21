@@ -17,6 +17,11 @@
  *      date, certificate, component, Unity ID, fields completed, fields total, Doc link,
  *      copy sent. The "Counts" tab totals the log by component with no identifiers.
  *
+ * WOLF Workbook (wolf-workbook.html) uses the same pipeline. Its submissions arrive as module
+ * 'wolf-stage1', 'wolf-stage2', 'wolf-stage3' and file under a "WOLF" folder for the liaison, one
+ * Doc per stage, with every response listed under its activity (no layout yet; Stage 2 will add a
+ * WSCP layout so the curriculum plan comes out as a document the chair can sign).
+ *
  * Saved drafts ("Save and email me a link" on each workbook):
  *   doPost sends payloads with action 'save_draft' to C2TC_saveDraft, which stores the
  *   draft as a JSON file in the participant's folder, records it on the "Drafts" tab,
@@ -92,11 +97,13 @@ function C2TC_component_(module) {
   var m = module.toLowerCase();
   var certificate = /^dc-/.test(m) ? 'Digital Certificate'
                   : /^(wc|written)-/.test(m) ? 'Written Certificate'
+                  : /^wolf/.test(m) ? 'WOLF'
                   : 'Other';
   var n = (m.match(/(\d+)$/) || [])[1] || '';
   var component = /capstone/.test(m) ? 'Capstone'
                 : /elective/.test(m) ? 'Elective ' + n
                 : /module/.test(m) ? 'Module ' + n
+                : /^wolf-stage/.test(m) ? 'Stage ' + n
                 : module;
   return { certificate: certificate, component: component };
 }
