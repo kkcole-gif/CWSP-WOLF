@@ -136,16 +136,16 @@ textarea { min-height: 120px; resize: vertical; }
 
     <div class="checkbox-row">
       <input type="checkbox" id="repo-capstone">
-      <label for="repo-capstone">I would like to contribute my capstone to the C²TC faculty repository. I understand CWSP will review it before posting and will credit me unless I ask otherwise.</label>
+      <label for="repo-capstone">Yes, share my capstone with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
     </div>
 
     <button class="btn" id="cert-btn" onclick="submitCapstone()">Submit capstone</button>
-    <div class="msg" id="cap-success" role="status"><strong>Sent.</strong> CWSP will review your capstone and email your certificate once it is approved. Your responses also stay saved in this browser. If you have not heard from CWSP within two weeks, email kkcole2@ncsu.edu.</div>
+    <div class="msg" id="cap-success" role="status"><strong>Submitted.</strong> A copy of your capstone comes to your NC State email within a few minutes. CWSP will review it and email your certificate once it is approved. Your responses also stay saved in this browser. If you have not heard from CWSP within two weeks, email kkcole2@ncsu.edu.</div>
     <div class="msg" id="cap-error" role="alert">The submission did not go through. Your responses are still saved in this browser. Try again, or email your capstone to kkcole2@ncsu.edu with the subject "C²TC Capstone Submission."</div>
   </section>
 </main>
 
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>
 const MODULE = 'dc-module3';
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
@@ -196,7 +196,7 @@ function submitCapstone() {
     .then(() => {
       document.getElementById('cap-success').style.display = 'block';
       document.getElementById('cap-error').style.display = 'none';
-      btn.textContent = 'Sent';
+      btn.textContent = 'Submitted';
       store(KEY + 'submitted', new Date().toISOString());
     })
     .catch(() => {

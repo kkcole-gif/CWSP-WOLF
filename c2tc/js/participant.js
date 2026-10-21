@@ -40,7 +40,18 @@
       'textarea.needs-answer{border-color:#990000;box-shadow:0 0 0 2px rgba(153,0,0,.15)}' +
       '.required-note{color:#990000;font-size:.88rem;margin:.5rem 0 1rem}' +
       '.certificate-submit .required-note{color:#ffb4b4}' +
-      '.req-mark{color:#990000;font-weight:700;margin-left:.2rem}';
+      '.req-mark{color:#990000;font-weight:700;margin-left:.2rem}' +
+      '.top-bar .btn-save{color:#fff;background:transparent;border:1px solid #9a9a9a;white-space:nowrap}' +
+      '.top-bar .btn-save:hover,.top-bar .btn-save:focus{border-color:#fff;color:#fff}' +
+      '.sidebar-save .side-id{display:grid;gap:.2rem;margin:.25rem .25rem .6rem}' +
+      '.sidebar-save .side-id label{font-size:.72rem;font-weight:600;color:#3a3a3a}' +
+      '.sidebar-save .side-id input{font:inherit;font-size:.8rem;padding:.35rem .45rem;border:1px solid #bbb;border-radius:3px;width:100%}' +
+      '.sidebar-save .side-hint{font-size:.72rem;color:#5a5a5a;margin:.5rem .25rem 0;line-height:1.35}' +
+      '.sidebar-save .btn-clear{background:none;border:0;padding:0;margin:.5rem .25rem 0;font:inherit;font-size:.72rem;color:#5a5a5a;text-decoration:underline;cursor:pointer}' +
+      '.c2tc-toast{position:fixed;left:50%;transform:translateX(-50%);top:64px;z-index:200;max-width:34rem;width:calc(100% - 2rem);background:#fff;border:1px solid #990000;border-left:5px solid #990000;border-radius:3px;box-shadow:0 4px 18px rgba(0,0,0,.18);padding:.75rem 2.4rem .75rem 1rem;font-size:.9rem;color:#1a1a1a;line-height:1.45}' +
+      '.c2tc-toast button{position:absolute;top:.35rem;right:.5rem;background:none;border:0;font-size:1.2rem;line-height:1;cursor:pointer;color:#5a5a5a}' +
+      '.builder-empty{border-color:#990000 !important;box-shadow:0 0 0 2px rgba(153,0,0,.15)}' +
+      '.builder-note{color:#990000;font-size:.88rem;margin:.5rem 0}';
     var el = document.createElement('style');
     el.textContent = css;
     document.head.appendChild(el);
@@ -62,7 +73,82 @@
     if (e && !e.value) e.value = get(KEY_EMAIL);
     if (n) n.addEventListener('input', function () { set(KEY_NAME, n.value.trim()); });
     if (e) e.addEventListener('input', function () { set(KEY_EMAIL, e.value.trim()); });
+    syncSidebarIdentity();
+    fixSaveButton();
+    guardPreviews();
     restoreFromLink();
+  }
+
+  function visible(el) { return !!(el && el.offsetParent !== null); }
+  function stamp() { return new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+
+  /* A message pinned under the top bar, so it shows wherever the reader is on the page. */
+  function toast(text) {
+    var t = document.querySelector('.c2tc-toast');
+    if (!t) {
+      t = document.createElement('div');
+      t.className = 'c2tc-toast';
+      t.setAttribute('role', 'alert');
+      t.innerHTML = '<span></span><button type="button" aria-label="Close message">×</button>';
+      t.querySelector('button').addEventListener('click', function () { t.hidden = true; });
+      document.body.appendChild(t);
+    }
+    t.querySelector('span').textContent = text;
+    t.hidden = false;
+  }
+
+  /* The top-bar Save button. Work already saves to this browser as the participant types,
+     so the button confirms that save with a time rather than doing anything new. */
+  function fixSaveButton() {
+    var btn = document.querySelector('.top-bar .btn-save');
+    if (!btn && typeof window.saveAll === 'function') {
+      var wrap = document.querySelector('.top-bar .progress-wrap');
+      if (wrap) {
+        btn = document.createElement('button');
+        btn.className = 'btn-save';
+        wrap.appendChild(btn);
+      }
+    }
+    if (!btn) return;
+    btn.type = 'button';
+    btn.removeAttribute('onclick');
+    btn.textContent = 'Save';
+    btn.title = 'Your work saves in this browser as you type';
+    btn.addEventListener('click', function () {
+      try { if (typeof window.saveAll === 'function') window.saveAll(); } catch (err) {}
+      btn.textContent = 'Saved ' + stamp();
+    });
+  }
+
+  /* Builder previews. An empty builder opens nothing useful, so say what is missing. */
+  function guardPreviews() {
+    document.querySelectorAll('.btn-preview, .btn-artifact').forEach(function (btn) {
+      btn.addEventListener('click', function (ev) {
+        var box = btn.closest('.activity-block, .content-section, section') || document;
+        var fields = Array.prototype.slice.call(box.querySelectorAll('[id^="art-"]'))
+          .filter(function (el) { return el.tagName === 'TEXTAREA' || el.tagName === 'INPUT'; });
+        if (!fields.length) return;
+        var empty = fields.filter(function (el) { return !el.value.trim(); });
+        var note = box.querySelector('.builder-note');
+        if (empty.length < fields.length) { if (note) note.hidden = true; return; }
+        ev.preventDefault();
+        ev.stopImmediatePropagation();
+        fields.forEach(function (el) {
+          el.classList.add('builder-empty');
+          el.addEventListener('input', function () { el.classList.remove('builder-empty'); }, { once: true });
+        });
+        if (!note) {
+          note = document.createElement('p');
+          note.className = 'builder-note';
+          note.setAttribute('role', 'alert');
+          btn.parentNode.insertBefore(note, btn);
+        }
+        note.hidden = false;
+        note.textContent = 'Fill in the builder fields above to generate the sheet. The preview draws on what you write there.';
+        fields[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        fields[0].focus({ preventScroll: true });
+      }, true);
+    });
   }
 
   /* ---------- Save and email me a link ---------- */
@@ -100,10 +186,48 @@
     box.className = 'sidebar-save';
     box.innerHTML =
       '<span class="sidebar-label">Your progress</span>' +
+      '<div class="side-id">' +
+      '<label for="sp-name">Your name</label>' +
+      '<input type="text" id="sp-name" class="p-identity" autocomplete="name">' +
+      '<label for="sp-email">NC State email</label>' +
+      '<input type="email" id="sp-email" class="p-identity" autocomplete="email" placeholder="unityid@ncsu.edu">' +
+      '</div>' +
       '<button type="button" class="btn-resume">Save and email me a link</button>' +
-      '<p class="resume-status" role="status">Continue later on any computer.</p>';
-    box.querySelector('button').addEventListener('click', saveDraft);
+      '<p class="resume-status" role="status">Continue later on any computer.</p>' +
+      '<p class="side-hint">Prompts marked * need about 40 characters, one full sentence, before you submit.</p>' +
+      '<button type="button" class="btn-clear">Clear my work from this browser</button>';
+    box.querySelector('.btn-resume').addEventListener('click', saveDraft);
+    box.querySelector('.btn-clear').addEventListener('click', clearWork);
     nav.insertBefore(box, nav.firstChild);
+  }
+
+  /* The sidebar name and email mirror the fields above the submit button, so a participant
+     can save a draft from the top of the page. Both pairs write to the same stored values. */
+  function syncSidebarIdentity() {
+    [['sp-name', 'p-name', KEY_NAME], ['sp-email', 'p-email', KEY_EMAIL]].forEach(function (pair) {
+      var side = document.getElementById(pair[0]);
+      var main = document.getElementById(pair[1]);
+      if (!side || !main) return;
+      side.value = main.value || get(pair[2]);
+      side.addEventListener('input', function () { main.value = side.value; set(pair[2], side.value.trim()); });
+      main.addEventListener('input', function () { side.value = main.value; });
+    });
+  }
+
+  /* For shared or lab computers. Removes this workbook's answers and the remembered
+     name and email from this browser. Work already sent to CWSP is untouched. */
+  function clearWork() {
+    if (!window.confirm('Remove your answers to this workbook, and your name and email, from this browser? Work you have already submitted or saved by email stays with CWSP.')) return;
+    var prefix = moduleId() + '-';
+    try {
+      Object.keys(localStorage).forEach(function (k) {
+        if (k.indexOf(prefix) === 0 || k === KEY_NAME || k === KEY_EMAIL) localStorage.removeItem(k);
+      });
+    } catch (err) {}
+    document.querySelectorAll('textarea, input[type="text"], input[type="email"], select').forEach(function (el) { el.value = ''; });
+    document.querySelectorAll('input[type="checkbox"]').forEach(function (el) { el.checked = false; });
+    try { if (typeof window.updateProgress === 'function') window.updateProgress(); } catch (err) {}
+    setStatus('Cleared from this browser.');
   }
 
   function setStatus(text, busy) {
@@ -119,9 +243,10 @@
     var err = document.querySelector('.participant-error');
     if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       if (err) err.hidden = false;
-      var target = name ? e : n;
+      var side = document.getElementById(name ? 'sp-email' : 'sp-name');
+      var target = visible(side) ? side : (name ? e : n);
       if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); target.focus({ preventScroll: true }); }
-      setStatus('Enter your name and NC State email at the bottom of the workbook, then save again.');
+      setStatus('Enter your name and NC State email, then save again.');
       return;
     }
     if (err) err.hidden = true;
@@ -141,8 +266,8 @@
     fetch(SCRIPT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data) })
       .then(function () {
-        setStatus('Saved at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) +
-          '. A link to continue is on its way to ' + email + '. Save again any time, and the same link opens your latest work.');
+        setStatus('Saved at ' + stamp() + '. A link to continue is on its way to ' + email +
+          '. Save again any time, and the same link opens your latest work. Anyone holding the link sees your draft, so keep it to yourself. If no email arrives within an hour, write to kkcole2@ncsu.edu.');
       })
       .catch(function () {
         setStatus('Saving failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.');
@@ -291,9 +416,14 @@
   function requireFields(ids, min, button) {
     min = min || 40;
     var missing = ids.map(function (id) { return document.getElementById(id); })
-      .filter(function (el) { return el && el.value.trim().length < min; });
+      .filter(function (el) { return el && el.value.trim().length < min; })
+      .sort(function (a, b) { return a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1; });
     var note = document.querySelector('.required-note');
-    if (!missing.length) { if (note) note.hidden = true; return true; }
+    if (!missing.length) {
+      if (note) note.hidden = true;
+      var t = document.querySelector('.c2tc-toast'); if (t) t.hidden = true;
+      return true;
+    }
     missing.forEach(function (el) { el.classList.add('needs-answer'); });
     if (!note) {
       note = document.createElement('p');
@@ -307,6 +437,8 @@
       ? 'One required prompt, marked in red above, needs a longer response.'
       : missing.length + ' required prompts, marked in red above, need longer responses.') +
       ' Each required prompt takes at least ' + min + ' characters, about one full sentence.';
+    toast((missing.length === 1 ? 'One required prompt needs' : missing.length + ' required prompts need') +
+      ' a longer response (about ' + min + ' characters, one full sentence). The first one is outlined in red below.');
     missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
     missing[0].focus({ preventScroll: true });
     return false;

@@ -280,7 +280,7 @@ textarea { min-height: 100px; }
         <p>Share your analysis to build a cross-disciplinary library of digital rhetorical examples for future cohorts.</p>
         <div class="checkbox-row">
           <input type="checkbox" id="repo-a1">
-          <label for="repo-a1">Yes, include my Activity 1 analysis in the C²TC repository (your name and institution may be credited).</label>
+          <label for="repo-a1">Yes, share my Activity 1 analysis with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
         </div>
       </div>
     </div>
@@ -315,7 +315,7 @@ textarea { min-height: 100px; }
         <p>Share your disciplinary reflection to help future cohorts understand digital communication practices across fields.</p>
         <div class="checkbox-row">
           <input type="checkbox" id="repo-a2">
-          <label for="repo-a2">Yes, include my Activity 2 reflection in the C²TC repository.</label>
+          <label for="repo-a2">Yes, share my Activity 2 reflection with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
         </div>
       </div>
     </div>
@@ -399,7 +399,7 @@ textarea { min-height: 100px; }
 
     <div id="submit" class="submit-section">
       <h3>Submit Module 1</h3>
-      <p>Submitting saves your work to the C²TC program and notifies your certificate coordinator. Make sure you have completed both activities and previewed your artifact before submitting.</p>
+      <p>Submitting saves your work to the C²TC program and sends a copy to Kirsti Cole at CWSP and to your NC State email. Make sure you have completed both activities and previewed your artifact before submitting.</p>
       <button class="btn-submit" id="submit-btn" onclick="submitWork()">Submit Module 1</button>
       <div class="submit-status" id="submit-status"></div>
     </div>
@@ -504,11 +504,11 @@ function submitWork() {
   FIELDS.forEach(id => { data[id] = val(id); });
   CHECKBOXES.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.checked : false; });
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
-    .then(() => { C2TC.sendReactions(REACTIONS); status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.'; btn.textContent = 'Submitted ✓'; })
+    .then(() => { C2TC.sendReactions(REACTIONS); status.textContent = 'Submitted. A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser.'; btn.textContent = 'Submitted'; })
     .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Module 1'; });
 }
 </script>
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

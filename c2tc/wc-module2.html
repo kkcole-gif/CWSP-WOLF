@@ -320,7 +320,7 @@ textarea { min-height: 100px; }
           <p>If you rewrote a piece of your own feedback during this activity, colleagues would find it useful, especially alongside your account of why you changed it.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I'm willing to share my feedback comparison analysis (anonymized, without identifying my students) with the C²TC repository.</label>
+            <label for="repo-a1">Yes, share my feedback comparison analysis (with student details removed) with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -372,7 +372,7 @@ textarea { min-height: 100px; }
           <p>Your plan for using screencast feedback (which assignments, what length, how you share the link) gives colleagues in your discipline a model to adapt. Keep the recording itself private.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I'm willing to share my screencast feedback integration plan with the C²TC repository.</label>
+            <label for="repo-a2">Yes, share my screencast feedback plan with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -420,7 +420,7 @@ textarea { min-height: 100px; }
           <p>Discipline-specific rubrics show faculty in other departments how criteria translate across fields. A rubric from your field, especially one you have tested and revised, gives colleagues teaching similar assignments something to use right away.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a3">
-            <label for="repo-a3">I'd like to contribute my revised rubric to the C²TC repository. I understand CWSP will review and attribute it to me unless I request otherwise.</label>
+            <label for="repo-a3">Yes, share my revised rubric with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -479,7 +479,7 @@ textarea { min-height: 100px; }
           <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 2 Responses</button>
         </div>
         <div id="submit-success">
-          <strong>Sent.</strong> Your Module 2 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu. Module 3 is open whenever you are ready.
+          <strong>Submitted.</strong> A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser. Module 3 is open whenever you are ready.
         </div>
         <div id="submit-error">
           There was a problem submitting. Your responses are saved in this browser. Try again, or contact kkcole2@ncsu.edu if the problem persists.
@@ -572,7 +572,7 @@ function submitModule() {
   }).then(() => {
     document.getElementById('submit-success').style.display = 'block';
     document.getElementById('submit-error').style.display = 'none';
-    btn.textContent = '✓ Submitted';
+    btn.textContent = 'Submitted';
     C2TC.sendReactions(REACTIONS);
     localStorage.setItem(MODULE + '-submitted', new Date().toISOString());
   }).catch(() => {
@@ -600,6 +600,6 @@ window.addEventListener('scroll', updateSidebarActive, { passive: true });
 document.addEventListener('DOMContentLoaded', () => { loadAll(); C2TC.markRequired(REQUIRED); updateSidebarActive(); });
 </script>
 
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 </body>
 </html>

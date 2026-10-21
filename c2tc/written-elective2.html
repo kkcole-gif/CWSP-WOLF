@@ -312,7 +312,7 @@ textarea { min-height: 100px; }
         <p>Share your design to help build a library of low-stakes writing prompts across disciplines. Prompts written for a field are the most useful to other faculty: a post-lab reflection from chemistry, a pre-class reading response from political science, an exit ticket from a music history course.</p>
         <div class="checkbox-row">
           <input type="checkbox" id="repo-a1">
-          <label for="repo-a1">Yes, include my Activity 1 WAC design in the C²TC repository (CWSP might credit your name and field).</label>
+          <label for="repo-a1">Yes, share my Activity 1 WAC design with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
         </div>
       </div>
     </div>
@@ -348,7 +348,7 @@ textarea { min-height: 100px; }
         <p>Implementation reflections help later participants plan for obstacles before they meet them in class.</p>
         <div class="checkbox-row">
           <input type="checkbox" id="repo-a2">
-          <label for="repo-a2">Yes, include my Activity 2 implementation reflection in the C²TC repository.</label>
+          <label for="repo-a2">Yes, share my Activity 2 implementation reflection with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
         </div>
       </div>
     </div>
@@ -528,11 +528,11 @@ function submitWork() {
   FIELDS.forEach(id => { data[id] = val(id); });
   CHECKBOXES.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.checked : false; });
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
-    .then(() => { C2TC.sendReactions(REACTIONS); status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.'; btn.textContent = 'Submitted ✓'; })
+    .then(() => { C2TC.sendReactions(REACTIONS); status.textContent = 'Submitted. A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser.'; btn.textContent = 'Submitted'; })
     .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Elective 2'; });
 }
 </script>
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

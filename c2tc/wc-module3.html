@@ -320,7 +320,7 @@ textarea { min-height: 100px; }
           <p>Genre analyses from specific disciplines help colleagues in other fields see how writing works across the curriculum. They also give students a model for analyzing unfamiliar genres.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I'd like to share my genre analysis with the C²TC repository. My name, department, and discipline will be included unless I request otherwise.</label>
+            <label for="repo-a1">Yes, share my genre analysis with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -362,7 +362,7 @@ textarea { min-height: 100px; }
           <p>A revised assignment with a short rationale shows other faculty what changed and why. Your revised prompt with DAPOE annotations will help colleagues who are designing similar assignments.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I'd like to share my revised assignment prompt with the C²TC repository.</label>
+            <label for="repo-a2">Yes, share my revised assignment prompt with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -418,7 +418,7 @@ textarea { min-height: 100px; }
           <p>A complete DAPOE assignment, especially from a STEM or professional discipline, gives colleagues a model to adapt. Share the full assignment, or share the design framework with a note on your course context.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a3">
-            <label for="repo-a3">I'd like to contribute my DAPOE assignment design to the C²TC repository.</label>
+            <label for="repo-a3">Yes, share my DAPOE assignment design with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -551,7 +551,7 @@ textarea { min-height: 100px; }
 
       <div class="checkbox-row" style="margin-top: 1.5rem;">
         <input type="checkbox" id="repo-capstone" style="accent-color: var(--green);">
-        <label for="repo-capstone" style="color: #ccc; font-weight: 400; margin: 0; font-size: 0.87rem;">I'd like to contribute my capstone to the C²TC faculty repository for other faculty to adapt. I understand CWSP will review before posting and will attribute it to me unless I request otherwise.</label>
+        <label for="repo-capstone" style="color: #ccc; font-weight: 400; margin: 0; font-size: 0.87rem;">Yes, share my capstone with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
       </div>
 
       <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
@@ -560,7 +560,7 @@ textarea { min-height: 100px; }
       </div>
 
       <div id="cert-success">
-        <strong>Sent.</strong> CWSP will review your capstone and email your Written Communication certificate to the address above once it is approved. Your responses also stay saved in this browser. If you have not heard from CWSP within two weeks, email kkcole2@ncsu.edu.
+        <strong>Submitted.</strong> A copy of your capstone comes to your NC State email within a few minutes. CWSP will review it and email your Written Communication certificate to the address above once it is approved. Your responses also stay saved in this browser. If you have not heard from CWSP within two weeks, email kkcole2@ncsu.edu.
       </div>
       <div id="cert-error">
         There was a problem submitting. Your responses are saved in this browser. Try again, or email your capstone directly to kkcole2@ncsu.edu with the subject "C²TC Capstone Submission."
@@ -676,7 +676,7 @@ function submitCapstone() {
   }).then(() => {
     document.getElementById('cert-success').style.display = 'block';
     document.getElementById('cert-error').style.display = 'none';
-    btn.textContent = '✓ Submitted';
+    btn.textContent = 'Submitted';
     localStorage.setItem(MODULE + '-cert-submitted', new Date().toISOString());
     C2TC.sendReactions(REACTIONS);
   }).catch(() => {
@@ -704,6 +704,6 @@ window.addEventListener('scroll', updateSidebarActive, { passive: true });
 document.addEventListener('DOMContentLoaded', () => { loadAll(); C2TC.markRequired(REQUIRED); updateSidebarActive(); });
 </script>
 
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 </body>
 </html>

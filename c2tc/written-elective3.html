@@ -580,7 +580,7 @@ function submitWorkbook() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   }).then(() => { C2TC.sendReactions(REACTIONS);
-    status.textContent = 'Sent to CWSP. Your responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.';
+    status.textContent = 'Submitted. A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser.';
   }).catch(() => {
     status.textContent = 'Submission failed. Your responses are still saved in this browser. Try again, or email kkcole2@ncsu.edu.';
   });
@@ -607,7 +607,7 @@ window.addEventListener('scroll', onScroll);
 load();
 updateProgress();
 </script>
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

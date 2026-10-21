@@ -274,7 +274,7 @@ textarea { min-height: 100px; }
           <p>Your audit stays private unless you choose otherwise. If you are willing to share its themes (not your full text), CWSP will use them to see which assumptions recur across disciplines and to revise this module.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I'm willing to share the themes from my Assumptions Audit (not my full response) with the C²TC repository for program development purposes.</label>
+            <label for="repo-a1">Yes, share the themes of my Assumptions Audit (not my full response) with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -322,7 +322,7 @@ textarea { min-height: 100px; }
           <p>Faculty in other departments adapt low-stakes activities more readily than almost anything else in the repository. If you share yours, CWSP will review them and credit you.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I'd like to share my three low-stakes activities with the C²TC faculty repository. I understand CWSP will review before posting and will attribute the materials to me unless I request otherwise.</label>
+            <label for="repo-a2">Yes, share my three low-stakes activities with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -366,7 +366,7 @@ textarea { min-height: 100px; }
           <p>Transfer maps help most when they cross departments. A map from an engineering course shows a history instructor what her students learned, and mislearned, in their STEM courses.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a3">
-            <label for="repo-a3">I'd like to share my Transfer Mapping Exercise with the C²TC repository. I understand CWSP will review before posting.</label>
+            <label for="repo-a3">Yes, share my Transfer Mapping Exercise with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -415,7 +415,7 @@ textarea { min-height: 100px; }
           <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 1 Responses</button>
         </div>
         <div id="submit-success">
-          <strong>Sent.</strong> Your Module 1 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu. Module 2 is open whenever you are ready.
+          <strong>Submitted.</strong> A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser. Module 2 is open whenever you are ready.
         </div>
         <div id="submit-error">
           There was a problem submitting. Your responses are still saved in this browser. Try again, or contact kkcole2@ncsu.edu if the problem persists.
@@ -500,7 +500,7 @@ function submitModule() {
   }).then(() => { C2TC.sendReactions(REACTIONS);
     document.getElementById('submit-success').style.display = 'block';
     document.getElementById('submit-error').style.display = 'none';
-    btn.textContent = '✓ Submitted';
+    btn.textContent = 'Submitted';
     localStorage.setItem(MODULE + '-submitted', new Date().toISOString());
   }).catch(() => {
     document.getElementById('submit-error').style.display = 'block';
@@ -534,7 +534,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS });</script>
 </body>
 </html>

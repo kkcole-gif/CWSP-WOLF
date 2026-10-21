@@ -272,7 +272,7 @@ textarea { min-height: 100px; }
           <p>Audits from specific disciplines, especially those that document communicative barriers along with technical ones, help faculty in similar fields spot access problems they might otherwise miss.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I am willing to share this accessibility audit (with my name and discipline) in the C²TC teaching repository.</label>
+            <label for="repo-a1">Yes, share my accessibility audit with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -332,7 +332,7 @@ textarea { min-height: 100px; }
           <p>Assignments that treat accessibility as a rhetorical criterion, especially those from disciplines where digital media formats vary widely, are among the most transferable resources in the C²TC collection.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I am willing to share my assignment design (with my name and discipline) in the C²TC teaching repository.</label>
+            <label for="repo-a2">Yes, share my assignment design with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -432,7 +432,7 @@ textarea { min-height: 100px; }
         <h3>Complete Elective 3</h3>
         <p>When you have finished both activities, submit your responses. Your work is auto-saved in your browser.</p>
         <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Elective 3 Responses</button>
-        <div id="submit-success"><strong>Sent.</strong> Your Elective 3 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.</div>
+        <div id="submit-success"><strong>Submitted.</strong> A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser.</div>
         <div id="submit-error">Submission problem. Your responses are saved locally. Try again or email kkcole2@ncsu.edu.</div>
       </div>
       <a href="digital.html" class="back-link">
@@ -478,7 +478,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 3 Responses'; });
 }
 function val(id){return(document.getElementById(id)||{}).value||'';}
@@ -503,7 +503,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

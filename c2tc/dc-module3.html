@@ -349,7 +349,7 @@ textarea { min-height: 100px; }
           <p>Conceptual inventories from different disciplines help build a shared resource of accurate tool descriptions that faculty across NC State can use as starting points.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I'd like to share my conceptual inventories with the C²TC repository.</label>
+            <label for="repo-a1">Yes, share my conceptual inventories with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -392,7 +392,7 @@ textarea { min-height: 100px; }
           <p>Structural analyses of tools used across disciplines, especially from faculty who investigated thoroughly, are among the most useful resources in the C²TC repository.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I'd like to share my structural analysis with the C²TC repository.</label>
+            <label for="repo-a2">Yes, share my structural analysis with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -455,7 +455,7 @@ textarea { min-height: 100px; }
           <p>Operative decision documents and assignment prototypes that integrate structural analysis are the most direct evidence of what critical digital pedagogy looks like in practice across NC State's disciplines.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a3">
-            <label for="repo-a3">I'd like to share my operative decision document and prototype with the C²TC repository.</label>
+            <label for="repo-a3">Yes, share my operative decision document and prototype with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -529,7 +529,7 @@ textarea { min-height: 100px; }
         <h3>Complete Module 3</h3>
         <p>When you have finished all three activities, submit your responses below. Module 3 is the final core module; your capstone activity begins immediately after. Your completed operative decision document and prototype from Activity 3 are strong starting material for the capstone.</p>
         <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 3 Responses</button>
-        <div id="submit-success"><strong>Sent.</strong> Your Module 3 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu. The capstone and electives are open whenever you are ready.</div>
+        <div id="submit-success"><strong>Submitted.</strong> A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser. The capstone and electives are open whenever you are ready.</div>
         <div id="submit-error">There was a problem submitting. Your responses are saved in this browser. Try again or email kkcole2@ncsu.edu.</div>
       </div>
       <a href="digital.html" class="next-module">
@@ -586,7 +586,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Module 3 Responses'; });
 }
 document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
@@ -635,7 +635,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>

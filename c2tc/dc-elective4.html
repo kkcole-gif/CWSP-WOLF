@@ -282,7 +282,7 @@ textarea { min-height: 100px; }
           <p>Analyses that identify a field's conventions and their rhetorical functions give faculty in other disciplines vocabulary for teaching multimodal composition.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a1">
-            <label for="repo-a1">I am willing to share this multimodal analysis (with my name and discipline) in the C²TC teaching repository.</label>
+            <label for="repo-a1">Yes, share my multimodal analysis with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -321,7 +321,7 @@ textarea { min-height: 100px; }
           <p>Decisions about specific generative AI tools, grounded in structural analysis and tied to real assignments in a discipline, help the C²TC community write consistent, defensible AI use policies for multimodal work.</p>
           <div class="checkbox-row">
             <input type="checkbox" id="repo-a2">
-            <label for="repo-a2">I am willing to share this AI tool analysis and operative decision (with my name and discipline) in the C²TC teaching repository.</label>
+            <label for="repo-a2">Yes, share my AI tool analysis and operative decision with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
           </div>
         </div>
       </div>
@@ -427,7 +427,7 @@ textarea { min-height: 100px; }
         <h3>Complete Elective 4</h3>
         <p>When you have finished both activities and built your artifact, submit your responses. Your work is auto-saved in your browser.</p>
         <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Elective 4 Responses</button>
-        <div id="submit-success"><strong>Sent.</strong> Your Elective 4 responses also stay saved in this browser. If you have not heard from CWSP within a week, email kkcole2@ncsu.edu.</div>
+        <div id="submit-success"><strong>Submitted.</strong> A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser.</div>
         <div id="submit-error">Submission problem. Your responses are saved locally. Try again or email kkcole2@ncsu.edu.</div>
       </div>
       <a href="digital.html" class="back-link">
@@ -533,7 +533,7 @@ function submitModule() {
   const btn = document.getElementById('submit-btn');
   btn.disabled=true; btn.textContent='Submitting…';
   fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
-    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='✓ Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
+    .then(()=>{ C2TC.sendReactions(REACTIONS); document.getElementById('submit-success').style.display='block'; btn.textContent='Submitted'; localStorage.setItem(MODULE+'-submitted',new Date().toISOString()); })
     .catch(()=>{ document.getElementById('submit-error').style.display='block'; btn.disabled=false; btn.textContent='Submit Elective 4 Responses'; });
 }
 document.querySelectorAll('textarea,input[type="text"],input[type="checkbox"]').forEach(el=>{ el.addEventListener('input',saveAll); el.addEventListener('change',saveAll); });
@@ -545,7 +545,7 @@ function updateSidebarActive() {
 window.addEventListener('scroll',updateSidebarActive,{passive:true});
 document.addEventListener('DOMContentLoaded',()=>{loadAll();updateSidebarActive();});
 </script>
-<script src="js/participant.js?v=2026-10-20d"></script>
+<script src="js/participant.js?v=2026-10-21a"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>
