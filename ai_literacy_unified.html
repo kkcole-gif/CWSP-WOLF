@@ -804,6 +804,14 @@
   .context-panel[open] summary::after { transform: rotate(180deg); }
   .sum-gloss { font-size: 13px; font-weight: 400; color: var(--gray); }
 
+
+  .decision-statement { max-width: 900px; margin: 1.5rem 0 2.5rem; padding: 1.3rem 1.5rem 1.4rem; background: #FDF3F3; border-left: 4px solid #CC0000; border-radius: 0 10px 10px 0; font-size: 15px; line-height: 1.7; color: #333; scroll-margin-top: 120px; }
+  .decision-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7A0000; margin-bottom: 0.4rem; }
+  .decision-statement h3 { font-family: Georgia, 'Times New Roman', serif; font-size: 20px; color: var(--s-black); margin-bottom: 0.8rem; }
+  .decision-statement p + p { margin-top: 0.6rem; }
+  .decision-sub { font-weight: 700; color: var(--s-black); margin-top: 1rem !important; }
+  .decision-statement strong { color: var(--s-black); }
+  .decision-sig { font-style: italic; color: var(--gray); font-size: 14px; margin-top: 1rem !important; }
   .router { max-width: 760px; margin: 0 0 1.5rem; padding: 1rem 1.2rem; background: var(--s-gray-lt); border-left: 3px solid var(--ncr); border-radius: 0 8px 8px 0; }
   .router-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem; }
   .router-list { list-style: none; font-size: 15px; line-height: 1.6; }
@@ -817,6 +825,20 @@
   }
 
   @media (max-width: 760px) { .worked { grid-template-columns: 1fr; } }
+
+  /* ─── Added 2026-10: one measure, one heading rank, two box meanings ─── */
+  main { max-width: calc(900px + 3rem); }
+  main .prose, main > .fig-hint, main > p, .callout, .router, .context-panel, .decision-statement, .worked, .figure-wrap, .area-grid, .sec .callout-body { max-width: 900px; }
+  .sec .callout-body { font-size: 16px; line-height: 1.8; color: var(--s-gray); }
+  .sec { margin: 0 0 1rem; }
+  .fig1-svg { max-width: 900px; }
+  .page-header-inner, .crumbs, .toc, .page-footer-inner { max-width: 900px; }
+  .router { background: var(--white); border: 1px solid var(--line); border-left: 1px solid var(--line); border-radius: 10px; }
+  .area-cell { border-left-width: 1px; border-left-color: var(--line); }
+  .worked-step { font-size: 15px; }
+  .lede { font-size: 20px; line-height: 1.55; color: var(--s-black); margin-bottom: 0.8rem; }
+  .anchor { scroll-margin-top: 120px; }
+  .figure-wrap { margin-top: 1.2rem; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -870,13 +892,12 @@
 <nav class="toc" id="toc" aria-label="On this page">
   <span class="toc-label">On this page</span>
   <ol class="toc-list">
-    <li><a href="#differ">1 How the levels differ</a></li>
-    <li><a href="#using">2 Using it</a></li>
-    <li><a href="#framework">3 The framework</a></li>
-    <li><a href="#example">4 One decision</a></li>
-    <li><a href="#audience">5 By audience</a></li>
-    <li><a href="#extension">6 The extension</a></li>
-    <li><a href="#context">7 In context</a></li>
+    <li><a href="#differ">1 The levels</a></li>
+    <li><a href="#example">2 One decision</a></li>
+    <li><a href="#using">3 Using it</a></li>
+    <li><a href="#audience">4 By audience</a></li>
+    <li><a href="#extension">5 Extension</a></li>
+    <li><a href="#context">6 In context</a></li>
   </ol>
 </nav>
 
@@ -886,18 +907,19 @@
 <div class="router" aria-label="Start here">
   <p class="router-label">Start here</p>
   <ul class="router-list">
-    <li><strong>Deciding about one assignment or tool?</strong> Read <a href="#framework">the three levels</a>, then watch them run on <a href="#example">one decision</a>.</li>
+    <li><strong>Deciding about one assignment or tool?</strong> Read <a href="#differ">the three levels</a> and watch them run on <a href="#example">one decision</a>. Ten minutes.</li>
     <li><strong>Writing a course, program, or campus policy?</strong> Open <a href="#audience">the decision tool</a> and choose your audience. Link straight to it: <a href="#audience=faculty">faculty</a>, <a href="#audience=institution">institution</a>.</li>
     <li><strong>Reading the scholarship behind the framework?</strong> Go to <a href="#context">the framework in context</a>.</li>
   </ul>
 </div>
 
 <!-- ─── FRAMING ──────────────────────────────────────── -->
-<p class="prose">When institutions describe their goal as building AI literacy, the phrase collapses distinctions a program needs to draw. Literacy in relation to AI has three layers: conceptual, structural, and operative. Together they set the order in which any decision about AI gets reasoned. The three-level framework presented here names those layers precisely, so faculty development programs, governance bodies, and institutional policy work aim at the right level for the right purpose.</p>
+<p class="prose lede">AI literacy is three different acts. Describe the system. Analyze what is built into it. Then decide. Most AI literacy programs teach the first and skip to the third, and this page is about the missing middle.</p>
+<p class="prose">The three acts are three kinds of literacy, conceptual, structural, and operative, and together they set the order in which any decision about AI gets reasoned. The framework names them so faculty development programs, governance bodies, and policy work aim at the right one for the right purpose.</p>
 
 <!-- ─── HOW THE LEVELS DIFFER ────────────────────────── -->
-<div class="callout">
-  <h2 class="callout-head numbered" id="differ"><span class="sec-num" aria-hidden="true">1</span><span class="sec-title">How the three levels differ</span><a class="top-link" href="#top">Top</a></h2>
+<section class="sec">
+  <h2 class="section-head numbered" id="differ"><span class="sec-num" aria-hidden="true">1</span><span class="sec-title">The three levels</span><a class="top-link" href="#top">Top</a></h2>
   <div class="callout-body">
     <p>The framework names three kinds of literacy, each defined by what a person does.</p>
     <ul class="level-glosses">
@@ -909,28 +931,14 @@
     <p>Ethics appears at both levels and does different work at each. Structural literacy studies the harms a system carries into every use. Operative literacy concerns what one person or body owes in a single decision, including the decision to refuse. Structural analysis informs the decision without making it. Two instructors who agree about a model's bias will still reach different, defensible policies for different courses.</p>
     <p>The two words carry these senses. Structural refers to what is built in. Operative is used as in the operative clause of a policy, the part with force.</p>
   </div>
-</div>
+</section>
 
-
-<!-- ─── USING THE FRAMEWORK (added 2026-10) ─────────── -->
-<div class="callout">
-  <h2 class="callout-head numbered" id="using"><span class="sec-num" aria-hidden="true">2</span><span class="sec-title">Using the framework</span><a class="top-link" href="#top">Top</a></h2>
-  <div class="callout-body">
-    <p>The three levels name the order in which any decision about AI gets reasoned. Describe the system. Analyze the conditions built into it. Then decide. The order holds for a student choosing a tool for one assignment and for a university buying a platform. No one completes the first level and moves on, because each new system, and each new decision, starts the sequence again.</p>
-    <ul class="level-glosses">
-      <li><strong>For one decision.</strong> Work through the three questions in order before acting.</li>
-      <li><strong>At any scale.</strong> The questions stay the same for a student, an instructor, a professional, and an institution. Only the decision changes.</li>
-      <li><strong>Where you work.</strong> The worked example, the decision tool, and the workbook below apply the framework to assignments, course policies, and purchases.</li>
-    </ul>
-    <p>Tool use has no level of its own. Skill with a tool follows from an operative decision to use it, and the framework asks for the decision first.</p>
-  </div>
-</div>
 
 <!-- ─── SECTION 1: THE FRAMEWORK ─────────────────────── -->
-<h2 class="section-head numbered" id="framework"><span class="sec-num" aria-hidden="true">3</span><span class="sec-title">The Three-Level AI Literacy Framework</span><a class="top-link" href="#top">Top</a></h2>
+<div id="framework" class="anchor"></div>
 
 <div class="figure-wrap">
-  <p class="fig-instruction">Select any level panel to expand its definition</p>
+  <p class="fig-instruction" id="fig1-instr">Select any level panel to expand its definition</p>
   <figure>
     <svg class="fig1-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 370"
          role="group" aria-label="Three-Level AI Literacy Framework: conceptual, structural, and operative levels">
@@ -962,7 +970,7 @@
       <!-- PANEL 1 -->
       <g id="panel1" class="panel-interactive"
          onclick="toggleDef(1)" role="button" aria-expanded="false" tabindex="0"
-         aria-label="Level 1, Describe: Conceptual literacy, select to expand definition">
+         aria-describedby="fig1-instr">
         <g clip-path="url(#p1)">
           <rect class="panel-bg" x="30" y="30" width="190" height="58" fill="#FFF4CC"/>
         </g>
@@ -991,7 +999,7 @@
       <!-- PANEL 2 -->
       <g id="panel2" class="panel-interactive"
          onclick="toggleDef(2)" role="button" aria-expanded="false" tabindex="0"
-         aria-label="Level 2, Analyze: Structural literacy, select to expand definition">
+         aria-describedby="fig1-instr">
         <g clip-path="url(#p2)">
           <rect class="panel-bg" x="245" y="30" width="190" height="58" fill="#FBEBE1"/>
         </g>
@@ -1020,7 +1028,7 @@
       <!-- PANEL 3 -->
       <g id="panel3" class="panel-interactive"
          onclick="toggleDef(3)" role="button" aria-expanded="false" tabindex="0"
-         aria-label="Level 3, Decide: Operative literacy, select to expand definition">
+         aria-describedby="fig1-instr">
         <g clip-path="url(#p3)">
           <rect class="panel-bg" x="460" y="30" width="190" height="58" fill="#FBE8E8"/>
         </g>
@@ -1156,7 +1164,7 @@
 
 
 <!-- ─── WORKED EXAMPLE (added 2026-10) ─────────────── -->
-<h2 class="section-head numbered" id="example"><span class="sec-num" aria-hidden="true">4</span><span class="sec-title">One Decision, Three Levels</span><a class="top-link" href="#top">Top</a></h2>
+<h2 class="section-head numbered" id="example"><span class="sec-num" aria-hidden="true">2</span><span class="sec-title">One Decision, Three Levels</span><a class="top-link" href="#top">Top</a></h2>
 
 <p class="prose">Should we use an AI-writing detector on student work? The question recurs across higher education, and it reaches every audience on this page: a student whose essay gets flagged, an instructor deciding whether to run one, a writing program setting practice, and a university deciding whether to license one. Vanderbilt University disabled Turnitin's AI detector in August 2023 after months of testing. Here is the same question worked through all three levels.</p>
 
@@ -1173,14 +1181,48 @@
   </div>
   <div class="worked-step worked-3">
     <p class="worked-level">Level 3 · Decide</p>
-    <p>The analysis informs the decision without making it. An instructor might decline to treat detector scores as evidence of misconduct. A writing program might limit detectors to research on the tools themselves. A university might disable the feature, as Vanderbilt did, citing accuracy, bias, lack of transparency, and privacy. Each decision states its reasons, and the person or body making it owns them. Refusal here is a reasoned decision grounded in the structural analysis.</p>
+    <p>The analysis informs the decision without making it. An instructor might decline to treat detector scores as evidence of misconduct. A writing program might limit detectors to research on the tools themselves. A university might disable the feature, as Vanderbilt did, citing accuracy, bias, lack of transparency, and privacy. Each decision states its reasons, and the person or body making it owns them. Refusal here is a reasoned decision grounded in the structural analysis. I have made this decision, and the <a href="#detector-decision">statement below</a> gives its reasons.</p>
     <p class="worked-produce">Produces: a decision with stated reasons.</p>
   </div>
 </div>
 <p class="prose worked-note">When the vendor releases a new version, or a different tool arrives, the sequence starts again at Level 1.</p>
 
+<div class="decision-statement" id="detector-decision">
+  <p class="decision-label">An operative decision, on the record</p>
+  <h3>I do not use AI-writing detectors, and CWSP does not use them</h3>
+  <p>As co-director of the Campus Writing and Speaking Program, I do not use AI-writing detectors, and the program does not run them. I advise faculty against using detector scores as evidence in any academic integrity process.</p>
+  <p class="decision-sub">My reasons</p>
+  <p><strong>Detectors misidentify writers.</strong> Liang and colleagues (2023) found GPT detectors classified most essays by non-native English writers as AI-generated, while rarely misclassifying essays by native English writers. A tool with this pattern converts linguistic difference into suspicion of misconduct. The harm falls hardest on multilingual students.</p>
+  <p><strong>Detectors fail their stated purpose.</strong> Weber-Wulff and colleagues (2023) tested fourteen detection tools and found none reliable at identifying AI-generated text.</p>
+  <p><strong>Detector methods stay hidden.</strong> Vendors do not disclose how their tools reach a score. A student has no way to contest a judgment whose basis no one will show them.</p>
+  <p><strong>Detectors move student writing.</strong> Each scan sends a student’s work to a third party, under terms the student did not set and often never sees.</p>
+  <p>To run a detector on student work is to accuse students on evidence they are not allowed to see, with the errors concentrated among multilingual writers. That is an act I would be choosing, and I decline to choose it.</p>
+  <p class="decision-sub">What I do instead</p>
+  <p>I help faculty design assignments with a visible writing process: drafts, revision histories, conferences, and reflections on choices. I help faculty write AI policies stating what students are permitted to do, and why. Where an instructor suspects misconduct, the evidence is the student’s process and a conversation with the student.</p>
+  <p class="decision-sub">Accountability</p>
+  <p>This decision belongs to me. I will revisit it when the evidence changes, and I will state my reasons again if I change course.</p>
+  <p class="decision-sig">Kirsti Cole, Co-Director, Campus Writing and Speaking Program, NC State University. October 2026.</p>
+</div>
+
+
+
+<!-- ─── USING THE FRAMEWORK (added 2026-10) ─────────── -->
+<section class="sec">
+  <h2 class="section-head numbered" id="using"><span class="sec-num" aria-hidden="true">3</span><span class="sec-title">Using the framework</span><a class="top-link" href="#top">Top</a></h2>
+  <div class="callout-body">
+    <p>The detector example shows the order in which any decision about AI gets reasoned, and the order holds for a student choosing a tool for one assignment as much as for a university buying a platform. No one completes the first level and moves on. Each new system, and each new decision, starts the sequence again.</p>
+    <ul class="level-glosses">
+      <li><strong>For one decision.</strong> Work through the three questions in order before acting.</li>
+      <li><strong>At any scale.</strong> The questions stay the same for a student, an instructor, a professional, and an institution. Only the decision changes.</li>
+      <li><strong>Where you work.</strong> The decision tool and the workbook below apply the framework to assignments, course policies, and purchases.</li>
+    </ul>
+    <p>Tool use has no level of its own. Skill with a tool follows from an operative decision to use it, and the framework asks for the decision first.</p>
+  </div>
+</section>
+
+
 <!-- ─── SECTION 2: GOVERNANCE APPLICATION ────────────── -->
-<h2 class="section-head numbered" id="audience"><span class="sec-num" aria-hidden="true">5</span><span class="sec-title">Governance Application · By Audience</span><a class="top-link" href="#top">Top</a></h2>
+<h2 class="section-head numbered" id="audience"><span class="sec-num" aria-hidden="true">4</span><span class="sec-title">Governance Application · By Audience</span><a class="top-link" href="#top">Top</a></h2>
 
 <p class="prose">The three-level framework applies beyond faculty development and holds constant across scales. The same three questions (whose knowledge is encoded, who controls this system, what warrants refusal) apply to an individual student's choice on one assignment, a faculty member's policy for one assignment, a professional's use of a tool on one work product, and an institution's procurement decision. Only the decision changes. Select an audience below to see the same analysis worked through for its decision.</p>
 
@@ -1214,7 +1256,7 @@
 </figure>
 
 <!-- ─── SECTION 3: AI LITERACIES EXTENSION ───────────── -->
-<h2 class="section-head numbered" id="extension"><span class="sec-num" aria-hidden="true">6</span><span class="sec-title">The AI Literacies Extension · NC State CWSP</span><a class="top-link" href="#top">Top</a></h2>
+<h2 class="section-head numbered" id="extension"><span class="sec-num" aria-hidden="true">5</span><span class="sec-title">The AI Literacies Extension · NC State CWSP</span><a class="top-link" href="#top">Top</a></h2>
 
 <p class="prose">Generative AI has changed what asking students to write means. Faculty across disciplines are rethinking assignment design, academic integrity policies, and what authorship requires in their fields. The WOLF AI Literacies extension gives faculty a structured place to work through those questions, with frameworks, discussion prompts, and design tools grounded in communication pedagogy.</p>
 
@@ -1254,7 +1296,7 @@
 <p class="prose">Liaisons facilitate the extension with the WOLF model: sustained conversation, iterative design work, and documentation of decisions and rationale. The workbook is written for liaison-facilitated use. Faculty are welcome to work through it alone. Contact <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole at CWSP</a> to begin or to connect your work to a full WOLF engagement. More information is at <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a>.</p>
 
 <!-- ─── THE FRAMEWORK IN CONTEXT (added 2026-10) ───── -->
-<h2 class="section-head numbered" id="context"><span class="sec-num" aria-hidden="true">7</span><span class="sec-title">The Framework in Context</span><a class="top-link" href="#top">Top</a></h2>
+<h2 class="section-head numbered" id="context"><span class="sec-num" aria-hidden="true">6</span><span class="sec-title">The Framework in Context</span><a class="top-link" href="#top">Top</a></h2>
 <p class="prose">Two reference panels place the framework against the scholarship it draws on and the terms in common circulation. Full citations appear at the bottom of the page.</p>
 
 <details class="context-panel">
