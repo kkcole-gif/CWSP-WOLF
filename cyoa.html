@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>AI Practice Adventure (Beta) | CWSP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="css/brand.css">
+<style>
+  /* AI Practice Adventure, student arc, beta.
+     Palette: the framework page's level system (yellow, orange, red), tuned with the Hilda Daylight values.
+     Cream ground, Umber text, Mountain Red as the working accent, Deep Teal as the one complementary accent.
+     Two box meanings, as on the framework page: a colored top edge marks a level, a red left rule marks a position taken. */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #FCF7E9;
+    --parchment: #EBDCB7;
+    --gold: #F1C476;      /* Level 1 fill and edge */
+    --ochre: #CAA876;
+    --clay: #A4714B;      /* Level 2 edge */
+    --coral: #EA7965;     /* Level 2 chip fill, Umber text on it */
+    --mred: #C22627;      /* Level 3, buttons, links */
+    --dred: #891A17;      /* hover, emphasis */
+    --teal: #588D8E;
+    --dteal: #457877;     /* teal text */
+    --mist: #C3D6CE;
+    --umber: #41292B;
+    --rule: #DDD3BD;
+    --white: #FFFFFF;
+    --sans: Arial, Helvetica, sans-serif;
+    --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); color: var(--umber); background: var(--cream); line-height: 1.6; }
+
+  .skip-link { position: absolute; left: -999px; top: 0; background: var(--umber); color: var(--white); padding: 0.6rem 1rem; z-index: 200; }
+  .skip-link:focus { left: 0; }
+
+  /* Site navigation, as on the framework page */
+  .site-header { background: #1a1a1a; position: static; }
+  .nav-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; gap: 2rem; height: 60px; }
+  .nav-logo { font-size: 1.1rem; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: 0.04em; white-space: nowrap; }
+  .nav-logo span { color: #CC0000; }
+  .nav-links { display: flex; list-style: none; margin-left: auto; }
+  .nav-links a { display: block; padding: 0 1rem; height: 60px; line-height: 60px; color: #ccc; text-decoration: none; font-size: 0.875rem; font-weight: 500; }
+  .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  @media (max-width: 860px) {
+    .nav-inner { height: auto; flex-wrap: wrap; gap: 0.25rem 1rem; padding: 0.6rem 1rem; }
+    .nav-links { flex-wrap: wrap; margin-left: 0; width: 100%; }
+    .nav-links a { height: auto; line-height: 1.3; padding: 0.4rem 0.6rem; font-size: 0.8rem; }
+  }
+
+  .beta-band { background: var(--mist); color: var(--umber); font-size: 14px; }
+  .beta-band p { max-width: 900px; margin: 0 auto; padding: 0.6rem 1.5rem; }
+  .beta-band strong { letter-spacing: 0.06em; text-transform: uppercase; font-size: 12px; margin-right: 0.4rem; }
+
+  .page-header { padding: 2.25rem 1.5rem 1.25rem; }
+  .page-header-inner { max-width: 900px; margin: 0 auto; }
+  .eyebrow { font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--umber); margin-bottom: 0.5rem; }
+  .page-header h1 { font-family: var(--serif); font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 700; color: var(--umber); line-height: 1.25; }
+  .subtitle { font-style: italic; margin-top: 0.3rem; }
+
+  .crumbs { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; font-size: 13px; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .crumbs a { color: var(--umber); text-decoration: none; border-bottom: 1px solid var(--ochre); }
+  .crumbs a:hover { color: var(--dred); border-color: var(--dred); }
+  .crumbs [aria-current] { font-weight: 600; }
+
+  /* Persistent step strip */
+  .steps { position: sticky; top: 0; z-index: 90; background: var(--cream); border-bottom: 1px solid var(--rule); margin-top: 0.8rem; }
+  .steps-inner { max-width: 900px; margin: 0 auto; padding: 0.45rem 1.5rem; }
+  .decision-line { font-size: 12.5px; margin-bottom: 0.25rem; }
+  .decision-line b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; margin-right: 0.35rem; }
+  .steps ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
+  .steps li { font-size: 13px; padding: 0.2rem 0.55rem; border-bottom: 2px solid transparent; color: var(--umber); }
+  .steps li.done { color: var(--dteal); }
+  .steps li[aria-current="step"] { font-weight: 700; color: var(--dteal); border-bottom-color: var(--teal); }
+  
+
+  main { max-width: calc(900px + 3rem); margin: 0 auto; padding: 1.75rem 1.5rem 3rem; }
+  .screen { max-width: 900px; }
+  .screen[hidden] { display: none; }
+  .screen h2 { font-family: var(--serif); font-size: 1.6rem; line-height: 1.3; color: var(--umber); margin: 0.4rem 0 1rem; }
+  .screen h2:focus { outline: none; }
+  .screen h2:focus-visible { outline: 3px solid var(--dteal); outline-offset: 4px; }
+  .screen h3 { font-family: var(--serif); font-size: 1.2rem; margin: 1.6rem 0 0.6rem; }
+  .screen p { font-size: 17px; line-height: 1.8; margin-bottom: 1rem; max-width: 760px; }
+  .lede { font-size: 20px !important; line-height: 1.55 !important; }
+
+  /* Level card: a colored top edge marks a level */
+  .level { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.9rem 1.1rem; margin-bottom: 1.4rem; }
+  .level-1 { border-top: 5px solid var(--gold); }
+  .level-2 { border-top: 5px solid var(--clay); }
+  .level-3 { border-top: 5px solid var(--mred); }
+  .level-name { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 0.15rem 0.55rem; border-radius: 4px; margin-bottom: 0.35rem; }
+  .level-1 .level-name { background: var(--gold); color: var(--umber); }
+  .level-2 .level-name { background: var(--coral); color: var(--umber); }
+  .level-3 .level-name { background: var(--mred); color: var(--white); }
+  .level-gloss { font-size: 16px; font-style: italic; margin: 0 !important; }
+  .level-key { font-size: 14px; margin: 0.25rem 0 0 !important; }
+
+  /* A red left rule marks a position taken */
+  .position { background: var(--white); border-left: 4px solid var(--mred); border-radius: 0 10px 10px 0; padding: 1.1rem 1.3rem; margin: 1.2rem 0 1.4rem; }
+  .position-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dred); margin-bottom: 0.3rem; }
+
+  .prompt { font-family: var(--serif); font-size: 1.25rem !important; line-height: 1.5 !important; font-weight: 600; }
+  label { display: block; font-weight: 600; font-size: 15px; margin: 1rem 0 0.35rem; }
+  .hint { display: block; font-weight: 400; font-size: 14px; margin-top: 0.15rem; }
+  textarea, input[type="text"], input[type="date"], select { width: 100%; max-width: 760px; font: inherit; font-size: 16px; color: var(--umber); background: var(--white); border: 1px solid #8C7B66; border-radius: 6px; padding: 0.6rem 0.7rem; }
+  textarea { min-height: 5.5rem; resize: vertical; }
+  textarea:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--dteal); outline-offset: 1px; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.4rem 0 0.5rem; }
+  .btn { font: inherit; font-size: 16px; font-weight: 600; border-radius: 6px; padding: 0.65rem 1.1rem; cursor: pointer; border: 2px solid var(--mred); min-height: 44px; }
+  .btn-primary { background: var(--mred); color: var(--white); }
+  .btn-primary:hover { background: var(--dred); border-color: var(--dred); }
+  .btn-secondary { background: var(--white); color: var(--dred); }
+  .btn-secondary:hover { background: var(--cream); }
+  .btn-hold { background: var(--white); color: var(--dteal); border-color: var(--dteal); }
+  .btn-hold:hover { background: #EEF4F1; }
+  .btn:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
+  .btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+  .answer-help { font-size: 15px !important; }
+  .notice { font-size: 15px !important; color: var(--dred); font-weight: 600; min-height: 1.4em; }
+
+  .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin: 1rem 0; }
+  .outcome-btn { text-align: left; background: var(--white); border: 1px solid var(--rule); border-left: 4px solid var(--mred); border-radius: 0 10px 10px 0; padding: 0.9rem 1rem; font: inherit; color: var(--umber); cursor: pointer; min-height: 44px; }
+  .outcome-btn strong { display: block; font-family: var(--serif); font-size: 1.15rem; margin-bottom: 0.25rem; }
+  .outcome-btn span { font-size: 15px; line-height: 1.5; }
+  .outcome-btn:hover { background: var(--cream); }
+  .outcome-btn:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
+  @media (max-width: 760px) { .outcomes { grid-template-columns: 1fr; } }
+
+  /* The statement */
+  .statement { background: var(--white); border-left: 4px solid var(--mred); border-radius: 0 10px 10px 0; padding: 1.3rem 1.5rem; margin: 1rem 0; max-width: 760px; }
+  .statement h3 { margin-top: 0; }
+  .statement dl dt { font-weight: 700; margin-top: 0.9rem; font-size: 15px; }
+  .statement dl dd { font-size: 16px; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+  input[type="date"] { min-width: 0; }
+  .meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0 1rem; max-width: 760px; }
+  @media (max-width: 760px) { .meta-grid { grid-template-columns: 1fr; } }
+
+  fieldset { border: 0; margin: 1rem 0 0; }
+  legend { font-weight: 600; font-size: 15px; margin-bottom: 0.35rem; }
+  .choice { display: flex; gap: 0.5rem; align-items: flex-start; font-weight: 400; margin: 0.3rem 0; }
+  .choice input { margin-top: 0.35rem; width: 18px; height: 18px; accent-color: var(--mred); }
+
+  .page-footer { border-top: 1px solid var(--rule); padding: 1.5rem; font-size: 13px; }
+  .page-footer-inner { max-width: 900px; margin: 0 auto; }
+  .page-footer a, .screen a { color: var(--mred); }
+  .page-footer a:hover, .screen a:hover { color: var(--dred); }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+
+  /* Gamebook conventions: numbered passages, choices that say where they lead, a trail of passages read. */
+  .screen .passage-no { font-family: var(--serif); font-size: 2.6rem; line-height: 1; font-weight: 700; color: var(--umber); margin: 0 0 0.9rem; }
+  .screen .passage-no span { font-size: 0.9rem; font-weight: 400; font-style: italic; margin-left: 0.5rem; vertical-align: middle; }
+  .trail { font-size: 12.5px; margin-top: 0.25rem; }
+  .trail b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; margin-right: 0.35rem; }
+  .trail ol { display: inline; list-style: none; }
+  .trail li { display: inline; font-family: var(--serif); font-weight: 600; }
+  .trail li + li::before { content: "\2192"; font-family: var(--sans); font-weight: 400; margin: 0 0.35rem; }
+
+  .actions { flex-direction: column; gap: 0; border-top: 1px solid var(--ochre); max-width: 760px; }
+  .actions .btn { width: 100%; text-align: left; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+    background: transparent; color: var(--umber); border: 0; border-bottom: 1px solid var(--ochre); border-radius: 0; padding: 0.85rem 0.4rem; font-family: var(--serif); font-size: 1.1rem; }
+  .actions .btn:hover { background: var(--white); }
+  .actions .btn .turn { font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--mred); white-space: nowrap; }
+  .actions .btn-hold .turn { color: var(--dteal); }
+  .actions .btn-secondary { font-family: var(--sans); font-size: 14px; font-weight: 400; }
+  .actions .btn-secondary .turn { color: var(--dred); font-weight: 400; }
+  .actions .btn[disabled] .turn { color: var(--umber); }
+  .choices-lead { font-size: 13px !important; letter-spacing: 0.06em; text-transform: uppercase; margin: 1.6rem 0 0.4rem !important; }
+  .outcome-btn .turn { display: block; margin-top: 0.5rem; font-size: 13px; font-weight: 700; color: var(--mred); }
+
+  @media print {
+    .site-header, .beta-band, .crumbs, .steps, .page-header, .page-footer, .screen:not([data-screen="statement"]), .no-print { display: none !important; }
+    body { background: var(--white); }
+    .statement { border-left: 2px solid #000; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About WOLF</a></li>
+      <li><a href="liaisons.html">For Liaisons</a></li>
+      <li><a href="ai-literacies.html">AI Literacies</a></li>
+      <li><a href="ai-policy-lab.html">AI Policy Lab</a></li>
+      <li><a href="acicertificate/index.html">C²TC</a></li>
+      <li><a href="get-started.html">Get Started</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="beta-band" role="note">
+  <p><strong>Beta</strong>This page is in testing with facilitated groups. Nothing you write here leaves this browser tab. Your statement exists until you close the tab, so download it before you leave.</p>
+</div>
+
+<div class="page-header" id="top">
+  <div class="page-header-inner">
+    <p class="eyebrow">NC State · Campus Writing and Speaking Program</p>
+    <h1>AI Practice Adventure</h1>
+    <p class="subtitle">Student path, scenario one: a writing assignment, and a syllabus silent on AI</p>
+  </div>
+</div>
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">WOLF</a><span aria-hidden="true">›</span><a href="ai-literacies.html">AI Literacies</a><span aria-hidden="true">›</span><a href="ai_literacy_unified.html">Framework</a><span aria-hidden="true">›</span><span aria-current="page">Practice Adventure (beta)</span></nav>
+
+<nav class="steps" aria-label="Your progress">
+  <div class="steps-inner">
+    <p class="decision-line"><b>Student decision</b>whether, and how, to use a generative AI tool on this assignment</p>
+    <ol id="step-list">
+      <li data-step="opening">Opening</li>
+      <li data-step="describe">Describe</li>
+      <li data-step="analyze">Analyze</li>
+      <li data-step="decide">Decide</li>
+      <li data-step="statement">Statement</li>
+      <li data-step="feedback">Feedback</li>
+    </ol>
+    <div class="trail" id="trail-wrap" hidden><b>Your path</b><ol id="trail"></ol></div>
+  </div>
+</nav>
+
+<div id="announcer" class="sr-only" aria-live="polite"></div>
+
+<main id="main">
+
+<!-- ═══ OPENING, SCREEN 1 ═══ -->
+<section class="screen" data-screen="opening" data-step="opening" aria-labelledby="h-opening">
+  <h2 id="h-opening" tabindex="-1">Policy decides for the student</h2>
+  <p class="lede">Policy decides for the student. A syllabus clause permits AI in one place and forbids it in another, and the student's part is to comply. This tool begins with the decisions you make about AI in your own work, one assignment at a time.</p>
+  <p>The French theorist Michel de Certeau distinguished the strategies institutions set from the tactics people improvise inside them. A policy is a strategy. What you do with a tool late at night, with a draft due and a syllabus silent on the question, is a tactic, and it belongs to you. The anthropologist Brian Street drew a related distinction. Earlier accounts treated literacy as a fixed skill a person either has or lacks. Street described it as a practice, carried out in particular situations with particular stakes.</p>
+  <p>The practice asked of you here is distinct from fluency. Fluency names ease with a tool, how quickly and smoothly you get output from it. Operative literacy names accountable judgment, a decision about when, how, and whether to use the tool, with reasons you will stand behind.</p>
+  <div class="actions"><button type="button" class="btn btn-primary" data-go="opening-2">Continue</button></div>
+</section>
+
+<!-- ═══ OPENING, SCREEN 2 ═══ -->
+<section class="screen" data-screen="opening-2" data-step="opening" aria-labelledby="h-opening-2" hidden>
+  <h2 id="h-opening-2" tabindex="-1">Three levels, in order</h2>
+  <p>Practice is the word for what you exercise here. You will move through three levels in order. First you describe what the tool does. Then you analyze how it is built and whom it disadvantages. Last you decide what this situation warrants: use, limits, or refusal. Every new tool or assignment starts the sequence again at the first level.</p>
+  <div class="level level-1"><span class="level-name">Conceptual · Describe</span><p class="level-gloss">What the systems are, and how they produce text.</p></div>
+  <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
+  <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
+  <p>At the end you receive a statement of your decision, in your own words, to keep or to give to your instructor.</p>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="opening">Back</button>
+    <button type="button" class="btn btn-primary" data-go="premise">Begin</button>
+  </div>
+</section>
+
+<!-- ═══ PREMISE ═══ -->
+<section class="screen" data-screen="premise" data-step="opening" aria-labelledby="h-premise" hidden>
+  <h2 id="h-premise" tabindex="-1">The situation</h2>
+  <div class="position"><p class="position-label">Student decision</p><p style="margin:0">You are working on a writing assignment. The syllabus does not mention AI. You are not sure whether the silence means permission, or means your instructor has not gotten to the question yet.</p></div>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="opening-2">Back</button>
+    <button type="button" class="btn btn-primary" data-go="cp1">Go to the first level</button>
+  </div>
+</section>
+
+<!-- ═══ CHECKPOINT 1 ═══ -->
+<section class="screen" data-screen="cp1" data-step="describe" aria-labelledby="h-cp1" hidden>
+  <div class="level level-1"><span class="level-name">Conceptual · Describe</span><p class="level-gloss">What the systems are, and how they produce text.</p><p class="level-key">Key question: Whose knowledge is encoded?</p></div>
+  <h2 id="h-cp1" tabindex="-1">Checkpoint one: name the use</h2>
+  <label for="f-use" class="prompt">Say, in one sentence, what you did with the tool, or what you are about to do.</label>
+  <textarea id="f-use" aria-describedby="cp1-help"></textarea>
+  <p id="cp1-help" class="answer-help">Write your sentence, then choose an answer below. If no sentence comes, choose the second answer.</p>
+  <p id="cp1-notice" class="notice" role="alert"></p>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" id="cp1-yes">I named the use</button>
+    <button type="button" class="btn btn-secondary" data-go="cp1-no">I cannot name it yet</button>
+  </div>
+</section>
+
+<!-- ═══ CHECKPOINT 1, NO PATH ═══ -->
+<section class="screen" data-screen="cp1-no" data-step="describe" aria-labelledby="h-cp1-no" hidden>
+  <div class="level level-1"><span class="level-name">Conceptual · Describe</span><p class="level-gloss">What the systems are, and how they produce text.</p></div>
+  <h2 id="h-cp1-no" tabindex="-1">The use will not name itself</h2>
+  <p>Perhaps you cannot. Worth sitting with, rather than pushing past.</p>
+  <p>Not being able to name the use usually means one of a few things. You asked the tool for something broad, help with this paragraph, make this sound better, and the tool did more than you tracked, restructuring a sentence here, replacing a word there, until you could not point to where its hand ended and yours began. The framework names this as a sign the describing level is missing, treating AI as one thing. Your request named one thing, help. The tool answered it with several functions. Or you have not opened the tool yet, and the plan in your head is not a use at all, it is a feeling, something like get through this faster, with no particular function attached. Or you can name it, and are avoiding saying so, because naming it out loud, even to yourself, feels like the first step toward disclosing it, and disclosure is the part you have been avoiding.</p>
+  <p>Each of these is a different problem, and each calls for a different next move.</p>
+  <h3>Untraced changes</h3>
+  <p>If you asked for broad help and can no longer tell which changes came from the tool, return to the draft itself and ask where thinking happened. Find one sentence you are unsure about. Ask what the tool did to the sentence specifically, not the paragraph, not the assignment, the sentence. Did it choose the word. Did it choose the order. Did it choose the claim. A use you cannot name at the scale of the whole draft, you can usually still name at the scale of one sentence, and naming it there is enough to answer the checkpoint honestly.</p>
+  <h3>No use yet</h3>
+  <p>If there is no use yet, only a feeling of wanting to move faster, the feeling is not nothing, but it is not a plan either. Ask which part of the assignment is slow for you, generating an opening line, organizing a source, turning research notes into sentences, and name the part. Speed is not a function. Wanting to draft faster tells you nothing about what the tool would be doing to your thinking. Naming the function tells you both what it does and what it costs.</p>
+  <h3>Avoiding the name</h3>
+  <p>If you can name it and are avoiding saying so because naming feels like confession, the discomfort is information, not an obstacle to get past. An unclear policy is not a dare. The discomfort is a sign the use is not one you are certain you can defend, and worth knowing before the sentence goes into the draft rather than after.</p>
+  <p>None of these three moves is a penalty for reaching this checkpoint with no answer. Refusal theory treats declining to act, or declining to answer yet, as a position with its own standing, not a failure to comply. Sitting here, working out why the use will not name itself, is already the practice this checkpoint asks you to build. It is not a detour on the way to the real work. It is the real work, at this scale.</p>
+  <p>When you have worked through which of these you are facing, return to the checkpoint. Try naming the use again, in one sentence. If you can now, continue. If you still cannot, this is an answer too, and one worth bringing to your instructor directly. A use without a name gives you nothing yet to defend, to yourself or to anyone else.</p>
+  <div class="actions"><button type="button" class="btn btn-primary" data-go="cp1">Return to checkpoint one</button></div>
+</section>
+
+<!-- ═══ CHECKPOINT 1, YES PATH: STRUCTURAL ANALYSIS ═══ -->
+<section class="screen" data-screen="analyze" data-step="analyze" aria-labelledby="h-analyze" hidden>
+  <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p><p class="level-key">Key question: Who controls this system?</p></div>
+  <h2 id="h-analyze" tabindex="-1">Whose standard the sentence meets</h2>
+  <p>You named it. Whatever the sentence was, revising a paragraph for clarity, generating three possible openings, checking a citation format, you can point to where the tool's hand went and where yours went. Hold onto the sentence. The next question does not test whether the use was permitted. It tests whose standard the sentence is meeting once the tool has touched it.</p>
+  <p>The tool was trained on an enormous body of writing, and the sentence it produced, or the revision it offered, reflects what was most common in it, not what is most true to you. Generative output favors the most statistically likely phrasing, and the most likely phrasing is drawn overwhelmingly from dominant, standardized English. Lean on the tool to draft or fix a sentence, and the sentence drifts toward the tool's standard, away from your own voice, your own dialect, your own way of getting to a point. If English is not the language you think in first, this cost lands on you more heavily than on a classmate for whom the standard the tool defaults to is already home.</p>
+  <p>The evidence for this drift is recent. Moon and colleagues compared 372,793 admissions essays written before and after the release of ChatGPT (2025, preprint). The later essays gained vocabulary and lost ideas. The steepest losses in ideas fell on international applicants, Black applicants, and students from non-English-speaking households. A second study completes the pattern. Liang and colleagues found AI-writing detectors misclassify essays by writers whose first language is not English as machine-generated (2023). Generators flatten these writers first, and detectors then suspect them. One structural condition produces both.</p>
+  <p>Notice what the sentence sounds like now compared to what it sounded like before the tool touched it. Not whether it improved, whether it still sounds like you.</p>
+  <p>There is a second cost, quieter than the first. The judgment behind a sentence, why this word and not another, why this claim goes here and not three lines down, is usually the thing the assignment exists to develop and grade. Hand a sentence to the tool, and the judgment behind it goes with it. The tool has no sense of what sounds like you. Only you have it, and only if your own judgment stays in the sentence rather than the tool's.</p>
+  <p>Ask, of the sentence you are holding: if the judgment behind this sentence disappeared, would the assignment still be doing its job. If the answer is no, the sentence has moved from an act of writing to an act of accepting output, and this is the finding checkpoint two asks you to sit with.</p>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="cp1">Back to checkpoint one</button>
+    <button type="button" class="btn btn-primary" data-go="cp2">Go to checkpoint two</button>
+  </div>
+</section>
+
+<!-- ═══ CHECKPOINT 2 ═══ -->
+<section class="screen" data-screen="cp2" data-step="analyze" aria-labelledby="h-cp2" hidden>
+  <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
+  <h2 id="h-cp2" tabindex="-1">Checkpoint two: the judgment test</h2>
+  <p class="prompt">Is the judgment the tool supplies, in the use you named, the same judgment this assignment is built to develop?</p>
+  <p>There are three buttons here, yes, no, and uncertain. Yes and no are both findings, and each carries you to the operative level with different information. Uncertain is a position in its own right. It keeps you at this level until a finding comes.</p>
+  <div class="actions">
+    <button type="button" class="btn btn-primary" data-go="cp2-yes">Yes</button>
+    <button type="button" class="btn btn-primary" data-go="cp2-no">No</button>
+    <button type="button" class="btn btn-hold" data-go="cp2-uncertain">Uncertain</button>
+  </div>
+</section>
+
+<!-- ═══ CHECKPOINT 2, YES ═══ -->
+<section class="screen" data-screen="cp2-yes" data-step="analyze" aria-labelledby="h-cp2-yes" hidden>
+  <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
+  <h2 id="h-cp2-yes" tabindex="-1">Your finding: yes</h2>
+  <p>An answer of yes here is not a violation to hide. It brings you to the operative question, what this situation warrants. Before you go, name the finding, so your statement carries it.</p>
+  <label for="f-yes-judgment">The judgment the tool would supply, which this assignment is built to develop <span class="hint">For example: the structure of my argument, my reading of the text, my choice of claims.</span></label>
+  <textarea id="f-yes-judgment"></textarea>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="cp2">Back to checkpoint two</button>
+    <button type="button" class="btn btn-primary" data-go="decide" data-finding="yes">Go to the operative level</button>
+  </div>
+</section>
+
+<!-- ═══ CHECKPOINT 2, NO ═══ -->
+<section class="screen" data-screen="cp2-no" data-step="analyze" aria-labelledby="h-cp2-no" hidden>
+  <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
+  <h2 id="h-cp2-no" tabindex="-1">Your finding: no. Test it once.</h2>
+  <p>The function you named leaves the assignment's judgment with you. A citation formatted, a comma checked on a paper graded for its argument, a reference list alphabetized, each of these changes the surface of the work and leaves its claims, its order, and its reading of the sources where you put them.</p>
+  <p>Before you move on, test the no once. A no comes easily when the use was named narrowly at checkpoint one, so check what the tool did against what you asked of it. If you asked for a grammar check and a sentence came back making a different claim, the tool did more than the function you named, and the answer here has changed. Return to the checkpoint and answer again.</p>
+  <label for="f-no-asked">What I asked the tool to do</label>
+  <textarea id="f-no-asked"></textarea>
+  <label for="f-no-returned">What the tool returned</label>
+  <textarea id="f-no-returned"></textarea>
+  <p>If the no holds, it is a finding, and it would be the same for any student using this function on this assignment. It tells you one thing about the decision ahead. The reason for declining named at the operative level, a tool supplying the judgment the assignment exists to develop, is absent here. The decision is still open. The syllabus is as silent as it was when you started. You have yet to choose a limit for the tool, and you have yet to say what you will disclose.</p>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="cp2">The tool did more. Answer again.</button>
+    <button type="button" class="btn btn-primary" data-go="decide" data-finding="no">The no holds. Go to the operative level.</button>
+  </div>
+</section>
+
+<!-- ═══ CHECKPOINT 2, UNCERTAIN ═══ -->
+<section class="screen" data-screen="cp2-uncertain" data-step="analyze" aria-labelledby="h-cp2-unc" hidden>
+  <div class="level level-2"><span class="level-name">Structural · Analyze</span><p class="level-gloss">How they are built, and whom they disadvantage.</p></div>
+  <h2 id="h-cp2-unc" tabindex="-1">Uncertain: stay at this level until a finding comes</h2>
+  <p>Uncertain here usually means the test itself is hard to run, not avoidance. A few ways this happens.</p>
+  <p>You may not know, with any precision, what judgment this specific assignment is built to develop. Courses rarely say it in those terms. The syllabus names a topic, a length, a due date, a citation style, and leaves the actual capacity under all of it unstated, whether it is argument construction, or original interpretation of a text, or the ability to notice something a source did not already say for you. Without naming the capacity, the test, would the assignment still be doing its job without this sentence's judgment, has nothing to check against.</p>
+  <p>You may know the capacity in general and still be unsure whether what the tool did crossed into it. A grammar check and a paragraph reorganized around a claim you did not choose are not the same act, and the line between assisting a mechanical task and absorbing an intellectual one is not always visible from inside the sentence. Reasonable uncertainty here is not evasion. It is what the line looks like up close.</p>
+  <p>You may also suspect the honest answer is yes, and uncertain is where the suspicion goes to avoid becoming a finding. This is close to the discomfort checkpoint one already asked you to notice, and it deserves the same treatment, sit with it rather than resolve it by default toward whichever answer lets you keep going.</p>
+  <p>For the first case, find the assignment's own account of itself, the prompt language beyond the logistics, a rubric line, a comment your instructor made in class about what the paper is for, and put words to the capacity being developed. For the second, take the one sentence again and separate what was corrected from what was decided. A misplaced comma is correction. A claim placed here rather than there is a decision. For the third, ask directly, do I already know the answer and am reluctant to write it down.</p>
+  <p>Reread the assignment with the capacity you named in hand, then return to this checkpoint. An answer of yes here is not a violation to hide. It brings you to the operative question, what this situation warrants, and this question is next.</p>
+  <div class="actions"><button type="button" class="btn btn-primary" data-go="cp2">Return to checkpoint two</button></div>
+</section>
+
+<!-- ═══ OPERATIVE LEVEL ═══ -->
+<section class="screen" data-screen="decide" data-step="decide" aria-labelledby="h-decide" hidden>
+  <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p><p class="level-key">Key question: What does this situation warrant: use, limits, or refusal?</p></div>
+  <h2 id="h-decide" tabindex="-1">What will you decide, and on what grounds?</h2>
+  <p>You have named the use. You have worked out whether the judgment the tool supplies is the judgment this assignment is built to develop, either directly or by sitting with the uncertainty until an answer came. Whichever way you arrived here, one question is left, and it is not whether you are allowed to use the tool. It is what you will decide in this particular case, and on what grounds, now that you can see what is at stake. Your answer at checkpoint two would be the same for any student using this function on this assignment. The answer here belongs to you alone, and it exists only once you decide.</p>
+  <p>This is the operative level, and its central question is what this situation warrants: use, limits, or refusal. Declining the tool here is not a blanket position against it, in this assignment or any other. It is a decision not to let the norms embedded in the tool's training stand in for a voice this task exists to develop. Refusal at this level is not a rule you carry into every assignment. It is a judgment you make about this one, worth remaking each time the conditions change.</p>
+  <p>Three questions are yours to answer wherever you land. Are you writing with the tool or writing for it. Writing with the tool keeps your own judgment active at every stage, in what you ask it, what you keep, what you revise. Writing for the tool hands your judgment to its output and adjusts everything else around what it gave you. Have you asked your instructor. A policy's silence is not permission, it is a question still open. What will you disclose, and how. Disclosure protects you as much as it satisfies a rule. Note what you used and how, the way you would note a source.</p>
+  <p>From here, most students land on one of three postures. None is the correct answer waiting to be found. Each is a defensible position, provided you can say why.</p>
+  <div class="outcomes" role="group" aria-label="Choose your decision">
+    <button type="button" class="outcome-btn" data-outcome="decline"><strong>Decline</strong><span>Not on this task, for reasons I name.</span></button>
+    <button type="button" class="outcome-btn" data-outcome="conditional"><strong>Use with conditions</strong><span>A named function, inside a limit set beforehand, disclosed.</span></button>
+    <button type="button" class="outcome-btn" data-outcome="defer"><strong>Defer</strong><span>Find out what the decision depends on first.</span></button>
+  </div>
+  <div class="actions"><button type="button" class="btn btn-secondary" data-go="cp2">Back to checkpoint two</button></div>
+</section>
+
+<!-- ═══ OUTCOME: DECLINE ═══ -->
+<section class="screen" data-screen="decline" data-step="decide" aria-labelledby="h-decline" hidden>
+  <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
+  <h2 id="h-decline" tabindex="-1">Your decision: decline</h2>
+  <div class="position">
+    <p class="position-label">Position taken</p>
+    <p>You decide not to use the tool on this task, not because a rule forbids it, but because the judgment this assignment is built to develop is the exact judgment the tool would supply in your place. A sentence-level choice, the structure of an argument, your own reading of a text, whichever it is, using the tool here would let the tool's training answer where the assignment asks you to.</p>
+    <p>Declining is not a blanket stance you carry to the next assignment. Name, specifically, what you are protecting, so the decision travels with reasons instead of habit. Apply it to this task, not to every task the syllabus contains. The person deciding owes their reasons, and here the person deciding is you. Say so to your instructor rather than deciding privately and hoping the choice goes unnoticed. A refusal nobody knows about protects nothing, and asks nothing of the person who assigned the work.</p>
+    <p style="margin-bottom:0">This is what refusal theory names at the scale of one assignment. Simpson, Campt, and Benjamin describe refusal not as noncompliance but as an accountable rejection of conditions which would otherwise reproduce harm, grounded in analysis rather than preference. Declining the tool here, for this reason, on this task, is refusal in exactly this sense. It is not the absence of an answer. It is the answer, arrived at honestly.</p>
+  </div>
+  <label for="f-dec-protect">What judgment I am protecting</label>
+  <textarea id="f-dec-protect"></textarea>
+  <label for="f-dec-task">The task this decision applies to</label>
+  <input type="text" id="f-dec-task">
+  <label for="f-dec-reasons">How I will give my reasons to my instructor</label>
+  <textarea id="f-dec-reasons"></textarea>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="decide">Back to the three postures</button>
+    <button type="button" class="btn btn-primary" data-go="reopen">Continue</button>
+  </div>
+</section>
+
+<!-- ═══ OUTCOME: CONDITIONAL ═══ -->
+<section class="screen" data-screen="conditional" data-step="decide" aria-labelledby="h-cond" hidden>
+  <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
+  <h2 id="h-cond" tabindex="-1">Your decision: use with conditions</h2>
+  <div class="position">
+    <p class="position-label">Position taken</p>
+    <p>You decide to use the tool, but only inside limits you set and state before you start, not limits you discover afterward and describe as though they were always there.</p>
+    <p>Three things have to be explicit for a conditional use to be conditional at all. Name the specific function, outlining, checking grammar, generating alternatives, rather than describing the use in general terms broad enough to cover almost anything. Set a limit on what the tool is allowed to touch, a first pass rather than a final draft, and hold to it. Note what you used and how, treated with the same care you would give a citation, since a source the reader cannot trace is not disclosed, only mentioned.</p>
+    <p style="margin-bottom:0">Conditional use without a stated limit is not conditional use. It is unexamined use with an explanation attached after the fact, and the difference matters more than it looks like it should. The limit is what makes the choice yours rather than the tool's, and a limit set before you open the tool is a different act than a justification written afterward to match what already happened.</p>
+  </div>
+  <label for="f-con-function">Function <span class="hint">The specific function, for example generating alternative openings only.</span></label>
+  <input type="text" id="f-con-function">
+  <label for="f-con-limit">Limit <span class="hint">What the tool is allowed to touch, set before you start.</span></label>
+  <input type="text" id="f-con-limit">
+  <label for="f-con-disclosure">Disclosure <span class="hint">Where and how you will note what you used.</span></label>
+  <input type="text" id="f-con-disclosure">
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="decide">Back to the three postures</button>
+    <button type="button" class="btn btn-primary" data-go="reopen">Continue</button>
+  </div>
+</section>
+
+<!-- ═══ OUTCOME: DEFER ═══ -->
+<section class="screen" data-screen="defer" data-step="decide" aria-labelledby="h-defer" hidden>
+  <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
+  <h2 id="h-defer" tabindex="-1">Your decision: defer</h2>
+  <div class="position">
+    <p class="position-label">Position taken</p>
+    <p>Something the decision depends on is still unknown, the policy, the assignment's purpose, or what the tool would do to it, and rather than guessing, you decide to find out before you write another sentence.</p>
+    <p>An unclear policy is not permission, and it is not a loophole either. It is an open question, and the deadline pressing on you is not a reason to answer it by default. Deciding by default is the sign the framework gives for a missing operative level, a decision made by the clock in place of the person. Ask what the assignment is trying to develop before assuming you already know. Ask your instructor directly if the syllabus does not say, rather than reading its silence as a decision already made in your favor.</p>
+    <p style="margin-bottom:0">A deadline changes how soon the answer is needed. It does not change whether the question deserves one. Deferring here is not indecision. It is choosing not to let a due date stand in for a choice still yours to make.</p>
+  </div>
+  <label for="f-def-question">The open question I am bringing to my instructor</label>
+  <textarea id="f-def-question"></textarea>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" data-go="decide">Back to the three postures</button>
+    <button type="button" class="btn btn-primary" data-go="reopen">Continue</button>
+  </div>
+</section>
+
+<!-- ═══ REVISION TRIGGER AND OWN WORDS ═══ -->
+<section class="screen" data-screen="reopen" data-step="decide" aria-labelledby="h-reopen" hidden>
+  <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
+  <h2 id="h-reopen" tabindex="-1">What would reopen this decision</h2>
+  <p>A decision holds for the conditions under which you made it. Name the changes which would send you back to the first level to decide again. A draft list sits in the box. Edit it to fit your case.</p>
+  <label for="f-reopen">What would reopen this decision</label>
+  <textarea id="f-reopen"></textarea>
+  <label for="f-own">In my own words <span class="hint">One or two sentences, in your own voice, on what you decided and why.</span></label>
+  <textarea id="f-own"></textarea>
+  <div class="actions">
+    <button type="button" class="btn btn-secondary" id="reopen-back">Back</button>
+    <button type="button" class="btn btn-primary" data-go="statement">See my statement</button>
+  </div>
+</section>
+
+<!-- ═══ STATEMENT ═══ -->
+<section class="screen" data-screen="statement" data-step="statement" aria-labelledby="h-statement" hidden>
+  <h2 id="h-statement" tabindex="-1">Your AI practice statement</h2>
+  <p class="no-print">Add your name, course, and date if you will give this to your instructor. Then download or print it. Nothing on this page is saved or sent.</p>
+  <div class="meta-grid no-print">
+    <div><label for="f-name">Name</label><input type="text" id="f-name" autocomplete="name"></div>
+    <div><label for="f-course">Course and assignment</label><input type="text" id="f-course"></div>
+    <div><label for="f-date">Date</label><input type="date" id="f-date"></div>
+  </div>
+  <article class="statement" id="statement" aria-label="AI practice statement">
+    <h3>AI Practice Statement</h3>
+    <dl id="statement-body"></dl>
+  </article>
+  <div class="actions no-print">
+    <button type="button" class="btn btn-primary" id="dl-btn">Download as a text file</button>
+    <button type="button" class="btn btn-secondary" id="print-btn">Print or save as PDF</button>
+    <button type="button" class="btn btn-secondary" id="copy-btn">Copy the text</button>
+  </div>
+  <p id="statement-status" class="answer-help no-print" aria-live="polite"></p>
+  <div class="actions no-print">
+    <button type="button" class="btn btn-secondary" data-go="reopen">Back</button>
+    <button type="button" class="btn btn-secondary" id="restart-btn">Start a new decision</button>
+    <button type="button" class="btn btn-primary" data-go="feedback">Give beta feedback</button>
+  </div>
+</section>
+
+<!-- ═══ BETA FEEDBACK ═══ -->
+<section class="screen" data-screen="feedback" data-step="feedback" aria-labelledby="h-feedback" hidden>
+  <h2 id="h-feedback" tabindex="-1">Beta feedback</h2>
+  <p>These questions concern the path itself. The form sends only what you write in it. It sends none of your answers from the path, and your statement stays with you.</p>
+  <form id="fb-form" novalidate>
+    <label for="fb-role">Reading as <span class="hint">Optional</span></label>
+    <select id="fb-role" name="role">
+      <option value="">Choose one</option>
+      <option>Faculty or instructor reading as a student</option>
+      <option>Staff member reading as a student</option>
+      <option>Graduate student</option>
+      <option>Undergraduate student</option>
+      <option>Other</option>
+    </select>
+    <label for="fb-device">Device <span class="hint">Optional</span></label>
+    <select id="fb-device" name="device">
+      <option value="">Choose one</option>
+      <option>Phone</option>
+      <option>Tablet</option>
+      <option>Laptop or desktop</option>
+    </select>
+    <label for="fb-stall">Where did you stall, reread, or lose the thread?</label>
+    <textarea id="fb-stall" name="stall"></textarea>
+    <label for="fb-next">Did any screen leave you unsure what to do next? Which one?</label>
+    <textarea id="fb-next" name="next"></textarea>
+    <label for="fb-made">At the Decide level, did the decision feel already made by the analysis before it? Say how.</label>
+    <textarea id="fb-made" name="made"></textarea>
+    <label for="fb-postures">Did decline, use with conditions, and defer read as equally defensible? Which felt favored or penalized?</label>
+    <textarea id="fb-postures" name="postures"></textarea>
+    <label for="fb-statement">Would you hand the statement to an instructor? What would you change first?</label>
+    <textarea id="fb-statement" name="statement"></textarea>
+    <label for="fb-other">Anything else</label>
+    <textarea id="fb-other" name="other"></textarea>
+    <fieldset>
+      <legend>Route</legend>
+      <label class="choice"><input type="checkbox" id="fb-route-ok"> Include the route I took (which screens and which buttons, none of my writing)</label>
+    </fieldset>
+    <div class="actions">
+      <button type="submit" class="btn btn-primary" id="fb-submit">Send feedback</button>
+      <button type="button" class="btn btn-secondary" id="fb-email">Send by email instead</button>
+    </div>
+    <p id="fb-status" class="answer-help" aria-live="polite"></p>
+  </form>
+  <div class="actions"><button type="button" class="btn btn-secondary" data-go="statement">Back to my statement</button></div>
+</section>
+
+</main>
+
+<footer class="page-footer">
+  <div class="page-footer-inner">
+    <p>Built on the three-level framework at <a href="ai_literacy_unified.html">AI Literacy Is Not One Thing</a>. Beta, October 2026. Questions to <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a>.</p>
+    <p>All content © 2026 by Kirsti Cole (CWSP WOLF, NC State University), licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Feedback goes to the CWSP archive script, tagged with its own source.
+     The script needs the AdventureBeta branch (apps-script/AdventureBeta.gs) before these land in their own sheet. */
+  var ARCHIVE_URL = 'https://script.google.com/macros/s/AKfycbzAqeLtTtwyZSuWOnjoDcDBChRbs3vmaPVusqFDDNO7xpUtYrKOmHsRxEQRZezuHc6A/exec';
+  var FEEDBACK_EMAIL = 'kkcole2@ncsu.edu';
+  var FRAMEWORK_URL = 'https://cwspwolf.com/ai_literacy_unified.html';
+
+  /* Everything the person writes lives in these variables and the form fields, nowhere else. */
+  var state = { finding: null, outcome: null, route: [] };
+  var STEP_ORDER = ['opening', 'describe', 'analyze', 'decide', 'statement', 'feedback'];
+
+  var REOPEN_DEFAULTS = {
+    decline: 'I return to the first level and decide again if my instructor states an AI policy, if the assignment changes, if I switch tools, or if I take this practice to a different assignment.',
+    conditional: 'I return to the first level and decide again if my instructor states an AI policy, if I use the tool beyond the limit I set, if I switch tools, or if I take this practice to a different assignment.',
+    defer: 'I return to the first level and decide when my instructor answers the question above, or when I learn what the assignment is built to develop.'
+  };
+  var OUTCOME_LABEL = { decline: 'Decline', conditional: 'Use with conditions', defer: 'Defer' };
+
+
+  /* Passage numbers, gamebook style. Addresses read #7, and older #screen=cp1 links still resolve. */
+  var PASSAGE = { 'opening': 1, 'opening-2': 2, 'premise': 3, 'cp1': 7, 'cp1-no': 11, 'analyze': 14, 'cp2': 18,
+    'cp2-uncertain': 21, 'cp2-yes': 23, 'cp2-no': 26, 'decide': 30, 'decline': 33, 'conditional': 36, 'defer': 39,
+    'reopen': 42, 'statement': 45, 'feedback': 48 };
+  var BY_NUMBER = {};
+  Object.keys(PASSAGE).forEach(function (k) { BY_NUMBER[PASSAGE[k]] = k; });
+  var screens = Array.prototype.slice.call(document.querySelectorAll('.screen'));
+  var stepItems = Array.prototype.slice.call(document.querySelectorAll('#step-list li'));
+  var announcer = document.getElementById('announcer');
+
+
+  /* Number each passage, and tell every choice where it leads. */
+  screens.forEach(function (s) {
+    var n = PASSAGE[s.getAttribute('data-screen')];
+    var num = document.createElement('p');
+    num.className = 'passage-no';
+    num.setAttribute('aria-hidden', 'true');
+    num.textContent = n;
+    s.insertBefore(num, s.firstChild);
+    var h = s.querySelector('h2');
+    if (h) h.insertAdjacentHTML('afterbegin', '<span class="sr-only">Passage ' + n + '. </span>');
+    var first = s.querySelector('.actions');
+    if (first && !first.classList.contains('no-print') && s.getAttribute('data-screen') !== 'feedback') {
+      var lead = document.createElement('p');
+      lead.className = 'choices-lead';
+      lead.textContent = 'What do you do?';
+      first.parentNode.insertBefore(lead, first);
+    }
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-go]'), function (b) {
+    var n = PASSAGE[b.getAttribute('data-go')];
+    if (n) b.insertAdjacentHTML('beforeend', ' <span class="turn">Turn to ' + n + '</span>');
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-outcome]'), function (b) {
+    b.insertAdjacentHTML('beforeend', '<span class="turn">Turn to ' + PASSAGE[b.getAttribute('data-outcome')] + '</span>');
+  });
+  document.getElementById('cp1-yes').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 14</span>');
+  document.getElementById('reopen-back').insertAdjacentHTML('beforeend', ' <span class="turn">Turn back</span>');
+
+  function drawTrail() {
+    var list = document.getElementById('trail');
+    list.innerHTML = '';
+    state.route.forEach(function (name) {
+      var li = document.createElement('li'); li.textContent = PASSAGE[name]; list.appendChild(li);
+    });
+    document.getElementById('trail-wrap').hidden = state.route.length < 2;
+  }
+
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+
+  function show(name, opts) {
+    opts = opts || {};
+    var target = null;
+    screens.forEach(function (s) { if (s.getAttribute('data-screen') === name) target = s; });
+    if (!target) { target = screens[0]; name = target.getAttribute('data-screen'); }
+    screens.forEach(function (s) { s.hidden = (s !== target); });
+
+    var step = target.getAttribute('data-step');
+    var idx = STEP_ORDER.indexOf(step);
+    stepItems.forEach(function (li, i) {
+      li.classList.toggle('done', i < idx);
+      if (i === idx) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+    });
+
+    if (name === 'statement') buildStatement();
+    if (state.route[state.route.length - 1] !== name) state.route.push(name);
+    drawTrail();
+
+    var addr = '#' + PASSAGE[name];
+    if (!opts.fromHash && location.hash !== addr) history.pushState(null, '', addr);
+    var h = target.querySelector('h2');
+    if (!opts.initial) {
+      window.scrollTo(0, 0);
+      if (h) h.focus();
+    }
+    announcer.textContent = h ? h.textContent : '';
+  }
+
+  function screenFromHash() {
+    var h = location.hash.replace('#', '');
+    if (BY_NUMBER[h]) return BY_NUMBER[h];
+    var m = h.match(/screen=([\w-]+)/);
+    return m ? m[1] : 'opening';
+  }
+
+  /* Plain navigation buttons */
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-go]');
+    if (!b) return;
+    if (b.hasAttribute('data-finding')) state.finding = b.getAttribute('data-finding');
+    show(b.getAttribute('data-go'));
+  });
+
+  /* Checkpoint one: a yes needs a sentence */
+  document.getElementById('cp1-yes').addEventListener('click', function () {
+    var notice = document.getElementById('cp1-notice');
+    if (!val('f-use')) {
+      notice.textContent = 'Write the use in one sentence first, or choose “I cannot name it yet.”';
+      document.getElementById('f-use').focus();
+      return;
+    }
+    notice.textContent = '';
+    show('analyze');
+  });
+
+  /* The three postures */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-outcome]'), function (b) {
+    b.addEventListener('click', function () {
+      var o = b.getAttribute('data-outcome');
+      if (state.outcome !== o) {
+        var r = document.getElementById('f-reopen');
+        var wasDefault = !r.value || Object.keys(REOPEN_DEFAULTS).some(function (k) { return r.value === REOPEN_DEFAULTS[k]; });
+        if (wasDefault) r.value = REOPEN_DEFAULTS[o];
+      }
+      state.outcome = o;
+      show(o);
+    });
+  });
+  document.getElementById('reopen-back').addEventListener('click', function () { show(state.outcome || 'decide'); });
+
+  /* The statement, assembled from the person's own answers */
+  function judgmentText() {
+    if (state.finding === 'yes') {
+      return 'My answer: yes. The judgment the tool would supply is the judgment this assignment is built to develop: ' + (val('f-yes-judgment') || '[not yet named]') + '.';
+    }
+    if (state.finding === 'no') {
+      return 'My answer: no. The function I named leaves the assignment’s judgment with me. I tested the no once. I asked the tool to ' +
+        (val('f-no-asked') || '[not recorded]') + ', and it returned ' + (val('f-no-returned') || '[not recorded]') + '.';
+    }
+    return '[No finding recorded at checkpoint two.]';
+  }
+
+  function decisionText() {
+    if (state.outcome === 'decline') {
+      return 'Decline.\nJudgment I am protecting: ' + (val('f-dec-protect') || '[blank]') +
+        '\nThe task this applies to: ' + (val('f-dec-task') || '[blank]') +
+        '\nHow I give my reasons to my instructor: ' + (val('f-dec-reasons') || '[blank]');
+    }
+    if (state.outcome === 'conditional') {
+      return 'Use with conditions.\nFunction: ' + (val('f-con-function') || '[blank]') +
+        '\nLimit: ' + (val('f-con-limit') || '[blank]') +
+        '\nDisclosure: ' + (val('f-con-disclosure') || '[blank]');
+    }
+    if (state.outcome === 'defer') {
+      return 'Defer.\nThe open question I am bringing to my instructor: ' + (val('f-def-question') || '[blank]');
+    }
+    return '[No decision recorded.]';
+  }
+
+  var GROUNDING = 'This statement follows a three-level literacy framework, conceptual (describe), structural (analyze), operative (decide). The levels set the order in which a decision gets reasoned, and every new tool or assignment starts again at the first level. The operative question asks what this situation warrants: use, limits, or refusal. Declining, limiting, and deferring AI use count as accountable practice, drawing on refusal theory (Simpson, Campt, Benjamin). The full framework: ' + FRAMEWORK_URL;
+
+  function statementFields() {
+    return [
+      ['Name', val('f-name')],
+      ['Course and assignment', val('f-course')],
+      ['Date', val('f-date')],
+      ['The use I named', val('f-use') || '[blank]'],
+      ['The judgment test', judgmentText()],
+      ['My decision', decisionText()],
+      ['What would reopen this decision', val('f-reopen') || '[blank]'],
+      ['In my own words', val('f-own') || '[blank]'],
+      ['Grounding', GROUNDING]
+    ];
+  }
+
+  function buildStatement() {
+    var dl = document.getElementById('statement-body');
+    dl.innerHTML = '';
+    statementFields().forEach(function (f) {
+      var dt = document.createElement('dt'); dt.textContent = f[0];
+      var dd = document.createElement('dd'); dd.textContent = f[1] || '—';
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+  }
+  ['f-name', 'f-course', 'f-date'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', buildStatement);
+  });
+
+  function statementText() {
+    return 'AI PRACTICE STATEMENT\n\n' + statementFields().map(function (f) {
+      return f[0] + '\n' + (f[1] || '') + '\n';
+    }).join('\n');
+  }
+
+  var sStatus = document.getElementById('statement-status');
+  document.getElementById('dl-btn').addEventListener('click', function () {
+    var blob = new Blob([statementText()], { type: 'text/plain;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'AI-Practice-Statement.txt';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    sStatus.textContent = 'Downloaded AI-Practice-Statement.txt.';
+  });
+  document.getElementById('print-btn').addEventListener('click', function () { buildStatement(); window.print(); });
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(statementText()).then(function () { sStatus.textContent = 'Copied.'; },
+        function () { sStatus.textContent = 'Copying failed. Use the download button.'; });
+    } else { sStatus.textContent = 'Copying is unavailable in this browser. Use the download button.'; }
+  });
+  document.getElementById('restart-btn').addEventListener('click', function () {
+    if (!window.confirm('Clear your answers and start a new decision? Download your statement first if you want to keep it.')) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.screen textarea, .screen input[type="text"], .screen input[type="date"]'), function (el) {
+      if (!el.closest('#fb-form')) el.value = '';
+    });
+    state.finding = null; state.outcome = null;
+    show('cp1');
+  });
+
+  /* Beta feedback */
+  var fbStatus = document.getElementById('fb-status');
+  function feedbackPayload() {
+    var data = {
+      source: 'ai-practice-beta',
+      timestamp: new Date().toISOString(),
+      page: location.pathname,
+      role: val('fb-role'), device: val('fb-device'),
+      stall: val('fb-stall'), next: val('fb-next'), made: val('fb-made'),
+      postures: val('fb-postures'), statement: val('fb-statement'), other: val('fb-other')
+    };
+    if (document.getElementById('fb-route-ok').checked) {
+      data.route = state.route.map(function (n) { return PASSAGE[n] + ' ' + n; }).join(' > ');
+      data.finding = state.finding || '';
+      data.outcome = state.outcome || '';
+    }
+    return data;
+  }
+  function hasAnswer(d) {
+    return ['stall', 'next', 'made', 'postures', 'statement', 'other'].some(function (k) { return d[k]; });
+  }
+
+  document.getElementById('fb-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = feedbackPayload();
+    if (!hasAnswer(data)) { fbStatus.textContent = 'Answer at least one question before sending.'; return; }
+    var btn = document.getElementById('fb-submit');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(ARCHIVE_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
+      .then(function () {
+        fbStatus.textContent = 'Sent. Thank you.';
+        btn.textContent = 'Sent';
+      })
+      .catch(function () {
+        fbStatus.textContent = 'The feedback did not send. Use “Send by email instead.”';
+        btn.disabled = false; btn.textContent = 'Send feedback';
+      });
+  });
+
+  document.getElementById('fb-email').addEventListener('click', function () {
+    var d = feedbackPayload();
+    var lines = [
+      'Reading as: ' + d.role, 'Device: ' + d.device, '',
+      'Where I stalled: ' + d.stall, '',
+      'Unsure what to do next: ' + d.next, '',
+      'Decision already made by the analysis: ' + d.made, '',
+      'The three postures: ' + d.postures, '',
+      'The statement: ' + d.statement, '',
+      'Anything else: ' + d.other
+    ];
+    if (d.route) lines.push('', 'Route: ' + d.route, 'Finding: ' + d.finding, 'Outcome: ' + d.outcome);
+    location.href = 'mailto:' + FEEDBACK_EMAIL + '?subject=' + encodeURIComponent('AI Practice Adventure beta feedback') +
+      '&body=' + encodeURIComponent(lines.join('\n'));
+  });
+
+  /* Addressable states: #screen=cp1 opens checkpoint one, so a facilitator links straight to it. */
+  window.addEventListener('popstate', function () { show(screenFromHash(), { fromHash: true }); });
+  show(screenFromHash(), { fromHash: true, initial: true });
+})();
+</script>
+</body>
+</html>
