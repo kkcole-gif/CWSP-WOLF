@@ -332,11 +332,21 @@ function C2TC_sendCopy_(file, who, where, p, when) {
     headers: { Authorization: 'Bearer ' + ScriptApp.getOAuthToken() }
   }).getBlob().setName(base + '.docx');
 
-  var what = where.certificate + ', ' + (p.workbook_title || where.component);
+  var wolf = where.certificate === 'WOLF';
+  var what = wolf ? (p.workbook_title || ('WOLF ' + where.component)) : where.certificate + ', ' + (p.workbook_title || where.component);
   var lay = C2TC_LAYOUTS[C2TC_layoutKey_(p)];
-  var uses = lay && lay.student && lay.student.length
+  var uses = wolf
+    ? (where.component === 'Stage 2'
+        ? 'The plan opens the file, Parts 1 through 5 and the approval block, ready for your chair to sign, and your reflection follows it.'
+        : where.component === 'Stage 3'
+        ? 'Your adapted rubrics, the certification record, and any nominations open the file, and your reflection follows them. CWSP reviews the record and sends the certification and recognition letters.'
+        : 'Your Stage 1 responses are the record CWSP works from in your first design session.')
+    : lay && lay.student && lay.student.length
     ? 'The pages written to students are ready to copy into your syllabus or course site, and your teaching notes follow them. Keep the file as a record of your teaching development for annual review.'
     : 'Keep it as a record of your teaching development for annual review, or draw on your notes as you plan the course.';
+  var program = wolf ? 'WOLF' : 'C²TC';
+  var site = wolf ? 'https://cwspwolf.com/wolf-workbook.html' : C2TC.SITE;
+  var siteName = wolf ? 'WOLF Workbook' : 'C²TC site';
   var date = Utilities.formatDate(when, 'America/New_York', 'MMMM d, yyyy');
   var html =
     '<div style="font-family: Garamond, \'EB Garamond\', Georgia, serif; font-size: large; line-height: 1.45;">' +
@@ -344,18 +354,18 @@ function C2TC_sendCopy_(file, who, where, p, when) {
     '<p>Attached is a copy of your responses to ' + what + ', submitted ' + date + '.</p>' +
     '<p>The Word file is yours to edit. ' + uses + ' ' +
     'The PDF keeps your responses as you submitted them.</p>' +
-    '<p>CWSP keeps a copy in your C²TC folder. To continue, return to the ' +
-    '<a href="' + C2TC.SITE + '">C²TC site</a>. Questions come to me by reply.</p>' +
+    '<p>CWSP keeps a copy in your ' + program + ' folder. To continue, return to the ' +
+    '<a href="' + site + '">' + siteName + '</a>. Questions come to me by reply.</p>' +
     '<p>Best,<br>Kirsti</p>' +
     '<p>Kirsti K. Cole<br>Co-Director, Campus Writing and Speaking Program<br>NC State University</p></div>';
 
   MailApp.sendEmail({
     to: who.email,
-    subject: 'Your C²TC responses: ' + where.certificate + ', ' + where.component,
+    subject: wolf ? 'Your WOLF ' + where.component + ' document' : 'Your C²TC responses: ' + where.certificate + ', ' + where.component,
     htmlBody: html,
     body: 'Attached is a copy of your responses to ' + what + ', submitted ' + date + '.',
     attachments: [docx, pdf],
-    name: 'C²TC, Campus Writing and Speaking Program',
+    name: program + ', Campus Writing and Speaking Program',
     replyTo: C2TC.REPLY_TO
   });
 }
@@ -655,7 +665,7 @@ function C2TC_sendResumeLink_(who, where, p, page, key, when, completed, total) 
     subject: 'Continue your C²TC work: ' + where.certificate + ', ' + where.component,
     htmlBody: html,
     body: 'Continue where you left off: ' + link,
-    name: 'C²TC, Campus Writing and Speaking Program',
+    name: (where.certificate === 'WOLF' ? 'WOLF' : 'C²TC') + ', Campus Writing and Speaking Program',
     replyTo: C2TC.REPLY_TO
   });
 }
