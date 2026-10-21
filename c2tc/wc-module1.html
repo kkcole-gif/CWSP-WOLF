@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WC Module 1: Foundations of Writing Pedagogy | C²TC</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --red: #CC0000; --dark: #1A1A1A; --navy: #1E2B4A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+
+/* ── Top bar ── */
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--red); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--red); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+
+/* ── Layout ── */
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+
+/* ── Sidebar ── */
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--red); border-left-color: var(--red); background: #fff0f0; font-weight: 600; }
+.sidebar a.activity { color: var(--navy); } .sidebar a.activity:hover { background: #f0f4ff; }
+.sidebar a.activity.active { color: var(--navy); border-left-color: var(--navy); background: #f0f4ff; }
+
+/* ── Main content ── */
+.main { padding: 2.5rem 3rem; background: var(--white); }
+
+/* ── Section header ── */
+.module-header { background: var(--dark); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid var(--red); }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #bbb; font-size: 0.95rem; max-width: 560px; }
+
+/* ── Content sections ── */
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; color: var(--dark); line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; color: var(--dark); }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+
+/* ── Callout ── */
+.callout { background: var(--lgray); border-left: 4px solid var(--red); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout.navy { border-left-color: var(--navy); }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.35rem; }
+.callout.navy .callout-title { color: var(--navy); }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+
+/* ── Activity blocks ── */
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--navy); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; background: var(--white); }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.activity-block ol { margin: 0.5rem 0 1rem 1.25rem; }
+.activity-block ol li { font-size: 0.92rem; margin-bottom: 0.5rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; color: var(--dark); margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--navy); background: white; }
+textarea { min-height: 100px; }
+
+/* ── Repository opt-in ── */
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--navy); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--navy); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--navy); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; color: var(--dark); margin: 0; }
+
+/* ── Reading list ── */
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li::before { content: '→'; color: var(--red); flex-shrink: 0; font-weight: 700; }
+
+/* ── Submit section ── */
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 3rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-submit { background: var(--red); color: white; border: none; padding: 0.75rem 2rem; font-size: 0.95rem; font-weight: 700; border-radius: 3px; cursor: pointer; }
+.btn-submit:hover { opacity: 0.88; }
+.btn-submit:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-save { background: transparent; border: 1px solid var(--mgray); color: var(--dark); padding: 0.45rem 1rem; font-size: 0.82rem; border-radius: 3px; cursor: pointer; }
+.btn-save:hover { border-color: var(--dark); }
+#submit-success { display: none; background: #e8f5e9; border: 1px solid #a5d6a7; border-radius: 3px; padding: 1rem; color: #2e7d32; font-size: 0.9rem; margin-top: 1rem; }
+#submit-error   { display: none; background: #ffebee; border: 1px solid #ef9a9a; border-radius: 3px; padding: 1rem; color: #c62828; font-size: 0.9rem; margin-top: 1rem; }
+
+/* ── Next module link ── */
+.next-module { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.next-module:hover { border-color: var(--red); }
+.next-module .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.2rem; }
+.next-module .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+.next-module .arrow { font-size: 1.5rem; color: var(--red); }
+
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { margin: -1.5rem -1.5rem 2rem; padding: 1.5rem; }
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="../css/brand.css">
+<link rel="stylesheet" href="css/module.css">
+</head>
+<body data-track="written">
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="written.html">← Written Communication Certificate</a>
+    <h1>Module 1: Foundations of Writing Pedagogy</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+    <button class="btn-save" onclick="saveAll()">Save</button>
+  </div>
+</div>
+
+<div class="layout">
+
+  <nav class="sidebar" aria-label="Module navigation">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#overview">Module overview</a>
+      <a href="#transfer">Writing transfer</a>
+      <a href="#metacognition">Metacognition</a>
+      <a href="#stakes">Low- and high-stakes writing</a>
+      <a href="#process">Process and product</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1. Assumptions Audit</a>
+      <a href="#activity2" class="activity">2. Low-Stakes Design</a>
+      <a href="#activity3" class="activity">3. Transfer Mapping</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#reaction">Module feedback</a>
+      <a href="#submit">Submit &amp; complete</a>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <div class="module-header" id="overview">
+      <p class="module-eyebrow">Written Communication Certificate · Module 1 of 3</p>
+      <h2>Foundations of Writing Pedagogy</h2>
+      <p>This module covers why writing knowledge stays tied to the context where students learned it, how reflection helps them carry it forward, and what decades of research on low-stakes writing and the writing process mean for your assignments. Plan on 4 to 6 hours over two weeks: about 2 hours on the activities, the rest reading.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this module asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Explain how writing transfer and metacognition shape student writing in a disciplinary course. <span style="color: var(--dgray);">(Sections 1 and 2, Activity 3)</span></li>
+        <li>Evaluate your assumptions about student writing against research on writing development. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Distinguish the writing skills your course must teach explicitly from those students bring from earlier courses. <span style="color: var(--dgray);">(Activity 3)</span></li>
+        <li>Distinguish process-oriented from product-oriented writing assignments in your own course. <span style="color: var(--dgray);">(Activity 1, prompt 5)</span></li>
+        <li>Design three low-stakes writing activities tied to your course goals. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Use one low-stakes activity in a course and report what students did with it. <span style="color: var(--dgray);">(Activity 2, your commitment, and a short follow-up from CWSP near the end of the term)</span></li>
+      </ol>
+    </div>
+
+    <!-- ── Transfer ── -->
+    <section class="content-section" id="transfer">
+      <span class="section-tag">Section 1</span>
+      <h3>Writing Transfer</h3>
+      <p>Many writing curricula rest on an assumption: a student who learns to write well in one course will write well in the next. Research on transfer shows otherwise. What students learn about writing in high school, in first-year composition, or in another department's courses does not arrive intact in yours.</p>
+      <p>You have probably seen the result. A student who wrote capable essays in first-year writing hands in a lab report or a case analysis that misses the mark. The student has not forgotten how to write. What counts as evidence, how an argument is built, and which tone fits the reader all change from one discipline to another, and the student is meeting your discipline's version for the first time.</p>
+      <p>Writing knowledge does not move on its own from one course to the next. Ellen Carillo makes the case in a short essay for <em>Bad Ideas About Writing</em> (Ball and Loewe 2017), an edited collection in which writing studies scholars answer common beliefs about writing. Carillo observes that research on teaching for transfer, whatever its method, converges on one recommendation: build metacognitive exercises into writing courses. The empirical studies behind her claim come from Beaufort (2007), who followed one writer from first-year composition into the workplace, and from Yancey, Robertson, and Taczak (2014), who tested the claim in the classroom. Students whose instructors taught explicitly for transfer carried their writing knowledge into new contexts more regularly than students in other writing courses. Their curriculum asked students to build a theory of writing, which they carried into each new situation.</p>
+      <div class="callout">
+        <p class="callout-title">Practical implications</p>
+        <p>Name the conventions you expect, and explain why your field writes this way. Students who understand the reasons behind a convention have something to take into the next course. Watch, too, for habits students bring with them. The five-paragraph essay, for instance, teaches a structure many disciplines do not use.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── Metacognition ── -->
+    <section class="content-section" id="metacognition">
+      <span class="section-tag">Section 2</span>
+      <h3>The Role of Metacognition</h3>
+      <p>Metacognition, thinking about one's own thinking, is how writing knowledge travels. Carillo's review and the Yancey, Robertson, and Taczak study point the same direction. Students who understand what they are doing when they write, and why a strategy suits a situation, adapt to new writing tasks more readily than students who practice without reflecting.</p>
+      <p>A metacognitive writer explains why she made a choice, notices when a familiar approach does not fit, and checks her own understanding while drafting. None of this develops by exposure. It comes from explicit instruction, structured reflection, and practice in unfamiliar situations.</p>
+      <p>In practice, ask students to write about their writing. A short reflection attached to a major assignment, asking what choices they made, what surprised them, and what they would change, builds the habit. Low-stakes reflective writing placed beside high-stakes work is one of the most efficient ways to do it.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── Stakes ── -->
+    <section class="content-section" id="stakes">
+      <span class="section-tag">Section 3</span>
+      <h3>Low-Stakes and High-Stakes Writing</h3>
+      <p>Peter Elbow's distinction between low-stakes and high-stakes writing (1997) has shaped writing across the curriculum for nearly three decades. High-stakes writing, such as the formal essay, the lab report, or the research paper, asks students to demonstrate what they know. Low-stakes writing, such as the entrance ticket, the weekly reading response, or the reflective journal, asks them to think on the page while little rides on the result.</p>
+      <p>Low-stakes writing does several jobs at once. Frequent writing builds fluency, even when the writing is rough. A five-minute response at the start of class shows you what students understood from the reading and where they lost the thread. Exploratory writing generates material students later develop in formal assignments. Students who write often for low stakes also come to see writing as a way of thinking, which eases the pressure many feel when every page is graded.</p>
+      <p>Respond to low-stakes writing without grading it. A completion mark, a check, or a remark at the start of the next class ("Several of you wrote about the second case; let's start there") keeps students accountable and keeps your workload manageable. That economy is what lets the practice last a whole semester.</p>
+      <div class="callout navy">
+        <p class="callout-title">Low stakes, high demand</p>
+        <p>Low stakes describes the consequences for the student. The task itself is often demanding. A reading response might require careful analysis, and an entrance ticket might ask for a claim. The low stakes let students take risks, try claims they are unsure of, and think in front of you without paying for it in the gradebook.</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── Process vs Product ── -->
+    <section class="content-section" id="process">
+      <span class="section-tag">Section 4</span>
+      <h3>Process and Product</h3>
+      <p>Since the 1970s, writing teachers have debated where instruction belongs: in the process of writing (prewriting, drafting, revising, editing) or in the qualities of the finished product. The process movement arose as a corrective to teaching that graded finished papers without attention to how students produced them.</p>
+      <p>Writing is recursive. Writers circle back, find out what they think by drafting, revise at several levels at once, and often learn where an argument is going only near the end. Courses built around this, with time for more than one draft and revision as the center of the work, give students practice in the part of writing where most of the thinking happens.</p>
+      <p>Standards for the finished product still matter. Feedback on finished products evaluates. Feedback on drafts teaches students to use feedback. Proposals, annotated bibliographies, peer review, and revision memos make the work of writing visible, which makes it teachable. Final papers improve as a result.</p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── Activity 1 ── -->
+    <section class="content-section" id="activity1">
+      <div class="activity-block">
+        <p class="activity-label">Activity 1</p>
+        <h4>Writing Pedagogy Assumptions Audit</h4>
+        <p class="activity-meta">Individual reflective writing · 30–45 minutes · Reflective journal format</p>
+        <p>Everyone who assigns writing works from beliefs about it, most of them formed long before any reading in writing studies. This activity asks you to write those beliefs down and test them against the research in this module.</p>
+        <p>Give each prompt at least a paragraph. Describe what you do now in your courses. Nobody grades this.</p>
+
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Names specific conventions, genres, or skills you assume students bring.</li>
+            <li>Traces your standard for good writing to at least one source.</li>
+            <li>Points to features of an assignment sheet showing whether it is process- or product-oriented.</li>
+            <li>Names one tension between your assumptions and the research in Sections 1 to 3.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="f-a1-q1">What do you assume students already know about writing when they enter your course? <span>(Name the conventions, genres, or skills you take for granted.)</span></label>
+        <textarea id="f-a1-q1" rows="5" placeholder="Your response here..."></textarea>
+
+        <label for="f-a1-q2">Where did your ideas about "good writing" come from? <span>(Your own education? Your discipline? Your reading? Explicit instruction?)</span></label>
+        <textarea id="f-a1-q2" rows="5" placeholder="Your response here..."></textarea>
+
+        <label for="f-a1-q3">Think of a time when student writing disappointed you. What expectations did students miss, and had you stated those expectations to them?</label>
+        <textarea id="f-a1-q3" rows="5" placeholder="Your response here..."></textarea>
+
+        <label for="f-a1-q4">How do you currently address writing in your courses? <span>(If you don't address it, what assumptions underlie that choice?)</span></label>
+        <textarea id="f-a1-q4" rows="5" placeholder="Your response here..."></textarea>
+
+        <label for="f-a1-q5">Choose one writing assignment from a course you teach. Is it process-oriented or product-oriented? <span>(Point to the features of the assignment sheet that tell you, and name one change that would move it toward the other.)</span></label>
+        <textarea id="f-a1-q5" rows="5" placeholder="Your response here..."></textarea>
+
+        <label for="f-a1-reflection">After completing the five prompts above, what surprised you? Where do you see potential tension between your current assumptions and the research in this module?</label>
+        <textarea id="f-a1-reflection" rows="6" placeholder="Your synthesis here..."></textarea>
+
+        <div class="repo-block">
+          <h4>Share with the repository</h4>
+          <p>Your audit stays private unless you choose otherwise. If you are willing to share its themes (not your full text), CWSP will use them to see which assumptions recur across disciplines and to revise this module.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a1">
+            <label for="repo-a1">Yes, share the themes of my Assumptions Audit (not my full response) with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Activity 2 ── -->
+    <section class="content-section" id="activity2">
+      <div class="activity-block">
+        <p class="activity-label">Activity 2</p>
+        <h4>Low-Stakes Writing Design Workshop</h4>
+        <p class="activity-meta">Collaborative design activity · 45–60 minutes</p>
+        <p>Design three low-stakes writing activities for a course you teach. For each, give the learning goal, the time it takes, how you will respond, and how it connects to the larger goals of the course.</p>
+
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Writes each activity as the prompt students will see.</li>
+            <li>Ties each activity to a goal of the course.</li>
+            <li>States the time each activity takes and how you will respond to it.</li>
+            <li>Names the course and the week where you will first use one activity.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="f-a2-course">Which course are you designing for? <span>(Name, level, approximate enrollment)</span></label>
+        <input type="text" id="f-a2-course" placeholder="e.g., CHE 301: Transport Phenomena, upper-division, ~35 students">
+
+        <label for="f-a2-activity1">Low-stakes activity 1: An entrance or exit ticket <span>(Should take students 3–5 minutes in class)</span></label>
+        <textarea id="f-a2-activity1" rows="5" placeholder="Learning goal, prompt, how you will respond..."></textarea>
+
+        <label for="f-a2-activity2">Low-stakes activity 2: A weekly reading response <span>(No more than one page; student-produced outside class)</span></label>
+        <textarea id="f-a2-activity2" rows="5" placeholder="Learning goal, prompt format, how you will respond..."></textarea>
+
+        <label for="f-a2-activity3">Low-stakes activity 3: A reflective prompt <span>(Helps students process a challenging concept or decision)</span></label>
+        <textarea id="f-a2-activity3" rows="5" placeholder="Learning goal, prompt, when in the semester, how you will respond..."></textarea>
+
+        <label for="f-a2-reflection">What would change in your course if you integrated all three of these? What would you have to give up to make room for them?</label>
+        <textarea id="f-a2-reflection" rows="5" placeholder="Your reflection here..."></textarea>
+
+        <label for="f-a2-commit">Your commitment. Name one of the three activities you will use, the course, and the week you will first assign it. <span>(Give the activity, the course, the week or date, and the approximate number of students.)</span></label>
+        <textarea id="f-a2-commit" rows="4" placeholder="Activity:&#10;Course:&#10;Week or date:&#10;Number of students:"></textarea>
+        <p style="font-size: 0.85rem; color: var(--dgray); margin-top: -0.25rem;">Near the end of the term, CWSP will email you one question about what students did with the activity. Your answer completes objective 6.</p>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Faculty in other departments adapt low-stakes activities more readily than almost anything else in the repository. If you share yours, CWSP will review them and credit you.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a2">
+            <label for="repo-a2">Yes, share my three low-stakes activities with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Activity 3 ── -->
+    <section class="content-section" id="activity3">
+      <div class="activity-block">
+        <p class="activity-label">Activity 3</p>
+        <h4>Transfer Mapping Exercise</h4>
+        <p class="activity-meta">Individual analysis · 30 minutes</p>
+        <p>Map the writing knowledge your course requires against what students bring from earlier courses and experience. The gaps show you what to teach explicitly.</p>
+
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Lists three to five writing skills specific enough to teach.</li>
+            <li>Names where students met each skill before, if anywhere.</li>
+            <li>Separates the skills your course must teach from those students bring.</li>
+            <li>Names at least one habit from prior learning likely to interfere, and one change you will make.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="f-a3-skills">List 3–5 writing skills or types of knowledge students need for your course <span>(Be specific. For example, "lab reports whose results section reports findings without interpreting them.")</span></label>
+        <textarea id="f-a3-skills" rows="5" placeholder="1.&#10;2.&#10;3.&#10;4.&#10;5."></textarea>
+
+        <label for="f-a3-prior">For each skill or knowledge type, where might students have encountered it before? <span>(Other courses, high school, personal experience, internships)</span></label>
+        <textarea id="f-a3-prior" rows="5" placeholder="Your analysis here..."></textarea>
+
+        <label for="f-a3-explicit">Which of these skills require explicit instruction in your course, and which do students already bring? <span>(Most instructors find the first list longer than they expected.)</span></label>
+        <textarea id="f-a3-explicit" rows="5" placeholder="Your analysis here..."></textarea>
+
+        <label for="f-a3-interference">Where might prior learning interfere? <span>(What habits or frameworks might students have learned elsewhere that don't work in your disciplinary context?)</span></label>
+        <textarea id="f-a3-interference" rows="5" placeholder="e.g., the five-paragraph essay structure, passive voice norms, citation formats from other disciplines..."></textarea>
+
+        <label for="f-a3-change">What will you do differently in your course as a result of this mapping?</label>
+        <textarea id="f-a3-change" rows="4" placeholder="Your response here..."></textarea>
+
+        <div class="repo-block">
+          <h4>Contribute to the repository</h4>
+          <p>Transfer maps help most when they cross departments. A map from an engineering course shows a history instructor what her students learned, and mislearned, in their STEM courses.</p>
+          <div class="checkbox-row">
+            <input type="checkbox" id="repo-a3">
+            <label for="repo-a3">Yes, share my Transfer Mapping Exercise with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── Reading list ── -->
+    <section class="content-section" id="readings">
+      <h3>Key readings and resources</h3>
+      <p style="font-size: 0.9rem; color: var(--dgray); margin-bottom: 1rem;">These works ground Module 1. You do not need to read all of them to complete the activities. Start with the three marked ★.</p>
+      <ul class="reading-list">
+        <li>★ Carillo, E. C. (2017). Writing knowledge transfers easily. In C. E. Ball &amp; D. M. Loewe (Eds.), <em>Bad ideas about writing</em> (pp. 34–37). West Virginia University Libraries.</li>
+        <li>★ Yancey, K. B., Robertson, L., &amp; Taczak, K. (2014). <em>Writing across contexts: Transfer, composition, and sites of writing</em>. Utah State University Press.</li>
+        <li>★ Elbow, P. (1997). High stakes and low stakes in assigning and responding to writing. <em>New Directions for Teaching and Learning, 69</em>, 5–13.</li>
+        <li>Carter, M. (2007). Ways of knowing, doing, and writing in the disciplines. <em>College Composition and Communication, 58</em>(3), 385–418.</li>
+        <li>Adler-Kassner, L., &amp; Wardle, E. (Eds.). (2015). <em>Naming what we know: Threshold concepts of writing studies</em>. Utah State University Press.</li>
+        <li>Beaufort, A. (2007). <em>College writing and beyond: A new framework for university writing instruction</em>. Utah State University Press.</li>
+      </ul>
+    </section>
+
+    <hr class="divider">
+
+    <!-- ── Submit ── -->
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this module</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your module responses. CWSP reads them to revise the module. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the module take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 4">Fewer than 4</option><option value="4-6">4 to 6</option><option value="6-8">6 to 8</option><option value="over 8">More than 8</option></select>
+        <label for="react-change">What one change would make this module more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
+    <section id="submit">
+      <div class="submit-section">
+        <h3>Complete Module 1</h3>
+        <p>When you finish the three activities, submit your responses. Your work is saved in this browser as you type, and submitting sends a copy to CWSP. Complete the three activity reflections before you submit. Other fields are optional.</p>
+        <p style="font-size: 0.82rem; color: var(--dgray);">Enter your name and NC State email above the submit button so CWSP has a record of your progress. Module 2 is open whenever you are ready.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
+          <button class="btn-submit" id="submit-btn" onclick="submitModule()">Submit Module 1 Responses</button>
+        </div>
+        <div id="submit-success">
+          <strong>Submitted.</strong> A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser. Module 2 is open whenever you are ready.
+        </div>
+        <div id="submit-error">
+          There was a problem submitting. Your responses are still saved in this browser. Try again, or contact kkcole2@ncsu.edu if the problem persists.
+        </div>
+      </div>
+
+      <a href="wc-module2.html" class="next-module">
+        <div>
+          <div class="label">Next</div>
+          <div class="title">Module 2: Feedback and Assessment in Writing</div>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+    </section>
+
+  </main>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'wc-module1';
+
+const FIELDS = ['f-a1-q1','f-a1-q2','f-a1-q3','f-a1-q4','f-a1-q5','f-a1-reflection',
+                'f-a2-course','f-a2-activity1','f-a2-activity2','f-a2-activity3','f-a2-reflection','f-a2-commit',
+                'f-a3-skills','f-a3-prior','f-a3-explicit','f-a3-interference','f-a3-change'];
+const CHECKBOXES = ['repo-a1','repo-a2','repo-a3'];
+/* Required prompts, in objective order (objective 5 requires all three activities). */
+const REQUIRED = ['f-a3-interference','f-a1-reflection','f-a3-explicit','f-a1-q5',
+                  'f-a2-activity1','f-a2-activity2','f-a2-activity3','f-a2-commit','f-a3-change'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
+
+function saveAll() {
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) localStorage.setItem(MODULE + '-' + id, el.value);
+  });
+  CHECKBOXES.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) localStorage.setItem(MODULE + '-' + id, el.checked ? '1' : '0');
+  });
+  updateProgress();
+}
+
+function loadAll() {
+  FIELDS.forEach(id => {
+    const el = document.getElementById(id);
+    const val = localStorage.getItem(MODULE + '-' + id);
+    if (el && val !== null) el.value = val;
+  });
+  CHECKBOXES.forEach(id => {
+    const el = document.getElementById(id);
+    const val = localStorage.getItem(MODULE + '-' + id);
+    if (el && val !== null) el.checked = val === '1';
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const required = REQUIRED.map(id => document.getElementById(id)).filter(Boolean);
+  let filled = required.filter(el => el.value.trim().length > 20).length;
+  const pct = Math.round((filled / required.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+
+function submitModule() {
+  saveAll();
+  if (!C2TC.requireFields(REQUIRED)) return;
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  if (!C2TC.attach(data)) return;
+  FIELDS.forEach(id => { data[id] = (document.getElementById(id) || {}).value || ''; });
+  CHECKBOXES.forEach(id => { data[id] = document.getElementById(id)?.checked || false; });
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+
+  fetch(SCRIPT_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).then(() => { C2TC.sendReactions(REACTIONS);
+    document.getElementById('submit-success').style.display = 'block';
+    document.getElementById('submit-error').style.display = 'none';
+    btn.textContent = 'Submitted';
+    localStorage.setItem(MODULE + '-submitted', new Date().toISOString());
+  }).catch(() => {
+    document.getElementById('submit-error').style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Submit Module 1 Responses';
+  });
+}
+
+// Auto-save on input
+document.querySelectorAll('textarea, input[type="text"], input[type="checkbox"]').forEach(el => {
+  el.addEventListener('input', () => { saveAll(); });
+  el.addEventListener('change', () => { saveAll(); });
+});
+
+// Active sidebar link on scroll
+function updateSidebarActive() {
+  const sections = document.querySelectorAll('[id]');
+  const links = document.querySelectorAll('.sidebar a');
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  links.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
+window.addEventListener('scroll', updateSidebarActive, { passive: true });
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadAll();
+  updateSidebarActive();
+});
+</script>
+
+<script src="js/participant.js?v=2026-10-21c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS });</script>
+</body>
+</html>

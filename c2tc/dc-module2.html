@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Module 2: Designing and Assessing Digital Projects | C²TC</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link:hover { background: #fff0f0; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.trap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+.trap-card { background: var(--lgray); border-top: 3px solid var(--accent); padding: 1.1rem 1rem; border-radius: 0 0 4px 4px; }
+.trap-name { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.trap-card p { font-size: 0.82rem; color: var(--dgray); line-height: 1.4; margin-bottom: 0; }
+.dim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+.dim-card { border: 1px solid var(--mgray); border-left: 4px solid var(--accent); padding: 1.1rem 1.25rem; border-radius: 0 4px 4px 0; background: var(--white); }
+.dim-card h4 { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; }
+.dim-card p { font-size: 0.85rem; color: var(--dgray); margin-bottom: 0; line-height: 1.45; }
+.dim-weight { font-size: 0.7rem; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.activity-block ul { margin: 0.5rem 0 1rem 1.25rem; }
+.activity-block li { font-size: 0.92rem; margin-bottom: 0.35rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li:last-child { border-bottom: none; }
+.reading-dot { color: var(--accent); font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 2rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1.25rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; }
+.btn-submit:hover { background: var(--accent-light); }
+.btn-submit:disabled { background: #aaa; cursor: default; }
+.submit-status { font-size: 0.85rem; margin-top: 0.75rem; color: var(--dgray); min-height: 1.2rem; }
+/* Artifact builder */
+.artifact-section { border: 2px solid var(--red); border-radius: 4px; padding: 2rem; margin: 2rem 0; background: #fff8f8; }
+.artifact-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.artifact-section h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.artifact-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-artifact { background: var(--red); color: white; border: none; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; margin-top: 0.5rem; }
+.btn-artifact:hover { background: #aa0000; }
+/* Artifact overlay */
+#artifact-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 720px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.art-header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+.art-header-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.35rem; }
+.art-header h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; }
+.art-header .art-meta { font-size: 0.8rem; color: #b0c4de; }
+.art-body { padding: 1.75rem 2rem; }
+.art-section { margin-bottom: 1.5rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; border-bottom: 1px solid var(--mgray); padding-bottom: 0.25rem; }
+.art-section p { font-size: 0.92rem; line-height: 1.6; white-space: pre-wrap; }
+.art-criteria-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+.art-crit-box { border: 1px solid var(--mgray); border-top: 3px solid var(--accent); padding: 0.9rem 1rem; border-radius: 0 0 3px 3px; }
+.art-crit-label { font-size: 0.65rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
+.art-crit-box p { font-size: 0.85rem; color: var(--dgray); white-space: pre-wrap; }
+.art-footer { background: var(--lgray); padding: 1rem 2rem; font-size: 0.8rem; color: var(--dgray); border-top: 1px solid var(--mgray); display: flex; justify-content: space-between; align-items: center; }
+.modal-btn-row { display: flex; gap: 0.75rem; padding: 1rem 2rem; border-top: 1px solid var(--mgray); }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+.btn-close { background: none; color: var(--dgray); border: 1px solid var(--mgray); padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+@media print {
+  #artifact-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
+  #artifact-modal { box-shadow: none; max-width: 100%; }
+  .modal-btn-row { display: none; }
+  body > *:not(#artifact-overlay) { display: none !important; }
+  #artifact-overlay > *:not(#artifact-modal) { display: none; }
+}
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { padding: 1.5rem; margin: -1.5rem -1.5rem 1.5rem; }
+  .trap-grid, .dim-grid { grid-template-columns: 1fr; }
+}
+.next-module { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.next-module:hover { border-color: var(--accent); }
+.next-module .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.next-module .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="../css/brand.css">
+<link rel="stylesheet" href="css/module.css">
+</head>
+<body data-track="digital">
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="digital.html">← Digital Communication Certificate</a>
+    <h1>Module 2: Designing and Assessing Digital Projects</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#challenge">The Assessment Challenge</a>
+      <a href="#framework">Building Criteria That Work</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1. Assessment Framework</a>
+      <a href="#activity2" class="activity">2. Evaluate Student Work</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Build Your Assignment</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#reaction">Module feedback</a>
+      <a href="#submit">Submit</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header">
+      <p class="module-eyebrow">Core Module 2 · Digital Communication Instruction Certificate</p>
+      <h2>Designing and Assessing Digital Projects</h2>
+      <p>This module covers what makes a digital project worth assigning and worth assessing with care. You will build an assessment framework that gives room for creative work while holding students to disciplinary standards, and you will practice feedback suited to multimodal projects. Plan on 4 to 6 hours over two weeks: about 2 hours on the activities, the rest reading.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this module asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Write an assessment framework for a digital project with separate descriptors for rhetoric, content, technical execution, and reflection. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Anticipate the three most likely failure modes for the project type. <span style="color: var(--dgray);">(Activity 1, prompt 6)</span></li>
+        <li>Evaluate two sample projects with your framework. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Revise the framework from what the evaluation showed. <span style="color: var(--dgray);">(Activity 2, prompt 3)</span></li>
+        <li>Design a digital project assignment with weighted criteria. <span style="color: var(--dgray);">(Assignment builder)</span></li>
+        <li>Assign the project in a course and report what students produced. <span style="color: var(--dgray);">(your commitment, and a short follow-up from CWSP near the end of the term)</span></li>
+      </ol>
+    </div>
+
+    <!-- SECTION: The Assessment Challenge -->
+    <div class="content-section" id="challenge">
+      <span class="section-tag">The Core Problem</span>
+      <h3>Why Digital Project Assessment Breaks Down</h3>
+      <p>Faculty often assign a podcast, a website, an infographic, or a data visualization with real enthusiasm. Then thirty submissions arrive. How do you evaluate them fairly? What counts as excellent? Are you grading the argument or the production value?</p>
+      <p>These questions trace back to the assignment. When a digital project leaves its purpose vague, its audience unnamed, its criteria generic, or its production requirements unclear, students fill the gap with what they control, which is usually how the project looks. The work comes in polished and thin on disciplinary substance. Rubrics built for it end up rewarding design fluency over critical thinking.</p>
+      <p>Three assessment traps come up often:</p>
+      <div class="trap-grid">
+        <div class="trap-card">
+          <div class="trap-name">Aesthetics Inflation</div>
+          <p>Visual design gets too much weight because it is the easiest dimension to see. Polish of this kind tends to reflect a student's access to design tools and prior training more than disciplinary competence.</p>
+        </div>
+        <div class="trap-card">
+          <div class="trap-name">Checklist Deflation</div>
+          <p>The rubric lists so many discrete criteria that the project's overall rhetorical effect drops out of view. Students who meet each requirement without thinking about purpose or audience still score well.</p>
+        </div>
+        <div class="trap-card">
+          <div class="trap-name">Reflection Afterthought</div>
+          <p>Students write a reflection, but it carries so little weight (or gets so little attention from the instructor) that they learn to treat it as a box to check. The best evidence of their rhetorical learning disappears.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-title">Start with the assignment</div>
+        <p>No rubric repairs an under-designed project. Fix the assignment first. Specify the rhetorical purpose, the audience, and how the project's modes should carry its argument.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION: Framework Design -->
+    <div class="content-section" id="framework">
+      <span class="section-tag">Assessment Design</span>
+      <h3>Assessment Frameworks That Fit Multimodal Work</h3>
+      <p>A good assessment framework for a digital project does four things. It makes rhetorical effectiveness the primary criterion. It assesses content and argument apart from technical execution, while recognizing how the two connect. It gives the reflection enough weight to count. And it describes quality in terms of what excellent work looks like, so students see a target in place of a catalog of failures.</p>
+      <p>The four dimensions carry different weights:</p>
+      <div class="dim-grid">
+        <div class="dim-card">
+          <div class="dim-weight">Primary: Weight Heavily</div>
+          <h4>Rhetorical Effectiveness</h4>
+          <p>Did the project accomplish its stated purpose for its stated audience? Does it make clear claims suited to the discipline? Does it choose its modes to support those claims? Give this dimension the most weight.</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-weight">Primary: Weight Heavily</div>
+          <h4>Disciplinary Content</h4>
+          <p>Is the information correct, properly sourced, and pitched at the right level for the audience? Does the project show that the student understands the course content in depth?</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-weight">Secondary</div>
+          <h4>Technical Execution</h4>
+          <p>Is the product functional and accessible? Do the design choices support what the project communicates? Technical polish should never outweigh rhetorical and intellectual quality.</p>
+        </div>
+        <div class="dim-card">
+          <div class="dim-weight">Meaningful: 15–25%</div>
+          <h4>Reflective Component</h4>
+          <p>Does the reflection show that the student made rhetorical choices on purpose and explains why? Read it before the project. The reflection changes how you read the product.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <div class="callout-title">Write Excellent First</div>
+        <p>For each dimension, write the "excellent" descriptor first, then work downward. A rubric written from "poor" upward tends to fill with descriptions of failure. Starting from the top gives students a picture of the work you hope to see.</p>
+      </div>
+      <p>Several feedback methods suit digital projects. In a screencast, you record yourself moving through the project while you comment aloud. It works well for websites and data visualizations because you point to specific choices as you talk. Recorded audio feedback is efficient, and many students engage with it more closely than with written comments. In either mode, name each pattern once and move on.</p>
+      <div class="callout" style="border-left-color: var(--red); background: #fff8f8; margin-top: 1.25rem;">
+        <div class="callout-title" style="color: var(--red);">AI Tools and Assignment Design: A Decision You Have Already Made</div>
+        <p>Every digital project you design takes a position on AI tools, whether you state it or not. An assignment silent on AI leaves each student to settle the question alone. Students settle it in different ways. Their work comes out uneven, and the outcomes inequitable. Whatever you decide about permitting AI, state your reasons and make sure your assessment criteria match them. Module 3 of this certificate gives you a framework for reaching that decision on principled grounds and writing it into the assignment. For now, carry one question into the activity: where do AI tools enter this project, and does your assessment framework account for them?</p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem;"><a href="https://cwspwolf.com/ai_literacy_unified.html" target="_blank" rel="noopener" style="color: var(--red); font-weight: 600;">AI Literacy Model (Cole, 2026)</a></p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ACTIVITY 1 -->
+    <div id="activity1" class="activity-block">
+      <div class="activity-label">Activity 1</div>
+      <h4>Build an Assessment Framework for a Digital Project</h4>
+      <p class="activity-meta">Individual design workshop · 60–75 minutes</p>
+      <p>Choose a digital project you would assign in one of your courses. Build an assessment framework that evaluates rhetorical effectiveness, disciplinary content, technical execution, and the reflective component as distinct but related dimensions. Then name the three ways students are most likely to go wrong, and check that your criteria address each one.</p>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part A. Project Type and Rhetorical Effectiveness Criteria</span>
+        <h5>What is the project, and what does excellent rhetorical work look like?</h5>
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Describes the format, audience, and disciplinary context.</li>
+            <li>Writes the excellent descriptor first for each dimension.</li>
+            <li>Weights technical polish below rhetorical effectiveness and content.</li>
+            <li>Names three failure modes and the criterion addressing each.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="f-a1-type">Project type. <span>What kind of digital project are you designing criteria for? Describe it briefly: format, intended audience, disciplinary context.</span></label>
+        <textarea id="f-a1-type" placeholder="e.g., Infographic for public audiences explaining a significant research finding from the field; produced in response to a specific assignment prompt..."></textarea>
+        <label for="f-a1-rhetorical">Rhetorical effectiveness: what excellent looks like. <span>Write the excellent descriptor first. What does a project look like when it fully accomplishes its purpose for its audience and every choice of mode is deliberate?</span></label>
+        <textarea id="f-a1-rhetorical" placeholder="Excellent: The project accomplishes [purpose] for [audience] by... Modes are used intentionally because... The argument is clear, discipline-appropriate, and..."></textarea>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part B. Content and Technical Criteria</span>
+        <h5>Disciplinary content and technical execution</h5>
+        <label for="f-a1-content">Disciplinary content and accuracy: excellent descriptor. <span>What does disciplinary mastery look like in this project type? What separates real understanding from surface familiarity?</span></label>
+        <textarea id="f-a1-content" placeholder="Excellent: Information is accurate, appropriately sourced, and pitched at the right level for the audience. The project demonstrates..."></textarea>
+        <label for="f-a1-technical">Technical execution: excellent descriptor. <span>What does functional, accessible execution look like? Keep the weight on technical polish below the weight on rhetorical quality.</span></label>
+        <textarea id="f-a1-technical" placeholder="Excellent: The project is fully functional and accessible, and every design choice supports what it communicates..."></textarea>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part C. Reflection and Failure Mode Analysis</span>
+        <h5>Reflection criteria and where students most often struggle</h5>
+        <label for="f-a1-reflection-crit">Reflective component: excellent descriptor. <span>How does a reflection show that the student made rhetorical choices on purpose? What should students show they understand about their own choices?</span></label>
+        <textarea id="f-a1-reflection-crit" placeholder="Excellent: The reflection articulates why specific modal and design choices were made, what rhetorical effects were intended, what worked and what would be revised..."></textarea>
+        <label for="f-a1-failures">The three most likely failure modes. <span>Where do students most commonly go wrong with this project type? Check that your criteria explicitly address each.</span></label>
+        <textarea id="f-a1-failures" placeholder="Failure mode 1: ... / Failure mode 2: ... / Failure mode 3: ... / How criteria address each..."></textarea>
+      </div>
+
+      <div class="repo-block">
+        <h4>Contribute to the Repository</h4>
+        <p>Share your assessment framework to build a cross-disciplinary library of digital project rubrics for future cohorts.</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="repo-a1">
+          <label for="repo-a1">Yes, share my Activity 1 assessment framework with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY 2 -->
+    <div id="activity2" class="activity-block">
+      <div class="activity-label">Activity 2</div>
+      <h4>Evaluate Sample Student Digital Projects</h4>
+      <p class="activity-meta">Individual evaluation practice · 45–60 minutes</p>
+      <p>Test your framework on student work. Open the <a href="dc-module2-samples.html" target="_blank" rel="noopener">two sample infographics</a>, both written to the same prompt. Evaluate each with your Activity 1 framework. Then write a short feedback memo to the student who produced it.</p>
+      <p>Each memo (150–200 words) should open by naming the project's clearest rhetorical strength. Next, identify the one revision that would most improve its rhetorical effectiveness. Leave visual design aside here. Close with one specific suggestion the student will be able to act on before resubmitting.</p>
+
+      <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Applies each framework dimension to both projects.</li>
+            <li>Sets appearance aside in judging the weaker project.</li>
+            <li>Names one revision to the framework.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="f-a2-strong">Evaluation of the stronger project. <span>Apply your framework dimensions. What is this project's clearest rhetorical strength? What would most improve it?</span></label>
+      <textarea id="f-a2-strong" placeholder="Evaluation against framework dimensions, holistic rating, and key rhetorical strength..."></textarea>
+
+      <label for="f-a2-weak">Evaluation of the weaker project. <span>Apply your framework dimensions. Setting appearance aside, where does this project fall shortest rhetorically?</span></label>
+      <textarea id="f-a2-weak" placeholder="Evaluation against framework dimensions, holistic rating, and primary rhetorical shortcoming..."></textarea>
+
+      <label for="f-a2-revision">Framework reflection. <span>Did your assessment framework hold up? Which qualities of the projects did it miss? What would you revise?</span></label>
+      <textarea id="f-a2-revision" placeholder="What the framework captured well, what it missed, what you'd revise and why..."></textarea>
+
+      <div class="repo-block">
+        <h4>Contribute to the Repository</h4>
+        <p>Share your evaluation practice to help future cohorts calibrate digital project assessment.</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="repo-a2">
+          <label for="repo-a2">Yes, share my Activity 2 evaluation (no student or course details) with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTIFACT BUILDER -->
+    <div id="artifact" class="artifact-section">
+      <div class="artifact-section-label">Your Artifact</div>
+      <h3>Build a Digital Project Assignment with Assessment Framework</h3>
+      <p>Use your work from Activities 1 and 2 to design a complete digital project assignment for your course, with the task prompt and your assessment framework. Fill in the fields below, then click Preview to generate a formatted assignment document ready to print.</p>
+
+      <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>States the task, audience, purpose, format, scope, reflection, and due dates in the prompt.</li>
+            <li>Gives separate criteria for each dimension.</li>
+            <li>States the weight of the reflection and the reason for it.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="art-title">Assignment title</label>
+      <input type="text" id="art-title" placeholder="e.g., Public Science Communication Infographic">
+
+      <label for="art-course">Course name and number</label>
+      <input type="text" id="art-course" placeholder="e.g., BIO 410: Science Communication">
+
+      <label for="art-type">Project type and format. <span>What will students produce? Name the format and any platform or tool specifications.</span></label>
+      <input type="text" id="art-type" placeholder="e.g., Single-panel infographic (digital), any platform, submitted as PDF">
+
+      <label for="art-overview">Assignment overview and rationale. <span>Why are students doing this project? What communicative situation motivates it?</span></label>
+      <textarea id="art-overview" placeholder="Context explaining why this project matters, what communicative situation it prepares students for..."></textarea>
+
+      <label for="art-task">Task prompt. <span>The assignment as students would receive it: task, audience, purpose, format, scope, reflective component requirement, and due structure.</span></label>
+      <textarea id="art-task" placeholder="Your task: Create a [format] for [audience] that [purpose]. Your project should... Include a reflection (X words) that addresses why you made the choices you did..."></textarea>
+
+      <label for="art-audience">Audience and purpose specification. <span>Who is the audience? What is the purpose: to inform, persuade, advocate? What does the audience already know?</span></label>
+      <textarea id="art-audience" placeholder="Audience: [who they are, what they already know]. Purpose: [what the project should accomplish]..." style="min-height: 80px;"></textarea>
+
+      <label for="art-rhetorical">Rhetorical effectiveness criteria. <span>What does excellent look like? How will you weight this dimension relative to others?</span></label>
+      <textarea id="art-rhetorical" placeholder="Excellent: ... / Proficient: ... / Developing: ... Weight: X%"></textarea>
+
+      <label for="art-content">Disciplinary content and accuracy criteria.</label>
+      <textarea id="art-content" placeholder="Excellent: ... / Proficient: ... / Developing: ... Weight: X%"></textarea>
+
+      <label for="art-technical">Technical execution criteria.</label>
+      <textarea id="art-technical" placeholder="Excellent: ... / Proficient: ... / Developing: ... Weight: X%"></textarea>
+
+      <label for="art-reflection">Reflective component criteria and weighting. <span>What should the reflection demonstrate? What weight does it carry, and is that weight enough for students to take it seriously?</span></label>
+      <textarea id="art-reflection" placeholder="Excellent reflection: ... Weight: X% (recommended: 15–25%)"></textarea>
+
+      <button class="btn-artifact" onclick="previewArtifact()">Preview Assignment + Framework</button>
+    </div>
+
+    <!-- READING LIST -->
+    <div id="readings" class="content-section">
+      <span class="section-tag">Resources</span>
+      <h3>Module 2 Readings</h3>
+      <ul class="reading-list">
+        <li><span class="reading-dot">·</span><span><strong>Leahy, Anna.</strong> "Rubrics Save Time and Make Grading Criteria Visible." In <em>Bad Ideas About Writing</em>. WVU Libraries (open access). Read in the digital project context: the critique of rubrics as mechanizing response is even more acute for multimodal work.</span></li>
+        <li><span class="reading-dot">·</span><span><strong><a href="docs/cwsp-formative-criteria.pdf" target="_blank" rel="noopener">CWSP Formative Criteria Sheet</a>.</strong> A model of holistic criteria-based assessment, directly applicable to digital project design.</span></li>
+        <li><span class="reading-dot">·</span><span><strong><a href="docs/cwsp-response-style-overview.pdf" target="_blank" rel="noopener">CWSP Response Style Overview</a>.</strong> Descriptive and reader-based response styles suit comments on modal choices in digital projects.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>Gogan, Brian, Lisa Singleterry, Susan Caulfield, and Moline Mallamo.</strong> "Writing Assignment Prompts Across the Curriculum: Using the DAPOE Framework for Improved Teaching and Aggregable Research." <em>The WAC Journal</em> 33 (2022). DAPOE names five parts of an assignment prompt: directions, audience, purpose, objectives, and evaluation. A prompt that leaves one of them unstated produces predictable assessment problems in digital projects.</span></li>
+        <li><span class="reading-dot">·</span><span><strong><a href="docs/cwsp-sample-analytical-rubric.pdf" target="_blank" rel="noopener">Sample Assignment with Evaluation Guide</a>.</strong> The chocolate and Nobel Prize assignment with its rubric, a concrete model of how assignment design, criteria development, and formative feedback work together in a creative project.</span></li>
+        <li><span class="reading-dot">·</span><span><strong><a href="docs/cwsp-oral-screencast-response.pdf" target="_blank" rel="noopener">Responding to Student Projects Orally</a>.</strong> Audio feedback strategies well-suited to digital project response.</span></li>
+      </ul>
+    </div>
+
+    <!-- SUBMIT -->
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Your commitment. Name the course and term where you will assign this project. <span>(Give the course, the term, the approximate due date, and the number of students.)</span></label>
+      <textarea id="f-commit" rows="4" placeholder="Course:&#10;Term:&#10;Due date:&#10;Number of students:"></textarea>
+      <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.25rem;">Near the end of that term, CWSP will email you one question about what students produced. Your answer completes the last objective.</p>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this module</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your module responses. CWSP reads them to revise the module. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the module take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 4">Fewer than 4</option><option value="4-6">4 to 6</option><option value="6-8">6 to 8</option><option value="over 8">More than 8</option></select>
+        <label for="react-change">What one change would make this module more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
+    <div id="submit" class="submit-section">
+      <h3>Submit Module 2</h3>
+      <p>Submitting saves your work to the C²TC program and sends a copy to Kirsti Cole at CWSP and to your NC State email. Your assessment framework from this module carries forward into Module 3 and the certificate capstone.</p>
+      <button class="btn-submit" id="submit-btn" onclick="submitWork()">Submit Module 2</button>
+      <div class="submit-status" id="submit-status"></div>
+    </div>
+    <a href="dc-module3.html" class="next-module">
+      <div>
+        <div class="label">Next</div>
+        <div class="title">Module 3: AI Literacy and Critical Digital Practice</div>
+      </div>
+      <span style="font-size: 1.5rem; color: var(--accent);">→</span>
+    </a>
+  </main>
+</div>
+
+<!-- Artifact Overlay -->
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div id="artifact-modal-inner"></div>
+    <div class="modal-btn-row">
+      <button class="btn-print" onclick="window.print()">Save as PDF / Print</button>
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'dc-module2';
+const REQUIRED = ['f-a1-rhetorical', 'f-a1-content', 'f-a1-failures', 'f-a2-weak', 'f-a2-revision', 'art-task', 'f-commit'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
+const FIELDS = ['f-a1-type','f-a1-rhetorical','f-a1-content','f-a1-technical','f-a1-reflection-crit','f-a1-failures','f-a2-strong','f-a2-weak','f-a2-revision','art-title','art-course','art-type','art-overview','art-task','art-audience','art-rhetorical','art-content','art-technical','art-reflection'];
+const CHECKBOXES = ['repo-a1','repo-a2'];
+
+function save() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+':'+id, el.value); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+':'+id, el.checked); });
+  updateProgress();
+}
+function load() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) { const v = localStorage.getItem(MODULE+':'+id); if (v) el.value = v; } });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) { const v = localStorage.getItem(MODULE+':'+id); if (v) el.checked = (v === 'true'); } });
+  updateProgress();
+}
+function updateProgress() {
+  const f = FIELDS.map(id => document.getElementById(id)).filter(Boolean);
+  const filled = f.filter(el => el.value && el.value.trim().length > 20).length;
+  const pct = Math.round(filled / f.length * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', save); });
+CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('change', save); });
+load();
+
+const sections = document.querySelectorAll('[id]');
+const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  sidebarLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+function val(id) { return (document.getElementById(id)||{}).value||''; }
+function artSection(label, content) {
+  if (!content || !content.trim()) return '';
+  return `<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`;
+}
+function previewArtifact() {
+  const title = val('art-title') || 'Digital Project Assignment';
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const rhet = val('art-rhetorical');
+  const cont = val('art-content');
+  const tech = val('art-technical');
+  const refl = val('art-reflection');
+  const critGrid = (rhet || cont || tech || refl) ? `
+    <div class="art-section">
+      <div class="art-section-label">Assessment Framework</div>
+      <div class="art-criteria-grid">
+        ${rhet ? `<div class="art-crit-box"><div class="art-crit-label">Rhetorical Effectiveness</div><p>${rhet.trim()}</p></div>` : ''}
+        ${cont ? `<div class="art-crit-box"><div class="art-crit-label">Disciplinary Content</div><p>${cont.trim()}</p></div>` : ''}
+        ${tech ? `<div class="art-crit-box"><div class="art-crit-label">Technical Execution</div><p>${tech.trim()}</p></div>` : ''}
+        ${refl ? `<div class="art-crit-box"><div class="art-crit-label">Reflective Component</div><p>${refl.trim()}</p></div>` : ''}
+      </div>
+    </div>` : '';
+  document.getElementById('artifact-modal-inner').innerHTML = `
+    <div class="art-header">
+      <div class="art-header-eyebrow">C²TC · Digital Communication Instruction Certificate · Module 2</div>
+      <h2>${title}</h2>
+      <div class="art-meta">${val('art-course') ? val('art-course') + ' · ' : ''}${val('art-type') ? val('art-type') + ' · ' : ''}Generated ${today}</div>
+    </div>
+    <div class="art-body">
+      ${artSection('Assignment Overview and Rationale', val('art-overview'))}
+      ${artSection('Task Prompt', val('art-task'))}
+      ${artSection('Audience and Purpose', val('art-audience'))}
+      ${critGrid}
+    </div>
+    <div class="art-footer">
+      <span>NC State Campus Writing and Speaking Program · C²TC</span>
+      <span>CWSP · OFE · DELTA</span>
+    </div>`;
+  document.getElementById('artifact-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeArtifact() { document.getElementById('artifact-overlay').style.display='none'; document.body.style.overflow=''; }
+document.getElementById('artifact-overlay').addEventListener('click', function(e) { if (e.target === this) closeArtifact(); });
+
+function submitWork() {
+  if (!C2TC.requireFields(REQUIRED)) return;
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true; btn.textContent = 'Submitting…'; status.textContent = '';
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  if (!C2TC.attach(data)) return;
+  FIELDS.forEach(id => { data[id] = val(id); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.checked : false; });
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+    .then(() => { C2TC.sendReactions(REACTIONS); status.textContent = 'Submitted. A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser.'; btn.textContent = 'Submitted'; })
+    .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Module 2'; });
+}
+</script>
+<script src="js/participant.js?v=2026-10-21c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
+</body>
+</html>

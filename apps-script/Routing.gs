@@ -42,7 +42,7 @@ var C2TC = {
   COUNTS_TAB: 'Counts',
   SEND_COPY: true,
   REPLY_TO: 'kkcole2@ncsu.edu',
-  SITE: 'https://cwspwolf.com/acicertificate/',
+  SITE: 'https://cwspwolf.com/c2tc/',
   META_KEYS: ['shared_draft', 'module', 'timestamp', 'certificate_name', 'certificate_email', 'program', 'stage', 'wscp_table', 'rubric_writing', 'rubric_oral', 'nominations',
               'participant_name', 'participant_email', 'cert-name', 'cert-email',
               'cert-department', 'cert-role', 'type', 'submission_type',

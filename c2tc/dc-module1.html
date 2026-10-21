@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Module 1: Foundations of Digital Rhetoric | C²TC</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #1E2B4A; --accent-light: #2a3d6b; --red: #CC0000; --dark: #1A1A1A;
+  --white: #FFFFFF; --lgray: #F2F2F2; --mgray: #E0E0E0; --dgray: #5A5A5A;
+  --serif: Georgia, Cambria, serif; --sans: 'Helvetica Neue', Arial, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); color: var(--dark); background: #f9f9f9; line-height: 1.65; font-size: 1rem; }
+.top-bar { position: sticky; top: 0; z-index: 100; background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.top-bar-left { display: flex; align-items: center; gap: 1rem; }
+.top-bar a { color: #aaa; font-size: 0.8rem; text-decoration: none; } .top-bar a:hover { color: white; }
+.top-bar h1 { font-family: var(--serif); font-size: 0.95rem; color: white; font-weight: 700; }
+.progress-wrap { display: flex; align-items: center; gap: 0.6rem; }
+.progress-bar { width: 140px; height: 6px; background: #444; border-radius: 3px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s; border-radius: 3px; }
+.progress-label { font-size: 0.75rem; color: #aaa; min-width: 2rem; }
+.layout { display: grid; grid-template-columns: 220px 1fr; min-height: calc(100vh - 56px); max-width: 1140px; margin: 0 auto; }
+.sidebar { background: var(--white); border-right: 1px solid var(--mgray); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-section { padding: 0 1rem 1rem; }
+.sidebar-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dgray); padding: 0.5rem 0.5rem 0.25rem; display: block; }
+.sidebar a { display: block; padding: 0.35rem 0.75rem; font-size: 0.82rem; color: var(--dgray); text-decoration: none; border-radius: 3px; border-left: 3px solid transparent; line-height: 1.4; }
+.sidebar a:hover { background: var(--lgray); color: var(--dark); }
+.sidebar a.active { color: var(--accent); border-left-color: var(--accent); background: #f0f4ff; font-weight: 600; }
+.sidebar a.activity { color: var(--accent); }
+.sidebar a.activity.active { border-left-color: var(--accent); background: #f0f4ff; }
+.sidebar a.artifact-link { color: var(--red); font-weight: 600; }
+.sidebar a.artifact-link:hover { background: #fff0f0; }
+.main { padding: 2.5rem 3rem; background: var(--white); }
+.module-header { background: var(--accent); color: var(--white); padding: 2rem 3rem; margin: -2.5rem -3rem 2.5rem; border-bottom: 3px solid #4a6fa5; }
+.module-eyebrow { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.5rem; }
+.module-header h2 { font-family: var(--serif); font-size: 1.8rem; font-weight: 700; margin-bottom: 0.5rem; }
+.module-header p { color: #b0c4de; font-size: 0.95rem; max-width: 560px; }
+.content-section { margin-bottom: 3rem; padding-top: 0.5rem; }
+.section-tag { display: inline-block; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.content-section h3 { font-family: var(--serif); font-size: 1.35rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.25; }
+.content-section p { margin-bottom: 0.9rem; font-size: 0.97rem; }
+.content-section ul { margin: 0.5rem 0 1rem 1.25rem; }
+.content-section li { margin-bottom: 0.4rem; font-size: 0.97rem; }
+.divider { border: none; border-top: 1px solid var(--mgray); margin: 2.5rem 0; }
+.callout { background: var(--lgray); border-left: 4px solid var(--accent); padding: 1.25rem 1.5rem; border-radius: 0 4px 4px 0; margin: 1.25rem 0; }
+.callout-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; }
+.callout p { font-size: 0.92rem; margin-bottom: 0; }
+.mode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1.5rem 0; }
+.mode-card { background: var(--lgray); border-top: 3px solid var(--accent); padding: 1.1rem 1rem; border-radius: 0 0 4px 4px; }
+.mode-name { font-size: 0.72rem; font-weight: 700; color: var(--accent); margin-bottom: 0.4rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.mode-card p { font-size: 0.82rem; color: var(--dgray); line-height: 1.4; margin-bottom: 0; }
+.activity-block { border: 1px solid var(--mgray); border-top: 4px solid var(--accent); border-radius: 0 0 4px 4px; padding: 1.75rem; margin: 2rem 0; }
+.activity-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.activity-block h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.activity-meta { font-size: 0.8rem; color: var(--dgray); margin-bottom: 1rem; }
+.activity-block p { font-size: 0.92rem; margin-bottom: 0.75rem; }
+.activity-block ul { margin: 0.5rem 0 1rem 1.25rem; }
+.activity-block li { font-size: 0.92rem; margin-bottom: 0.35rem; }
+.sub-activity { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.sub-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--dgray); margin-bottom: 0.5rem; display: block; }
+.sub-activity h5 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin-bottom: 0.6rem; }
+label { display: block; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.35rem; margin-top: 1rem; }
+label span { font-weight: 400; color: var(--dgray); }
+textarea, input[type="text"] { width: 100%; border: 1px solid var(--mgray); border-radius: 3px; padding: 0.75rem; font-family: var(--sans); font-size: 0.9rem; color: var(--dark); resize: vertical; background: var(--lgray); transition: border-color 0.15s; }
+textarea:focus, input[type="text"]:focus { outline: none; border-color: var(--accent); background: white; }
+textarea { min-height: 100px; }
+.repo-block { background: #f0f4ff; border: 1px solid #c0ccee; border-left: 4px solid var(--accent); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+.repo-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--accent); }
+.repo-block p { font-size: 0.87rem; color: var(--dgray); margin-bottom: 0.6rem; }
+.checkbox-row { display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem; }
+.checkbox-row input[type="checkbox"] { margin-top: 3px; flex-shrink: 0; accent-color: var(--accent); }
+.checkbox-row label { font-size: 0.87rem; font-weight: 400; margin: 0; }
+.reading-list { list-style: none; margin: 1rem 0; }
+.reading-list li { padding: 0.6rem 0; border-bottom: 1px solid var(--mgray); font-size: 0.9rem; display: flex; gap: 0.5rem; }
+.reading-list li:last-child { border-bottom: none; }
+.reading-dot { color: var(--accent); font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.submit-section { background: var(--lgray); border: 1px solid var(--mgray); border-radius: 4px; padding: 2rem; margin-top: 2rem; }
+.submit-section h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.submit-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1.25rem; }
+.btn-submit { background: var(--accent); color: white; border: none; padding: 0.75rem 2rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; }
+.btn-submit:hover { background: var(--accent-light); }
+.btn-submit:disabled { background: #aaa; cursor: default; }
+.submit-status { font-size: 0.85rem; margin-top: 0.75rem; color: var(--dgray); min-height: 1.2rem; }
+/* Artifact builder */
+.artifact-section { border: 2px solid var(--red); border-radius: 4px; padding: 2rem; margin: 2rem 0; background: #fff8f8; }
+.artifact-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
+.artifact-section h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.artifact-section p { font-size: 0.92rem; color: var(--dgray); margin-bottom: 1rem; }
+.btn-artifact { background: var(--red); color: white; border: none; padding: 0.75rem 1.75rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 700; border-radius: 3px; cursor: pointer; letter-spacing: 0.03em; margin-top: 0.5rem; }
+.btn-artifact:hover { background: #aa0000; }
+/* Artifact overlay */
+#artifact-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; overflow-y: auto; padding: 2rem 1rem; }
+#artifact-modal { background: white; max-width: 720px; margin: 0 auto; border-radius: 4px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+.art-header { background: var(--accent); color: white; padding: 1.5rem 2rem; }
+.art-header-eyebrow { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7ea8d8; margin-bottom: 0.35rem; }
+.art-header h2 { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 0.2rem; }
+.art-header .art-meta { font-size: 0.8rem; color: #b0c4de; }
+.art-body { padding: 1.75rem 2rem; }
+.art-section { margin-bottom: 1.5rem; }
+.art-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.35rem; border-bottom: 1px solid var(--mgray); padding-bottom: 0.25rem; }
+.art-section p { font-size: 0.92rem; line-height: 1.6; white-space: pre-wrap; }
+.art-footer { background: var(--lgray); padding: 1rem 2rem; font-size: 0.8rem; color: var(--dgray); border-top: 1px solid var(--mgray); display: flex; justify-content: space-between; align-items: center; }
+.modal-btn-row { display: flex; gap: 0.75rem; padding: 1rem 2rem; border-top: 1px solid var(--mgray); }
+.btn-print { background: var(--accent); color: white; border: none; padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: 700; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+.btn-close { background: none; color: var(--dgray); border: 1px solid var(--mgray); padding: 0.6rem 1.25rem; font-size: 0.85rem; border-radius: 3px; cursor: pointer; font-family: var(--sans); }
+@media print {
+  #artifact-overlay { display: block !important; position: static; background: none; padding: 0; overflow: visible; }
+  #artifact-modal { box-shadow: none; max-width: 100%; }
+  .modal-btn-row { display: none; }
+  body > *:not(#artifact-overlay) { display: none !important; }
+  #artifact-overlay > *:not(#artifact-modal) { display: none; }
+}
+@media (max-width: 800px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .main { padding: 1.5rem; }
+  .module-header { padding: 1.5rem; margin: -1.5rem -1.5rem 1.5rem; }
+  .mode-grid { grid-template-columns: 1fr; }
+}
+.next-module { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 1.5rem; border: 1px solid var(--mgray); border-radius: 4px; text-decoration: none; color: var(--dark); margin-top: 2rem; }
+.next-module:hover { border-color: var(--accent); }
+.next-module .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.next-module .title { font-family: var(--serif); font-size: 1rem; font-weight: 700; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<link rel="stylesheet" href="../css/brand.css">
+<link rel="stylesheet" href="css/module.css">
+</head>
+<body data-track="digital">
+
+<div class="top-bar">
+  <div class="top-bar-left">
+    <a href="digital.html">← Digital Communication Certificate</a>
+    <h1>Module 1: Foundations of Digital Rhetoric</h1>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Content</span>
+      <a href="#rhetoric">What Is Digital Rhetoric?</a>
+      <a href="#affordances">Platform Affordances</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Activities</span>
+      <a href="#activity1" class="activity">1. Rhetorical Analysis</a>
+      <a href="#activity2" class="activity">2. Disciplinary Practice</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Your Artifact</span>
+      <a href="#artifact" class="artifact-link">Build Your Assignment</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Resources</span>
+      <a href="#readings">Reading list</a>
+      <a href="#reaction">Module feedback</a>
+      <a href="#submit">Submit</a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="module-header">
+      <p class="module-eyebrow">Core Module 1 · Digital Communication Instruction Certificate</p>
+      <h2>Foundations of Digital Rhetoric and Communication</h2>
+      <p>This module carries classical rhetoric into digital environments. It covers audience, platform affordances, multimodality, and networked writing, the concepts you will draw on to teach digital communication in your discipline. Plan on 4 to 6 hours over two weeks: about 2 hours on the activities, the rest reading.</p>
+    </div>
+
+    <div class="callout" id="objectives">
+      <p class="callout-title">What this module asks you to do</p>
+      <ol style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+        <li>Analyze a digital text in your field for its platform, modal, and rhetorical choices. <span style="color: var(--dgray);">(Activity 1)</span></li>
+        <li>Name the dominant digital genres in your field and how they have changed. <span style="color: var(--dgray);">(Activity 2)</span></li>
+        <li>Identify where students in your field develop digital rhetorical competence, if anywhere. <span style="color: var(--dgray);">(Activity 2, prompt 3)</span></li>
+        <li>Design a digital rhetorical analysis assignment with criteria and a reflection. <span style="color: var(--dgray);">(Assignment builder)</span></li>
+        <li>Assign the analysis in a course and report what students produced. <span style="color: var(--dgray);">(your commitment, and a short follow-up from CWSP near the end of the term)</span></li>
+      </ol>
+    </div>
+
+    <!-- SECTION: What Is Digital Rhetoric -->
+    <div class="content-section" id="rhetoric">
+      <span class="section-tag">Theoretical Foundation</span>
+      <h3>What Digital Rhetoric Is and Why It Matters for Teaching</h3>
+      <p>Your students grew up online. They read, watch, and post across several platforms every day. Few of them have been taught to think rhetorically about any of it: to ask why a text takes the form it does, how a platform shapes a message, or how writing for a networked public differs from writing for a single reader.</p>
+      <p>Digital rhetoric extends classical rhetorical theory (audience, purpose, ethos, pathos, logos) to the features of digital environments: hypertext, networked distribution, algorithmic curation, multimodality, and the blurred line between those who produce content and those who consume it. The field applies an ancient discipline to new conditions.</p>
+      <p>Four features set digital environments apart from print:</p>
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-name">Multimodality</div>
+          <p>Digital texts combine written language, images, audio, data, and interactive elements. Each mode has its own rhetorical affordances, and the way a writer relates the modes is also a rhetorical choice.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-name">Networked Distribution</div>
+          <p>Readers share and remix digital texts and strip them of context in ways print does not allow. The audience always extends beyond the intended reader.</p>
+        </div>
+        <div class="mode-card">
+          <div class="mode-name">Platform Architecture</div>
+          <p>A platform's character limits, recommendation algorithms, visual hierarchies, and monetization models work as rhetorical systems. They shape what people say on the platform and how they say it.</p>
+        </div>
+      </div>
+      <p>The fourth feature, the blurred line between producer and consumer, shapes what you need to teach. Students are at once the audience and the authors of digital texts. Comfort with a platform does not give them rhetorical awareness of it. Explicit instruction supplies that awareness.</p>
+      <div class="callout">
+        <div class="callout-title">What to teach</div>
+        <p>Students already know how to use platforms. Teach them to analyze the rhetorical choices built into what they do online, and to make those choices on purpose in disciplinary and professional settings.</p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- SECTION: Platform Affordances -->
+    <div class="content-section" id="affordances">
+      <span class="section-tag">Key Concepts</span>
+      <h3>Platform Affordances, Hypertext, and Disciplinary Digital Communication</h3>
+      <p>A platform affordance is what a platform makes easy, difficult, rewarded, or impossible. X's (formerly Twitter's) character limit leaves little room for qualification. YouTube's recommendation algorithm favors what holds viewers' attention, whether or not it is accurate. Instagram's visual economy shapes which bodies, lifestyles, and aesthetics circulate as normal. Each of these features is a rhetorical system, built into the platform's design and business model.</p>
+      <p>Hypertext changes the rhetorical situation in ways writers often overlook. A claim with a link performs a different rhetorical act from the same claim without one. The link promises verification and ties the text to an outside authority. It also invites readers to check, which changes how the claim works even for readers who never click.</p>
+      <p>Digital communication differs from field to field. Scientists post to preprint servers, historians maintain public digital archives, and engineers document projects on professional platforms. Each is a discipline-specific rhetorical practice, and each now occupies a growing share of professional life. Part of your work is to show students what digital communication looks like in your field.</p>
+      <div class="callout">
+        <div class="callout-title">Platform critique</div>
+        <p>To teach platform critique alongside platform fluency, ask two questions. What does this platform make easy or reward? Whose communicative practices does that design favor? Students who answer them learn to recognize the rhetorical defaults of digital environments and to decide whether to follow them.</p>
+      </div>
+      <div class="callout" style="border-left-color: var(--red); background: #fff8f8; margin-top: 1rem;">
+        <div class="callout-title" style="color: var(--red);">AI Systems as Platform Actors: A Preview of Module 3</div>
+        <p>Recommendation algorithms, large language models, and AI content moderation tools now run inside the platforms where digital communication happens. These systems act rhetorically. They shape what circulates, what counts as credible, and whose communicative practices gain or lose an audience. To analyze a platform's affordances, you now need to identify which ones AI systems produce and how that changes whom the platform serves. Module 3 of this certificate gives you the full framework for that analysis. For now, carry one question forward: when you describe a platform's rhetorical effects, which of them does an AI system produce?</p>
+        <p style="margin-top: 0.6rem; font-size: 0.85rem;"><a href="https://cwspwolf.com/ai_literacy_unified.html" target="_blank" rel="noopener" style="color: var(--red); font-weight: 600;">AI Literacy Model (Cole, 2026)</a></p>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ACTIVITY 1 -->
+    <div id="activity1" class="activity-block">
+      <div class="activity-label">Activity 1</div>
+      <h4>Rhetorical Analysis of a Digital Text</h4>
+      <p class="activity-meta">Individual analysis · 60 minutes · 350–450 words</p>
+      <p>Select a digital text from your discipline or profession, one you might assign or one students in your field will meet. Read it as a rhetorician, attending to how it works as well as what it says. Options include a discipline-relevant website, a data visualization with narrative framing, a public-facing research summary, a professional organization's digital publication, or a science communication piece.</p>
+      <p>Examine the text along five dimensions: the rhetorical situation (author, audience, and purpose, both stated and performed), platform affordances (how the platform shapes what the text does), modal choices (how modes work together or in tension), rhetorical appeals (how the text establishes credibility, appeals to emotion, and uses evidence), and pedagogical implications (what students would need to know to produce something like it).</p>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part A: Text Identification and Rhetorical Situation</span>
+        <h5>What is the text, and what is its rhetorical situation?</h5>
+        <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Identifies the text, its author, and its implied audience.</li>
+            <li>Explains how the platform shapes the text&#8217;s reach and structure.</li>
+            <li>Explains how two or more modes work together or in tension.</li>
+            <li>Ties at least one rhetorical appeal to evidence in the text.</li>
+            <li>Names the skills students would need to produce a text like it.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="f-a1-text">Identify the text you selected. <span>Include a URL or brief description. Who is the author or institution? Who is the implied audience? How does the stated purpose compare with the purpose the text performs?</span></label>
+        <textarea id="f-a1-text" placeholder="Text selected, URL if available, author, implied audience, stated and performed purpose..."></textarea>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part B: Platform and Modal Analysis</span>
+        <h5>How do platform and mode shape what this text does?</h5>
+        <label for="f-a1-platform">Platform affordances. <span>How does the platform shape the text's reach, structure, and relationship with its audience? What would be lost if this text moved to a different medium?</span></label>
+        <textarea id="f-a1-platform" placeholder="Platform affordances and constraints, what the platform makes possible or impossible..."></textarea>
+        <label for="f-a1-modal">Modal choices. <span>What modes does the text use? How do they work together or in tension? What would be lost if any single mode were removed?</span></label>
+        <textarea id="f-a1-modal" placeholder="Modes present, how they work together or in tension, what each contributes..."></textarea>
+      </div>
+
+      <div class="sub-activity">
+        <span class="sub-label">Part C: Rhetorical Appeals and Pedagogical Implications</span>
+        <h5>Rhetorical appeals and teaching implications</h5>
+        <label for="f-a1-rhetorical">Ethos, pathos, logos. <span>How does the text establish credibility? What emotional appeals does it make? Where does it deploy evidence or data, and how?</span></label>
+        <textarea id="f-a1-rhetorical" placeholder="Ethos (how credibility is established), pathos (emotional appeals), logos (evidence and argument)..."></textarea>
+        <label for="f-a1-implications">Pedagogical implications. <span>If you asked students to produce something like this, what rhetorical and disciplinary skills would they need? Where is the hardest gap to bridge?</span></label>
+        <textarea id="f-a1-implications" placeholder="What students would need to know, where the hardest skill gaps are, what explicit instruction would have to address..."></textarea>
+      </div>
+
+      <div class="repo-block">
+        <h4>Contribute to the Repository</h4>
+        <p>Share your analysis to build a cross-disciplinary library of digital rhetorical examples for future cohorts.</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="repo-a1">
+          <label for="repo-a1">Yes, share my Activity 1 analysis with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITY 2 -->
+    <div id="activity2" class="activity-block">
+      <div class="activity-label">Activity 2</div>
+      <h4>Digital Communication in Your Discipline</h4>
+      <p class="activity-meta">Individual reflection · 45 minutes · 250–300 words</p>
+      <p>Every discipline has its own digital communication practices. This activity asks you to map them in your field and to assess what your students know about them. The reflection becomes part of your rationale for the assignment you will design in the artifact builder below.</p>
+
+      <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>Names two or three digital genres practitioners in your field use.</li>
+            <li>Describes one change in the last decade and what drove it.</li>
+            <li>States where students now learn these genres.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="f-a2-genres">Dominant digital genres in your field. <span>Name two or three main digital genres practitioners in your discipline use to share knowledge, build community, and establish authority. Describe each briefly.</span></label>
+      <textarea id="f-a2-genres" placeholder="Name 2-3 dominant digital genres in your field and describe them briefly..."></textarea>
+
+      <label for="f-a2-changes">How have these genres changed? <span>How have digital communication practices in your field shifted in the last decade? What has digital communication made possible, and what has it complicated?</span></label>
+      <textarea id="f-a2-changes" placeholder="Changes over the last decade, what's new, what's been foreclosed or complicated..."></textarea>
+
+      <label for="f-a2-students">What do students currently know? <span>Do students develop digital rhetorical competence in your field through your course, somewhere else, or not at all? Where is the gap?</span></label>
+      <textarea id="f-a2-students" placeholder="Current student knowledge, where the gaps are, whether explicit instruction addresses them..."></textarea>
+
+      <div class="repo-block">
+        <h4>Contribute to the Repository</h4>
+        <p>Share your disciplinary reflection to help future cohorts understand digital communication practices across fields.</p>
+        <div class="checkbox-row">
+          <input type="checkbox" id="repo-a2">
+          <label for="repo-a2">Yes, share my Activity 2 reflection with the C²TC repository. CWSP reviews each item before posting it and credits you by name and department unless you ask otherwise.</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ARTIFACT BUILDER -->
+    <div id="artifact" class="artifact-section">
+      <div class="artifact-section-label">Your Artifact</div>
+      <h3>Build a Disciplinary Digital Rhetorical Analysis Assignment</h3>
+      <p>Use your work from Activities 1 and 2 to design a digital rhetorical analysis assignment for your own course. Fill in the fields below, then click Preview to generate a formatted, print-ready assignment document.</p>
+
+      <div class="callout criteria">
+          <p class="callout-title">What a complete response does</p>
+          <ul style="margin: 0.35rem 0 0 1.25rem; font-size: 0.95rem; line-height: 1.6;">
+            <li>States why students do the assignment.</li>
+            <li>Specifies the text type, the audience, and the analytical framework.</li>
+            <li>Lists the rhetorical dimensions students address.</li>
+            <li>Separates excellent from proficient work in the criteria.</li>
+            <li>Connects the reflection to students&#8217; own communication.</li>
+          </ul>
+          <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.5rem;">Prompts marked <span style="color:#990000;font-weight:700;">*</span> need at least one full sentence each to submit the module.</p>
+        </div>
+        <label for="art-title">Assignment title</label>
+      <input type="text" id="art-title" placeholder="e.g., Digital Rhetorical Analysis: Science Communication in Public Spaces">
+
+      <label for="art-course">Course name and number</label>
+      <input type="text" id="art-course" placeholder="e.g., ENV 320: Environmental Communication">
+
+      <label for="art-context">Assignment context and rationale. <span>Why are students doing this assignment? What communicative situation or disciplinary practice motivates it?</span></label>
+      <textarea id="art-context" placeholder="Context explaining why this assignment matters for students in your discipline..."></textarea>
+
+      <label for="art-task">The task. <span>What will students analyze? Specify the text type or selection process, any audience constraints, the analytical framework they should use, and the output format (written analysis, annotated screenshot, brief presentation, etc.).</span></label>
+      <textarea id="art-task" placeholder="Specific task description: what students analyze, how they select it, the analytical framework, output format and length..."></textarea>
+
+      <label for="art-modes">Rhetorical dimensions students must address. <span>List the required analytical dimensions, drawn from the five in Activity 1 or adapted for your discipline.</span></label>
+      <textarea id="art-modes" placeholder="Required analytical dimensions (e.g., rhetorical situation, platform affordances, modal choices, discipline-specific criteria)..." style="min-height: 80px;"></textarea>
+
+      <label for="art-criteria">Assessment criteria. <span>How will you evaluate this assignment? What distinguishes an excellent analysis from a proficient one?</span></label>
+      <textarea id="art-criteria" placeholder="Assessment criteria, what separates excellent work from proficient work..."></textarea>
+
+      <label for="art-reflection">Reflective component. <span>What will students write in the reflection, and how does it connect digital rhetorical analysis to their own communication practices?</span></label>
+      <textarea id="art-reflection" placeholder="What the reflection asks, how it is weighted, what it should demonstrate..."></textarea>
+
+      <button class="btn-artifact" onclick="previewArtifact()">Preview Assignment</button>
+    </div>
+
+    <!-- READING LIST -->
+    <div id="readings" class="content-section">
+      <span class="section-tag">Resources</span>
+      <h3>Module 1 Readings</h3>
+      <ul class="reading-list">
+        <li><span class="reading-dot">·</span><span><strong>Carter, Genesea M., and Aurora Matzke.</strong> "The More Digital Technology, the Better." In <em>Bad Ideas About Writing</em>, ed. Ball and Loewe. WVU Libraries (open access). A critical examination of uncritical techno-enthusiasm in education; establishes why more technology does not equal more learning.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>Leverenz, Carrie S.</strong> "Design Thinking and the Wicked Problem of Teaching Writing." <em>Computers and Composition</em>, 33 (2014). Introduces design thinking as a framework for digital communication; treats digital composition as a design problem requiring iteration.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>Daniel-Wariya, Joshua.</strong> "Gamification Makes Writing Fun." In <em>Bad Ideas About Writing</em>, edited by Cheryl E. Ball and Drew M. Loewe. WVU Libraries, 2017 (open access). A critique of gamified writing instruction from a scholar of play and procedural rhetoric.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>Writing Spaces, Vol. 1–3.</strong> Parlor Press (open access, writingspaces.org). Chapters on digital rhetoric, networked writing, and multimodal communication, searchable by topic.</span></li>
+        <li><span class="reading-dot">·</span><span><strong>Cohn, Jenae.</strong> "Promoting Metacognitive Thought through Response to Low-Stakes Reflective Writing." <em>Journal of Response to Writing</em> 2.1 (2016). Useful for designing reflective components that make students' rhetorical decisions visible.</span></li>
+      </ul>
+    </div>
+
+    <!-- SUBMIT -->
+    <section class="content-section" id="commitment">
+      <h3>Where you will use this work</h3>
+      <label for="f-commit">Your commitment. Name the course and term where you will assign this analysis. <span>(Give the course, the term, the approximate due date, and the number of students.)</span></label>
+      <textarea id="f-commit" rows="4" placeholder="Course:&#10;Term:&#10;Due date:&#10;Number of students:"></textarea>
+      <p style="font-size: 0.85rem; color: var(--dgray); margin-top: 0.25rem;">Near the end of that term, CWSP will email you one question about what students produced. Your answer completes the last objective.</p>
+    </section>
+
+    <section class="content-section" id="reaction">
+      <h3>Four questions about this module</h3>
+      <p>Your answers here go to CWSP without your name or email, apart from your module responses. CWSP reads them to revise the module. They are optional, and they send when you submit.</p>
+      <div class="reaction-items">
+        <label for="react-relevance">The readings and activities applied to a course I teach.</label>
+        <select id="react-relevance"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-clarity">The instructions for each activity were clear.</label>
+        <select id="react-clarity"><option value="">Choose one</option><option value="5">Strongly agree</option><option value="4">Agree</option><option value="3">Neither agree nor disagree</option><option value="2">Disagree</option><option value="1">Strongly disagree</option></select>
+        <label for="react-time">About how many hours did the module take you?</label>
+        <select id="react-time"><option value="">Choose one</option><option value="under 4">Fewer than 4</option><option value="4-6">4 to 6</option><option value="6-8">6 to 8</option><option value="over 8">More than 8</option></select>
+        <label for="react-change">What one change would make this module more useful for your teaching?</label>
+        <textarea id="react-change" rows="3" placeholder="Optional"></textarea>
+      </div>
+    </section>
+
+    <div id="submit" class="submit-section">
+      <h3>Submit Module 1</h3>
+      <p>Submitting saves your work to the C²TC program and sends a copy to Kirsti Cole at CWSP and to your NC State email. Make sure you have completed both activities and previewed your artifact before submitting.</p>
+      <button class="btn-submit" id="submit-btn" onclick="submitWork()">Submit Module 1</button>
+      <div class="submit-status" id="submit-status"></div>
+    </div>
+    <a href="dc-module2.html" class="next-module">
+      <div>
+        <div class="label">Next</div>
+        <div class="title">Module 2: Designing and Assessing Digital Projects</div>
+      </div>
+      <span style="font-size: 1.5rem; color: var(--accent);">→</span>
+    </a>
+  </main>
+</div>
+
+<!-- Artifact Overlay -->
+<div id="artifact-overlay">
+  <div id="artifact-modal">
+    <div id="artifact-modal-inner"></div>
+    <div class="modal-btn-row">
+      <button class="btn-print" onclick="window.print()">Save as PDF / Print</button>
+      <button class="btn-close" onclick="closeArtifact()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const MODULE = 'dc-module1';
+const REQUIRED = ['f-a1-modal', 'f-a1-rhetorical', 'f-a2-genres', 'f-a2-students', 'art-task', 'art-criteria', 'f-commit'];
+const REACTIONS = ['react-relevance','react-clarity','react-time','react-change'];
+const FIELDS = ['f-a1-text','f-a1-platform','f-a1-modal','f-a1-rhetorical','f-a1-implications','f-a2-genres','f-a2-changes','f-a2-students','art-title','art-course','art-context','art-task','art-modes','art-criteria','art-reflection'];
+const CHECKBOXES = ['repo-a1','repo-a2'];
+
+// Auto-save
+function save() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+':'+id, el.value); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) localStorage.setItem(MODULE+':'+id, el.checked); });
+  updateProgress();
+}
+function load() {
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) { const v = localStorage.getItem(MODULE+':'+id); if (v) el.value = v; } });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) { const v = localStorage.getItem(MODULE+':'+id); if (v) el.checked = (v === 'true'); } });
+  updateProgress();
+}
+function updateProgress() {
+  const f = FIELDS.map(id => document.getElementById(id)).filter(Boolean);
+  const filled = f.filter(el => el.value && el.value.trim().length > 20).length;
+  const pct = Math.round(filled / f.length * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+FIELDS.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('input', save); });
+CHECKBOXES.forEach(id => { const el = document.getElementById(id); if (el) el.addEventListener('change', save); });
+load();
+
+// Sidebar active tracking
+const sections = document.querySelectorAll('[id]');
+const sidebarLinks = document.querySelectorAll('.sidebar a[href^="#"]');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  sidebarLinks.forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+  });
+});
+
+// Artifact builder
+function val(id) { return (document.getElementById(id)||{}).value||''; }
+function artSection(label, content) {
+  if (!content || !content.trim()) return '';
+  return `<div class="art-section"><div class="art-section-label">${label}</div><p>${content.trim()}</p></div>`;
+}
+function previewArtifact() {
+  const title = val('art-title') || 'Digital Rhetorical Analysis Assignment';
+  const today = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('artifact-modal-inner').innerHTML = `
+    <div class="art-header">
+      <div class="art-header-eyebrow">C²TC · Digital Communication Instruction Certificate · Module 1</div>
+      <h2>${title}</h2>
+      <div class="art-meta">${val('art-course') ? val('art-course') + ' · ' : ''}Generated ${today}</div>
+    </div>
+    <div class="art-body">
+      ${artSection('Context and Rationale', val('art-context'))}
+      ${artSection('The Task', val('art-task'))}
+      ${artSection('Rhetorical Dimensions to Address', val('art-modes'))}
+      ${artSection('Assessment Criteria', val('art-criteria'))}
+      ${artSection('Reflective Component', val('art-reflection'))}
+    </div>
+    <div class="art-footer">
+      <span>NC State Campus Writing and Speaking Program · C²TC</span>
+      <span>CWSP · OFE · DELTA</span>
+    </div>`;
+  document.getElementById('artifact-overlay').style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+function closeArtifact() { document.getElementById('artifact-overlay').style.display='none'; document.body.style.overflow=''; }
+document.getElementById('artifact-overlay').addEventListener('click', function(e) { if (e.target === this) closeArtifact(); });
+
+// Submit
+function submitWork() {
+  if (!C2TC.requireFields(REQUIRED)) return;
+  const btn = document.getElementById('submit-btn');
+  const status = document.getElementById('submit-status');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  status.textContent = '';
+  const data = { module: MODULE, timestamp: new Date().toISOString() };
+  if (!C2TC.attach(data)) return;
+  FIELDS.forEach(id => { data[id] = val(id); });
+  CHECKBOXES.forEach(id => { const el = document.getElementById(id); data[id] = el ? el.checked : false; });
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: {'Content-Type':'application/json'}, body: JSON.stringify(data) })
+    .then(() => { C2TC.sendReactions(REACTIONS); status.textContent = 'Submitted. A copy of your responses comes to your NC State email within a few minutes. If it has not arrived within an hour, email kkcole2@ncsu.edu. Your responses also stay saved in this browser.'; btn.textContent = 'Submitted'; })
+    .catch(() => { status.textContent = 'Submission error. Please try again or email kkcole2@ncsu.edu.'; btn.disabled = false; btn.textContent = 'Submit Module 1'; });
+}
+</script>
+<script src="js/participant.js?v=2026-10-21c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
+</body>
+</html>
