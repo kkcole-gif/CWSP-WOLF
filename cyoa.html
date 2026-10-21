@@ -69,7 +69,7 @@
   .crumbs [aria-current] { font-weight: 600; }
 
   /* Persistent step strip */
-  .steps { position: sticky; top: 0; z-index: 90; background: var(--cream); border-bottom: 1px solid var(--rule); margin-top: 0.8rem; }
+  .steps { position: sticky; top: 0; z-index: 90; background: var(--cream); border-bottom: 1px solid var(--rule); margin-top: 0.4rem; }
   .steps-inner { max-width: 900px; margin: 0 auto; padding: 0.45rem 1.5rem; }
   .decision-line { font-size: 12.5px; margin-bottom: 0.25rem; }
   .decision-line b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; margin-right: 0.35rem; }
@@ -77,10 +77,13 @@
   .where b { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; margin-right: 0.35rem; font-weight: 700; }
   .where .code { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; }
   .levels-line { display: flex; flex-wrap: wrap; gap: 0.2rem 1rem; font-size: 12.5px; margin: 0; }
-  .levels-line .lv { color: #6B5A58; }
+  .levels-line .lv { font: inherit; font-size: 12.5px; background: none; border: 0; padding: 0.2rem 0; color: #6B5A58; cursor: default; min-height: 32px; }
   .levels-line .lv .sw { opacity: 0.45; }
-  .levels-line .lv.now { color: var(--umber); font-weight: 700; }
-  .levels-line .lv.now .sw, .levels-line .lv.past .sw { opacity: 1; }
+  .levels-line .lv:not([disabled]) { color: var(--umber); cursor: pointer; text-decoration: underline; text-decoration-color: var(--ochre); text-underline-offset: 3px; }
+  .levels-line .lv:not([disabled]):hover { text-decoration-color: var(--dred); }
+  .levels-line .lv:not([disabled]) .sw { opacity: 1; }
+  .levels-line .lv.now { font-weight: 700; text-decoration: none; }
+  .levels-line .lv:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
   .steps ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
   .steps li { font-size: 13px; padding: 0.2rem 0.55rem; border-bottom: 2px solid transparent; color: var(--umber); }
   .steps li.done { color: var(--dred); }
@@ -338,17 +341,15 @@
   </div>
 </div>
 
-<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">WOLF</a><span aria-hidden="true">›</span><a href="ai-literacies.html">AI Literacies</a><span aria-hidden="true">›</span><a href="ai_literacy_unified.html">Framework</a><span aria-hidden="true">›</span><span aria-current="page">Practice Adventure (beta)</span></nav>
-
 <div class="steps" role="status" aria-live="polite" aria-atomic="true">
   <div class="steps-inner">
     <p class="where" id="where"><b>You are at</b> <span id="where-text"></span></p>
-    <p class="levels-line" aria-hidden="true">
-      <span class="lv" data-lv="1"><span class="sw l1"></span>1 Describe</span>
-      <span class="lv" data-lv="2"><span class="sw l2"></span>2 Analyze</span>
-      <span class="lv" data-lv="3"><span class="sw l3"></span>3 Decide</span>
-      <span class="lv" data-lv="4"><span class="sw l0"></span>4 Statement</span>
-    </p>
+    <nav class="levels-line" aria-label="Levels you have reached">
+      <button type="button" class="lv" data-lv="1" data-go="premise" disabled><span class="sw l1" aria-hidden="true"></span>1 Describe</button>
+      <button type="button" class="lv" data-lv="2" data-go="analyze" disabled><span class="sw l2" aria-hidden="true"></span>2 Analyze</button>
+      <button type="button" class="lv" data-lv="3" data-go="decide" disabled><span class="sw l3" aria-hidden="true"></span>3 Decide</button>
+      <button type="button" class="lv" data-lv="4" data-go="statement" disabled><span class="sw l0" aria-hidden="true"></span>4 Statement</button>
+    </nav>
   </div>
 </div>
 
@@ -876,7 +877,7 @@
 
 <footer class="page-footer">
   <div class="page-footer-inner">
-    <p>Built on the three-level framework at <a href="ai_literacy_unified.html">AI Literacy Is Not One Thing</a>. Beta, October 2026. Questions to <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a>.</p>
+    <p>Part of <a href="index.html">WOLF</a> › <a href="ai-literacies.html">AI Literacies</a> › <a href="ai_literacy_unified.html">the framework, AI Literacy Is Not One Thing</a>. Beta, October 2026. Questions to <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a>.</p>
     <p>All content © 2026 by Kirsti Cole (CWSP WOLF, NC State University), licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" rel="license noopener" target="_blank">CC BY-NC-ND 4.0</a>.</p>
   </div>
 </footer>
@@ -891,7 +892,7 @@
   var STORE_KEY = 'cyoa-beta-v3';
 
   /* Everything the reader writes lives in the form fields and this tab's session storage, nowhere else. */
-  var state = { finding: null, outcome: null, route: [], path: 'asked' };
+  var state = { finding: null, outcome: null, route: [], path: 'asked', reached: 0 };
   var STEP_ORDER = ['opening', 'describe', 'analyze', 'decide', 'statement', 'feedback'];
 
   /* Addresses name the level: 1 Describe, 2 Analyze, 3 Decide, 4 the statement. Letters mark the passages inside a level. */
@@ -960,7 +961,7 @@
       var d = JSON.parse(raw);
       Object.keys(d.fields || {}).forEach(function (id) { var el = document.getElementById(id); if (el) el.value = d.fields[id]; });
       Object.keys(d.radios || {}).forEach(function (n) { if (d.radios[n]) setRadio(n, d.radios[n]); });
-      if (d.state) { state.finding = d.state.finding; state.outcome = d.state.outcome; state.route = d.state.route || []; state.path = d.state.path || 'asked'; }
+      if (d.state) { state.finding = d.state.finding; state.outcome = d.state.outcome; state.route = d.state.route || []; state.path = d.state.path || 'asked'; state.reached = d.state.reached || 0; }
       return d;
     } catch (e) { return null; }
   }
@@ -1056,10 +1057,13 @@
     else if (name === 'opening') { w.textContent = 'the cover'; }
     else if (name === 'feedback') { w.textContent = 'the end, beta feedback'; stage = 5; }
     else { w.innerHTML = '<span class="sw l' + lvl + '" aria-hidden="true"></span><span class="code">' + PASSAGE[name] + '</span> \u00b7 ' + NAME[name] + (lvl ? ', the ' + ['', 'Describe', 'Analyze', 'Decide'][lvl] + ' level' : ''); }
+    if (stage >= 1 && stage <= 4 && stage > state.reached) state.reached = stage;
+    if (name === 'quick' && state.reached < 1) state.reached = 1;
     Array.prototype.forEach.call(document.querySelectorAll('.levels-line .lv'), function (el) {
       var n = Number(el.getAttribute('data-lv'));
       el.classList.toggle('now', n === stage);
-      el.classList.toggle('past', n < stage);
+      el.disabled = n > state.reached || (n === 4 && !state.outcome);
+      if (n === stage) el.setAttribute('aria-current', 'step'); else el.removeAttribute('aria-current');
     });
   }
   function routeNames() { return state.route.filter(function (n) { return PASSAGE[n] != null && n !== 'opening'; }); }
@@ -1353,7 +1357,7 @@
       if (el.tagName === 'SELECT') el.selectedIndex = 0; else el.value = '';
     });
     Array.prototype.forEach.call(document.querySelectorAll('main input[type="radio"]'), function (r) { r.checked = false; });
-    state.finding = null; state.outcome = null; state.route = [];
+    state.finding = null; state.outcome = null; state.route = []; state.reached = 0;
     setPath('asked'); syncReveals();
     show('premise');
   });
