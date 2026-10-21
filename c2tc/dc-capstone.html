@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Communication Capstone | C²TC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --accent: #D14905; --red: #CC0000; --dark: #1A1A1A; --white: #FFFFFF;
+  --lgray: #F2F2F2; --mgray: #DDDDDD; --dgray: #4D4D4D;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+body { font-family: var(--sans); color: var(--dark); background: #fff; line-height: 1.65; }
+.top-bar { background: var(--dark); border-bottom: 3px solid var(--accent); padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.top-bar a { color: #ccc; font-size: 0.85rem; text-decoration: none; }
+.top-bar a:hover { color: #fff; }
+.top-bar h1 { font-family: var(--serif); font-size: 1rem; color: #fff; font-weight: 600; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+.eyebrow { font-size: 0.9rem; color: var(--accent); margin-bottom: 0.4rem; }
+h2 { font-family: var(--serif); font-size: 2rem; line-height: 1.2; margin-bottom: 1rem; }
+h3 { font-family: var(--serif); font-size: 1.3rem; margin: 2rem 0 0.5rem; }
+p, li { font-family: var(--serif); font-size: 1.08rem; line-height: 1.7; }
+p { margin-bottom: 1rem; }
+.part { border-top: 2px solid var(--accent); padding-top: 1rem; margin-top: 1.5rem; }
+.part h4 { font-size: 1rem; margin-bottom: 0.35rem; }
+.part p { font-size: 1rem; color: var(--dgray); }
+.form { border: 1px solid var(--mgray); border-left: 3px solid var(--accent); padding: 1.75rem; margin-top: 2.5rem; }
+label { display: block; font-size: 0.88rem; font-weight: 700; margin: 1rem 0 0.35rem; }
+label span { font-weight: 400; color: var(--dgray); }
+input[type="text"], input[type="email"], textarea { width: 100%; font: inherit; font-size: 0.95rem; padding: 0.6rem 0.7rem; border: 1px solid #bbb; border-radius: 2px; background: #fff; }
+textarea { min-height: 120px; resize: vertical; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.checkbox-row { display: flex; gap: 0.5rem; align-items: flex-start; margin-top: 1.25rem; }
+.checkbox-row label { font-weight: 400; margin: 0; font-size: 0.92rem; }
+.btn { background: var(--accent); color: #fff; border: 0; padding: 0.75rem 1.75rem; font-size: 0.95rem; font-weight: 700; border-radius: 2px; cursor: pointer; margin-top: 1.5rem; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.msg { display: none; margin-top: 1rem; padding: 1rem; font-size: 0.95rem; }
+#cap-success { background: #FDF0E8; border: 1px solid var(--accent); }
+#cap-error { background: #FBEAEA; border: 1px solid var(--red); }
+.note { font-size: 0.9rem; color: var(--dgray); margin-top: 1rem; }
+@media (max-width: 640px) { .form-row { grid-template-columns: 1fr; } .form { padding: 1.25rem; } }
+.rubric-table th, .rubric-table td { border: 1px solid #ccc; padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; line-height: 1.5; }
+.rubric-table thead th { background: #f2f2f2; }
+.rubric-table tbody th { font-weight: 600; width: 26%; }
+.rubric-table td:nth-child(2) { width: 9%; white-space: nowrap; }
+</style>
+<link rel="stylesheet" href="../css/brand.css">
+</head>
+<body data-track="digital">
+
+<div class="top-bar">
+  <a href="digital.html">← Digital Communication Certificate</a>
+  <h1>Capstone</h1>
+</div>
+
+<main class="wrap">
+  <p class="eyebrow">Digital Communication Instruction Certificate</p>
+  <h2>Digital Communication Capstone</h2>
+  <p>Your capstone is a digital assignment or instructional module you will use in your own course. Submit it with a rationale for your design choices, your assessment approach, and the way the module puts digital rhetoric and the AI literacy framework to work. Complete the three core modules and two electives before you submit. Plan on 4 to 6 hours.</p>
+
+  <div class="part">
+    <h4>Part A. Course and context</h4>
+    <p>The course, its level, and where the assignment or module falls in the semester. Describe the digital communication students do in this course now and where they struggle.</p>
+  </div>
+  <div class="part">
+    <h4>Part B. The assignment or module</h4>
+    <p>The full assignment prompt or module materials as students will see them. Your Module 1 analysis assignment, Module 2 project design, or Module 3 operative decision document makes a strong starting point.</p>
+  </div>
+  <div class="part">
+    <h4>Part C. Assessment and accessibility</h4>
+    <p>How you will evaluate the work, including criteria or a rubric, and how the design meets the accessibility practices from the certificate.</p>
+  </div>
+  <div class="part">
+    <h4>Part D. Design rationale</h4>
+    <p>One to two pages on the reasoning behind the design. Which frameworks shaped it, what you decided about AI tools in this assignment and why, and what you expect to be hardest to put into practice.</p>
+  </div>
+  <div class="part" id="capstone-rubric">
+    <h4>How CWSP reviews the capstone</h4>
+    <p>CWSP first checks the materials in Part B against WCAG 2.1 AA. A capstone with access barriers in those materials comes back for revision before review begins. A reviewer then rates each part against the description below. A part earns its full weight when it meets the description, half its weight when one element is missing or underdeveloped, and none when it does not yet address the description. CWSP approves a capstone with a weighted total of 80 percent or more. A capstone below 80 percent comes back with comments on the parts to revise, and you resubmit those parts.</p>
+    <table class="rubric-table" style="width:100%; border-collapse:collapse; font-size:0.9rem; margin-top:0.75rem;">
+      <thead><tr><th scope="col">Part</th><th scope="col">Weight</th><th scope="col">Meets the description when it</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">A. Course and context</th><td>20%</td><td>Names the course, its level, and where the assignment falls, and describes the digital communication students do now and where they struggle.</td></tr>
+        <tr><th scope="row">B. The assignment or module</th><td>30%</td><td>Presents the full prompt or module materials as students will see them, with the audience, purpose, format, and an AI use policy stated for students.</td></tr>
+        <tr><th scope="row">C. Assessment and accessibility</th><td>25%</td><td>Gives criteria or a rubric tied to the assignment&#8217;s purpose, and states the accessibility requirements students meet and how the materials themselves meet WCAG 2.1 AA.</td></tr>
+        <tr><th scope="row">D. Design rationale</th><td>25%</td><td>Explains, in your own voice, which frameworks shaped the design, what you decided about AI tools and why, and names one part you expect to be hard to put into practice and your plan for it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Length: 5 to 8 pages, not counting appendices. Share a Google Doc link or paste each part below. To send a file instead, email kkcole2@ncsu.edu with the subject "C²TC Capstone Submission."</p>
+
+  <section class="form" id="certificate">
+    <h3 style="margin-top:0;">Submit your capstone</h3>
+    <p class="note" style="margin-top:0;">CWSP reviews each capstone before issuing the certificate. Once your capstone is approved, your PDF certificate is emailed to your NC State address.</p>
+
+    <div class="form-row">
+      <div>
+        <label for="cert-name">Your full name</label>
+        <input type="text" id="cert-name" autocomplete="name" placeholder="As it should appear on the certificate">
+      </div>
+      <div>
+        <label for="cert-email">Your NC State email</label>
+        <input type="email" id="cert-email" autocomplete="email" placeholder="unityid@ncsu.edu">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <label for="cert-department">Department</label>
+        <input type="text" id="cert-department" placeholder="e.g., Department of Communication">
+      </div>
+      <div>
+        <label for="cert-role">Role</label>
+        <input type="text" id="cert-role" placeholder="e.g., Assistant Professor, Graduate Instructor">
+      </div>
+    </div>
+
+    <label for="cert-doc-link">Google Doc link to your capstone <span>(or paste the parts below)</span></label>
+    <input type="text" id="cert-doc-link" placeholder="https://docs.google.com/document/d/...">
+
+    <label for="cert-parta">Part A. Course and context</label>
+    <textarea id="cert-parta" rows="5"></textarea>
+    <label for="cert-partb">Part B. The assignment or module</label>
+    <textarea id="cert-partb" rows="6"></textarea>
+    <label for="cert-partc">Part C. Assessment and accessibility</label>
+    <textarea id="cert-partc" rows="5"></textarea>
+    <label for="cert-partd">Part D. Design rationale</label>
+    <textarea id="cert-partd" rows="7"></textarea>
+
+    <label for="cert-elective-use">Elective work in your teaching <span style="color: #888;">(Optional. Which elective work will you use, and where? Name the elective, what you built in it, and the course and term.)</span></label>
+    <textarea id="cert-elective-use" rows="4" placeholder="Elective:&#10;What I built:&#10;Course and term:"></textarea>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="repo-capstone">
+      <label for="repo-capstone">I would like to contribute my capstone to the C²TC faculty repository. I understand CWSP will review it before posting and will credit me unless I ask otherwise.</label>
+    </div>
+
+    <button class="btn" id="cert-btn" onclick="submitCapstone()">Submit capstone</button>
+    <div class="msg" id="cap-success" role="status"><strong>Sent.</strong> CWSP will review your capstone and email your certificate once it is approved. Your responses also stay saved in this browser. If you have not heard from CWSP within two weeks, email kkcole2@ncsu.edu.</div>
+    <div class="msg" id="cap-error" role="alert">The submission did not go through. Your responses are still saved in this browser. Try again, or email your capstone to kkcole2@ncsu.edu with the subject "C²TC Capstone Submission."</div>
+  </section>
+</main>
+
+<script src="js/participant.js?v=2026-10-20d"></script>
+<script>
+const MODULE = 'dc-module3';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const FIELDS = ['cert-name','cert-email','cert-department','cert-role','cert-doc-link','cert-parta','cert-partb','cert-partc','cert-partd','cert-elective-use'];
+const KEY = 'dc-capstone-';
+
+function store(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function load(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+FIELDS.forEach(id => {
+  const el = document.getElementById(id);
+  const saved = load(KEY + id);
+  if (saved) el.value = saved;
+  el.addEventListener('input', () => store(KEY + id, el.value));
+});
+// Prefill identity remembered from earlier module submissions.
+const n = document.getElementById('cert-name'), e = document.getElementById('cert-email');
+if (!n.value) n.value = load('c2tc-participant-name') || '';
+if (!e.value) e.value = load('c2tc-participant-email') || '';
+
+function submitCapstone() {
+  const name = n.value.trim(), email = e.value.trim();
+  const doc = document.getElementById('cert-doc-link').value.trim();
+  const partD = document.getElementById('cert-partd').value.trim();
+  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    alert('Enter your name and NC State email before submitting.');
+    return;
+  }
+  if (!doc && !partD) {
+    alert('Add a Google Doc link or paste your Part D design rationale before submitting.');
+    return;
+  }
+  const data = {
+    certificate_name: name,
+    certificate_email: email,
+    module: MODULE,
+    submission_type: 'capstone',
+    timestamp: new Date().toISOString()
+  };
+  FIELDS.forEach(id => { data[id] = document.getElementById(id).value || ''; });
+  data['repo-capstone'] = document.getElementById('repo-capstone').checked;
+
+  if (window.C2TC && C2TC.describe) C2TC.describe(data);
+  const btn = document.getElementById('cert-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    .then(() => {
+      document.getElementById('cap-success').style.display = 'block';
+      document.getElementById('cap-error').style.display = 'none';
+      btn.textContent = 'Sent';
+      store(KEY + 'submitted', new Date().toISOString());
+    })
+    .catch(() => {
+      document.getElementById('cap-error').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Submit capstone';
+    });
+}
+</script>
+</body>
+</html>
