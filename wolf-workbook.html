@@ -101,7 +101,7 @@
       .wb-sidebar nav a.active { border-bottom-color: var(--red); background: transparent; }
       .wb-main { padding: 1.5rem 1rem 3rem; } .stages, .grid2, .grid3, .grid5 { grid-template-columns: 1fr; }
     }
-    @media print { .wb-sidebar, .site-header, .submit-section { display: none; } .wb-layout { display: block; } .panel { break-inside: avoid; } details.panel { open: true; } }
+    @media print { .wb-sidebar, .site-header, .site-footer, .submit-section, .btn-sidebar { display: none; } .wb-layout { display: block; } .wb-main { max-width: none; padding: 0; } .activity, .panel { break-inside: avoid; } textarea { min-height: 0; } }
   </style>
 </head>
 <body>
@@ -613,6 +613,15 @@ function updateSidebar() {
   links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
 }
 window.addEventListener('scroll', updateSidebar, { passive: true });
+/* Printing opens every reading panel and sizes each answer box to its text, so the paper copy holds everything. */
+window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('details.panel').forEach(d => { d.dataset.wasOpen = d.open ? '1' : ''; d.open = true; });
+  document.querySelectorAll('textarea').forEach(t => { t.dataset.h = t.style.height; t.style.height = 'auto'; t.style.height = (t.scrollHeight + 4) + 'px'; });
+});
+window.addEventListener('afterprint', () => {
+  document.querySelectorAll('details.panel').forEach(d => { d.open = d.dataset.wasOpen === '1'; });
+  document.querySelectorAll('textarea').forEach(t => { t.style.height = t.dataset.h || ''; });
+});
 document.addEventListener('DOMContentLoaded', () => {
   fields().forEach(el => { el.addEventListener('input', save); el.addEventListener('change', save); });
   load(); restoreFromLink(); updateSidebar();
