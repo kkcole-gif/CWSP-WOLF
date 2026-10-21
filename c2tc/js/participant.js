@@ -100,8 +100,10 @@
   /* The top-bar Save button. Work already saves to this browser as the participant types,
      so the button confirms that save with a time rather than doing anything new. */
   function fixSaveButton() {
+    var pageSave = typeof window.saveAll === 'function' ? window.saveAll
+                 : (typeof window.save === 'function' ? window.save : null);
     var btn = document.querySelector('.top-bar .btn-save');
-    if (!btn && typeof window.saveAll === 'function') {
+    if (!btn && pageSave) {
       var wrap = document.querySelector('.top-bar .progress-wrap');
       if (wrap) {
         btn = document.createElement('button');
@@ -115,7 +117,7 @@
     btn.textContent = 'Save';
     btn.title = 'Your work saves in this browser as you type';
     btn.addEventListener('click', function () {
-      try { if (typeof window.saveAll === 'function') window.saveAll(); } catch (err) {}
+      try { if (pageSave) pageSave(); } catch (err) {}
       btn.textContent = 'Saved ' + stamp();
     });
   }
@@ -218,10 +220,10 @@
      name and email from this browser. Work already sent to CWSP is untouched. */
   function clearWork() {
     if (!window.confirm('Remove your answers to this workbook, and your name and email, from this browser? Work you have already submitted or saved by email stays with CWSP.')) return;
-    var prefix = moduleId() + '-';
+    var id = moduleId();
     try {
       Object.keys(localStorage).forEach(function (k) {
-        if (k.indexOf(prefix) === 0 || k === KEY_NAME || k === KEY_EMAIL) localStorage.removeItem(k);
+        if (k.indexOf(id + '-') === 0 || k.indexOf(id + ':') === 0 || k === KEY_NAME || k === KEY_EMAIL) localStorage.removeItem(k);
       });
     } catch (err) {}
     document.querySelectorAll('textarea, input[type="text"], input[type="email"], select').forEach(function (el) { el.value = ''; });
