@@ -47,6 +47,12 @@
       padding: 1.5rem 1.5rem 0.4rem;
     }
     .wb-sidebar .sidebar-part:first-child { padding-top: 0; }
+    .wb-sidebar .sidebar-save { padding: 0 1.5rem 1rem; border-bottom: 1px solid #e0e0e0; margin-bottom: 1rem; }
+    .wb-sidebar .sidebar-save .sidebar-part { padding: 0 0 0.4rem; }
+    .btn-sidebar { width: 100%; text-align: left; font-family: Arial, sans-serif; font-size: 0.82rem; padding: 0.45rem 0.75rem; background: #fff; border: 1px solid #bbb; border-radius: 3px; color: #222; cursor: pointer; }
+    .btn-sidebar:hover { border-color: #222; }
+    .btn-sidebar:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+    .sidebar-status { font-size: 0.75rem; color: #5a5a5a; margin: 0.4rem 0.25rem 0; line-height: 1.35; }
     .wb-main {
       padding: 3rem 3.5rem 5rem;
       max-width: 820px;
@@ -117,13 +123,13 @@
       border-radius: 4px;
       padding: 1.1rem;
     }
-    .level-card.conceptual { background: #f4f4f4; border: 1px solid #e0e0e0; }
-    .level-card.structural { background: #1a1a1a; color: #fff; }
-    .level-card.operative { background: #fff0f0; border: 1px solid #f5c6c6; }
+    .level-card.conceptual { background: #FFF4CC; border: 1px solid #FAC800; }
+    .level-card.structural { background: #FBEBE1; border: 1px solid #D14905; }
+    .level-card.operative { background: #FBE8E8; border: 1px solid #CC0000; }
     .level-card h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
-    .level-card.structural h4 { color: var(--red); }
+    .level-card.conceptual h4 { color: #5C4500; } .level-card.structural h4 { color: #7A2E03; } .level-card.operative h4 { color: #7A0000; }
     .level-card p { font-size: 0.85rem; margin: 0; }
-    .level-card.structural p { color: #ccc; }
+    
     .callout {
       background: #f4f4f4;
       border-left: 3px solid var(--red);
@@ -205,13 +211,13 @@
     .step-content p { font-size: 0.83rem; color: #555; margin: 0; }
     .three-level { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; margin: 0.5rem 0 1rem; }
     .level-box { border-radius: 3px; padding: 0.75rem; }
-    .level-box.c { background: #f4f4f4; }
-    .level-box.s { background: #1a1a1a; color: #fff; }
-    .level-box.o { background: #fff0f0; border: 1px solid #f0d0d0; }
+    .level-box.c { background: #FFF4CC; }
+    .level-box.s { background: #FBEBE1; }
+    .level-box.o { background: #FBE8E8; }
     .level-box h5 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
-    .level-box.s h5 { color: var(--red); }
+    .level-box.c h5 { color: #5C4500; } .level-box.s h5 { color: #7A2E03; } .level-box.o h5 { color: #7A0000; }
     .level-box p { font-size: 0.8rem; margin: 0; }
-    .level-box.s p { color: #bbb; }
+    
     .discussion-box {
       background: #1a1a1a;
       color: #eee;
@@ -624,6 +630,11 @@
 <div class="workbook-wrap">
   <!-- ── SIDEBAR ── -->
   <aside class="wb-sidebar">
+    <div class="sidebar-save">
+      <p class="sidebar-part">Your progress</p>
+      <button type="button" class="btn-sidebar" onclick="downloadAllPoliciesPDF()">Print or save all drafts as PDF</button>
+      <p class="sidebar-status" role="status">This browser saves your work as you type. Print to keep a copy.</p>
+    </div>
     <nav aria-label="Workbook navigation">
       <p class="sidebar-part">Overview</p>
       <a href="#intro" class="active">About this workbook</a>
@@ -681,7 +692,7 @@
           <p>Adaptable policy language</p>
         </div>
       </div>
-      <p style="font-size:0.85rem; color:#888;">Framework: Cole (2026). Three-Level AI Literacy Model. <em>Pedagogies: An International Journal.</em> · <a href="https://go.ncsu.edu/cwsp">go.ncsu.edu/cwsp</a></p>
+      <p style="font-size:0.85rem; color:#888;">Framework: Cole, K. K. (2026). AI literacy is not one thing: Conceptual, structural, and operative levels for higher education governance. <em>Pedagogies: An International Journal.</em> <a href="ai_literacy_unified.html">Framework page</a> · <a href="https://go.ncsu.edu/cwsp">go.ncsu.edu/cwsp</a></p>
     </section>
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
     <!-- PART I -->
@@ -720,7 +731,7 @@
     </section>
     <section id="three-levels">
       <h3>The Three-Level Framework</h3>
-      <p>After applying the four-step procedure, characterize the literacy demands the document makes, or fails to make, at three levels.</p>
+      <p>After applying the four-step procedure, characterize the literacy demands the document makes, or fails to make, at three levels. <a href="ai_literacy_unified.html">The framework page</a> sets out the levels as the order in which a person reasons a decision (describe, analyze, decide). Here the same three levels read a document: what it asks its readers to recognize, to understand about the system, and to judge.</p>
       <div class="level-grid">
         <div class="level-card conceptual">
           <h4>Conceptual</h4>
@@ -880,7 +891,7 @@
           <div class="three-level">
             <div class="level-box c"><h5>Conceptual</h5><p>The icon system works well as a conceptual literacy tool. It gives students a visual vocabulary for reading different AI use permissions at a glance.</p></div>
             <div class="level-box s"><h5>Structural</h5><p>The CTI authored the system. Neither the academic policy office nor the faculty senate issued it. The icons carry no institutional authority, and their effect depends entirely on voluntary adoption.</p></div>
-            <div class="level-box o"><h5>Operative</h5><p>The committee report’s recommendation against automatic detection tools is the most consequential operative move. It moves the governance burden from policing to communication. The shift bears directly on how instructors design assignments.</p></div>
+            <div class="level-box o"><h5>Operative</h5><p>The committee report’s recommendation against automatic detection tools is the most consequential operative move. It moves the governance burden from policing to communication. The shift bears directly on how instructors design assignments. CWSP has taken the same position, <a href="ai_literacy_unified.html#detector-decision">with its reasons on the record</a>.</p></div>
           </div>
           <p class="analysis-label">Discussion Notes</p>
           <div class="discussion-box">The corpus offers no clearer example of governance performed as design. Use it to discuss how legibility relates to enforceability. Ask: does a visually clear policy become more or less likely to function as governance?</div>
@@ -919,7 +930,7 @@
           </div>
           <p class="analysis-label">Three-Level Literacy Read</p>
           <div class="three-level">
-            <div class="level-box c"><h5>Conceptual</h5><p>The initiative defines its goal in two parts: graduates will be “fluent in their field of study, and fluent in the application of AI in that field.” The definition ties AI fluency to disciplinary fluency. It says little about what fluency in AI itself includes.</p></div>
+            <div class="level-box c"><h5>Conceptual</h5><p>The initiative defines its goal in two parts: graduates will be “fluent in their field of study, and fluent in the application of AI in that field.” The definition ties AI fluency to disciplinary fluency. It says little about what fluency in AI itself includes, and the word carries assumptions of its own (<a href="ai_literacy_unified.html#context">see “fluency” under common terms</a>).</p></div>
             <div class="level-box s"><h5>Structural</h5><p>The Office of Academic Affairs houses the mandate, and it holds the authority to require graduation outcomes. No document in the comparative set is better placed structurally.</p></div>
             <div class="level-box o"><h5>Operative</h5><p>A graduation requirement with no defined assessment framework leaves a wide operative gap. Instructors must develop AI fluency and have no shared standard for measuring it.</p></div>
           </div>
@@ -1367,7 +1378,7 @@ Revision: This framework was adopted in conditions that are already changing. It
           </tbody>
         </table>
       </div>
-      <p style="font-size:0.8rem;color:#888;margin-top:1rem;">&#169; 2026 Kirsti Cole. Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" style="color:#888;">CC BY-NC-ND 4.0</a>. &nbsp;·&nbsp; Framework: Cole (2026). <em>Pedagogies: An International Journal.</em></p>
+      <p style="font-size:0.8rem;color:#888;margin-top:1rem;">&#169; 2026 Kirsti Cole. Licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" style="color:#888;">CC BY-NC-ND 4.0</a>. &nbsp;·&nbsp; Framework: Cole, K. K. (2026). AI literacy is not one thing. <em>Pedagogies: An International Journal.</em></p>
     </section>
   </main>
 </div>
@@ -1666,11 +1677,11 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExample
 
 // ── SIDEBAR ACTIVE STATE ─────────────────────────────────────────────────────
 function updateSidebar() {
-  const sections = document.querySelectorAll('section[id], div[id]');
   const links = document.querySelectorAll('.wb-sidebar nav a');
   let current = '';
-  sections.forEach(s => {
-    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  links.forEach(a => {
+    const s = document.getElementById(a.getAttribute('href').replace('#', ''));
+    if (s && window.scrollY >= s.offsetTop - 120) current = s.id;
   });
   links.forEach(a => {
     const href = a.getAttribute('href').replace('#', '');
