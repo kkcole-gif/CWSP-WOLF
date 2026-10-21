@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOLF Workbook | WOLF · NC State CWSP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <style>
+    :root { --red: #CC0000; --red-dark: #990000; --black: #1a1a1a; --gray: #444; --gray-mid: #595959; --gray-light: #f4f4f4; --line: #e0e0e0; --ok: #1b5e20; --ok-light: #e8f5e9; }
+    .skip { position: absolute; left: -999px; } .skip:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem; z-index: 200; }
+    .wb-layout { display: grid; grid-template-columns: 240px 1fr; max-width: 1100px; margin: 0 auto; min-height: calc(100vh - 60px); }
+    .wb-sidebar { position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; background: var(--gray-light); border-right: 1px solid var(--line); padding: 1.5rem 0 2rem; }
+    .sidebar-part { font-family: Arial, sans-serif; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #666; padding: 1.25rem 1.25rem .35rem; display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; }
+    .stage-badge { font-size: .62rem; letter-spacing: .06em; padding: .1rem .4rem; border-radius: 3px; background: #ddd; color: #555; text-transform: uppercase; white-space: nowrap; }
+    .stage-badge:empty { display: none; }
+    .stage-badge.current { background: var(--red); color: #fff; }
+    .stage-badge.done { background: var(--ok); color: #fff; }
+    .stage-date { display: block; font-family: Arial, sans-serif; font-size: .7rem; color: #666; padding: 0 1.25rem .2rem; text-transform: none; letter-spacing: 0; font-weight: 400; margin-top: -.2rem; }
+    .wb-sidebar nav a { display: block; padding: .45rem 1.25rem; font-family: Arial, sans-serif; font-size: .82rem; color: var(--gray); text-decoration: none; border-left: 3px solid transparent; line-height: 1.35; }
+    .wb-sidebar nav a:hover { color: var(--red); background: #eee; }
+    .wb-sidebar nav a.active { color: var(--red); border-left-color: var(--red); font-weight: 700; background: #fff; }
+    .wb-sidebar nav a.muted { color: #6b6b6b; font-style: italic; }
+    .wb-sidebar nav a:focus-visible, .btn-sidebar:focus-visible, .btn-submit:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+    .sidebar-save { padding: 0 1.25rem 1rem; border-bottom: 1px solid var(--line); margin-bottom: .5rem; }
+    .sidebar-save .sidebar-part { padding: 0 0 .4rem; }
+    .progress-bar { display: flex; align-items: center; gap: 8px; margin: 0 0 .6rem; }
+    #progress-label { font-family: Arial, sans-serif; font-size: .78rem; color: #333; min-width: 2.6em; }
+    .progress-track { flex: 1; height: 6px; background: #ddd; border-radius: 3px; overflow: hidden; display: block; }
+    .progress-fill { display: block; height: 100%; width: 0; background: var(--red); transition: width .3s; }
+    .btn-sidebar { width: 100%; text-align: left; font-family: Arial, sans-serif; font-size: .82rem; padding: .45rem .75rem; background: #fff; border: 1px solid #bbb; border-radius: 3px; color: #222; cursor: pointer; margin-top: .35rem; }
+    .btn-sidebar:hover { border-color: #222; } .btn-sidebar:disabled { color: #999; cursor: default; }
+    .sidebar-status { font-family: Arial, sans-serif; font-size: .75rem; color: #5a5a5a; margin: .4rem .25rem 0; line-height: 1.35; }
+    .wb-main { min-width: 0; padding: 2.5rem 2.5rem 4rem; max-width: 820px; }
+    .wb-main h1 { font-size: 2rem; margin: 0 0 .4rem; }
+    .wb-main h2 { font-size: 1.45rem; margin: 2.5rem 0 .6rem; scroll-margin-top: 80px; }
+    .wb-main h3 { font-size: 1.1rem; margin: 1.6rem 0 .4rem; }
+    .eyebrow { font-family: Arial, sans-serif; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin: 0 0 .3rem; }
+    .lede { font-size: 1.1rem; color: var(--black); line-height: 1.6; }
+    p { line-height: 1.7; color: #333; }
+    .panel { border: 1px solid var(--line); border-radius: 8px; background: #fff; margin: 1rem 0; }
+    .panel summary { cursor: pointer; padding: .8rem 1.1rem; font-weight: 600; color: var(--black); list-style: none; display: flex; justify-content: space-between; }
+    .panel summary::after { content: "\25BE"; color: var(--red); } .panel[open] summary::after { transform: rotate(180deg); }
+    .panel summary::-webkit-details-marker { display: none; }
+    .panel-body { padding: 0 1.1rem 1rem; font-size: .95rem; }
+    .panel-body p + p { margin-top: .6rem; }
+    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin: 1rem 0; }
+    .stage-card { border: 1px solid var(--line); border-top: 4px solid var(--red); border-radius: 6px; padding: .9rem 1rem; font-size: .9rem; }
+    .stage-card strong { display: block; font-family: Arial, sans-serif; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin-bottom: .2rem; }
+    .stage-card em { display: block; color: var(--gray-mid); margin-bottom: .4rem; }
+    table.tl { width: 100%; border-collapse: collapse; font-size: .9rem; margin: .8rem 0; }
+    table.tl th, table.tl td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+    table.tl th { font-family: Arial, sans-serif; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: #666; }
+    .activity { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 1.3rem 1.4rem 1.4rem; margin: 1.4rem 0; scroll-margin-top: 80px; }
+    .activity-label { font-family: Arial, sans-serif; font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+    .activity h3 { margin: .2rem 0 .3rem; }
+    .activity-meta { font-size: .85rem; color: var(--gray-mid); margin: 0 0 .8rem; }
+    .field { margin: .9rem 0; }
+    .field label, .field .lbl { display: block; font-family: Arial, sans-serif; font-size: .82rem; font-weight: 700; color: var(--black); margin-bottom: .3rem; }
+    .field .hint { font-size: .82rem; color: var(--gray-mid); margin: -.15rem 0 .4rem; }
+    textarea, input[type="text"], input[type="email"], input[type="date"], select { width: 100%; border: 1px solid #bbb; border-radius: 3px; padding: .6rem .7rem; font-family: Georgia, serif; font-size: .95rem; color: var(--black); background: #fff; }
+    textarea { min-height: 96px; resize: vertical; }
+    textarea:focus, input:focus, select:focus { outline: 2px solid var(--red); outline-offset: 1px; border-color: var(--red); }
+    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    .grid3 { display: grid; grid-template-columns: 1.2fr .8fr 1fr 1fr; gap: .6rem; align-items: end; }
+    .grid3 .field { margin: .4rem 0; } .grid3 label { font-size: .72rem; }
+    .row-head { font-family: Arial, sans-serif; font-size: .72rem; color: #666; margin: .8rem 0 0; }
+    .checks label { display: flex; gap: .55rem; align-items: flex-start; font-size: .95rem; margin: .4rem 0; cursor: pointer; }
+    .checks input { margin-top: .3rem; }
+    .req { color: var(--red); font-weight: 700; margin-left: .2rem; }
+    .note { background: var(--gray-light); border-left: 3px solid var(--red); padding: .8rem 1rem; border-radius: 0 4px 4px 0; font-size: .9rem; margin: 1rem 0; }
+    .note p { margin: 0; } .note p + p { margin-top: .5rem; }
+    .resume-banner { background: var(--ok-light); border: 1px solid #a5d6a7; border-radius: 4px; padding: .75rem 1rem; margin: 0 0 1rem; font-size: .9rem; }
+    .resume-banner button { margin-left: .5rem; font: inherit; font-size: .85rem; padding: .3rem .7rem; }
+    .submit-section { border: 2px solid var(--black); border-radius: 8px; padding: 1.3rem 1.4rem; margin: 2rem 0; }
+    .btn-submit { background: var(--black); color: #fff; border: none; padding: .65rem 1.4rem; border-radius: 3px; font-family: inherit; font-size: .95rem; cursor: pointer; }
+    .btn-submit:disabled { background: #999; cursor: default; }
+    .submit-status { font-size: .9rem; margin: .7rem 0 0; color: #333; } .submit-status.err { color: var(--red); }
+    .stub h2, .stub p { color: #555; }
+    .stub .activity { border-style: dashed; padding: .9rem 1.2rem; margin: .8rem 0; }
+    .stub .activity p { margin: .2rem 0 0; font-size: .9rem; }
+    @media (max-width: 860px) {
+      .wb-layout { display: block; } .wb-sidebar { position: static; height: auto; padding: 1rem 0; }
+      .wb-sidebar nav { display: flex; flex-wrap: wrap; gap: 0 .25rem; padding: 0 .75rem; }
+      .wb-sidebar nav .sidebar-part { width: 100%; padding: .6rem .5rem .2rem; } .stage-date { width: 100%; }
+      .wb-sidebar nav a { padding: .35rem .5rem; border-left: 0; border-bottom: 2px solid transparent; }
+      .wb-sidebar nav a.active { border-bottom-color: var(--red); background: transparent; }
+      .wb-main { padding: 1.5rem 1rem 3rem; } .stages, .grid2, .grid3 { grid-template-columns: 1fr; }
+    }
+    @media print { .wb-sidebar, .site-header, .submit-section { display: none; } .wb-layout { display: block; } .panel { break-inside: avoid; } details.panel { open: true; } }
+  </style>
+</head>
+<body>
+<a class="skip" href="#start">Skip to content</a>
+<header class="site-header">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About WOLF</a></li>
+      <li><a href="liaisons.html" class="active">For Liaisons</a></li>
+      <li><a href="ai-literacies.html">AI Literacies</a></li>
+      <li><a href="ai-policy-lab.html">AI Policy Lab</a></li>
+      <li><a href="acicertificate/index.html">C²TC</a></li>
+      <li><a href="get-started.html">Get Started</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="wb-layout">
+<aside class="wb-sidebar">
+  <div class="sidebar-save">
+    <p class="sidebar-part">Your progress</p>
+    <div class="progress-bar"><span id="progress-label">0%</span><span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span></div>
+    <button type="button" class="btn-sidebar" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
+    <button type="button" class="btn-sidebar" onclick="window.print()">Print or save as PDF</button>
+    <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. The emailed link opens it on any computer.</p>
+  </div>
+  <nav aria-label="Workbook navigation">
+    <p class="sidebar-part">Start</p>
+    <a href="#start" class="active">Who you are</a>
+    <a href="#timeline">Where your department is</a>
+    <a href="#about">What WOLF is</a>
+    <p class="sidebar-part" id="sp-1">Stage 1 · Inquiry <span class="stage-badge" id="badge-1"></span></p>
+    <span class="stage-date" id="date-1"></span>
+    <a href="#act1">1. Confirm your role</a>
+    <a href="#act2">2. Syllabus inventory</a>
+    <a href="#act3">3. Needs assessment</a>
+    <a href="#act4">4. Where AI already sits</a>
+    <a href="#act5">5. Stage 1 reflection</a>
+    <a href="#submit1">Submit Stage 1</a>
+    <p class="sidebar-part" id="sp-2">Stage 2 · Design <span class="stage-badge" id="badge-2"></span></p>
+    <span class="stage-date" id="date-2"></span>
+    <a href="#stage2" class="muted">Opens after Stage 1 testing</a>
+    <p class="sidebar-part" id="sp-3">Stage 3 · Evidence <span class="stage-badge" id="badge-3"></span></p>
+    <span class="stage-date" id="date-3"></span>
+    <a href="#stage3" class="muted">Opens after Stage 2</a>
+  </nav>
+</aside>
+
+<main class="wb-main" id="main">
+  <p class="eyebrow">Campus Writing and Speaking Program · NC State</p>
+  <h1>WOLF Workbook</h1>
+  <p class="lede">For the faculty liaison running Written and Oral Literacy Facilitation in a department or program. The workbook carries you through the three stages, saves as you go, and produces the Writing and Speaking Curriculum Plan from your own answers.</p>
+  <div id="banner-slot"></div>
+
+  <h2 id="start">Who you are</h2>
+  <p>CWSP records a department's progress by liaison and program. These fields stay in this browser and travel with every save.</p>
+  <div class="activity">
+    <div class="grid2">
+      <div class="field"><label for="p-name">Your name<span class="req" aria-hidden="true">*</span></label><input type="text" id="p-name" autocomplete="name"></div>
+      <div class="field"><label for="p-email">Your NC State email<span class="req" aria-hidden="true">*</span></label><input type="email" id="p-email" autocomplete="email" placeholder="unityid@ncsu.edu"></div>
+      <div class="field"><label for="s0-department">Department or program<span class="req" aria-hidden="true">*</span></label><input type="text" id="s0-department"></div>
+      <div class="field"><label for="s0-programs">Degree programs covered</label><input type="text" id="s0-programs" placeholder="e.g., BS Chemistry, BA Communication"></div>
+      <div class="field"><label for="s0-chair">Department chair or director</label><input type="text" id="s0-chair"></div>
+      <div class="field"><label for="s0-chair-email">Chair's email</label><input type="email" id="s0-chair-email"></div>
+      <div class="field"><label for="s0-code">CWSP program code</label><input type="text" id="s0-code" placeholder="Assigned by CWSP after your first consultation"></div>
+      <div class="field"><label for="s0-college">College</label><input type="text" id="s0-college"></div>
+    </div>
+    <p class="hint" style="font-size:.85rem;color:var(--gray-mid);margin:.3rem 0 0;">Required fields are marked with <span class="req">*</span>. Everything else fills in as the work proceeds.</p>
+  </div>
+
+  <h2 id="timeline">Where your department is</h2>
+  <p>WOLF runs two to three academic years at the department's own pace. Set the stage you are in and the dates you have. The sidebar then shows which stage is current, which are done, and which lie ahead.</p>
+  <div class="activity">
+    <div class="field"><label for="s0-current">Current stage</label>
+      <select id="s0-current">
+        <option value="">Select one</option>
+        <option value="1">Stage 1 · Inquiry</option>
+        <option value="2">Stage 2 · Design</option>
+        <option value="3">Stage 3 · Evidence</option>
+        <option value="4">Certified</option>
+      </select></div>
+    <div class="grid2">
+      <div class="field"><label for="s0-date-1">Inquiry began</label><input type="date" id="s0-date-1"></div>
+      <div class="field"><label for="s0-date-2">Design began</label><input type="date" id="s0-date-2"></div>
+      <div class="field"><label for="s0-date-3">Evidence began</label><input type="date" id="s0-date-3"></div>
+      <div class="field"><label for="s0-date-4">Certification</label><input type="date" id="s0-date-4"></div>
+    </div>
+    <table class="tl" aria-label="Approximate timeline">
+      <thead><tr><th>Period</th><th>Stage</th><th>Focus</th></tr></thead>
+      <tbody>
+        <tr><td>Months 1–2</td><td>Inquiry</td><td>Initial consultation with CWSP, faculty interest meeting, syllabi gathered, liaison role confirmed</td></tr>
+        <tr><td>Months 3–8</td><td>Design</td><td>Needs assessment, faculty workshops, learning outcomes drafted, curriculum mapped, WSCP finalized and approved</td></tr>
+        <tr><td>Months 9–18</td><td>Evidence, early</td><td>WSCP implemented in courses, rubrics and assignment templates distributed, early data collected, mid-cycle check-in</td></tr>
+        <tr><td>Months 19–30</td><td>Evidence, completion</td><td>WSCP refined from assessment data, final documentation submitted, certification and mini grant awarded</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="about">What WOLF is</h2>
+  <p>WOLF works with departments, programs, and colleges to develop discipline-specific approaches to writing and speaking instruction. The goal is to make the communication instruction already in your curriculum visible and sustainable, fill in what is missing, and connect it to the outcomes your discipline already holds. The central product is a Writing and Speaking Curriculum Plan (WSCP), a document your department owns. Departments that complete the program earn CWSP certification and a $1,000 mini grant.</p>
+  <div class="stages">
+    <div class="stage-card"><strong>Stage 1 · Inquiry</strong><em>Where are we?</em>CWSP meets with the department to assess current writing and speaking practices, identify what is working and what is missing, and confirm the faculty liaison. The stage produces a clear picture of the curriculum as it stands.</div>
+    <div class="stage-card"><strong>Stage 2 · Design</strong><em>What should be different?</em>The department, with CWSP support, develops the WSCP: outcomes for writing and speaking in the discipline, mapped to courses and levels, with assignment and assessment approaches. Faculty author it.</div>
+    <div class="stage-card"><strong>Stage 3 · Evidence</strong><em>How do we know it is working?</em>The department implements the WSCP, collects assessment data, and uses it to refine the plan. Completion brings CWSP certification, recognition, and the mini grant.</div>
+  </div>
+  <details class="panel"><summary>Your role as liaison</summary><div class="panel-body">
+    <p>You are the point of contact between your department and CWSP. You facilitate; you do not produce everything yourself. You connect CWSP to your colleagues, translate disciplinary context into curriculum decisions, and keep the work moving between consultations. You need institutional knowledge of your department and enough trust from colleagues to facilitate honest conversation about the curriculum. Expertise in writing pedagogy is CWSP's job.</p>
+    <p>CWSP handles the pedagogical scaffolding, provides templates and tools, co-leads workshops, and consults one-on-one. The WSCP that results is your department's document, owned, revised, and sustained by faculty, with CWSP as a continuing resource.</p>
+  </div></details>
+  <details class="panel"><summary>What WOLF is not</summary><div class="panel-body">
+    <p>WOLF does not ask departments to add writing-intensive courses, require faculty to become writing or speaking specialists, or produce a plan that looks the same across disciplines. A Chemistry WSCP looks different from a Communication WSCP, by design. CWSP supports that specificity.</p>
+    <p>WOLF runs on no fixed calendar. Departments move through the stages at a pace that fits their context, and CWSP is available throughout.</p>
+  </div></details>
+  <details class="panel"><summary>Engaging your colleagues</summary><div class="panel-body">
+    <p>Start with questions. Before presenting the WSCP as a project, ask colleagues what challenges they face with student writing and speaking, what they notice is missing, and what they wish students arrived knowing. Those conversations surface the disciplinary specificity a WSCP needs, and they build investment before any formal process begins.</p>
+    <p>Workload, grading burden, and skepticism about program initiatives deserve a hearing. You do not have to answer them. Relay them to CWSP and bring the responses back. Nominating a colleague for a Communication Champion letter early signals that WOLF recognizes work already being done.</p>
+  </div></details>
+  <details class="panel"><summary>The AI Literacies track</summary><div class="panel-body">
+    <p>A department can enter WOLF through AI Literacies: structured consultations, policy review, and curricular mapping focused on how generative AI is governed and taught in the discipline. The track stands alone or opens into full WOLF participation, and it connects to Stage 2, where AI literacy outcomes join the WSCP. See <a href="ai-literacies.html">AI Literacies</a>, <a href="CWSP_AI_Literacies_Workbook.html">the faculty workbook</a>, and <a href="ai_literacy_unified.html">the three-level framework</a>.</p>
+  </div></details>
+
+  <h2 id="stage1">Stage 1 · Inquiry</h2>
+  <p>Inquiry means asking questions. You schedule the first consultation, gather what gives CWSP a picture of current practice, and begin building faculty awareness. You do not need answers yet. Five activities, then a submission that records the stage with CWSP.</p>
+
+  <div class="activity" id="act1">
+    <div class="activity-label">Activity 1</div>
+    <h3>Confirm your role</h3>
+    <p class="activity-meta">Organizational · the first weeks</p>
+    <div class="checks" aria-label="Key tasks">
+      <label><input type="checkbox" id="c-1-1"> Confirmed the liaison role with my department chair</label>
+      <label><input type="checkbox" id="c-1-2"> Told faculty the role exists and what it covers</label>
+      <label><input type="checkbox" id="c-1-3"> Scheduled the initial consultation with CWSP (60 to 90 minutes, with department leadership and interested faculty)</label>
+      <label><input type="checkbox" id="c-1-4"> Began gathering syllabi and course information from across the curriculum</label>
+    </div>
+    <div class="field"><label for="f-1-1-described">How you described the role to colleagues</label><p class="hint">The sentence or two you used. CWSP learns from how liaisons introduce the work.</p><textarea id="f-1-1-described"></textarea></div>
+    <div class="grid2">
+      <div class="field"><label for="f-1-1-confirmed">Date confirmed with chair</label><input type="date" id="f-1-1-confirmed"></div>
+      <div class="field"><label for="f-1-1-consult">Date of initial CWSP consultation</label><input type="date" id="f-1-1-consult"></div>
+    </div>
+  </div>
+
+  <div class="activity" id="act2">
+    <div class="activity-label">Activity 2</div>
+    <h3>Syllabus inventory</h3>
+    <p class="activity-meta">Gathering · 1 to 2 hours across the curriculum</p>
+    <p>List the courses where students write or speak for assessment. The inventory is the raw material for the curriculum map in Stage 2. Gaps are as informative as concentrations, so list courses with no writing or speaking too, and say so. Add what you have; rows left blank are fine.</p>
+    <div class="row-head">Course · Level · Writing assignments · Speaking assignments</div>
+    <div class="grid3"><div class="field"><label for="f-1-2-c1">Course 1</label><input type="text" id="f-1-2-c1"></div><div class="field"><label for="f-1-2-l1">Level</label><select id="f-1-2-l1"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-1-2-w1">Writing</label><input type="text" id="f-1-2-w1"></div><div class="field"><label for="f-1-2-s1">Speaking</label><input type="text" id="f-1-2-s1"></div></div>
+    <div class="grid3"><div class="field"><label for="f-1-2-c2">Course 2</label><input type="text" id="f-1-2-c2"></div><div class="field"><label for="f-1-2-l2">Level</label><select id="f-1-2-l2"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-1-2-w2">Writing</label><input type="text" id="f-1-2-w2"></div><div class="field"><label for="f-1-2-s2">Speaking</label><input type="text" id="f-1-2-s2"></div></div>
+    <div class="grid3"><div class="field"><label for="f-1-2-c3">Course 3</label><input type="text" id="f-1-2-c3"></div><div class="field"><label for="f-1-2-l3">Level</label><select id="f-1-2-l3"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-1-2-w3">Writing</label><input type="text" id="f-1-2-w3"></div><div class="field"><label for="f-1-2-s3">Speaking</label><input type="text" id="f-1-2-s3"></div></div>
+    <div class="grid3"><div class="field"><label for="f-1-2-c4">Course 4</label><input type="text" id="f-1-2-c4"></div><div class="field"><label for="f-1-2-l4">Level</label><select id="f-1-2-l4"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-1-2-w4">Writing</label><input type="text" id="f-1-2-w4"></div><div class="field"><label for="f-1-2-s4">Speaking</label><input type="text" id="f-1-2-s4"></div></div>
+    <div class="grid3"><div class="field"><label for="f-1-2-c5">Course 5</label><input type="text" id="f-1-2-c5"></div><div class="field"><label for="f-1-2-l5">Level</label><select id="f-1-2-l5"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-1-2-w5">Writing</label><input type="text" id="f-1-2-w5"></div><div class="field"><label for="f-1-2-s5">Speaking</label><input type="text" id="f-1-2-s5"></div></div>
+    <div class="grid3"><div class="field"><label for="f-1-2-c6">Course 6</label><input type="text" id="f-1-2-c6"></div><div class="field"><label for="f-1-2-l6">Level</label><select id="f-1-2-l6"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-1-2-w6">Writing</label><input type="text" id="f-1-2-w6"></div><div class="field"><label for="f-1-2-s6">Speaking</label><input type="text" id="f-1-2-s6"></div></div>
+    <div class="field"><label for="f-1-2-more">More courses, and anything the rows cannot hold</label><textarea id="f-1-2-more" placeholder="One course per line: course, level, writing, speaking."></textarea></div>
+    <div class="field"><label for="f-1-2-pattern">What the inventory shows<span class="req" aria-hidden="true">*</span></label><p class="hint">Where writing and speaking concentrate, where they are absent, and what that says about how communication is valued in the curriculum now.</p><textarea id="f-1-2-pattern"></textarea></div>
+  </div>
+
+  <div class="activity" id="act3">
+    <div class="activity-label">Activity 3</div>
+    <h3>Needs assessment</h3>
+    <p class="activity-meta">Faculty and student surveys · short and anonymous</p>
+    <p>Brief surveys, 10 to 12 questions, faculty and student versions, collect perceptions of current instruction and show where gaps are felt most. Google Forms exports to Sheets for analysis. CWSP has survey templates. Record what came back.</p>
+    <details class="panel"><summary>Sample questions</summary><div class="panel-body">
+      <p><strong>Faculty.</strong> Which courses in your teaching include a significant writing or speaking component? What do you find most difficult about teaching writing and speaking in your discipline? Where do you think students arrive least prepared?</p>
+      <p><strong>Students.</strong> In which courses have you received substantial feedback on your writing or speaking this semester? What communication skill do you feel least confident about in your discipline? Where do you wish you had more instruction?</p>
+    </div></details>
+    <div class="field"><label for="f-1-3-faculty">What faculty said<span class="req" aria-hidden="true">*</span></label><p class="hint">Patterns, with a few responses in faculty members' own words.</p><textarea id="f-1-3-faculty"></textarea></div>
+    <div class="field"><label for="f-1-3-students">What students said</label><textarea id="f-1-3-students"></textarea></div>
+    <div class="field"><label for="f-1-3-gaps">Where the gaps are felt most</label><p class="hint">Where faculty and students agree, and where they diverge.</p><textarea id="f-1-3-gaps"></textarea></div>
+    <div class="field"><label for="f-1-3-dasa">Existing data</label><p class="hint">DASA Assessment holds course-level outcome data across the university. Note what you requested or received, if anything. CWSP helps with the request.</p><textarea id="f-1-3-dasa" style="min-height:70px;"></textarea></div>
+  </div>
+
+  <div class="activity" id="act4">
+    <div class="activity-label">Activity 4</div>
+    <h3>Where AI already sits</h3>
+    <p class="activity-meta">Inquiry for the AI Literacies track · optional in Stage 1, needed before Stage 2 policy work</p>
+    <p>AI tools are present in every writing context your students work in. Inquiry includes finding where they already appear in the curriculum, explicitly or implicitly, and how faculty govern them now. The <a href="CWSP_AI_Literacies_Workbook.html#act1">AI Literacies workbook, Cluster 01</a>, runs this at full depth for a faculty cohort. Record the picture here.</p>
+    <div class="field"><label for="f-1-4-tools">AI tools already in use in the curriculum</label><p class="hint">Named by faculty or students, permitted or otherwise.</p><textarea id="f-1-4-tools"></textarea></div>
+    <div class="field"><label for="f-1-4-governance">How faculty govern them now</label><p class="hint">Syllabus statements, department guidance, or silence.</p><textarea id="f-1-4-governance"></textarea></div>
+    <div class="field"><label for="f-1-4-format">Cluster 01 format, if the department takes the track</label><select id="f-1-4-format"><option value="">Select one</option><option>Individual faculty consultations (60 min)</option><option>Program cohort workshop (90–120 min)</option><option>Department or college session (half day)</option><option>Semester series</option><option>Not now</option></select></div>
+  </div>
+
+  <div class="activity" id="act5">
+    <div class="activity-label">Activity 5</div>
+    <h3>Stage 1 reflection</h3>
+    <p class="activity-meta">At the transition from Inquiry to Design · honest reflection over a clean checklist</p>
+    <div class="field"><label for="f-1-5-unexpected">What did the needs assessment reveal that you did not expect?<span class="req" aria-hidden="true">*</span></label><textarea id="f-1-5-unexpected"></textarea></div>
+    <div class="field"><label for="f-1-5-response">How did faculty respond to the WOLF engagement? What concerns came up, and how were they addressed?<span class="req" aria-hidden="true">*</span></label><textarea id="f-1-5-response"></textarea></div>
+    <div class="field"><label for="f-1-5-context">What is the most important thing CWSP should know about your department's context as you move into Stage 2?</label><textarea id="f-1-5-context"></textarea></div>
+    <div class="field"><label for="f-1-5-doing-well">One thing your department does well that CWSP should know about, and might share with other departments</label><textarea id="f-1-5-doing-well" style="min-height:70px;"></textarea></div>
+    <div class="field"><label for="f-1-5-easier">What would make your job as liaison easier?</label><textarea id="f-1-5-easier" style="min-height:70px;"></textarea></div>
+  </div>
+
+  <div class="submit-section" id="submit1">
+    <h3 style="margin-top:0;">Submit Stage 1</h3>
+    <p>Submitting records the stage with CWSP, files a formatted copy of your responses in your department's WOLF folder, and emails the copy to you as a Word file and a PDF. Your work also stays in this browser. Submit again after revising; each submission is kept.</p>
+    <p class="hint" id="req-note" style="font-size:.88rem;color:var(--red);"></p>
+    <button type="button" class="btn-submit" id="submit-btn" onclick="submitStage(1)">Submit Stage 1 to CWSP</button>
+    <p class="submit-status" id="submit-status" role="status"></p>
+  </div>
+
+  <div class="stub">
+    <h2 id="stage2">Stage 2 · Design</h2>
+    <p>Opens after Stage 1 is tested with the first departments. The activities below are set; their fields are not yet built.</p>
+    <div class="activity"><div class="activity-label">Activity 6</div><h3>Disciplinary context</h3><p>WSCP Part 1: the primary genres of writing and speaking, the audiences, and the practices graduates demonstrate.</p></div>
+    <div class="activity"><div class="activity-label">Activity 7</div><h3>Outcomes by level</h3><p>WSCP Part 2: writing and speaking outcomes at introductory, intermediate, advanced, and capstone levels, and their connection to existing SLOs.</p></div>
+    <div class="activity"><div class="activity-label">Activity 8</div><h3>Curriculum map</h3><p>WSCP Part 3, built from the Stage 1 inventory, with scaffolding strategies by level beside it.</p></div>
+    <div class="activity"><div class="activity-label">Activity 9</div><h3>AI literacy integration</h3><p>WSCP Part 5, from AI Literacies Clusters 02 and 03.</p></div>
+    <div class="activity"><div class="activity-label">Activity 10</div><h3>Stage 2 reflection and WSCP approval</h3><p>The four Design questions, then the approval block for the chair. The WSCP generates from Activities 6 through 9.</p></div>
+  </div>
+  <div class="stub">
+    <h2 id="stage3">Stage 3 · Evidence</h2>
+    <p>Opens after Stage 2.</p>
+    <div class="activity"><div class="activity-label">Activity 11</div><h3>Assessment plan</h3><p>WSCP Part 4: what evidence the department collects, how and when it reviews it, and how findings revise the plan.</p></div>
+    <div class="activity"><div class="activity-label">Activity 12</div><h3>Rubric adaptation</h3><p>The CWSP writing and oral presentation rubrics with editable criteria, so the department's version comes out of the workbook.</p></div>
+    <div class="activity"><div class="activity-label">Activity 13</div><h3>Recognition nominations</h3><p>Communication Champion and Hidden Infrastructure letters, as short forms sent to CWSP.</p></div>
+    <div class="activity"><div class="activity-label">Activity 14</div><h3>Certification</h3><p>The five documents, the Stage 3 reflection, and the mini grant.</p></div>
+  </div>
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>WOLF is a program of the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program</a> &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
+</footer>
+
+<script>
+/* WOLF Workbook. Same pipeline as C²TC: the CWSP Apps Script receives submissions (module wolf-stage1)
+   and saved drafts (action save_draft), files a formatted copy, emails it, and logs a row. */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const KEY = 'wolf:';
+const REQUIRED = ['f-1-2-pattern', 'f-1-3-faculty', 'f-1-5-unexpected', 'f-1-5-response'];
+const MIN = 40;
+
+function fields() { return Array.prototype.slice.call(document.querySelectorAll('main textarea[id], main input[id], main select[id]')); }
+function workFields() { return fields().filter(el => el.id !== 'p-name' && el.id !== 'p-email'); }
+function get(k) { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+function set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
+function save() {
+  fields().forEach(el => set(KEY + el.id, el.type === 'checkbox' ? String(el.checked) : el.value));
+  updateProgress(); updateStages();
+}
+function load() {
+  fields().forEach(el => {
+    const v = get(KEY + el.id);
+    if (v === '') return;
+    if (el.type === 'checkbox') el.checked = v === 'true'; else el.value = v;
+  });
+  updateProgress(); updateStages();
+}
+function updateProgress() {
+  const t = workFields().filter(el => el.tagName === 'TEXTAREA' && el.id.indexOf('f-1-') === 0);
+  const filled = t.filter(el => el.value.trim().length > 20).length;
+  const pct = t.length ? Math.round(filled / t.length * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '%';
+}
+function fmt(d) { if (!d) return ''; const p = d.split('-'); return p.length === 3 ? new Date(p[0], p[1] - 1, p[2]).toLocaleDateString([], { month: 'short', year: 'numeric' }) : d; }
+function updateStages() {
+  const cur = parseInt(document.getElementById('s0-current').value || '0', 10);
+  for (let n = 1; n <= 3; n++) {
+    const b = document.getElementById('badge-' + n), d = document.getElementById('date-' + n);
+    const date = document.getElementById('s0-date-' + n).value;
+    let label = '', cls = '';
+    if (cur) { if (n < cur) { label = 'Done'; cls = 'done'; } else if (n === cur) { label = 'Current'; cls = 'current'; } else { label = 'Ahead'; } }
+    b.textContent = label; b.className = 'stage-badge ' + cls;
+    d.textContent = date ? (n < cur ? 'Began ' : n === cur ? 'Since ' : 'Planned ') + fmt(date) : '';
+  }
+}
+
+/* Labels and sections, so CWSP returns a readable copy. */
+function describe(data) {
+  const labels = {}, sections = {};
+  workFields().forEach(el => {
+    const lab = document.querySelector('label[for="' + el.id + '"]');
+    if (lab) labels[el.id] = lab.textContent.replace(/\s+/g, ' ').replace(/\*$/, '').trim();
+    const block = el.closest('.activity');
+    if (block) {
+      const a = block.querySelector('.activity-label'), h = block.querySelector('h3');
+      const prev = block.previousElementSibling;
+      sections[el.id] = [a && a.textContent.trim(), h && h.textContent.trim()].filter(Boolean).join(': ') || (block.closest('main') && 'Start');
+    }
+  });
+  data.workbook_title = 'WOLF Workbook';
+  data.field_labels = labels; data.field_sections = sections;
+  return data;
+}
+function identity() {
+  const name = document.getElementById('p-name').value.trim(), email = document.getElementById('p-email').value.trim();
+  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    const t = name ? document.getElementById('p-email') : document.getElementById('p-name');
+    t.scrollIntoView({ behavior: 'smooth', block: 'center' }); t.focus({ preventScroll: true });
+    return null;
+  }
+  return { name, email };
+}
+function setStatus(text, busy) {
+  document.getElementById('save-status').textContent = text;
+  document.getElementById('save-btn').disabled = !!busy;
+}
+function saveDraft() {
+  const who = identity();
+  if (!who) { setStatus('Enter your name and NC State email under "Who you are", then save again.'); return; }
+  const f = {}; workFields().forEach(el => { f[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
+  const data = describe({ action: 'save_draft', module: 'wolf-stage1', page: 'wolf-workbook.html', certificate_name: who.name, certificate_email: who.email, timestamp: new Date().toISOString(), fields: f });
+  setStatus('Saving…', true);
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    .then(() => setStatus('Saved at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. A link to continue is on its way to ' + who.email + '. Save again any time; the same link opens your latest work.'))
+    .catch(() => setStatus('Saving failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.'));
+}
+function banner(html) {
+  const b = document.createElement('div'); b.className = 'resume-banner'; b.setAttribute('role', 'status'); b.innerHTML = html;
+  const slot = document.getElementById('banner-slot'); slot.innerHTML = ''; slot.appendChild(b); return b;
+}
+function restoreFromLink() {
+  const key = new URLSearchParams(location.search).get('resume');
+  if (!key || !/^[a-f0-9]{32}$/.test(key)) return;
+  fetch(SCRIPT_URL + '?resume=' + key).then(r => r.json()).then(d => {
+    if (!d || d.status !== 'ok') { banner('This link has no saved work attached. Email kkcole2@ncsu.edu if you expected some.'); return; }
+    const saved = new Date(d.savedAt).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' });
+    const apply = () => {
+      Object.keys(d.fields || {}).forEach(id => { const el = document.getElementById(id); if (!el) return; if (el.type === 'checkbox') el.checked = !!d.fields[id]; else el.value = d.fields[id]; });
+      if (d.name && !document.getElementById('p-name').value) document.getElementById('p-name').value = d.name;
+      save(); set('wolf-restored-' + key, d.savedAt);
+    };
+    if (get('wolf-restored-' + key) === d.savedAt) {
+      const b = banner('Your saved work from ' + saved + ' is already in this browser.<button type="button">Load it again</button>');
+      b.querySelector('button').addEventListener('click', () => { apply(); b.textContent = 'Your saved work from ' + saved + ' is restored.'; });
+      return;
+    }
+    apply(); banner('Your saved work from ' + saved + ' is restored. Pick up where you left off.');
+  }).catch(() => banner('Your saved work did not load. Refresh the page to try again.'));
+}
+function requireFields(ids) {
+  const missing = ids.filter(id => (document.getElementById(id).value || '').trim().length < MIN);
+  const note = document.getElementById('req-note');
+  document.querySelectorAll('textarea').forEach(el => el.style.borderColor = '');
+  if (!missing.length) { note.textContent = ''; return true; }
+  missing.forEach(id => document.getElementById(id).style.borderColor = '#990000');
+  note.textContent = missing.length + ' required prompt' + (missing.length > 1 ? 's need' : ' needs') + ' at least a sentence or two before you submit. Each is marked in red.';
+  document.getElementById(missing[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  return false;
+}
+function submitStage(n) {
+  const who = identity(); if (!who) { document.getElementById('req-note').textContent = 'Enter your name and NC State email under "Who you are" first.'; return; }
+  if (!requireFields(REQUIRED)) return;
+  const btn = document.getElementById('submit-btn'), st = document.getElementById('submit-status');
+  btn.disabled = true; btn.textContent = 'Submitting…'; st.textContent = ''; st.className = 'submit-status';
+  const data = { certificate_name: who.name, certificate_email: who.email, module: 'wolf-stage' + n, timestamp: new Date().toISOString(), program: 'WOLF', stage: n };
+  workFields().forEach(el => { data[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
+  describe(data);
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    .then(() => { st.textContent = 'Sent to CWSP. A copy is on its way to ' + who.email + '. Your responses also stay in this browser.'; btn.textContent = 'Submitted'; set('wolf-submitted-' + n, new Date().toISOString()); })
+    .catch(() => { st.textContent = 'Submission failed. Try again, or email kkcole2@ncsu.edu.'; st.className = 'submit-status err'; btn.disabled = false; btn.textContent = 'Submit Stage ' + n + ' to CWSP'; });
+}
+/* Sidebar: current section */
+function updateSidebar() {
+  const links = document.querySelectorAll('.wb-sidebar nav a'); let current = '';
+  links.forEach(a => { const s = document.getElementById(a.getAttribute('href').slice(1)); if (s && window.scrollY >= s.offsetTop - 120) current = s.id; });
+  links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+}
+window.addEventListener('scroll', updateSidebar, { passive: true });
+document.addEventListener('DOMContentLoaded', () => {
+  fields().forEach(el => { el.addEventListener('input', save); el.addEventListener('change', save); });
+  load(); restoreFromLink(); updateSidebar();
+});
+</script>
+</body>
+</html>

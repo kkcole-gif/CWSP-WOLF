@@ -9,9 +9,29 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/brand.css">
+<style>
+  .stage-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-top: 2rem; }
+  .stage-cell { padding: 1.5rem; background: var(--gray-light); border-top: 3px solid var(--red); }
+  .stage-cell .k { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+  .stage-cell .q { font-weight: 700; color: var(--dark); margin-bottom: 0.35rem; }
+  .stage-cell p { font-size: 0.9rem; color: var(--gray-dark); margin: 0; }
+  .stage-cell .out { margin-top: 0.6rem; font-size: 0.85rem; color: var(--gray-dark); }
+  .stage-cell .out strong { color: var(--dark); }
+  .how { margin-top: 2.5rem; padding: 2rem; background: var(--gray-light); border-left: 4px solid var(--red); border-radius: 0 4px 4px 0; }
+  .how p.k { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+  .how ul { margin: 0.5rem 0 0 1.2rem; color: var(--gray-dark); font-size: 0.95rem; line-height: 1.7; }
+  .materials { margin-top: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  .mat { padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 4px; }
+  .mat .k { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem; }
+  .mat p { font-size: 0.9rem; color: var(--gray-dark); margin: 0 0 1rem; }
+  .mat .links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .sources { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0; font-size: 0.9rem; color: var(--gray-dark); }
+  .sources summary { cursor: pointer; font-weight: 600; color: var(--dark); }
+  .sources ul { margin: 0.75rem 0 0 1.2rem; line-height: 1.8; }
+  @media (max-width: 760px) { .stage-row, .materials { grid-template-columns: 1fr; } }
+</style>
 </head>
 <body>
-
 <header class="site-header">
   <nav class="nav-inner" aria-label="Main navigation">
     <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
@@ -26,120 +46,95 @@
     </ul>
   </nav>
 </header>
-
 <main>
-
   <div class="page-header">
     <div class="page-header-inner">
       <h1>For Liaisons</h1>
-      <p>Working documents, guides, templates, and supplementary resources for CWSP liaisons who facilitate WOLF engagements.</p>
+      <p>For the faculty member who runs WOLF in a department or program. One workbook carries the work from first consultation to certification, and the department's Writing and Speaking Curriculum Plan comes out of it.</p>
+      <div style="margin-top: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="wolf-workbook.html" class="btn btn-red">Open the WOLF Workbook</a>
+        <a href="get-started.html" class="btn btn-outline">Schedule the first consultation</a>
+      </div>
     </div>
   </div>
-
   <div class="content">
-
-    <p class="section-label">Core documents</p>
-    <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Working resources for every phase of WOLF</h2>
-    <p style="color: var(--gray-dark); max-width: 640px;">These documents support liaisons across the Inquiry, Design, and Evidence phases. Each links to the live Google Doc. Open it, make a copy, and adapt the copy to your engagement.</p>
-
-    <ul class="resource-list" style="margin-top: 2rem;">
-
-      <li>
-        <div class="resource-body">
-          <strong>01. WOLF Program Overview</strong>
-          <p>The full program description: what WOLF covers and where its scope ends, the three-phase model, and how to orient faculty partners at the start of an engagement.</p>
-          <span style="display:inline-flex;gap:1.25rem;flex-wrap:wrap;margin-top:0.4rem;font-size:0.875rem;"><a href="https://docs.google.com/document/d/1_y_caUvs_JK6yyKBZCoMzBoQQ0AAwTp9ZAHDiS5--XA/edit?usp=sharing" target="_blank" rel="noopener">Open document</a><a href="https://docs.google.com/document/d/1_y_caUvs_JK6yyKBZCoMzBoQQ0AAwTp9ZAHDiS5--XA/copy" target="_blank" rel="noopener">Make a copy</a></span>
-        </div>
-      </li>
-
-      <li>
-        <div class="resource-body">
-          <strong>02. Liaison Guide</strong>
-          <p>A guide to facilitating WOLF from first contact through final documentation. It covers meeting protocols, question banks, and how to move from one phase to the next.</p>
-          <span style="display:inline-flex;gap:1.25rem;flex-wrap:wrap;margin-top:0.4rem;font-size:0.875rem;"><a href="https://docs.google.com/document/d/1pVy1LHTaJmzHH8kRZAkvolq7qOSFIXkyYDLuqnVvzRA/edit?usp=sharing" target="_blank" rel="noopener">Open document</a><a href="https://docs.google.com/document/d/1pVy1LHTaJmzHH8kRZAkvolq7qOSFIXkyYDLuqnVvzRA/copy" target="_blank" rel="noopener">Make a copy</a></span>
-        </div>
-      </li>
-
-      <li>
-        <div class="resource-body">
-          <strong>03. WSCP Working Template</strong>
-          <p>The shared working document for a WOLF engagement. It tracks inquiry findings, design decisions, assignment drafts, and the evidence you collect. Make one copy per faculty engagement.</p>
-          <span style="display:inline-flex;gap:1.25rem;flex-wrap:wrap;margin-top:0.4rem;font-size:0.875rem;"><a href="https://docs.google.com/document/d/1khFZNpyNfF36QS65xx4Bc7f-g7pexp6NgPMt6XZqGps/edit?usp=sharing" target="_blank" rel="noopener">Open document</a><a href="https://docs.google.com/document/d/1khFZNpyNfF36QS65xx4Bc7f-g7pexp6NgPMt6XZqGps/copy" target="_blank" rel="noopener">Make a copy</a></span>
-        </div>
-      </li>
-
-      <li>
-        <div class="resource-body">
-          <strong>04. Assessment and Recognition</strong>
-          <p>Rubrics, self-assessment tools, and program-level evidence frameworks, including sample rubrics for written and oral communication and a liaison self-assessment instrument.</p>
-          <span style="display:inline-flex;gap:1.25rem;flex-wrap:wrap;margin-top:0.4rem;font-size:0.875rem;"><a href="https://docs.google.com/document/d/1pB04V0mC0s2phaXdqgVaO2Ndkc2Q74CSMez0ppEgRjA/edit?usp=sharing" target="_blank" rel="noopener">Open document</a><a href="https://docs.google.com/document/d/1pB04V0mC0s2phaXdqgVaO2Ndkc2Q74CSMez0ppEgRjA/copy" target="_blank" rel="noopener">Make a copy</a></span>
-        </div>
-      </li>
-
-    </ul>
-
-    <div style="margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid #e0e0e0;">
-      <p class="section-label">Supplementary resources</p>
-      <h2 style="font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem;">Additional tools and strategies</h2>
-      <p style="color: var(--gray-dark); max-width: 640px;">Standalone resources for specific liaison tasks. Use them as the engagement calls for them.</p>
+    <div class="prose content-narrow">
+      <h2>What the liaison does</h2>
+      <p>The liaison is the point of contact between a department and CWSP. You facilitate; you do not produce everything yourself. You connect CWSP to your colleagues, translate disciplinary context into curriculum decisions, and keep the work moving between consultations. You need institutional knowledge of your department and enough trust from colleagues to hold an honest conversation about the curriculum. Expertise in writing pedagogy is CWSP's job. The plan that results belongs to your department, and departments that complete the program earn CWSP certification and a $1,000 mini grant.</p>
+      <p>WOLF is patterned on the University of Minnesota's Writing-Enriched Curriculum model: faculty-driven, department-owned, built over two to three years at the department's own pace.</p>
     </div>
 
-    <ul class="resource-list" style="margin-top: 1.5rem;">
-
-      <li>
-        <div class="resource-body">
-          <strong>Scaffolding Strategies</strong>
-          <p>A toolkit for designing scaffolded communication tasks: ways to sequence assignments, low-stakes assignment types, feedback structures, and models from several disciplines.</p>
-          <a href="https://docs.google.com/document/d/1khFZNpyNfF36QS65xx4Bc7f-g7pexp6NgPMt6XZqGps/edit?tab=t.zfkffmo5p0lm" style="font-size: 0.875rem; margin-top: 0.4rem; display: inline-block;">Open document</a>
-        </div>
-      </li>
-
-      <li>
-        <div class="resource-body">
-          <strong>Sample Rubrics</strong>
-          <p>Rubrics for written assignments, oral presentations, and multimodal projects, adaptable to any discipline. Annotations on each explain how to calibrate the criteria for a specific course.</p>
-          <a href="https://docs.google.com/document/d/1pB04V0mC0s2phaXdqgVaO2Ndkc2Q74CSMez0ppEgRjA/edit?tab=t.xrug5c9y55me" style="font-size: 0.875rem; margin-top: 0.4rem; display: inline-block;">Open document</a>
-        </div>
-      </li>
-
-      <li>
-        <div class="resource-body">
-          <strong>05. AI Literacies Extension</strong>
-          <p>An optional fourth phase for engagements where faculty want to focus on AI and academic integrity. It includes a faculty workbook, discussion frameworks, and guidance on assignment design.</p>
-          <div style="display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 0.4rem;">
-            <a href="CWSP_AI_Literacies_Workbook.html" style="font-size: 0.875rem; display: inline-block;">Open faculty workbook</a>
-            <a href="ai-literacies.html" style="font-size: 0.875rem; display: inline-block;">About AI Literacies</a>
-            <a href="https://docs.google.com/document/d/19TTZTGyzW7HV_KrE2lqnm-KOosqaTQyt8SivxR-iIG4/edit?usp=sharing" target="_blank" rel="noopener" style="font-size: 0.875rem; display: inline-block;">Extension guide (WOLF 05)</a>
-          </div>
-        </div>
-      </li>
-
-      <li>
-        <div class="resource-body">
-          <strong>AI Policy Lab: Workshop Materials</strong>
-          <p>A three-hour faculty workshop in which participants read, analyze, and design AI use policies at the course, program, and department levels. The set has three documents for facilitators and participants.</p>
-          <div style="display: flex; gap: 1.25rem; flex-wrap: wrap; margin-top: 0.4rem;">
-            <a href="https://docs.google.com/presentation/d/1fFBwchCxm9sITlmNk4j9zlq6bWEhcvFMb7S8QshD_6c/edit?usp=sharing" target="_blank" rel="noopener" style="font-size: 0.875rem; display: inline-block;">Workshop slide deck</a>
-            <a href="https://drive.google.com/file/d/1Hw4zGG1krP6DTpUvDoXtY-2dCSxTAGls/view?usp=sharing" target="_blank" rel="noopener" style="font-size: 0.875rem; display: inline-block;">Facilitation guide</a>
-            <a href="ai-policy-workbook.html" style="font-size: 0.875rem; display: inline-block;">Policy repository workbook</a>
-            <a href="ai-policy-lab.html" style="font-size: 0.875rem; display: inline-block;">About AI Policy Lab</a>
-          </div>
-        </div>
-      </li>
-
-    </ul>
-
-    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
-      <p style="color: var(--gray-dark); font-size: 0.9rem;">Questions about these resources or your engagement? Contact <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole</a> at CWSP.</p>
+    <div class="stage-row">
+      <div class="stage-cell">
+        <div class="k">Stage 1 · Inquiry</div>
+        <div class="q">Where are we?</div>
+        <p>Confirm your role, gather syllabi, run a short needs assessment, find where AI already sits in the curriculum, and reflect on what the inquiry showed.</p>
+        <div class="out"><strong>Produces</strong> a picture of the curriculum as it stands, filed with CWSP.</div>
+      </div>
+      <div class="stage-cell">
+        <div class="k">Stage 2 · Design</div>
+        <div class="q">What should be different?</div>
+        <p>With CWSP, faculty write the discipline's writing and speaking outcomes by level, map them to courses, and fold in AI literacy outcomes.</p>
+        <div class="out"><strong>Produces</strong> the Writing and Speaking Curriculum Plan, generated from your answers, ready for the chair to approve.</div>
+      </div>
+      <div class="stage-cell">
+        <div class="k">Stage 3 · Evidence</div>
+        <div class="q">How do we know it is working?</div>
+        <p>Implement the plan, collect assessment evidence with adapted rubrics, nominate colleagues for recognition, and submit the certification documents.</p>
+        <div class="out"><strong>Produces</strong> certification, recognition letters, and the mini grant.</div>
+      </div>
     </div>
 
+    <div class="how">
+      <p class="k">How the workbook works</p>
+      <ul>
+        <li>Work in the browser. It saves as you type, and "Save and email me a link" lets you continue on any computer.</li>
+        <li>Each stage ends with a submission. CWSP receives it, files a formatted copy in your department's folder, and emails the copy to you as a Word file and a PDF.</li>
+        <li>The sidebar shows which stage is current, which are done, and which lie ahead, from the dates you set.</li>
+        <li>Stage 1 is open now. Stages 2 and 3 open as the first departments complete Stage 1.</li>
+      </ul>
+    </div>
+
+    <div class="materials">
+      <div class="mat">
+        <div class="k">AI Literacies track</div>
+        <p>A department can enter WOLF through AI Literacies. The faculty workbook runs in three clusters (consultations, policy review, curricular mapping), and the three-level framework sets out the literacy the track builds.</p>
+        <div class="links">
+          <a href="CWSP_AI_Literacies_Workbook.html" class="btn btn-red">Faculty workbook</a>
+          <a href="ai_literacy_unified.html" class="btn btn-outline">The framework</a>
+          <a href="ai-literacies.html" class="btn btn-outline">About the track</a>
+        </div>
+      </div>
+      <div class="mat">
+        <div class="k">AI Policy Lab</div>
+        <p>A three-hour workshop in which faculty read, analyze, and draft AI policy at course, program, and department levels, with a policy repository workbook and a decision tool for institutional cases.</p>
+        <div class="links">
+          <a href="ai-policy-workbook.html" class="btn btn-red">Policy workbook</a>
+          <a href="ai-policy-lab.html" class="btn btn-outline">About the lab</a>
+        </div>
+      </div>
+    </div>
+
+    <details class="sources">
+      <summary>Source documents</summary>
+      <p style="margin-top:0.75rem;">The workbook is built from these documents, which remain available as the originals. The workbook is the maintained version.</p>
+      <ul>
+        <li><a href="https://docs.google.com/document/d/1_y_caUvs_JK6yyKBZCoMzBoQQ0AAwTp9ZAHDiS5--XA/edit?usp=sharing" target="_blank" rel="noopener">WOLF 01 · Program Overview</a></li>
+        <li><a href="https://docs.google.com/document/d/1pVy1LHTaJmzHH8kRZAkvolq7qOSFIXkyYDLuqnVvzRA/edit?usp=sharing" target="_blank" rel="noopener">WOLF 02 · Liaison Guide, with the Liaison Self-Assessment</a></li>
+        <li><a href="https://docs.google.com/document/d/1khFZNpyNfF36QS65xx4Bc7f-g7pexp6NgPMt6XZqGps/edit?usp=sharing" target="_blank" rel="noopener">WOLF 03 · WSCP Working Template, with Scaffolding Strategies</a></li>
+        <li><a href="https://docs.google.com/document/d/1pB04V0mC0s2phaXdqgVaO2Ndkc2Q74CSMez0ppEgRjA/edit?usp=sharing" target="_blank" rel="noopener">WOLF 04 · Assessment and Recognition, with Sample Rubrics</a></li>
+        <li><a href="https://docs.google.com/document/d/19TTZTGyzW7HV_KrE2lqnm-KOosqaTQyt8SivxR-iIG4/edit?usp=sharing" target="_blank" rel="noopener">WOLF 05 · AI Literacies Extension</a></li>
+        <li><a href="https://docs.google.com/presentation/d/1fFBwchCxm9sITlmNk4j9zlq6bWEhcvFMb7S8QshD_6c/edit?usp=sharing" target="_blank" rel="noopener">AI Policy Lab slide deck</a> and <a href="https://drive.google.com/file/d/1Hw4zGG1krP6DTpUvDoXtY-2dCSxTAGls/view?usp=sharing" target="_blank" rel="noopener">facilitation guide</a></li>
+      </ul>
+    </details>
+
+    <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
+      <p style="color: var(--gray-dark); font-size: 0.9rem;">Questions about the workbook or your engagement? Contact <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole</a> at CWSP.</p>
+    </div>
   </div>
-
 </main>
-
 <footer class="site-footer">
   <p>WOLF is a program of the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program</a> &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
 </footer>
-
 </body>
 </html>
