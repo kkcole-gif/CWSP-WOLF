@@ -37,6 +37,8 @@
       '.sidebar-save{padding:0 1rem 1rem;border-bottom:1px solid #e0e0e0;margin-bottom:1rem}' +
       '.sidebar-save .btn-resume{width:100%;text-align:left;font-size:.82rem;padding:.45rem .75rem}' +
       '.sidebar-save .resume-status{font-size:.75rem;color:#5a5a5a;margin:.4rem .25rem 0;line-height:1.35}' +
+      '.preview-note{color:#990000;font-size:.88rem;margin:.6rem 0 0}' +
+      'input.needs-answer{border-color:#990000;box-shadow:0 0 0 2px rgba(153,0,0,.15)}' +
       'textarea.needs-answer{border-color:#990000;box-shadow:0 0 0 2px rgba(153,0,0,.15)}' +
       '.required-note{color:#990000;font-size:.88rem;margin:.5rem 0 1rem}' +
       '.certificate-submit .required-note{color:#ffb4b4}' +
@@ -63,6 +65,7 @@
 
   function init() {
     addStyles();
+    guardPreview();
     var buttons = document.querySelectorAll('.btn-submit');
     buttons.forEach(function (btn) { btn.dataset.label = btn.textContent; });
     if (buttons.length) {
@@ -155,6 +158,43 @@
         fields[0].focus({ preventScroll: true });
       }, true);
     });
+  }
+
+
+  /* Preview with an empty builder produced a blank sheet and no message.
+     When every builder field is empty, stop the preview, outline the fields,
+     and say what to fill. Builders that draw only on activity answers
+     (no fields of their own) are left alone. */
+  function guardPreview() {
+    document.addEventListener('click', function (ev) {
+      var btn = ev.target.closest && ev.target.closest('.btn-preview, .btn-artifact');
+      if (!btn) return;
+      var box = btn.closest('#artifact') || document.getElementById('artifact');
+      if (!box) return;
+      var fields = Array.prototype.filter.call(
+        box.querySelectorAll('textarea, input[type=text]'),
+        function (el) { return !el.classList.contains('p-identity'); });
+      if (!fields.length) return;
+      var note = box.querySelector('.preview-note');
+      var empty = fields.every(function (el) { return !el.value.trim(); });
+      if (!empty) { if (note) note.hidden = true; return; }
+      ev.preventDefault();
+      ev.stopImmediatePropagation();
+      fields.forEach(function (el) {
+        el.classList.add('needs-answer');
+        el.addEventListener('input', function () { el.classList.remove('needs-answer'); }, { once: true });
+      });
+      if (!note) {
+        note = document.createElement('p');
+        note.className = 'preview-note';
+        note.setAttribute('role', 'alert');
+        btn.insertAdjacentElement('afterend', note);
+      }
+      note.hidden = false;
+      note.textContent = 'The builder fields above are empty. Fill them in, starting with the title, then select Preview again.';
+      fields[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      fields[0].focus({ preventScroll: true });
+    }, true);
   }
 
   /* ---------- Save and email me a link ---------- */

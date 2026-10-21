@@ -611,7 +611,7 @@ function showArtifact() {
   Object.entries(map).forEach(([disp, src]) => {
     const el = document.getElementById(src);
     const val = el ? (el.value || '') : '';
-    document.getElementById(disp).textContent = val || '—';
+    document.getElementById(disp).textContent = val || 'Not yet written';
   });
   const course = document.getElementById('art-course').value;
   if (course) document.getElementById('art-modal-title').textContent = course;
@@ -670,7 +670,7 @@ window.addEventListener('scroll', onScroll);
 load();
 updateProgress();
 </script>
-<script src="js/participant.js?v=2026-10-21c"></script>
+<script src="js/participant.js?v=2026-10-21e"></script>
 <script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS, extra: ['f-commit'] });</script>
 </body>
 </html>
