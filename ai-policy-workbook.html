@@ -609,7 +609,30 @@
       .step-grid, .level-grid, .four-step, .three-level, .step-fields, .level-fields, .meta-row { grid-template-columns: 1fr; }
       .part4-download-all { flex-direction: column; align-items: flex-start; }
     }
-  </style>
+  
+    /* ── SUBMIT (added 2026-10) ── */
+    .submit-block { border: 1px solid #e0e0e0; border-radius: 6px; padding: 1.25rem 1.4rem; margin: 1.25rem 0; background: #fff; }
+    .submit-block h3 { font-size: 1rem; margin: 0 0 0.35rem; }
+    .submit-block .meta-row { margin-top: 0.9rem; }
+    .check-row { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.9rem; color: #333; margin: 0.6rem 0; cursor: pointer; }
+    .check-row input { margin-top: 0.25rem; }
+    .req { font-weight: 400; font-size: 0.7rem; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-left: 0.3rem; }
+    .corpus-doc { border-top: 1px dashed #ddd; padding-top: 0.9rem; margin-top: 0.9rem; }
+    .corpus-doc:first-child { border-top: none; padding-top: 0; margin-top: 0.5rem; }
+    .corpus-doc-head { display: flex; justify-content: space-between; align-items: baseline; }
+    .corpus-doc-head span { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #777; }
+    .corpus-doc-head button { background: none; border: none; color: #888; font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
+    .corpus-doc .meta-row { margin-top: 0.5rem; }
+    .btn-add-doc { margin-top: 0.9rem; background: #fff; border: 1px solid #bbb; border-radius: 3px; padding: 0.45rem 0.9rem; font-family: inherit; font-size: 0.85rem; cursor: pointer; }
+    .btn-add-doc:hover { border-color: #222; }
+    .data-notice { background: #f4f4f4; border-left: 3px solid #999; padding: 0.9rem 1.1rem; font-size: 0.85rem; line-height: 1.6; color: #333; margin: 1.25rem 0 0.5rem; border-radius: 0 4px 4px 0; }
+    .submit-actions { margin-top: 1rem; }
+    .btn-download-all:disabled { background: #bbb; cursor: not-allowed; }
+    .submit-status { font-size: 0.85rem; color: #555; margin: 0.6rem 0 0; }
+    .submit-status.ok { color: #1b5e20; }
+    .submit-status.err { color: var(--red); }
+    .wb-sidebar nav a.submit-link { color: #990000; }
+</style>
 <link rel="stylesheet" href="css/brand.css">
 </head>
 <body>
@@ -654,6 +677,8 @@
       <a href="#course-policy">Course-level</a>
       <a href="#program-policy">Program-level</a>
       <a href="#dept-policy">Department-level</a>
+      <p class="sidebar-part">Part V. Submit</p>
+      <a href="#submit" class="submit-link">Submit to the repository</a>
       <p class="sidebar-part">Reference</p>
       <a href="#corpus-index">Full corpus index</a>
     </nav>
@@ -1288,6 +1313,70 @@ Revision: This framework was adopted in conditions that are already changing. It
       <p><strong>Your students need a policy they are able to reason from.</strong> A policy that explains its reasoning builds literacy. A policy that withholds its reasoning performs authority.</p>
     </div>
     <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
+
+    <!-- SUBMIT TO THE REPOSITORY (added 2026-10) -->
+    <section id="submit">
+      <div class="part-header">
+        <p class="part-eyebrow">Part V</p>
+        <h2>Submit to the Policy Repository</h2>
+      </div>
+      <p>The repository grows in two ways. Participants submit their analyses and drafts, which show how faculty across disciplines read and write AI policy. Participants also add documents to the corpus, which the next collection sweep verifies and indexes. Submit either, or both. The form collects no name or email address. Submissions carry tags for discipline, institution type, and engagement only.</p>
+
+      <div class="submit-block">
+        <h3>Your analysis and drafts</h3>
+        <p class="field-hint">Sends your Part III templates and Part IV drafts as they stand. Leave this unchecked to submit corpus documents alone.</p>
+        <label class="check-row"><input type="checkbox" id="sub-include-work" checked onchange="save()"> Include my templates and drafts</label>
+        <div class="meta-row">
+          <div class="meta-field">
+            <label for="sub-discipline">Discipline or field <span class="req">required</span></label>
+            <input type="text" id="sub-discipline" placeholder="e.g., Chemistry, History, Nursing" oninput="save(); submitReady()">
+          </div>
+          <div class="meta-field">
+            <label for="sub-inst-type">Institution type <span class="req">required</span></label>
+            <select id="sub-inst-type" onchange="save(); submitReady()">
+              <option value="">Select one</option>
+              <option>R1 Public</option><option>R1 Private</option><option>R2 / Doctoral</option>
+              <option>Comprehensive Regional Public</option><option>Comprehensive Regional Private</option>
+              <option>Liberal Arts College</option><option>HBCU</option><option>HSI</option>
+              <option>Community College</option><option>Online / Distance</option><option>Other</option>
+            </select>
+          </div>
+          <div class="meta-field">
+            <label for="sub-level">Policy level drafted</label>
+            <select id="sub-level" onchange="save()">
+              <option value="">Select one</option>
+              <option>Course</option><option>Program</option><option>Department</option><option>More than one</option>
+            </select>
+          </div>
+          <div class="meta-field">
+            <label for="sub-engagement">How you worked</label>
+            <select id="sub-engagement" onchange="save()">
+              <option value="">Select one</option>
+              <option>AI Policy Lab workshop</option><option>Department or committee session</option><option>On my own</option><option>Return visit</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-block">
+        <h3>Documents for the corpus</h3>
+        <p class="field-hint">Add up to three AI governance documents from any institution. Each needs an institution, a title, and a link. The rest helps the index.</p>
+        <div id="corpus-docs"></div>
+        <button type="button" class="btn-add-doc" id="add-doc-btn" onclick="addCorpusDoc()">Add another document</button>
+      </div>
+
+      <div class="data-notice">
+        <strong>What is collected and how it is used.</strong> Submitting sends your templates, drafts, tags, and any documents you add to a CWSP archive. It collects no name, email address, or affiliation. CWSP uses submissions to track how faculty across disciplines read and write AI policy, to inform programming, and to grow the corpus. Documents you add are checked before they enter the index. Individual responses are not published in identifiable form. CWSP might use the archive as a research dataset; if the project proceeds under IRB review, consent procedures will be updated to match.
+      </div>
+      <label class="check-row"><input type="checkbox" id="sub-consent" onchange="submitReady()"> I have read the notice above and consent to this use.</label>
+
+      <div class="submit-actions">
+        <button type="button" class="btn-download-all" id="submit-btn" onclick="submitToRepository()" disabled>Submit to the repository</button>
+        <p class="submit-status" id="submit-status" role="status">Enter a discipline, choose an institution type, and consent to enable the button.</p>
+      </div>
+    </section>
+
+    <hr style="border:none;border-top:1px solid #e0e0e0;margin:2.5rem 0;">
     <!-- CORPUS INDEX -->
     <section id="corpus-index">
       <div class="part-header">
@@ -1675,6 +1764,88 @@ function closeExamplesBackdrop(event) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExamples(); });
 
+
+// ── SUBMIT TO THE REPOSITORY (added 2026-10) ─────────────────────────────────
+// Posts to the CWSP archive script. The script needs a branch for source === 'ai-policy-lab'
+// (same deployment the AI Literacies workbook uses, or its own); replace the URL if it differs.
+const REPOSITORY_URL = 'https://script.google.com/macros/s/AKfycbzAqeLtTtwyZSuWOnjoDcDBChRbs3vmaPVusqFDDNO7xpUtYrKOmHsRxEQRZezuHc6A/exec';
+const SUB_FIELDS = ['sub-discipline','sub-inst-type','sub-level','sub-engagement'];
+const DOC_KEYS = ['institution','title','url','date','wave','stance','notes'];
+const DOC_MAX = 3;
+
+function corpusDocRow(n) {
+  const d = document.createElement('div');
+  d.className = 'corpus-doc'; d.dataset.n = n;
+  d.innerHTML =
+    '<div class="corpus-doc-head"><span>Document ' + n + '</span>' + (n > 1 ? '<button type="button" onclick="removeCorpusDoc(' + n + ')">Remove</button>' : '') + '</div>' +
+    '<div class="meta-row">' +
+    '<div class="meta-field"><label for="doc' + n + '-institution">Institution</label><input type="text" id="doc' + n + '-institution" placeholder="e.g., University of Florida" oninput="save()"></div>' +
+    '<div class="meta-field"><label for="doc' + n + '-title">Document title</label><input type="text" id="doc' + n + '-title" placeholder="e.g., Policy 1-006: Responsible Use of AI" oninput="save()"></div>' +
+    '<div class="meta-field"><label for="doc' + n + '-url">Link</label><input type="url" id="doc' + n + '-url" placeholder="https://" oninput="save()"></div>' +
+    '<div class="meta-field"><label for="doc' + n + '-date">Date</label><input type="text" id="doc' + n + '-date" placeholder="e.g., Aug 2023" oninput="save()"></div>' +
+    '<div class="meta-field"><label for="doc' + n + '-wave">Wave</label><select id="doc' + n + '-wave" onchange="save()"><option value="">Select</option><option>Pre-Wave</option><option>Wave 1</option><option>Wave 2</option><option>Both</option><option>Not sure</option></select></div>' +
+    '<div class="meta-field"><label for="doc' + n + '-stance">Stance</label><input type="text" id="doc' + n + '-stance" placeholder="e.g., Instructor discretion / disclosure required" oninput="save()"></div>' +
+    '</div>' +
+    '<p class="field-label" style="margin-top:0.6rem;">What the document reveals (optional)</p>' +
+    '<textarea id="doc' + n + '-notes" rows="2" placeholder="The glitch, if you found one, in a sentence or two." oninput="save()"></textarea>';
+  return d;
+}
+function docCount() { return document.querySelectorAll('#corpus-docs .corpus-doc').length; }
+function addCorpusDoc() {
+  const n = docCount() + 1;
+  if (n > DOC_MAX) return;
+  document.getElementById('corpus-docs').appendChild(corpusDocRow(n));
+  document.getElementById('add-doc-btn').hidden = n >= DOC_MAX;
+}
+function removeCorpusDoc(n) {
+  const el = document.querySelector('#corpus-docs .corpus-doc[data-n="' + n + '"]');
+  if (el) el.remove();
+  document.getElementById('add-doc-btn').hidden = docCount() >= DOC_MAX;
+  save();
+}
+function docFieldIds() {
+  const ids = [];
+  for (let n = 1; n <= DOC_MAX; n++) DOC_KEYS.forEach(k => ids.push('doc' + n + '-' + k));
+  return ids;
+}
+function submitReady() {
+  const ok = document.getElementById('sub-discipline').value.trim().length > 1 &&
+             document.getElementById('sub-inst-type').value !== '' &&
+             document.getElementById('sub-consent').checked;
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = !ok;
+  const st = document.getElementById('submit-status');
+  if (ok && !st.classList.contains('ok')) { st.textContent = 'Ready to submit.'; st.className = 'submit-status'; }
+}
+function collectSubmission() {
+  const data = { source: 'ai-policy-lab', timestamp: new Date().toISOString(), page: location.pathname };
+  SUB_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
+  data['sub-include-work'] = document.getElementById('sub-include-work').checked;
+  if (data['sub-include-work']) FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
+  data.documents = [];
+  document.querySelectorAll('#corpus-docs .corpus-doc').forEach(row => {
+    const n = row.dataset.n, doc = {};
+    DOC_KEYS.forEach(k => { const el = document.getElementById('doc' + n + '-' + k); doc[k] = el ? el.value.trim() : ''; });
+    if (doc.institution || doc.title || doc.url) data.documents.push(doc);
+  });
+  return data;
+}
+function submitToRepository() {
+  const btn = document.getElementById('submit-btn'), st = document.getElementById('submit-status');
+  const data = collectSubmission();
+  const bad = data.documents.find(d => !(d.institution && d.title && d.url));
+  if (bad) { st.textContent = 'Each document needs an institution, a title, and a link.'; st.className = 'submit-status err'; return; }
+  if (!data['sub-include-work'] && data.documents.length === 0) { st.textContent = 'Nothing to send. Include your drafts, or add a document.'; st.className = 'submit-status err'; return; }
+  btn.disabled = true; st.textContent = 'Submitting…'; st.className = 'submit-status';
+  fetch(REPOSITORY_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    .then(() => {
+      st.textContent = 'Submitted at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. Thank you. Your work stays in this browser, and you can submit again after revising.';
+      st.className = 'submit-status ok'; btn.textContent = 'Submitted'; 
+      localStorage.setItem('aipolicyworkbook-submitted', new Date().toISOString());
+    })
+    .catch(() => { st.textContent = 'Submitting failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.'; st.className = 'submit-status err'; btn.disabled = false; });
+}
+
 // ── SIDEBAR ACTIVE STATE ─────────────────────────────────────────────────────
 function updateSidebar() {
   const links = document.querySelectorAll('.wb-sidebar nav a');
@@ -1691,7 +1862,17 @@ function updateSidebar() {
 window.addEventListener('scroll', updateSidebar, { passive: true });
 // ── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  SUB_FIELDS.forEach(id => FIELDS.push(id));
+  docFieldIds().forEach(id => FIELDS.push(id));
+  /* restore as many document rows as were saved, at least one */
+  try {
+    const saved = JSON.parse(localStorage.getItem('aipolicyworkbook') || '{}');
+    let rows = 1;
+    for (let n = 2; n <= DOC_MAX; n++) if (DOC_KEYS.some(k => (saved['doc' + n + '-' + k] || '').trim())) rows = n;
+    for (let n = 1; n <= rows; n++) addCorpusDoc();
+  } catch (e) { addCorpusDoc(); }
   loadSaved();
+  submitReady();
   updateSidebar();
 });
 </script>
