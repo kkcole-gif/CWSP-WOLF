@@ -664,9 +664,23 @@
   <input type="text" id="f-dec-task">
   <label for="f-dec-reasons">How I will give my reasons to my instructor</label>
   <textarea id="f-dec-reasons"></textarea>
+
+  <h3>Three questions, wherever you landed</h3>
+  <label for="f-withfor-d">Am I writing with the tool, or for it? <span class="hint">With it, your judgment stays at work in what you ask, keep, and revise. For it, the output decides and you arrange the rest around it.</span></label>
+  <input type="text" id="f-withfor-d" data-mirror="f-withfor">
+  <label for="f-asked-d">Have I asked my instructor? <span class="hint">A silent policy leaves the question open.</span></label>
+  <input type="text" id="f-asked-d" data-mirror="f-asked">
+  <label for="f-disclose-d">What will I disclose, and how? <span class="hint">Note what you used and how, the way you'd note a source.</span></label>
+  <input type="text" id="f-disclose-d" data-mirror="f-disclose">
+  <h3>What would reopen this decision</h3>
+  <p>Your decision holds for the conditions you made it in. A draft list is waiting in the box. Change it to fit your case.</p>
+  <label for="f-reopen-d">What would reopen this decision</label>
+  <textarea id="f-reopen-d" data-mirror="f-reopen"></textarea>
+  <label for="f-own-d">In my own words <span class="hint">One or two sentences, in your own voice, on what you decided and why.</span></label>
+  <textarea id="f-own-d" data-mirror="f-own"></textarea>
   <p class="notice" role="alert" data-notice></p>
   <div class="actions">
-    <button type="button" class="btn btn-primary" data-go="reopen" data-validate>Continue</button>
+    <button type="button" class="btn btn-primary" data-go="statement" data-validate>See my statement</button>
     <button type="button" class="btn btn-secondary" data-go="decide">Back to the three postures</button>
   </div>
 </section>
@@ -687,9 +701,23 @@
   <input type="text" id="f-con-limit">
   <label for="f-con-disclosure">Disclosure <span class="hint">Where and how you will note what you used.</span></label>
   <input type="text" id="f-con-disclosure">
+
+  <h3>Three questions, wherever you landed</h3>
+  <label for="f-withfor-c">Am I writing with the tool, or for it? <span class="hint">With it, your judgment stays at work in what you ask, keep, and revise. For it, the output decides and you arrange the rest around it.</span></label>
+  <input type="text" id="f-withfor-c" data-mirror="f-withfor">
+  <label for="f-asked-c">Have I asked my instructor? <span class="hint">A silent policy leaves the question open.</span></label>
+  <input type="text" id="f-asked-c" data-mirror="f-asked">
+  <label for="f-disclose-c">What will I disclose, and how? <span class="hint">Note what you used and how, the way you'd note a source.</span></label>
+  <input type="text" id="f-disclose-c" data-mirror="f-disclose">
+  <h3>What would reopen this decision</h3>
+  <p>Your decision holds for the conditions you made it in. A draft list is waiting in the box. Change it to fit your case.</p>
+  <label for="f-reopen-c">What would reopen this decision</label>
+  <textarea id="f-reopen-c" data-mirror="f-reopen"></textarea>
+  <label for="f-own-c">In my own words <span class="hint">One or two sentences, in your own voice, on what you decided and why.</span></label>
+  <textarea id="f-own-c" data-mirror="f-own"></textarea>
   <p class="notice" role="alert" data-notice></p>
   <div class="actions">
-    <button type="button" class="btn btn-primary" data-go="reopen" data-validate>Continue</button>
+    <button type="button" class="btn btn-primary" data-go="statement" data-validate>See my statement</button>
     <button type="button" class="btn btn-secondary" data-go="decide">Back to the three postures</button>
   </div>
 </section>
@@ -706,34 +734,32 @@
   </div>
   <label for="f-def-question">The open question I am bringing to my instructor</label>
   <textarea id="f-def-question" data-required="Write the question you're bringing to your instructor. Deferring produces a question, and this is it."></textarea>
+
+  <h3>Three questions, wherever you landed</h3>
+  <label for="f-withfor-f">Am I writing with the tool, or for it? <span class="hint">With it, your judgment stays at work in what you ask, keep, and revise. For it, the output decides and you arrange the rest around it.</span></label>
+  <input type="text" id="f-withfor-f" data-mirror="f-withfor">
+  <label for="f-asked-f">Have I asked my instructor? <span class="hint">A silent policy leaves the question open.</span></label>
+  <input type="text" id="f-asked-f" data-mirror="f-asked">
+  <label for="f-disclose-f">What will I disclose, and how? <span class="hint">Note what you used and how, the way you'd note a source.</span></label>
+  <input type="text" id="f-disclose-f" data-mirror="f-disclose">
+  <h3>What would reopen this decision</h3>
+  <p>Your decision holds for the conditions you made it in. A draft list is waiting in the box. Change it to fit your case.</p>
+  <label for="f-reopen-f">What would reopen this decision</label>
+  <textarea id="f-reopen-f" data-mirror="f-reopen"></textarea>
+  <label for="f-own-f">In my own words <span class="hint">One or two sentences, in your own voice, on what you decided and why.</span></label>
+  <textarea id="f-own-f" data-mirror="f-own"></textarea>
   <p class="notice" role="alert" data-notice></p>
   <div class="actions">
-    <button type="button" class="btn btn-primary" data-go="reopen" data-validate>Continue</button>
+    <button type="button" class="btn btn-primary" data-go="statement" data-validate>See my statement</button>
     <button type="button" class="btn btn-secondary" data-go="decide">Back to the three postures</button>
   </div>
 </section>
 
-<!-- ═══ 42. REASONS, AND WHAT WOULD REOPEN THIS ═══ -->
-<section class="screen" data-screen="reopen" data-step="decide" aria-labelledby="h-reopen" hidden>
-  <div class="level level-3"><span class="level-name">Operative · Decide</span><p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p></div>
-  <h2 id="h-reopen" tabindex="-1">Three questions, and what would reopen this</h2>
-  <p>Three questions are worth answering wherever you landed. They go into your statement.</p>
-  <label for="f-withfor">Am I writing with the tool, or for it? <span class="hint">With it, your judgment stays at work in what you ask, keep, and revise. For it, the output decides and you arrange the rest around it.</span></label>
-  <input type="text" id="f-withfor">
-  <label for="f-asked">Have I asked my instructor? <span class="hint">A silent policy leaves the question open.</span></label>
-  <input type="text" id="f-asked">
-  <label for="f-disclose">What will I disclose, and how? <span class="hint">Note what you used and how, the way you'd note a source.</span></label>
-  <input type="text" id="f-disclose">
-  <p>Your decision holds for the conditions you made it in. What would send you back to the first level to decide again? A draft list is waiting in the box. Change it to fit your case.</p>
-  <label for="f-reopen">What would reopen this decision</label>
-  <textarea id="f-reopen"></textarea>
-  <label for="f-own">In my own words <span class="hint">One or two sentences, in your own voice, on what you decided and why.</span></label>
-  <textarea id="f-own"></textarea>
-  <div class="actions">
-    <button type="button" class="btn btn-primary" data-go="statement">See my statement</button>
-    <button type="button" class="btn btn-secondary" id="reopen-back">Back</button>
-  </div>
-</section>
+<!-- ═══ Shared fields (formerly passage 42). Hidden store, mirrored from the posture passages and the one-page version. ═══ -->
+<div hidden aria-hidden="true">
+  <input type="text" id="f-withfor"><input type="text" id="f-asked"><input type="text" id="f-disclose">
+  <textarea id="f-reopen"></textarea><textarea id="f-own"></textarea>
+</div>
 
 <!-- ═══ 45. STATEMENT ═══ -->
 <section class="screen" data-screen="statement" data-step="statement" aria-labelledby="h-statement" hidden>
@@ -767,7 +793,7 @@
   <div class="actions no-print">
     <button type="button" class="btn btn-primary" data-go="feedback">Tell us how the beta went</button>
     <button type="button" class="btn btn-secondary" id="restart-btn">Begin again with a new decision</button>
-    <button type="button" class="btn btn-secondary" data-go="reopen">Back</button>
+    <button type="button" class="btn btn-secondary" id="statement-back">Back</button>
   </div>
 </section>
 
@@ -841,7 +867,7 @@
 
   var PASSAGE = { 'opening': 1, 'premise': 3, 'cp1': 7, 'without': 10, 'cp1-no': 11, 'analyze': 14, 'cp2': 18,
     'cp2-uncertain': 21, 'cp2-yes': 23, 'cp2-no': 26, 'decide': 30, 'decline': 33, 'conditional': 36, 'defer': 39,
-    'reopen': 42, 'statement': 45, 'feedback': 48 };
+    'statement': 45, 'feedback': 48 };
   var BY_NUMBER = {};
   Object.keys(PASSAGE).forEach(function (k) { BY_NUMBER[PASSAGE[k]] = k; });
 
@@ -922,7 +948,7 @@
   });
   document.getElementById('cp1-yes').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 14</span>');
   document.getElementById('w-go').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 33</span>');
-  document.getElementById('reopen-back').insertAdjacentHTML('beforeend', ' <span class="turn" id="reopen-back-turn">Turn back</span>');
+  document.getElementById('statement-back').insertAdjacentHTML('beforeend', ' <span class="turn" id="statement-back-turn">Turn back</span>');
   document.getElementById('restart-btn').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 3</span>');
 
   /* ── Echoes ── */
@@ -1021,12 +1047,11 @@
 
     if (state.route[state.route.length - 1] !== name) state.route.push(name);
     fillEchoes();
+    syncMirrors();
     drawTrail();
-    if (name === 'reopen') {
-      var t = document.getElementById('reopen-back-turn');
-      t.textContent = state.outcome ? 'Turn to ' + PASSAGE[state.outcome] : 'Turn back';
-    }
     if (name === 'statement') {
+      var t = document.getElementById('statement-back-turn');
+      t.textContent = state.outcome ? 'Turn to ' + PASSAGE[state.outcome] : 'Turn back';
       var c = document.getElementById('f-course');
       if (!c.value) c.value = ASSIGN_LABEL[document.getElementById('f-assignment').value] || (assignment().charAt(0).toUpperCase() + assignment().slice(1));
       buildStatement();
@@ -1076,8 +1101,7 @@
     var dest = b.getAttribute('data-go');
     if (dest === 'defer' && b.hasAttribute('data-finding')) {
       state.outcome = 'defer';
-      var box = document.getElementById('f-reopen');
-      if (!box.value) box.value = REOPEN_DEFAULTS.defer;
+      if (!val('f-reopen')) setShared('f-reopen', REOPEN_DEFAULTS.defer);
       if (!val('f-def-question') && val('f-skill')) document.getElementById('f-def-question').value = 'Is this assignment built to develop ' + val('f-skill') + ', and does using the tool the way I named hand that over?';
     }
     show(dest);
@@ -1103,7 +1127,7 @@
     var f = radioVal('w-finding');
     state.finding = f === 'yes' ? 'yes' : f === 'no' ? 'no' : 'declined-first';
     state.outcome = 'decline';
-    if (!val('f-reopen')) document.getElementById('f-reopen').value = REOPEN_DEFAULTS.decline;
+    if (!val('f-reopen')) setShared('f-reopen', REOPEN_DEFAULTS.decline);
     if (!val('f-dec-task')) document.getElementById('f-dec-task').value = assignment();
     show('decline');
   });
@@ -1111,15 +1135,28 @@
   Array.prototype.forEach.call(document.querySelectorAll('[data-outcome]'), function (b) {
     b.addEventListener('click', function () {
       var o = b.getAttribute('data-outcome');
-      var r = document.getElementById('f-reopen');
-      var wasDefault = !r.value || Object.keys(REOPEN_DEFAULTS).some(function (k) { return r.value === REOPEN_DEFAULTS[k]; });
-      if (wasDefault) r.value = REOPEN_DEFAULTS[o];
+      var cur = val('f-reopen');
+      var wasDefault = !cur || Object.keys(REOPEN_DEFAULTS).some(function (k) { return cur === REOPEN_DEFAULTS[k]; });
+      if (wasDefault) setShared('f-reopen', REOPEN_DEFAULTS[o]);
       state.outcome = o;
       if (o === 'decline' && !val('f-dec-task')) document.getElementById('f-dec-task').value = assignment();
       show(o);
     });
   });
-  document.getElementById('reopen-back').addEventListener('click', function () { show(state.outcome || 'decide'); });
+  document.getElementById('statement-back').addEventListener('click', function () { show(state.outcome || 'decide'); });
+
+  /* Mirrored fields: the three questions, the reopen list, and own words appear on each posture passage
+     and write through to one shared store, so the statement and the one-page version read one place. */
+  function setShared(id, v) {
+    document.getElementById(id).value = v;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-mirror="' + id + '"]'), function (m) { if (m.value !== v) m.value = v; });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-mirror]'), function (m) {
+    m.addEventListener('input', function () { setShared(m.getAttribute('data-mirror'), m.value); });
+  });
+  function syncMirrors() {
+    ['f-withfor', 'f-asked', 'f-disclose', 'f-reopen', 'f-own'].forEach(function (id) { setShared(id, document.getElementById(id).value); });
+  }
 
   /* ── One-page version ── */
   function syncReveals() {
