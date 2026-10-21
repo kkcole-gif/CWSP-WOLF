@@ -39,7 +39,7 @@ var C2TC = {
   SEND_COPY: true,
   REPLY_TO: 'kkcole2@ncsu.edu',
   SITE: 'https://cwspwolf.com/acicertificate/',
-  META_KEYS: ['module', 'timestamp', 'certificate_name', 'certificate_email',
+  META_KEYS: ['module', 'timestamp', 'certificate_name', 'certificate_email', 'program', 'stage', 'wscp_table',
               'participant_name', 'participant_email', 'cert-name', 'cert-email',
               'cert-department', 'cert-role', 'type', 'submission_type',
               'workbook_title', 'field_labels', 'field_sections']
@@ -167,6 +167,49 @@ function C2TC_text_(body, text) {
   text.split(/\n+/).forEach(function (line) { C2TC_style_(body.appendParagraph(line), false, false); });
 }
 
+/* WOLF Stage 2. Part 1 is the Writing and Speaking Curriculum Plan, written for the department and
+   its chair; Part 2 holds the liaison's reflection. Table fields (the outcomes grid and the map) are
+   placed by C2TC_wolfTables_ below. */
+C2TC_LAYOUTS['wolf-stage2'] = {
+  "intro": "This plan belongs to the department. It was written by its faculty with CWSP support and generated from the WOLF Workbook.",
+  "student_title": "Writing and Speaking Curriculum Plan",
+  "student": [
+    {"title": "Part 1. Disciplinary context", "course": [], "framing": null, "blocks": [
+      [["f-2-6-writing"], "What people in this discipline write"],
+      [["f-2-6-speaking"], "What they say, and in what settings"],
+      [["f-2-6-audiences"], "Who reads and listens"],
+      [["f-2-6-graduates"], "What graduates are expected to do with language"]]},
+    {"title": "Part 2. Writing and speaking outcomes", "course": [], "framing": null, "blocks": [
+      [["f-2-7-w1"], "Writing, introductory"], [["f-2-7-s1"], "Speaking, introductory"],
+      [["f-2-7-w2"], "Writing, intermediate"], [["f-2-7-s2"], "Speaking, intermediate"],
+      [["f-2-7-w3"], "Writing, advanced"], [["f-2-7-s3"], "Speaking, advanced"],
+      [["f-2-7-w4"], "Writing, capstone"], [["f-2-7-s4"], "Speaking, capstone"],
+      [["f-2-7-slos"], "Connection to existing outcomes"]]},
+    {"title": "Part 3. Curriculum map", "course": [], "framing": "Courses where writing and speaking are taught, practiced, or assessed.", "table": "wscp_table", "blocks": [
+      [["f-2-8-more"], "Further courses"],
+      [["f-2-8-reveals"], "What the map shows"]]},
+    {"title": "Part 4. Assessment plan", "course": [], "framing": null, "blocks": [
+      [["f-2-10-evidence"], "Evidence the department will collect"],
+      [["f-2-10-review"], "Who reviews it, how often, and where"],
+      [["f-2-10-revise"], "How findings revise the plan"]]},
+    {"title": "Part 5. AI literacy integration", "course": [], "framing": null, "blocks": [
+      [["f-2-9-outcomes"], "AI literacy outcomes"],
+      [["f-2-9-where"], "Where they appear in the map"],
+      [["f-2-9-policy"], "AI policy stance for courses"]]},
+    {"title": "Approval", "course": [], "framing": null, "blocks": [
+      [["f-2-10-approver"], "Approved by (department chair or director)"],
+      [["f-2-10-approved"], "Date approved"],
+      [["f-2-10-cwsp-review"], "CWSP review completed by"],
+      [["f-2-10-next"], "Next scheduled review"]]}
+  ],
+  "notes_title": "Liaison's Stage 2 reflection",
+  "notes": [["Developing the plan", [
+    ["f-2-10-energy", "How faculty engaged, where there was energy, and where resistance"],
+    ["f-2-10-hard", "The hardest decisions, and what made them hard"],
+    ["f-2-10-solid", "What feels solid, and what feels provisional"],
+    ["f-2-10-ai", "AI Literacies work at this stage"]]]]
+};
+
 function C2TC_writeDoc_(title, who, where, p, when) {
   var doc = DocumentApp.create(title);
   var body = doc.getBody();
@@ -188,12 +231,13 @@ function C2TC_writeDoc_(title, who, where, p, when) {
   if (lay) {
     /* Part 1: student-facing pieces. */
     var pieces = (lay.student || []).filter(function (it) {
-      return it.blocks.some(function (b) { return C2TC_first_(p, b[0]); });
+      return it.blocks.some(function (b) { return C2TC_first_(p, b[0]); }) ||
+             (it.table && Array.isArray(p[it.table]) && p[it.table].length);
     });
     if (pieces.length) {
       body.appendParagraph('Part 1. ' + lay.student_title).setHeading(H.HEADING1);
-      C2TC_style_(body.appendParagraph('Each piece below is written to students and starts on its own page. ' +
-          'Copy a page into your syllabus, course site, or slides.'), false, true);
+      C2TC_style_(body.appendParagraph(lay.intro || ('Each piece below is written to students and starts on its own page. ' +
+          'Copy a page into your syllabus, course site, or slides.')), false, true);
       pieces.forEach(function (it) {
         body.appendPageBreak();
         var t = (it.title_field && C2TC_val_(p, it.title_field)) || it.title;
@@ -201,6 +245,13 @@ function C2TC_writeDoc_(title, who, where, p, when) {
         var course = C2TC_first_(p, it.course);
         if (course) C2TC_style_(body.appendParagraph(course.split(/\n/)[0]), true, false);
         if (it.framing) C2TC_style_(body.appendParagraph(it.framing), false, true);
+        if (it.table && Array.isArray(p[it.table]) && p[it.table].length) {
+          var cells = [['Course', 'Level', 'Writing', 'Speaking', 'Outcomes']].concat(p[it.table].map(function (r) {
+            return r.map(function (c) { return String(c || ''); });
+          }));
+          var tbl = body.appendTable(cells);
+          tbl.getRow(0).editAsText().setBold(true);
+        }
         it.blocks.forEach(function (b) {
           var v = C2TC_first_(p, b[0]);
           if (!v) return;
