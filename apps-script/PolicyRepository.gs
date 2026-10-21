@@ -70,3 +70,10 @@ function PolicyRepository_sheet_() {
   props.setProperty(POLICY_REPO.PROP_KEY, ss.getId());
   return ss;
 }
+
+/* Run once from the editor after installing both files: grants the Drive and Sheets permissions
+   the handlers need and logs the two spreadsheet links. */
+function ArchiveSetup() {
+  Logger.log('Policy Repository: ' + PolicyRepository_sheet_().getUrl());
+  Logger.log('Adventure beta: ' + AdventureBeta_sheet_().getParent().getUrl());
+}
