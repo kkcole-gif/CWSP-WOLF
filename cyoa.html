@@ -247,6 +247,7 @@
   .quick .level-2 legend { background: var(--coral); color: var(--umber); }
   .quick .level-3 legend { background: var(--mred); color: var(--white); }
   .quick .reveal[hidden] { display: none; }
+  .quick .level-explain { font-size: 15px !important; line-height: 1.65 !important; margin: 0.2rem 0 0.6rem !important; }
   .quick .hold { border-left: 4px solid var(--dteal); background: #EEF4F1; padding: 0.7rem 0.9rem; border-radius: 0 8px 8px 0; margin-top: 0.8rem; }
   .quick .hold p { margin-bottom: 0.4rem; }
   .quick-link { font: inherit; background: none; border: 0; color: var(--dteal); text-decoration: underline; cursor: pointer; padding: 0; font-weight: 600; }
@@ -344,11 +345,12 @@
 <!-- ═══ ONE-PAGE VERSION ═══ -->
 <section class="screen quick" data-screen="quick" data-step="describe" aria-labelledby="h-quick" hidden>
   <h2 id="h-quick" tabindex="-1">The one-page version</h2>
-  <p>The same three levels, in order, on one page. If a question stops you, the passage behind it is one click away.</p>
+  <p>The same three levels, in order, on one page. Each level says what it asks of you. If a question stops you, the passage behind it is one click away. First time here? The book explains the levels as you go, and takes about ten minutes. <button type="button" class="quick-link" data-go="premise">Read the book instead</button>.</p>
 
   <fieldset class="level level-1">
     <legend>Conceptual · Describe</legend>
     <p class="level-gloss">What the systems are, and how they produce text.</p>
+    <p class="level-explain">At this level you name the use in plain words. A tool asked for "help" does several things at once, and a use you can't name is one you can't yet defend. Whatever you ask for, the answer is built from writing other people did, sorted by what was most common. <button type="button" class="quick-link" data-go="cp1">Read passage 7</button>.</p>
     <label for="q-assignment">What's due?</label>
     <select id="q-assignment">
       <option value="history essay">An essay for a history class</option>
@@ -366,6 +368,7 @@
   <fieldset class="level level-2">
     <legend>Structural · Analyze</legend>
     <p class="level-gloss">How they are built, and whom they disadvantage.</p>
+    <p class="level-explain">At this level you look at what the tool does to your writing. It leans toward the most common phrasing, which pulls a sentence away from your voice, and the cost falls hardest on writers whose first language isn't English. Your draft also now sits on a company's server. The question below has one answer for any student in your seat. <button type="button" class="quick-link" data-go="analyze">Read passage 14</button>.</p>
     <p class="prompt" id="q-finding-q">Is the judgment the tool supplies, in this use, the same judgment your assignment is built to develop?</p>
     <div role="radiogroup" aria-labelledby="q-finding-q">
       <label class="choice"><input type="radio" name="q-finding" value="yes"> Yes</label>
@@ -392,7 +395,8 @@
   <fieldset class="level level-3" id="q-decide">
     <legend>Operative · Decide</legend>
     <p class="level-gloss">When to use one, how, and when to refuse, with reasons tied to the task.</p>
-    <p>What does this situation warrant: use, limits, or refusal?</p>
+    <p class="level-explain">At this level the answer belongs to you alone, and it exists only once you decide. Three postures hold up, as long as you have your reasons: decline, use with conditions you set first, or defer until you learn what the decision depends on. <button type="button" class="quick-link" data-go="decide">Read passage 30</button>.</p>
+    <p class="prompt">What does this situation warrant: use, limits, or refusal?</p>
     <div role="radiogroup" aria-label="Your decision">
       <label class="choice"><input type="radio" name="q-outcome" value="decline"> Decline, on this assignment, for reasons I name</label>
       <label class="choice"><input type="radio" name="q-outcome" value="conditional"> Use with conditions I set before I start</label>
@@ -465,6 +469,7 @@
   <div class="actions">
     <button type="button" class="btn btn-primary" id="cp1-yes">Here's my sentence</button>
     <button type="button" class="btn btn-secondary" data-go="cp1-no">No sentence yet</button>
+    <button type="button" class="btn btn-primary only-quick" data-go="quick">Back to the one-page version</button>
     <button type="button" class="btn btn-secondary" data-go="premise">Back</button>
   </div>
 </section>
@@ -555,6 +560,7 @@
   <p>Carry one question to the next checkpoint. If the judgment behind what you asked about disappeared, would your <span data-echo="assignment">history essay</span> still be doing its job?</p>
   <div class="actions">
     <button type="button" class="btn btn-primary" data-go="cp2">Go to checkpoint two</button>
+    <button type="button" class="btn btn-primary only-quick" data-go="quick">Back to the one-page version</button>
     <button type="button" class="btn btn-secondary" data-go="cp1">Back to checkpoint one</button>
   </div>
 </section>
@@ -636,7 +642,10 @@
     <button type="button" class="outcome-btn" data-outcome="conditional"><strong>Use with conditions</strong><span>A named function, inside a limit I set before I start, noted the way I'd note a source.</span></button>
     <button type="button" class="outcome-btn" data-outcome="defer"><strong>Defer</strong><span>Something the decision depends on is still unknown. I'll find out before I write another sentence.</span></button>
   </div>
-  <div class="actions"><button type="button" class="btn btn-secondary" data-go="cp2">Back to checkpoint two</button></div>
+  <div class="actions">
+    <button type="button" class="btn btn-primary only-quick" data-go="quick">Back to the one-page version</button>
+    <button type="button" class="btn btn-secondary" data-go="cp2">Back to checkpoint two</button>
+  </div>
 </section>
 
 <!-- ═══ 33. DECLINE ═══ -->
