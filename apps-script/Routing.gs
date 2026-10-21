@@ -43,7 +43,7 @@ var C2TC = {
   SEND_COPY: true,
   REPLY_TO: 'kkcole2@ncsu.edu',
   SITE: 'https://cwspwolf.com/acicertificate/',
-  META_KEYS: ['module', 'timestamp', 'certificate_name', 'certificate_email', 'program', 'stage', 'wscp_table', 'rubric_writing', 'rubric_oral', 'nominations',
+  META_KEYS: ['shared_draft', 'module', 'timestamp', 'certificate_name', 'certificate_email', 'program', 'stage', 'wscp_table', 'rubric_writing', 'rubric_oral', 'nominations',
               'participant_name', 'participant_email', 'cert-name', 'cert-email',
               'cert-department', 'cert-role', 'type', 'submission_type',
               'workbook_title', 'field_labels', 'field_sections']
@@ -244,8 +244,8 @@ function C2TC_writeDoc_(title, who, where, p, when) {
   var first = body.getParagraphs()[0];
   first.setText(p.workbook_title || (where.certificate + ', ' + where.component));
   first.setHeading(H.TITLE);
-  body.appendParagraph('C²TC · ' + where.certificate + ' · ' + where.component).setHeading(H.SUBTITLE);
-  body.appendParagraph(who.name + ' · ' + who.email + ' · Submitted ' +
+  body.appendParagraph((where.certificate === 'WOLF' ? 'WOLF · ' : 'C²TC · ' + where.certificate + ' · ') + where.component).setHeading(H.SUBTITLE);
+  body.appendParagraph(who.name + ' · ' + who.email + (p.shared_draft ? ' · Shared draft, ' : ' · Submitted ') +
       Utilities.formatDate(when, 'America/New_York', 'MMMM d, yyyy'));
 
   var lay = C2TC_LAYOUTS[C2TC_layoutKey_(p)];
@@ -724,13 +724,13 @@ function C2TC_wolfDoc(payload) {
     var stamp = Utilities.formatDate(when, 'America/New_York', 'yyyy-MM-dd');
     var title = stamp + ' · WOLF · ' + where.component + ' · shared draft';
     var p = payload.fields || {};
+    p.shared_draft = true;
     ['module', 'workbook_title', 'field_labels', 'field_sections', 'wscp_table', 'certificate_name', 'certificate_email'].forEach(function (k) {
       if (payload[k] !== undefined) p[k] = payload[k];
     });
     var id = C2TC_writeDoc_(title, who, where, p, when);
     var file = DriveApp.getFileById(id);
-    folder.addFile(file);
-    try { DriveApp.getRootFolder().removeFile(file); } catch (e) {}
+    file.moveTo(folder);
     file.addEditor(who.email);
     var url = file.getUrl();
     var html =
