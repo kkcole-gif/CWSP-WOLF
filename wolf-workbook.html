@@ -104,6 +104,13 @@
       .wb-sidebar nav a.active { border-bottom-color: var(--red); background: transparent; }
       .wb-main { padding: 1.5rem 1rem 3rem; } .stages, .grid2, .grid3, .grid5 { grid-template-columns: 1fr; }
     }
+    .wolf-toast{position:fixed;left:50%;transform:translateX(-50%);top:72px;z-index:200;max-width:34rem;width:calc(100% - 2rem);background:#fff;border:1px solid #990000;border-left:5px solid #990000;border-radius:3px;box-shadow:0 4px 18px rgba(0,0,0,.18);padding:.75rem 2.4rem .75rem 1rem;font-size:.9rem;line-height:1.45}
+    .wolf-toast button{position:absolute;top:.35rem;right:.5rem;background:none;border:0;font-size:1.2rem;cursor:pointer;color:#5a5a5a}
+    .btn-clear{background:none;border:0;padding:0;margin:.5rem 0 0;font:inherit;font-size:.75rem;color:#5a5a5a;text-decoration:underline;cursor:pointer}
+    details.go-further{border-left:2px solid #c8c8c8;padding:.1rem 0 .1rem .9rem;margin:.75rem 0 1.25rem}
+    details.go-further>summary{cursor:pointer;font-size:.9rem;font-weight:600;color:#4d4d4d;padding:.35rem 0}
+    details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offset:2px}
+    @media print { details.go-further{border:0;padding:0} .btn-clear,.wolf-toast{display:none} }
     @media print { .wb-sidebar, .site-header, .site-footer, .submit-section, .btn-sidebar { display: none; } .wb-layout { display: block; } .wb-main { max-width: none; padding: 0; } .activity, .panel { break-inside: avoid; } textarea { min-height: 0; } }
   </style>
 </head>
@@ -133,6 +140,7 @@
     <button type="button" class="btn-sidebar" onclick="window.print()">Download as PDF, or print</button>
     <button type="button" class="btn-sidebar" onclick="downloadAnswers()">Download my answers (Word)</button>
     <button type="button" class="btn-sidebar" id="doc-btn" onclick="createSharedDoc()">Create a shared Google Doc</button>
+    <button type="button" class="btn-clear" onclick="clearWork()">Clear my work from this browser</button>
     <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. The emailed link opens it on any computer. For a PDF, choose "Save as PDF" as the destination in the print dialog. "Download my answers (Word)" gives you a file of every answer under its prompt. "Create a shared Google Doc" turns your current answers into a Google Doc CWSP owns and you edit, with the link emailed to you, for drafting with colleagues before you submit.</p>
   </div>
   <nav aria-label="Workbook navigation">
@@ -580,7 +588,7 @@ function load() {
   updateProgress(); updateStages();
 }
 function updateProgress() {
-  const t = workFields().filter(el => el.tagName === 'TEXTAREA' && /^f-[123]-/.test(el.id));
+  const t = [].concat(REQUIRED[1], REQUIRED[2], REQUIRED[3]).map(id => document.getElementById(id)).filter(Boolean);
   const filled = t.filter(el => el.value.trim().length > 20).length;
   const pct = t.length ? Math.round(filled / t.length * 100) : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
@@ -618,9 +626,11 @@ function describe(data) {
 }
 function identity() {
   const name = document.getElementById('p-name').value.trim(), email = document.getElementById('p-email').value.trim();
-  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    const t = name ? document.getElementById('p-email') : document.getElementById('p-name');
+  const dept = document.getElementById('s0-department');
+  if (!name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) || (dept && !dept.value.trim())) {
+    const t = !name ? document.getElementById('p-name') : !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? document.getElementById('p-email') : dept;
     t.scrollIntoView({ behavior: 'smooth', block: 'center' }); t.focus({ preventScroll: true });
+    toast('Enter your name, NC State email, and department under "Who you are" first.');
     return null;
   }
   return { name, email };
@@ -633,10 +643,10 @@ function saveDraft() {
   const who = identity();
   if (!who) { setStatus('Enter your name and NC State email under "Who you are", then save again.'); return; }
   const f = {}; workFields().forEach(el => { f[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
-  const data = describe({ action: 'save_draft', module: 'wolf-stage1', page: 'wolf-workbook.html', certificate_name: who.name, certificate_email: who.email, timestamp: new Date().toISOString(), fields: f });
+  const data = describe({ action: 'save_draft', module: 'wolf-stage' + (document.getElementById('s0-current').value || '1'), page: 'wolf-workbook.html', certificate_name: who.name, certificate_email: who.email, timestamp: new Date().toISOString(), fields: f });
   setStatus('Saving…', true);
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-    .then(() => setStatus('Saved at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. A link to continue is on its way to ' + who.email + '. Save again any time; the same link opens your latest work.'))
+    .then(() => setStatus('Saved at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. A link to continue is on its way to ' + who.email + '. Save again any time; the same link opens your latest work. Anyone holding the link sees your draft, so keep it to yourself.'))
     .catch(() => setStatus('Saving failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.'));
 }
 function createSharedDoc() {
@@ -680,10 +690,12 @@ function requireFields(ids, n) {
   const missing = ids.filter(id => (document.getElementById(id).value || '').trim().length < MIN);
   const note = document.getElementById(n === 1 ? 'req-note' : 'req-note-' + n);
   document.querySelectorAll('textarea').forEach(el => el.style.borderColor = '');
-  if (!missing.length) { note.textContent = ''; return true; }
+  if (!missing.length) { note.textContent = ''; const t = document.querySelector('.wolf-toast'); if (t) t.hidden = true; return true; }
   missing.forEach(id => document.getElementById(id).style.borderColor = '#990000');
   note.textContent = missing.length + ' required prompt' + (missing.length > 1 ? 's need' : ' needs') + ' at least a sentence or two before you submit. Each is marked in red.';
-  document.getElementById(missing[0]).scrollIntoView({ behavior: 'smooth', block: 'center' });
+  toast(missing.length + ' required prompt' + (missing.length > 1 ? 's need' : ' needs') + ' about ' + MIN + ' characters, one or two sentences. The first one is outlined in red below.');
+  const first = document.getElementById(missing[0]);
+  first.scrollIntoView({ behavior: 'smooth', block: 'center' }); first.focus({ preventScroll: true });
   return false;
 }
 function submitStage(n) {
@@ -794,6 +806,46 @@ document.addEventListener('DOMContentLoaded', () => {
   fields().forEach(el => { el.addEventListener('input', save); el.addEventListener('change', save); });
   load(); restoreFromLink(); updateSidebar();
 });
+
+/* On-screen messages, Go further, and Clear my work: the same behavior as the C²TC workbooks. */
+function toast(text) {
+  let t = document.querySelector('.wolf-toast');
+  if (!t) {
+    t = document.createElement('div'); t.className = 'wolf-toast'; t.setAttribute('role', 'alert');
+    t.innerHTML = '<span></span><button type="button" aria-label="Close message">×</button>';
+    t.querySelector('button').addEventListener('click', () => { t.hidden = true; });
+    document.body.appendChild(t);
+  }
+  t.querySelector('span').textContent = text; t.hidden = false;
+}
+function clearWork() {
+  if (!confirm('Remove your WOLF answers, name, and email from this browser? Work you have submitted or saved by email stays with CWSP.')) return;
+  try { Object.keys(localStorage).filter(k => k.indexOf(KEY) === 0 || /^wolf-(submitted|restored)-/.test(k)).forEach(k => localStorage.removeItem(k)); } catch (e) {}
+  fields().forEach(el => { if (el.type === 'checkbox') el.checked = false; else el.value = ''; });
+  updateProgress(); updateStages(); setStatus('Cleared from this browser.');
+}
+(function collapseOptional() {
+  const req = [].concat(REQUIRED[1], REQUIRED[2], REQUIRED[3]);
+  const opt = Array.from(document.querySelectorAll('main .field')).filter(f => {
+    const el = f.querySelector(':scope > textarea[id]');
+    return el && /^f-[123]-/.test(el.id) && req.indexOf(el.id) === -1 && f.querySelectorAll('textarea, input, select').length === 1;
+  });
+  const groups = [];
+  opt.forEach(f => { const g = groups[groups.length - 1]; if (g && g[g.length - 1].nextElementSibling === f) g.push(f); else groups.push([f]); });
+  groups.forEach(g => {
+    const d = document.createElement('details'); d.className = 'go-further';
+    const s = document.createElement('summary');
+    s.textContent = 'Go further: ' + (g.length === 1 ? 'one optional prompt' : g.length + ' optional prompts');
+    d.appendChild(s); g[0].parentNode.insertBefore(d, g[0]); g.forEach(f => d.appendChild(f));
+  });
+  const openFilled = () => document.querySelectorAll('details.go-further').forEach(d => {
+    if (Array.from(d.querySelectorAll('textarea')).some(t => t.value.trim())) d.open = true;
+  });
+  document.addEventListener('DOMContentLoaded', () => setTimeout(openFilled, 0));
+  window.addEventListener('load', openFilled);
+  window.addEventListener('beforeprint', () => document.querySelectorAll('details.go-further').forEach(d => { d.dataset.wasOpen = d.open ? '1' : ''; d.open = true; }));
+  window.addEventListener('afterprint', () => document.querySelectorAll('details.go-further').forEach(d => { d.open = !!d.dataset.wasOpen; }));
+})();
 </script>
 </body>
 </html>
