@@ -1224,6 +1224,7 @@
       <label for="a-consent">I understand what data is collected and consent to its use as described above. I confirm that no personally identifying information appears in my responses.</label>
     </div>
 
+    <p class="submit-hint" id="submit-hint" style="font-size:.9rem;margin:.5rem 0;">The Submit button opens once you fill in your discipline, institution type, years of teaching, and stage, and check the consent box.</p>
     <button class="btn-submit" id="submit-btn" disabled onclick="submitToArchive()">Submit Responses to CWSP Archive</button>
 
     <div class="submit-status" id="submit-success">
@@ -1300,6 +1301,8 @@ function toggleSubmit() {
   const stage = document.getElementById('a-stage').value;
   const btn = document.getElementById('submit-btn');
   btn.disabled = !(consent && discipline && instType && years && stage);
+  const hint = document.getElementById('submit-hint');
+  if (hint) hint.hidden = !btn.disabled;
 }
 
 // ─── SUBMISSION ───────────────────────────────────────────────────────────
