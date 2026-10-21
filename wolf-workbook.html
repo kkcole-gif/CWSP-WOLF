@@ -67,6 +67,17 @@
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
     .grid3 { display: grid; grid-template-columns: 1.2fr .8fr 1fr 1fr; gap: .6rem; align-items: end; }
     .grid3 .field { margin: .4rem 0; } .grid3 label { font-size: .72rem; }
+    .grid5 { display: grid; grid-template-columns: 1.1fr .9fr 1fr 1fr .9fr; gap: .5rem; align-items: end; }
+    .grid5 select { padding: .6rem .3rem; font-size: .85rem; }
+    .grid5 .field { margin: .35rem 0; } .grid5 label { font-size: .7rem; }
+    .wscp { margin-top: 1rem; padding: 1.5rem 1.8rem; border: 1px solid var(--line); background: #fff; font-family: Georgia, serif; }
+    .wscp h4 { font-size: 1.3rem; margin: 0 0 .2rem; } .wscp .sub { color: var(--gray-mid); font-size: .9rem; margin: 0 0 1rem; }
+    .wscp h5 { font-family: Arial, sans-serif; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin: 1.4rem 0 .4rem; }
+    .wscp h6 { font-size: .95rem; margin: .8rem 0 .2rem; }
+    .wscp p { margin: 0 0 .5rem; white-space: pre-wrap; }
+    .wscp table { width: 100%; border-collapse: collapse; font-size: .85rem; margin: .4rem 0; }
+    .wscp th, .wscp td { border: 1px solid var(--line); padding: .35rem .5rem; text-align: left; vertical-align: top; }
+    .wscp .empty { color: #6b6b6b; font-style: italic; }
     .row-head { font-family: Arial, sans-serif; font-size: .72rem; color: #666; margin: .8rem 0 0; }
     .checks label { display: flex; gap: .55rem; align-items: flex-start; font-size: .95rem; margin: .4rem 0; cursor: pointer; }
     .checks input { margin-top: .3rem; }
@@ -88,7 +99,7 @@
       .wb-sidebar nav .sidebar-part { width: 100%; padding: .6rem .5rem .2rem; } .stage-date { width: 100%; }
       .wb-sidebar nav a { padding: .35rem .5rem; border-left: 0; border-bottom: 2px solid transparent; }
       .wb-sidebar nav a.active { border-bottom-color: var(--red); background: transparent; }
-      .wb-main { padding: 1.5rem 1rem 3rem; } .stages, .grid2, .grid3 { grid-template-columns: 1fr; }
+      .wb-main { padding: 1.5rem 1rem 3rem; } .stages, .grid2, .grid3, .grid5 { grid-template-columns: 1fr; }
     }
     @media print { .wb-sidebar, .site-header, .submit-section { display: none; } .wb-layout { display: block; } .panel { break-inside: avoid; } details.panel { open: true; } }
   </style>
@@ -134,7 +145,13 @@
     <a href="#submit1">Submit Stage 1</a>
     <p class="sidebar-part" id="sp-2">Stage 2 · Design <span class="stage-badge" id="badge-2"></span></p>
     <span class="stage-date" id="date-2"></span>
-    <a href="#stage2" class="muted">Opens after Stage 1 testing</a>
+    <a href="#act6">6. Your discipline's communication</a>
+    <a href="#act7">7. Outcomes by level</a>
+    <a href="#act8">8. Curriculum map</a>
+    <a href="#act9">9. AI literacy in the plan</a>
+    <a href="#act10">10. Assessment, approval, reflection</a>
+    <a href="#wscp">Your curriculum plan</a>
+    <a href="#submit2">Submit Stage 2</a>
     <p class="sidebar-part" id="sp-3">Stage 3 · Evidence <span class="stage-badge" id="badge-3"></span></p>
     <span class="stage-date" id="date-3"></span>
     <a href="#stage3" class="muted">Opens after Stage 2</a>
@@ -294,15 +311,113 @@
     <p class="submit-status" id="submit-status" role="status"></p>
   </div>
 
-  <div class="stub">
-    <h2 id="stage2">Stage 2 · Design</h2>
-    <p>Opens after Stage 1 is tested with the first departments. The activities below are set; their fields are not yet built.</p>
-    <div class="activity"><div class="activity-label">Activity 6</div><h3>Disciplinary context</h3><p>WSCP Part 1: the primary genres of writing and speaking, the audiences, and the practices graduates demonstrate.</p></div>
-    <div class="activity"><div class="activity-label">Activity 7</div><h3>Outcomes by level</h3><p>WSCP Part 2: writing and speaking outcomes at introductory, intermediate, advanced, and capstone levels, and their connection to existing SLOs.</p></div>
-    <div class="activity"><div class="activity-label">Activity 8</div><h3>Curriculum map</h3><p>WSCP Part 3, built from the Stage 1 inventory, with scaffolding strategies by level beside it.</p></div>
-    <div class="activity"><div class="activity-label">Activity 9</div><h3>AI literacy integration</h3><p>WSCP Part 5, from AI Literacies Clusters 02 and 03.</p></div>
-    <div class="activity"><div class="activity-label">Activity 10</div><h3>Stage 2 reflection and WSCP approval</h3><p>The four Design questions, then the approval block for the chair. The WSCP generates from Activities 6 through 9.</p></div>
+  <h2 id="stage2">Stage 2 · Design</h2>
+  <p>Design is where the Writing and Speaking Curriculum Plan gets written. Faculty author it; CWSP co-leads the workshops and consults between them; you keep it moving. The five activities below are the plan's five parts. Answer them in conversation with colleagues, over several sessions, and the plan assembles itself at the end of the stage. Bring any part to CWSP at any point.</p>
+  <div class="note"><p>A WSCP is specific to this discipline and this curriculum. Where a prompt asks for examples, the examples are prompts for conversation, and a Chemistry answer should look nothing like a Communication answer.</p></div>
+
+  <div class="activity" id="act6">
+    <div class="activity-label">Activity 6 · WSCP Part 1</div>
+    <h3>Your discipline's communication</h3>
+    <p class="activity-meta">Faculty conversation · one session · describe writing and speaking as they work in the field</p>
+    <p>Before mapping outcomes, say what writing and speaking do in your discipline: the genres, the readers and listeners, and what graduates are expected to produce. Write in the plural, since the answers belong to the department.</p>
+    <div class="field"><label for="f-2-6-writing">What people in this discipline write<span class="req" aria-hidden="true">*</span></label><p class="hint">Academic and professional genres both. Research reports, policy briefs, case studies, clinical notes, grant proposals, technical memos.</p><textarea id="f-2-6-writing"></textarea></div>
+    <div class="field"><label for="f-2-6-speaking">What they say, and in what settings<span class="req" aria-hidden="true">*</span></label><p class="hint">Research presentations, client briefings, oral defenses, clinical communication, team facilitation, public testimony.</p><textarea id="f-2-6-speaking"></textarea></div>
+    <div class="field"><label for="f-2-6-audiences">Who reads and listens</label><p class="hint">A policy brief assumes a different reader than a lab report. A client presentation runs on different norms than a conference paper.</p><textarea id="f-2-6-audiences"></textarea></div>
+    <div class="field"><label for="f-2-6-graduates">What graduates are expected to do with language after the degree</label><textarea id="f-2-6-graduates"></textarea></div>
   </div>
+
+  <div class="activity" id="act7">
+    <div class="activity-label">Activity 7 · WSCP Part 2</div>
+    <h3>Outcomes by level</h3>
+    <p class="activity-meta">Faculty working session with CWSP · the outcomes describe what students will be able to do, for whom, and in what contexts</p>
+    <p>One line per level is enough to start. Write outcomes in the discipline's terms. "Write clearly" is a general outcome; "write a methods section a reviewer in the field accepts without revision" belongs to a discipline. Number them as you go (W1, S1), so the map in Activity 8 refers to them.</p>
+    <div class="grid2">
+      <div class="field"><label for="f-2-7-w1">Writing · Introductory</label><textarea id="f-2-7-w1" style="min-height:70px;" placeholder="W1. Students will be able to…"></textarea></div>
+      <div class="field"><label for="f-2-7-s1">Speaking · Introductory</label><textarea id="f-2-7-s1" style="min-height:70px;" placeholder="S1. Students will be able to…"></textarea></div>
+      <div class="field"><label for="f-2-7-w2">Writing · Intermediate</label><textarea id="f-2-7-w2" style="min-height:70px;"></textarea></div>
+      <div class="field"><label for="f-2-7-s2">Speaking · Intermediate</label><textarea id="f-2-7-s2" style="min-height:70px;"></textarea></div>
+      <div class="field"><label for="f-2-7-w3">Writing · Advanced</label><textarea id="f-2-7-w3" style="min-height:70px;"></textarea></div>
+      <div class="field"><label for="f-2-7-s3">Speaking · Advanced</label><textarea id="f-2-7-s3" style="min-height:70px;"></textarea></div>
+      <div class="field"><label for="f-2-7-w4">Writing · Capstone<span class="req" aria-hidden="true">*</span></label><textarea id="f-2-7-w4" style="min-height:70px;"></textarea></div>
+      <div class="field"><label for="f-2-7-s4">Speaking · Capstone<span class="req" aria-hidden="true">*</span></label><textarea id="f-2-7-s4" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="field"><label for="f-2-7-slos">How these connect to existing outcomes</label><p class="hint">Pack Proficiencies, accreditation SLOs, or program outcomes already on record. Say where the WSCP outcomes extend them.</p><textarea id="f-2-7-slos" style="min-height:70px;"></textarea></div>
+  </div>
+
+  <div class="activity" id="act8">
+    <div class="activity-label">Activity 8 · WSCP Part 3</div>
+    <h3>Curriculum map</h3>
+    <p class="activity-meta">Built from the Stage 1 inventory · where outcomes are taught, practiced, and assessed</p>
+    <p>List the courses where writing and speaking are taught, practiced, or assessed, with the assignment and the outcome it addresses. Gaps are as informative as concentrations. The button copies your Stage 1 inventory into the first rows.</p>
+    <button type="button" class="btn-sidebar" style="width:auto;margin:0 0 .5rem;" onclick="copyInventory()">Copy the Stage 1 inventory into the map</button>
+    <p class="sidebar-status" id="copy-status" role="status" style="margin:0 0 .5rem;"></p>
+    <div class="row-head">Course · Level · Writing assignments · Speaking assignments · Outcomes addressed</div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c1">Course 1</label><input type="text" id="f-2-8-c1"></div><div class="field"><label for="f-2-8-l1">Level</label><select id="f-2-8-l1"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w1">Writing</label><input type="text" id="f-2-8-w1"></div><div class="field"><label for="f-2-8-s1">Speaking</label><input type="text" id="f-2-8-s1"></div><div class="field"><label for="f-2-8-o1">Outcomes addressed</label><input type="text" id="f-2-8-o1" placeholder="e.g., W2, S1"></div></div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c2">Course 2</label><input type="text" id="f-2-8-c2"></div><div class="field"><label for="f-2-8-l2">Level</label><select id="f-2-8-l2"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w2">Writing</label><input type="text" id="f-2-8-w2"></div><div class="field"><label for="f-2-8-s2">Speaking</label><input type="text" id="f-2-8-s2"></div><div class="field"><label for="f-2-8-o2">Outcomes addressed</label><input type="text" id="f-2-8-o2" placeholder="e.g., W2, S1"></div></div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c3">Course 3</label><input type="text" id="f-2-8-c3"></div><div class="field"><label for="f-2-8-l3">Level</label><select id="f-2-8-l3"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w3">Writing</label><input type="text" id="f-2-8-w3"></div><div class="field"><label for="f-2-8-s3">Speaking</label><input type="text" id="f-2-8-s3"></div><div class="field"><label for="f-2-8-o3">Outcomes addressed</label><input type="text" id="f-2-8-o3" placeholder="e.g., W2, S1"></div></div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c4">Course 4</label><input type="text" id="f-2-8-c4"></div><div class="field"><label for="f-2-8-l4">Level</label><select id="f-2-8-l4"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w4">Writing</label><input type="text" id="f-2-8-w4"></div><div class="field"><label for="f-2-8-s4">Speaking</label><input type="text" id="f-2-8-s4"></div><div class="field"><label for="f-2-8-o4">Outcomes addressed</label><input type="text" id="f-2-8-o4" placeholder="e.g., W2, S1"></div></div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c5">Course 5</label><input type="text" id="f-2-8-c5"></div><div class="field"><label for="f-2-8-l5">Level</label><select id="f-2-8-l5"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w5">Writing</label><input type="text" id="f-2-8-w5"></div><div class="field"><label for="f-2-8-s5">Speaking</label><input type="text" id="f-2-8-s5"></div><div class="field"><label for="f-2-8-o5">Outcomes addressed</label><input type="text" id="f-2-8-o5" placeholder="e.g., W2, S1"></div></div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c6">Course 6</label><input type="text" id="f-2-8-c6"></div><div class="field"><label for="f-2-8-l6">Level</label><select id="f-2-8-l6"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w6">Writing</label><input type="text" id="f-2-8-w6"></div><div class="field"><label for="f-2-8-s6">Speaking</label><input type="text" id="f-2-8-s6"></div><div class="field"><label for="f-2-8-o6">Outcomes addressed</label><input type="text" id="f-2-8-o6" placeholder="e.g., W2, S1"></div></div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c7">Course 7</label><input type="text" id="f-2-8-c7"></div><div class="field"><label for="f-2-8-l7">Level</label><select id="f-2-8-l7"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w7">Writing</label><input type="text" id="f-2-8-w7"></div><div class="field"><label for="f-2-8-s7">Speaking</label><input type="text" id="f-2-8-s7"></div><div class="field"><label for="f-2-8-o7">Outcomes addressed</label><input type="text" id="f-2-8-o7" placeholder="e.g., W2, S1"></div></div>
+    <div class="grid5"><div class="field"><label for="f-2-8-c8">Course 8</label><input type="text" id="f-2-8-c8"></div><div class="field"><label for="f-2-8-l8">Level</label><select id="f-2-8-l8"><option value=""></option><option>Introductory</option><option>Intermediate</option><option>Advanced</option><option>Capstone</option></select></div><div class="field"><label for="f-2-8-w8">Writing</label><input type="text" id="f-2-8-w8"></div><div class="field"><label for="f-2-8-s8">Speaking</label><input type="text" id="f-2-8-s8"></div><div class="field"><label for="f-2-8-o8">Outcomes addressed</label><input type="text" id="f-2-8-o8" placeholder="e.g., W2, S1"></div></div>
+    <div class="field"><label for="f-2-8-more">More courses</label><textarea id="f-2-8-more" placeholder="One course per line: course, level, writing, speaking, outcomes."></textarea></div>
+    <div class="field"><label for="f-2-8-reveals">What the map shows<span class="req" aria-hidden="true">*</span></label><p class="hint">Where writing and speaking concentrate, where they are absent, and what the distribution says about how communication is valued in the curriculum.</p><textarea id="f-2-8-reveals"></textarea></div>
+    <details class="panel"><summary>Scaffolding by level, for filling the gaps</summary><div class="panel-body">
+      <p><strong>Introductory.</strong> Orientation: students learn what writing and speaking look like in the field and practice at low stakes. Short response and reflection papers, lab or field reports with structured templates, annotated readings. Impromptu or short prepared presentations, structured participation protocols.</p>
+      <p><strong>Intermediate.</strong> Disciplinary voice and argument: engaging sources, developing positions, addressing more than one audience. Research papers and literature reviews, case analyses, multi-draft assignments with structured revision. Group presentations, debates or structured argument.</p>
+      <p><strong>Advanced and capstone.</strong> Professional communication for real audiences in real genres. Independent research papers and theses, professional documents aimed outside the classroom (grant proposals, policy briefs, technical memos, client reports), portfolios. Oral defenses, client or stakeholder presentations.</p>
+      <p><strong>At every level.</strong> Structured peer review with four to six prompts tied to the criteria. Rubric-based self-evaluation before submission. A revision memo on multi-draft work saying what changed and why.</p>
+    </div></details>
+  </div>
+
+  <div class="activity" id="act9">
+    <div class="activity-label">Activity 9 · WSCP Part 5</div>
+    <h3>AI literacy in the plan</h3>
+    <p class="activity-meta">If the department has taken the AI Literacies track, or will · otherwise leave for a later revision</p>
+    <p>AI literacy outcomes join the plan here, in the three levels of <a href="ai_literacy_unified.html">the framework</a>: describe the system, analyze what is built into it, decide what the situation warrants. Clusters 02 and 03 of <a href="CWSP_AI_Literacies_Workbook.html">the AI Literacies workbook</a> produce the policy stance and the AI curricular map this part records.</p>
+    <div class="field"><label for="f-2-9-outcomes">AI literacy outcomes the department has set</label><p class="hint">Which of the three levels the curriculum addresses, and what a graduate is able to do at each.</p><textarea id="f-2-9-outcomes"></textarea></div>
+    <div class="field"><label for="f-2-9-where">Where in the curriculum map they appear</label><textarea id="f-2-9-where" style="min-height:70px;"></textarea></div>
+    <div class="field"><label for="f-2-9-policy">The department's AI policy stance for courses</label><p class="hint">From Cluster 02, or a note that policy work is pending.</p><textarea id="f-2-9-policy"></textarea></div>
+  </div>
+
+  <div class="activity" id="act10">
+    <div class="activity-label">Activity 10 · WSCP Part 4 and approval</div>
+    <h3>Assessment plan, approval, and Stage 2 reflection</h3>
+    <p class="activity-meta">Closes the stage · the assessment plan is a commitment Stage 3 carries out</p>
+    <p>Assessment means being deliberate about evidence the department already collects. Name what it will collect, who reviews it and when, and how findings revise the plan. Then record the approval and reflect on the stage.</p>
+    <div class="field"><label for="f-2-10-evidence">What evidence the department will collect<span class="req" aria-hidden="true">*</span></label><p class="hint">Rubric-scored samples at each level, presentation evaluations, student self-assessments, exit survey data, DASA data.</p><textarea id="f-2-10-evidence"></textarea></div>
+    <div class="field"><label for="f-2-10-review">Who reviews it, how often, and in what setting</label><p class="hint">A one-hour annual conversation in a department meeting is enough. CWSP joins it.</p><textarea id="f-2-10-review" style="min-height:70px;"></textarea></div>
+    <div class="field"><label for="f-2-10-revise">How findings will revise the plan</label><textarea id="f-2-10-revise" style="min-height:70px;"></textarea></div>
+    <h3 style="font-size:1rem;">Approval</h3>
+    <div class="grid2">
+      <div class="field"><label for="f-2-10-approver">Approved by (chair or director)</label><input type="text" id="f-2-10-approver"></div>
+      <div class="field"><label for="f-2-10-approved">Date approved</label><input type="date" id="f-2-10-approved"></div>
+      <div class="field"><label for="f-2-10-cwsp-review">CWSP review completed by</label><input type="text" id="f-2-10-cwsp-review"></div>
+      <div class="field"><label for="f-2-10-next">Next scheduled review</label><input type="date" id="f-2-10-next"></div>
+    </div>
+    <h3 style="font-size:1rem;">Stage 2 reflection</h3>
+    <div class="field"><label for="f-2-10-energy">How did faculty engage with developing the plan? Where was there energy, and where resistance?<span class="req" aria-hidden="true">*</span></label><textarea id="f-2-10-energy"></textarea></div>
+    <div class="field"><label for="f-2-10-hard">Which decisions were hardest to reach, and what made them hard?</label><textarea id="f-2-10-hard"></textarea></div>
+    <div class="field"><label for="f-2-10-solid">What feels solid in the plan, and what feels provisional?</label><textarea id="f-2-10-solid"></textarea></div>
+    <div class="field"><label for="f-2-10-ai">If AI Literacies work came in at this stage, what was most useful, and what stays unresolved?</label><textarea id="f-2-10-ai" style="min-height:70px;"></textarea></div>
+  </div>
+
+  <div class="activity" id="wscp">
+    <div class="activity-label">Your curriculum plan</div>
+    <h3>Writing and Speaking Curriculum Plan</h3>
+    <p class="activity-meta">Assembled from Activities 6 through 10 · preview it here, then submit the stage and CWSP sends it as a Word file and a PDF</p>
+    <button type="button" class="btn-sidebar" style="width:auto;" onclick="previewWSCP()">Preview the plan</button>
+    <div id="wscp-preview" class="wscp" hidden></div>
+  </div>
+
+  <div class="submit-section" id="submit2">
+    <h3 style="margin-top:0;">Submit Stage 2</h3>
+    <p>Submitting files the plan and your reflection with CWSP, generates the Writing and Speaking Curriculum Plan as a document for the chair to sign, and emails it to you as a Word file and a PDF. Submit again after revisions; each version is kept.</p>
+    <p class="hint" id="req-note-2" style="font-size:.88rem;color:var(--red);"></p>
+    <button type="button" class="btn-submit" id="submit-btn-2" onclick="submitStage(2)">Submit Stage 2 to CWSP</button>
+    <p class="submit-status" id="submit-status-2" role="status"></p>
+  </div>
+
   <div class="stub">
     <h2 id="stage3">Stage 3 · Evidence</h2>
     <p>Opens after Stage 2.</p>
@@ -323,7 +438,8 @@
    and saved drafts (action save_draft), files a formatted copy, emails it, and logs a row. */
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const KEY = 'wolf:';
-const REQUIRED = ['f-1-2-pattern', 'f-1-3-faculty', 'f-1-5-unexpected', 'f-1-5-response'];
+const REQUIRED = { 1: ['f-1-2-pattern', 'f-1-3-faculty', 'f-1-5-unexpected', 'f-1-5-response'],
+                   2: ['f-2-6-writing', 'f-2-6-speaking', 'f-2-7-w4', 'f-2-7-s4', 'f-2-8-reveals', 'f-2-10-evidence', 'f-2-10-energy'] };
 const MIN = 40;
 
 function fields() { return Array.prototype.slice.call(document.querySelectorAll('main textarea[id], main input[id], main select[id]')); }
@@ -344,7 +460,7 @@ function load() {
   updateProgress(); updateStages();
 }
 function updateProgress() {
-  const t = workFields().filter(el => el.tagName === 'TEXTAREA' && el.id.indexOf('f-1-') === 0);
+  const t = workFields().filter(el => el.tagName === 'TEXTAREA' && /^f-[12]-/.test(el.id));
   const filled = t.filter(el => el.value.trim().length > 20).length;
   const pct = t.length ? Math.round(filled / t.length * 100) : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
@@ -426,9 +542,9 @@ function restoreFromLink() {
     apply(); banner('Your saved work from ' + saved + ' is restored. Pick up where you left off.');
   }).catch(() => banner('Your saved work did not load. Refresh the page to try again.'));
 }
-function requireFields(ids) {
+function requireFields(ids, n) {
   const missing = ids.filter(id => (document.getElementById(id).value || '').trim().length < MIN);
-  const note = document.getElementById('req-note');
+  const note = document.getElementById(n === 1 ? 'req-note' : 'req-note-' + n);
   document.querySelectorAll('textarea').forEach(el => el.style.borderColor = '');
   if (!missing.length) { note.textContent = ''; return true; }
   missing.forEach(id => document.getElementById(id).style.borderColor = '#990000');
@@ -437,16 +553,58 @@ function requireFields(ids) {
   return false;
 }
 function submitStage(n) {
-  const who = identity(); if (!who) { document.getElementById('req-note').textContent = 'Enter your name and NC State email under "Who you are" first.'; return; }
-  if (!requireFields(REQUIRED)) return;
-  const btn = document.getElementById('submit-btn'), st = document.getElementById('submit-status');
+  const noteId = n === 1 ? 'req-note' : 'req-note-' + n;
+  const who = identity(); if (!who) { document.getElementById(noteId).textContent = 'Enter your name and NC State email under "Who you are" first.'; return; }
+  if (!requireFields(REQUIRED[n], n)) return;
+  const btn = document.getElementById(n === 1 ? 'submit-btn' : 'submit-btn-' + n), st = document.getElementById(n === 1 ? 'submit-status' : 'submit-status-' + n);
   btn.disabled = true; btn.textContent = 'Submitting…'; st.textContent = ''; st.className = 'submit-status';
   const data = { certificate_name: who.name, certificate_email: who.email, module: 'wolf-stage' + n, timestamp: new Date().toISOString(), program: 'WOLF', stage: n };
   workFields().forEach(el => { data[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
   describe(data);
+  if (n === 2) { data.workbook_title = 'Writing and Speaking Curriculum Plan: ' + (val('s0-department') || who.name); data.wscp_table = mapTable(); }
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
     .then(() => { st.textContent = 'Sent to CWSP. A copy is on its way to ' + who.email + '. Your responses also stay in this browser.'; btn.textContent = 'Submitted'; set('wolf-submitted-' + n, new Date().toISOString()); })
     .catch(() => { st.textContent = 'Submission failed. Try again, or email kkcole2@ncsu.edu.'; st.className = 'submit-status err'; btn.disabled = false; btn.textContent = 'Submit Stage ' + n + ' to CWSP'; });
+}
+function val(id) { const el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
+function copyInventory() {
+  let copied = 0;
+  for (let n = 1; n <= 6; n++) {
+    const c = val('f-1-2-c' + n); if (!c) continue;
+    if (val('f-2-8-c' + n)) continue;
+    document.getElementById('f-2-8-c' + n).value = c;
+    document.getElementById('f-2-8-l' + n).value = val('f-1-2-l' + n);
+    document.getElementById('f-2-8-w' + n).value = val('f-1-2-w' + n);
+    document.getElementById('f-2-8-s' + n).value = val('f-1-2-s' + n);
+    copied++;
+  }
+  save();
+  document.getElementById('copy-status').textContent = copied ? copied + ' course' + (copied > 1 ? 's' : '') + ' copied from the inventory. Rows already filled were left alone.' : 'Nothing to copy. The Stage 1 inventory is empty, or these rows are already filled.';
+}
+function mapTable() {
+  const rows = [];
+  for (let n = 1; n <= 8; n++) { if (val('f-2-8-c' + n)) rows.push([val('f-2-8-c' + n), val('f-2-8-l' + n), val('f-2-8-w' + n), val('f-2-8-s' + n), val('f-2-8-o' + n)]); }
+  return rows;
+}
+function esc(t) { return String(t).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])); }
+function para(label, id) { const v = val(id); return '<h6>' + esc(label) + '</h6>' + (v ? '<p>' + esc(v) + '</p>' : '<p class="empty">Not yet written.</p>'); }
+function previewWSCP() {
+  const dept = val('s0-department') || 'Department';
+  const lv = ['Introductory', 'Intermediate', 'Advanced', 'Capstone'];
+  let h = '<h4>Writing and Speaking Curriculum Plan</h4><p class="sub">' + esc(dept) + (val('s0-programs') ? ' · ' + esc(val('s0-programs')) : '') + ' · Liaison: ' + esc(val('p-name') || '') + (val('s0-code') ? ' · CWSP code ' + esc(val('s0-code')) : '') + '</p>';
+  h += '<h5>Part 1 · Disciplinary context</h5>' + para('What people in this discipline write', 'f-2-6-writing') + para('What they say, and in what settings', 'f-2-6-speaking') + para('Who reads and listens', 'f-2-6-audiences') + para('What graduates are expected to do with language', 'f-2-6-graduates');
+  h += '<h5>Part 2 · Writing and speaking outcomes</h5><table><thead><tr><th>Level</th><th>Writing</th><th>Speaking</th></tr></thead><tbody>';
+  lv.forEach((l, i) => { h += '<tr><td>' + l + '</td><td>' + esc(val('f-2-7-w' + (i + 1))) + '</td><td>' + esc(val('f-2-7-s' + (i + 1))) + '</td></tr>'; });
+  h += '</tbody></table>' + para('Connection to existing outcomes', 'f-2-7-slos');
+  h += '<h5>Part 3 · Curriculum map</h5>';
+  const rows = mapTable();
+  if (rows.length) { h += '<table><thead><tr><th>Course</th><th>Level</th><th>Writing</th><th>Speaking</th><th>Outcomes</th></tr></thead><tbody>' + rows.map(r => '<tr>' + r.map(c => '<td>' + esc(c) + '</td>').join('') + '</tr>').join('') + '</tbody></table>'; }
+  if (val('f-2-8-more')) h += '<p>' + esc(val('f-2-8-more')) + '</p>';
+  h += para('What the map shows', 'f-2-8-reveals');
+  h += '<h5>Part 4 · Assessment plan</h5>' + para('Evidence the department will collect', 'f-2-10-evidence') + para('Who reviews it, how often, and where', 'f-2-10-review') + para('How findings revise the plan', 'f-2-10-revise');
+  if (val('f-2-9-outcomes') || val('f-2-9-where') || val('f-2-9-policy')) h += '<h5>Part 5 · AI literacy integration</h5>' + para('AI literacy outcomes', 'f-2-9-outcomes') + para('Where they appear in the map', 'f-2-9-where') + para('AI policy stance for courses', 'f-2-9-policy');
+  h += '<h5>Approval</h5><table><tbody><tr><th>Approved by</th><td>' + esc(val('f-2-10-approver')) + '</td></tr><tr><th>Date approved</th><td>' + esc(val('f-2-10-approved')) + '</td></tr><tr><th>CWSP review completed by</th><td>' + esc(val('f-2-10-cwsp-review')) + '</td></tr><tr><th>Next scheduled review</th><td>' + esc(val('f-2-10-next')) + '</td></tr></tbody></table>';
+  const box = document.getElementById('wscp-preview'); box.innerHTML = h; box.hidden = false; box.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 /* Sidebar: current section */
 function updateSidebar() {
