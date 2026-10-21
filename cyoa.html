@@ -159,8 +159,9 @@
   .screen .passage-no span { font-size: 0.9rem; font-weight: 400; font-style: italic; margin-left: 0.5rem; vertical-align: middle; }
   .trail { font-size: 12.5px; margin-top: 0.25rem; }
   .trail b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; margin-right: 0.35rem; }
-  .trail ol { display: inline; list-style: none; }
-  .trail li { display: inline; font-family: var(--serif); font-weight: 600; }
+  .trail:not([hidden]) { display: flex; flex-wrap: wrap; align-items: baseline; }
+  .trail ol { display: flex; flex-wrap: wrap; list-style: none; gap: 0; }
+  .trail li { font-family: var(--serif); font-weight: 600; padding: 0 !important; border: 0 !important; }
   .trail li + li::before { content: "\2192"; font-family: var(--sans); font-weight: 400; margin: 0 0.35rem; }
 
   .actions { flex-direction: column; gap: 0; border-top: 1px solid var(--ochre); max-width: 760px; }
@@ -174,6 +175,44 @@
   .actions .btn[disabled] .turn { color: var(--umber); }
   .choices-lead { font-size: 13px !important; letter-spacing: 0.06em; text-transform: uppercase; margin: 1.6rem 0 0.4rem !important; }
   .outcome-btn .turn { display: block; margin-top: 0.5rem; font-size: 13px; font-weight: 700; color: var(--mred); }
+
+
+  /* Fun, gamebook register. Night is used once, for the cover passage, as a hero band. */
+  :root { --night-ink: #383140; --night-plum: #583B65; --glow: #D9D869; }
+  .screen[data-screen="opening"] { background: var(--night-ink); color: var(--cream); border-radius: 12px; padding: 1.6rem 1.5rem 1.2rem; }
+  .screen[data-screen="opening"] h2, .screen[data-screen="opening"] p { color: var(--cream); }
+  .screen[data-screen="opening"] .passage-no { color: var(--glow); }
+  .screen[data-screen="opening"] .passage-no::before { background: var(--cream); }
+  .screen[data-screen="opening"] .actions { border-top-color: var(--night-plum); }
+  .screen[data-screen="opening"] .actions .btn { color: var(--cream); border-bottom-color: var(--night-plum); }
+  .screen[data-screen="opening"] .actions .btn:hover { background: var(--night-plum); }
+  .screen[data-screen="opening"] .actions .btn .turn { color: var(--cream); text-decoration: underline; }
+  .screen[data-screen="opening"] .choices-lead { color: var(--cream); }
+  .screen[data-screen="opening"] h2:focus-visible, .screen[data-screen="opening"] .btn:focus-visible { outline-color: var(--glow); }
+  .cover-mark { font-size: 12px !important; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2rem !important; }
+
+  /* A ribbon bookmark marks the passage you are on. */
+  .screen .passage-no { position: relative; padding-left: 1.1rem; }
+  .screen .passage-no::before { content: ""; position: absolute; left: 0; top: -0.2rem; width: 0.55rem; height: 2.9rem;
+    background: var(--mred); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%); }
+
+  /* Page turn */
+  @media (prefers-reduced-motion: no-preference) {
+    .screen:not([hidden]) { animation: turn 220ms ease-out; }
+    @keyframes turn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  }
+
+  /* The ending, and the map of passages read */
+  .the-end { text-align: center; border-top: 1px solid var(--ochre); border-bottom: 1px solid var(--ochre); padding: 1.2rem 0 0.4rem; margin: 2rem 0 1.2rem; max-width: 760px; }
+  .the-end .end-word { font-family: var(--serif); font-size: 2rem !important; font-style: italic; font-weight: 600; margin-bottom: 0.4rem !important; max-width: none; }
+  .the-end p { margin-left: auto; margin-right: auto; }
+  .book-map { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0 0.4rem; max-width: 760px; }
+  .book-map a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 0.4rem;
+    font-family: var(--serif); font-weight: 700; font-size: 1.05rem; text-decoration: none; border-radius: 6px; color: var(--umber); border: 1px dashed var(--clay); background: transparent; }
+  .book-map a.read { background: var(--gold); border: 1px solid var(--gold); }
+  .book-map a:hover { border-color: var(--dred); }
+  .book-map a:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
+  .map-key { font-size: 14px !important; }
 
   @media print {
     .site-header, .beta-band, .crumbs, .steps, .page-header, .page-footer, .screen:not([data-screen="statement"]), .no-print { display: none !important; }
@@ -235,6 +274,7 @@
 
 <!-- ═══ OPENING, SCREEN 1 ═══ -->
 <section class="screen" data-screen="opening" data-step="opening" aria-labelledby="h-opening">
+  <p class="cover-mark">An adventure in three levels</p>
   <h2 id="h-opening" tabindex="-1">Policy decides for the student</h2>
   <p class="lede">Policy decides for the student. A syllabus clause permits AI in one place and forbids it in another, and the student's part is to comply. This tool begins with the decisions you make about AI in your own work, one assignment at a time.</p>
   <p>The French theorist Michel de Certeau distinguished the strategies institutions set from the tactics people improvise inside them. A policy is a strategy. What you do with a tool late at night, with a draft due and a syllabus silent on the question, is a tactic, and it belongs to you. The anthropologist Brian Street drew a related distinction. Earlier accounts treated literacy as a fixed skill a person either has or lacks. Street described it as a practice, carried out in particular situations with particular stakes.</p>
@@ -482,9 +522,18 @@
     <button type="button" class="btn btn-secondary" id="copy-btn">Copy the text</button>
   </div>
   <p id="statement-status" class="answer-help no-print" aria-live="polite"></p>
+  <div class="the-end no-print">
+    <p class="end-word">The end</p>
+    <p>For this tool and this assignment. Every new tool or assignment starts the sequence again at the first level.</p>
+  </div>
+  <div class="no-print">
+    <h3 id="map-head">Your copy of the book</h3>
+    <p class="map-key" id="map-key"></p>
+    <ul class="book-map" id="book-map" aria-labelledby="map-head"></ul>
+  </div>
   <div class="actions no-print">
     <button type="button" class="btn btn-secondary" data-go="reopen">Back</button>
-    <button type="button" class="btn btn-secondary" id="restart-btn">Start a new decision</button>
+    <button type="button" class="btn btn-secondary" id="restart-btn">Begin again with a new decision</button>
     <button type="button" class="btn btn-primary" data-go="feedback">Give beta feedback</button>
   </div>
 </section>
@@ -604,6 +653,7 @@
   });
   document.getElementById('cp1-yes').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 14</span>');
   document.getElementById('reopen-back').insertAdjacentHTML('beforeend', ' <span class="turn">Turn back</span>');
+  document.getElementById('restart-btn').insertAdjacentHTML('beforeend', ' <span class="turn">Turn to 7</span>');
 
   function drawTrail() {
     var list = document.getElementById('trail');
@@ -612,6 +662,28 @@
       var li = document.createElement('li'); li.textContent = PASSAGE[name]; list.appendChild(li);
     });
     document.getElementById('trail-wrap').hidden = state.route.length < 2;
+  }
+
+
+  function drawMap() {
+    var list = document.getElementById('book-map');
+    list.innerHTML = '';
+    var nums = Object.keys(BY_NUMBER).map(Number).sort(function (a, b) { return a - b; });
+    var read = 0;
+    nums.forEach(function (n) {
+      var name = BY_NUMBER[n];
+      var seen = state.route.indexOf(name) !== -1;
+      if (seen) read++;
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = '#' + n;
+      a.textContent = n;
+      if (seen) a.className = 'read';
+      a.setAttribute('aria-label', 'Passage ' + n + (seen ? ', read' : ', not yet read'));
+      li.appendChild(a); list.appendChild(li);
+    });
+    document.getElementById('map-key').textContent = 'You read ' + read + ' of ' + nums.length +
+      ' passages. Gold marks the passages on your path. The dashed ones hold the paths you did not take. Open any of them to read it. Your statement stays as written unless you change an answer.';
   }
 
   function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
@@ -630,9 +702,10 @@
       if (i === idx) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
     });
 
-    if (name === 'statement') buildStatement();
+    if (name === 'statement') { buildStatement(); }
     if (state.route[state.route.length - 1] !== name) state.route.push(name);
     drawTrail();
+    if (name === 'statement') drawMap();
 
     var addr = '#' + PASSAGE[name];
     if (!opts.fromHash && location.hash !== addr) history.pushState(null, '', addr);
