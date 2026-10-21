@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/brand.css">
 <style>
   /* AI Practice Adventure, student arc, beta.
-     Palette: the framework page's level system (yellow, orange, red), tuned with the Hilda Daylight values.
+     Palette: Hilda Daylight. Levels follow the series logic, earth tone (Ochre) for Describe, the teal complement (Deep Teal) for Analyze, one vivid point (Mountain Red) for Decide.
      Cream ground, Umber text, Mountain Red as the working accent, Deep Teal as the one complementary accent.
      Two box meanings, as on the framework page: a colored top edge marks a level, a red left rule marks a position taken. */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -75,8 +75,8 @@
   .decision-line b { letter-spacing: 0.06em; text-transform: uppercase; font-size: 11px; margin-right: 0.35rem; }
   .steps ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.2rem; }
   .steps li { font-size: 13px; padding: 0.2rem 0.55rem; border-bottom: 2px solid transparent; color: var(--umber); }
-  .steps li.done { color: var(--dteal); }
-  .steps li[aria-current="step"] { font-weight: 700; color: var(--dteal); border-bottom-color: var(--teal); }
+  .steps li.done { color: var(--dred); }
+  .steps li[aria-current="step"] { font-weight: 700; color: var(--umber); border-bottom-color: var(--umber); }
   
 
   main { max-width: calc(900px + 3rem); margin: 0 auto; padding: 1.75rem 1.5rem 3rem; }
@@ -93,12 +93,12 @@
 
   /* Level card: a colored top edge marks a level */
   .level { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.9rem 1.1rem; margin-bottom: 1.4rem; }
-  .level-1 { border-top: 5px solid var(--gold); }
-  .level-2 { border-top: 5px solid var(--clay); }
+  .level-1 { border-top: 5px solid var(--ochre); }
+  .level-2 { border-top: 5px solid var(--dteal); }
   .level-3 { border-top: 5px solid var(--mred); }
   .level-name { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 0.15rem 0.55rem; border-radius: 4px; margin-bottom: 0.35rem; }
-  .level-1 .level-name { background: var(--gold); color: var(--umber); }
-  .level-2 .level-name { background: var(--coral); color: var(--umber); }
+  .level-1 .level-name { background: var(--ochre); color: var(--umber); }
+  .level-2 .level-name { background: var(--dteal); color: var(--white); }
   .level-3 .level-name { background: var(--mred); color: var(--white); }
   .level-gloss { font-size: 16px; font-style: italic; margin: 0 !important; }
   .level-key { font-size: 14px; margin: 0.25rem 0 0 !important; }
@@ -120,8 +120,8 @@
   .btn-primary:hover { background: var(--dred); border-color: var(--dred); }
   .btn-secondary { background: var(--white); color: var(--dred); }
   .btn-secondary:hover { background: var(--cream); }
-  .btn-hold { background: var(--white); color: var(--dteal); border-color: var(--dteal); }
-  .btn-hold:hover { background: #EEF4F1; }
+  .btn-hold { background: var(--white); color: var(--umber); border-color: var(--clay); }
+  .btn-hold:hover { background: var(--parchment); }
   .btn:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
   .btn[disabled] { opacity: 0.55; cursor: not-allowed; }
   .answer-help { font-size: 15px !important; }
@@ -171,7 +171,7 @@
     background: transparent; color: var(--umber); border: 0; border-bottom: 1px solid var(--ochre); border-radius: 0; padding: 0.85rem 0.4rem; font-family: var(--serif); font-size: 1.1rem; }
   .actions .btn:hover { background: var(--white); }
   .actions .btn .turn { font-family: var(--sans); font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--mred); white-space: nowrap; }
-  .actions .btn-hold .turn { color: var(--dteal); }
+  .actions .btn-hold .turn { color: var(--umber); }
   .actions .btn-secondary { font-family: var(--sans); font-size: 14px; font-weight: 400; }
   .actions .btn-secondary .turn { color: var(--dred); font-weight: 400; }
   .actions .btn[disabled] .turn { color: var(--umber); }
@@ -211,14 +211,14 @@
   .book-map { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.6rem 0 0.4rem; max-width: 760px; }
   .book-map a { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 0.4rem;
     font-family: var(--serif); font-weight: 700; font-size: 1.05rem; text-decoration: none; border-radius: 6px; color: var(--umber); border: 1px dashed var(--clay); background: transparent; }
-  .book-map a.read { background: var(--gold); border: 1px solid var(--gold); }
+  .book-map a.read { background: var(--ochre); border: 1px solid var(--ochre); }
   .book-map a:hover { border-color: var(--dred); }
   .book-map a:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
   .map-key { font-size: 14px !important; }
 
 
   /* Echo and scene */
-  .echo-quote { font-family: var(--serif); font-size: 1.35rem !important; line-height: 1.45 !important; font-style: italic; border-left: 3px solid var(--gold); padding-left: 0.9rem; }
+  .echo-quote { font-family: var(--serif); font-size: 1.35rem !important; line-height: 1.45 !important; font-style: italic; border-left: 3px solid var(--ochre); padding-left: 0.9rem; }
   .echo-line { font-size: 15px !important; }
   .echo-line q { font-style: italic; }
   .scene-pick { background: var(--white); border: 1px solid var(--rule); border-radius: 10px; padding: 0.8rem 1rem 1rem; margin-bottom: 1.2rem; max-width: 760px; }
@@ -229,7 +229,7 @@
   .inline-choice .prompt-small { font-family: var(--serif); font-weight: 600; font-size: 1.1rem !important; margin-bottom: 0.6rem !important; }
   .inline-choice .row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .chip { font: inherit; font-size: 15px; background: var(--cream); color: var(--umber); border: 1px solid var(--clay); border-radius: 999px; padding: 0.5rem 0.95rem; min-height: 44px; cursor: pointer; }
-  .chip[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); font-weight: 700; }
+  .chip[aria-pressed="true"] { background: var(--ochre); border-color: var(--ochre); font-weight: 700; }
   .chip:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
   .reply { margin: 0.8rem 0 0 !important; font-size: 16px !important; }
   .reply:empty { display: none; }
@@ -243,12 +243,12 @@
   .quick fieldset.level { margin: 0 0 1.4rem; padding: 0.9rem 1.1rem 1.1rem; }
   .quick legend { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 0.15rem 0.55rem; border-radius: 4px; margin-bottom: 0.35rem; float: left; }
   .quick legend + * { clear: left; }
-  .quick .level-1 legend { background: var(--gold); color: var(--umber); }
-  .quick .level-2 legend { background: var(--coral); color: var(--umber); }
+  .quick .level-1 legend { background: var(--ochre); color: var(--umber); }
+  .quick .level-2 legend { background: var(--dteal); color: var(--white); }
   .quick .level-3 legend { background: var(--mred); color: var(--white); }
   .quick .reveal[hidden] { display: none; }
   .quick .level-explain { font-size: 15px !important; line-height: 1.65 !important; margin: 0.2rem 0 0.6rem !important; }
-  .quick .hold { border-left: 4px solid var(--dteal); background: #EEF4F1; padding: 0.7rem 0.9rem; border-radius: 0 8px 8px 0; margin-top: 0.8rem; }
+  .quick .hold { border-left: 4px solid var(--clay); background: var(--parchment); padding: 0.7rem 0.9rem; border-radius: 0 8px 8px 0; margin-top: 0.8rem; }
   .quick .hold p { margin-bottom: 0.4rem; }
   .quick-link { font: inherit; background: none; border: 0; color: var(--dteal); text-decoration: underline; cursor: pointer; padding: 0; font-weight: 600; }
   .quick-link:focus-visible { outline: 3px solid var(--dteal); outline-offset: 2px; }
@@ -1000,7 +1000,7 @@
       li.appendChild(a); list.appendChild(li);
     });
     document.getElementById('map-key').textContent = 'You read ' + read + ' of ' + nums.length +
-      ' passages. Gold marks your path. The dashed passages hold the roads you didn’t take, and every one is open to read. Your statement stays as you wrote it unless you change an answer.';
+      ' passages. Ochre marks your path. The dashed passages hold the roads you didn’t take, and every one is open to read. Your statement stays as you wrote it unless you change an answer.';
     document.getElementById('full-path').textContent = 'Your full path: ' + state.route.filter(function (n) { return PASSAGE[n] != null; }).map(function (n) { return PASSAGE[n]; }).join(' → ');
   }
 
