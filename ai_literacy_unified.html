@@ -779,6 +779,43 @@
   .def-teaching dt:first-child { font-style: normal; font-weight: 700; color: var(--s-black); grid-column: 1 / -1; }
   .def-teaching dd:nth-of-type(1) { display: none; }
   .page-footer-inner p { overflow-wrap: anywhere; }
+  .def-apply strong { color: var(--s-black); }
+  /* ─── Added 2026-10: navigation and location ─── */
+  html { scroll-behavior: smooth; }
+  .crumbs { max-width: 1100px; margin: 0 auto; padding: 0.7rem 1.5rem 0; font-size: 13px; color: var(--gray); display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .crumbs a { color: var(--gray); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .crumbs a:hover { color: var(--ncr); border-color: var(--ncr); }
+  .crumbs [aria-current] { color: var(--s-black); font-weight: 600; }
+  .toc { position: sticky; top: 60px; z-index: 90; background: var(--white); border-bottom: 1px solid var(--line); }
+  .toc { display: flex; align-items: center; gap: 1rem; max-width: 1100px; margin: 0.6rem auto 0; padding: 0.45rem 1.5rem; }
+  .toc-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); white-space: nowrap; }
+  .toc-list { list-style: none; display: flex; gap: 0.2rem; flex-wrap: wrap; }
+  .toc-list a { display: block; padding: 0.25rem 0.6rem; font-size: 13px; color: var(--s-gray); text-decoration: none; border-radius: 4px; border-bottom: 2px solid transparent; }
+  .toc-list a:hover { color: var(--s-black); background: var(--s-gray-lt); }
+  .toc-list a.current { color: var(--ncr-dark); border-bottom-color: var(--ncr); font-weight: 600; }
+  .numbered { display: flex; align-items: baseline; gap: 0.6rem; scroll-margin-top: 120px; }
+  .sec-num { font-family: var(--s-font); font-size: 0.75em; font-weight: 700; color: var(--ncr); min-width: 1.4em; }
+  .sec-title { flex: 1; }
+  .top-link { font-family: var(--s-font); font-size: 11px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray); text-decoration: none; margin-left: auto; padding-left: 1rem; }
+  .top-link:hover { color: var(--ncr); }
+  .callout { scroll-margin-top: 120px; }
+  .context-panel summary { display: flex; flex-direction: column; gap: 0.15rem; padding-right: 2.2rem; position: relative; }
+  .context-panel summary::after { content: "\25BE"; position: absolute; right: 1rem; top: 0.9rem; color: var(--ncr); font-size: 14px; transition: transform 0.15s; }
+  .context-panel[open] summary::after { transform: rotate(180deg); }
+  .sum-gloss { font-size: 13px; font-weight: 400; color: var(--gray); }
+
+  .router { max-width: 760px; margin: 0 0 1.5rem; padding: 1rem 1.2rem; background: var(--s-gray-lt); border-left: 3px solid var(--ncr); border-radius: 0 8px 8px 0; }
+  .router-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); margin-bottom: 0.5rem; }
+  .router-list { list-style: none; font-size: 15px; line-height: 1.6; }
+  .router-list li + li { margin-top: 0.45rem; }
+  .router-list strong { color: var(--s-black); font-weight: 600; }
+  .router-list a { color: var(--ncr-dark); }
+  @media (max-width: 860px) {
+    .toc { position: static; flex-direction: column; align-items: flex-start; gap: 0.3rem; }
+    .numbered { scroll-margin-top: 16px; }
+    .callout { scroll-margin-top: 16px; }
+  }
+
   @media (max-width: 760px) { .worked { grid-template-columns: 1fr; } }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -805,7 +842,7 @@
   </nav>
 </header>
 
-<div class="page-header">
+<div class="page-header" id="top">
   <div class="page-header-inner">
   <p class="eyebrow">NC State · Campus Writing and Speaking Program</p>
   <h1>AI Literacy Is Not One Thing</h1>
@@ -827,14 +864,40 @@
   </div>
 </div>
 
+
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">WOLF</a><span aria-hidden="true">›</span><a href="ai-literacies.html">AI Literacies</a><span aria-hidden="true">›</span><span aria-current="page">Framework</span></nav>
+
+<nav class="toc" id="toc" aria-label="On this page">
+  <span class="toc-label">On this page</span>
+  <ol class="toc-list">
+    <li><a href="#differ">1 How the levels differ</a></li>
+    <li><a href="#using">2 Using it</a></li>
+    <li><a href="#framework">3 The framework</a></li>
+    <li><a href="#example">4 One decision</a></li>
+    <li><a href="#audience">5 By audience</a></li>
+    <li><a href="#extension">6 The extension</a></li>
+    <li><a href="#context">7 In context</a></li>
+  </ol>
+</nav>
+
 <main id="main">
+
+<!-- ─── START HERE (added 2026-10) ───────────────────── -->
+<div class="router" aria-label="Start here">
+  <p class="router-label">Start here</p>
+  <ul class="router-list">
+    <li><strong>Deciding about one assignment or tool?</strong> Read <a href="#framework">the three levels</a>, then watch them run on <a href="#example">one decision</a>.</li>
+    <li><strong>Writing a course, program, or campus policy?</strong> Open <a href="#audience">the decision tool</a> and choose your audience. Link straight to it: <a href="#audience=faculty">faculty</a>, <a href="#audience=institution">institution</a>.</li>
+    <li><strong>Reading the scholarship behind the framework?</strong> Go to <a href="#context">the framework in context</a>.</li>
+  </ul>
+</div>
 
 <!-- ─── FRAMING ──────────────────────────────────────── -->
 <p class="prose">When institutions describe their goal as building AI literacy, the phrase collapses distinctions a program needs to draw. Literacy in relation to AI has three layers: conceptual, structural, and operative. Together they set the order in which any decision about AI gets reasoned. The three-level framework presented here names those layers precisely, so faculty development programs, governance bodies, and institutional policy work aim at the right level for the right purpose.</p>
 
 <!-- ─── HOW THE LEVELS DIFFER ────────────────────────── -->
 <div class="callout">
-  <h2 class="callout-head">How the three levels differ</h2>
+  <h2 class="callout-head numbered" id="differ"><span class="sec-num" aria-hidden="true">1</span><span class="sec-title">How the three levels differ</span><a class="top-link" href="#top">Top</a></h2>
   <div class="callout-body">
     <p>The framework names three kinds of literacy, each defined by what a person does.</p>
     <ul class="level-glosses">
@@ -851,7 +914,7 @@
 
 <!-- ─── USING THE FRAMEWORK (added 2026-10) ─────────── -->
 <div class="callout">
-  <h2 class="callout-head">Using the framework</h2>
+  <h2 class="callout-head numbered" id="using"><span class="sec-num" aria-hidden="true">2</span><span class="sec-title">Using the framework</span><a class="top-link" href="#top">Top</a></h2>
   <div class="callout-body">
     <p>The three levels name the order in which any decision about AI gets reasoned. Describe the system. Analyze the conditions built into it. Then decide. The order holds for a student choosing a tool for one assignment and for a university buying a platform. No one completes the first level and moves on, because each new system, and each new decision, starts the sequence again.</p>
     <ul class="level-glosses">
@@ -864,7 +927,7 @@
 </div>
 
 <!-- ─── SECTION 1: THE FRAMEWORK ─────────────────────── -->
-<h2 class="section-head">The Three-Level AI Literacy Framework</h2>
+<h2 class="section-head numbered" id="framework"><span class="sec-num" aria-hidden="true">3</span><span class="sec-title">The Three-Level AI Literacy Framework</span><a class="top-link" href="#top">Top</a></h2>
 
 <div class="figure-wrap">
   <p class="fig-instruction">Select any level panel to expand its definition</p>
@@ -1032,14 +1095,16 @@
           <span class="def-title def-title-1">Level 1: Conceptual literacy</span>
           <button class="def-close" onclick="toggleDef(1)" aria-label="Close definition">close <span aria-hidden="true">×</span></button>
         </div>
-        <p class="def-body">Conceptual literacy is the capacity to recognize, name, and describe AI systems with precision. A practitioner at this level identifies system type, traces the relationship between training data and model output, and distinguishes among architectures, applications, and classification schemes.</p>
+        <p class="def-body">Conceptual literacy is the capacity to recognize, name, and describe AI systems with precision. A practitioner at this level identifies what kind of system a tool is, traces how its training data shapes its output, and keeps apart terms often treated as one: an architecture (such as the transformer), a model trained on it, an application built on the model (a chatbot, a detector), and the category names vendors use to sell it (“generative,” “assistant,” “agent”).</p>
         <p class="def-body">Knowledge at this level is primarily technical and definitional. It makes the vocabulary of AI legible as a site of decision-making. Every term in AI discourse encodes a choice about whose cognitive practices count as intelligence, whose outputs count as correct, and whose contributions to the training set are treated as ground truth.</p>
         <p class="def-body">Conceptual literacy is present when a practitioner reads a system description and identifies what the system does along with whose knowledge the system was built to recognize. At this point the definitional question "what is this?" becomes inseparable from the power question "whose knowledge is encoded?"</p>
+        <p class="def-body def-apply"><strong>In practice.</strong> Reading a detector vendor’s description, a practitioner states what the tool measures (statistical features of a text), what it reports (a probability score), and what the score does not establish (what a writer did). The practitioner also asks what writing the tool treats as the human baseline.</p>
+        <p class="def-body def-apply"><strong>Signs it is missing.</strong> Treating “AI” as one thing. Reading a detector score as a finding. Taking a vendor’s category names as descriptions.</p>
         <dl class="def-teaching">
           <dt>For teaching</dt><dd></dd>
-          <dt>Knowledge character</dt><dd>Vocabulary and concept definition</dd>
-          <dt>Pedagogy</dt><dd>Direct instruction</dd>
-          <dt>Assessment</dt><dd>Correctness-based</dd>
+          <dt>Knowledge character</dt><dd>Vocabulary and concept definition.</dd>
+          <dt>Pedagogy</dt><dd>Direct instruction, with students describing real tools in their own terms.</dd>
+          <dt>Assessment</dt><dd>A description is checked against the system and graded for accuracy. The question of whose knowledge is encoded gets argued, and it is assessed with Level 2.</dd>
         </dl>
       </div>
 
@@ -1051,11 +1116,13 @@
         <p class="def-body">Structural literacy is the capacity to analyze conditions inherent to AI systems as information infrastructure, including the sourcing of training data from dominant-language and dominant-culture texts, the reproduction of existing social hierarchies in model outputs, the concentration of AI development within specific corporate and geopolitical contexts, and the mechanisms by which AI assessment instruments scale linguistic hierarchy as if it were cognitive capacity.</p>
         <p class="def-body">Analysis at this level moves from description to diagnosis. It asks what the system reproduces and for whose benefit.</p>
         <p class="def-body">Structural literacy is present when a practitioner traces the chain of production and control behind a system, reads ownership, optimization targets, and data provenance as analytically prior to any question of deployment or use, and treats those conditions as objects of institutional inquiry.</p>
+        <p class="def-body def-apply"><strong>In practice.</strong> Examining the same detector, a practitioner traces who built it, what data trained it, and where it sends student work. The findings hold for every user. Detectors misclassify writing by non-native English writers at high rates (Liang et al., 2023). No tool in a fourteen-tool test proved reliable (Weber-Wulff et al., 2023). The vendor keeps its method undisclosed, and each scan sends student work to a third party.</p>
+        <p class="def-body def-apply"><strong>Signs it is missing.</strong> Debating a tool’s features without asking who owns it. Treating bias as a defect the next version will fix. Leaving data flows out of the discussion.</p>
         <dl class="def-teaching">
           <dt>For teaching</dt><dd></dd>
-          <dt>Knowledge character</dt><dd>Analysis of inherent system conditions</dd>
-          <dt>Pedagogy</dt><dd>Critical analysis</dd>
-          <dt>Assessment</dt><dd>Argumentative quality</dd>
+          <dt>Knowledge character</dt><dd>Analysis of inherent system conditions.</dd>
+          <dt>Pedagogy</dt><dd>Critical analysis, with students tracing ownership, training data, and optimization targets for a tool they use.</dd>
+          <dt>Assessment</dt><dd>Graded on argumentative quality: the evidence and reasoning behind a claim about a system, including the Level 1 question of whose knowledge it encodes.</dd>
         </dl>
       </div>
 
@@ -1068,11 +1135,13 @@
         <p class="def-body">Judgment at this level is irreducibly particular. The conditions of a specific situation determine the right action, and the practitioner analyzes those conditions through the conceptual and structural capacities the preceding levels provide.</p>
         <p class="def-body">Operative literacy is present when a practitioner articulates a decision together with the structural analysis grounding it, and accepts institutional accountability for the reasoning.</p>
         <p class="def-body">Refusal theory (Simpson, 2014; Campt, 2017; Benjamin, 2019) names the form operative literacy takes at institutional scale: accountable rejection of conditions which reproduce harm, grounded in analysis of those conditions. Refusal in this sense differs from non-compliance. It carries the same duty to give reasons as any other operative decision.</p>
+        <p class="def-body def-apply"><strong>In practice.</strong> Working from the structural analysis, an instructor decides whether detector scores have any place in an academic integrity case, writes the decision into the syllabus, and states the reasons. A decision to refuse carries the same duty to give reasons as a decision to adopt.</p>
+        <p class="def-body def-apply"><strong>Signs it is missing.</strong> Deciding by default, adopting a tool because the license exists or banning it because the risk feels high. Decisions with no stated reasons. Reasons nobody owns.</p>
         <dl class="def-teaching">
           <dt>For teaching</dt><dd></dd>
-          <dt>Knowledge character</dt><dd>Contextual judgment, principled refusal</dd>
-          <dt>Pedagogy</dt><dd>Situated, case-based</dd>
-          <dt>Assessment</dt><dd>Contextual, accountable</dd>
+          <dt>Knowledge character</dt><dd>Contextual judgment, principled refusal.</dd>
+          <dt>Pedagogy</dt><dd>Situated and case-based, with students writing and defending a policy for a real course or task.</dd>
+          <dt>Assessment</dt><dd>Contextual and accountable: graded on whether the reasons fit the situation, draw on the structural analysis, and name who answers for the decision.</dd>
         </dl>
       </div>
 
@@ -1087,7 +1156,7 @@
 
 
 <!-- ─── WORKED EXAMPLE (added 2026-10) ─────────────── -->
-<h2 class="section-head">One Decision, Three Levels</h2>
+<h2 class="section-head numbered" id="example"><span class="sec-num" aria-hidden="true">4</span><span class="sec-title">One Decision, Three Levels</span><a class="top-link" href="#top">Top</a></h2>
 
 <p class="prose">Should we use an AI-writing detector on student work? The question recurs across higher education, and it reaches every audience on this page: a student whose essay gets flagged, an instructor deciding whether to run one, a writing program setting practice, and a university deciding whether to license one. Vanderbilt University disabled Turnitin's AI detector in August 2023 after months of testing. Here is the same question worked through all three levels.</p>
 
@@ -1110,50 +1179,8 @@
 </div>
 <p class="prose worked-note">When the vendor releases a new version, or a different tool arrives, the sequence starts again at Level 1.</p>
 
-<!-- ─── THE FRAMEWORK IN CONTEXT (added 2026-10) ───── -->
-<h2 class="section-head">The Framework in Context</h2>
-<p class="prose">Two reference panels place the framework against the scholarship it draws on and the terms in common circulation. Full citations appear at the bottom of the page.</p>
-
-<details class="context-panel">
-  <summary>In conversation with literacy scholarship</summary>
-  <div class="context-body">
-    <h3>Scribner and Cole (1978), "Unpackaging Literacy"</h3>
-    <p>Studying literacy among the Vai in Liberia, Scribner and Cole found the single word "writing" covered a wide range of activities, each with its own skills and consequences. This framework makes the same argument about AI. "AI literacy" names several different capacities, and a program has to say which one it means.</p>
-    <h3>Scribner (1984), "Literacy in Three Metaphors"</h3>
-    <p>Scribner showed each definition of literacy carries an assumption about what literacy is for: adapting to everyday demands, gaining power, or attaining a valued status. This framework asks the power question at every level. Even the first level, description, includes asking whose knowledge a system encodes.</p>
-    <h3>Street (2003), "What's 'New' in New Literacy Studies?"</h3>
-    <p>Street describes literacy as social practice, varying across times and places and contested within relations of power. He sets this account against what he calls the autonomous model, in which literacy is a neutral skill with effects of its own. This framework follows the social-practice account. It treats AI literacy as practices shaped by who builds, owns, and governs the systems.</p>
-    <h3>Brandt (1998), "Sponsors of Literacy"</h3>
-    <p>Brandt defines sponsors as "any agents, local or distant, concrete or abstract, who enable, support, teach, model, as well as recruit, regulate, suppress, or withhold literacy," and who gain advantage by doing so (p. 166). Structural literacy asks Brandt's question of AI. Who sponsors this literacy, and what do they gain? A company offering free training in its own tools is a sponsor in her sense.</p>
-    <h3>Selber (2004), <em>Multiliteracies for a Digital Age</em></h3>
-    <p>Selber's three literacies (functional, critical, and rhetorical) remain the closest model in writing studies. Structural literacy corresponds to his critical literacy, which treats computers as cultural artifacts. Operative literacy corresponds to his rhetorical literacy, which joins functional and critical abilities in practice. This framework departs from Selber in two places. It has no functional level, and it treats refusal as a literate act.</p>
-    <h3>Keefe and Copeland (2011), "What Is Literacy? The Power of a Definition"</h3>
-    <p>Keefe and Copeland show how restrictive definitions of literacy shut people out of literacy instruction. This framework takes their warning as a design rule. Its levels set the order for reasoning through a decision. They do not sort people by readiness, and no one waits to be judged ready for structural analysis.</p>
-    <h3>Perry (2012), "What Is Literacy? A Critical Overview of Sociocultural Perspectives"</h3>
-    <p>Perry compares three sociocultural approaches (literacy as social practice, multiliteracies, and critical literacy) and argues they share concerns without forming one theory. This framework draws on all three. Perry's caution against merging them is one reason the framework keeps its levels distinct.</p>
-  </div>
-</details>
-
-<details class="context-panel">
-  <summary>Common terms, read against this framework</summary>
-  <div class="context-body">
-    <h3>Literacy</h3>
-    <p>In policy documents, literacy usually means a baseline of knowledge everyone should have. Here, literacy names three kinds of act (describing, analyzing, and deciding), and a sound decision requires all three.</p>
-    <h3>Skills and competencies</h3>
-    <p>Competency frameworks list what a person should know and do with AI. Ng and colleagues (2021) name four aspects: know and understand, use and apply, evaluate and create, and ethics. Lists like these give use a level of its own and set ethics apart as a separate category. This framework places use inside the operative decision. It treats ethics at two levels, as the harms built into a system and as what one person or body owes in a single decision.</p>
-    <h3>Levels</h3>
-    <p>Many domain literacies arrange their levels by degree. Nutbeam's (2000) health literacy rises from functional to interactive to critical, each level defined by more advanced skill. The levels here differ by the kind of act each requires. An expert describing a new system is doing first-level work.</p>
-    <h3>Proficiency</h3>
-    <p>Proficiency scales rate a person as basic, intermediate, or advanced. Applied to AI, they measure how much a person knows or how well they use a tool. This framework asks which kinds of reasoning went into a decision.</p>
-    <h3>Fluency</h3>
-    <p>The National Research Council's 1999 report, <em>Being Fluent with Information Technology</em>, adopted "fluency" for a deeper understanding than computer literacy, combining skills, concepts, and intellectual capabilities. In current institutional use, fluency marks the top of a scale: use without hesitation. Operative literacy asks for a decision made deliberately, with reasons stated and accountability accepted. Ease of use and accountable judgment are different goals. This framework asks for the second.</p>
-    <h3>Pathway</h3>
-    <p>A pathway assumes a destination set in advance, with learners moving toward it in stages. This framework sets no destination. It asks each person to reason every decision through all three levels, and the outcome, including refusal, belongs to the person or body deciding.</p>
-  </div>
-</details>
-
 <!-- ─── SECTION 2: GOVERNANCE APPLICATION ────────────── -->
-<h2 class="section-head">Governance Application · By Audience</h2>
+<h2 class="section-head numbered" id="audience"><span class="sec-num" aria-hidden="true">5</span><span class="sec-title">Governance Application · By Audience</span><a class="top-link" href="#top">Top</a></h2>
 
 <p class="prose">The three-level framework applies beyond faculty development and holds constant across scales. The same three questions (whose knowledge is encoded, who controls this system, what warrants refusal) apply to an individual student's choice on one assignment, a faculty member's policy for one assignment, a professional's use of a tool on one work product, and an institution's procurement decision. Only the decision changes. Select an audience below to see the same analysis worked through for its decision.</p>
 
@@ -1187,7 +1214,7 @@
 </figure>
 
 <!-- ─── SECTION 3: AI LITERACIES EXTENSION ───────────── -->
-<h2 class="section-head">The AI Literacies Extension · NC State CWSP</h2>
+<h2 class="section-head numbered" id="extension"><span class="sec-num" aria-hidden="true">6</span><span class="sec-title">The AI Literacies Extension · NC State CWSP</span><a class="top-link" href="#top">Top</a></h2>
 
 <p class="prose">Generative AI has changed what asking students to write means. Faculty across disciplines are rethinking assignment design, academic integrity policies, and what authorship requires in their fields. The WOLF AI Literacies extension gives faculty a structured place to work through those questions, with frameworks, discussion prompts, and design tools grounded in communication pedagogy.</p>
 
@@ -1225,6 +1252,49 @@
 <p class="prose">The four areas follow the three levels. Area 1 works at the conceptual level. Area 2 begins with structural analysis, what the tools do to writing for everyone who uses them, and ends in a judgment about one course. Areas 3 and 4 work at the operative level, where an instructor decides on design and policy.</p>
 
 <p class="prose">Liaisons facilitate the extension with the WOLF model: sustained conversation, iterative design work, and documentation of decisions and rationale. The workbook is written for liaison-facilitated use. Faculty are welcome to work through it alone. Contact <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole at CWSP</a> to begin or to connect your work to a full WOLF engagement. More information is at <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a>.</p>
+
+<!-- ─── THE FRAMEWORK IN CONTEXT (added 2026-10) ───── -->
+<h2 class="section-head numbered" id="context"><span class="sec-num" aria-hidden="true">7</span><span class="sec-title">The Framework in Context</span><a class="top-link" href="#top">Top</a></h2>
+<p class="prose">Two reference panels place the framework against the scholarship it draws on and the terms in common circulation. Full citations appear at the bottom of the page.</p>
+
+<details class="context-panel">
+  <summary><span class="sum-title">In conversation with literacy scholarship</span><span class="sum-gloss">Seven scholars this framework draws on, and where it departs from them</span></summary>
+  <div class="context-body">
+    <h3>Scribner and Cole (1978), "Unpackaging Literacy"</h3>
+    <p>Studying literacy among the Vai in Liberia, Scribner and Cole found the single word "writing" covered a wide range of activities, each with its own skills and consequences. This framework makes the same argument about AI. "AI literacy" names several different capacities, and a program has to say which one it means.</p>
+    <h3>Scribner (1984), "Literacy in Three Metaphors"</h3>
+    <p>Scribner showed each definition of literacy carries an assumption about what literacy is for: adapting to everyday demands, gaining power, or attaining a valued status. This framework asks the power question at every level. Even the first level, description, includes asking whose knowledge a system encodes.</p>
+    <h3>Street (2003), "What's 'New' in New Literacy Studies?"</h3>
+    <p>Street describes literacy as social practice, varying across times and places and contested within relations of power. He sets this account against what he calls the autonomous model, in which literacy is a neutral skill with effects of its own. This framework follows the social-practice account. It treats AI literacy as practices shaped by who builds, owns, and governs the systems.</p>
+    <h3>Brandt (1998), "Sponsors of Literacy"</h3>
+    <p>Brandt defines sponsors as "any agents, local or distant, concrete or abstract, who enable, support, teach, model, as well as recruit, regulate, suppress, or withhold literacy," and who gain advantage by doing so (p. 166). Structural literacy asks Brandt's question of AI. Who sponsors this literacy, and what do they gain? A company offering free training in its own tools is a sponsor in her sense.</p>
+    <h3>Selber (2004), <em>Multiliteracies for a Digital Age</em></h3>
+    <p>Selber's three literacies (functional, critical, and rhetorical) remain the closest model in writing studies. Structural literacy corresponds to his critical literacy, which treats computers as cultural artifacts. Operative literacy corresponds to his rhetorical literacy, which joins functional and critical abilities in practice. This framework departs from Selber in two places. It has no functional level, and it treats refusal as a literate act.</p>
+    <h3>Keefe and Copeland (2011), "What Is Literacy? The Power of a Definition"</h3>
+    <p>Keefe and Copeland show how restrictive definitions of literacy shut people out of literacy instruction. Their third core principle reads: “Literacy is not a trait that resides solely in the individual person. It requires and creates a connection (relationship) with others” (p. 97). This framework takes their warning as a design rule. Its levels set the order for reasoning through a decision. They do not sort people by readiness, and no one waits to be judged ready for structural analysis.</p>
+    <h3>Perry (2012), "What Is Literacy? A Critical Overview of Sociocultural Perspectives"</h3>
+    <p>Perry compares three sociocultural approaches (literacy as social practice, multiliteracies, and critical literacy) and argues they share concerns without forming one theory. This framework draws on all three. Perry's caution against merging them is one reason the framework keeps its levels distinct.</p>
+  </div>
+</details>
+
+<details class="context-panel">
+  <summary><span class="sum-title">Common terms, read against this framework</span><span class="sum-gloss">Six terms in circulation (literacy, competency, levels, proficiency, fluency, pathway) and what each assumes</span></summary>
+  <div class="context-body">
+    <h3>Literacy</h3>
+    <p>In policy documents, literacy usually means a baseline of knowledge everyone should have. Here, literacy names three kinds of act (describing, analyzing, and deciding), and a sound decision requires all three.</p>
+    <h3>Skills and competencies</h3>
+    <p>Competency frameworks list what a person should know and do with AI. Ng and colleagues (2021) name four aspects: know and understand, use and apply, evaluate and create, and ethics. Lists like these give use a level of its own and set ethics apart as a separate category. This framework places use inside the operative decision. It treats ethics at two levels, as the harms built into a system and as what one person or body owes in a single decision.</p>
+    <h3>Levels</h3>
+    <p>Many domain literacies arrange their levels by degree. Nutbeam's (2000) health literacy rises from functional to interactive to critical, each level defined by more advanced skill. The levels here differ by the kind of act each requires. An expert describing a new system is doing first-level work.</p>
+    <h3>Proficiency</h3>
+    <p>Proficiency scales rate a person as basic, intermediate, or advanced. Applied to AI, they measure how much a person knows or how well they use a tool. This framework asks which kinds of reasoning went into a decision.</p>
+    <h3>Fluency</h3>
+    <p>The National Research Council's 1999 report, <em>Being Fluent with Information Technology</em>, adopted "fluency" for a deeper understanding than computer literacy, combining skills, concepts, and intellectual capabilities. In current institutional use, fluency marks the top of a scale: use without hesitation. Operative literacy asks for a decision made deliberately, with reasons stated and accountability accepted. Ease of use and accountable judgment are different goals. This framework asks for the second.</p>
+    <h3>Pathway</h3>
+    <p>A pathway assumes a destination set in advance, with learners moving toward it in stages. This framework sets no destination. It asks each person to reason every decision through all three levels, and the outcome, including refusal, belongs to the person or body deciding.</p>
+  </div>
+</details>
+
 
 </main>
 
@@ -1722,20 +1792,35 @@
     });
   }
 
+  function agSelect(aud, push) {
+    var tab = document.querySelector('.audience-tab[data-audience="' + aud + '"]');
+    if (!tab) return false;
+    document.querySelectorAll(".audience-tab").forEach(function (t) { t.setAttribute("aria-pressed", "false"); });
+    tab.setAttribute("aria-pressed", "true");
+    agRender(aud);
+    if (push && history.replaceState) history.replaceState(null, "", "#audience=" + aud);
+    return true;
+  }
   document.querySelectorAll(".audience-tab").forEach(function (tab) {
-    tab.addEventListener("click", function () {
-      document.querySelectorAll(".audience-tab").forEach(function (t) { t.setAttribute("aria-pressed", "false"); });
-      tab.setAttribute("aria-pressed", "true");
-      agRender(tab.getAttribute("data-audience"));
-    });
+    tab.addEventListener("click", function () { agSelect(tab.getAttribute("data-audience"), true); });
   });
+  function agFromHash() {
+    var m = /^#audience=([a-z]+)$/.exec(location.hash);
+    if (m && agSelect(m[1], false)) {
+      var el = document.getElementById("audience");
+      if (el) el.scrollIntoView();
+      return true;
+    }
+    return false;
+  }
+  window.addEventListener("hashchange", agFromHash);
 
   document.getElementById("shortcut-hdr").setAttribute("tabindex", "0");
   document.getElementById("shortcut-hdr").addEventListener("keydown", function (e) {
     if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleShortcut(); }
   });
 
-  agRender("institution");
+  if (!agFromHash()) agRender("institution");
 
   /* ── Page nav dropdown ───────────────────────────────── */
   function togglePageNav() {
@@ -1768,6 +1853,20 @@
       this.focus();
     }
   });
+</script>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc-list a'));
+  var targets = links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function mark(){
+    var y = window.scrollY + 140, idx = 0;
+    for (var i = 0; i < targets.length; i++) { if (targets[i] && targets[i].offsetTop <= y) idx = i; }
+    links.forEach(function(a, i){ a.classList.toggle('current', i === idx); a.removeAttribute('aria-current'); });
+    if (links[idx]) links[idx].setAttribute('aria-current', 'location');
+  }
+  window.addEventListener('scroll', mark, {passive:true}); window.addEventListener('load', mark); mark();
+})();
 </script>
 
 </body>
