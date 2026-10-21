@@ -345,6 +345,11 @@ function C2TC_sendCopy_(file, who, where, p, when) {
     ? 'The pages written to students are ready to copy into your syllabus or course site, and your teaching notes follow them. Keep the file as a record of your teaching development for annual review.'
     : 'Keep it as a record of your teaching development for annual review, or draw on your notes as you plan the course.';
   var program = wolf ? 'WOLF' : 'C²TC';
+  /* WOLF: the liaison edits the Doc itself, so the plan has one shared working copy CWSP owns. */
+  var docLink = '';
+  if (wolf && who.email) {
+    try { file.addEditor(who.email); docLink = file.getUrl(); } catch (shareErr) { console.error('WOLF share error:', shareErr); }
+  }
   var site = wolf ? 'https://cwspwolf.com/wolf-workbook.html' : C2TC.SITE;
   var siteName = wolf ? 'WOLF Workbook' : 'C²TC site';
   var date = Utilities.formatDate(when, 'America/New_York', 'MMMM d, yyyy');
@@ -354,6 +359,8 @@ function C2TC_sendCopy_(file, who, where, p, when) {
     '<p>Attached is a copy of your responses to ' + what + ', submitted ' + date + '.</p>' +
     '<p>The Word file is yours to edit. ' + uses + ' ' +
     'The PDF keeps your responses as you submitted them.</p>' +
+    (docLink ? '<p>The same document is shared with you as a Google Doc, with editing rights, at <a href="' + docLink + '">' + docLink + '</a>. ' +
+      'Revise it there with colleagues; CWSP sees your revisions. A later submission from the workbook creates a new document rather than changing this one.</p>' : '') +
     '<p>CWSP keeps a copy in your ' + program + ' folder. To continue, return to the ' +
     '<a href="' + site + '">' + siteName + '</a>. Questions come to me by reply.</p>' +
     '<p>Best,<br>Kirsti</p>' +
