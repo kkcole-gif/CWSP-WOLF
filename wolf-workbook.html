@@ -132,7 +132,8 @@
     <button type="button" class="btn-sidebar" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
     <button type="button" class="btn-sidebar" onclick="window.print()">Download as PDF, or print</button>
     <button type="button" class="btn-sidebar" onclick="downloadAnswers()">Download my answers (Word)</button>
-    <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. The emailed link opens it on any computer. For a PDF, choose "Save as PDF" as the destination in the print dialog.</p>
+    <button type="button" class="btn-sidebar" id="doc-btn" onclick="createSharedDoc()">Create a shared Google Doc</button>
+    <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. The emailed link opens it on any computer. For a PDF, choose "Save as PDF" as the destination in the print dialog. "Download my answers (Word)" gives you a file of every answer under its prompt. "Create a shared Google Doc" turns your current answers into a Google Doc CWSP owns and you edit, with the link emailed to you, for drafting with colleagues before you submit.</p>
   </div>
   <nav aria-label="Workbook navigation">
     <p class="sidebar-part">Start</p>
@@ -637,6 +638,20 @@ function saveDraft() {
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
     .then(() => setStatus('Saved at ' + new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }) + '. A link to continue is on its way to ' + who.email + '. Save again any time; the same link opens your latest work.'))
     .catch(() => setStatus('Saving failed. Your work is still in this browser. Try again, or email kkcole2@ncsu.edu.'));
+}
+function createSharedDoc() {
+  const who = identity();
+  if (!who) { setStatus('Enter your name and NC State email under "Who you are", then try again.'); return; }
+  const cur = document.getElementById('s0-current').value;
+  const stage = cur === '3' ? 3 : cur === '1' ? 1 : 2;
+  const f = {}; workFields().forEach(el => { f[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
+  const data = describe({ action: 'wolf_doc', module: 'wolf-stage' + stage, page: 'wolf-workbook.html', certificate_name: who.name, certificate_email: who.email, timestamp: new Date().toISOString(), fields: f });
+  if (stage === 2) { data.workbook_title = 'Writing and Speaking Curriculum Plan, draft: ' + (val('s0-department') || who.name); data.wscp_table = mapTable(); }
+  const btn = document.getElementById('doc-btn'); btn.disabled = true;
+  setStatus('Creating the document…');
+  fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+    .then(() => { setStatus('Done. A link to your shared Google Doc is on its way to ' + who.email + '. Share it from the Doc\'s Share button, and carry the settled text back here before you submit.'); btn.disabled = false; })
+    .catch(() => { setStatus('That did not go through. Try again, or email kkcole2@ncsu.edu.'); btn.disabled = false; });
 }
 function banner(html) {
   const b = document.createElement('div'); b.className = 'resume-banner'; b.setAttribute('role', 'status'); b.innerHTML = html;
