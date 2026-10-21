@@ -39,7 +39,7 @@ var C2TC = {
   SEND_COPY: true,
   REPLY_TO: 'kkcole2@ncsu.edu',
   SITE: 'https://cwspwolf.com/acicertificate/',
-  META_KEYS: ['module', 'timestamp', 'certificate_name', 'certificate_email', 'program', 'stage', 'wscp_table',
+  META_KEYS: ['module', 'timestamp', 'certificate_name', 'certificate_email', 'program', 'stage', 'wscp_table', 'rubric_writing', 'rubric_oral', 'nominations',
               'participant_name', 'participant_email', 'cert-name', 'cert-email',
               'cert-department', 'cert-role', 'type', 'submission_type',
               'workbook_title', 'field_labels', 'field_sections']
@@ -210,6 +210,27 @@ C2TC_LAYOUTS['wolf-stage2'] = {
     ["f-2-10-ai", "AI Literacies work at this stage"]]]]
 };
 
+/* WOLF Stage 3. Part 1 holds the department's adapted rubrics and the certification record;
+   Part 2 the liaison's reflection. Rubric and nomination tables are placed by the table hook. */
+C2TC_LAYOUTS['wolf-stage3'] = {
+  "intro": "The department's rubrics, certification record, and recognition nominations, generated from the WOLF Workbook.",
+  "student_title": "Evidence and certification",
+  "student": [
+    {"title": "Writing rubric, adapted", "course": [], "framing": "Four-level scale: exemplary, proficient, developing, beginning. Each row names a criterion and what exemplary work does in this discipline.", "table": "rubric_writing", "table_head": ["Criterion", "Exemplary work"], "blocks": []},
+    {"title": "Oral presentation rubric, adapted", "course": [], "framing": "Four-level scale: exemplary, proficient, developing, beginning.", "table": "rubric_oral", "table_head": ["Criterion", "Exemplary work"], "blocks": [[["f-3-12-norming"], "Norming"]]},
+    {"title": "Assessment evidence", "course": [], "framing": null, "blocks": [
+      [["f-3-11-collected"], "What was collected"], [["f-3-11-findings"], "What the first review found"], [["f-3-11-revisions"], "Revisions to the plan"],
+      [["f-3-11-review-date"], "Date of the review conversation"], [["f-3-11-checkin"], "Mid-cycle check-in with CWSP"]]},
+    {"title": "Certification record", "course": [], "framing": null, "blocks": [
+      [["f-3-14-engagement"], "Faculty engagement record"], [["f-3-14-samples"], "Student work samples"], [["f-3-14-sustain"], "Sustaining the plan after certification"]]},
+    {"title": "Recognition nominations", "course": [], "framing": "CWSP drafts and signs each letter from the contribution described.", "table": "nominations", "table_head": ["Nominee", "Letter", "Contribution"], "blocks": []}
+  ],
+  "notes_title": "Liaison's Stage 3 reflection",
+  "notes": [["Implementation and assessment", [
+    ["f-3-14-data", "What the assessment data showed"], ["f-3-14-shift", "How faculty attitudes shifted since Stage 1"],
+    ["f-3-14-revise", "What I would revise in the plan"], ["f-3-14-needs", "What the department needs from CWSP"]]]]
+};
+
 function C2TC_writeDoc_(title, who, where, p, when) {
   var doc = DocumentApp.create(title);
   var body = doc.getBody();
@@ -246,7 +267,9 @@ function C2TC_writeDoc_(title, who, where, p, when) {
         if (course) C2TC_style_(body.appendParagraph(course.split(/\n/)[0]), true, false);
         if (it.framing) C2TC_style_(body.appendParagraph(it.framing), false, true);
         if (it.table && Array.isArray(p[it.table]) && p[it.table].length) {
-          var cells = [['Course', 'Level', 'Writing', 'Speaking', 'Outcomes']].concat(p[it.table].map(function (r) {
+          var head = it.table_head || ['Course', 'Level', 'Writing', 'Speaking', 'Outcomes'];
+          var cells = [head].concat(p[it.table].map(function (r) {
+            if (!Array.isArray(r)) r = [r.name, r.letter, r.contribution];
             return r.map(function (c) { return String(c || ''); });
           }));
           var tbl = body.appendTable(cells);
