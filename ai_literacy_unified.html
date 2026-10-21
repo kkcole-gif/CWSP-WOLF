@@ -757,6 +757,29 @@
     .panel-question { order: 3; flex: 1 1 100%; }
     .start-node { border-radius: 16px; padding: 0.7rem 1.1rem; }
   }
+
+  /* ─── Added 2026-10: worked example, context panels, teaching notes ─── */
+  .worked { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 1.5rem 0 0.5rem; }
+  .worked-step { border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem; background: var(--white); font-size: 15px; line-height: 1.65; color: #333; }
+  .worked-step p + p { margin-top: 0.6rem; }
+  .worked-level { font-size: 12px; font-weight: 700; letter-spacing: 0.02em; margin-bottom: 0.5rem; }
+  .worked-1 { border-top: 4px solid #FAC800; } .worked-1 .worked-level { color: #5C4500; }
+  .worked-2 { border-top: 4px solid #D14905; } .worked-2 .worked-level { color: #7A2E03; }
+  .worked-3 { border-top: 4px solid #CC0000; } .worked-3 .worked-level { color: #7A0000; }
+  .worked-produce { font-size: 13px; font-style: italic; color: var(--gray); }
+  .worked-note { font-size: 14px; font-style: italic; color: var(--gray); margin-bottom: 1rem; }
+  .context-panel { max-width: 760px; border: 1px solid var(--line); border-radius: 10px; margin: 1rem 0; background: var(--white); }
+  .context-panel summary { cursor: pointer; padding: 0.9rem 1.1rem; font-weight: 600; color: var(--s-black); font-size: 16px; }
+  .context-panel summary:focus-visible { outline: 2px solid var(--ncr); outline-offset: 2px; }
+  .context-panel[open] summary { border-bottom: 1px solid var(--line); }
+  .context-body { padding: 0.4rem 1.1rem 1.1rem; font-size: 15px; line-height: 1.7; color: #333; }
+  .context-body h3 { font-size: 15px; color: var(--s-black); margin: 1rem 0 0.3rem; }
+  .def-teaching { margin-top: 0.9rem; padding-top: 0.6rem; border-top: 0.5px solid #ddd; font-size: 13.5px; display: grid; grid-template-columns: max-content 1fr; gap: 0.2rem 1rem; }
+  .def-teaching dt { font-style: italic; color: var(--gray); }
+  .def-teaching dt:first-child { font-style: normal; font-weight: 700; color: var(--s-black); grid-column: 1 / -1; }
+  .def-teaching dd:nth-of-type(1) { display: none; }
+  .page-footer-inner p { overflow-wrap: anywhere; }
+  @media (max-width: 760px) { .worked { grid-template-columns: 1fr; } }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -807,7 +830,7 @@
 <main id="main">
 
 <!-- ─── FRAMING ──────────────────────────────────────── -->
-<p class="prose">When institutions describe their goal as building AI literacy, the phrase collapses distinctions a program needs to draw. Literacy in relation to AI has three layers: conceptual, structural, and operative. Each requires the preceding level as its analytical foundation. The three-level framework presented here names those layers precisely, so faculty development programs, governance bodies, and institutional policy work aim at the right level for the right purpose.</p>
+<p class="prose">When institutions describe their goal as building AI literacy, the phrase collapses distinctions a program needs to draw. Literacy in relation to AI has three layers: conceptual, structural, and operative. Together they set the order in which any decision about AI gets reasoned. The three-level framework presented here names those layers precisely, so faculty development programs, governance bodies, and institutional policy work aim at the right level for the right purpose.</p>
 
 <!-- ─── HOW THE LEVELS DIFFER ────────────────────────── -->
 <div class="callout">
@@ -822,6 +845,21 @@
     <p>Structural and operative are the two levels most often read as one. One test separates them. A structural question has the same answer for everyone who meets the system. An operative question has an answer only once a particular person or committee, in a particular situation, decides.</p>
     <p>Ethics appears at both levels and does different work at each. Structural literacy studies the harms a system carries into every use. Operative literacy concerns what one person or body owes in a single decision, including the decision to refuse. Structural analysis informs the decision without making it. Two instructors who agree about a model's bias will still reach different, defensible policies for different courses.</p>
     <p>The two words carry these senses. Structural refers to what is built in. Operative is used as in the operative clause of a policy, the part with force.</p>
+  </div>
+</div>
+
+
+<!-- ─── USING THE FRAMEWORK (added 2026-10) ─────────── -->
+<div class="callout">
+  <h2 class="callout-head">Using the framework</h2>
+  <div class="callout-body">
+    <p>The three levels name the order in which any decision about AI gets reasoned. Describe the system. Analyze the conditions built into it. Then decide. The order holds for a student choosing a tool for one assignment and for a university buying a platform. No one completes the first level and moves on, because each new system, and each new decision, starts the sequence again.</p>
+    <ul class="level-glosses">
+      <li><strong>For one decision.</strong> Work through the three questions in order before acting.</li>
+      <li><strong>At any scale.</strong> The questions stay the same for a student, an instructor, a professional, and an institution. Only the decision changes.</li>
+      <li><strong>Where you work.</strong> The worked example, the decision tool, and the workbook below apply the framework to assignments, course policies, and purchases.</li>
+    </ul>
+    <p>Tool use has no level of its own. Skill with a tool follows from an operative decision to use it, and the framework asks for the decision first.</p>
   </div>
 </div>
 
@@ -868,19 +906,19 @@
         <text class="n1" x="125" y="50" text-anchor="middle">Level 1 · Describe</text>
         <text class="h1" x="125" y="70" text-anchor="middle">Conceptual literacy</text>
         <line x1="30"  y1="88" x2="220" y2="88"  stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="125" y="106" text-anchor="middle">Knowledge character</text>
-        <text class="val" x="125" y="123" text-anchor="middle">Vocabulary and</text>
-        <text class="val" x="125" y="139" text-anchor="middle">concept definition</text>
-        <line x1="50"  y1="153" x2="200" y2="153" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="125" y="169" text-anchor="middle">Pedagogy</text>
-        <text class="val" x="125" y="186" text-anchor="middle">Direct instruction</text>
-        <line x1="50"  y1="200" x2="200" y2="200" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="125" y="216" text-anchor="middle">Assessment</text>
-        <text class="val" x="125" y="233" text-anchor="middle">Correctness-based</text>
-        <line x1="50"  y1="248" x2="200" y2="248" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="125" y="264" text-anchor="middle">Key question</text>
-        <text class="val" x="125" y="281" text-anchor="middle">Whose knowledge</text>
-        <text class="val" x="125" y="297" text-anchor="middle">is encoded?</text>
+        <text class="lbl" x="125" y="106" text-anchor="middle">You ask</text>
+        <text class="val" x="125" y="123" text-anchor="middle">What is this system,</text>
+        <text class="val" x="125" y="139" text-anchor="middle">and whose knowledge</text>
+        <text class="val" x="125" y="155" text-anchor="middle">does it encode?</text>
+        <line x1="50" y1="169" x2="200" y2="169" stroke="#DDDDDD" stroke-width="0.5"/>
+        <text class="lbl" x="125" y="187" text-anchor="middle">You do</text>
+        <text class="val" x="125" y="204" text-anchor="middle">Name the system type</text>
+        <text class="val" x="125" y="220" text-anchor="middle">and trace how its data</text>
+        <text class="val" x="125" y="236" text-anchor="middle">shapes its output</text>
+        <line x1="50" y1="250" x2="200" y2="250" stroke="#DDDDDD" stroke-width="0.5"/>
+        <text class="lbl" x="125" y="268" text-anchor="middle">You produce</text>
+        <text class="val" x="125" y="285" text-anchor="middle">A precise</text>
+        <text class="val" x="125" y="301" text-anchor="middle">description</text>
         <circle class="active-dot" cx="207" cy="43" r="4" fill="#FAC800"/>
         <rect class="panel-border panel-border-1"
               x="30" y="30" width="190" height="310" rx="10"
@@ -897,19 +935,19 @@
         <text class="n2" x="340" y="50" text-anchor="middle">Level 2 · Analyze</text>
         <text class="h2" x="340" y="70" text-anchor="middle">Structural literacy</text>
         <line x1="245" y1="88" x2="435" y2="88"  stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="340" y="106" text-anchor="middle">Knowledge character</text>
-        <text class="val" x="340" y="123" text-anchor="middle">Analysis of inherent</text>
-        <text class="val" x="340" y="139" text-anchor="middle">system conditions</text>
-        <line x1="265" y1="153" x2="415" y2="153" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="340" y="169" text-anchor="middle">Pedagogy</text>
-        <text class="val" x="340" y="186" text-anchor="middle">Critical analysis</text>
-        <line x1="265" y1="200" x2="415" y2="200" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="340" y="216" text-anchor="middle">Assessment</text>
-        <text class="val" x="340" y="233" text-anchor="middle">Argumentative quality</text>
-        <line x1="265" y1="248" x2="415" y2="248" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="340" y="264" text-anchor="middle">Key question</text>
-        <text class="val" x="340" y="281" text-anchor="middle">Who controls this</text>
-        <text class="val" x="340" y="297" text-anchor="middle">system?</text>
+        <text class="lbl" x="340" y="106" text-anchor="middle">You ask</text>
+        <text class="val" x="340" y="123" text-anchor="middle">Who controls this</text>
+        <text class="val" x="340" y="139" text-anchor="middle">system, and whom does</text>
+        <text class="val" x="340" y="155" text-anchor="middle">it disadvantage?</text>
+        <line x1="265" y1="169" x2="415" y2="169" stroke="#DDDDDD" stroke-width="0.5"/>
+        <text class="lbl" x="340" y="187" text-anchor="middle">You do</text>
+        <text class="val" x="340" y="204" text-anchor="middle">Trace ownership,</text>
+        <text class="val" x="340" y="220" text-anchor="middle">data sources, and what</text>
+        <text class="val" x="340" y="236" text-anchor="middle">the system optimizes for</text>
+        <line x1="265" y1="250" x2="415" y2="250" stroke="#DDDDDD" stroke-width="0.5"/>
+        <text class="lbl" x="340" y="268" text-anchor="middle">You produce</text>
+        <text class="val" x="340" y="285" text-anchor="middle">An analysis of the</text>
+        <text class="val" x="340" y="301" text-anchor="middle">conditions built in</text>
         <circle class="active-dot" cx="422" cy="43" r="4" fill="#D14905"/>
         <rect class="panel-border panel-border-2"
               x="245" y="30" width="190" height="310" rx="10"
@@ -926,32 +964,32 @@
         <text class="n3" x="555" y="50" text-anchor="middle">Level 3 · Decide</text>
         <text class="h3" x="555" y="70" text-anchor="middle">Operative literacy</text>
         <line x1="460" y1="88" x2="650" y2="88"  stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="555" y="106" text-anchor="middle">Knowledge character</text>
-        <text class="val" x="555" y="123" text-anchor="middle">Contextual judgment,</text>
-        <text class="val" x="555" y="139" text-anchor="middle">principled refusal</text>
-        <line x1="480" y1="153" x2="630" y2="153" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="555" y="169" text-anchor="middle">Pedagogy</text>
-        <text class="val" x="555" y="186" text-anchor="middle">Situated, case-based</text>
-        <line x1="480" y1="200" x2="630" y2="200" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="555" y="216" text-anchor="middle">Assessment</text>
-        <text class="val" x="555" y="233" text-anchor="middle">Contextual, accountable</text>
-        <line x1="480" y1="248" x2="630" y2="248" stroke="#DDDDDD" stroke-width="0.5"/>
-        <text class="lbl" x="555" y="264" text-anchor="middle">Key question</text>
-        <text class="val" x="555" y="281" text-anchor="middle">What warrants</text>
-        <text class="val" x="555" y="297" text-anchor="middle">refusal?</text>
+        <text class="lbl" x="555" y="106" text-anchor="middle">You ask</text>
+        <text class="val" x="555" y="123" text-anchor="middle">What does this</text>
+        <text class="val" x="555" y="139" text-anchor="middle">situation warrant: use,</text>
+        <text class="val" x="555" y="155" text-anchor="middle">limits, or refusal?</text>
+        <line x1="480" y1="169" x2="630" y2="169" stroke="#DDDDDD" stroke-width="0.5"/>
+        <text class="lbl" x="555" y="187" text-anchor="middle">You do</text>
+        <text class="val" x="555" y="204" text-anchor="middle">Weigh the analysis</text>
+        <text class="val" x="555" y="220" text-anchor="middle">against the task</text>
+        <text class="val" x="555" y="236" text-anchor="middle">and decide</text>
+        <line x1="480" y1="250" x2="630" y2="250" stroke="#DDDDDD" stroke-width="0.5"/>
+        <text class="lbl" x="555" y="268" text-anchor="middle">You produce</text>
+        <text class="val" x="555" y="285" text-anchor="middle">A decision with stated</text>
+        <text class="val" x="555" y="301" text-anchor="middle">reasons, owned by you</text>
         <circle class="active-dot" cx="637" cy="43" r="4" fill="#CC0000"/>
         <rect class="panel-border panel-border-3"
               x="460" y="30" width="190" height="310" rx="10"
               fill="none" stroke="#BBBBBB" stroke-width="0.5"/>
       </g>
 
-      <!-- PREREQUISITE ARROWS -->
+      <!-- SEQUENCE ARROWS: the order of reasoning within one decision -->
       <line x1="222" y1="192" x2="243" y2="192"
             stroke="#888888" stroke-width="1" marker-end="url(#arrow)"/>
       <line x1="437" y1="192" x2="458" y2="192"
             stroke="#888888" stroke-width="1" marker-end="url(#arrow)"/>
 
-      <text class="foot" x="340" y="358" text-anchor="middle">Each level requires the preceding levels as its analytical foundation</text>
+      <text class="foot" x="340" y="358" text-anchor="middle">Every decision runs all three levels in order. A new system or a new decision starts again at Level 1.</text>
     </svg>
 
     <!-- Figure 1 on narrow screens: the same content as stacked cards -->
@@ -959,34 +997,31 @@
       <div class="fig1-card fig1-card-1">
         <h3 class="fig1-card-head"><span class="fig1-card-level">Level 1 · Describe</span><span class="fig1-card-name">Conceptual literacy</span></h3>
         <dl>
-          <dt>Knowledge character</dt><dd>Vocabulary and concept definition</dd>
-          <dt>Pedagogy</dt><dd>Direct instruction</dd>
-          <dt>Assessment</dt><dd>Correctness-based</dd>
-          <dt>Key question</dt><dd>Whose knowledge is encoded?</dd>
+          <dt>You ask</dt><dd>What is this system, and whose knowledge does it encode?</dd>
+          <dt>You do</dt><dd>Name the system type and trace how its data shapes its output</dd>
+          <dt>You produce</dt><dd>A precise description</dd>
         </dl>
         <button type="button" class="fig1-card-btn" id="cardbtn1" onclick="toggleDef(1)" aria-expanded="false" aria-controls="def1">Show definition</button>
       </div>
       <div class="fig1-card fig1-card-2">
         <h3 class="fig1-card-head"><span class="fig1-card-level">Level 2 · Analyze</span><span class="fig1-card-name">Structural literacy</span></h3>
         <dl>
-          <dt>Knowledge character</dt><dd>Analysis of inherent system conditions</dd>
-          <dt>Pedagogy</dt><dd>Critical analysis</dd>
-          <dt>Assessment</dt><dd>Argumentative quality</dd>
-          <dt>Key question</dt><dd>Who controls this system?</dd>
+          <dt>You ask</dt><dd>Who controls this system, and whom does it disadvantage?</dd>
+          <dt>You do</dt><dd>Trace ownership, data sources, and what the system optimizes for</dd>
+          <dt>You produce</dt><dd>An analysis of the conditions built in</dd>
         </dl>
         <button type="button" class="fig1-card-btn" id="cardbtn2" onclick="toggleDef(2)" aria-expanded="false" aria-controls="def2">Show definition</button>
       </div>
       <div class="fig1-card fig1-card-3">
         <h3 class="fig1-card-head"><span class="fig1-card-level">Level 3 · Decide</span><span class="fig1-card-name">Operative literacy</span></h3>
         <dl>
-          <dt>Knowledge character</dt><dd>Contextual judgment, principled refusal</dd>
-          <dt>Pedagogy</dt><dd>Situated, case-based</dd>
-          <dt>Assessment</dt><dd>Contextual, accountable</dd>
-          <dt>Key question</dt><dd>What warrants refusal?</dd>
+          <dt>You ask</dt><dd>What does this situation warrant: use, limits, or refusal?</dd>
+          <dt>You do</dt><dd>Weigh the analysis against the task and decide</dd>
+          <dt>You produce</dt><dd>A decision with stated reasons, owned by you</dd>
         </dl>
         <button type="button" class="fig1-card-btn" id="cardbtn3" onclick="toggleDef(3)" aria-expanded="false" aria-controls="def3">Show definition</button>
       </div>
-      <p class="fig1-foot">Each level requires the preceding levels as its analytical foundation</p>
+      <p class="fig1-foot">Every decision runs all three levels in order. A new system or a new decision starts again at Level 1.</p>
     </div>
 
     <!-- EXPANDABLE DEFINITIONS -->
@@ -1000,6 +1035,12 @@
         <p class="def-body">Conceptual literacy is the capacity to recognize, name, and describe AI systems with precision. A practitioner at this level identifies system type, traces the relationship between training data and model output, and distinguishes among architectures, applications, and classification schemes.</p>
         <p class="def-body">Knowledge at this level is primarily technical and definitional. It makes the vocabulary of AI legible as a site of decision-making. Every term in AI discourse encodes a choice about whose cognitive practices count as intelligence, whose outputs count as correct, and whose contributions to the training set are treated as ground truth.</p>
         <p class="def-body">Conceptual literacy is present when a practitioner reads a system description and identifies what the system does along with whose knowledge the system was built to recognize. At this point the definitional question "what is this?" becomes inseparable from the power question "whose knowledge is encoded?"</p>
+        <dl class="def-teaching">
+          <dt>For teaching</dt><dd></dd>
+          <dt>Knowledge character</dt><dd>Vocabulary and concept definition</dd>
+          <dt>Pedagogy</dt><dd>Direct instruction</dd>
+          <dt>Assessment</dt><dd>Correctness-based</dd>
+        </dl>
       </div>
 
       <div id="def2" class="definition definition-2">
@@ -1010,6 +1051,12 @@
         <p class="def-body">Structural literacy is the capacity to analyze conditions inherent to AI systems as information infrastructure, including the sourcing of training data from dominant-language and dominant-culture texts, the reproduction of existing social hierarchies in model outputs, the concentration of AI development within specific corporate and geopolitical contexts, and the mechanisms by which AI assessment instruments scale linguistic hierarchy as if it were cognitive capacity.</p>
         <p class="def-body">Analysis at this level moves from description to diagnosis. It asks what the system reproduces and for whose benefit.</p>
         <p class="def-body">Structural literacy is present when a practitioner traces the chain of production and control behind a system, reads ownership, optimization targets, and data provenance as analytically prior to any question of deployment or use, and treats those conditions as objects of institutional inquiry.</p>
+        <dl class="def-teaching">
+          <dt>For teaching</dt><dd></dd>
+          <dt>Knowledge character</dt><dd>Analysis of inherent system conditions</dd>
+          <dt>Pedagogy</dt><dd>Critical analysis</dd>
+          <dt>Assessment</dt><dd>Argumentative quality</dd>
+        </dl>
       </div>
 
       <div id="def3" class="definition definition-3">
@@ -1021,16 +1068,89 @@
         <p class="def-body">Judgment at this level is irreducibly particular. The conditions of a specific situation determine the right action, and the practitioner analyzes those conditions through the conceptual and structural capacities the preceding levels provide.</p>
         <p class="def-body">Operative literacy is present when a practitioner articulates a decision together with the structural analysis grounding it, and accepts institutional accountability for the reasoning.</p>
         <p class="def-body">Refusal theory (Simpson, 2014; Campt, 2017; Benjamin, 2019) names the form operative literacy takes at institutional scale: accountable rejection of conditions which reproduce harm, grounded in analysis of those conditions. Refusal in this sense differs from non-compliance. It carries the same duty to give reasons as any other operative decision.</p>
+        <dl class="def-teaching">
+          <dt>For teaching</dt><dd></dd>
+          <dt>Knowledge character</dt><dd>Contextual judgment, principled refusal</dd>
+          <dt>Pedagogy</dt><dd>Situated, case-based</dd>
+          <dt>Assessment</dt><dd>Contextual, accountable</dd>
+        </dl>
       </div>
 
     </div>
 
     <figcaption>
-      <strong>Figure 1.</strong> Three-Level AI Literacy Framework (Cole, 2026). Panels show the knowledge character, pedagogical approach, assessment orientation, and central power question for each level. Prerequisite arrows mark the dependencies: structural literacy builds on conceptual literacy, and operative literacy builds on structural literacy. Select any level panel to expand its full definition.
+      <strong>Figure 1.</strong> Three-Level AI Literacy Framework (Cole, 2026). Panels show what a person asks, does, and produces at each level. Arrows mark the order of reasoning within a single decision: description informs analysis, and analysis informs the decision. The order belongs to the decision, so every new system or decision begins again at Level 1. Select any level panel to expand its full definition, along with notes for teaching each level.
     </figcaption>
     <p class="citation">Cole, K. K. (2026). AI literacy is not one thing: Conceptual, structural, and operative levels for higher education governance. <em>Pedagogies: An International Journal</em>. https://doi.org/[to assign at publication]</p>
   </figure>
 </div>
+
+
+<!-- ─── WORKED EXAMPLE (added 2026-10) ─────────────── -->
+<h2 class="section-head">One Decision, Three Levels</h2>
+
+<p class="prose">Should we use an AI-writing detector on student work? The question recurs across higher education, and it reaches every audience on this page: a student whose essay gets flagged, an instructor deciding whether to run one, a writing program setting practice, and a university deciding whether to license one. Vanderbilt University disabled Turnitin's AI detector in August 2023 after months of testing. Here is the same question worked through all three levels.</p>
+
+<div class="worked">
+  <div class="worked-step worked-1">
+    <p class="worked-level">Level 1 · Describe</p>
+    <p>A detector is a classifier. It estimates how likely a text is to have come from a language model, using statistical features of the writing, and reports a score. A precise description includes what the score does not mean: a probability estimate is not evidence of what a student did. Describing the tool also means asking what writing it treats as the human baseline, in other words, whose writing it was built to recognize.</p>
+    <p class="worked-produce">Produces: a description of what the tool measures and reports.</p>
+  </div>
+  <div class="worked-step worked-2">
+    <p class="worked-level">Level 2 · Analyze</p>
+    <p>Liang and colleagues (2023) found detectors misclassified most essays by non-native English writers as AI-generated, while rarely misclassifying essays by native writers. Weber-Wulff and colleagues (2023) tested fourteen tools and found none reliable at identifying AI-generated text. The vendor does not disclose its method, and running the tool sends student work to a third party. These conditions hold for everyone who uses the tool.</p>
+    <p class="worked-produce">Produces: an analysis of the conditions built into the tool.</p>
+  </div>
+  <div class="worked-step worked-3">
+    <p class="worked-level">Level 3 · Decide</p>
+    <p>The analysis informs the decision without making it. An instructor might decline to treat detector scores as evidence of misconduct. A writing program might limit detectors to research on the tools themselves. A university might disable the feature, as Vanderbilt did, citing accuracy, bias, lack of transparency, and privacy. Each decision states its reasons, and the person or body making it owns them. Refusal here is a reasoned decision grounded in the structural analysis.</p>
+    <p class="worked-produce">Produces: a decision with stated reasons.</p>
+  </div>
+</div>
+<p class="prose worked-note">When the vendor releases a new version, or a different tool arrives, the sequence starts again at Level 1.</p>
+
+<!-- ─── THE FRAMEWORK IN CONTEXT (added 2026-10) ───── -->
+<h2 class="section-head">The Framework in Context</h2>
+<p class="prose">Two reference panels place the framework against the scholarship it draws on and the terms in common circulation. Full citations appear at the bottom of the page.</p>
+
+<details class="context-panel">
+  <summary>In conversation with literacy scholarship</summary>
+  <div class="context-body">
+    <h3>Scribner and Cole (1978), "Unpackaging Literacy"</h3>
+    <p>Studying literacy among the Vai in Liberia, Scribner and Cole found the single word "writing" covered a wide range of activities, each with its own skills and consequences. This framework makes the same argument about AI. "AI literacy" names several different capacities, and a program has to say which one it means.</p>
+    <h3>Scribner (1984), "Literacy in Three Metaphors"</h3>
+    <p>Scribner showed each definition of literacy carries an assumption about what literacy is for: adapting to everyday demands, gaining power, or attaining a valued status. This framework asks the power question at every level. Even the first level, description, includes asking whose knowledge a system encodes.</p>
+    <h3>Street (2003), "What's 'New' in New Literacy Studies?"</h3>
+    <p>Street describes literacy as social practice, varying across times and places and contested within relations of power. He sets this account against what he calls the autonomous model, in which literacy is a neutral skill with effects of its own. This framework follows the social-practice account. It treats AI literacy as practices shaped by who builds, owns, and governs the systems.</p>
+    <h3>Brandt (1998), "Sponsors of Literacy"</h3>
+    <p>Brandt defines sponsors as "any agents, local or distant, concrete or abstract, who enable, support, teach, model, as well as recruit, regulate, suppress, or withhold literacy," and who gain advantage by doing so (p. 166). Structural literacy asks Brandt's question of AI. Who sponsors this literacy, and what do they gain? A company offering free training in its own tools is a sponsor in her sense.</p>
+    <h3>Selber (2004), <em>Multiliteracies for a Digital Age</em></h3>
+    <p>Selber's three literacies (functional, critical, and rhetorical) remain the closest model in writing studies. Structural literacy corresponds to his critical literacy, which treats computers as cultural artifacts. Operative literacy corresponds to his rhetorical literacy, which joins functional and critical abilities in practice. This framework departs from Selber in two places. It has no functional level, and it treats refusal as a literate act.</p>
+    <h3>Keefe and Copeland (2011), "What Is Literacy? The Power of a Definition"</h3>
+    <p>Keefe and Copeland show how restrictive definitions of literacy shut people out of literacy instruction. This framework takes their warning as a design rule. Its levels set the order for reasoning through a decision. They do not sort people by readiness, and no one waits to be judged ready for structural analysis.</p>
+    <h3>Perry (2012), "What Is Literacy? A Critical Overview of Sociocultural Perspectives"</h3>
+    <p>Perry compares three sociocultural approaches (literacy as social practice, multiliteracies, and critical literacy) and argues they share concerns without forming one theory. This framework draws on all three. Perry's caution against merging them is one reason the framework keeps its levels distinct.</p>
+  </div>
+</details>
+
+<details class="context-panel">
+  <summary>Common terms, read against this framework</summary>
+  <div class="context-body">
+    <h3>Literacy</h3>
+    <p>In policy documents, literacy usually means a baseline of knowledge everyone should have. Here, literacy names three kinds of act (describing, analyzing, and deciding), and a sound decision requires all three.</p>
+    <h3>Skills and competencies</h3>
+    <p>Competency frameworks list what a person should know and do with AI. Ng and colleagues (2021) name four aspects: know and understand, use and apply, evaluate and create, and ethics. Lists like these give use a level of its own and set ethics apart as a separate category. This framework places use inside the operative decision. It treats ethics at two levels, as the harms built into a system and as what one person or body owes in a single decision.</p>
+    <h3>Levels</h3>
+    <p>Many domain literacies arrange their levels by degree. Nutbeam's (2000) health literacy rises from functional to interactive to critical, each level defined by more advanced skill. The levels here differ by the kind of act each requires. An expert describing a new system is doing first-level work.</p>
+    <h3>Proficiency</h3>
+    <p>Proficiency scales rate a person as basic, intermediate, or advanced. Applied to AI, they measure how much a person knows or how well they use a tool. This framework asks which kinds of reasoning went into a decision.</p>
+    <h3>Fluency</h3>
+    <p>The National Research Council's 1999 report, <em>Being Fluent with Information Technology</em>, adopted "fluency" for a deeper understanding than computer literacy, combining skills, concepts, and intellectual capabilities. In current institutional use, fluency marks the top of a scale: use without hesitation. Operative literacy asks for a decision made deliberately, with reasons stated and accountability accepted. Ease of use and accountable judgment are different goals. This framework asks for the second.</p>
+    <h3>Pathway</h3>
+    <p>A pathway assumes a destination set in advance, with learners moving toward it in stages. This framework sets no destination. It asks each person to reason every decision through all three levels, and the outcome, including refusal, belongs to the person or body deciding.</p>
+  </div>
+</details>
 
 <!-- ─── SECTION 2: GOVERNANCE APPLICATION ────────────── -->
 <h2 class="section-head">Governance Application · By Audience</h2>
@@ -1102,7 +1222,7 @@
   </div>
 </div>
 
-<p class="prose">The four areas follow the three levels. Area 1 works at the conceptual level, Area 2 at the structural level, and Areas 3 and 4 at the operative level, where an instructor decides on design and policy.</p>
+<p class="prose">The four areas follow the three levels. Area 1 works at the conceptual level. Area 2 begins with structural analysis, what the tools do to writing for everyone who uses them, and ends in a judgment about one course. Areas 3 and 4 work at the operative level, where an instructor decides on design and policy.</p>
 
 <p class="prose">Liaisons facilitate the extension with the WOLF model: sustained conversation, iterative design work, and documentation of decisions and rationale. The workbook is written for liaison-facilitated use. Faculty are welcome to work through it alone. Contact <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole at CWSP</a> to begin or to connect your work to a full WOLF engagement. More information is at <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a>.</p>
 
@@ -1111,7 +1231,8 @@
 <!-- ─── PAGE FOOTER ───────────────────────────────────── -->
 <footer class="page-footer">
 <div class="page-footer-inner">
-  <p><strong>Key sources:</strong> Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., and Zou, J. (2023). GPT detectors are biased against non-native English writers. <em>Patterns</em>, 4, 100779. Weber-Wulff, D., et al. (2023). Testing of detection tools for AI-generated text. <em>International Journal for Educational Integrity</em>, 19(1), 26.</p>
+  <p><strong>Key sources:</strong> Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., and Zou, J. (2023). GPT detectors are biased against non-native English writers. <em>Patterns</em>, 4, 100779. https://doi.org/10.1016/j.patter.2023.100779. Weber-Wulff, D., Anohina-Naumeca, A., Bjelobaba, S., Foltýnek, T., Guerrero-Dib, J., Popoola, O., Šigut, P., and Waddington, L. (2023). Testing of detection tools for AI-generated text. <em>International Journal for Educational Integrity</em>, 19(1), 26. https://doi.org/10.1007/s40979-023-00146-z. Vanderbilt University. (2023, August 16). Guidance on AI detection and why we're disabling Turnitin's AI detector. https://www.vanderbilt.edu/brightspace/2023/08/16/guidance-on-ai-detection-and-why-were-disabling-turnitins-ai-detector/</p>
+  <p><strong>Literacy scholarship:</strong> Brandt, D. (1998). Sponsors of literacy. <em>College Composition and Communication</em>, 49(2), 165–185. https://doi.org/10.2307/358929. Keefe, E. B., and Copeland, S. R. (2011). What is literacy? The power of a definition. <em>Research and Practice for Persons with Severe Disabilities</em>, 36(3–4), 92–99. https://doi.org/10.2511/027494811800824507. National Research Council. (1999). <em>Being fluent with information technology</em>. National Academies Press. https://doi.org/10.17226/6482. Ng, D. T. K., Leung, J. K. L., Chu, S. K. W., and Qiao, M. S. (2021). Conceptualizing AI literacy: An exploratory review. <em>Computers and Education: Artificial Intelligence</em>, 2, 100041. https://doi.org/10.1016/j.caeai.2021.100041. Nutbeam, D. (2000). Health literacy as a public health goal. <em>Health Promotion International</em>, 15(3), 259–267. https://doi.org/10.1093/heapro/15.3.259. Perry, K. H. (2012). What is literacy? A critical overview of sociocultural perspectives. <em>Journal of Language and Literacy Education</em>, 8(1), 50–71. Scribner, S. (1984). Literacy in three metaphors. <em>American Journal of Education</em>, 93(1), 6–21. https://doi.org/10.1086/443783. Scribner, S., and Cole, M. (1978). Unpackaging literacy. <em>Social Science Information</em>, 17(1), 19–40. https://doi.org/10.1177/053901847801700102. Selber, S. A. (2004). <em>Multiliteracies for a digital age</em>. Southern Illinois University Press. Street, B. (2003). What's "new" in New Literacy Studies? Critical approaches to literacy in theory and practice. <em>Current Issues in Comparative Education</em>, 5(2), 77–91. https://doi.org/10.52214/cice.v5i2.11369.</p>
   <p><strong>Refusal theory:</strong> Simpson, A. (2014). <em>Mohawk Interruptus</em>. Campt, T. (2017). <em>Listening to Images</em>. Benjamin, R. (2019). <em>Race After Technology</em>. The Decline outcome in Figure 2 cites these works as the theoretical grounding for operative literacy's principled refusal.</p>
   <p><strong>Framework:</strong> Cole, K. K. (2026). AI literacy is not one thing: Conceptual, structural, and operative levels for higher education governance. <em>Pedagogies: An International Journal</em>. https://doi.org/[to assign at publication]</p>
   <p><strong>AI Literacies extension:</strong> NC State Campus Writing and Speaking Program · <a href="https://cwspwolf.com/ai-literacies" target="_blank" rel="noopener">cwspwolf.com/ai-literacies</a> · <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
