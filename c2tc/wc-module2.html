@@ -168,7 +168,7 @@ textarea { min-height: 100px; }
     <div class="module-header" id="overview">
       <p class="module-eyebrow">Written Communication Certificate · Module 2 of 3</p>
       <h2>Feedback and Assessment in Writing</h2>
-      <p>This module covers how feedback works, what research on response shows about how students use your comments, and three practices (minimal marking, screencast feedback, and rubric design) that cut the time you spend responding while helping students learn more from it. Plan on 4 to 6 hours over two weeks.</p>
+      <p>This module covers how feedback works, what research on response shows about how students use your comments, and three practices (minimal marking, screencast feedback, and rubric design) that cut the time you spend responding while helping students learn more from it. Plan on 4 to 6 hours over two weeks: about 3 hours on the activities, the rest reading.</p>
     </div>
 
     <div class="callout" id="objectives">
@@ -597,9 +597,10 @@ function updateSidebarActive() {
 }
 
 window.addEventListener('scroll', updateSidebarActive, { passive: true });
-document.addEventListener('DOMContentLoaded', () => { loadAll(); C2TC.markRequired(REQUIRED); updateSidebarActive(); });
+document.addEventListener('DOMContentLoaded', () => { loadAll(); updateSidebarActive(); });
 </script>
 
-<script src="js/participant.js?v=2026-10-21b"></script>
+<script src="js/participant.js?v=2026-10-21c"></script>
+<script>C2TC.setup({ required: REQUIRED, reactions: REACTIONS });</script>
 </body>
 </html>

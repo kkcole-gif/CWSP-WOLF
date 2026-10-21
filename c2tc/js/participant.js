@@ -51,7 +51,11 @@
       '.c2tc-toast{position:fixed;left:50%;transform:translateX(-50%);top:64px;z-index:200;max-width:34rem;width:calc(100% - 2rem);background:#fff;border:1px solid #990000;border-left:5px solid #990000;border-radius:3px;box-shadow:0 4px 18px rgba(0,0,0,.18);padding:.75rem 2.4rem .75rem 1rem;font-size:.9rem;color:#1a1a1a;line-height:1.45}' +
       '.c2tc-toast button{position:absolute;top:.35rem;right:.5rem;background:none;border:0;font-size:1.2rem;line-height:1;cursor:pointer;color:#5a5a5a}' +
       '.builder-empty{border-color:#990000 !important;box-shadow:0 0 0 2px rgba(153,0,0,.15)}' +
-      '.builder-note{color:#990000;font-size:.88rem;margin:.5rem 0}';
+      '.builder-note{color:#990000;font-size:.88rem;margin:.5rem 0}' +
+      'details.go-further{border-left:2px solid #c8c8c8;padding:.1rem 0 .1rem .9rem;margin:.75rem 0 1.25rem}' +
+      'details.go-further>summary{cursor:pointer;font-size:.9rem;font-weight:600;color:#4d4d4d;padding:.35rem 0}' +
+      'details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offset:2px}' +
+      'details.go-further[open]>summary{margin-bottom:.5rem}';
     var el = document.createElement('style');
     el.textContent = css;
     document.head.appendChild(el);
@@ -285,6 +289,7 @@
       el.dispatchEvent(new Event('input', { bubbles: true }));
       el.dispatchEvent(new Event('change', { bubbles: true }));
     });
+    OPEN_FILLED();
   }
 
   function banner(html) {
@@ -485,8 +490,57 @@
         el.addEventListener(t, function () { set(store(id), el.value); });
       });
     });
-    if (opts.required) markRequired(opts.required);
+    if (opts.required) {
+      markRequired(opts.required);
+      collapseOptional(opts.required.concat(keep));
+    }
   }
+
+  /* Optional prompts sit inside a "Go further" disclosure, so a workbook opens showing
+     only the responses its objectives require. Each run of adjacent optional prompts
+     becomes one disclosure, in place, so the order of the activity stays as written.
+     A disclosure opens by itself when any prompt inside it already holds work. */
+  function collapseOptional(visibleIds) {
+    var units = [];
+    document.querySelectorAll('textarea[id^="f-"], input[type="text"][id^="f-"]').forEach(function (field) {
+      if (visibleIds.indexOf(field.id) !== -1) return;
+      var label = field.previousElementSibling;
+      if (!label || label.tagName !== 'LABEL' || label.getAttribute('for') !== field.id) return;
+      units.push({ label: label, field: field });
+    });
+    var groups = [];
+    units.forEach(function (u) {
+      var last = groups.length ? groups[groups.length - 1] : null;
+      if (last && last[last.length - 1].field.nextElementSibling === u.label) last.push(u);
+      else groups.push([u]);
+    });
+    groups.forEach(function (g) {
+      var d = document.createElement('details');
+      d.className = 'go-further';
+      var s = document.createElement('summary');
+      s.textContent = 'Go further: ' + (g.length === 1 ? 'one optional prompt' : g.length + ' optional prompts');
+      d.appendChild(s);
+      var start = g[0].label, end = g[g.length - 1].field;
+      start.parentNode.insertBefore(d, start);
+      var node = start;
+      while (node) {
+        var next = node.nextSibling;
+        d.appendChild(node);
+        if (node === end) break;
+        node = next;
+      }
+    });
+    var openFilled = function () {
+      document.querySelectorAll('details.go-further').forEach(function (d) {
+        var filled = Array.prototype.some.call(d.querySelectorAll('textarea, input'), function (el) { return el.value.trim(); });
+        if (filled) d.open = true;
+      });
+    };
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(openFilled, 0); });
+    window.addEventListener('load', openFilled);
+    OPEN_FILLED = openFilled;
+  }
+  var OPEN_FILLED = function () {};
   function addExtra(data) {
     EXTRA.forEach(function (id) {
       var el = document.getElementById(id);
