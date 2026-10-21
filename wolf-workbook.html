@@ -78,6 +78,9 @@
     .wscp table { width: 100%; border-collapse: collapse; font-size: .85rem; margin: .4rem 0; }
     .wscp th, .wscp td { border: 1px solid var(--line); padding: .35rem .5rem; text-align: left; vertical-align: top; }
     .wscp .empty { color: #6b6b6b; font-style: italic; }
+    .crit { border-top: 1px dashed var(--line); padding-top: .5rem; margin-top: .6rem; }
+    .crit .field { margin: .3rem 0 .6rem; }
+    .nom { border-top: 1px dashed var(--line); padding-top: .4rem; margin-top: .6rem; }
     .row-head { font-family: Arial, sans-serif; font-size: .72rem; color: #666; margin: .8rem 0 0; }
     .checks label { display: flex; gap: .55rem; align-items: flex-start; font-size: .95rem; margin: .4rem 0; cursor: pointer; }
     .checks input { margin-top: .3rem; }
@@ -154,7 +157,11 @@
     <a href="#submit2">Submit Stage 2</a>
     <p class="sidebar-part" id="sp-3">Stage 3 · Evidence <span class="stage-badge" id="badge-3"></span></p>
     <span class="stage-date" id="date-3"></span>
-    <a href="#stage3" class="muted">Opens after Stage 2</a>
+    <a href="#act11">11. Evidence collected</a>
+    <a href="#act12">12. Rubrics for your discipline</a>
+    <a href="#act13">13. Recognition</a>
+    <a href="#act14">14. Certification</a>
+    <a href="#submit3">Submit Stage 3</a>
   </nav>
 </aside>
 
@@ -418,13 +425,123 @@
     <p class="submit-status" id="submit-status-2" role="status"></p>
   </div>
 
-  <div class="stub">
-    <h2 id="stage3">Stage 3 · Evidence</h2>
-    <p>Opens after Stage 2.</p>
-    <div class="activity"><div class="activity-label">Activity 11</div><h3>Assessment plan</h3><p>WSCP Part 4: what evidence the department collects, how and when it reviews it, and how findings revise the plan.</p></div>
-    <div class="activity"><div class="activity-label">Activity 12</div><h3>Rubric adaptation</h3><p>The CWSP writing and oral presentation rubrics with editable criteria, so the department's version comes out of the workbook.</p></div>
-    <div class="activity"><div class="activity-label">Activity 13</div><h3>Recognition nominations</h3><p>Communication Champion and Hidden Infrastructure letters, as short forms sent to CWSP.</p></div>
-    <div class="activity"><div class="activity-label">Activity 14</div><h3>Certification</h3><p>The five documents, the Stage 3 reflection, and the mini grant.</p></div>
+  <h2 id="stage3">Stage 3 · Evidence</h2>
+  <p>The plan moves into courses. Assignments and rubrics go out, evidence comes back, and the department uses it to refine the plan. Your role shifts to monitoring and communication: keeping faculty connected, channeling feedback to CWSP, and helping the department read its own data. Completion brings certification, recognition letters, and the $1,000 mini grant.</p>
+
+  <div class="activity" id="act11">
+    <div class="activity-label">Activity 11</div>
+    <h3>Evidence collected</h3>
+    <p class="activity-meta">After at least one cycle · what the assessment plan in Part 4 produced</p>
+    <p>Record what the department collected against the plan it wrote in Stage 2, and what the first review found. Representative student samples with rubric scores are the most direct evidence. Surveys and DASA data give context.</p>
+    <div class="field"><label for="f-3-11-collected">What was collected, from which courses and levels<span class="req" aria-hidden="true">*</span></label><textarea id="f-3-11-collected"></textarea></div>
+    <div class="field"><label for="f-3-11-findings">What the first review found<span class="req" aria-hidden="true">*</span></label><p class="hint">Patterns across levels, with a figure or two where you have them.</p><textarea id="f-3-11-findings"></textarea></div>
+    <div class="field"><label for="f-3-11-revisions">Revisions to the plan in response</label><textarea id="f-3-11-revisions"></textarea></div>
+    <div class="grid2">
+      <div class="field"><label for="f-3-11-review-date">Date of the review conversation</label><input type="date" id="f-3-11-review-date"></div>
+      <div class="field"><label for="f-3-11-checkin">Mid-cycle check-in with CWSP</label><input type="date" id="f-3-11-checkin"></div>
+    </div>
+  </div>
+
+  <div class="activity" id="act12">
+    <div class="activity-label">Activity 12</div>
+    <h3>Rubrics for your discipline</h3>
+    <p class="activity-meta">Adapt CWSP's two rubrics · keep or drop each criterion, and say what exemplary work does in your field</p>
+    <p>CWSP's sample rubrics name the dimensions that appear across disciplines. The descriptors are the part a discipline rewrites. For each criterion, keep it or drop it, and describe exemplary work in your field's terms; the lower levels follow from that description. Uncheck a criterion to leave it out of your rubric. Both rubrics use a four-level scale (exemplary, proficient, developing, beginning), which maps onto most grading contexts.</p>
+    <div class="note"><p>Weight delivery with care for neurodivergent students and multilingual speakers. Where communication is not the primary outcome of a course, content carries more weight than delivery. The visual aids criterion does not fit every setting, such as panels, clinical presentations, or oral defenses without slides.</p></div>
+    <h3 style="font-size:1rem;">Writing rubric</h3>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-w-keep1" checked> <strong>Argument and purpose</strong></label></div>
+      <div class="field"><label for="r-w-c1">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Thesis or central claim is clear, specific, and positions the writer within the disciplinary conversation. Purpose is evident and sustained. Rewrite it, or keep it.</p><textarea id="r-w-c1" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-w-keep2" checked> <strong>Use of evidence</strong></label></div>
+      <div class="field"><label for="r-w-c2">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Evidence is specific, relevant, and integrated. Sources are engaged critically. Documentation follows the discipline's conventions. Rewrite it, or keep it.</p><textarea id="r-w-c2" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-w-keep3" checked> <strong>Organization and structure</strong></label></div>
+      <div class="field"><label for="r-w-c3">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Structure serves the argument. Sections are organized and transitions purposeful. The piece follows the conventions of its genre. Rewrite it, or keep it.</p><textarea id="r-w-c3" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-w-keep4" checked> <strong>Disciplinary style and voice</strong></label></div>
+      <div class="field"><label for="r-w-c4">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Tone, diction, and formality fit the discipline and audience. The writer holds a consistent voice within the field's norms. Rewrite it, or keep it.</p><textarea id="r-w-c4" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-w-keep5" checked> <strong>Mechanics and conventions</strong></label></div>
+      <div class="field"><label for="r-w-c5">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Errors are rare and do not affect readability or credibility. Rewrite it, or keep it.</p><textarea id="r-w-c5" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="field"><label for="r-w-add">A criterion CWSP's rubric lacks and your discipline needs</label><textarea id="r-w-add" style="min-height:60px;" placeholder="Name it, and say what exemplary work does."></textarea></div>
+    <h3 style="font-size:1rem;">Oral presentation rubric</h3>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-o-keep1" checked> <strong>Content and argument</strong></label></div>
+      <div class="field"><label for="r-o-c1">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Central claim is clear and supported. Content shows disciplinary understanding and suits the context and audience. Rewrite it, or keep it.</p><textarea id="r-o-c1" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-o-keep2" checked> <strong>Organization and delivery structure</strong></label></div>
+      <div class="field"><label for="r-o-c2">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Clear opening, body, and close. Transitions help the audience follow. Time is used purposefully. Rewrite it, or keep it.</p><textarea id="r-o-c2" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-o-keep3" checked> <strong>Verbal and vocal delivery</strong></label></div>
+      <div class="field"><label for="r-o-c3">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Pace, volume, and enunciation suit the audience. Filler is minimal. Delivery sounds practiced, not scripted. Rewrite it, or keep it.</p><textarea id="r-o-c3" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-o-keep4" checked> <strong>Audience engagement</strong></label></div>
+      <div class="field"><label for="r-o-c4">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: The speaker addresses the audience through eye contact, responsive language, or questions, and adapts to what the audience knows. Rewrite it, or keep it.</p><textarea id="r-o-c4" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="crit">
+      <div class="checks"><label><input type="checkbox" id="r-o-keep5" checked> <strong>Visual aids and supporting materials</strong></label></div>
+      <div class="field"><label for="r-o-c5">What exemplary work does on this criterion, in your discipline's terms</label><p class="hint">CWSP's version: Visual aids are clear, add meaning rather than repeat the spoken text, and attribute sources. Rewrite it, or keep it.</p><textarea id="r-o-c5" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="field"><label for="r-o-add">A criterion CWSP's rubric lacks and your discipline needs</label><textarea id="r-o-add" style="min-height:60px;"></textarea></div>
+    <div class="field"><label for="f-3-12-norming">Norming</label><p class="hint">A norming session has faculty score the same work with the shared rubric and compare. Note whether the department held one, and what it changed.</p><textarea id="f-3-12-norming" style="min-height:70px;"></textarea></div>
+  </div>
+
+  <div class="activity" id="act13">
+    <div class="activity-label">Activity 13</div>
+    <h3>Recognition</h3>
+    <p class="activity-meta">Nominate colleagues · CWSP drafts and signs the letters, with copies to the chair and dean</p>
+    <p>Writing and speaking instruction is among the least visible labor in a department. A Communication Champion letter recognizes a faculty member; a Hidden Infrastructure Award recognizes a graduate student or staff member. Name up to three people. CWSP writes the letter from what you give here and sends it on letterhead, for annual reviews and promotion files.</p>
+    <div class="nom">
+      <div class="grid2"><div class="field"><label for="n1-name">Nominee 1</label><input type="text" id="n1-name"></div><div class="field"><label for="n1-type">Letter</label><select id="n1-type"><option value=""></option><option>Communication Champion (faculty)</option><option>Hidden Infrastructure Award (graduate student or staff)</option></select></div></div>
+      <div class="field"><label for="n1-contrib">Their contribution, in two or three specific sentences</label><p class="hint">Name the course or program and what they did. "Designed and iterated a multi-draft research writing sequence in CH 201 that gives students structured feedback at each stage."</p><textarea id="n1-contrib" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="nom">
+      <div class="grid2"><div class="field"><label for="n2-name">Nominee 2</label><input type="text" id="n2-name"></div><div class="field"><label for="n2-type">Letter</label><select id="n2-type"><option value=""></option><option>Communication Champion (faculty)</option><option>Hidden Infrastructure Award (graduate student or staff)</option></select></div></div>
+      <div class="field"><label for="n2-contrib">Their contribution</label><textarea id="n2-contrib" style="min-height:70px;"></textarea></div>
+    </div>
+    <div class="nom">
+      <div class="grid2"><div class="field"><label for="n3-name">Nominee 3</label><input type="text" id="n3-name"></div><div class="field"><label for="n3-type">Letter</label><select id="n3-type"><option value=""></option><option>Communication Champion (faculty)</option><option>Hidden Infrastructure Award (graduate student or staff)</option></select></div></div>
+      <div class="field"><label for="n3-contrib">Their contribution</label><textarea id="n3-contrib" style="min-height:70px;"></textarea></div>
+    </div>
+  </div>
+
+  <div class="activity" id="act14">
+    <div class="activity-label">Activity 14</div>
+    <h3>Certification</h3>
+    <p class="activity-meta">The final documentation · certification is renewed through continued engagement and plan review every three to five years</p>
+    <p>Certification is awarded when the plan is implemented, at least one cycle of assessment data has been collected and reviewed, and the documentation below is in. The mini grant of $1,000 goes to the department at certification. Check what is in hand; the Stage 2 submission already holds the plan and the map.</p>
+    <div class="checks" aria-label="Certification documents">
+      <label><input type="checkbox" id="c-3-1"> Completed WSCP, signed by the chair or director (Stage 2 submission, with the approval block filled)</label>
+      <label><input type="checkbox" id="c-3-2"> Curriculum map showing writing and speaking across levels (Part 3)</label>
+      <label><input type="checkbox" id="c-3-3"> Representative student work samples with rubric scores, sent to CWSP</label>
+      <label><input type="checkbox" id="c-3-4"> Summary of assessment findings and revisions (Activity 11)</label>
+      <label><input type="checkbox" id="c-3-5"> Faculty engagement record: workshops attended, consultations completed</label>
+    </div>
+    <div class="field"><label for="f-3-14-engagement">Faculty engagement record</label><p class="hint">Workshops, consultations, norming sessions, department meetings where the plan was discussed, with dates and rough attendance.</p><textarea id="f-3-14-engagement"></textarea></div>
+    <div class="field"><label for="f-3-14-samples">Where the student work samples are</label><p class="hint">A shared folder link, or a note that they were sent to CWSP by email.</p><input type="text" id="f-3-14-samples"></div>
+    <div class="field"><label for="f-3-14-sustain">How the department will sustain the plan after certification</label><p class="hint">Who owns the annual review, where the plan lives, and when it comes up again.</p><textarea id="f-3-14-sustain"></textarea></div>
+    <h3 style="font-size:1rem;">Stage 3 reflection</h3>
+    <div class="field"><label for="f-3-14-data">What did the assessment data show? What confirmed what you expected, and what surprised you?<span class="req" aria-hidden="true">*</span></label><textarea id="f-3-14-data"></textarea></div>
+    <div class="field"><label for="f-3-14-shift">How have faculty attitudes toward writing and speaking instruction shifted since Stage 1?</label><textarea id="f-3-14-shift"></textarea></div>
+    <div class="field"><label for="f-3-14-revise">What would you revise in the plan from what you have seen in implementation?</label><textarea id="f-3-14-revise"></textarea></div>
+    <div class="field"><label for="f-3-14-needs">What does the department need from CWSP to sustain this work beyond certification?</label><textarea id="f-3-14-needs"></textarea></div>
+  </div>
+
+  <div class="submit-section" id="submit3">
+    <h3 style="margin-top:0;">Submit Stage 3</h3>
+    <p>Submitting sends the certification record, the adapted rubrics, and any nominations to CWSP, and emails you the rubrics and the record as a Word file and a PDF. CWSP reviews the documentation, issues the certification letter and the mini grant, and sends the recognition letters.</p>
+    <p class="hint" id="req-note-3" style="font-size:.88rem;color:var(--red);"></p>
+    <button type="button" class="btn-submit" id="submit-btn-3" onclick="submitStage(3)">Submit Stage 3 to CWSP</button>
+    <p class="submit-status" id="submit-status-3" role="status"></p>
   </div>
 </main>
 </div>
@@ -439,7 +556,8 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
 const KEY = 'wolf:';
 const REQUIRED = { 1: ['f-1-2-pattern', 'f-1-3-faculty', 'f-1-5-unexpected', 'f-1-5-response'],
-                   2: ['f-2-6-writing', 'f-2-6-speaking', 'f-2-7-w4', 'f-2-7-s4', 'f-2-8-reveals', 'f-2-10-evidence', 'f-2-10-energy'] };
+                   2: ['f-2-6-writing', 'f-2-6-speaking', 'f-2-7-w4', 'f-2-7-s4', 'f-2-8-reveals', 'f-2-10-evidence', 'f-2-10-energy'],
+                   3: ['f-3-11-collected', 'f-3-11-findings', 'f-3-14-data'] };
 const MIN = 40;
 
 function fields() { return Array.prototype.slice.call(document.querySelectorAll('main textarea[id], main input[id], main select[id]')); }
@@ -460,7 +578,7 @@ function load() {
   updateProgress(); updateStages();
 }
 function updateProgress() {
-  const t = workFields().filter(el => el.tagName === 'TEXTAREA' && /^f-[12]-/.test(el.id));
+  const t = workFields().filter(el => el.tagName === 'TEXTAREA' && /^f-[123]-/.test(el.id));
   const filled = t.filter(el => el.value.trim().length > 20).length;
   const pct = t.length ? Math.round(filled / t.length * 100) : 0;
   document.getElementById('progress-fill').style.width = pct + '%';
@@ -562,11 +680,23 @@ function submitStage(n) {
   workFields().forEach(el => { data[el.id] = el.type === 'checkbox' ? el.checked : el.value; });
   describe(data);
   if (n === 2) { data.workbook_title = 'Writing and Speaking Curriculum Plan: ' + (val('s0-department') || who.name); data.wscp_table = mapTable(); }
+  if (n === 3) {
+    data.workbook_title = 'WOLF Stage 3, Evidence and Certification: ' + (val('s0-department') || who.name);
+    data.rubric_writing = rubricRows('r-w', ['Argument and purpose', 'Use of evidence', 'Organization and structure', 'Disciplinary style and voice', 'Mechanics and conventions']);
+    data.rubric_oral = rubricRows('r-o', ['Content and argument', 'Organization and delivery structure', 'Verbal and vocal delivery', 'Audience engagement', 'Visual aids and supporting materials']);
+    data.nominations = [1, 2, 3].map(k => ({ name: val('n' + k + '-name'), letter: val('n' + k + '-type'), contribution: val('n' + k + '-contrib') })).filter(x => x.name);
+  }
   fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
     .then(() => { st.textContent = 'Sent to CWSP. A copy is on its way to ' + who.email + '. Your responses also stay in this browser.'; btn.textContent = 'Submitted'; set('wolf-submitted-' + n, new Date().toISOString()); })
     .catch(() => { st.textContent = 'Submission failed. Try again, or email kkcole2@ncsu.edu.'; st.className = 'submit-status err'; btn.disabled = false; btn.textContent = 'Submit Stage ' + n + ' to CWSP'; });
 }
 function val(id) { const el = document.getElementById(id); return el ? (el.value || '').trim() : ''; }
+function rubricRows(prefix, names) {
+  const rows = [];
+  names.forEach((name, i) => { const k = i + 1; if (document.getElementById(prefix + '-keep' + k).checked) rows.push([name, val(prefix + '-c' + k) || '(CWSP descriptor kept)']); });
+  if (val(prefix + '-add')) rows.push(['Added by the department', val(prefix + '-add')]);
+  return rows;
+}
 function copyInventory() {
   let copied = 0;
   for (let n = 1; n <= 6; n++) {
