@@ -1320,7 +1320,7 @@ Revision: This framework was adopted in conditions that are already changing. It
         <p class="part-eyebrow">Part V</p>
         <h2>Submit to the Policy Repository</h2>
       </div>
-      <p>The repository grows in two ways. Participants submit their analyses and drafts, which show how faculty across disciplines read and write AI policy. Participants also add documents to the corpus, which the next collection sweep verifies and indexes. Submit either, or both. The form collects no name or email address. Submissions carry tags for discipline, institution type, and engagement only.</p>
+      <p>The repository grows in two ways. Participants submit their analyses and drafts, which show how faculty across disciplines read and write AI policy. Participants also add documents to the corpus, which the next collection sweep verifies and indexes. Submit either, or both. The form collects no name or email address. Submissions carry tags for discipline, institution type, and engagement only. Submissions go to Kirsti Cole at CWSP. Because they carry no name or email, CWSP cannot write back about them. To talk about your policy work, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVpo4ffoTYEjBAC_cZUiZOVUI7BzwK3VPN8CfNw_yi2jXejA/viewform" target="_blank" rel="noopener">CWSP intake form</a>.</p>
 
       <div class="submit-block">
         <h3>Your analysis and drafts</h3>
@@ -1578,14 +1578,20 @@ function copyTemplate(id, btn) {
   });
 }
 // ── PDF DOWNLOAD ─────────────────────────────────────────────────────────────
+// Prints the drafts from a hidden frame on this page, so popup blockers never stop it.
+function printInFrame(html) {
+  const f = document.createElement('iframe');
+  f.setAttribute('aria-hidden', 'true'); f.tabIndex = -1;
+  f.style.cssText = 'position:fixed;right:0;bottom:0;width:0;height:0;border:0;';
+  document.body.appendChild(f);
+  const d = f.contentWindow.document; d.open(); d.write(html); d.close();
+  setTimeout(() => f.remove(), 120000);
+}
 function downloadPolicyPDF(id, label) {
   const content = document.getElementById(id).value
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>' + label + ' · AI Policy Lab</title><style>*{margin:0;padding:0;box-sizing:border-box;}@page{margin:2.5cm 3cm;}body{font-family:Georgia,"Times New Roman",serif;color:#111;font-size:11.5pt;line-height:1.8;}.header{border-bottom:2px solid #CC0000;padding-bottom:0.85rem;margin-bottom:1.75rem;}.eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h1{font-size:17pt;font-weight:800;font-family:Arial,sans-serif;letter-spacing:-0.01em;}.policy-body{white-space:pre-wrap;}.footer{margin-top:3.5rem;font-size:8pt;color:#888;border-top:1px solid #ddd;padding-top:0.75rem;font-family:Arial,sans-serif;}</style></head><body><div class="header"><p class="eyebrow">NC State CWSP · AI Policy Lab · Part IV Draft</p><h1>' + label + '</h1></div><div class="policy-body">' + content + '</div><div class="footer">NC State Campus Writing and Speaking Program · cwspwolf.com<br>© 2026 Kirsti Cole. Licensed under CC BY-NC-ND 4.0. Generated from the AI Policy Lab Workbook.</div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>';
-  const win = window.open('', '_blank');
-  if (!win) { alert('Please allow popups for cwspwolf.com to print or save the PDF.'); return; }
-  win.document.write(html);
-  win.document.close();
+  printInFrame(html);
 }
 function downloadAllPoliciesPDF() {
   const templates = [
@@ -1600,10 +1606,7 @@ function downloadAllPoliciesPDF() {
     sections += '<div class="section"' + (i > 0 ? ' style="page-break-before:always;"' : '') + '><p class="section-eyebrow">' + t.eyebrow + '</p><h2>' + t.label + '</h2><div class="policy-body">' + content + '</div></div>';
   });
   const html = '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>AI Policy Drafts: NC State CWSP AI Policy Lab</title><style>*{margin:0;padding:0;box-sizing:border-box;}@page{margin:2.5cm 3cm;}body{font-family:Georgia,"Times New Roman",serif;color:#111;font-size:11.5pt;line-height:1.8;}.cover-header{border-bottom:2px solid #CC0000;padding-bottom:0.85rem;margin-bottom:1.75rem;}.eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h1{font-size:20pt;font-weight:800;font-family:Arial,sans-serif;letter-spacing:-0.01em;}.section{padding-top:1rem;}.section-eyebrow{font-size:7.5pt;font-weight:bold;letter-spacing:0.14em;text-transform:uppercase;color:#CC0000;margin-bottom:0.4rem;font-family:Arial,sans-serif;}h2{font-size:15pt;font-weight:800;font-family:Arial,sans-serif;margin-bottom:1.25rem;border-bottom:1px solid #eee;padding-bottom:0.6rem;}.policy-body{white-space:pre-wrap;}.footer{margin-top:3.5rem;font-size:8pt;color:#888;border-top:1px solid #ddd;padding-top:0.75rem;font-family:Arial,sans-serif;}</style></head><body><div class="cover-header"><p class="eyebrow">NC State CWSP · AI Policy Lab · Part IV Drafts</p><h1>AI Policy Language: All Three Levels</h1></div>' + sections + '<div class="footer">NC State Campus Writing and Speaking Program · cwspwolf.com<br>© 2026 Kirsti Cole. Licensed under CC BY-NC-ND 4.0. Generated from the AI Policy Lab Workbook.</div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>';
-  const win = window.open('', '_blank');
-  if (!win) { alert('Please allow popups for cwspwolf.com to print or save the PDF.'); return; }
-  win.document.write(html);
-  win.document.close();
+  printInFrame(html);
 }
 // ── EXAMPLES DATA ────────────────────────────────────────────────────────────
 const EXAMPLES = {
