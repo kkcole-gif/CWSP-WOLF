@@ -111,7 +111,7 @@
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
-    .step-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .step-card h3, .step-card h4 { font-size: 0.95rem; font-weight: 700; margin: 0 0 0.3rem; }
     .step-card p { font-size: 0.88rem; color: #555; margin: 0; }
     .level-grid {
       display: grid;
@@ -207,15 +207,15 @@
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0; margin-top: 0.1rem;
     }
-    .step-content h5 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.15rem; }
+    .step-content h3 { font-size: 0.85rem; font-weight: 700; margin: 0 0 0.15rem; }
     .step-content p { font-size: 0.83rem; color: #555; margin: 0; }
     .three-level { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; margin: 0.5rem 0 1rem; }
     .level-box { border-radius: 3px; padding: 0.75rem; }
     .level-box.c { background: #FFF4CC; }
     .level-box.s { background: #FBEBE1; }
     .level-box.o { background: #FBE8E8; }
-    .level-box h5 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
-    .level-box.c h5 { color: #5C4500; } .level-box.s h5 { color: #7A2E03; } .level-box.o h5 { color: #7A0000; }
+    .level-box h3 { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 0.35rem; }
+    .level-box.c h3 { color: #5C4500; } .level-box.s h3 { color: #7A2E03; } .level-box.o h3 { color: #7A0000; }
     .level-box p { font-size: 0.8rem; margin: 0; }
     
     .discussion-box {
@@ -247,7 +247,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    .template-card-header h4 { font-size: 0.95rem; font-weight: 700; }
+    .template-card-header h3 { font-size: 0.95rem; font-weight: 700; margin: 0; }
     .template-card-header button {
       font-size: 0.78rem;
       background: transparent;
@@ -702,22 +702,22 @@
       <div class="step-grid" style="grid-template-columns:1fr 1fr 1fr 1fr; gap:0.5rem; margin:1.25rem 0;">
         <div class="step-card" style="text-align:center; padding:0.85rem;">
           <div class="step-num-badge" style="margin:0 auto 0.4rem;">I</div>
-          <h4 style="font-size:0.82rem;">Framework</h4>
+          <h3 style="font-size:0.82rem;">Framework</h3>
           <p>How to use the analytical tools</p>
         </div>
         <div class="step-card" style="text-align:center; padding:0.85rem;">
           <div class="step-num-badge" style="margin:0 auto 0.4rem;">II</div>
-          <h4 style="font-size:0.82rem;">Corpus</h4>
+          <h3 style="font-size:0.82rem;">Corpus</h3>
           <p>Annotated entries from the corpus</p>
         </div>
         <div class="step-card" style="text-align:center; padding:0.85rem;">
           <div class="step-num-badge" style="margin:0 auto 0.4rem;">III</div>
-          <h4 style="font-size:0.82rem;">Your Analysis</h4>
+          <h3 style="font-size:0.82rem;">Your Analysis</h3>
           <p>Blank templates for your documents</p>
         </div>
         <div class="step-card" style="text-align:center; padding:0.85rem;">
           <div class="step-num-badge" style="margin:0 auto 0.4rem;">IV</div>
-          <h4 style="font-size:0.82rem;">Draft</h4>
+          <h3 style="font-size:0.82rem;">Draft</h3>
           <p>Adaptable policy language</p>
         </div>
       </div>
@@ -815,26 +815,26 @@
           <div class="four-step">
             <div class="step-row">
               <div class="step-badge">1</div>
-              <div class="step-content"><h5>Genre</h5><p>Faculty newsletter: an internal advisory document from the Office for Faculty Excellence. The academic policy office did not issue it. It carries persuasive authority and has no enforcement mechanism.</p></div>
+              <div class="step-content"><h3>Genre</h3><p>Faculty newsletter: an internal advisory document from the Office for Faculty Excellence. The academic policy office did not issue it. It carries persuasive authority and has no enforcement mechanism.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">2</div>
-              <div class="step-content"><h5>Glitch</h5><p>The document speaks with the certainty of institutional policy while it defers, explicitly, to faculty discretion. It issues a moral claim ("fundamentally cheating their future selves") and no rule.</p></div>
+              <div class="step-content"><h3>Glitch</h3><p>The document speaks with the certainty of institutional policy while it defers, explicitly, to faculty discretion. It issues a moral claim ("fundamentally cheating their future selves") and no rule.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">3</div>
-              <div class="step-content"><h5>Reveal</h5><p>The institution does not know who is responsible for AI governance. The OFE newsletter fills the vacancy with moral rhetoric where policy infrastructure is missing.</p></div>
+              <div class="step-content"><h3>Reveal</h3><p>The institution does not know who is responsible for AI governance. The OFE newsletter fills the vacancy with moral rhetoric where policy infrastructure is missing.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">4</div>
-              <div class="step-content"><h5>Abstraction</h5><p>When governance infrastructure is absent, moral rhetoric performs its function. The performance reveals the absence.</p></div>
+              <div class="step-content"><h3>Abstraction</h3><p>When governance infrastructure is absent, moral rhetoric performs its function. The performance reveals the absence.</p></div>
             </div>
           </div>
           <p class="analysis-label">Three-Level Literacy Read</p>
           <div class="three-level">
-            <div class="level-box c"><h5>Conceptual</h5><p>The document introduces no AI-specific vocabulary. "AI" and "generative AI" are used interchangeably without definition.</p></div>
-            <div class="level-box s"><h5>Structural</h5><p>The document encodes faculty discretion as the operative governance mechanism. A faculty development office authored it, outside the academic policy structure, a structural mismatch.</p></div>
-            <div class="level-box o"><h5>Operative</h5><p>The document offers instructors no decision framework. "Faculty discretion" is both the governance solution and the governance problem.</p></div>
+            <div class="level-box c"><h3>Conceptual</h3><p>The document introduces no AI-specific vocabulary. "AI" and "generative AI" are used interchangeably without definition.</p></div>
+            <div class="level-box s"><h3>Structural</h3><p>The document encodes faculty discretion as the operative governance mechanism. A faculty development office authored it, outside the academic policy structure, a structural mismatch.</p></div>
+            <div class="level-box o"><h3>Operative</h3><p>The document offers instructors no decision framework. "Faculty discretion" is both the governance solution and the governance problem.</p></div>
           </div>
           <p class="analysis-label">Discussion Notes</p>
           <div class="discussion-box">Use this entry to open a discussion of how advisory documents differ from policy documents. Ask: what would it take for this document to become policy? Who would have to issue it, and in what form?</div>
@@ -856,26 +856,26 @@
           <div class="four-step">
             <div class="step-row">
               <div class="step-badge">1</div>
-              <div class="step-content"><h5>Genre</h5><p>Instructor resource guide: a practical toolkit from the teaching technology center. It models syllabus options without endorsing any of them.</p></div>
+              <div class="step-content"><h3>Genre</h3><p>Instructor resource guide: a practical toolkit from the teaching technology center. It models syllabus options without endorsing any of them.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">2</div>
-              <div class="step-content"><h5>Glitch</h5><p>The three-tier model presents three mutually incompatible theoretical positions as equivalent options. An instructor who chooses restriction or encouragement makes an epistemological commitment. The document treats the choice as a matter of style.</p></div>
+              <div class="step-content"><h3>Glitch</h3><p>The three-tier model presents three mutually incompatible theoretical positions as equivalent options. An instructor who chooses restriction or encouragement makes an epistemological commitment. The document treats the choice as a matter of style.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">3</div>
-              <div class="step-content"><h5>Reveal</h5><p>The model shows an institution settling the question of AI governance by declining to settle it. Institutionalized flexibility is institutionalized incoherence.</p></div>
+              <div class="step-content"><h3>Reveal</h3><p>The model shows an institution settling the question of AI governance by declining to settle it. Institutionalized flexibility is institutionalized incoherence.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">4</div>
-              <div class="step-content"><h5>Abstraction</h5><p>A resource presenting incompatible positions as equivalent choices hands the decision to the least-resourced actor, the individual instructor.</p></div>
+              <div class="step-content"><h3>Abstraction</h3><p>A resource presenting incompatible positions as equivalent choices hands the decision to the least-resourced actor, the individual instructor.</p></div>
             </div>
           </div>
           <p class="analysis-label">Three-Level Literacy Read</p>
           <div class="three-level">
-            <div class="level-box c"><h5>Conceptual</h5><p>The DELTA document supplies concrete vocabulary for the three tiers (restrict, learning aid, collaborative tool). It offers the clearest conceptual framework in NC State's Wave 1 corpus.</p></div>
-            <div class="level-box s"><h5>Structural</h5><p>DELTA, a teaching technology center, authored the document. It carries pedagogical authority and lacks governance authority. This structural gap is the glitch.</p></div>
-            <div class="level-box o"><h5>Operative</h5><p>DELTA designed the document to support instructor decisions and supplied no criteria for making them. Instructors receive three options and no framework for choosing.</p></div>
+            <div class="level-box c"><h3>Conceptual</h3><p>The DELTA document supplies concrete vocabulary for the three tiers (restrict, learning aid, collaborative tool). It offers the clearest conceptual framework in NC State's Wave 1 corpus.</p></div>
+            <div class="level-box s"><h3>Structural</h3><p>DELTA, a teaching technology center, authored the document. It carries pedagogical authority and lacks governance authority. This structural gap is the glitch.</p></div>
+            <div class="level-box o"><h3>Operative</h3><p>DELTA designed the document to support instructor decisions and supplied no criteria for making them. Instructors receive three options and no framework for choosing.</p></div>
           </div>
           <p class="analysis-label">Discussion Notes</p>
           <div class="discussion-box">Pair with the OFE newsletter. Together they represent NC State's full Wave 1 institutional response: moral rhetoric (OFE) plus neutral options (DELTA). Ask: what would a university-wide policy provide, beyond what both documents offer?</div>
@@ -901,26 +901,26 @@
           <div class="four-step">
             <div class="step-row">
               <div class="step-badge">1</div>
-              <div class="step-content"><h5>Genre</h5><p>Teaching resource with visual design components: a CTI toolkit with downloadable assets for instructors to embed in syllabi. The icon system converts policy into communication design.</p></div>
+              <div class="step-content"><h3>Genre</h3><p>Teaching resource with visual design components: a CTI toolkit with downloadable assets for instructors to embed in syllabi. The icon system converts policy into communication design.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">2</div>
-              <div class="step-content"><h5>Glitch</h5><p>Cornell converts governance into a set of downloadable icons. Enforcement then depends entirely on instructors who deploy and explain those icons consistently. The icon is the policy. The icon has no enforcement mechanism.</p></div>
+              <div class="step-content"><h3>Glitch</h3><p>Cornell converts governance into a set of downloadable icons. Enforcement then depends entirely on instructors who deploy and explain those icons consistently. The icon is the policy. The icon has no enforcement mechanism.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">3</div>
-              <div class="step-content"><h5>Reveal</h5><p>The icon system recasts governance as a problem of communication more than of rule-making. Cornell has answered the governance question by making it legible. Legibility and enforceability are separate achievements.</p></div>
+              <div class="step-content"><h3>Reveal</h3><p>The icon system recasts governance as a problem of communication more than of rule-making. Cornell has answered the governance question by making it legible. Legibility and enforceability are separate achievements.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">4</div>
-              <div class="step-content"><h5>Abstraction</h5><p>When enforcement is absent, governance becomes communication design. Design clarifies a position and leaves it uninstitutionalized.</p></div>
+              <div class="step-content"><h3>Abstraction</h3><p>When enforcement is absent, governance becomes communication design. Design clarifies a position and leaves it uninstitutionalized.</p></div>
             </div>
           </div>
           <p class="analysis-label">Three-Level Literacy Read</p>
           <div class="three-level">
-            <div class="level-box c"><h5>Conceptual</h5><p>The icon system works well as a conceptual literacy tool. It gives students a visual vocabulary for reading different AI use permissions at a glance.</p></div>
-            <div class="level-box s"><h5>Structural</h5><p>The CTI authored the system. Neither the academic policy office nor the faculty senate issued it. The icons carry no institutional authority, and their effect depends entirely on voluntary adoption.</p></div>
-            <div class="level-box o"><h5>Operative</h5><p>The committee report’s recommendation against automatic detection tools is the most consequential operative move. It moves the governance burden from policing to communication. The shift bears directly on how instructors design assignments. CWSP has taken the same position, <a href="ai_literacy_unified.html#detector-decision">with its reasons on the record</a>.</p></div>
+            <div class="level-box c"><h3>Conceptual</h3><p>The icon system works well as a conceptual literacy tool. It gives students a visual vocabulary for reading different AI use permissions at a glance.</p></div>
+            <div class="level-box s"><h3>Structural</h3><p>The CTI authored the system. Neither the academic policy office nor the faculty senate issued it. The icons carry no institutional authority, and their effect depends entirely on voluntary adoption.</p></div>
+            <div class="level-box o"><h3>Operative</h3><p>The committee report’s recommendation against automatic detection tools is the most consequential operative move. It moves the governance burden from policing to communication. The shift bears directly on how instructors design assignments. CWSP has taken the same position, <a href="ai_literacy_unified.html#detector-decision">with its reasons on the record</a>.</p></div>
           </div>
           <p class="analysis-label">Discussion Notes</p>
           <div class="discussion-box">The corpus offers no clearer example of governance performed as design. Use it to discuss how legibility relates to enforceability. Ask: does a visually clear policy become more or less likely to function as governance?</div>
@@ -942,26 +942,26 @@
           <div class="four-step">
             <div class="step-row">
               <div class="step-badge">1</div>
-              <div class="step-content"><h5>Genre</h5><p>Policy mandate: an Office of Academic Affairs initiative that converts a pedagogical goal into a graduation requirement. It carries enforcement authority, which Wave 1 documents typically lacked.</p></div>
+              <div class="step-content"><h3>Genre</h3><p>Policy mandate: an Office of Academic Affairs initiative that converts a pedagogical goal into a graduation requirement. It carries enforcement authority, which Wave 1 documents typically lacked.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">2</div>
-              <div class="step-content"><h5>Glitch</h5><p>Read the AI Fluency Initiative against OSU's Wave 1 corpus. In April 2023 Academic Affairs advised that AI tools “should not be used in the completion of course assignments unless an instructor” authorizes them. In November 2023 the trustees added “unauthorized use of generative artificial intelligence” to the Code of Student Conduct. The mandate never mentions either document. The conduct rule still stands beside it, unreconciled.</p></div>
+              <div class="step-content"><h3>Glitch</h3><p>Read the AI Fluency Initiative against OSU's Wave 1 corpus. In April 2023 Academic Affairs advised that AI tools “should not be used in the completion of course assignments unless an instructor” authorizes them. In November 2023 the trustees added “unauthorized use of generative artificial intelligence” to the Code of Student Conduct. The mandate never mentions either document. The conduct rule still stands beside it, unreconciled.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">3</div>
-              <div class="step-content"><h5>Reveal</h5><p>The unacknowledged shift shows institutional positions on AI moving between waves. Wave 1 documents are now historical artifacts. Because OSU does not acknowledge the shift, its Wave 2 documents are structurally dishonest about what changed and why.</p></div>
+              <div class="step-content"><h3>Reveal</h3><p>The unacknowledged shift shows institutional positions on AI moving between waves. Wave 1 documents are now historical artifacts. Because OSU does not acknowledge the shift, its Wave 2 documents are structurally dishonest about what changed and why.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">4</div>
-              <div class="step-content"><h5>Abstraction</h5><p>Institutional positions on AI shift from one wave to the next. When an institution leaves the transition from Wave 1 to Wave 2 unnarrated, the silence becomes a governance problem.</p></div>
+              <div class="step-content"><h3>Abstraction</h3><p>Institutional positions on AI shift from one wave to the next. When an institution leaves the transition from Wave 1 to Wave 2 unnarrated, the silence becomes a governance problem.</p></div>
             </div>
           </div>
           <p class="analysis-label">Three-Level Literacy Read</p>
           <div class="three-level">
-            <div class="level-box c"><h5>Conceptual</h5><p>The initiative defines its goal in two parts: graduates will be “fluent in their field of study, and fluent in the application of AI in that field.” The definition ties AI fluency to disciplinary fluency. It says little about what fluency in AI itself includes, and the word carries assumptions of its own (<a href="ai_literacy_unified.html#context">see “fluency” under common terms</a>).</p></div>
-            <div class="level-box s"><h5>Structural</h5><p>The Office of Academic Affairs houses the mandate, and it holds the authority to require graduation outcomes. No document in the comparative set is better placed structurally.</p></div>
-            <div class="level-box o"><h5>Operative</h5><p>A graduation requirement with no defined assessment framework leaves a wide operative gap. Instructors must develop AI fluency and have no shared standard for measuring it.</p></div>
+            <div class="level-box c"><h3>Conceptual</h3><p>The initiative defines its goal in two parts: graduates will be “fluent in their field of study, and fluent in the application of AI in that field.” The definition ties AI fluency to disciplinary fluency. It says little about what fluency in AI itself includes, and the word carries assumptions of its own (<a href="ai_literacy_unified.html#context">see “fluency” under common terms</a>).</p></div>
+            <div class="level-box s"><h3>Structural</h3><p>The Office of Academic Affairs houses the mandate, and it holds the authority to require graduation outcomes. No document in the comparative set is better placed structurally.</p></div>
+            <div class="level-box o"><h3>Operative</h3><p>A graduation requirement with no defined assessment framework leaves a wide operative gap. Instructors must develop AI fluency and have no shared standard for measuring it.</p></div>
           </div>
           <p class="analysis-label">Discussion Notes</p>
           <div class="discussion-box">Read this entry in sequence with the OSU Wave 1 entries. Ask: what would an honest narrative of this policy shift look like? What would an institution need to say to its faculty, students, and the public when it adds a mandate on top of a prohibition it never repealed?</div>
@@ -983,26 +983,26 @@
           <div class="four-step">
             <div class="step-row">
               <div class="step-badge">1</div>
-              <div class="step-content"><h5>Genre</h5><p>Student conduct policy update: a School of Law standards revision embedded in the professional conduct framework. The law school context places named tools under conduct rules, outside pedagogy.</p></div>
+              <div class="step-content"><h3>Genre</h3><p>Student conduct policy update: a School of Law standards revision embedded in the professional conduct framework. The law school context places named tools under conduct rules, outside pedagogy.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">2</div>
-              <div class="step-content"><h5>Glitch</h5><p>The rule covers any AI content generator, so its examples carry no legal weight. They still date it. Google renamed Bard in February 2024, and the standards as published in 2026 still name it. Here the temporal artifact problem becomes explicit.</p></div>
+              <div class="step-content"><h3>Glitch</h3><p>The rule covers any AI content generator, so its examples carry no legal weight. They still date it. Google renamed Bard in February 2024, and the standards as published in 2026 still name it. Here the temporal artifact problem becomes explicit.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">3</div>
-              <div class="step-content"><h5>Reveal</h5><p>The named-tool policy shows Wave 1 governance calibrated to a specific technological moment, one already over. The policy now records what institutions feared in Spring 2023.</p></div>
+              <div class="step-content"><h3>Reveal</h3><p>The named-tool policy shows Wave 1 governance calibrated to a specific technological moment, one already over. The policy now records what institutions feared in Spring 2023.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">4</div>
-              <div class="step-content"><h5>Abstraction</h5><p>Tool-specific governance is structurally unsustainable. A policy that names tools and leaves capabilities undefined will need continuous revision, or it will go silently obsolete.</p></div>
+              <div class="step-content"><h3>Abstraction</h3><p>Tool-specific governance is structurally unsustainable. A policy that names tools and leaves capabilities undefined will need continuous revision, or it will go silently obsolete.</p></div>
             </div>
           </div>
           <p class="analysis-label">Three-Level Literacy Read</p>
           <div class="three-level">
-            <div class="level-box c"><h5>Conceptual</h5><p>The named examples give students a concrete picture of what the rule covers. Each rename or new product makes the picture older.</p></div>
-            <div class="level-box s"><h5>Structural</h5><p>The law school issued this document, and the university did not. Because the policy is specific to one discipline, it does not generalize. Other UCLA schools are free to adopt different frameworks.</p></div>
-            <div class="level-box o"><h5>Operative</h5><p>The rule places the operative decision with each instructor and asks students for permission and disclosure. Disclosing prompts is a real operative demand. The rule still gives students no criteria for when AI use would serve the work.</p></div>
+            <div class="level-box c"><h3>Conceptual</h3><p>The named examples give students a concrete picture of what the rule covers. Each rename or new product makes the picture older.</p></div>
+            <div class="level-box s"><h3>Structural</h3><p>The law school issued this document, and the university did not. Because the policy is specific to one discipline, it does not generalize. Other UCLA schools are free to adopt different frameworks.</p></div>
+            <div class="level-box o"><h3>Operative</h3><p>The rule places the operative decision with each instructor and asks students for permission and disclosure. Disclosing prompts is a real operative demand. The rule still gives students no criteria for when AI use would serve the work.</p></div>
           </div>
           <p class="analysis-label">Discussion Notes</p>
           <div class="discussion-box">The corpus offers no clearer case of the temporal artifact problem. Use it to discuss what happens when a policy's examples outlive the tools they name. Ask: what does a student read into a list of examples that includes a product which no longer exists?</div>
@@ -1024,26 +1024,26 @@
           <div class="four-step">
             <div class="step-row">
               <div class="step-badge">1</div>
-              <div class="step-content"><h5>Genre</h5><p>Formal institutional policy: a university-level document carrying legal force. UF has been building AI infrastructure since 2020. This document legitimizes the infrastructure after the fact.</p></div>
+              <div class="step-content"><h3>Genre</h3><p>Formal institutional policy: a university-level document carrying legal force. UF has been building AI infrastructure since 2020. This document legitimizes the infrastructure after the fact.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">2</div>
-              <div class="step-content"><h5>Glitch</h5><p>Since UF announced its $70 million NVIDIA partnership in July 2020, the university has built the HiPerGator AI supercomputer, hired more than 100 AI faculty, and opened an AI certificate to undergraduates in every major. The 2026 formal policy arrives after the infrastructure. It looks backward at decisions already in place.</p></div>
+              <div class="step-content"><h3>Glitch</h3><p>Since UF announced its $70 million NVIDIA partnership in July 2020, the university has built the HiPerGator AI supercomputer, hired more than 100 AI faculty, and opened an AI certificate to undergraduates in every major. The 2026 formal policy arrives after the infrastructure. It looks backward at decisions already in place.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">3</div>
-              <div class="step-content"><h5>Reveal</h5><p>At UF, formal governance trailed institutional practice by years. The university built its AI infrastructure under informal arrangements. The formal policy then legitimized decisions already made. Governance here records choices made elsewhere.</p></div>
+              <div class="step-content"><h3>Reveal</h3><p>At UF, formal governance trailed institutional practice by years. The university built its AI infrastructure under informal arrangements. The formal policy then legitimized decisions already made. Governance here records choices made elsewhere.</p></div>
             </div>
             <div class="step-row">
               <div class="step-badge">4</div>
-              <div class="step-content"><h5>Abstraction</h5><p>Formal policy often looks backward. Across the corpus, institutions tend to formalize positions they have already put into practice. Their formal policy documents describe institutional practice and do little to shape it.</p></div>
+              <div class="step-content"><h3>Abstraction</h3><p>Formal policy often looks backward. Across the corpus, institutions tend to formalize positions they have already put into practice. Their formal policy documents describe institutional practice and do little to shape it.</p></div>
             </div>
           </div>
           <p class="analysis-label">Three-Level Literacy Read</p>
           <div class="three-level">
-            <div class="level-box c"><h5>Conceptual</h5><p>UF's formal policy organizes itself around "responsible use" and never defines responsible. The document assumes the definition and leaves the reader to supply it, a conceptual gap the text itself is unable to fill.</p></div>
-            <div class="level-box s"><h5>Structural</h5><p>University administration houses the formal policy. Neither the AI initiative nor the faculty governance body owns it. This placement gives the policy legal authority and separates it from the pedagogical and research communities it purports to govern.</p></div>
-            <div class="level-box o"><h5>Operative</h5><p>The document demands minimal operative literacy: use AI responsibly. The operative gap is total. It offers no decision framework, no assessment standard, and no mechanism for working out what responsible use looks like in specific contexts.</p></div>
+            <div class="level-box c"><h3>Conceptual</h3><p>UF's formal policy organizes itself around "responsible use" and never defines responsible. The document assumes the definition and leaves the reader to supply it, a conceptual gap the text itself is unable to fill.</p></div>
+            <div class="level-box s"><h3>Structural</h3><p>University administration houses the formal policy. Neither the AI initiative nor the faculty governance body owns it. This placement gives the policy legal authority and separates it from the pedagogical and research communities it purports to govern.</p></div>
+            <div class="level-box o"><h3>Operative</h3><p>The document demands minimal operative literacy: use AI responsibly. The operative gap is total. It offers no decision framework, no assessment standard, and no mechanism for working out what responsible use looks like in specific contexts.</p></div>
           </div>
           <p class="analysis-label">Discussion Notes</p>
           <div class="discussion-box">Use this entry to discuss how governance relates to practice. UF stands apart in the corpus for the scale and early date of its AI investment. Ask: what does it mean for a university to have a "responsible use" policy for a system it built, deployed, and requires students to use?</div>
@@ -1065,7 +1065,7 @@
     <section id="template-1">
       <div class="template-card">
         <div class="template-card-header">
-          <h4>Template 1</h4>
+          <h3>Template 1</h3>
           <button onclick="clearTemplate(1)">Clear</button>
         </div>
         <div class="template-card-body">
@@ -1132,7 +1132,7 @@
     <!-- Templates 2–4 (same structure) -->
     <section id="template-2">
       <div class="template-card">
-        <div class="template-card-header"><h4>Template 2</h4><button onclick="clearTemplate(2)">Clear</button></div>
+        <div class="template-card-header"><h3>Template 2</h3><button onclick="clearTemplate(2)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
             <div class="meta-field"><label for="t2-institution">Institution</label><input type="text" id="t2-institution" placeholder="Institution" oninput="save()"></div>
@@ -1162,7 +1162,7 @@
     </section>
     <section id="template-3">
       <div class="template-card">
-        <div class="template-card-header"><h4>Template 3</h4><button onclick="clearTemplate(3)">Clear</button></div>
+        <div class="template-card-header"><h3>Template 3</h3><button onclick="clearTemplate(3)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
             <div class="meta-field"><label for="t3-institution">Institution</label><input type="text" id="t3-institution" placeholder="Institution" oninput="save()"></div>
@@ -1192,7 +1192,7 @@
     </section>
     <section id="template-4">
       <div class="template-card">
-        <div class="template-card-header"><h4>Template 4</h4><button onclick="clearTemplate(4)">Clear</button></div>
+        <div class="template-card-header"><h3>Template 4</h3><button onclick="clearTemplate(4)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
             <div class="meta-field"><label for="t4-institution">Institution</label><input type="text" id="t4-institution" placeholder="Institution" oninput="save()"></div>
@@ -1229,10 +1229,10 @@
       </div>
       <p>These templates offer starting language for AI use policies at three levels. Four principles from the corpus analysis shape them:</p>
       <div class="step-grid" style="grid-template-columns:1fr 1fr;margin:1rem 0 1.5rem;">
-        <div class="step-card"><h4 style="font-size:0.88rem;">1. Scope terms functionally</h4><p>Define AI by what it does (generates text, produces images, automates tasks). Product names date quickly, and named-tool policies go obsolete in months.</p></div>
-        <div class="step-card"><h4 style="font-size:0.88rem;">2. Date your policy</h4><p>Every policy in this corpus became a historical artifact. Acknowledge the conditions of writing and commit to revision.</p></div>
-        <div class="step-card"><h4 style="font-size:0.88rem;">3. Name the revision trigger</h4><p>Specify what would prompt an update: tool proliferation, new institutional guidance, or evidence of the policy producing the wrong outcomes.</p></div>
-        <div class="step-card"><h4 style="font-size:0.88rem;">4. Explain the reasoning</h4><p>A policy students understand is easier for them to follow. State why the policy takes its position.</p></div>
+        <div class="step-card"><h3 style="font-size:0.88rem;">1. Scope terms functionally</h3><p>Define AI by what it does (generates text, produces images, automates tasks). Product names date quickly, and named-tool policies go obsolete in months.</p></div>
+        <div class="step-card"><h3 style="font-size:0.88rem;">2. Date your policy</h3><p>Every policy in this corpus became a historical artifact. Acknowledge the conditions of writing and commit to revision.</p></div>
+        <div class="step-card"><h3 style="font-size:0.88rem;">3. Name the revision trigger</h3><p>Specify what would prompt an update: tool proliferation, new institutional guidance, or evidence of the policy producing the wrong outcomes.</p></div>
+        <div class="step-card"><h3 style="font-size:0.88rem;">4. Explain the reasoning</h3><p>A policy students understand is easier for them to follow. State why the policy takes its position.</p></div>
       </div>
       <div class="callout">
         <p>Treat the templates below as starting points to rewrite. Replace everything in [brackets]. Edit directly in each template, and this browser saves your changes automatically. Use the Print or save as PDF button to export your draft.</p>
