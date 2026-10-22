@@ -488,7 +488,10 @@ a:hover { color: var(--red-dark); }
 
 @media (max-width: 860px) {
   .nav-inner { height: auto; flex-wrap: wrap; gap: 0.25rem 1rem; padding: 0.6rem 1rem; }
-  .nav-links { flex-wrap: wrap; margin-left: 0; width: 100%; }
+  /* One row that scrolls sideways on phones, so the menu never stacks above the page. */
+  .nav-links { flex-wrap: nowrap; margin-left: 0; width: 100%; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links li { flex: 0 0 auto; }
   .nav-links a { height: auto; line-height: 1.3; padding: 0.4rem 0.6rem; font-size: 0.8rem; }
   .nav-links a.active { border-bottom-width: 2px; }
 }
@@ -511,3 +514,7 @@ a:hover { color: var(--red-dark); }
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Skip link, hidden until it has keyboard focus. */
+.skip { position: absolute; left: -999px; top: 0; z-index: 300; }
+.skip:focus { left: 1rem; top: 1rem; background: #fff; color: #1a1a1a; padding: .5rem .75rem; border: 2px solid #1a1a1a; }

@@ -102,6 +102,7 @@ function C2TC_component_(module) {
   var certificate = /^dc-/.test(m) ? 'Digital Certificate'
                   : /^(wc|written)-/.test(m) ? 'Written Certificate'
                   : /^wolf/.test(m) ? 'WOLF'
+                  : /^ai-literacies/.test(m) ? 'AI Literacies'
                   : 'Other';
   var n = (m.match(/(\d+)$/) || [])[1] || '';
   var component = /capstone/.test(m) ? 'Capstone'
@@ -675,7 +676,9 @@ function C2TC_loadDraft(key) {
 }
 
 function C2TC_sendResumeLink_(who, where, p, page, key, when, completed, total) {
-  var link = C2TC.SITE + page + '?resume=' + key;
+  /* WOLF and AI Literacies workbooks sit at the site root; C²TC pages sit under C2TC.SITE. */
+  var root = /^(wolf-workbook|CWSP_AI_Literacies_Workbook)\.html$/i.test(page);
+  var link = (root ? 'https://cwspwolf.com/' : C2TC.SITE) + page + '?resume=' + key;
   var what = where.certificate + ', ' + (p.workbook_title || where.component);
   var lay = C2TC_LAYOUTS[C2TC_layoutKey_(p)];
   var uses = lay && lay.student && lay.student.length
