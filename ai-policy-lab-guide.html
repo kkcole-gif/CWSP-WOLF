@@ -128,13 +128,13 @@
       <div class="fg-field"><label for="f-format">Format</label>
         <select id="f-format"><option value="3h">One session, three hours</option><option value="2x90">Two sessions, ninety minutes each</option></select>
         <span class="hint">Two sessions: reading and a first draft in session one, refresh, norming, and drafting in session two.</span></div>
-      <div class="fg-field"><label for="f-count">Participants expected</label><input type="number" id="f-count" min="3" max="40" placeholder="12"><span class="hint">Groups of three or four. Twelve participants make four groups, one per case.</span></div>
+      <div class="fg-field"><label for="f-count">Participants expected</label><input type="number" id="f-count" min="3" max="40" placeholder="12"><span class="hint">Participants choose groups, pairs, or working alone. Four cases cover twelve people in groups; add one or two for pairs.</span></div>
       <div class="fg-field"><label for="f-level">Level most of the room drafts at</label>
         <select id="f-level"><option value="course">Course</option><option value="program">Program</option><option value="department">Department or unit</option><option value="mixed">Mixed: faculty at course level, heads at unit level</option></select></div>
       <div class="fg-field"><label for="f-cofac">Co-facilitator, if any</label><input type="text" id="f-cofac" placeholder="Roy Schwartzman"><span class="hint">Named on the run sheet and the handout. Leave blank to omit.</span></div>
       <fieldset class="fg-fieldset">
         <legend>Cases for Activity 1</legend>
-        <span class="hint">Choose one per group from the census Contradictions tab. The first four are land-grant cases.</span>
+        <span class="hint">One per group or pair; people working alone take any. The first four are land-grant cases.</span>
         <div class="fg-check">
           <input type="checkbox" id="c-clemson" data-case="clemson" checked><label for="c-clemson">Clemson <span class="case-note">Sample syllabus statements permit fully integrated AI; the Faculty Cheat Sheet on Academic Integrity classes generative AI use as plagiarism.</span></label>
           <input type="checkbox" id="c-csu" data-case="csu" checked><label for="c-csu">Colorado State <span class="case-note">A syllabus example tells instructors to assume written work is AI-generated; the Academic Integrity page cautions against detectors.</span></label>
@@ -282,10 +282,10 @@ const BLOCKS = [
   alt:'Give the three questions as a card on each table, so the group has them in hand during Activity 1.',
   short:'Hold to the three questions on slide 10 and leave slide 9 to the handout.'},
  {id:'a1', num:'3', title:'Activity 1. Read a case', sub:'Groups apply the procedure and the three questions to one census case', slides:'11', t3:25, s:1, t2:25,
-  say:'In your group, open your case in the Contradictions tab. Apply the four steps: genre, glitch, reveal, abstraction. At the glitch, decide whether you have two current documents or one which replaced the other. Then the three questions: what does it name, whose problem is it, what judgment does it route. Fifteen minutes. Bring back your glitch, your reveal, and your call on contradiction or supersession.',
-  do:['Assign one case per group (chosen on the Prepare tab). A fifth group takes the NC State OIT pair.','Fifteen minutes of group work, ten of debrief. Each group gives its glitch and its reveal only, two minutes each.','Close by naming the pattern across groups: different campuses, the same abstraction doing the same work.'],
+  say:'Work in a group, with a partner, or on your own, whichever suits you. Open your case in the Contradictions tab and use Template 1 in the workbook. Apply the four steps, and at the glitch decide whether you have two current documents or one which replaced the other. Then the three questions. Fifteen minutes. Bring back your glitch, your reveal, and your call on contradiction or supersession.',
+  do:['Let people choose how to work: groups of three or four, pairs, or alone. One case per group or pair; people working alone take any case.','Fifteen minutes of work, ten of debrief. Each group, pair, or volunteer gives its glitch and its reveal only, two minutes each.','Close by naming the pattern across groups: different campuses, the same abstraction doing the same work.'],
   watch:'A group reporting the full analysis. Hold them to glitch and reveal. A group calling every conflict a contradiction: ask whether the older page was withdrawn.',
-  alt:'Groups which prefer to write post their glitch and reveal in the shared document, and you read them aloud. One person working alone takes the Texas State case, which is three documents and one reader.',
+  alt:'Whole room, if no one wants to break out: put one case on screen and work the four steps together, taking each step from a different voice. In writing: anyone posts a glitch and reveal in the shared document, and you read them aloud. Alone: the Texas State case suits one reader, three documents and a single question of which governs.',
   short:'Ten minutes of group work and a debrief of one sentence per group.'},
  {id:'break', num:'', title:'Break', sub:'', slides:'', t3:10, s:0, t2:0, say:'', do:[], watch:'', alt:'', short:''},
  {id:'ncs', num:'4', title:"Module 2, continued. NC State's record", sub:'The local case, read with the same procedure', slides:'12 to 14', t3:20, s:2, t2:20,
@@ -365,7 +365,7 @@ function blockHTML(b, idx, minutes, sessionLabel){
   if(b.id==='break') return '<details class="fg-block" id="blk-break"><summary><span class="num"></span><span class="ttl">Break</span><span class="meta"><b>'+minutes+' min</b></span></summary><div class="fg-body"><dt>Do</dt><dd>Ten minutes. Leave slide 12 on screen so the room returns to the NC State case.</dd></div></details>';
   const cases=chosenCases();
   let doList=b.do.slice();
-  if(b.id==='a1'){ doList[0]='Assign one case per group: '+cases.map(c=>CASES[c].name).join(', ')+'. '+(cases.length<5?'A fifth group takes the NC State OIT pair.':''); }
+  if(b.id==='a1'){ doList[0]='Let people choose how to work: groups of three or four, pairs, or alone. Cases for this run: '+cases.map(c=>CASES[c].name).join(', ')+'. One per group or pair; people working alone take any.'; }
   if(b.id==='ncs'){ doList[0]= v('f-lead')==='oit' ? 'Slide 13: the five rows. Lead with the OIT pair, two IT pages which disagree on data classification, and ask which governs.' : 'Slide 13: the five rows. Lead with the DELTA sentence and the Code: a teaching page says there is no policy, the Code names no AI, and the AI Hub governs the data.'; }
   if(b.id==='m3'){ doList = doList.filter(x=>{ if(x.startsWith('Slide 18')) return v('f-peers')==='yes'; if(x.startsWith('If chosen')) return v('f-detector')==='yes'; return true; }); }
   const lvl=v('f-level');

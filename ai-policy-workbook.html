@@ -1475,8 +1475,11 @@ function loadSaved() {
 }
 function addTemplate() {
   const t3 = document.getElementById('template-3'), t4 = document.getElementById('template-4');
-  if (t3.hidden) { t3.hidden = false; document.getElementById('nav-t3').hidden = false; t3.scrollIntoView({behavior:'smooth'}); }
-  else if (t4.hidden) { t4.hidden = false; document.getElementById('nav-t4').hidden = false; t4.scrollIntoView({behavior:'smooth'}); document.getElementById('add-template-btn').hidden = true; }
+  const open = function(t, nav){ t.hidden = false; document.getElementById(nav).hidden = false;
+    const first = t.querySelector('input, textarea'); if (first) first.focus({preventScroll:true});
+    if (t.scrollIntoView) t.scrollIntoView({behavior:'smooth', block:'start'}); };
+  if (t3.hidden) { open(t3, 'nav-t3'); }
+  else if (t4.hidden) { open(t4, 'nav-t4'); document.getElementById('add-template-btn').hidden = true; }
 }
 function revealFilledTemplates() {
   [3,4].forEach(function(n){ const has = FIELDS.filter(f => f.startsWith('t'+n+'-')).some(id => { const el = document.getElementById(id); return el && el.value.trim(); });
