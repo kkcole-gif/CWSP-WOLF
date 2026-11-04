@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Policy Lab: Facilitator Workbook | NC State CWSP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/brand.css">
+  <style>
+    .skip { position: absolute; left: -999px; } .skip:focus { left: 1rem; top: 1rem; background: #fff; padding: .5rem; z-index: 200; }
+    .fg-wrap { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+    .fg-head h1 { font-family: 'Source Serif 4', Georgia, serif; font-size: 2rem; line-height: 1.25; margin-bottom: .3rem; }
+    .fg-head .fg-sub { color: var(--gray-dark); margin-bottom: 1.25rem; max-width: 760px; }
+    .fg-run-for { font-size: .9rem; color: var(--gray-dark); margin-bottom: 1rem; }
+    .fg-run-for strong { color: var(--black); }
+    /* tabs */
+    .fg-tabs { display: flex; gap: .4rem; flex-wrap: wrap; border-bottom: 1px solid #e0e0e0; margin-bottom: 1.75rem; }
+    .fg-tab { font: inherit; font-weight: 600; font-size: .95rem; padding: .6rem 1.1rem; background: none; border: none; border-bottom: 3px solid transparent; color: var(--gray-dark); cursor: pointer; }
+    .fg-tab:hover { color: var(--black); }
+    .fg-tab[aria-selected="true"] { color: var(--red-dark); border-bottom-color: var(--red); }
+    .fg-tab:focus-visible, .fg-btn:focus-visible, .fg-block summary:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid var(--black); outline-offset: 2px; }
+    .fg-panel[hidden] { display: none; }
+    .fg-panel h2 { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.45rem; margin: 0 0 .5rem; }
+    .fg-panel > p.lead { max-width: 760px; color: var(--gray-dark); margin-bottom: 1.5rem; }
+    .fg-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin: 0 0 1.5rem; }
+    .fg-btn { font: inherit; font-size: .88rem; font-weight: 600; padding: .5rem 1rem; border-radius: 4px; border: 1px solid var(--black); background: #fff; color: var(--black); cursor: pointer; }
+    .fg-btn.primary { background: var(--red); border-color: var(--red); color: #fff; }
+    .fg-btn:hover { border-color: var(--red); }
+    .fg-status { font-size: .85rem; color: var(--gray-dark); margin: 0 0 1.5rem; }
+    /* prepare form */
+    .fg-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; max-width: 860px; }
+    .fg-field { display: flex; flex-direction: column; gap: .3rem; }
+    .fg-field.wide { grid-column: 1 / -1; }
+    .fg-field label, .fg-fieldset legend { font-weight: 600; font-size: .92rem; }
+    .fg-field .hint { font-size: .82rem; color: var(--gray-dark); }
+    .fg-field input[type="text"], .fg-field input[type="date"], .fg-field input[type="number"], .fg-field select, .fg-field textarea { font: inherit; font-size: .95rem; padding: .5rem .6rem; border: 1px solid #999; border-radius: 4px; background: #fff; }
+    .fg-fieldset { border: 1px solid #e0e0e0; border-radius: 6px; padding: .9rem 1rem 1rem; grid-column: 1 / -1; }
+    .fg-fieldset legend { padding: 0 .4rem; }
+    .fg-check { display: grid; grid-template-columns: auto 1fr; gap: .35rem .6rem; align-items: start; margin-top: .5rem; font-size: .92rem; }
+    .fg-check input { margin-top: .3rem; }
+    .fg-check .case-note { color: var(--gray-dark); font-size: .85rem; }
+    .fg-checklist { list-style: none; margin: 1.5rem 0 0; max-width: 760px; }
+    .fg-checklist li { display: grid; grid-template-columns: auto 1fr; gap: .6rem; padding: .5rem 0; border-top: 1px solid #eee; align-items: start; }
+    .fg-checklist input { margin-top: .35rem; }
+    /* run blocks */
+    .fg-session { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); margin: 2rem 0 .5rem; }
+    .fg-block { border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: .6rem; background: #fff; }
+    .fg-block summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: 3.2rem 1fr auto; gap: 1rem; align-items: baseline; padding: .8rem 1rem; }
+    .fg-block summary::-webkit-details-marker { display: none; }
+    .fg-block summary .num { font-family: 'Source Serif 4', Georgia, serif; font-weight: 700; color: var(--red); font-size: 1.1rem; }
+    .fg-block summary .ttl { font-weight: 700; font-size: 1.02rem; }
+    .fg-block summary .ttl small { display: block; font-weight: 400; color: var(--gray-dark); font-size: .85rem; margin-top: .15rem; }
+    .fg-block summary .meta { font-size: .82rem; color: var(--gray-dark); white-space: nowrap; text-align: right; }
+    .fg-block summary .meta b { color: var(--black); }
+    .fg-block[open] summary { border-bottom: 1px solid #eee; background: var(--gray-light); }
+    .fg-body { padding: 1rem 1.25rem 1.25rem; display: grid; grid-template-columns: 7.5rem 1fr; gap: .7rem 1rem; max-width: 860px; }
+    .fg-body dt { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gray-dark); padding-top: .15rem; }
+    .fg-body dd { margin: 0; }
+    .fg-body dd ol, .fg-body dd ul { margin: 0 0 0 1.2rem; }
+    .fg-body dd li { margin-bottom: .25rem; }
+    .fg-say { background: #FFF8E6; border-left: 3px solid var(--red); padding: .7rem .9rem; font-family: 'Source Serif 4', Georgia, serif; font-size: 1.02rem; }
+    .fg-timer { display: inline-flex; gap: .5rem; align-items: center; font-size: .85rem; }
+    .fg-timer output { font-variant-numeric: tabular-nums; min-width: 4.5rem; display: inline-block; }
+    .fg-timer button { font: inherit; font-size: .8rem; padding: .25rem .6rem; border: 1px solid #999; border-radius: 4px; background: #fff; cursor: pointer; }
+    .fg-timer.over output { color: var(--red-dark); font-weight: 700; }
+    /* reference */
+    .fg-ref h3 { font-size: 1.1rem; margin: 1.5rem 0 .5rem; }
+    .fg-ref p, .fg-ref li { max-width: 760px; }
+    .fg-ref dl.qa dt { font-weight: 700; margin-top: 1rem; max-width: 760px; }
+    .fg-ref dl.qa dd { margin: .3rem 0 0; max-width: 760px; }
+    .fg-case { border: 1px solid #e0e0e0; border-radius: 6px; padding: .8rem 1rem; margin: .5rem 0; max-width: 760px; }
+    .fg-case b { display: block; margin-bottom: .2rem; }
+    @media (max-width: 760px) {
+      .fg-form { grid-template-columns: 1fr; }
+      .fg-block summary { grid-template-columns: 2.4rem 1fr; }
+      .fg-block summary .meta { grid-column: 2; text-align: left; white-space: normal; }
+      .fg-body { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .site-header, .fg-tabs, .fg-actions, .fg-timer, .site-footer, .skip { display: none !important; }
+      .fg-panel[hidden] { display: block !important; }
+      .fg-block { break-inside: avoid; }
+      .fg-block summary::after { content: none; }
+      details.fg-block > .fg-body { display: grid !important; }
+    }
+  </style>
+</head>
+<body>
+<a class="skip" href="#fg-main">Skip to content</a>
+<header class="site-header">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About WOLF</a></li>
+      <li><a href="liaisons.html">For Liaisons</a></li>
+      <li><a href="ai-literacies.html">AI Literacies</a></li>
+      <li><a href="ai-policy-lab.html" class="active">AI Policy Lab</a></li>
+      <li><a href="c2tc/index.html">C²TC</a></li>
+      <li><a href="get-started.html">Get Started</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="fg-wrap" id="fg-main">
+  <div class="fg-head">
+    <h1>AI Policy Lab: Facilitator Workbook</h1>
+    <p class="fg-sub">For the person running the Lab. Participants use the <a href="ai-policy-workbook.html">policy repository workbook</a>. Fill in the Prepare tab once for each run, and the Run and Reference tabs, the printed run sheet, and the participant handout carry those choices.</p>
+    <p class="fg-run-for" id="fg-run-for" aria-live="polite">No run set up yet. Open Prepare to begin.</p>
+  </div>
+
+  <div class="fg-tabs" role="tablist" aria-label="Workbook views">
+    <button class="fg-tab" role="tab" id="tab-prepare" aria-controls="panel-prepare" aria-selected="true">Prepare</button>
+    <button class="fg-tab" role="tab" id="tab-run" aria-controls="panel-run" aria-selected="false" tabindex="-1">Run</button>
+    <button class="fg-tab" role="tab" id="tab-ref" aria-controls="panel-ref" aria-selected="false" tabindex="-1">Reference</button>
+  </div>
+
+  <!-- ───────────── PREPARE ───────────── -->
+  <section class="fg-panel" id="panel-prepare" role="tabpanel" aria-labelledby="tab-prepare">
+    <h2>Prepare</h2>
+    <p class="lead">Eight choices set up a run. This browser saves them as you type. Change the format and the Run tab re-times every block.</p>
+    <form class="fg-form" id="fg-form" onsubmit="return false;">
+      <div class="fg-field"><label for="f-unit">Unit or department</label><input type="text" id="f-unit" placeholder="Forestry and Environmental Resources"></div>
+      <div class="fg-field"><label for="f-date">Date of the first session</label><input type="date" id="f-date"></div>
+      <div class="fg-field"><label for="f-format">Format</label>
+        <select id="f-format"><option value="3h">One session, three hours</option><option value="2x90">Two sessions, ninety minutes each</option></select>
+        <span class="hint">Two sessions: reading and a first draft in session one, refresh, norming, and drafting in session two.</span></div>
+      <div class="fg-field"><label for="f-count">Participants expected</label><input type="number" id="f-count" min="3" max="40" placeholder="12"><span class="hint">Groups of three or four. Twelve participants make four groups, one per case.</span></div>
+      <div class="fg-field"><label for="f-level">Level most of the room drafts at</label>
+        <select id="f-level"><option value="course">Course</option><option value="program">Program</option><option value="department">Department or unit</option><option value="mixed">Mixed: faculty at course level, heads at unit level</option></select></div>
+      <div class="fg-field"><label for="f-cofac">Co-facilitator, if any</label><input type="text" id="f-cofac" placeholder="Roy Schwartzman"><span class="hint">Named on the run sheet and the handout. Leave blank to omit.</span></div>
+      <fieldset class="fg-fieldset">
+        <legend>Cases for Activity 1</legend>
+        <span class="hint">Choose one per group from the census Contradictions tab. The first four are land-grant cases.</span>
+        <div class="fg-check">
+          <input type="checkbox" id="c-clemson" data-case="clemson" checked><label for="c-clemson">Clemson <span class="case-note">Sample syllabus statements permit fully integrated AI; the Faculty Cheat Sheet on Academic Integrity classes generative AI use as plagiarism.</span></label>
+          <input type="checkbox" id="c-csu" data-case="csu" checked><label for="c-csu">Colorado State <span class="case-note">A syllabus example tells instructors to assume written work is AI-generated; the Academic Integrity page cautions against detectors.</span></label>
+          <input type="checkbox" id="c-auburn" data-case="auburn" checked><label for="c-auburn">Auburn <span class="case-note">Two four-tier schemes with different tier names on two pages.</span></label>
+          <input type="checkbox" id="c-txst" data-case="txst" checked><label for="c-txst">Texas State <span class="case-note">Across three documents the university requires, encourages, and denies having a syllabus AI statement.</span></label>
+          <input type="checkbox" id="c-msu" data-case="msu"><label for="c-msu">Michigan State <span class="case-note">Provost Guidelines supersede all earlier guidance and require a course AI statement; the superseded messages remain posted. A supersession case.</span></label>
+          <input type="checkbox" id="c-ncoit" data-case="ncoit"><label for="c-ncoit">NC State, OIT pair <span class="case-note">A November 2024 notice cleared Gemini for green and yellow data; the current approved list clears it for Red. Contradiction or supersession, deliberately open.</span></label>
+        </div>
+      </fieldset>
+      <div class="fg-field"><label for="f-lead">NC State case which leads Module 2's local reading</label>
+        <select id="f-lead"><option value="delta">DELTA and the Code: a teaching page says there is no policy, the Code names no AI, the AI Hub governs data</option><option value="oit">The OIT pair: two IT pages disagree on data classification</option></select></div>
+      <div class="fg-field"><label for="f-peers">Show the peer slide (slide 18)</label>
+        <select id="f-peers"><option value="yes">Yes, as options a unit might weigh</option><option value="no">No, keep peers in the notes</option></select>
+        <span class="hint">Faculty have said they fear a required syllabus statement. The slide presents Michigan State's as one option among several.</span></div>
+      <div class="fg-field"><label for="f-detector">Use the detector decision tool in Module 3</label>
+        <select id="f-detector"><option value="yes">Yes, the institutional decision on the framework page</option><option value="no">No, time is short</option></select></div>
+    </form>
+
+    <h3 style="margin-top:2rem;">Before the first session</h3>
+    <ul class="fg-checklist" id="fg-prep-list">
+      <li><input type="checkbox" id="p1"><label for="p1">Open each chosen case in the <a href="https://kkcole-gif.github.io/ai-governance-census/#contra" target="_blank" rel="noopener">Contradictions tab</a> and confirm both documents still open. Report any which do not through the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfK8B4oqRNt_kNkRTaDm8G2Kt-vkDXZmajS4jcLUX75kF_O6w/viewform" target="_blank" rel="noopener">correction form</a>.</label></li>
+      <li><input type="checkbox" id="p2"><label for="p2">Open NC State's record in the <a href="https://kkcole-gif.github.io/ai-governance-census/#inst" target="_blank" rel="noopener">Institutions tab</a> and check the OIT approved list, the AI Hub pages, the DELTA course guidelines page, and REG 11.35.05 for changes since the last run.</label></li>
+      <li><input type="checkbox" id="p3"><label for="p3">Ask the unit for its current syllabus or unit language on AI, if any, and read it with the procedure before the session.</label></li>
+      <li><input type="checkbox" id="p4"><label for="p4">Open the <a href="https://docs.google.com/presentation/d/1fFBwchCxm9sITlmNk4j9zlq6bWEhcvFMb7S8QshD_6c/edit?usp=sharing" target="_blank" rel="noopener">deck</a> in presenter view and read the notes on slides 3, 4, 13, 15, 18, 20, and 23, which carry this run's figures.</label></li>
+      <li><input type="checkbox" id="p5"><label for="p5">Print the run sheet and one participant handout per person from the buttons on the Run tab.</label></li>
+      <li><input type="checkbox" id="p6"><label for="p6">Send participants the <a href="ai-policy-workbook.html">policy repository workbook</a> link and the census link the day before, with one sentence: bring your current policy language, or the absence of it.</label></li>
+      <li><input type="checkbox" id="p7"><label for="p7">Tables for three or four, each with sight of the screen. One shared document (a Google Doc works) open for groups which prefer to write their debrief.</label></li>
+    </ul>
+  </section>
+
+  <!-- ───────────── RUN ───────────── -->
+  <section class="fg-panel" id="panel-run" role="tabpanel" aria-labelledby="tab-run" hidden>
+    <h2>Run</h2>
+    <p class="lead">One block per module or activity, in order. Each block opens to the same six lines: say, do, watch for, alternatives, short on time, slides. Start a block's clock when you begin it.</p>
+    <div class="fg-actions">
+      <button type="button" class="fg-btn primary" onclick="printRunSheet()">Print run sheet</button>
+      <button type="button" class="fg-btn" onclick="printHandout()">Print participant handout</button>
+      <button type="button" class="fg-btn" onclick="toggleAll(true)">Open all blocks</button>
+      <button type="button" class="fg-btn" onclick="toggleAll(false)">Close all blocks</button>
+    </div>
+    <p class="fg-status" id="fg-run-status"></p>
+    <div id="fg-blocks"></div>
+  </section>
+
+  <!-- ───────────── REFERENCE ───────────── -->
+  <section class="fg-panel fg-ref" id="panel-ref" role="tabpanel" aria-labelledby="tab-ref" hidden>
+    <h2>Reference</h2>
+    <p class="lead">What belongs to no single block: the procedure and the three questions, the five principles, the cases, the questions participants ask, and the sources.</p>
+
+    <h3>The procedure, with the question added in 2026</h3>
+    <ol>
+      <li>Identify the genre. What kind of document is this, issued by whom, to whom, under what authority? Genre sets what the document is able to say.</li>
+      <li>Locate the glitch. Where does the document strain against itself: a contradiction, a hedge, a term invoked and never defined, course-level language in a university document, a trace of revision? Where two documents conflict, decide whether both are current (a contradiction) or one has replaced the other (a supersession). A replaced document is a version note.</li>
+      <li>Read the reveal. What does the glitch make legible about the institution's commitments, assumptions, or fears? This is a reading, and no verdict on the institution.</li>
+      <li>Name the abstraction. Which general claim holds the document together, and where does it fail? "Faculty discretion" moves risk without governance. "Responsible use" names individual conduct while structural conditions go unaddressed. "Integrity" frames AI as a cheating problem.</li>
+    </ol>
+
+    <h3>The three questions to ask of any policy</h3>
+    <ul>
+      <li>Conceptual: what does this policy name, and is the thing it names defined?</li>
+      <li>Structural: whose problem does this policy make AI, and which conditions (procurement, data, infrastructure) stay out of view?</li>
+      <li>Operative: what judgment does the policy route, to whom, and with what support?</li>
+    </ul>
+
+    <h3>The five principles</h3>
+    <ol>
+      <li>Scope terms by function. "Tools that generate text, code, images, or data from prompts," since a product name goes out of date with the product.</li>
+      <li>Date the policy. "This policy applies to Spring 2027 and will be reviewed before the following semester."</li>
+      <li>Name the revision trigger. "If a materially different AI capability becomes available, or the university publishes a policy, this policy will be updated."</li>
+      <li>Separate durable principles from contingent prohibitions. The commitment (what the course develops and assesses) stands apart from the rule (which functions are barred this term), because different bodies write each and the first outlasts the second.</li>
+      <li>Explain the reasoning. Students comply more with policies they understand, and a reviewer knows what to keep when the tools change.</li>
+    </ol>
+
+    <h3>Cases on record</h3>
+    <div id="fg-ref-cases"></div>
+    <div class="fg-case"><b>NC State, the record in the census</b>Eleven documents, seven verified, three announced with no text, one promise since removed from its page. The OIT approved list clears Gemini, Copilot, and ChatGPT for Red data while a November 2024 OIT notice limited them to green and yellow. The AI Hub bars university data from tools OIT has not vetted; its advisory group has posted a charge and 2026 minutes and no report. The DELTA course AI guidelines page states that as of May 2026 there is no official university policy regarding AI use, beside three sample syllabus statements. The Code of Student Conduct (REG 11.35.05, revised July 2025) contains no AI language; its integrity provisions rest on the unauthorized-assistance clause (8.1.b) and the Pack Pledge. The Graduate Handbook (3.6) requires theses and dissertations to document generative AI use, the one formal instrument naming AI.</div>
+    <div class="fg-case"><b>Peers, for the notes</b>Michigan State: Provost Guidelines which supersede all earlier guidance require a course AI statement in every syllabus, and the superseded messages remain posted. Purdue: provost guidance bars a detector result as the sole basis for an integrity violation, the trustees approved an AI working-competency graduation requirement, and the integrity pages carry no AI language. Texas A&amp;M: System Regulation 29.01.05 limits members to AI platforms under System contract, and Student Rule 20 names unauthorized AI use as cheating while permitting use with each instructor's approval. Rutgers: no integrity text names AI, and the CIO reads a general ban on impermissible technologies as covering coursework AI use unless instructors permit it. Georgia Tech: two interim policies, one academic and one administrative, while a Board of Regents policy directs every USG institution to add AI to its integrity policy and the Honor Code contains no AI language.</div>
+
+    <h3>Questions participants ask</h3>
+    <dl class="qa">
+      <dt>What should the policy say?</dt>
+      <dd>The what follows from the why. The workbook's Part IV holds template language at three levels, and template language without a stated rationale is what the procedure finds glitches in. Work through the three questions first, then the templates.</dd>
+      <dt>Is AI use in my class cheating?</dt>
+      <dd>At NC State, the Code defines cheating as using assistance the instructor has not authorized (8.1.b), so the answer sits in the syllabus. Conceptually: which function? Structurally: what the assignment is doing and what AI does to it. Operatively: who decides, on what grounds, and what recourse a student has.</dd>
+      <dt>What does NC State require of us?</dt>
+      <dd>No university-wide AI policy has been published. The AI Hub bars university data from unvetted tools, OIT clears tools by data classification, the Graduate School requires thesis disclosure, and the Code leaves authorization to the instructor. The AI Advisory Group has posted a charge and minutes; the AI Hub Learning, Curriculum, and AI Literacy working group is the venue to watch for curriculum.</dd>
+      <dt>Will we be required to put a statement in every syllabus?</dt>
+      <dd>Nothing on record at NC State requires it. Michigan State requires one by provost guideline, and the peer slide presents that as one instrument among several a unit might weigh. The question for the unit is which, if any, it wants, and at which level.</dd>
+      <dt>Should we use detection software?</dt>
+      <dd>Run the three questions. Conceptually, a detector reports a probability score, which establishes nothing about what a student did. Structurally, Liang and colleagues (2023) found a 61.3 percent average false-positive rate for non-native English writers across seven detectors, and Weber-Wulff and colleagues (2023) found none of fourteen tools reliable. Operatively, Penn State's integrity office states the position in one sentence: detector results are not reliable enough to use as the basis for an academic decision. CWSP does not use them, and the reasons are on the framework page.</dd>
+      <dt>Why "glitch"?</dt>
+      <dd>The term names a productive failure, a place where language reveals more than it intends, and it comes from the theoretical frame behind the Lab. "Tension" or "gap" substitutes without losing the analysis if the room finds it too playful.</dd>
+    </dl>
+
+    <h3>Sources</h3>
+    <ul>
+      <li>Cole, K. K. (2026). AI Governance Census of US Colleges and Universities, version 0.5. <a href="https://doi.org/10.5281/zenodo.23887259" target="_blank" rel="noopener">https://doi.org/10.5281/zenodo.23887259</a> (concept DOI, resolves to the latest version).</li>
+      <li>Cole, K. K. (2026). AI literacy is not one thing: Conceptual, structural, and operative levels for higher education governance. Pedagogies: An International Journal.</li>
+      <li>Liang, W., Yuksekgonul, M., Mao, Y., Wu, E., and Zou, J. (2023). GPT detectors are biased against non-native English writers. Patterns, 4, 100779. <a href="https://doi.org/10.1016/j.patter.2023.100779" target="_blank" rel="noopener">https://doi.org/10.1016/j.patter.2023.100779</a></li>
+      <li>Weber-Wulff, D., Anohina-Naumeca, A., Bjelobaba, S., Foltýnek, T., Guerrero-Dib, J., Popoola, O., Šigut, P., and Waddington, L. (2023). Testing of detection tools for AI-generated text. International Journal for Educational Integrity, 19(1), 26. <a href="https://doi.org/10.1007/s40979-023-00146-z" target="_blank" rel="noopener">https://doi.org/10.1007/s40979-023-00146-z</a></li>
+      <li>North Carolina State University. (2025). REG 11.35.05, Code of Student Conduct. Last revised July 22, 2025.</li>
+    </ul>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>WOLF is a program of the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program</a> &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a> &nbsp;·&nbsp; <a href="research.html">Research and presentations</a></p>
+  <p style="margin-top:0.4rem; font-size:0.8em;">All content on CWSP WOLF &#169; 2026 by Kirsti Cole is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">CC BY-NC-ND 4.0</a>.</p>
+</footer>
+
+<script>
+// ── Data ──────────────────────────────────────────────────────────────────
+const CASES = {
+  clemson: {name:'Clemson', kind:'Contradiction', line:'Sample syllabus statements permit fully integrated AI, while the Faculty Cheat Sheet on Academic Integrity classes generative AI use as plagiarism. The catalog plagiarism definition sets a stricter standard still.'},
+  csu: {name:'Colorado State', kind:'Contradiction', line:'A syllabus example tells instructors to assume written work is AI-generated, while the AI and Academic Integrity page cautions against detectors.'},
+  auburn: {name:'Auburn', kind:'Contradiction', line:'The Optional Guidelines for AI Use in Courses run four tiers (Open Use, Moderate Use, Moderate Prohibition, Strict Prohibition), while the Syllabus Language page offers four different options (Open, Moderate, Strict 3A, Strict 3B).'},
+  txst: {name:'Texas State', kind:'Contradiction', line:'Across three documents, the university requires, encourages, and says it has no syllabus AI statement.'},
+  msu: {name:'Michigan State', kind:'Supersession', line:'Provost Guidelines which "supersede all earlier guidance" require a course AI statement in every syllabus, and the superseded messages remain posted.'},
+  ncoit: {name:'NC State, OIT pair', kind:'Open', line:'A November 2024 OIT notice cleared Gemini for green and yellow data only; the current OIT approved list clears Gemini, Copilot, and ChatGPT for Red data. Which page governs depends on whether the notice was withdrawn or left standing.'}
+};
+
+// Blocks. t3 = minutes in the three-hour format; s = session number in the two-session format, t2 = minutes there (0 = omitted).
+const BLOCKS = [
+ {id:'open', num:'0', title:'Open', sub:'Why the room is here, and what it leaves with', slides:'1 to 2', t3:10, s:1, t2:10,
+  say:'Most of us made at least one AI decision this term: a syllabus line, a vote, a tool switched on without anyone asking, a detector report. This workshop gives that work a method, a record, and colleagues. You leave with a draft at the level you choose and a way to check it each term.',
+  do:['Ask two or three people to name their current approach. "Not allowed," "depends on the assignment," and "none yet" are all usable openings.','Name the two moves: read existing policy through the procedure, then draft your own.','State the level question now: course, program, or unit. Heads and associate deans draft for the unit.'],
+  watch:'A room which opens with the detector question. Park it: it is worked through in Module 3 and in the Reference tab.',
+  alt:'Opening round in writing: each person writes their current approach on a card, and you read three aloud.',
+  short:'Cut the opening round; keep the two moves and the level question.'},
+ {id:'m1', num:'1', title:'Module 1. What policy does', sub:'The census, the procedure, one worked case', slides:'3 to 7', t3:20, s:1, t2:20,
+  say:'The record is the AI Governance Census: 334 institutions sampled, 90 searched so far, 1,125 documents, 724 verified. Eighty of the 90 are research universities, so the figures describe R1 governance until the other strata are in. Twenty-one are land-grants, and the cases today come from them.',
+  do:['Slide 3: the figures, without dwelling. Pause on the land-grant card for this room.','Slide 4: contradiction against supersession. The NC State OIT pair is the live local example and is deliberately open.','Slide 6: the four steps, with the version-note question inside step two.','Slide 7: the 2023 admissions case as the worked example of all four steps.'],
+  watch:'Reading the census figures as a ranking. They describe what is on record, and an institution with many documents is one which publishes, nothing more.',
+  alt:'Hand out the procedure on the participant handout before slide 6, so people follow on paper.',
+  short:'Drop slide 7 and work the four steps on the Clemson case instead, since Activity 1 returns to it.'},
+ {id:'m2', num:'2', title:'Module 2. Three levels', sub:'The framework, and the three questions to ask of any policy', slides:'8 to 10', t3:20, s:1, t2:15,
+  say:'Three kinds of act: describe the system, analyze what is built into it, decide what the situation warrants. A policy written at the first level names the tools. One written at all three states what the institution analyzed and what it decided, with reasons.',
+  do:['Slide 9: the three levels as kinds of act, with no hierarchy among them.','Slide 10: the three questions. Conceptual, what does it name. Structural, whose problem is AI. Operative, what judgment does it route, to whom, with what support.','Say once that "consult your instructor" is the most common operative move in the record, and that it routes judgment to the person least supported to exercise it.'],
+  watch:'Faculty who wrote instructor-discretion language in good faith hear the structural point as blame. Acknowledge the good faith and hold the observation: the policy performs a governance function it was never designed for.',
+  alt:'Give the three questions as a card on each table, so the group has them in hand during Activity 1.',
+  short:'Hold to the three questions on slide 10 and leave slide 9 to the handout.'},
+ {id:'a1', num:'3', title:'Activity 1. Read a case', sub:'Groups apply the procedure and the three questions to one census case', slides:'11', t3:25, s:1, t2:25,
+  say:'In your group, open your case in the Contradictions tab. Apply the four steps: genre, glitch, reveal, abstraction. At the glitch, decide whether you have two current documents or one which replaced the other. Then the three questions: what does it name, whose problem is it, what judgment does it route. Fifteen minutes. Bring back your glitch, your reveal, and your call on contradiction or supersession.',
+  do:['Assign one case per group (chosen on the Prepare tab). A fifth group takes the NC State OIT pair.','Fifteen minutes of group work, ten of debrief. Each group gives its glitch and its reveal only, two minutes each.','Close by naming the pattern across groups: different campuses, the same abstraction doing the same work.'],
+  watch:'A group reporting the full analysis. Hold them to glitch and reveal. A group calling every conflict a contradiction: ask whether the older page was withdrawn.',
+  alt:'Groups which prefer to write post their glitch and reveal in the shared document, and you read them aloud. One person working alone takes the Texas State case, which is three documents and one reader.',
+  short:'Ten minutes of group work and a debrief of one sentence per group.'},
+ {id:'break', num:'', title:'Break', sub:'', slides:'', t3:10, s:0, t2:0, say:'', do:[], watch:'', alt:'', short:''},
+ {id:'ncs', num:'4', title:"Module 2, continued. NC State's record", sub:'The local case, read with the same procedure', slides:'12 to 14', t3:20, s:2, t2:20,
+  say:'Our own record in the census: eleven documents, seven verified, three promised with no text. AI rules come from IT data classifications and from an advisory group which has posted a charge and minutes and no report. Faculty are offered model syllabus language, and the conduct code faculty would enforce names no AI.',
+  do:['Slide 13: the five rows. Lead with the case chosen on the Prepare tab.','Read the DELTA sentence aloud: as of May 2026, there is no official university policy regarding AI use. Then the AI Hub rule on university data. Ask which governs a course which uses an unvetted tool.','Slide 14: what is published and what is not yet. Name the AI Hub Learning, Curriculum, and AI Literacy working group as the venue for curriculum.','Ask: what does it mean to write unit policy while the university has not published its own? Take two answers.'],
+  watch:'The record feeling personal to NC State faculty and administrators in the room. It is an analysis of the record, and the record is thin because the university publishes carefully, which is itself a position.',
+  alt:'Pairs read the Code of Student Conduct section 8 on the handout and report whether it names AI, which turns the reading into a check on the record.',
+  short:'Slide 13 only, with the DELTA sentence and the Code.'},
+ {id:'m3', num:'5', title:'Module 3. Patterns and policy by level', sub:'Three census patterns, three levels of policy, what each level does', slides:'15 to 19', t3:25, s:2, t2:20,
+  say:'Three patterns from the verified rows bear on any draft. Data rules outnumber teaching guidance, so a course policy sits in a field dense with data rules. Institutions hand the decision to instructors, so the judgment lands in the syllabus. Integrity codes lag behind guidance, so a policy which invokes the honor code invokes a text silent on AI, here included.',
+  do:['Slide 15: the three patterns, each ending in what the draft does about it.','Slide 16 and 17: the three levels of policy and what each requires. Ask each person to name their level before Activity 2.','Slide 18, if chosen on Prepare: peer instruments as options a unit might weigh. Say plainly that none is an NC State rule.','Slide 19: what syllabus language does and what it leaves to others, with the Penn State sentence on detectors.','If chosen on Prepare: the institutional decision on the framework page, worked through on screen in six minutes.'],
+  watch:'The peer slide heard as a forecast of a mandate. Return to the question for the unit: which of these, if any, do you want, and at which level.',
+  alt:'Groups take one pattern each and say in one sentence what their draft will do about it.',
+  short:'Slides 15 and 19 only; the levels and the peers go to the handout and the notes.'},
+ {id:'m3b', num:'6', title:'Five principles', sub:'The transition into drafting', slides:'20', t3:5, s:2, t2:5,
+  say:'Every policy in the census was written in conditions which have since changed. Five principles make a draft revisable: scope terms by function, date the policy, name the revision trigger, separate durable principles from contingent prohibitions, and explain the reasoning.',
+  do:['Thirty seconds of silent reading, then one sentence on the fourth principle: the commitment and the rule are written by different bodies at unit level, and the first outlasts the second.'],
+  watch:'Treating the five as a checklist to complete in order. They are tests a draft meets, in any order.',
+  alt:'The five are on the handout; point to them there.',
+  short:'Keep the slide, cut the sentence.'},
+ {id:'a2', num:'7', title:'Activity 2. Draft and exchange', sub:'Individual drafting, then the procedure applied to a partner\'s text', slides:'21 to 22', t3:25, s:2, t2:20,
+  say:'Choose your level. Faculty draft where you hold authority now; heads and associate deans draft for the unit. Write three to five sentences a syllabus or governance document would carry as written, meeting the five principles. Fifteen minutes. Then exchange with a partner and apply the procedure to each other\'s text: find the glitch.',
+  do:['Fifteen minutes of drafting in the workbook\'s Part IV, with the templates as starting points or ignored.','Ten minutes of partner exchange. Pair a head with a faculty member where the room allows, since each reads for a different glitch.','Bring the room back for two or three answers to: what did your partner find, and what will you revise?'],
+  watch:'Descriptions of a policy in place of policy language. Ask whether the sentences would go into a syllabus as written. Drafts which cite the honor code: ask what the Code says about AI.',
+  alt:'Exchange in writing: partners comment in the shared document and the room reads two aloud. A person who prefers to work alone applies the procedure to their own draft with the three questions.',
+  short:'Ten minutes of drafting, five of exchange, no plenary.'},
+ {id:'m4', num:'8', title:'Module 4. The review cycle', sub:'Pages move, promises outrun texts, so the policy carries its own check', slides:'23', t3:10, s:2, t2:5,
+  say:'Two findings give the review schedule its evidence. About five percent of governance pages moved or changed within one week of verification. And 134 announced policies have no published text, at 59 institutions, 18 of them land-grants. A policy drafted this term will meet campus rules which arrive after it, so the check goes into the policy.',
+  do:['Slide 23: the two findings and the term-by-term check.','Each person adds one line to their draft naming when it is next checked and against what: the census record and their own links.','At NC State the AI Advisory Group page belongs on the check.'],
+  watch:'The check written as an intention. It is a date and a list of links, in the policy.',
+  alt:'The term check is printed on the handout as three lines to fill in.',
+  short:'The two findings in one sentence and the one added line.'},
+ {id:'close', num:'9', title:'Close', sub:'What participants leave with, and two next steps', slides:'24 to 25', t3:10, s:2, t2:5,
+  say:'You leave with a procedure which applies to any governance document, a record you read from and add to, and a dated draft. Two next steps: a WOLF engagement for program or unit work with CWSP, and the AI Hub Learning, Curriculum, and AI Literacy working group as the venue for university curriculum governance.',
+  do:['Name the correction form as the way to add a document the census lacks or report a page which moved.','Open questions. The most frequent follow-up is program coherence: course policies in one unit which contradict each other. Offer to facilitate that as a WOLF engagement.'],
+  watch:'Closing on the vacuum. Close on the draft and the check.',
+  alt:'Written exit line: one thing you will revise before the term starts.',
+  short:'The two next steps and the form.'},
+ // Session-one-only blocks for the two-session format
+ {id:'draft1', num:'4', title:'First draft', sub:'Session one closes with three sentences at the chosen level', slides:'21', t3:0, s:1, t2:15, only2:true,
+  say:'Before we close, write three sentences at your level: what the course or unit develops and assesses, which AI functions the rule covers this term, and why. Keep them. Session two opens by reading them.',
+  do:['Ten minutes of writing in the workbook\'s Part IV.','Each person saves or prints the draft; the browser keeps it on the same machine.','Close with the date of session two and one instruction: bring the draft.'],
+  watch:'Perfecting. Three sentences, kept, is the whole task.',
+  alt:'A person who writes slowly brings the three sentences to session two instead.',
+  short:'One sentence: what the course develops and assesses.'},
+ {id:'refresh', num:'5', title:'Refresh and norming', sub:'Session two opens on the first drafts', slides:'10, 20', t3:0, s:2, t2:15, only2:true,
+  say:'Read your three sentences from session one. In your group, apply the three questions to each: what does it name, whose problem is it, what judgment does it route. Then agree on two terms the unit will use the same way, for example which functions "AI use" covers.',
+  do:['Five minutes of rereading, ten of group norming.','Collect the agreed terms on the board or in the shared document; they feed Activity 2.','Show slide 20 (the five principles) as the standard the drafts will meet today.'],
+  watch:'Norming drifting into a debate about a mandate. The terms are the unit\'s own; the level stays each person\'s choice.',
+  alt:'Groups which prefer to write post their two terms in the shared document.',
+  short:'Rereading only, with the two terms set by the facilitator from the drafts received.'}
+];
+const ORDER3 = ['open','m1','m2','a1','break','ncs','m3','m3b','a2','m4','close'];
+const ORDER2 = {1:['open','m1','m2','a1','draft1','close'], 2:['refresh','ncs','m3','m3b','a2','m4','close']};
+
+// ── State ─────────────────────────────────────────────────────────────────
+const KEY = 'aipolicylab-guide';
+const FIELD_IDS = ['f-unit','f-date','f-format','f-count','f-level','f-cofac','f-lead','f-peers','f-detector'];
+const CHECK_IDS = ['c-clemson','c-csu','c-auburn','c-txst','c-msu','c-ncoit','p1','p2','p3','p4','p5','p6','p7'];
+function load(){ try { return JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){ return {}; } }
+function save(){ const d={}; FIELD_IDS.forEach(i=>d[i]=document.getElementById(i).value); CHECK_IDS.forEach(i=>d[i]=document.getElementById(i).checked); try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){} render(); }
+function restore(){ const d=load(); FIELD_IDS.forEach(i=>{ if(d[i]!==undefined) document.getElementById(i).value=d[i]; }); CHECK_IDS.forEach(i=>{ if(d[i]!==undefined) document.getElementById(i).checked=d[i]; }); }
+function v(id){ return document.getElementById(id).value; }
+function chosenCases(){ return ['c-clemson','c-csu','c-auburn','c-txst','c-msu','c-ncoit'].filter(i=>document.getElementById(i).checked).map(i=>document.getElementById(i).dataset.case); }
+function fmtDate(s){ if(!s) return ''; const d=new Date(s+'T12:00:00'); return d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'}); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Render ────────────────────────────────────────────────────────────────
+function render(){
+  const unit=v('f-unit'), date=fmtDate(v('f-date')), fmt=v('f-format'), cofac=v('f-cofac');
+  const rf=document.getElementById('fg-run-for');
+  if(unit||date){ rf.innerHTML='This run: <strong>'+esc(unit||'unit to be named')+'</strong>'+(date?', '+esc(date):'')+', '+(fmt==='3h'?'one session of three hours':'two sessions of ninety minutes')+(cofac?', with '+esc(cofac):'')+'.'; }
+  else rf.textContent='No run set up yet. Open Prepare to begin.';
+  renderBlocks(); renderRefCases();
+}
+function blockHTML(b, idx, minutes, sessionLabel){
+  if(b.id==='break') return '<details class="fg-block" id="blk-break"><summary><span class="num"></span><span class="ttl">Break</span><span class="meta"><b>'+minutes+' min</b></span></summary><div class="fg-body"><dt>Do</dt><dd>Ten minutes. Leave slide 12 on screen so the room returns to the NC State case.</dd></div></details>';
+  const cases=chosenCases();
+  let doList=b.do.slice();
+  if(b.id==='a1'){ doList[0]='Assign one case per group: '+cases.map(c=>CASES[c].name).join(', ')+'. '+(cases.length<5?'A fifth group takes the NC State OIT pair.':''); }
+  if(b.id==='ncs'){ doList[0]= v('f-lead')==='oit' ? 'Slide 13: the five rows. Lead with the OIT pair, two IT pages which disagree on data classification, and ask which governs.' : 'Slide 13: the five rows. Lead with the DELTA sentence and the Code: a teaching page says there is no policy, the Code names no AI, and the AI Hub governs the data.'; }
+  if(b.id==='m3'){ doList = doList.filter(x=>{ if(x.startsWith('Slide 18')) return v('f-peers')==='yes'; if(x.startsWith('If chosen')) return v('f-detector')==='yes'; return true; }); }
+  const lvl=v('f-level');
+  if(b.id==='a2' && lvl==='department'){ doList[0]='Fifteen minutes of drafting at unit level in the workbook\'s Part IV, department template.'; }
+  return '<details class="fg-block" id="blk-'+b.id+'">'+
+    '<summary><span class="num">'+esc(b.num)+'</span><span class="ttl">'+esc(b.title)+(b.sub?'<small>'+esc(b.sub)+'</small>':'')+'</span><span class="meta"><b>'+minutes+' min</b>'+(b.slides?'<br>slides '+esc(b.slides):'')+'</span></summary>'+
+    '<div class="fg-body">'+
+    '<dt>Clock</dt><dd><span class="fg-timer" data-plan="'+minutes+'"><output aria-live="off">0:00 of '+minutes+'</output><button type="button" onclick="startTimer(this)">Start</button><button type="button" onclick="resetTimer(this)">Reset</button></span></dd>'+
+    (b.say?'<dt>Say</dt><dd><div class="fg-say">'+esc(b.say)+'</div></dd>':'')+
+    (doList.length?'<dt>Do</dt><dd><ol>'+doList.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ol></dd>':'')+
+    (b.watch?'<dt>Watch for</dt><dd>'+esc(b.watch)+'</dd>':'')+
+    (b.alt?'<dt>Alternatives</dt><dd>'+esc(b.alt)+'</dd>':'')+
+    (b.short?'<dt>Short on time</dt><dd>'+esc(b.short)+'</dd>':'')+
+    '</div></details>';
+}
+function renderBlocks(){
+  const fmt=v('f-format'); const el=document.getElementById('fg-blocks'); let html=''; let total=0;
+  if(fmt==='3h'){
+    ORDER3.forEach((id,i)=>{ const b=BLOCKS.find(x=>x.id===id); html+=blockHTML(b,i,b.t3); total+=b.t3; });
+    document.getElementById('fg-run-status').textContent='Three-hour format: '+total+' minutes planned, break included.';
+  } else {
+    [1,2].forEach(s=>{ html+='<p class="fg-session">Session '+s+(s===1?': read, then a first draft':': refresh, norm, draft, review')+'</p>'; let t=0;
+      ORDER2[s].forEach((id,i)=>{ const b=BLOCKS.find(x=>x.id===id); html+=blockHTML(b,i,b.t2); t+=b.t2; });
+      html+='<p class="fg-status">Session '+s+': '+t+' minutes planned.</p>'; total+=t; });
+    document.getElementById('fg-run-status').textContent='Two-session format: '+total+' minutes across both sessions.';
+  }
+  el.innerHTML=html;
+}
+function renderRefCases(){ const el=document.getElementById('fg-ref-cases'); el.innerHTML=Object.keys(CASES).map(k=>{ const c=CASES[k]; const on=chosenCases().includes(k); return '<div class="fg-case"><b>'+esc(c.name)+' <span style="font-weight:400;color:#555;">('+esc(c.kind)+(on?', chosen for this run':'')+')</span></b>'+esc(c.line)+'</div>'; }).join(''); }
+function toggleAll(open){ document.querySelectorAll('#fg-blocks details').forEach(d=>d.open=open); }
+
+// ── Timers ────────────────────────────────────────────────────────────────
+function startTimer(btn){ const t=btn.closest('.fg-timer'); if(t._iv){ clearInterval(t._iv); t._iv=null; btn.textContent='Start'; return; } t._start=Date.now()-(t._elapsed||0); btn.textContent='Pause';
+  t._iv=setInterval(()=>{ t._elapsed=Date.now()-t._start; const m=Math.floor(t._elapsed/60000), s=Math.floor(t._elapsed/1000)%60; const out=t.querySelector('output'); out.textContent=m+':'+String(s).padStart(2,'0')+' of '+t.dataset.plan; t.classList.toggle('over', m>=Number(t.dataset.plan)); },1000); }
+function resetTimer(btn){ const t=btn.closest('.fg-timer'); if(t._iv) clearInterval(t._iv); t._iv=null; t._elapsed=0; t.querySelector('output').textContent='0:00 of '+t.dataset.plan; t.classList.remove('over'); t.querySelector('button').textContent='Start'; }
+
+// ── Print ─────────────────────────────────────────────────────────────────
+const PRINT_CSS='*{margin:0;padding:0;box-sizing:border-box;}@page{margin:1.8cm 2cm;}body{font-family:Georgia,"Times New Roman",serif;color:#111;font-size:10.5pt;line-height:1.5;}h1{font-family:Arial,sans-serif;font-size:16pt;margin-bottom:.2rem;}h2{font-family:Arial,sans-serif;font-size:11.5pt;margin:.9rem 0 .3rem;border-bottom:1px solid #ccc;padding-bottom:.15rem;}.eyebrow{font-family:Arial,sans-serif;font-size:7.5pt;letter-spacing:.14em;text-transform:uppercase;color:#CC0000;font-weight:bold;margin-bottom:.3rem;}.sub{color:#444;margin-bottom:.8rem;}table{border-collapse:collapse;width:100%;margin:.3rem 0 .6rem;}td,th{vertical-align:top;padding:.3rem .4rem;border-top:1px solid #ddd;text-align:left;font-size:10pt;}th{font-family:Arial,sans-serif;font-size:8.5pt;letter-spacing:.06em;text-transform:uppercase;color:#444;border-top:none;}td.n{white-space:nowrap;font-family:Arial,sans-serif;font-weight:bold;}ol,ul{margin:.2rem 0 .4rem 1.2rem;}li{margin-bottom:.15rem;}.say{font-style:italic;color:#222;}.foot{margin-top:1rem;font-family:Arial,sans-serif;font-size:7.5pt;color:#777;border-top:1px solid #ddd;padding-top:.4rem;}.blank{border-bottom:1px solid #999;display:inline-block;min-width:14rem;}';
+function openPrint(title, body){ const w=window.open('','_blank'); if(!w){ alert('Allow pop-ups for this site to print.'); return; } w.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>'+esc(title)+'</title><style>'+PRINT_CSS+'</style></head><body>'+body+'<div class="foot">NC State Campus Writing and Speaking Program · cwspwolf.com · AI Policy Lab · © 2026 Kirsti Cole, CC BY-NC-ND 4.0</div><script>window.onload=function(){setTimeout(function(){window.print();},300);};<\/script></body></html>'); w.document.close(); }
+function printRunSheet(){
+  const unit=v('f-unit')||'Unit to be named', date=fmtDate(v('f-date')), fmt=v('f-format'), cofac=v('f-cofac');
+  let rows=''; const row=(b,m)=>{ if(b.id==='break') return '<tr><td class="n">'+m+'</td><td colspan="2">Break</td></tr>'; return '<tr><td class="n">'+m+' min</td><td><b>'+esc(b.title)+'</b>'+(b.slides?' · slides '+esc(b.slides):'')+'<br><span class="say">'+esc(b.say)+'</span></td><td>'+esc(b.watch)+'</td></tr>'; };
+  if(fmt==='3h'){ rows+='<table><tr><th>Time</th><th>Block and what is said</th><th>Watch for</th></tr>'; ORDER3.forEach(id=>{ const b=BLOCKS.find(x=>x.id===id); rows+=row(b,b.t3); }); rows+='</table>'; }
+  else { [1,2].forEach(s=>{ rows+='<h2>Session '+s+'</h2><table><tr><th>Time</th><th>Block and what is said</th><th>Watch for</th></tr>'; ORDER2[s].forEach(id=>{ const b=BLOCKS.find(x=>x.id===id); rows+=row(b,b.t2); }); rows+='</table>'; }); }
+  const cases=chosenCases().map(c=>'<li><b>'+esc(CASES[c].name)+'.</b> '+esc(CASES[c].line)+'</li>').join('');
+  openPrint('Run sheet · '+unit, '<p class="eyebrow">AI Policy Lab · Run sheet</p><h1>'+esc(unit)+'</h1><p class="sub">'+esc(date)+(date?' · ':'')+(fmt==='3h'?'One session, three hours':'Two sessions, ninety minutes each')+' · Facilitator Kirsti Cole'+(cofac?' with '+esc(cofac):'')+' · Level: '+esc(document.getElementById('f-level').selectedOptions[0].text)+'</p>'+rows+'<h2>Cases for Activity 1</h2><ol>'+cases+'</ol>');
+}
+function printHandout(){
+  const unit=v('f-unit')||'', date=fmtDate(v('f-date')), cofac=v('f-cofac');
+  const cases=chosenCases().map(c=>'<li><b>'+esc(CASES[c].name)+'.</b> '+esc(CASES[c].line)+'</li>').join('');
+  const body='<p class="eyebrow">AI Policy Lab · Participant handout</p><h1>Reading and writing AI policy'+(unit?': '+esc(unit):'')+'</h1><p class="sub">'+esc(date)+(date?' · ':'')+'Campus Writing and Speaking Program · Kirsti Cole'+(cofac?' and '+esc(cofac):'')+' · The record: AI Governance Census, doi:10.5281/zenodo.23887259 · Workbook: cwspwolf.com/ai-policy-workbook.html</p>'+
+  '<h2>The procedure</h2><ol><li>Identify the genre: what kind of document, issued by whom, under what authority.</li><li>Locate the glitch: where the document strains against itself. Where two documents conflict, are both current (a contradiction) or has one replaced the other (a supersession)?</li><li>Read the reveal: what the glitch makes legible about commitments, assumptions, or fears.</li><li>Name the abstraction: the general claim which holds the document together, and where it fails.</li></ol>'+
+  '<h2>Three questions to ask of any policy</h2><ul><li>What does it name, and is the thing it names defined?</li><li>Whose problem does it make AI, and which conditions stay out of view?</li><li>What judgment does it route, to whom, with what support?</li></ul>'+
+  '<h2>Five principles a draft meets</h2><ol><li>Scope terms by function.</li><li>Date the policy.</li><li>Name the revision trigger.</li><li>Separate durable principles from contingent prohibitions.</li><li>Explain the reasoning.</li></ol>'+
+  '<h2>Cases today</h2><ol>'+cases+'</ol>'+
+  '<h2>NC State, on record</h2><p>OIT clears tools by data classification, and two OIT pages disagree on which classes Gemini is cleared for. The AI Hub bars university data from unvetted tools. The DELTA course guidelines page states that as of May 2026 there is no official university policy on AI use. The Code of Student Conduct (REG 11.35.05) names no AI; cheating is using assistance the instructor has not authorized (8.1.b). The Graduate Handbook requires theses to document generative AI use.</p>'+
+  '<h2>Your draft</h2><p>Level: <span class="blank"></span> &nbsp; Three to five sentences a syllabus or governance document would carry as written.</p><p style="border:1px solid #bbb;height:7.5rem;margin:.4rem 0;"></p><p>Next check: date <span class="blank" style="min-width:8rem;"></span> against the census record and these links: <span class="blank"></span></p>'+
+  '<p>Found a document the census lacks, or a page which moved? Correction form: kkcole-gif.github.io/ai-governance-census (Corrections).</p>';
+  openPrint('Participant handout'+(unit?' · '+unit:''), body);
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────────────
+const tabs=[...document.querySelectorAll('.fg-tab')];
+function selectTab(tab){ tabs.forEach(t=>{ const on=t===tab; t.setAttribute('aria-selected',on); t.tabIndex=on?0:-1; document.getElementById(t.getAttribute('aria-controls')).hidden=!on; }); tab.focus(); try{ localStorage.setItem(KEY+'-tab',tab.id);}catch(e){} }
+tabs.forEach((t,i)=>{ t.addEventListener('click',()=>selectTab(t)); t.addEventListener('keydown',e=>{ if(e.key==='ArrowRight') selectTab(tabs[(i+1)%tabs.length]); if(e.key==='ArrowLeft') selectTab(tabs[(i+tabs.length-1)%tabs.length]); }); });
+
+// ── Init ──────────────────────────────────────────────────────────────────
+restore();
+FIELD_IDS.concat(CHECK_IDS).forEach(i=>document.getElementById(i).addEventListener('input',save));
+render();
+try{ const t=localStorage.getItem(KEY+'-tab'); if(t&&document.getElementById(t)) { const tab=document.getElementById(t); tabs.forEach(x=>{ const on=x===tab; x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1; document.getElementById(x.getAttribute('aria-controls')).hidden=!on; }); } }catch(e){}
+</script>
+</body>
+</html>
