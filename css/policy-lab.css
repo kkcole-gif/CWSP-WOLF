@@ -202,3 +202,12 @@ textarea { font-size: 1.0625rem; border-color: #8C8C8C; color: var(--pl-text); }
 }
 .step-row { padding: 0.45rem 0; }
 .step-badge { line-height: 1.55; }
+
+/* Three-level literacy model: one color per level, carried everywhere the levels appear.
+   Conceptual = Hunt Yellow, Structural = Pyroman Flame, Operative = Wolfpack Red (site palette).
+   Each level is also named in text, so color is never the only cue. */
+.pl-levels { list-style: none; margin: 1.25rem 0 1.5rem; padding: 0; }
+.pl-levels li, .level-field-c, .level-field-s, .level-field-o { border-left: 6px solid; padding: 0.35rem 0 0.35rem 1rem; margin: 0 0 0.75rem; }
+.pl-levels .lv-c, .level-fields .level-field-c { border-left-color: #FAC800; }
+.pl-levels .lv-s, .level-fields .level-field-s { border-left-color: #D14905; }
+.pl-levels .lv-o, .level-fields .level-field-o { border-left-color: #CC0000; }
