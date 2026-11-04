@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/brand.css">
+<link rel="stylesheet" href="css/policy-lab.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -28,102 +29,78 @@
   </nav>
 </header>
 
-<main id="main">
+<main id="main" class="pl-page">
 
-  <div class="page-header">
-    <div class="page-header-inner">
-      <h1>AI Policy Lab</h1>
-      <p>A faculty workshop for reading, analyzing, and designing AI use policies at course, program, and department levels.</p>
-    </div>
-  </div>
+  <h1 class="pl-title">AI Policy Lab</h1>
+  <p class="pl-lede">A faculty workshop for reading, analyzing, and designing AI use policies at course, program, and department levels.</p>
 
-  <div class="content">
+  <dl class="pl-facts">
+    <dt>Length</dt><dd>Three hours, as one session or two 90-minute sessions. CWSP facilitates.</dd>
+    <dt>For</dt><dd>Individual faculty, departments, curriculum committees, department heads, and associate deans. Works best with 8 to 20 participants, from one department or a mixed group.</dd>
+    <dt>You leave with</dt><dd>A policy draft at the course, program, or department level, grounded in your own disciplinary reasoning.</dd>
+  </dl>
 
-    <div class="prose content-narrow">
+  <section aria-labelledby="h-does">
+    <h2 id="h-does">What the AI Policy Lab does</h2>
+    <p>Most faculty make AI policy decisions alone. They work from a draft syllabus statement, a department memo, or institutional guidance written under pressure, which might not reflect what anyone believes. The AI Policy Lab gives that work a structure: an analytic method, a comparative corpus, and colleagues from across the university.</p>
+    <p>The workshop uses the <a href="https://kirstikcole.com/ai-governance-census/" target="_blank" rel="noopener">AI Governance Census of US Colleges and Universities<span class="sr-only"> (opens in a new window)</span></a> (Cole, 2026, version 0.5, <a href="https://doi.org/10.5281/zenodo.23887259" target="_blank" rel="noopener">doi:10.5281/zenodo.23887259<span class="sr-only"> (opens in a new window)</span></a>) as its primary texts: a stratified census of 334 institutions drawn from the 2025 Carnegie Classifications, of which 90 have been searched so far, yielding 1,125 document rows, 724 of them verified. Eighty of the 90 are research universities, so the figures describe R1 governance until the remaining strata are in.</p>
+    <p>Twenty-one of the searched institutions are land-grant universities, and the workshop draws its comparative cases from them: fourteen of the twenty-one hold contradictions between their own documents, eighteen have announced bodies or policies with no published text, and eleven have integrity codes which do not name AI.</p>
+    <p>Participants read those documents for the governance problems they reveal. What did institutions say when they did not yet know what to say? And what do those moments expose about institutional values, authority, and the limits of policy? And where two current documents on the same campus state opposed rules, which one governs?</p>
+    <p>Participants leave with a policy draft, at whatever level is most urgent for them, grounded in their own disciplinary commitments and written to hold up through the next product cycle.</p>
+  </section>
 
-      <h2>What the AI Policy Lab does</h2>
-      <p>Most faculty make AI policy decisions alone. They work from a draft syllabus statement, a department memo, or institutional guidance written under pressure, which might not reflect what anyone believes. The AI Policy Lab gives that work a structure: an analytic method, a comparative corpus, and colleagues from across the university.</p>
+  <section aria-labelledby="h-materials">
+    <h2 id="h-materials">Workshop materials</h2>
+    <p>The documents below work as a set, and analyses and drafts written in the workbook go to CWSP, apart from the census.</p>
+    <ul class="pl-materials">
+      <li><a href="https://docs.google.com/presentation/d/1fFBwchCxm9sITlmNk4j9zlq6bWEhcvFMb7S8QshD_6c/edit?usp=sharing" target="_blank" rel="noopener">Workshop slide deck<span class="sr-only"> (opens in a new window)</span></a><span class="pl-desc">The deck the facilitator presents from, with speaker notes.</span></li>
+      <li><a href="ai-policy-lab-guide.html">Facilitator workbook</a><span class="pl-desc">Sets up a run, times each block, and prints the run sheet and handout.</span></li>
+      <li><a href="ai-policy-workbook.html">Workbook</a><span class="pl-desc">For participants, during and after the workshop. Saves in the browser.</span></li>
+      <li><a href="https://kkcole-gif.github.io/ai-governance-census/" target="_blank" rel="noopener">AI Governance Census<span class="sr-only"> (opens in a new window)</span></a><span class="pl-desc">The record the workshop reads from.</span></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfK8B4oqRNt_kNkRTaDm8G2Kt-vkDXZmajS4jcLUX75kF_O6w/viewform" target="_blank" rel="noopener">Census correction form<span class="sr-only"> (opens in a new window)</span></a><span class="pl-desc">Report a census page which has moved or no longer opens.</span></li>
+    </ul>
+  </section>
 
-      <p>The workshop uses the <a href="https://kirstikcole.com/ai-governance-census/" target="_blank" rel="noopener">AI Governance Census of US Colleges and Universities<span class="sr-only"> (opens in a new window)</span></a> (Cole, 2026, version 0.5, <a href="https://doi.org/10.5281/zenodo.23887259" target="_blank" rel="noopener">doi:10.5281/zenodo.23887259<span class="sr-only"> (opens in a new window)</span></a>) as its primary texts: a stratified census of 334 institutions drawn from the 2025 Carnegie Classifications, of which 90 have been searched so far, yielding 1,125 document rows, 724 of them verified. Eighty of the 90 are research universities, so the figures describe R1 governance until the remaining strata are in.</p>
+  <section aria-labelledby="h-framework">
+    <h2 id="h-framework">The analytical framework</h2>
+    <p>The workshop is built on two tools. The first is a four-step analytical procedure: identify the document's genre, locate the glitch (the moment when the document strains against itself), read what the glitch reveals about institutional values, and name the abstraction (the general claim about AI governance or authorship that the document makes legible). The second is <a href="ai_literacy_unified.html">a three-level literacy framework</a> (Cole 2026) that asks, of any policy document, what it demands from readers at each of three levels: conceptual description, structural analysis, and operative decision. A policy written at the first level alone names the tools. One written at all three states what the institution analyzed and what it decided, with reasons.</p>
+    <ul class="pl-levels" aria-label="The three levels">
+      <li class="lv-c"><strong>Conceptual: describe.</strong> What the policy names, and what its terms assume.</li>
+      <li class="lv-s"><strong>Structural: analyze.</strong> Whose interests the governance structure serves, and who wrote the document under what pressure.</li>
+      <li class="lv-o"><strong>Operative: decide.</strong> What judgment the policy asks faculty and students to make, and what judgment it forecloses.</li>
+    </ul>
+    <p>Together, these tools make policy reading a teachable skill. Participants take it back to their departments and apply it to new documents as they appear.</p>
+  </section>
 
-      <p>Twenty-one of the searched institutions are land-grant universities, and the workshop draws its comparative cases from them: fourteen of the twenty-one hold contradictions between their own documents, eighteen have announced bodies or policies with no published text, and eleven have integrity codes which do not name AI.</p>
+  <section aria-labelledby="h-structure">
+    <h2 id="h-structure">Workshop structure</h2>
+    <p>The workshop runs in four modules. Module 1 introduces the policy corpus and shows why AI governance documents reward careful reading for what they reveal under pressure. Module 2 applies the four-step procedure to cases from the census's <a href="https://kkcole-gif.github.io/ai-governance-census/#contra" target="_blank" rel="noopener">record of contradictions<span class="sr-only"> (opens in a new window)</span></a>, adds the question the procedure lacked (whether a conflict is a contradiction between two current documents or a supersession, where one has replaced the other), and reads NC State's own record against its land-grant peers: eleven documents, seven of them published and verified, three promised with no text yet, and two OIT pages which disagree on the data the approved tools are cleared to hold. In Module 3, a facilitated design activity, participants draft or revise policy language at the level most relevant to them, using adaptable templates calibrated to the five principles of functional AI policy: scope terms by function, date the policy, name the revision trigger, separate durable principles from contingent prohibitions, and explain the reasoning. Participants also work through <a href="ai_literacy_unified.html#audience=institution">one institutional decision at full depth</a>, the procurement of AI detection software, on the framework page's decision tool. Module 4 sets up a review cycle, because the census finds about five percent of governance pages moved or changed within a single week of verification, and 134 announced policies or bodies with no published document at 59 institutions, so a policy drafted this term will meet campus rules which arrive after it. Participants leave with a term-by-term check of their own policy against the census record and their own document links.</p>
+  </section>
 
-      <p>Participants read those documents for the governance problems they reveal. What did institutions say when they did not yet know what to say? And what do those moments expose about institutional values, authority, and the limits of policy? And where two current documents on the same campus state opposed rules, which one governs?</p>
+  <section aria-labelledby="h-detectors">
+    <h2 id="h-detectors">AI-writing detectors</h2>
+    <p>Departments drafting academic integrity language often ask where CWSP stands on AI-writing detectors. The program does not use them, and <a href="ai_literacy_unified.html#detector-decision">the decision and its reasons are on the record</a>, written to the five principles the workshop teaches: it defines the tool by what it does, carries a date, names the condition for its revision, separates the durable principle from the contingent rule, and gives its reasons. Penn State's academic integrity office states the same position in one sentence, which the workbook's course template quotes.</p>
+  </section>
 
-      <p>Participants leave with a policy draft, at whatever level is most urgent for them, grounded in their own disciplinary commitments and written to hold up through the next product cycle.</p>
+  <section aria-labelledby="h-wolf">
+    <h2 id="h-wolf">Relationship to AI Literacies and WOLF</h2>
+    <p>The AI Policy Lab stands alone, and it also fits within the wider set of WOLF programs. Faculty who have worked through the AI Literacies extension bring a vocabulary for what AI tools do to writing instruction. The Policy Lab puts that vocabulary to work at the institutional level. For faculty new to AI Literacies, the Policy Lab is a good place to start, particularly when their immediate concern is policy language and assignment design comes later.</p>
+    <p>The analytical procedure at the center of the Policy Lab (read for the genre, locate the glitch, read the reveal, name the abstraction) is also the core literacy practice of the AI Literacies extension. Faculty who complete both work with the same skills in each, applied to policy in one and to teaching in the other.</p>
+  </section>
 
-      <p>Departments drafting academic integrity language often ask where CWSP stands on AI-writing detectors. The program does not use them, and <a href="ai_literacy_unified.html#detector-decision">the decision and its reasons are on the record</a>, written to the five principles the workshop teaches: it defines the tool by what it does, carries a date, names the condition for its revision, separates the durable principle from the contingent rule, and gives its reasons. Penn State's academic integrity office states the same position in one sentence, which the workbook's course template quotes.</p>
+  <section aria-labelledby="h-talks">
+    <h2 id="h-talks">Related talks</h2>
+    <ul class="pl-talks">
+      <li><strong>The Unmediated Writer: What Writing Programs Do</strong>Carolinas WPA Fall Retreat, October 2026. The three-level framework applied to institutional and critical AI policy, with three questions for programs to ask before the instructor or program decides. <a href="unmediated-writer.html">Session page</a></li>
+      <li><strong>What Counts as AI Literacy? What We Need to Know, Examine, and Decide</strong>NC State Research Week lightning round, October 2026. The three levels read against the AI literacy definitions in circulation, with a detector decision as the worked case.</li>
+    </ul>
+    <p><a href="research.html">All research and presentations</a></p>
+  </section>
 
-      <h2>The analytical framework</h2>
-      <p>The workshop is built on two tools. The first is a four-step analytical procedure: identify the document's genre, locate the glitch (the moment when the document strains against itself), read what the glitch reveals about institutional values, and name the abstraction (the general claim about AI governance or authorship that the document makes legible). The second is <a href="ai_literacy_unified.html">a three-level literacy framework</a> (Cole 2026) that asks, of any policy document, what it demands from readers at each of three levels: conceptual description, structural analysis, and operative decision. A policy written at the first level alone names the tools. One written at all three states what the institution analyzed and what it decided, with reasons.</p>
-
-      <p>Together, these tools make policy reading a teachable skill. Participants take it back to their departments and apply it to new documents as they appear.</p>
-
-    </div>
-
-    <div style="margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem;">
-
-      <div style="padding: 1.5rem; background: var(--gray-light); border-top: 3px solid var(--red);">
-        <h3 style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem;">Workshop length</h3>
-        <p style="font-weight: 700; color: var(--dark); margin-bottom: 0.35rem;">3 hours</p>
-        <p style="font-size: 0.9rem; color: var(--gray-dark);">Runs as one session or as two 90-minute sessions. CWSP facilitates.</p>
-      </div>
-
-      <div style="padding: 1.5rem; background: var(--gray-light); border-top: 3px solid var(--red);">
-        <h3 style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem;">Who it is for</h3>
-        <p style="font-weight: 700; color: var(--dark); margin-bottom: 0.35rem;">Individual faculty, departments, curriculum committees, department heads, and associate deans</p>
-        <p style="font-size: 0.9rem; color: var(--gray-dark);">Works best with 8–20 participants, whether one department or a mixed group of faculty, heads, and associate deans.</p>
-      </div>
-
-      <div style="padding: 1.5rem; background: var(--gray-light); border-top: 3px solid var(--red);">
-        <h3 style="font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem;">What you leave with</h3>
-        <p style="font-weight: 700; color: var(--dark); margin-bottom: 0.35rem;">A policy draft and analytical skills</p>
-        <p style="font-size: 0.9rem; color: var(--gray-dark);">Course-, program-, or department-level language grounded in your own disciplinary reasoning.</p>
-      </div>
-
-    </div>
-
-    <div class="prose content-narrow" style="margin-top: 3rem;">
-
-      <h2>Workshop structure</h2>
-      <p>The workshop runs in four modules. Module 1 introduces the policy corpus and shows why AI governance documents reward careful reading for what they reveal under pressure. Module 2 applies the four-step procedure to cases from the census's <a href="https://kkcole-gif.github.io/ai-governance-census/#contra" target="_blank" rel="noopener">record of contradictions<span class="sr-only"> (opens in a new window)</span></a>, adds the question the procedure lacked (whether a conflict is a contradiction between two current documents or a supersession, where one has replaced the other), and reads NC State's own record against its land-grant peers: eleven documents, seven of them published and verified, three promised with no text yet, and two OIT pages which disagree on the data the approved tools are cleared to hold. In Module 3, a facilitated design activity, participants draft or revise policy language at the level most relevant to them, using adaptable templates calibrated to the five principles of functional AI policy: scope terms by function, date the policy, name the revision trigger, separate durable principles from contingent prohibitions, and explain the reasoning. Participants also work through <a href="ai_literacy_unified.html#audience=institution">one institutional decision at full depth</a>, the procurement of AI detection software, on the framework page's decision tool. Module 4 sets up a review cycle, because the census finds about five percent of governance pages moved or changed within a single week of verification, and 134 announced policies or bodies with no published document at 59 institutions, so a policy drafted this term will meet campus rules which arrive after it. Participants leave with a term-by-term check of their own policy against the census record and their own document links.</p>
-
-    </div>
-
-    <div style="margin-top: 2.5rem; padding: 2rem; background: var(--gray-light); border-left: 4px solid var(--red); border-radius: 0 4px 4px 0;">
-      <h2 style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem;">Workshop materials</h2>
-      <p style="color: var(--gray-dark); font-size: 0.95rem; max-width: 560px; margin-bottom: 1.25rem;">The documents below work as a set. The slide deck supports facilitation. The facilitator workbook is for whoever runs the Lab: it sets up a run for one unit, times each block for a three-hour or two-session format, and prints the run sheet and the participant handout. Participants use the workbook during and after the workshop, and read the census itself for the record. Participants who find a census page which has moved or no longer opens report it through the correction form. Analyses and drafts written in the workbook go to CWSP and stay apart from the census.</p>
-      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <a href="https://docs.google.com/presentation/d/1fFBwchCxm9sITlmNk4j9zlq6bWEhcvFMb7S8QshD_6c/edit?usp=sharing" target="_blank" rel="noopener" class="btn btn-red">Workshop slide deck<span class="sr-only"> (opens in a new window)</span></a>
-        <a href="ai-policy-lab-guide.html" class="btn btn-outline">Facilitator workbook</a>
-        <a href="ai-policy-workbook.html" class="btn btn-outline">Workbook</a>
-        <a href="https://kkcole-gif.github.io/ai-governance-census/" target="_blank" rel="noopener" class="btn btn-outline">AI Governance Census<span class="sr-only"> (opens in a new window)</span></a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfK8B4oqRNt_kNkRTaDm8G2Kt-vkDXZmajS4jcLUX75kF_O6w/viewform" target="_blank" rel="noopener" class="btn btn-outline">Census correction form<span class="sr-only"> (opens in a new window)</span></a>
-      </div>
-    </div>
-
-    <div class="prose content-narrow" style="margin-top: 3rem;">
-
-      <h2>Relationship to AI Literacies and WOLF</h2>
-      <p>The AI Policy Lab stands alone, and it also fits within the wider set of WOLF programs. Faculty who have worked through the AI Literacies extension bring a vocabulary for what AI tools do to writing instruction. The Policy Lab puts that vocabulary to work at the institutional level. For faculty new to AI Literacies, the Policy Lab is a good place to start, particularly when their immediate concern is policy language and assignment design comes later.</p>
-
-      <p>The analytical procedure at the center of the Policy Lab (read for the genre, locate the glitch, read the reveal, name the abstraction) is also the core literacy practice of the AI Literacies extension. Faculty who complete both work with the same skills in each, applied to policy in one and to teaching in the other.</p>
-
-    </div>
-<div style="margin-top: 2.5rem; padding: 2rem; background: var(--gray-light); border-top: 3px solid var(--red);">
-      <h2 style="font-size: 0.8rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); margin-bottom: 0.5rem;">Related talks</h2>
-      <p style="font-weight: 700; color: var(--black); margin-bottom: 0.35rem;">The Unmediated Writer: What Writing Programs Do</p>
-      <p style="color: var(--gray-dark); font-size: 0.95rem; max-width: 560px; margin-bottom: 1.25rem;">Carolinas WPA Fall Retreat, October 2026. The three-level framework applied to institutional and critical AI policy, with three questions for programs to ask before the instructor or program decides.</p>
-      <p style="font-weight: 700; color: var(--black); margin-bottom: 0.35rem;">What Counts as AI Literacy? What We Need to Know, Examine, and Decide</p>
-      <p style="color: var(--gray-dark); font-size: 0.95rem; max-width: 560px; margin-bottom: 1.25rem;">NC State Research Week lightning round, October 2026. The three levels read against the AI literacy definitions in circulation, with a detector decision as the worked case.</p>
-      <a href="unmediated-writer.html" class="btn btn-outline">Session page</a>
-      <a href="research.html" class="btn btn-outline" style="margin-left: .5rem;">All research and presentations</a>
-    </div>
-    <div style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid #e0e0e0;">
-      <p style="color: var(--gray-dark); font-size: 0.9rem;">To request an AI Policy Lab workshop for your department or curriculum committee, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVpo4ffoTYEjBAC_cZUiZOVUI7BzwK3VPN8CfNw_yi2jXejA/viewform" target="_blank" rel="noopener">intake form<span class="sr-only"> (opens in a new window)</span></a> or write to <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole</a> at CWSP.</p>
-    </div>
-
-  </div>
+  <section aria-labelledby="h-request">
+    <h2 id="h-request">Request a workshop</h2>
+    <p>To request an AI Policy Lab workshop for your department or curriculum committee, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVpo4ffoTYEjBAC_cZUiZOVUI7BzwK3VPN8CfNw_yi2jXejA/viewform" target="_blank" rel="noopener">intake form<span class="sr-only"> (opens in a new window)</span></a> or write to <a href="mailto:kkcole2@ncsu.edu">Kirsti Cole</a> at CWSP.</p>
+  </section>
 
 </main>
 
@@ -131,16 +108,7 @@
   <p>WOLF is a program of the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program<span class="sr-only"> (opens in a new window)</span></a> &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a> &nbsp;·&nbsp; <a href="research.html">Research and presentations</a></p>
 </footer>
 
-<style>
-  @media (max-width: 760px) {
-    div[style*="grid-template-columns: 1fr 1fr 1fr"] {
-      display: block !important;
-    }
-    div[style*="grid-template-columns: 1fr 1fr 1fr"] > div {
-      margin-bottom: 1rem;
-    }
-  }
-</style>
+
 
 </body>
 </html>
