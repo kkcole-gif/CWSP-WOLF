@@ -673,10 +673,10 @@
       <a href="#nc-state-entries">NC State depth case</a>
       <a href="#comparative-entries">Comparative institutions</a>
       <p class="sidebar-part">Part III. Your Analysis</p>
-      <a href="#template-1">Template 1</a>
-      <a href="#template-2">Template 2</a>
-      <a href="#template-3">Template 3</a>
-      <a href="#template-4">Template 4</a>
+      <a href="#template-1">Template 1: the case</a>
+      <a href="#template-2">Template 2: your document</a>
+      <a href="#template-3" id="nav-t3" hidden>Template 3</a>
+      <a href="#template-4" id="nav-t4" hidden>Template 4</a>
       <p class="sidebar-part">Part IV. Draft</p>
       <a href="#course-policy">Course-level</a>
       <a href="#program-policy">Program-level</a>
@@ -736,7 +736,7 @@
         <h2>How to Use This Workbook</h2>
       </div>
       <div class="callout">
-        <p><strong>Before you arrive.</strong> Bring your current policy language on AI, at whatever level you hold it: a syllabus statement, an assignment rule, a program or department text, or the fact that none exists yet, which is itself a starting point. Have the link to it open, or paste it into Template 1 in Part III.</p>
+        <p><strong>Before you arrive.</strong> Bring your current policy language on AI, at whatever level you hold it: a syllabus statement, an assignment rule, a program or department text, or the fact that none exists yet, which is itself a starting point. Have the link to it open, or paste it into Template 2 in Part III.</p>
         <p><strong>In short, if you read nothing else first.</strong> The Lab reads governance documents with four steps (identify the genre, locate the glitch, read the reveal, name the abstraction) and three questions (what does the policy name, whose problem does it make AI, what judgment does it route and to whom). You will apply both to one case from the census in a small group, then draft three to five sentences of policy at the level you choose, meeting five principles: scope terms by function, date the policy, name the revision trigger, separate durable principles from contingent prohibitions, explain the reasoning.</p>
       </div>
       <p>Each annotated policy entry in Part II applies one four-step analytical procedure and the three-level literacy framework. Apply the same procedure to new documents in Part III.</p>
@@ -1066,7 +1066,7 @@
         <p class="part-eyebrow">Part III</p>
         <h2>Policy Analysis Templates</h2>
       </div>
-      <p>Use these templates during Activity 1 or to analyze policies you bring from your own institution. Apply the analytical procedure and three-level framework from Part II.</p>
+      <p>Two templates cover the workshop: the first for the census case you read in Activity 1 (alone, in a pair, in a group, or as a whole room), the second for the policy language you brought from your own course, program, or unit. Add a third or fourth below if you read more documents. Apply the four steps and the three questions from Part I.</p>
       <p id="save-status" class="save-indicator">Your responses are saved automatically in this browser.</p>
       <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
     </section>
@@ -1074,7 +1074,7 @@
     <section id="template-1">
       <div class="template-card">
         <div class="template-card-header">
-          <h3>Template 1</h3>
+          <h3>Template 1: your case from the census</h3>
           <button onclick="clearTemplate(1)">Clear</button>
         </div>
         <div class="template-card-body">
@@ -1141,7 +1141,7 @@
     <!-- Templates 2–4 (same structure) -->
     <section id="template-2">
       <div class="template-card">
-        <div class="template-card-header"><h3>Template 2</h3><button onclick="clearTemplate(2)">Clear</button></div>
+        <div class="template-card-header"><h3>Template 2: your own document</h3><button onclick="clearTemplate(2)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
             <div class="meta-field"><label for="t2-institution">Institution</label><input type="text" id="t2-institution" placeholder="Institution" oninput="save()"></div>
@@ -1169,9 +1169,10 @@
         </div>
       </div>
     </section>
-    <section id="template-3">
+    <p style="margin:0 0 2rem;"><button type="button" class="btn-sidebar" style="width:auto;" id="add-template-btn" onclick="addTemplate()">Add a template for another document</button></p>
+    <section id="template-3" hidden>
       <div class="template-card">
-        <div class="template-card-header"><h3>Template 3</h3><button onclick="clearTemplate(3)">Clear</button></div>
+        <div class="template-card-header"><h3>Template 3: another document</h3><button onclick="clearTemplate(3)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
             <div class="meta-field"><label for="t3-institution">Institution</label><input type="text" id="t3-institution" placeholder="Institution" oninput="save()"></div>
@@ -1199,9 +1200,9 @@
         </div>
       </div>
     </section>
-    <section id="template-4">
+    <section id="template-4" hidden>
       <div class="template-card">
-        <div class="template-card-header"><h3>Template 4</h3><button onclick="clearTemplate(4)">Clear</button></div>
+        <div class="template-card-header"><h3>Template 4: another document</h3><button onclick="clearTemplate(4)">Clear</button></div>
         <div class="template-card-body">
           <div class="meta-row">
             <div class="meta-field"><label for="t4-institution">Institution</label><input type="text" id="t4-institution" placeholder="Institution" oninput="save()"></div>
@@ -1470,6 +1471,20 @@ function loadSaved() {
     if (el && data[id] !== undefined && data[id] !== null) el.value = data[id];
   });
   updateProgress();
+  revealFilledTemplates();
+}
+function addTemplate() {
+  const t3 = document.getElementById('template-3'), t4 = document.getElementById('template-4');
+  const open = function(t, nav){ t.hidden = false; document.getElementById(nav).hidden = false;
+    const first = t.querySelector('input, textarea'); if (first) first.focus({preventScroll:true});
+    if (t.scrollIntoView) t.scrollIntoView({behavior:'smooth', block:'start'}); };
+  if (t3.hidden) { open(t3, 'nav-t3'); }
+  else if (t4.hidden) { open(t4, 'nav-t4'); document.getElementById('add-template-btn').hidden = true; }
+}
+function revealFilledTemplates() {
+  [3,4].forEach(function(n){ const has = FIELDS.filter(f => f.startsWith('t'+n+'-')).some(id => { const el = document.getElementById(id); return el && el.value.trim(); });
+    if (has) { document.getElementById('template-'+n).hidden = false; document.getElementById('nav-t'+n).hidden = false; } });
+  if (!document.getElementById('template-4').hidden) document.getElementById('add-template-btn').hidden = true;
 }
 function clearTemplate(n) {
   if (!confirm('Clear all fields in Template ' + n + '?')) return;
@@ -1484,7 +1499,7 @@ function clearTemplate(n) {
 // ── PROGRESS ─────────────────────────────────────────────────────────────────
 function updateProgress() {
   // Track only Part III analysis fields for progress bar
-  const analysisFields = FIELDS.filter(f => !f.startsWith('p4-'));
+  const analysisFields = FIELDS.filter(f => !f.startsWith('p4-') && (!/^t[34]-/.test(f) || !document.getElementById('template-' + f[1]).hidden));
   const filled = analysisFields.filter(id => {
     const el = document.getElementById(id);
     return el && el.value.trim().length > 0;
