@@ -680,7 +680,7 @@
       <p class="sidebar-part">Part IV. Draft</p>
       <a href="#course-policy">Course-level</a>
       <a href="#program-policy">Program-level</a>
-      <a href="#dept-policy">Department-level</a>
+      <a href="#dept-policy">Unit-level</a>
       <p class="sidebar-part">Part V. Submit</p>
       <a href="#submit" class="submit-link">Submit to the repository</a>
       <p class="sidebar-part">Reference</p>
@@ -1204,30 +1204,36 @@ This statement reflects program consensus as of [date]. It will be reviewed at [
         <div class="rationale"><strong>Bracket guidance:</strong> The program statement leaves some questions open. Its job is to give individual instructors a framework to apply. The decisive move is to name the discipline-specific literacy the program values. That act of naming is the governance decision, and the rest of the statement follows from it.</div>
       </div>
     </section>
-    <!-- Department-Level -->
+    <!-- Unit-Level (department, school, or college) -->
     <section id="dept-policy">
-      <h3>Department-Level: Institutional Governance Framework</h3>
+      <h3>Unit-Level: Governance Framework for a Department, School, or College</h3>
       <div class="policy-template">
         <div class="policy-template-header">
-          <span class="policy-level-badge">Department · Curriculum Committee / Faculty Governance</span>
+          <span class="policy-level-badge">Unit · Department, school, or college governance</span>
           <div class="p4-header-actions">
             <button class="btn-examples" onclick="openExamples('dept')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-dept', this)">Copy text</button>
-            <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Department-Level: Institutional Governance Framework')">Print or save as PDF</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Unit-Level: Governance Framework')">Print or save as PDF</button>
           </div>
         </div>
-        <textarea aria-label="Department-level policy draft" id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department name] adopts the following framework for AI use across its courses and programs, effective [date].
+        <textarea aria-label="Unit-level policy draft" id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department, school, or college] adopts the following framework for AI use across its courses and programs, effective [term], with review before [term].
 
-Scope: This framework applies to [describe scope: e.g., all undergraduate courses, graduate seminars, faculty research outputs submitted under department auspices].
+Scope: This framework applies to [describe scope: e.g., all undergraduate and graduate courses offered under the unit, theses and capstones, research outputs submitted under unit auspices].
 
-Definition: For the purposes of this framework, "AI-assisted work" means [functional definition: e.g., any content produced in whole or in part by a generative AI system, where the system's output constitutes substantive portions of the submitted work].
+Definition: For the purposes of this framework, "AI tools" means [functional definition: e.g., systems which generate text, code, images, or data from prompts], named by what they do and without product names.
 
-Governance principle: The department affirms that [name the value: e.g., disciplinary judgment, evidentiary reasoning, authorial accountability] is central to [field] and that AI tools [relationship to that value: e.g., may support but do not replace / are in tension with / require explicit instruction in order to be used appropriately].
+Commitment (durable): The [unit] affirms that [name the value: e.g., disciplinary judgment, evidentiary reasoning, authorial accountability] is central to [field], and every course policy in the unit states how it protects that value.
 
-Authority: Course-level AI policy is the responsibility of the individual instructor, within the framework above. Program-level guidance is the responsibility of [program director / curriculum committee]. This department-level framework is reviewed by [body] on [schedule].
+Rule (for this term): [State the contingent rule: e.g., which AI functions are permitted, limited, or barred by default, and that instructors may set a different rule for a course provided the syllabus states it and gives the reason.]
 
-Revision: This framework was adopted in conditions that are already changing. It will be reviewed at [date] and updated as the technology and the department's pedagogical understanding develop.</textarea>
-        <div class="rationale"><strong>Bracket guidance:</strong> The department framework sets the conditions for course and program policy. Above all, it names who holds authority at each level and establishes a review mechanism. In the corpus, departments without such a framework tend to produce contradictory course-level policies. The contradictions arise because no one has named the shared commitments, even where instructors agree.</div>
+Data: AI tools are used with university data only as the university's data classification and approved tool list permit. [Name or link the classification and the list.]
+
+Academic integrity: Because the Code of Student Conduct names no AI, each course states its AI rule directly in the syllabus, and a statement which cites "the honor code" also states what AI use the course authorizes. [Optional: state whether AI-detection results play any part in integrity decisions in the unit, and on what grounds.]
+
+Authority: Course-level AI policy belongs to the instructor, within this framework. Program-level guidance belongs to [program director or curriculum committee]. This framework belongs to [body], which reviews it [schedule].
+
+Review: Each term, [name or office] checks this framework against the university's current AI documents and the links it cites, records the date of the check here [date], and brings any change to [body]. This framework will also be revised if [name the trigger: e.g., the university publishes an AI policy, or a materially different AI capability becomes available].</textarea>
+        <div class="rationale"><strong>Bracket guidance:</strong> A unit framework sets the conditions for course and program policy, and its two load-bearing lines are the authority line, which names who decides at each level, and the review line, which names who checks the framework each term. The commitment and the rule are written apart because different bodies revise them on different schedules, the commitment by the faculty and the rule each term. In the census, campuses whose teaching and integrity offices publish separately are the ones which record contradictions between their own documents, so the data and integrity lines name the university documents the framework depends on.</div>
       </div>
     </section>
     <!-- Download all -->
@@ -1271,7 +1277,7 @@ Revision: This framework was adopted in conditions that are already changing. It
             <label for="sub-level">Policy level drafted</label>
             <select id="sub-level" onchange="save()">
               <option value="">Select one</option>
-              <option>Course</option><option>Program</option><option>Department</option><option>More than one</option>
+              <option>Course</option><option>Program</option><option>Unit (department, school, or college)</option><option>More than one</option>
             </select>
           </div>
           <div class="meta-field">
@@ -1455,7 +1461,7 @@ function downloadAllPoliciesPDF() {
   const templates = [
     { id: 'p4-course',   label: 'Course-Level: Syllabus Statement',              eyebrow: 'Course-Level' },
     { id: 'p4-program',  label: 'Program-Level: Shared Governance Statement',     eyebrow: 'Program-Level' },
-    { id: 'p4-dept',     label: 'Department-Level: Institutional Governance Framework', eyebrow: 'Department-Level' },
+    { id: 'p4-dept',     label: 'Unit-Level: Governance Framework', eyebrow: 'Unit-Level' },
   ];
   let sections = '';
   templates.forEach((t, i) => {
@@ -1576,7 +1582,7 @@ function openExamples(level) {
   currentLevel = level;
   currentExampleIndex = 0;
   const modal = document.getElementById('examples-modal');
-  const labels = { course: 'Course-Level', program: 'Program-Level', dept: 'Department-Level' };
+  const labels = { course: 'Course-Level', program: 'Program-Level', dept: 'Unit-Level' };
   document.getElementById('modal-eyebrow').textContent = 'Sample Policies · ' + labels[level];
   document.getElementById('modal-title').textContent = labels[level] + ' Examples';
   // Build tabs
