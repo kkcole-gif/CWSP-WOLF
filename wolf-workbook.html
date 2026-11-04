@@ -113,6 +113,49 @@
     details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offset:2px}
     @media print { details.go-further{border:0;padding:0} .btn-clear,.wolf-toast{display:none} }
     @media print { .wb-sidebar, .site-header, .site-footer, .submit-section, .btn-sidebar { display: none; } .wb-layout { display: block; } .wb-main { max-width: none; padding: 0; } .activity, .panel { break-inside: avoid; } textarea { min-height: 0; } }
+    /* ── Reading layout (Nov 2026) ── */
+    .wb-layout { grid-template-columns: 260px 1fr; }
+    .wb-main { max-width: 860px; padding: 3rem 3.5rem 5rem; }
+    .wb-main, .wb-main p { color: #1F1F1F; }
+    .eyebrow { color: #4D4D4D; font-size: 1rem; }
+    .wb-main h1 { font-size: 2.4rem; }
+    .wb-main h2 { font-size: 1.75rem; margin-top: 3.5rem; }
+    .lede { font-size: 1.2rem; }
+    .wb-sidebar { background: #FAFAFA; }
+    .sidebar-lead { font-size: .95rem; color: #1F1F1F; margin: 0 0 .5rem; }
+    .btn-primary-side { background: #1A1A1A; color: #fff; border-color: #1A1A1A; }
+    .btn-primary-side:hover { background: var(--red); border-color: var(--red); }
+    .save-more { margin-top: .75rem; }
+    .save-more > summary { cursor: pointer; font-size: .95rem; color: #1F1F1F; padding: .25rem 0; }
+    .sidebar-help { font-size: .9rem !important; color: #4D4D4D; margin: .6rem 0 0; line-height: 1.5; }
+    .sidebar-status:empty { display: none; }
+    .wb-sidebar nav a { color: #1F1F1F; }
+    .wb-sidebar nav a.active { color: #1F1F1F; }
+    .sidebar-part { color: #1F1F1F; font-size: .95rem; }
+    .stage-date { color: #4D4D4D; font-size: .875rem; }
+    .stage-list { margin: 1rem 0 1.5rem; padding-left: 1.4rem; }
+    .stage-list li { margin: 0 0 .9rem; padding-left: .3rem; }
+    .stage-list em { color: #4D4D4D; }
+    .activity { border: 0; border-top: 1px solid #D9D9D9; border-radius: 0; padding: 1.5rem 0 .5rem; background: transparent; }
+    .activity.form-group { border-top: 0; padding-top: .25rem; }
+    .activity-label { color: #4D4D4D; font-size: 1rem; }
+    .activity h3 { font-size: 1.35rem; }
+    .activity-meta, .field .hint, .hint { color: #4D4D4D; font-size: .95rem; }
+    .field label, .field .lbl { font-family: var(--sans); font-size: 1rem; color: #1F1F1F; }
+    .grid3 label, .grid5 label { font-size: .95rem; }
+    textarea, input[type="text"], input[type="email"], input[type="date"], select { font-size: 1rem; border-color: #8C8C8C; }
+    .panel { border-radius: 4px; }
+    .panel summary { font-size: 1.05rem; }
+    .panel summary::after { color: #1F1F1F; }
+    .panel-body { font-size: 1rem; }
+    .note { background: #F6F6F6; border-left: 0; border-radius: 4px; font-size: 1rem; }
+    .submit-section { border: 0; background: #F6F6F6; border-radius: 4px; padding: 1.5rem; }
+    .wscp h5 { color: #1F1F1F; font-size: 1rem; }
+    table.tl { font-size: 1rem; }
+    table.tl th { color: #1F1F1F; font-size: .95rem; border-bottom: 2px solid #1F1F1F; }
+    details.go-further > summary { color: #1F1F1F; font-size: 1rem; }
+    .row-head { color: #4D4D4D; font-size: .95rem; }
+    @media (max-width: 860px) { .wb-main { padding: 1.5rem 1rem 3rem; } }
   </style>
 </head>
 <body>
@@ -137,18 +180,23 @@
   <div class="sidebar-save">
     <p class="sidebar-part">Your progress</p>
     <div class="progress-bar"><span id="progress-label">0%</span><span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span></div>
-    <button type="button" class="btn-sidebar" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
-    <button type="button" class="btn-sidebar" onclick="window.print()">Download as PDF, or print</button>
-    <button type="button" class="btn-sidebar" onclick="downloadAnswers()">Download my answers (Word)</button>
-    <button type="button" class="btn-sidebar" id="doc-btn" onclick="createSharedDoc()">Create a shared Google Doc</button>
-    <button type="button" class="btn-clear" onclick="clearWork()">Clear my work from this browser</button>
-    <p class="sidebar-status" id="save-status" role="status">This browser saves your work as you type. The emailed link opens it on any computer. For a PDF, choose "Save as PDF" as the destination in the print dialog. "Download my answers (Word)" gives you a file of every answer under its prompt. "Create a shared Google Doc" turns your current answers into a Google Doc CWSP owns and you edit, with the link emailed to you, for drafting with colleagues before you submit.</p>
+    <p class="sidebar-lead">This browser saves your work as you type.</p>
+    <button type="button" class="btn-sidebar btn-primary-side" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
+    <p class="sidebar-status" id="save-status" role="status"></p>
+    <details class="save-more">
+      <summary>Other ways to keep a copy</summary>
+      <button type="button" class="btn-sidebar" onclick="window.print()">Download as PDF, or print</button>
+      <button type="button" class="btn-sidebar" onclick="downloadAnswers()">Download my answers (Word)</button>
+      <button type="button" class="btn-sidebar" id="doc-btn" onclick="createSharedDoc()">Create a shared Google Doc</button>
+      <p class="sidebar-help">The emailed link opens your work on any computer. For a PDF, choose "Save as PDF" in the print dialog. The Word file holds every answer under its prompt. The shared Google Doc is owned by CWSP and edited by you, for drafting with colleagues before you submit.</p>
+      <button type="button" class="btn-clear" onclick="clearWork()">Clear my work from this browser</button>
+    </details>
   </div>
   <nav aria-label="Workbook navigation">
     <p class="sidebar-part">Start</p>
-    <a href="#start" class="active">Who you are</a>
+    <a href="#about" class="active">What WOLF is</a>
+    <a href="#start">Who you are</a>
     <a href="#timeline">Where your department is</a>
-    <a href="#about">What WOLF is</a>
     <p class="sidebar-part" id="sp-1">Stage 1 · Inquiry <span class="stage-badge" id="badge-1"></span></p>
     <span class="stage-date" id="date-1"></span>
     <a href="#act1">1. Confirm your role</a>
@@ -182,9 +230,32 @@
   <p class="lede">For the faculty liaison running Written and Oral Literacy Facilitation in a department or program. The workbook carries you through the three stages, saves as you go, and produces the Writing and Speaking Curriculum Plan from your own answers.</p>
   <div id="banner-slot"></div>
 
+  <h2 id="about">What WOLF is</h2>
+  <p>WOLF works with departments, programs, and colleges to develop discipline-specific approaches to writing and speaking instruction. The goal is to make the communication instruction already in your curriculum visible and sustainable, fill in what is missing, and connect it to the outcomes your discipline already holds. The central product is a Writing and Speaking Curriculum Plan (WSCP), a document your department owns. Departments that complete the program earn CWSP certification, and each liaison (up to three per department or program) receives $1,000.</p>
+  <ol class="stage-list">
+    <li><strong>Stage 1 · Inquiry.</strong> <em>Where are we?</em> CWSP meets with the department to assess current writing and speaking practices, identify what is working and what is missing, and confirm the faculty liaison. The stage produces a clear picture of the curriculum as it stands.</li>
+    <li><strong>Stage 2 · Design.</strong> <em>What should be different?</em> The department, with CWSP support, develops the WSCP: outcomes for writing and speaking in the discipline, mapped to courses and levels, with assignment and assessment approaches. Faculty author it.</li>
+    <li><strong>Stage 3 · Evidence.</strong> <em>How do we know it is working?</em> The department implements the WSCP, collects assessment data, and uses it to refine the plan. Completion brings CWSP certification, recognition, and the mini grant.</li>
+  </ol>
+  <details class="panel"><summary>Your role as liaison</summary><div class="panel-body">
+    <p>You are the point of contact between your department and CWSP. You facilitate; you do not produce everything yourself. You connect CWSP to your colleagues, translate disciplinary context into curriculum decisions, and keep the work moving between consultations. You need institutional knowledge of your department and enough trust from colleagues to facilitate honest conversation about the curriculum. Expertise in writing pedagogy is CWSP's job.</p>
+    <p>CWSP handles the pedagogical scaffolding, provides templates and tools, co-leads workshops, and consults one-on-one. The WSCP that results is your department's document, owned, revised, and sustained by faculty, with CWSP as a continuing resource.</p>
+  </div></details>
+  <details class="panel"><summary>What WOLF is not</summary><div class="panel-body">
+    <p>WOLF does not ask departments to add writing-intensive courses, require faculty to become writing or speaking specialists, or produce a plan that looks the same across disciplines. A Chemistry WSCP looks different from a Communication WSCP, by design. CWSP supports that specificity.</p>
+    <p>WOLF runs on no fixed calendar. Departments move through the stages at a pace that fits their context, and CWSP is available throughout.</p>
+  </div></details>
+  <details class="panel"><summary>Engaging your colleagues</summary><div class="panel-body">
+    <p>Start with questions. Before presenting the WSCP as a project, ask colleagues what challenges they face with student writing and speaking, what they notice is missing, and what they wish students arrived knowing. Those conversations surface the disciplinary specificity a WSCP needs, and they build investment before any formal process begins.</p>
+    <p>Workload, grading burden, and skepticism about program initiatives deserve a hearing. You do not have to answer them. Relay them to CWSP and bring the responses back. Nominating a colleague for a Communication Champion letter early signals that WOLF recognizes work already being done.</p>
+  </div></details>
+  <details class="panel"><summary>The AI Literacies track</summary><div class="panel-body">
+    <p>A department can enter WOLF through AI Literacies: structured consultations, policy review, and curricular mapping focused on how generative AI is governed and taught in the discipline. The track stands alone or opens into full WOLF participation, and it connects to Stage 2, where AI literacy outcomes join the WSCP. See <a href="ai-literacies.html">AI Literacies</a>, <a href="CWSP_AI_Literacies_Workbook.html">the faculty workbook</a>, and <a href="ai_literacy_unified.html">the three-level framework</a>.</p>
+  </div></details>
+
   <h2 id="start">Who you are</h2>
   <p>CWSP records a department's progress by liaison and program. These fields stay in this browser and travel with every save.</p>
-  <div class="activity">
+  <div class="activity form-group">
     <div class="grid2">
       <div class="field"><label for="p-name">Your name<span class="req" aria-hidden="true">*</span></label><input type="text" id="p-name" autocomplete="name"></div>
       <div class="field"><label for="p-email">Your NC State email<span class="req" aria-hidden="true">*</span></label><input type="email" id="p-email" autocomplete="email" placeholder="unityid@ncsu.edu"></div>
@@ -195,12 +266,12 @@
       <div class="field"><label for="s0-code">CWSP program code</label><input type="text" id="s0-code" placeholder="Assigned by CWSP after your first consultation"></div>
       <div class="field"><label for="s0-college">College</label><input type="text" id="s0-college"></div>
     </div>
-    <p class="hint" style="font-size:.85rem;color:var(--gray-mid);margin:.3rem 0 0;">Required fields are marked with <span class="req">*</span>. Everything else fills in as the work proceeds.</p>
+    <p class="hint">Required fields are marked with <span class="req">*</span>. Everything else fills in as the work proceeds.</p>
   </div>
 
   <h2 id="timeline">Where your department is</h2>
   <p>WOLF runs two to three academic years at the department's own pace. Set the stage you are in and the dates you have. The sidebar then shows which stage is current, which are done, and which lie ahead.</p>
-  <div class="activity">
+  <div class="activity form-group">
     <div class="field"><label for="s0-current">Current stage</label>
       <select id="s0-current">
         <option value="">Select one</option>
@@ -225,29 +296,6 @@
       </tbody>
     </table>
   </div>
-
-  <h2 id="about">What WOLF is</h2>
-  <p>WOLF works with departments, programs, and colleges to develop discipline-specific approaches to writing and speaking instruction. The goal is to make the communication instruction already in your curriculum visible and sustainable, fill in what is missing, and connect it to the outcomes your discipline already holds. The central product is a Writing and Speaking Curriculum Plan (WSCP), a document your department owns. Departments that complete the program earn CWSP certification, and each liaison (up to three per department or program) receives $1,000.</p>
-  <div class="stages">
-    <div class="stage-card"><strong>Stage 1 · Inquiry</strong><em>Where are we?</em>CWSP meets with the department to assess current writing and speaking practices, identify what is working and what is missing, and confirm the faculty liaison. The stage produces a clear picture of the curriculum as it stands.</div>
-    <div class="stage-card"><strong>Stage 2 · Design</strong><em>What should be different?</em>The department, with CWSP support, develops the WSCP: outcomes for writing and speaking in the discipline, mapped to courses and levels, with assignment and assessment approaches. Faculty author it.</div>
-    <div class="stage-card"><strong>Stage 3 · Evidence</strong><em>How do we know it is working?</em>The department implements the WSCP, collects assessment data, and uses it to refine the plan. Completion brings CWSP certification, recognition, and the mini grant.</div>
-  </div>
-  <details class="panel"><summary>Your role as liaison</summary><div class="panel-body">
-    <p>You are the point of contact between your department and CWSP. You facilitate; you do not produce everything yourself. You connect CWSP to your colleagues, translate disciplinary context into curriculum decisions, and keep the work moving between consultations. You need institutional knowledge of your department and enough trust from colleagues to facilitate honest conversation about the curriculum. Expertise in writing pedagogy is CWSP's job.</p>
-    <p>CWSP handles the pedagogical scaffolding, provides templates and tools, co-leads workshops, and consults one-on-one. The WSCP that results is your department's document, owned, revised, and sustained by faculty, with CWSP as a continuing resource.</p>
-  </div></details>
-  <details class="panel"><summary>What WOLF is not</summary><div class="panel-body">
-    <p>WOLF does not ask departments to add writing-intensive courses, require faculty to become writing or speaking specialists, or produce a plan that looks the same across disciplines. A Chemistry WSCP looks different from a Communication WSCP, by design. CWSP supports that specificity.</p>
-    <p>WOLF runs on no fixed calendar. Departments move through the stages at a pace that fits their context, and CWSP is available throughout.</p>
-  </div></details>
-  <details class="panel"><summary>Engaging your colleagues</summary><div class="panel-body">
-    <p>Start with questions. Before presenting the WSCP as a project, ask colleagues what challenges they face with student writing and speaking, what they notice is missing, and what they wish students arrived knowing. Those conversations surface the disciplinary specificity a WSCP needs, and they build investment before any formal process begins.</p>
-    <p>Workload, grading burden, and skepticism about program initiatives deserve a hearing. You do not have to answer them. Relay them to CWSP and bring the responses back. Nominating a colleague for a Communication Champion letter early signals that WOLF recognizes work already being done.</p>
-  </div></details>
-  <details class="panel"><summary>The AI Literacies track</summary><div class="panel-body">
-    <p>A department can enter WOLF through AI Literacies: structured consultations, policy review, and curricular mapping focused on how generative AI is governed and taught in the discipline. The track stands alone or opens into full WOLF participation, and it connects to Stage 2, where AI literacy outcomes join the WSCP. See <a href="ai-literacies.html">AI Literacies</a>, <a href="CWSP_AI_Literacies_Workbook.html">the faculty workbook</a>, and <a href="ai_literacy_unified.html">the three-level framework</a>.</p>
-  </div></details>
 
   <h2 id="stage1">Stage 1 · Inquiry</h2>
   <p class="stage-length">Usually about one semester.</p>
