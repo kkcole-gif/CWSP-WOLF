@@ -518,3 +518,6 @@ a:hover { color: var(--red-dark); }
 /* Skip link, hidden until it has keyboard focus. */
 .skip { position: absolute; left: -999px; top: 0; z-index: 300; }
 .skip:focus { left: 1rem; top: 1rem; background: #fff; color: #1a1a1a; padding: .5rem .75rem; border: 2px solid #1a1a1a; }
+
+/* Screen-reader-only text, used to announce links which open a new window */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
