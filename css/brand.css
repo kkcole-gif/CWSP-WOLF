@@ -161,3 +161,9 @@ textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
 
 /* Sidebar prose sits a step below the running text */
 body :is(.sidebar, .wb-sidebar) :is(p, div, label, li) { font-size: 0.95rem !important; line-height: 1.5; }
+
+/* The hidden attribute always hides, whatever display a class sets */
+[hidden] { display: none !important; }
+
+/* Wide tables scroll inside their column on narrow screens */
+@media (max-width: 640px) { body table:not(.site-header *) { display: block; max-width: 100%; overflow-x: auto; } }

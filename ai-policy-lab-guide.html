@@ -86,7 +86,16 @@
       .fg-block summary::after { content: none; }
       details.fg-block > .fg-body { display: grid !important; }
     }
-  </style>
+      /* Reading layout (Nov 2026): Prepare in one column, nothing overflows */
+    .fg-form { grid-template-columns: 1fr; max-width: 68ch; gap: 1.25rem; }
+    .fg-form > *, .fg-check > *, .fg-fieldset { min-width: 0; }
+    .fg-check { grid-template-columns: auto minmax(0, 1fr); }
+    .fg-check .case-note { grid-column: 2; color: #4D4D4D; }
+    .fg-field label, .fg-fieldset legend { font-size: 1rem; }
+    .fg-field .hint { color: #4D4D4D; }
+    .fg-fieldset { border-color: #D9D9D9; border-radius: 4px; }
+    .fg-case { border-color: #D9D9D9; border-radius: 4px; }
+</style>
 </head>
 <body>
 <a class="skip" href="#fg-main">Skip to content</a>
