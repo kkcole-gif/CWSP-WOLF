@@ -617,14 +617,6 @@
     .check-row { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.9rem; color: #333; margin: 0.6rem 0; cursor: pointer; }
     .check-row input { margin-top: 0.25rem; }
     .req { font-weight: 400; font-size: 0.7rem; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; margin-left: 0.3rem; }
-    .corpus-doc { border-top: 1px dashed #ddd; padding-top: 0.9rem; margin-top: 0.9rem; }
-    .corpus-doc:first-child { border-top: none; padding-top: 0; margin-top: 0.5rem; }
-    .corpus-doc-head { display: flex; justify-content: space-between; align-items: baseline; }
-    .corpus-doc-head span { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #777; }
-    .corpus-doc-head button { background: none; border: none; color: #888; font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
-    .corpus-doc .meta-row { margin-top: 0.5rem; }
-    .btn-add-doc { margin-top: 0.9rem; background: #fff; border: 1px solid #bbb; border-radius: 3px; padding: 0.45rem 0.9rem; font-family: inherit; font-size: 0.85rem; cursor: pointer; }
-    .btn-add-doc:hover { border-color: #222; }
     .data-notice { background: #f4f4f4; border-left: 3px solid #999; padding: 0.9rem 1.1rem; font-size: 0.85rem; line-height: 1.6; color: #333; margin: 1.25rem 0 0.5rem; border-radius: 0 4px 4px 0; }
     .submit-actions { margin-top: 1rem; }
     .btn-download-all:disabled { background: #bbb; cursor: not-allowed; }
@@ -680,9 +672,9 @@
       <p class="sidebar-part">Part IV. Draft</p>
       <a href="#course-policy">Course-level</a>
       <a href="#program-policy">Program-level</a>
-      <a href="#dept-policy">Department-level</a>
+      <a href="#dept-policy">Unit-level</a>
       <p class="sidebar-part">Part V. Submit</p>
-      <a href="#submit" class="submit-link">Submit to the repository</a>
+      <a href="#submit" class="submit-link">Submit your work</a>
       <p class="sidebar-part">Reference</p>
       <a href="#corpus-index">The census record</a>
     </nav>
@@ -1198,36 +1190,46 @@ This policy is in effect for [semester/year]. I will notify you of any changes. 
 
 AI tools may be used for [program-level permissions: e.g., literature search, data formatting, accessibility support] across all [program name] courses. Their use for [program-level restrictions: e.g., drafting, analysis, argument construction] requires instructor authorization and student disclosure.
 
-Individual instructors retain authority to apply more specific guidance within their courses. This statement does not supersede course-level policy. It provides the shared framework for course-level decisions.
+Data: AI tools are used with university data only as the university's data classification and approved tool list permit, and courses which handle research or student records name the classification they work under. [Name or link the classification and the list, or cite the unit framework which does.]
 
-This statement reflects program consensus as of [date]. It will be reviewed at [faculty meeting / curriculum committee] in [semester/year].</textarea>
-        <div class="rationale"><strong>Bracket guidance:</strong> The program statement leaves some questions open. Its job is to give individual instructors a framework to apply. The decisive move is to name the discipline-specific literacy the program values. That act of naming is the governance decision, and the rest of the statement follows from it.</div>
+Academic integrity: Because the Code of Student Conduct names no AI, each course in the program states its AI rule directly in the syllabus, and a statement which cites "the honor code" also states what AI use the course authorizes.
+
+Individual instructors retain authority to apply more specific guidance within their courses, and this statement gives course-level decisions their shared framework without superseding them.
+
+This statement reflects program consensus as of [date]. It will be reviewed at [faculty meeting / curriculum committee] in [semester/year], and each term [name or office] checks it against the university's current AI documents and records the date of the check here: [date].</textarea>
+        <div class="rationale"><strong>Bracket guidance:</strong> A program statement leaves some questions open, since its work is to give individual instructors a framework to apply. The decisive move is naming the discipline-specific literacy the program values, because that naming is the governance decision and the rest of the statement follows from it. The data and integrity lines carry two census patterns into the program: data rules outnumber teaching guidance, and integrity codes, NC State's among them, name no AI. Where a unit framework already states both, cite it here and cut the two lines.</div>
       </div>
     </section>
-    <!-- Department-Level -->
+    <!-- Unit-Level (department, school, or college) -->
     <section id="dept-policy">
-      <h3>Department-Level: Institutional Governance Framework</h3>
+      <h3>Unit-Level: Governance Framework for a Department, School, or College</h3>
       <div class="policy-template">
         <div class="policy-template-header">
-          <span class="policy-level-badge">Department · Curriculum Committee / Faculty Governance</span>
+          <span class="policy-level-badge">Unit · Department, school, or college governance</span>
           <div class="p4-header-actions">
             <button class="btn-examples" onclick="openExamples('dept')">See examples</button>
             <button class="copy-btn" onclick="copyTemplate('p4-dept', this)">Copy text</button>
-            <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Department-Level: Institutional Governance Framework')">Print or save as PDF</button>
+            <button class="btn-download" onclick="downloadPolicyPDF('p4-dept', 'Unit-Level: Governance Framework')">Print or save as PDF</button>
           </div>
         </div>
-        <textarea aria-label="Department-level policy draft" id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department name] adopts the following framework for AI use across its courses and programs, effective [date].
+        <textarea aria-label="Unit-level policy draft" id="p4-dept" class="policy-draft-area" rows="18" oninput="save()">The [department, school, or college] adopts the following framework for AI use across its courses and programs, effective [term], with review before [term].
 
-Scope: This framework applies to [describe scope: e.g., all undergraduate courses, graduate seminars, faculty research outputs submitted under department auspices].
+Scope: This framework applies to [describe scope: e.g., all undergraduate and graduate courses offered under the unit, theses and capstones, research outputs submitted under unit auspices].
 
-Definition: For the purposes of this framework, "AI-assisted work" means [functional definition: e.g., any content produced in whole or in part by a generative AI system, where the system's output constitutes substantive portions of the submitted work].
+Definition: For the purposes of this framework, "AI tools" means [functional definition: e.g., systems which generate text, code, images, or data from prompts], named by what they do and without product names.
 
-Governance principle: The department affirms that [name the value: e.g., disciplinary judgment, evidentiary reasoning, authorial accountability] is central to [field] and that AI tools [relationship to that value: e.g., may support but do not replace / are in tension with / require explicit instruction in order to be used appropriately].
+Commitment (durable): The [unit] affirms that [name the value: e.g., disciplinary judgment, evidentiary reasoning, authorial accountability] is central to [field], and every course policy in the unit states how it protects that value.
 
-Authority: Course-level AI policy is the responsibility of the individual instructor, within the framework above. Program-level guidance is the responsibility of [program director / curriculum committee]. This department-level framework is reviewed by [body] on [schedule].
+Rule (for this term): [State the contingent rule: e.g., which AI functions are permitted, limited, or barred by default, and that instructors may set a different rule for a course provided the syllabus states it and gives the reason.]
 
-Revision: This framework was adopted in conditions that are already changing. It will be reviewed at [date] and updated as the technology and the department's pedagogical understanding develop.</textarea>
-        <div class="rationale"><strong>Bracket guidance:</strong> The department framework sets the conditions for course and program policy. Above all, it names who holds authority at each level and establishes a review mechanism. In the corpus, departments without such a framework tend to produce contradictory course-level policies. The contradictions arise because no one has named the shared commitments, even where instructors agree.</div>
+Data: AI tools are used with university data only as the university's data classification and approved tool list permit. [Name or link the classification and the list.]
+
+Academic integrity: Because the Code of Student Conduct names no AI, each course states its AI rule directly in the syllabus, and a statement which cites "the honor code" also states what AI use the course authorizes. [Optional: state whether AI-detection results play any part in integrity decisions in the unit, and on what grounds.]
+
+Authority: Course-level AI policy belongs to the instructor, within this framework. Program-level guidance belongs to [program director or curriculum committee]. This framework belongs to [body], which reviews it [schedule].
+
+Review: Each term, [name or office] checks this framework against the university's current AI documents and the links it cites, records the date of the check here [date], and brings any change to [body]. This framework will also be revised if [name the trigger: e.g., the university publishes an AI policy, or a materially different AI capability becomes available].</textarea>
+        <div class="rationale"><strong>Bracket guidance:</strong> A unit framework sets the conditions for course and program policy, and its two load-bearing lines are the authority line, which names who decides at each level, and the review line, which names who checks the framework each term. The commitment and the rule are written apart because different bodies revise them on different schedules, the commitment by the faculty and the rule each term. In the census, campuses whose teaching and integrity offices publish separately are the ones which record contradictions between their own documents, so the data and integrity lines name the university documents the framework depends on.</div>
       </div>
     </section>
     <!-- Download all -->
@@ -1244,14 +1246,13 @@ Revision: This framework was adopted in conditions that are already changing. It
     <section id="submit">
       <div class="part-header">
         <p class="part-eyebrow">Part V</p>
-        <h2>Submit to the Policy Repository</h2>
+        <h2>Submit Your Work</h2>
       </div>
-      <p>The repository grows in two ways. Participants submit their analyses and drafts, which show how faculty across disciplines read and write AI policy. Participants also add documents to the corpus, which the next collection sweep verifies and indexes. Submit either, or both. The form collects no name or email address. Submissions carry tags for discipline, institution type, and engagement only. Submissions go to Kirsti Cole at CWSP. Because they carry no name or email, CWSP cannot write back about them. To talk about your policy work, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVpo4ffoTYEjBAC_cZUiZOVUI7BzwK3VPN8CfNw_yi2jXejA/viewform" target="_blank" rel="noopener">CWSP intake form<span class="sr-only"> (opens in a new window)</span></a>.</p>
+      <p>Submitting sends your Part III templates and Part IV drafts, as they stand, to Kirsti Cole at CWSP. Submissions stay separate from the AI Governance Census and do not enter its corpus. The form collects no name or email address, only tags for discipline, institution type, and engagement. Because submissions carry no name or email, CWSP cannot write back about them. To talk about your policy work, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVpo4ffoTYEjBAC_cZUiZOVUI7BzwK3VPN8CfNw_yi2jXejA/viewform" target="_blank" rel="noopener">CWSP intake form<span class="sr-only"> (opens in a new window)</span></a>.</p>
 
       <div class="submit-block">
         <h3>Your analysis and drafts</h3>
-        <p class="field-hint">Sends your Part III templates and Part IV drafts as they stand. Leave this unchecked to submit corpus documents alone.</p>
-        <label class="check-row"><input type="checkbox" id="sub-include-work" checked onchange="save()"> Include my templates and drafts</label>
+        <p class="field-hint">Two tags are required. The other two help CWSP read submissions across levels and formats.</p>
         <div class="meta-row">
           <div class="meta-field">
             <label for="sub-discipline">Discipline or field <span class="req">required</span></label>
@@ -1271,7 +1272,7 @@ Revision: This framework was adopted in conditions that are already changing. It
             <label for="sub-level">Policy level drafted</label>
             <select id="sub-level" onchange="save()">
               <option value="">Select one</option>
-              <option>Course</option><option>Program</option><option>Department</option><option>More than one</option>
+              <option>Course</option><option>Program</option><option>Unit (department, school, or college)</option><option>More than one</option>
             </select>
           </div>
           <div class="meta-field">
@@ -1284,20 +1285,13 @@ Revision: This framework was adopted in conditions that are already changing. It
         </div>
       </div>
 
-      <div class="submit-block">
-        <h3>Documents for the corpus</h3>
-        <p class="field-hint">Add up to three AI governance documents from any institution. Each needs an institution, a title, and a link. The rest helps the index.</p>
-        <div id="corpus-docs"></div>
-        <button type="button" class="btn-add-doc" id="add-doc-btn" onclick="addCorpusDoc()">Add another document</button>
-      </div>
-
       <div class="data-notice">
-        <strong>What is collected and how it is used.</strong> Submitting sends your templates, drafts, tags, and any documents you add to a CWSP archive. It collects no name, email address, or affiliation. CWSP uses submissions to track how faculty across disciplines read and write AI policy, to inform programming, and to grow the corpus. Documents you add are checked before they enter the index. Individual responses are not published in identifiable form. CWSP might use the archive as a research dataset; if the project proceeds under IRB review, consent procedures will be updated to match.
+        <strong>What is collected and how it is used.</strong> Submitting sends your templates, drafts, and tags to Kirsti Cole at CWSP. It collects no name, email address, or affiliation. CWSP uses submissions to track how faculty across disciplines read and write AI policy and to plan programming. Nothing submitted here enters the AI Governance Census. Individual responses are not published in identifiable form. If CWSP uses the submissions as a research dataset, that use will proceed under IRB review, and consent procedures will be updated to match.
       </div>
       <label class="check-row"><input type="checkbox" id="sub-consent" onchange="submitReady()"> I have read the notice above and consent to this use.</label>
 
       <div class="submit-actions">
-        <button type="button" class="btn-download-all" id="submit-btn" onclick="submitToRepository()" disabled>Submit to the repository</button>
+        <button type="button" class="btn-download-all" id="submit-btn" onclick="submitToRepository()" disabled>Submit to CWSP</button>
         <p class="submit-status" id="submit-status" role="status">Enter a discipline, choose an institution type, and consent to enable the button.</p>
       </div>
     </section>
@@ -1455,7 +1449,7 @@ function downloadAllPoliciesPDF() {
   const templates = [
     { id: 'p4-course',   label: 'Course-Level: Syllabus Statement',              eyebrow: 'Course-Level' },
     { id: 'p4-program',  label: 'Program-Level: Shared Governance Statement',     eyebrow: 'Program-Level' },
-    { id: 'p4-dept',     label: 'Department-Level: Institutional Governance Framework', eyebrow: 'Department-Level' },
+    { id: 'p4-dept',     label: 'Unit-Level: Governance Framework', eyebrow: 'Unit-Level' },
   ];
   let sections = '';
   templates.forEach((t, i) => {
@@ -1576,7 +1570,7 @@ function openExamples(level) {
   currentLevel = level;
   currentExampleIndex = 0;
   const modal = document.getElementById('examples-modal');
-  const labels = { course: 'Course-Level', program: 'Program-Level', dept: 'Department-Level' };
+  const labels = { course: 'Course-Level', program: 'Program-Level', dept: 'Unit-Level' };
   document.getElementById('modal-eyebrow').textContent = 'Sample Policies · ' + labels[level];
   document.getElementById('modal-title').textContent = labels[level] + ' Examples';
   // Build tabs
@@ -1631,44 +1625,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeExample
 // (same deployment the AI Literacies workbook uses, or its own); replace the URL if it differs.
 const REPOSITORY_URL = 'https://script.google.com/macros/s/AKfycbzAqeLtTtwyZSuWOnjoDcDBChRbs3vmaPVusqFDDNO7xpUtYrKOmHsRxEQRZezuHc6A/exec';
 const SUB_FIELDS = ['sub-discipline','sub-inst-type','sub-level','sub-engagement'];
-const DOC_KEYS = ['institution','title','url','date','wave','stance','notes'];
-const DOC_MAX = 3;
-
-function corpusDocRow(n) {
-  const d = document.createElement('div');
-  d.className = 'corpus-doc'; d.dataset.n = n;
-  d.innerHTML =
-    '<div class="corpus-doc-head"><span>Document ' + n + '</span>' + (n > 1 ? '<button type="button" onclick="removeCorpusDoc(' + n + ')">Remove</button>' : '') + '</div>' +
-    '<div class="meta-row">' +
-    '<div class="meta-field"><label for="doc' + n + '-institution">Institution</label><input type="text" id="doc' + n + '-institution" placeholder="e.g., University of Florida" oninput="save()"></div>' +
-    '<div class="meta-field"><label for="doc' + n + '-title">Document title</label><input type="text" id="doc' + n + '-title" placeholder="e.g., Policy 1-006: Responsible Use of AI" oninput="save()"></div>' +
-    '<div class="meta-field"><label for="doc' + n + '-url">Link</label><input type="url" id="doc' + n + '-url" placeholder="https://" oninput="save()"></div>' +
-    '<div class="meta-field"><label for="doc' + n + '-date">Date</label><input type="text" id="doc' + n + '-date" placeholder="e.g., Aug 2023" oninput="save()"></div>' +
-    '<div class="meta-field"><label for="doc' + n + '-wave">Wave</label><select id="doc' + n + '-wave" onchange="save()"><option value="">Select</option><option>Pre-Wave</option><option>Wave 1</option><option>Wave 2</option><option>Both</option><option>Not sure</option></select></div>' +
-    '<div class="meta-field"><label for="doc' + n + '-stance">Stance</label><input type="text" id="doc' + n + '-stance" placeholder="e.g., Instructor discretion / disclosure required" oninput="save()"></div>' +
-    '</div>' +
-    '<p class="field-label" style="margin-top:0.6rem;">What the document reveals (optional)</p>' +
-    '<textarea id="doc' + n + '-notes" rows="2" placeholder="The glitch, if you found one, in a sentence or two." oninput="save()"></textarea>';
-  return d;
-}
-function docCount() { return document.querySelectorAll('#corpus-docs .corpus-doc').length; }
-function addCorpusDoc() {
-  const n = docCount() + 1;
-  if (n > DOC_MAX) return;
-  document.getElementById('corpus-docs').appendChild(corpusDocRow(n));
-  document.getElementById('add-doc-btn').hidden = n >= DOC_MAX;
-}
-function removeCorpusDoc(n) {
-  const el = document.querySelector('#corpus-docs .corpus-doc[data-n="' + n + '"]');
-  if (el) el.remove();
-  document.getElementById('add-doc-btn').hidden = docCount() >= DOC_MAX;
-  save();
-}
-function docFieldIds() {
-  const ids = [];
-  for (let n = 1; n <= DOC_MAX; n++) DOC_KEYS.forEach(k => ids.push('doc' + n + '-' + k));
-  return ids;
-}
 function submitReady() {
   const ok = document.getElementById('sub-discipline').value.trim().length > 1 &&
              document.getElementById('sub-inst-type').value !== '' &&
@@ -1681,22 +1637,12 @@ function submitReady() {
 function collectSubmission() {
   const data = { source: 'ai-policy-lab', timestamp: new Date().toISOString(), page: location.pathname };
   SUB_FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
-  data['sub-include-work'] = document.getElementById('sub-include-work').checked;
-  if (data['sub-include-work']) FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
-  data.documents = [];
-  document.querySelectorAll('#corpus-docs .corpus-doc').forEach(row => {
-    const n = row.dataset.n, doc = {};
-    DOC_KEYS.forEach(k => { const el = document.getElementById('doc' + n + '-' + k); doc[k] = el ? el.value.trim() : ''; });
-    if (doc.institution || doc.title || doc.url) data.documents.push(doc);
-  });
+  FIELDS.forEach(id => { const el = document.getElementById(id); if (el) data[id] = el.value; });
   return data;
 }
 function submitToRepository() {
   const btn = document.getElementById('submit-btn'), st = document.getElementById('submit-status');
   const data = collectSubmission();
-  const bad = data.documents.find(d => !(d.institution && d.title && d.url));
-  if (bad) { st.textContent = 'Each document needs an institution, a title, and a link.'; st.className = 'submit-status err'; return; }
-  if (!data['sub-include-work'] && data.documents.length === 0) { st.textContent = 'Nothing to send. Include your drafts, or add a document.'; st.className = 'submit-status err'; return; }
   btn.disabled = true; st.textContent = 'Submitting…'; st.className = 'submit-status';
   fetch(REPOSITORY_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
     .then(() => {
@@ -1724,14 +1670,6 @@ window.addEventListener('scroll', updateSidebar, { passive: true });
 // ── INIT ─────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   SUB_FIELDS.forEach(id => FIELDS.push(id));
-  docFieldIds().forEach(id => FIELDS.push(id));
-  /* restore as many document rows as were saved, at least one */
-  try {
-    const saved = JSON.parse(localStorage.getItem('aipolicyworkbook') || '{}');
-    let rows = 1;
-    for (let n = 2; n <= DOC_MAX; n++) if (DOC_KEYS.some(k => (saved['doc' + n + '-' + k] || '').trim())) rows = n;
-    for (let n = 1; n <= rows; n++) addCorpusDoc();
-  } catch (e) { addCorpusDoc(); }
   loadSaved();
   submitReady();
   updateSidebar();

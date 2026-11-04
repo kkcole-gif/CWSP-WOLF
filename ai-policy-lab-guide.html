@@ -369,7 +369,7 @@ function blockHTML(b, idx, minutes, sessionLabel){
   if(b.id==='ncs'){ doList[0]= v('f-lead')==='oit' ? 'Slide 13: the five rows. Lead with the OIT pair, two IT pages which disagree on data classification, and ask which governs.' : 'Slide 13: the five rows. Lead with the DELTA sentence and the Code: a teaching page says there is no policy, the Code names no AI, and the AI Hub governs the data.'; }
   if(b.id==='m3'){ doList = doList.filter(x=>{ if(x.startsWith('Slide 18')) return v('f-peers')==='yes'; if(x.startsWith('If chosen')) return v('f-detector')==='yes'; return true; }); }
   const lvl=v('f-level');
-  if(b.id==='a2' && lvl==='department'){ doList[0]='Fifteen minutes of drafting at unit level in the workbook\'s Part IV, department template.'; }
+  if(b.id==='a2' && lvl==='department'){ doList[0]='Fifteen minutes of drafting at unit level in the workbook\'s Part IV, unit template.'; }
   return '<details class="fg-block" id="blk-'+b.id+'">'+
     '<summary><span class="num">'+esc(b.num)+'</span><span class="ttl">'+esc(b.title)+(b.sub?'<small>'+esc(b.sub)+'</small>':'')+'</span><span class="meta"><b>'+minutes+' min</b>'+(b.slides?'<br>slides '+esc(b.slides):'')+'</span></summary>'+
     '<div class="fg-body">'+
