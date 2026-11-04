@@ -448,11 +448,11 @@ a:hover { color: var(--red-dark); }
   border-top: 1px solid #e0e0e0;
   padding: 2rem 1.5rem;
   text-align: center;
-  font-size: 0.85rem;
-  color: var(--gray-mid);
+  font-size: 1rem;
+  color: #4D4D4D;
 }
 
-.site-footer a { color: var(--gray-mid); }
+.site-footer a { color: #4D4D4D; }
 
 /* ── PROSE ── */
 

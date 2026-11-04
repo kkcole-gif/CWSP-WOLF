@@ -12,13 +12,13 @@
     --red: #CC0000;
     --black: #1A1A1A;
     --gray: #444;
-    --lgray: #888;
+    --lgray: #4D4D4D;
     --offwh: #F8F8F8;
     --border: #DDD;
   }
 
   body {
-    font-family: Georgia, serif;
+    font-family: var(--sans);
     font-size: 11pt;
     color: var(--black);
     background: #EFEFEF;
@@ -67,7 +67,7 @@
     margin-left: auto;
     font-family: Arial, sans-serif;
     font-size: 8.5pt;
-    color: #666;
+    color: #BBBBBB;
   }
   .topbar .progress-fill {
     display: inline-block;
@@ -113,7 +113,7 @@
     background: var(--red);
   }
   .cover h1 {
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 28pt;
     font-weight: bold;
     line-height: 1.15;
@@ -128,7 +128,7 @@
   .cover .meta {
     font-family: Arial, sans-serif;
     font-size: 9pt;
-    color: #666;
+    color: #C8C8C8;
     line-height: 1.7;
   }
   .cover .meta strong { color: #aaa; }
@@ -165,7 +165,7 @@
     margin-bottom: 6px;
   }
   .section-block h2 {
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 20pt;
     font-weight: bold;
     margin-bottom: 8px;
@@ -206,7 +206,7 @@
     margin-top: 1px;
   }
   .activity-header .activity-title {
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 13pt;
     font-weight: bold;
   }
@@ -223,8 +223,8 @@
     border: 1px solid var(--border);
     color: var(--lgray);
   }
-  .level-tag.l-conceptual { border-color: #ccc; color: #999; }
-  .level-tag.l-structural { border-color: #888; color: #666; }
+  .level-tag.l-conceptual { border-color: #ccc; color: #4D4D4D; }
+  .level-tag.l-structural { border-color: #888; color: #4D4D4D; }
   .level-tag.l-operative  { border-color: var(--red); color: var(--red); }
   .level-tag.l-all        { border-color: var(--black); color: var(--black); }
 
@@ -252,7 +252,7 @@
     min-height: 88px;
     border: 1px solid var(--border);
     padding: 11px 13px;
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 10.5pt;
     color: var(--black);
     line-height: 1.55;
@@ -323,7 +323,7 @@
     border: none;
     border-bottom: 1.5px solid var(--border);
     padding: 2px 4px;
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 10.5pt;
     color: var(--black);
     background: transparent;
@@ -366,7 +366,7 @@
   .map-table td textarea {
     width: 100%;
     border: none;
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 9pt;
     color: var(--black);
     background: transparent;
@@ -406,8 +406,8 @@
   .cluster-divider .cd-num {
     font-size: 32pt;
     font-weight: bold;
-    color: var(--red);
-    font-family: Georgia, serif;
+    color: #FF5C5C;
+    font-family: var(--serif);
     line-height: 1;
   }
   .cluster-divider .cd-text h2 {
@@ -415,7 +415,7 @@
     color: #fff;
     font-size: 14pt;
     font-weight: bold;
-    font-family: Georgia, serif;
+    font-family: var(--serif);
   }
   .cluster-divider .cd-text p {
     font-size: 9pt;
@@ -454,7 +454,7 @@
     margin-bottom: 20px;
   }
   .synthesis h2 {
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 18pt;
     font-weight: bold;
     margin-bottom: 8px;
@@ -500,7 +500,7 @@
     margin-bottom: 20px;
   }
   .archive-section h2 {
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 18pt;
     font-weight: bold;
     margin-bottom: 4px;
@@ -523,7 +523,7 @@
     width: 100%;
     border: 1px solid var(--border);
     padding: 9px 11px;
-    font-family: Georgia, serif;
+    font-family: var(--serif);
     font-size: 10.5pt;
     color: var(--black);
     background: var(--offwh);
@@ -687,6 +687,18 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
 <link rel="stylesheet" href="css/brand.css">
+<style>
+  /* Page pass (Nov 2026): white cover and light cluster dividers */
+  .cover { background: #fff; color: #1F1F1F; padding-left: 0; border-bottom: 1px solid #D9D9D9; }
+  .cover::before { display: none; }
+  .cover, .cover :is(h1, h2, p, div, strong, span) { color: #1F1F1F !important; }
+  .cover :is(.subtitle, .meta, .meta strong) { color: #4D4D4D !important; }
+  .cluster-divider { background: #F6F6F6; color: #1F1F1F; border-top: 1px solid #D9D9D9; }
+  .cluster-divider :is(h2, p, div) { color: #1F1F1F !important; }
+  .cluster-divider .cd-num { color: #CC0000 !important; }
+  .cover .cover-note { background: #F6F6F6 !important; border-left: 0 !important; }
+  .cover .cover-note, .cover .cover-note * { color: #1F1F1F !important; font-size: 1rem !important; }
+</style>
 </head>
 <body>
 <a class="skip" href="#start">Skip to content</a>
@@ -1174,9 +1186,9 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
     <!-- Anonymous metadata -->
     <div class="two-col" style="margin-bottom:14px;">
       <div>
-        <div class="field-label">CWSP Program Code <span style="font-weight:normal; color:#888;">(if provided by your liaison)</span></label>
+        <div class="field-label">CWSP Program Code <span style="font-weight:normal; color:#4D4D4D;">(if provided by your liaison)</span></label>
         <input type="text" class="write-field" id="a-program-code" placeholder="e.g., ENGL-04, PSY-02 (leave blank if self-directed)" style="min-height:auto; padding: 9px 11px; font-family: 'Courier New', monospace; letter-spacing: 0.5px;" oninput="saveField(this)">
-        <div style="font-size:8pt; color:#aaa; margin-top:4px;">This code links your submissions across CWSP stages without identifying you or your institution.</div>
+        <div style="font-size:1rem; color:#4D4D4D; margin-top:4px;">This code links your submissions across CWSP stages without identifying you or your institution.</div>
       </div>
       <div>
         <label class="field-label required" for="a-stage">CWSP Stage</label>
@@ -1187,7 +1199,7 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
           <option value="Stage 3 — Evidence (Return Visit)">Stage 3: Evidence (Return Visit)</option>
           <option value="AI Literacies — Standalone">AI Literacies: Standalone</option>
         </select>
-        <div style="font-size:8pt; color:#aaa; margin-top:4px;">If you came through AI Literacies independently, select Standalone. If you're unsure, select Stage 1.</div>
+        <div style="font-size:1rem; color:#4D4D4D; margin-top:4px;">If you came through AI Literacies independently, select Standalone. If you're unsure, select Stage 1.</div>
       </div>
     </div>
 

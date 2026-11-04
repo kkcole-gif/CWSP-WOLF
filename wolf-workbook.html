@@ -61,7 +61,7 @@
     .field { margin: .9rem 0; }
     .field label, .field .lbl { display: block; font-family: Arial, sans-serif; font-size: .82rem; font-weight: 700; color: var(--black); margin-bottom: .3rem; }
     .field .hint { font-size: .82rem; color: var(--gray-mid); margin: -.15rem 0 .4rem; }
-    textarea, input[type="text"], input[type="email"], input[type="date"], select { width: 100%; border: 1px solid #bbb; border-radius: 3px; padding: .6rem .7rem; font-family: Georgia, serif; font-size: .95rem; color: var(--black); background: #fff; }
+    textarea, input[type="text"], input[type="email"], input[type="date"], select { width: 100%; border: 1px solid #bbb; border-radius: 3px; padding: .6rem .7rem; font-family: var(--sans); font-size: .95rem; color: var(--black); background: #fff; }
     textarea { min-height: 96px; resize: vertical; }
     textarea:focus, input:focus, select:focus { outline: 2px solid var(--red); outline-offset: 1px; border-color: var(--red); }
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
@@ -70,7 +70,7 @@
     .grid5 { display: grid; grid-template-columns: 1.1fr .9fr 1fr 1fr .9fr; gap: .5rem; align-items: end; }
     .grid5 select { padding: .6rem .3rem; font-size: .85rem; }
     .grid5 .field { margin: .35rem 0; } .grid5 label { font-size: .7rem; }
-    .wscp { margin-top: 1rem; padding: 1.5rem 1.8rem; border: 1px solid var(--line); background: #fff; font-family: Georgia, serif; }
+    .wscp { margin-top: 1rem; padding: 1.5rem 1.8rem; border: 1px solid var(--line); background: #fff; font-family: var(--serif); }
     .wscp h4 { font-size: 1.3rem; margin: 0 0 .2rem; } .wscp .sub { color: var(--gray-mid); font-size: .9rem; margin: 0 0 1rem; }
     .wscp h5 { font-family: Arial, sans-serif; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--red); margin: 1.4rem 0 .4rem; }
     .wscp h6 { font-size: .95rem; margin: .8rem 0 .2rem; }
@@ -784,7 +784,7 @@ function downloadAnswers() {
     const lab = document.querySelector('label[for="' + el.id + '"]');
     h += '<h3>' + esc(lab ? lab.textContent.replace(/\*$/, '').trim() : el.id) + '</h3><p>' + esc(v).replace(/\n/g, '<br>') + '</p>';
   });
-  const doc = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>WOLF Workbook</title><style>body{font-family:Georgia,serif;font-size:12pt;line-height:1.5}h1{font-size:20pt}h2{font-size:14pt;color:#990000;margin-top:18pt}h3{font-size:11pt;font-family:Arial,sans-serif;margin:10pt 0 2pt}</style></head><body>' + h + '</body></html>';
+  const doc = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>WOLF Workbook</title><style>body{font-family:Arial,Helvetica,sans-serif;font-size:12pt;line-height:1.5}h1{font-size:20pt}h2{font-size:14pt;color:#990000;margin-top:18pt}h3{font-size:11pt;font-family:Arial,sans-serif;margin:10pt 0 2pt}</style></head><body>' + h + '</body></html>';
   const blob = new Blob(['\ufeff', doc], { type: 'application/msword' });
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
   a.download = 'WOLF Workbook - ' + dept.replace(/[^\w\s-]/g, '').trim() + '.doc';
