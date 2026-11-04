@@ -123,7 +123,7 @@ body :is(p, li, dd, dt, td, th, label, figcaption, blockquote, summary, legend, 
 body :is(input, select, textarea):not(.site-header *) { font-size: max(1rem, 100%) !important; }
 
 /* Labels: sentence case, normal tracking */
-:is(main, article, aside, .page-header, .hero, section, form, dialog) * {
+body *:not(.site-header, .site-header *) {
   text-transform: none !important;
   letter-spacing: normal !important;
 }
@@ -139,3 +139,25 @@ textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
 .dc-bridge, .dc-bridge :is(p, li, a, strong, div) { color: #fff !important; }
 .dc-bridge a { border-bottom-color: rgba(255,255,255,0.6) !important; }
 .hint, .case-note, .field-hint { font-size: max(1rem, 100%) !important; }
+
+/* ════════════════════════════════════════════
+   Page pass (Nov 2026): fewer accent edges, larger sidebars
+   Track colors stay on the active link, the module eyebrow, and the
+   "What this module asks you to do" panel, so each C2TC track still reads
+   as its own. Other boxes take a neutral rule.
+   ════════════════════════════════════════════ */
+.module-header { border-top: 0 !important; }
+.activity-block { border-top: 1px solid var(--rule) !important; }
+.callout:not(.criteria):not(#objectives) { border-left: 0 !important; border-radius: 4px; }
+.repo-block { border-left: 1px solid var(--rule) !important; }
+.artifact-section, .archive-section { border-color: var(--rule) !important; }
+.info-card, .decision-card, .mode-card, .part { border-top-color: var(--rule) !important; }
+.cover-note, .policy-template, section.form { border-left-color: var(--rule) !important; }
+
+/* Sidebars: links and controls at a readable size */
+:is(.sidebar, .wb-sidebar, .fg-nav) :is(a, button, .sidebar-label) { font-size: max(0.95rem, 100%) !important; }
+.sidebar-label { color: var(--text) !important; font-weight: 700; }
+.btn-sidebar, .btn-clear, .btn-resume, .fg-btn { font-size: max(0.95rem, 100%) !important; }
+
+/* Sidebar prose sits a step below the running text */
+body :is(.sidebar, .wb-sidebar) :is(p, div, label, li) { font-size: 0.95rem !important; line-height: 1.5; }
