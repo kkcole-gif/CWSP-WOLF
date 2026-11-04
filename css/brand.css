@@ -106,3 +106,36 @@ h2, h3 { font-weight: 600; }
 .person img { width: 160px; height: 160px; object-fit: cover; border-top: 3px solid var(--red); }
 .person p { margin-bottom: 0.75rem; }
 @media (max-width: 600px) { .person { grid-template-columns: 1fr; } }
+
+/* ════════════════════════════════════════════
+   Reading layer (Nov 2026)
+   Site-wide floor for legibility, carried over from the AI Policy Lab pages.
+   Running text is never set below 16px, labels are set in sentence case
+   without letter spacing, footer text passes contrast, and keyboard focus
+   is visible. Palettes (NC State levels, C2TC tracks, the Practice Adventure)
+   are left as each page sets them.
+   ════════════════════════════════════════════ */
+body { font-size: 1.0625rem; line-height: 1.7; }
+
+body :is(p, li, dd, dt, td, th, label, figcaption, blockquote, summary, legend, div):not(.site-header *, .nav-links, .nav-links *) {
+  font-size: max(1rem, 100%) !important;
+}
+body :is(input, select, textarea):not(.site-header *) { font-size: max(1rem, 100%) !important; }
+
+/* Labels: sentence case, normal tracking */
+:is(main, article, aside, .page-header, .hero, section, form, dialog) * {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, summary:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--red) !important; outline-offset: 2px;
+}
+
+/* Contrast repairs found in the Nov 2026 audit */
+.sidebar-part { color: #4D4D4D !important; }
+.dc-bridge, .dc-bridge :is(p, li, a, strong, div) { color: #fff !important; }
+.dc-bridge a { border-bottom-color: rgba(255,255,255,0.6) !important; }
+.hint, .case-note, .field-hint { font-size: max(1rem, 100%) !important; }
