@@ -160,9 +160,14 @@
       <li><input type="checkbox" id="p3"><label for="p3">Ask the unit for its current syllabus or unit language on AI, if any, and read it with the procedure before the session.</label></li>
       <li><input type="checkbox" id="p4"><label for="p4">Open the <a href="https://docs.google.com/presentation/d/1fFBwchCxm9sITlmNk4j9zlq6bWEhcvFMb7S8QshD_6c/edit?usp=sharing" target="_blank" rel="noopener">deck<span class="sr-only"> (opens in a new window)</span></a> in presenter view and read the notes on slides 3, 4, 13, 15, 18, 20, and 23, which carry this run's figures.</label></li>
       <li><input type="checkbox" id="p5"><label for="p5">Print the run sheet and one participant handout per person from the buttons on the Run tab.</label></li>
-      <li><input type="checkbox" id="p6"><label for="p6">Send participants the <a href="ai-policy-workbook.html">policy repository workbook</a> link and the census link the day before, with one sentence: bring your current policy language, or the absence of it.</label></li>
+      <li><input type="checkbox" id="p6"><label for="p6">Send participants the email below the day before. It carries the workbook and census links and asks them to bring their current policy language.</label></li>
       <li><input type="checkbox" id="p7"><label for="p7">Tables for three or four, each with sight of the screen. One shared document (a Google Doc works) open for groups which prefer to write their debrief.</label></li>
     </ul>
+
+    <h3 style="margin-top:2rem;">Email to participants</h3>
+    <p class="fg-status">Filled from the fields above. Copy it into your mail client; Garamond is applied there.</p>
+    <div class="fg-say" id="fg-email" style="white-space:pre-wrap; font-family: Georgia, serif; font-size: 1rem; max-width: 760px;"></div>
+    <div class="fg-actions" style="margin-top:.6rem;"><button type="button" class="fg-btn" onclick="copyEmail(this)">Copy email</button></div>
   </section>
 
   <!-- ───────────── RUN ───────────── -->
@@ -265,7 +270,7 @@ const BLOCKS = [
   alt:'Opening round in writing: each person writes their current approach on a card, and you read three aloud.',
   short:'Cut the opening round; keep the two moves and the level question.'},
  {id:'m1', num:'1', title:'Module 1. What policy does', sub:'The census, the procedure, one worked case', slides:'3 to 7', t3:20, s:1, t2:20,
-  say:'The record is the AI Governance Census: 334 institutions sampled, 90 searched so far, 1,125 documents, 724 verified. Eighty of the 90 are research universities, so the figures describe R1 governance until the other strata are in. Twenty-one are land-grants, and the cases today come from them.',
+  say:'The record is the AI Governance Census: 90 institutions searched so far, 724 documents verified. Eighty of the 90 are research universities, so the figures describe R1 governance until the other strata are in. Twenty-one are land-grants, and the cases today come from them.',
   do:['Slide 3: the figures, without dwelling. Pause on the land-grant card for this room.','Slide 4: contradiction against supersession. The NC State OIT pair is the live local example and is deliberately open.','Slide 6: the four steps, with the version-note question inside step two.','Slide 7: the 2023 admissions case as the worked example of all four steps.'],
   watch:'Reading the census figures as a ranking. They describe what is on record, and an institution with many documents is one which publishes, nothing more.',
   alt:'Hand out the procedure on the participant handout before slide 6, so people follow on paper.',
@@ -354,7 +359,7 @@ function render(){
   const rf=document.getElementById('fg-run-for');
   if(unit||date){ rf.innerHTML='This run: <strong>'+esc(unit||'unit to be named')+'</strong>'+(date?', '+esc(date):'')+', '+(fmt==='3h'?'one session of three hours':'two sessions of ninety minutes')+(cofac?', with '+esc(cofac):'')+'.'; }
   else rf.textContent='No run set up yet. Open Prepare to begin.';
-  renderBlocks(); renderRefCases();
+  renderBlocks(); renderRefCases(); renderEmail();
 }
 function blockHTML(b, idx, minutes, sessionLabel){
   if(b.id==='break') return '<details class="fg-block" id="blk-break"><summary><span class="num"></span><span class="ttl">Break</span><span class="meta"><b>'+minutes+' min</b></span></summary><div class="fg-body"><dt>Do</dt><dd>Ten minutes. Leave slide 12 on screen so the room returns to the NC State case.</dd></div></details>';
@@ -390,6 +395,21 @@ function renderBlocks(){
   el.innerHTML=html;
 }
 function renderRefCases(){ const el=document.getElementById('fg-ref-cases'); el.innerHTML=Object.keys(CASES).map(k=>{ const c=CASES[k]; const on=chosenCases().includes(k); return '<div class="fg-case"><b>'+esc(c.name)+' <span style="font-weight:400;color:#555;">('+esc(c.kind)+(on?', chosen for this run':'')+')</span></b>'+esc(c.line)+'</div>'; }).join(''); }
+function renderEmail(){
+  const unit=v('f-unit')||'your department', date=fmtDate(v('f-date')), fmt=v('f-format'), cofac=v('f-cofac');
+  const when=date?(' on '+date):' this week';
+  const sessions=fmt==='3h'?'The session runs three hours.':'We meet twice, for ninety minutes each time; the first session reads policy and ends with a first draft, and the second refines it.';
+  const txt='Subject: AI Policy Lab for '+unit+when+'\n\n'+
+  'Dear colleagues,\n\n'+
+  'Thank you for making time for the AI Policy Lab'+when+'. '+sessions+' You will leave with policy language at the level you choose (course, program, or unit), written to hold up through the next product cycle, and a way to check it each term.\n\n'+
+  'Two things before we meet.\n\n'+
+  '1. Bring your current policy language on AI, at whatever level you hold it: a syllabus statement, an assignment rule, a program or department text, or the fact that none exists yet, which is itself a starting point.\n\n'+
+  '2. Open the participant workbook, which saves your work in your browser and prints: https://cwspwolf.com/ai-policy-workbook.html. Part I takes ten minutes to read; a short version sits at the top for those with less time. The record we read from is the AI Governance Census of US Colleges and Universities: https://kirstikcole.com/ai-governance-census/\n\n'+
+  'Laptops are useful and a printed handout will be provided. Questions to me at kkcole2@ncsu.edu.\n\n'+
+  'Kirsti\n\nKirsti K. Cole, Professor of English and Co-Director, Campus Writing and Speaking Program, NC State University'+(cofac?'\n'+cofac+', co-facilitator':'');
+  document.getElementById('fg-email').textContent=txt;
+}
+function copyEmail(btn){ const t=document.getElementById('fg-email').textContent; navigator.clipboard.writeText(t).then(()=>{ btn.textContent='Copied'; setTimeout(()=>btn.textContent='Copy email',1500); }, ()=>{ btn.textContent='Select and copy by hand'; }); }
 function toggleAll(open){ document.querySelectorAll('#fg-blocks details').forEach(d=>d.open=open); }
 
 // ── Timers ────────────────────────────────────────────────────────────────
