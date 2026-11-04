@@ -125,13 +125,14 @@
     <form class="fg-form" id="fg-form" onsubmit="return false;">
       <div class="fg-field"><label for="f-unit">Unit or department</label><input type="text" id="f-unit" placeholder="Forestry and Environmental Resources"></div>
       <div class="fg-field"><label for="f-date">Date of the first session</label><input type="date" id="f-date"></div>
+      <div class="fg-field" id="f-date2-wrap" hidden><label for="f-date2">Date of the second session</label><input type="date" id="f-date2"><span class="hint">Shown in the two-session format, and used in the email and the handout.</span></div>
       <div class="fg-field"><label for="f-format">Format</label>
         <select id="f-format"><option value="3h">One session, three hours</option><option value="2x90">Two sessions, ninety minutes each</option></select>
         <span class="hint">Two sessions: reading and a first draft in session one, refresh, norming, and drafting in session two.</span></div>
       <div class="fg-field"><label for="f-count">Participants expected</label><input type="number" id="f-count" min="3" max="40" placeholder="12"><span class="hint">Participants choose groups, pairs, or working alone. Four cases cover twelve people in groups; add one or two for pairs.</span></div>
       <div class="fg-field"><label for="f-level">Level most of the room drafts at</label>
         <select id="f-level"><option value="course">Course</option><option value="program">Program</option><option value="department">Department or unit</option><option value="mixed">Mixed: faculty at course level, heads at unit level</option></select></div>
-      <div class="fg-field"><label for="f-cofac">Co-facilitator, if any</label><input type="text" id="f-cofac" placeholder="Roy Schwartzman"><span class="hint">Named on the run sheet and the handout. Leave blank to omit.</span></div>
+      <div class="fg-field"><label for="f-cofac">Co-facilitator, if any</label><input type="text" id="f-cofac" placeholder="Dr. Roy Schwartzman, Professor of Communication"><span class="hint">Name and title, as the email signature should read. Named on the run sheet and the handout. Leave blank to omit.</span></div>
       <fieldset class="fg-fieldset">
         <legend>Cases for Activity 1</legend>
         <span class="hint">One per group or pair; people working alone take any. The first four are land-grant cases.</span>
@@ -343,7 +344,7 @@ const ORDER2 = {1:['open','m1','m2','a1','draft1','close'], 2:['refresh','ncs','
 
 // ── State ─────────────────────────────────────────────────────────────────
 const KEY = 'aipolicylab-guide';
-const FIELD_IDS = ['f-unit','f-date','f-format','f-count','f-level','f-cofac','f-lead','f-peers','f-detector'];
+const FIELD_IDS = ['f-unit','f-date','f-date2','f-format','f-count','f-level','f-cofac','f-lead','f-peers','f-detector'];
 const CHECK_IDS = ['c-clemson','c-csu','c-auburn','c-txst','c-msu','c-ncoit','p1','p2','p3','p4','p5','p6','p7'];
 function load(){ try { return JSON.parse(localStorage.getItem(KEY)||'{}'); } catch(e){ return {}; } }
 function save(){ const d={}; FIELD_IDS.forEach(i=>d[i]=document.getElementById(i).value); CHECK_IDS.forEach(i=>d[i]=document.getElementById(i).checked); try{ localStorage.setItem(KEY, JSON.stringify(d)); }catch(e){} render(); }
@@ -354,7 +355,7 @@ function fmtDate(s){ if(!s) return ''; const d=new Date(s+'T12:00:00'); return d
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 // ── Render ────────────────────────────────────────────────────────────────
-function render(){
+function render(){ const w2=document.getElementById('f-date2-wrap'); if(w2) w2.hidden=v('f-format')!=='2x90';
   const unit=v('f-unit'), date=fmtDate(v('f-date')), fmt=v('f-format'), cofac=v('f-cofac');
   const rf=document.getElementById('fg-run-for');
   if(unit||date){ rf.innerHTML='This run: <strong>'+esc(unit||'unit to be named')+'</strong>'+(date?', '+esc(date):'')+', '+(fmt==='3h'?'one session of three hours':'two sessions of ninety minutes')+(cofac?', with '+esc(cofac):'')+'.'; }
@@ -396,16 +397,18 @@ function renderBlocks(){
 }
 function renderRefCases(){ const el=document.getElementById('fg-ref-cases'); el.innerHTML=Object.keys(CASES).map(k=>{ const c=CASES[k]; const on=chosenCases().includes(k); return '<div class="fg-case"><b>'+esc(c.name)+' <span style="font-weight:400;color:#555;">('+esc(c.kind)+(on?', chosen for this run':'')+')</span></b>'+esc(c.line)+'</div>'; }).join(''); }
 function renderEmail(){
-  const unit=v('f-unit')||'your department', date=fmtDate(v('f-date')), fmt=v('f-format'), cofac=v('f-cofac');
+  const unit=v('f-unit')||'your department', fmt=v('f-format'), cofac=v('f-cofac');
+  const d1=fmtDate(v('f-date')), d2=fmt==='2x90'?fmtDate(v('f-date2')):'';
+  const date=d1&&d2?(d1.replace(/, \d{4}$/,'')+', and '+d2):d1;
   const when=date?(' on '+date):' this week';
-  const sessions=fmt==='3h'?'The session runs three hours.':'We meet twice, for ninety minutes each time; the first session reads policy and ends with a first draft, and the second refines it.';
+  const sessions=fmt==='3h'?'The session runs three hours.':'We meet twice, for ninety minutes each time. The first session reads policy and ends with a first draft, and the second refines it.';
   const txt='Subject: AI Policy Lab for '+unit+when+'\n\n'+
   'Dear colleagues,\n\n'+
-  'Thank you for making time for the AI Policy Lab'+when+'. '+sessions+' You will leave with policy language at the level you choose (course, program, or unit), written to hold up through the next product cycle, and a way to check it each term.\n\n'+
+  'Thank you for making time for the AI Policy Lab'+when+'. '+sessions+' You will leave with policy language at the level you choose (course, program, or unit), written to stay current through the next model release, and a way to check it each term.\n\n'+
   'Two things before we meet.\n\n'+
-  '1. Bring your current policy language on AI, at whatever level you hold it: a syllabus statement, an assignment rule, a program or department text, or the fact that none exists yet, which is itself a starting point.\n\n'+
-  '2. Open the participant workbook, which saves your work in your browser and prints: https://cwspwolf.com/ai-policy-workbook.html. Part I takes ten minutes to read; a short version sits at the top for those with less time. The record we read from is the AI Governance Census of US Colleges and Universities: https://kirstikcole.com/ai-governance-census/\n\n'+
-  'Laptops are useful and a printed handout will be provided. Questions to me at kkcole2@ncsu.edu.\n\n'+
+  '1. Bring your current policy language on AI, at whatever level you hold it: a syllabus statement, an assignment rule, a program or department text, or a note that none exists yet.\n\n'+
+  '2. Open the participant workbook, which saves your work in your browser and prints: https://cwspwolf.com/ai-policy-workbook.html. Part I takes ten minutes to read. A short version sits at the top for those with less time. The record we read from is the AI Governance Census of US Colleges and Universities: https://kirstikcole.com/ai-governance-census/\n\n'+
+  'Bring a laptop if you have one. Printed handouts will be available. Questions to me at kkcole2@ncsu.edu.\n\n'+
   'Kirsti\n\nKirsti K. Cole, Professor of English and Co-Director, Campus Writing and Speaking Program, NC State University'+(cofac?'\n'+cofac+', co-facilitator':'');
   document.getElementById('fg-email').textContent=txt;
 }
@@ -429,7 +432,7 @@ function printRunSheet(){
   openPrint('Run sheet · '+unit, '<p class="eyebrow">AI Policy Lab · Run sheet</p><h1>'+esc(unit)+'</h1><p class="sub">'+esc(date)+(date?' · ':'')+(fmt==='3h'?'One session, three hours':'Two sessions, ninety minutes each')+' · Facilitator Kirsti Cole'+(cofac?' with '+esc(cofac):'')+' · Level: '+esc(document.getElementById('f-level').selectedOptions[0].text)+'</p>'+rows+'<h2>Cases for Activity 1</h2><ol>'+cases+'</ol>');
 }
 function printHandout(){
-  const unit=v('f-unit')||'', date=fmtDate(v('f-date')), cofac=v('f-cofac');
+  const unit=v('f-unit')||'', cofac=v('f-cofac'), d1=fmtDate(v('f-date')), d2=v('f-format')==='2x90'?fmtDate(v('f-date2')):'', date=d1&&d2?(d1.replace(/, \d{4}$/,'')+' and '+d2):d1;
   const cases=chosenCases().map(c=>'<li><b>'+esc(CASES[c].name)+'.</b> '+esc(CASES[c].line)+'</li>').join('');
   const body='<p class="eyebrow">AI Policy Lab · Participant handout</p><h1>Reading and writing AI policy'+(unit?': '+esc(unit):'')+'</h1><p class="sub">'+esc(date)+(date?' · ':'')+'Campus Writing and Speaking Program · Kirsti Cole'+(cofac?' and '+esc(cofac):'')+' · The record: AI Governance Census, doi:10.5281/zenodo.23887259 · Workbook: cwspwolf.com/ai-policy-workbook.html</p>'+
   '<h2>The procedure</h2><ol><li>Identify the genre: what kind of document, issued by whom, under what authority.</li><li>Locate the glitch: where the document strains against itself. Where two documents conflict, are both current (a contradiction) or has one replaced the other (a supersession)?</li><li>Read the reveal: what the glitch makes legible about commitments, assumptions, or fears.</li><li>Name the abstraction: the general claim which holds the document together, and where it fails.</li></ol>'+
