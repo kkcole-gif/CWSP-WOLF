@@ -108,7 +108,7 @@
 <main class="fg-wrap" id="fg-main">
   <div class="fg-head">
     <h1>AI Policy Lab: Facilitator Workbook</h1>
-    <p class="fg-sub">For the person running the Lab. Participants use the <a href="ai-policy-workbook.html">policy repository workbook</a>. Fill in the Prepare tab once for each run, and the Run and Reference tabs, the printed run sheet, and the participant handout carry those choices.</p>
+    <p class="fg-sub">For the person running the Lab. Participants use the <a href="ai-policy-workbook.html">workbook</a>. Fill in the Prepare tab once for each run, and the Run and Reference tabs, the printed run sheet, and the participant handout carry those choices.</p>
     <p class="fg-run-for" id="fg-run-for" aria-live="polite">No run set up yet. Open Prepare to begin.</p>
   </div>
 
@@ -313,13 +313,13 @@ const BLOCKS = [
   alt:'Exchange in writing: partners comment in the shared document and the room reads two aloud. A person who prefers to work alone applies the procedure to their own draft with the three questions.',
   short:'Ten minutes of drafting, five of exchange, no plenary.'},
  {id:'m4', num:'8', title:'Module 4. The review cycle', sub:'Pages move, promises outrun texts, so the policy carries its own check', slides:'23', t3:10, s:2, t2:5,
-  say:'Two findings give the review schedule its evidence. About five percent of governance pages moved or changed within one week of verification. And 134 announced policies have no published text, at 59 institutions, 18 of them land-grants. A policy drafted this term will meet campus rules which arrive after it, so the check goes into the policy.',
-  do:['Slide 23: the two findings and the term-by-term check.','Each person adds one line to their draft naming when it is next checked and against what: the census record and their own links.','At NC State the AI Advisory Group page belongs on the check.'],
+  say:'Two findings give the review schedule its evidence. About five percent of governance pages moved or changed within one week of verification. At 59 institutions, 134 announced policies or bodies have no published document, and 18 of the 21 land-grants are among them. A policy drafted this term will meet campus rules which arrive after it, so the check goes into the policy.',
+  do:['Slide 23: the two findings and the term-by-term check.','Each person fills in the term-check line already in the template, naming when the draft is next checked and against what: the census record and their own links.','At NC State the AI Advisory Group page belongs on the check.'],
   watch:'The check written as an intention. It is a date and a list of links, in the policy.',
-  alt:'The term check is printed on the handout as three lines to fill in.',
+  alt:'The term check is printed on the handout as one line to fill in, with a date and links.',
   short:'The two findings in one sentence and the one added line.'},
  {id:'close', num:'9', title:'Close', sub:'What participants leave with, and two next steps', slides:'24 to 25', t3:10, s:2, t2:5,
-  say:'You leave with a procedure which applies to any governance document, a record you read from and add to, and a dated draft. Two next steps: a WOLF engagement for program or unit work with CWSP, and the AI Hub Learning, Curriculum, and AI Literacy working group as the venue for university curriculum governance.',
+  say:'You leave with a procedure which applies to any governance document, a record to read from, and a dated draft with its next check. Two next steps: a WOLF engagement for program or unit work with CWSP, and the AI Hub Learning, Curriculum, and AI Literacy working group as the venue for university curriculum governance.',
   do:['Name the correction form as the way to report a census page which moved or no longer opens. Analyses and drafts go to CWSP through the workbook\'s Part V.','Open questions. The most frequent follow-up is program coherence: course policies in one unit which contradict each other. Offer to facilitate that as a WOLF engagement.'],
   watch:'Closing on the vacuum. Close on the draft and the check.',
   alt:'Written exit line: one thing you will revise before the term starts.',
@@ -436,7 +436,7 @@ function printHandout(){
   '<h2>Three questions to ask of any policy</h2><ul><li>What does it name, and is the thing it names defined?</li><li>Whose problem does it make AI, and which conditions stay out of view?</li><li>What judgment does it route, to whom, with what support?</li></ul>'+
   '<h2>Five principles a draft meets</h2><ol><li>Scope terms by function.</li><li>Date the policy.</li><li>Name the revision trigger.</li><li>Separate durable principles from contingent prohibitions.</li><li>Explain the reasoning.</li></ol>'+
   '<h2>Cases today</h2><ol>'+cases+'</ol>'+
-  '<h2>NC State, on record</h2><p>OIT clears tools by data classification, and two OIT pages disagree on which classes Gemini is cleared for. The AI Hub bars university data from unvetted tools. The DELTA course guidelines page states that as of May 2026 there is no official university policy on AI use. The Code of Student Conduct (REG 11.35.05) names no AI; cheating is using assistance the instructor has not authorized (8.1.b). The Graduate Handbook requires theses to document generative AI use.</p>'+
+  '<h2>NC State, on record</h2><p>OIT clears tools by data classification, and two OIT pages disagree on which classes Gemini is cleared for. The AI Hub bars university data from unvetted tools. The DELTA course guidelines page states that as of May 2026 there is no official university policy on AI use. The Code of Student Conduct (REG 11.35.05) names no AI. It defines cheating as using assistance the instructor has not authorized (8.1.b). The Graduate Handbook requires theses to document generative AI use.</p>'+
   '<h2>Your draft</h2><p>Level: <span class="blank"></span> &nbsp; Three to five sentences a syllabus or governance document would carry as written.</p><p style="border:1px solid #bbb;height:7.5rem;margin:.4rem 0;"></p><p>Next check: date <span class="blank" style="min-width:8rem;"></span> against the census record and these links: <span class="blank"></span></p>'+
   '<p>A census page which moved or no longer opens: report it through the correction form at kkcole-gif.github.io/ai-governance-census. Your analysis and draft go to CWSP through the workbook\'s Part V.</p>';
   openPrint('Participant handout'+(unit?' · '+unit:''), body);
