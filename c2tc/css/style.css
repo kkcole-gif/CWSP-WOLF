@@ -390,3 +390,23 @@ body {
   .track-cards { grid-template-columns: 1fr; }
   .info-cards  { grid-template-columns: 1fr 1fr; }
 }
+
+/* ── Hero with C²TC arch mark on the right ───────────────────────────────── */
+.hero.hero-split {
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 380px);
+  column-gap: 3rem;
+  align-items: center;
+}
+.hero-split .hero-text > div { justify-content: flex-start !important; }
+.hero-split .hero-badge { margin: 0; width: 100%; justify-self: end; }
+.hero-split .hero-badge img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+@media (max-width: 760px) {
+  .hero.hero-split { grid-template-columns: 1fr; row-gap: 2rem; }
+  .hero-split .hero-badge { justify-self: start; max-width: 280px; }
+}
