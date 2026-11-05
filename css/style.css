@@ -541,3 +541,18 @@ a:hover { color: var(--red-dark); }
   .hero.hero-split { grid-template-columns: 1fr; row-gap: 2rem; }
   .hero-split .hero-badge { justify-self: start; max-width: 220px; }
 }
+
+/* ── Upcoming CWSP events band (WOLF home) ───────────────────────────────── */
+.cwsp-events-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+  column-gap: 3rem;
+  align-items: start;
+}
+.cwsp-events-intro h2 { margin-bottom: 0.75rem; }
+.cwsp-events-intro p { margin-bottom: 1rem; }
+.cwsp-events-grid iframe { display: block; border: 1px solid #DDDDDD; border-radius: 4px; background: #fff; }
+.cwsp-events-links a { color: var(--red); font-weight: 600; }
+@media (max-width: 860px) {
+  .cwsp-events-grid { grid-template-columns: 1fr; row-gap: 1.25rem; }
+}
