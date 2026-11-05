@@ -3,138 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WOLF: Written and Oral Literacy Facilitation | NC State CWSP</title>
+  <title>Campus Writing and Speaking Program | NC State CWSP</title>
+  <meta name="description" content="NC State's Campus Writing and Speaking Program: C²TC for one course, WOLF for a curriculum, AI Literacies and the AI Policy Lab, and CWSP events.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/brand.css">
+<style>
+  .fd-wrap { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+  .fd-hero { border-bottom: 1px solid #e0e0e0; }
+  .fd-hero .fd-wrap { padding-top: 4.5rem; padding-bottom: 4rem; }
+  .fd-hero h1 { font-family: var(--serif); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.25rem); line-height: 1.1; margin: 0 0 1.25rem; max-width: 820px; color: var(--black, #1a1a1a); }
+  .fd-lead { font-size: 1.25rem; line-height: 1.6; color: #444; margin: 0 0 1rem; max-width: 720px; }
+  .fd-ofe { font-size: 0.95rem; color: #555; margin: 0; }
+  .fd-ofe a, .fd-link { color: var(--red); font-weight: 700; }
+  .fd-section { padding: 3.5rem 0 4rem; }
+  .fd-section h2 { font-family: var(--serif); font-weight: 600; font-size: 1.9rem; margin: 0 0 1.75rem; }
+  .fd-doors { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
+  .fd-door { border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; display: flex; flex-direction: column; background: #fff; }
+  .fd-art { background: #f4f4f4; height: 170px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem; box-sizing: border-box; }
+  .fd-art img { height: 138px; width: auto; }
+  .fd-level { display: block; width: 190px; padding: 0.5rem 0; text-align: center; background: #fff; border: 1px solid #d6d6d6; border-radius: 3px; font-size: 0.82rem; font-weight: 700; }
+  .fd-level.is-dark { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+  .fd-next-label { font-size: 0.82rem; font-weight: 700; color: #555; }
+  .fd-next-date { font-family: var(--serif); font-size: 2.75rem; font-weight: 700; line-height: 1; }
+  .fd-next-time { font-size: 0.82rem; color: #444; }
+  .fd-body { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.6rem; flex-grow: 1; }
+  .fd-for { margin: 0; font-size: 0.82rem; font-weight: 700; color: var(--red); }
+  .fd-door h3 { margin: 0; font-family: var(--serif); font-size: 1.4rem; line-height: 1.25; }
+  .fd-door p.fd-text { margin: 0; font-size: 0.95rem; line-height: 1.6; color: #444; flex-grow: 1; }
+  .fd-body .fd-link { padding: 0.6rem 0; }
+  .fd-band { background: #f4f4f4; border-top: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0; }
+  .fd-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; align-items: start; }
+  .fd-two h2 { margin-bottom: 0.9rem; }
+  .fd-two p { margin: 0 0 0.9rem; font-size: 1rem; line-height: 1.6; color: #444; }
+  .fd-band iframe { display: block; border: 1px solid #ddd; border-radius: 4px; background: #fff; }
+  @media (min-width: 861px) { .fd-events { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); } }
+</style>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
-  <nav class="nav-inner" aria-label="Main navigation">
-    <a class="nav-logo" href="index.html">WOLF <span>·</span> CWSP</a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="about.html">About WOLF</a></li>
-      <li><a href="liaisons.html">For Liaisons</a></li>
-      <li><a href="ai-literacies.html">AI Literacies</a></li>
-      <li><a href="ai-policy-lab.html">AI Policy Lab</a></li>
-      <li><a href="c2tc/index.html">C²TC</a></li>
-      <li><a href="get-started.html">Get Started</a></li>
-    </ul>
+  <nav class="gnav" aria-label="Main navigation">
+    <a class="nav-logo" href="index.html">CWSP <span>·</span> NC State</a>
+    <button type="button" class="gnav-toggle" aria-expanded="false" aria-controls="gnav-list">Menu</button>
+    <ul class="gnav-list" id="gnav-list"><li class="gnav-group"><details><summary>WOLF</summary><ul class="gnav-sub"><li><a href="wolf.html">WOLF overview</a></li><li><a href="about.html">About WOLF</a></li><li><a href="liaisons.html">For liaisons</a></li><li><a href="get-started.html">Get started with WOLF</a></li></ul></details></li><li class="gnav-group"><details><summary>C²TC</summary><ul class="gnav-sub"><li><a href="c2tc/index.html">C²TC overview</a></li><li><a href="c2tc/written.html">Written Communication</a></li><li><a href="c2tc/digital.html">Digital Communication</a></li><li><a href="c2tc/oral.html">Oral Communication</a></li><li><a href="c2tc/cohort.html">Cohort</a></li><li><a href="c2tc/repository.html">Repository</a></li><li><a href="c2tc/apply.html">Apply</a></li></ul></details></li><li class="gnav-group"><details><summary>AI programs</summary><ul class="gnav-sub"><li><a href="ai-literacies.html">AI Literacies</a></li><li><a href="ai_literacy_unified.html">The framework</a></li><li><a href="ai-policy-lab.html">AI Policy Lab</a></li><li><a href="cyoa.html">AI Practice Adventure</a></li></ul></details></li><li><a href="index.html#events">Events</a></li><li><a href="research.html">Research</a></li><li class="gnav-cta"><a href="get-started.html">Talk with CWSP</a></li></ul>
   </nav>
+  <script src="css/nav.js" defer></script>
 </header>
 <main id="main">
-  <section class="hero hero-split" aria-label="Program introduction">
-    <div class="hero-text">
-    <p class="hero-eyebrow">NC State Campus Writing and Speaking Program</p>
-    <h1>Written and Oral Literacy Facilitation</h1>
-    <p class="hero-sub">WOLF is the NC State Campus Writing and Speaking Program's model for building writing and speaking into a curriculum. It works with departments, programs, and colleges, and with groups of faculty who teach related courses within a curriculum.</p>
-    <a href="get-started.html" class="btn btn-white">Get started with WOLF</a>
-    </div>
-    <figure class="hero-badge">
-      <img src="wolf-logo.svg" width="900" height="1060" alt="WOLF logo: a red line-drawn wolf whose nose is a pen nib above a microphone, over the word WOLF, the words Written and Oral Literacy Facilitation, and the NC State University wordmark.">
-    </figure>
-  </section>
-  <section class="section section-alt cwsp-events-band" aria-labelledby="wolf-events-heading">
-    <div class="section-inner cwsp-events-grid">
-      <div class="cwsp-events-intro">
-        <h2 id="wolf-events-heading">Upcoming CWSP events</h2>
-        <p>Wolf Wednesdays walk department and program teams through the WOLF phases, and every CWSP session is open to all NC State instructional faculty and graduate students who teach. You do not need a WOLF partnership or a certificate to join one.</p>
-        <p class="cwsp-events-links"><a href="https://go.ncsu.edu/cwspcal">Subscribe to the CWSP calendar</a></p>
-      </div>
-      <iframe src="https://calendar.google.com/calendar/embed?src=c_05e9d0ea72c466f86f59765e1b954e9a59f06dbb75c742d361c08d7825076aff%40group.calendar.google.com&amp;ctz=America%2FNew_York&amp;mode=AGENDA&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" title="CWSP events calendar, agenda view" width="100%" height="380" loading="lazy"></iframe>
+  <section class="fd-hero" aria-labelledby="fd-heading">
+    <div class="fd-wrap">
+      <h1 id="fd-heading">Teaching writing and speaking in every discipline at NC State</h1>
+      <p class="fd-lead">The Campus Writing and Speaking Program works with faculty, departments, and colleges on the writing and speaking their students do. Start from the work in front of you.</p>
+      <p class="fd-ofe">CWSP is part of the Office for Faculty Excellence. <a href="https://go.ncsu.edu/cwsp">See CWSP on the OFE site</a></p>
     </div>
   </section>
-  <section class="section">
-    <div class="section-inner">
-      <p class="section-label">What is WOLF</p>
-      <h2>A structured partnership between CWSP and your department</h2>
-      <p>WOLF pairs a department with CWSP to see where its curriculum teaches writing and speaking, set outcomes for each level, and gather evidence that students meet them. The work runs in three stages over two to three years, at the department's own pace.</p>
-      <div class="phases">
-        <div class="phase">
-          <p class="phase-num">Phase 01</p>
-          <h3>Inquiry</h3>
-          <p>Gather syllabi and survey faculty and students to see where writing and speaking are taught now, and where they are missing.</p>
-        </div>
-        <div class="phase">
-          <p class="phase-num">Phase 02</p>
-          <h3>Design</h3>
-          <p>Write the discipline's writing and speaking outcomes by level, map them to courses, and assemble the Writing and Speaking Curriculum Plan for the chair to approve.</p>
-        </div>
-        <div class="phase">
-          <p class="phase-num">Phase 03</p>
-          <h3>Evidence</h3>
-          <p>Collect student work against the plan, adapt CWSP's rubrics to the discipline, and complete CWSP certification.</p>
-        </div>
-      </div>
+
+  <section class="fd-section" aria-labelledby="fd-doors-heading">
+    <div class="fd-wrap">
+      <h2 id="fd-doors-heading">What are you working on?</h2>
+      <ul class="fd-doors">
+        <li class="fd-door">
+          <div class="fd-art"><img src="c2tc/img/c2tc-arch.svg" alt="" width="1200" height="1000"></div>
+          <div class="fd-body">
+            <p class="fd-for">One course I teach</p>
+            <h3>C²TC, the Communication Teaching Certificate</h3>
+            <p class="fd-text">Free, self-paced certificates in written, digital, and oral communication instruction, each 19 to 28 hours, ending in a capstone you design for a course you teach.</p>
+            <a class="fd-link" href="c2tc/index.html">Explore C²TC</a>
+          </div>
+        </li>
+        <li class="fd-door">
+          <div class="fd-art"><img src="wolf-logo.svg" alt="" width="900" height="1060"></div>
+          <div class="fd-body">
+            <p class="fd-for">My department's curriculum</p>
+            <h3>WOLF, Written and Oral Literacy Facilitation</h3>
+            <p class="fd-text">A two-to-three-year partnership that builds writing and speaking into a department, program, or college curriculum, led by up to three faculty liaisons the unit chooses.</p>
+            <a class="fd-link" href="wolf.html">Explore WOLF</a>
+          </div>
+        </li>
+        <li class="fd-door">
+          <div class="fd-art" aria-hidden="true">
+            <span class="fd-level">Conceptual</span>
+            <span class="fd-level">Structural</span>
+            <span class="fd-level is-dark">Operative</span>
+          </div>
+          <div class="fd-body">
+            <p class="fd-for">AI in a course, program, or department</p>
+            <h3>AI Literacies and the AI Policy Lab</h3>
+            <p class="fd-text">A three-level framework, a faculty workbook, a policy workshop, and the AI Practice Adventure, for deciding where AI belongs in your teaching and putting the decision in writing.</p>
+            <a class="fd-link" href="ai-literacies.html">Explore the AI programs</a>
+          </div>
+        </li>
+        <li class="fd-door">
+          <div class="fd-art" aria-hidden="true">
+            <span class="fd-next-label">CWSP sessions</span>
+            <span class="fd-next-date">Wednesdays</span>
+            <span class="fd-next-time">1:15 to 2:15 pm, Primrose 101 and Zoom</span>
+          </div>
+          <div class="fd-body">
+            <p class="fd-for">A session or time to write</p>
+            <h3>Events and writing challenges</h3>
+            <p class="fd-text">Wednesday sessions, Faculty Conversations, and writing challenges, open to everyone who teaches, with no certificate or partnership required.</p>
+            <a class="fd-link" href="#events">See upcoming events</a>
+          </div>
+        </li>
+      </ul>
     </div>
   </section>
-  <section class="section section-alt">
-    <div class="section-inner">
-      <p class="section-label">Who WOLF is for</p>
-      <h2>Designed for departments, programs, and colleges</h2>
-      <p>WOLF works at the scale you choose. Most engagements serve a department, a degree program, or a college. Faculty who teach related courses can also take part as a group.</p>
-      <div class="cards" style="margin-top: 2rem;">
-        <div class="card">
-          <span class="card-label">Departments, programs &amp; colleges</span>
-          <h3>Build writing and speaking into a curriculum</h3>
-          <p>Choose up to three faculty as department liaisons, work through the three stages with CWSP, and earn CWSP certification. Each liaison receives $1,000.</p>
-          <a href="get-started.html" class="btn btn-outline" style="margin-top: 0.5rem; text-align: center;">Get started</a>
-        </div>
-        <div class="card">
-          <span class="card-label">Groups of faculty</span>
-          <h3>Revise related courses as part of a curriculum</h3>
-          <p>Faculty who teach related courses in a curriculum, such as a course sequence or a shared requirement, work with CWSP through the same three stages to set outcomes across those courses and gather evidence of student growth.</p>
-          <a href="about.html" class="btn btn-outline" style="margin-top: 0.5rem; text-align: center;">Learn more</a>
-        </div>
-        <div class="card">
-          <span class="card-label">Department liaisons</span>
-          <h3>Access tools and resources for your work</h3>
-          <p>Find the Liaison Guide, WSCP Working Template, scaffolding strategies, assessment tools, the AI Literacies extension, and AI Policy Lab workshop materials.</p>
-          <a href="liaisons.html" class="btn btn-outline" style="margin-top: 0.5rem; text-align: center;">Go to resources</a>
-        </div>
+
+  <section class="fd-section fd-band" id="events" aria-labelledby="fd-events-heading">
+    <div class="fd-wrap fd-two fd-events">
+      <div>
+        <h2 id="fd-events-heading">Upcoming CWSP events</h2>
+        <p>Every session meets in Primrose 101 and on Zoom, and every one is open to NC State instructional faculty and graduate students who teach.</p>
+        <p><a class="fd-link" href="https://go.ncsu.edu/cwspcal">Subscribe to the CWSP calendar</a></p>
       </div>
+      <iframe src="https://calendar.google.com/calendar/embed?src=c_05e9d0ea72c466f86f59765e1b954e9a59f06dbb75c742d361c08d7825076aff%40group.calendar.google.com&amp;ctz=America%2FNew_York&amp;mode=AGENDA&amp;showTitle=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0" title="CWSP events calendar, agenda view" width="100%" height="420" loading="lazy"></iframe>
     </div>
   </section>
-  <section class="section section-alt">
-    <div class="section-inner">
-      <p class="section-label">Also from CWSP</p>
-      <h2>C²TC Communication Teaching Certificate</h2>
-      <p>Faculty who want to study communication pedagogy further earn a certificate through C²TC, CWSP's self-paced professional development program. Three certificate tracks cover written, digital, and oral communication instruction. Each track pairs research-based frameworks with your own course materials.</p>
-      <div class="cards" style="margin-top: 2rem;">
-        <div class="card" style="border-top: 2px solid var(--red);">
-          <span class="card-label">Written Communication</span>
-          <h3>Writing transfer, feedback, and discipline-specific instruction</h3>
-          <p>Three core modules covering writing transfer theory, evidence-based feedback strategies, and genre-based assignment design using the DAPOE framework.</p>
-        </div>
-        <div class="card" style="border-top: 2px solid var(--flame);">
-          <span class="card-label">Digital Communication</span>
-          <h3>Multimodal pedagogy, digital assignment design, and assessment</h3>
-          <p>Frameworks for teaching and assessing digital genres, including accessibility requirements, tool selection, and portfolio approaches to digital learning.</p>
-        </div>
-        <div class="card" style="border-top: 2px solid var(--yellow);">
-          <span class="card-label">Oral Communication</span>
-          <h3>Public speaking instruction and assessment across disciplines</h3>
-          <p>In development. Covers communication apprehension, disciplinary speaking conventions, and rubric design for oral performance.</p>
-        </div>
+
+  <section class="fd-section" aria-label="Research and contact">
+    <div class="fd-wrap fd-two">
+      <div>
+        <h2>Research and presentations</h2>
+        <p>The scholarship behind the programs, from the three-level AI literacy framework to the governance documents read in The Glitch Curriculum.</p>
+        <p><a class="fd-link" href="research.html">Read the research</a></p>
       </div>
-      <div style="margin-top: 2rem;">
-       <a href="c2tc/index.html" class="btn btn-red">Explore C²TC</a>
+      <div>
+        <h2>Not sure where to start?</h2>
+        <p>Tell CWSP what you teach or what your unit wants to change, and a co-director will write back with a starting point.</p>
+        <p><a class="fd-link" href="get-started.html">Talk with CWSP</a></p>
       </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="section-inner">
-      <h2>Talk with CWSP</h2>
-      <p>Tell us about your department, program, or group in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSfVpo4ffoTYEjBAC_cZUiZOVUI7BzwK3VPN8CfNw_yi2jXejA/viewform" target="_blank" rel="noopener">intake form<span class="sr-only"> (opens in a new window)</span></a>, or write to Kirsti Cole at <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a>. A first conversation commits you to nothing. The <a href="get-started.html">Get Started</a> page describes what an engagement involves.</p>
     </div>
   </section>
 </main>
 <footer class="site-footer">
-  <p>WOLF is a program of the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program<span class="sr-only"> (opens in a new window)</span></a> &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a> &nbsp;·&nbsp; <a href="research.html">Research and presentations</a></p>
+  <p>NC State Campus Writing and Speaking Program &nbsp;·&nbsp; Co-directors Kirsti Cole and Roy Schwartzman &nbsp;·&nbsp; <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a> &nbsp;·&nbsp; <a href="https://go.ncsu.edu/cwsp">CWSP on the OFE site</a></p>
   <p style="margin-top:0.4rem; font-size:0.8em;">All content on CWSP WOLF © 2026 by Kirsti Cole is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener" style="color:inherit;">CC BY-NC-ND 4.0<span class="sr-only"> (opens in a new window)</span></a>.</p>
 </footer>
 </body>
