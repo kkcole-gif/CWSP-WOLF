@@ -14,7 +14,7 @@ GROUPS = [
         ("WOLF overview", "wolf.html"),
         ("About WOLF", "about.html"),
         ("For liaisons", "liaisons.html"),
-        ("Get started with WOLF", "get-started.html"),
+        ("How WOLF works", "get-started.html"),
     ]),
     ("C²TC", [
         ("C²TC overview", "c2tc/index.html"),
@@ -36,7 +36,7 @@ TOP = [
     ("Events", "index.html#events"),
     ("Research", "research.html"),
 ]
-CTA = ("Talk with CWSP", "get-started.html")
+CTA = ("Talk with CWSP", "contact.html")
 
 # Pages that belong to a group without appearing in its menu.
 EXTRA_MEMBERS = {
