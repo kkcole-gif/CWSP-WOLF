@@ -698,6 +698,33 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
   .cluster-divider .cd-num { color: #CC0000 !important; }
   @media (max-width: 640px) { .two-col { grid-template-columns: 1fr !important; } }
   .two-col > * { min-width: 0; }
+  /* Reading layout (Nov 2026): white page, sections divided by rules, level colors from the site palette */
+  body { background: #fff; font-size: 1.0625rem; }
+  .wb-main { background: #fff; }
+  .workbook, .archive-section { max-width: 820px; margin-left: auto; margin-right: auto; }
+  .section-block, .synthesis { background: #fff; border: 0; border-top: 1px solid #D9D9D9; padding: 2.25rem 1.5rem 2.5rem; margin-bottom: 0; }
+  .section-block.cluster-01, .section-block.cluster-02, .section-block.cluster-03 { border-top-color: #D9D9D9; }
+  .cluster-divider { border-top: 0; border-bottom: 0 !important; margin-top: 2.5rem; }
+  .archive-section { border: 0; background: #F6F6F6; border-radius: 4px; padding: 2rem 1.75rem; margin-top: 2.5rem; margin-bottom: 3rem; }
+  .activity-header .activity-title { font-size: 1.3rem; }
+  .activity-num { background: none !important; border: 0 !important; color: #1F1F1F !important; font-family: var(--serif); font-size: 1.2rem; font-weight: 700; }
+  .activity-header .level-tag { font-family: var(--sans); font-size: .95rem; font-weight: 600; border: 0 !important; border-left: 5px solid !important; border-radius: 0; padding: .1rem .55rem; color: #1F1F1F !important; background: none; }
+  .level-tag.l-conceptual { border-left-color: #FAC800 !important; }
+  .level-tag.l-structural { border-left-color: #D14905 !important; }
+  .level-tag.l-operative  { border-left-color: #CC0000 !important; }
+  .level-tag.l-all        { border-left-color: #1F1F1F !important; }
+  .field-label { font-family: var(--sans); font-size: 1rem; color: #1F1F1F; font-weight: 600; }
+  .write-field, .policy-template input, .map-table input, .map-table textarea { font-family: var(--sans); font-size: 1rem; color: #1F1F1F; }
+  .write-field::placeholder, .policy-template input::placeholder, .map-table ::placeholder { color: #767676; font-style: normal; }
+  .map-table th { background: #F6F6F6 !important; color: #1F1F1F !important; font-family: var(--sans); font-size: .95rem; border-bottom: 2px solid #1F1F1F; }
+  .policy-template { border: 1px solid #D9D9D9 !important; border-left: 1px solid #D9D9D9 !important; border-radius: 4px; }
+  .pt-label { color: #1F1F1F !important; font-weight: 700; }
+  .policy-template .pt-field .pt-stem { color: #1F1F1F; font-size: 1rem; font-family: var(--sans); }
+  .policy-template .pt-field input[type="text"] { font-family: var(--sans) !important; font-size: 1rem; }
+  .policy-template input::placeholder { font-family: var(--sans); }
+  .archive-section .two-col { grid-template-columns: 1fr !important; }
+  .archive-section select, .archive-section .write-field { width: 100%; max-width: 32rem; }
+  select, input, textarea { font-family: var(--sans) !important; }
   .cover .cover-note { background: #F6F6F6 !important; border-left: 0 !important; }
   .cover .cover-note, .cover .cover-note * { color: #1F1F1F !important; font-size: 1rem !important; }
 </style>
@@ -895,7 +922,7 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
       </div>
       <div class="activity-body">
         <div class="callout">
-          <strong>From the policy corpus:</strong> A corpus of 80+ AI policy documents from 24 institutions shows consistent patterns. NC State's three-tier DELTA model (restrict / learning aid / collaborative tool) encodes contradictory institutional commitments and leaves them unresolved. Ohio State added AI fluency as a graduation outcome (announced 2025, beginning with the Class of 2029) and left its 2023 conduct rule against unauthorized AI use in place, unmentioned. Cornell converted governance into downloadable icons. Each document records what its institution values, along with what it cannot say directly.
+          <strong>From the census:</strong> The <a href="https://kirstikcole.com/ai-governance-census/" target="_blank" rel="noopener">AI Governance Census<span class="sr-only"> (opens in a new window)</span></a> (version 0.5) records 1,125 documents at 90 institutions. At 53 of the 90, two current documents of the institution's own disagree, and 134 announced policies or bodies have no published document. At NC State, the DELTA course guidelines page states that as of May 2026 there is no official university policy on AI use, while the Code of Student Conduct (REG 11.35.05) names no AI and defines cheating as assistance the instructor has not authorized, so the syllabus carries the rule. Ohio State added AI fluency as a graduation outcome (announced 2025, beginning with the Class of 2029) and left its 2023 conduct rule against unauthorized AI use in place, unmentioned. Each document records what its institution values, along with what it cannot say directly.
         </div>
         <div class="prompt">Paste or write your current course AI policy statement below (or write "none" if you don't have one).</div>
         <div class="one-col">
@@ -954,7 +981,7 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
       <div class="activity-body">
         <p>Effective policy language addresses all three levels. It names the relevant AI tools or categories (conceptual), grounds its limits in what AI cannot do for disciplinary learning (structural), and specifies the judgment students must exercise, which permission or prohibition alone does not supply (operative).</p>
         <div class="callout red">
-          <strong>Alignment note:</strong> All language you draft here should be compatible with NC State's institutional guidance at <a href="https://ai.ncsu.edu" target="_blank" style="color: var(--red);">ai.ncsu.edu<span class="sr-only"> (opens in a new window)</span></a>. On request, CWSP reviews drafts for alignment before you finalize them.
+          <strong>Alignment note:</strong> Check what you draft against the Code of Student Conduct (REG 11.35.05), which leaves authorization to the instructor, and against OIT's data classifications for approved tools. The AI Hub at <a href="https://ai.ncsu.edu" target="_blank" rel="noopener" style="color: var(--red);">ai.ncsu.edu<span class="sr-only"> (opens in a new window)</span></a> collects current guidance. For the full procedure, the <a href="ai-policy-workbook.html">AI Policy Lab workbook</a> reads policy at the course, program, and unit levels. On request, CWSP reviews drafts before you finalize them.
         </div>
 
         <div class="policy-template">
@@ -964,8 +991,8 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
             <input aria-label="In this course," type="text" id="f-pt-course" placeholder="[course name / number]" oninput="saveField(this); updateProgress()">
           </div>
           <div class="pt-field">
-            <span class="pt-stem">AI tools such as</span>
-            <input aria-label="AI tools such as" type="text" id="f-pt-tools" placeholder="[name specific tools or categories]" oninput="saveField(this); updateProgress()">
+            <span class="pt-stem">tools that generate text, code, images, or data from prompts, such as</span>
+            <input aria-label="tools that generate text, code, images, or data from prompts, such as" type="text" id="f-pt-tools" placeholder="[name specific tools or categories]" oninput="saveField(this); updateProgress()">
           </div>
           <div class="pt-field">
             <span class="pt-stem">are [permitted / not permitted / permitted with attribution] for</span>
@@ -978,6 +1005,14 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
           <div class="pt-field">
             <span class="pt-stem">Students are expected to</span>
             <input aria-label="Students are expected to" type="text" id="f-pt-judgment" placeholder="[the judgment required, in addition to disclosure]" oninput="saveField(this); updateProgress()">
+          </div>
+          <div class="pt-field">
+            <span class="pt-stem">This policy applies to</span>
+            <input aria-label="This policy applies to" type="text" id="f-pt-term" placeholder="[term, e.g., Spring 2027]" oninput="saveField(this); updateProgress()">
+          </div>
+          <div class="pt-field">
+            <span class="pt-stem">and will be reviewed</span>
+            <input aria-label="and will be reviewed" type="text" id="f-pt-review" placeholder="[when, or on what change: before the next term, or if the university publishes a policy]" oninput="saveField(this); updateProgress()">
           </div>
         </div>
 
@@ -1156,7 +1191,7 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
         <p style="margin-bottom:12px;">Check what you want to do next. Your choices give a follow-up CWSP consultation its starting agenda.</p>
         <ul class="checklist">
           <li><input type="checkbox" id="ck1" onchange="saveCheckbox(this); updateProgress()"><label for="ck1">Revise my course AI policy using the draft I wrote in Cluster 02</label></li>
-          <li><input type="checkbox" id="ck2" onchange="saveCheckbox(this); updateProgress()"><label for="ck2">Schedule a CWSP consultation to finalize policy language and check alignment with ai.ncsu.edu</label></li>
+          <li><input type="checkbox" id="ck2" onchange="saveCheckbox(this); updateProgress()"><label for="ck2">Schedule a CWSP consultation to finalize policy language and check it against the Code of Student Conduct and OIT's data classifications</label></li>
           <li><input type="checkbox" id="ck3" onchange="saveCheckbox(this); updateProgress()"><label for="ck3">Share the curricular map with my program and propose a faculty discussion</label></li>
           <li><input type="checkbox" id="ck4" onchange="saveCheckbox(this); updateProgress()"><label for="ck4">Work with CWSP on a full program-level curricular mapping session</label></li>
           <li><input type="checkbox" id="ck5" onchange="saveCheckbox(this); updateProgress()"><label for="ck5">Redesign one assignment to address structural or operative AI literacy</label></li>
@@ -1272,7 +1307,8 @@ details.go-further>summary:focus-visible{outline:2px solid #1a1a1a;outline-offse
         <li>CWSP uses responses to track disciplinary patterns in AI literacy engagement over time.</li>
         <li>Aggregate findings inform CWSP programming, workshop design, and ongoing research.</li>
         <li>Individual responses are not published or shared in identifiable form.</li>
-        <li>CWSP might use this archive as a research dataset. IRB determination is pending. If the project proceeds under IRB review, CWSP will update consent procedures to match.</li>
+        <li>If CWSP uses the archive as a research dataset, that use will proceed under IRB review, and consent procedures will be updated to match.</li>
+        <li>Nothing submitted here enters the AI Governance Census.</li>
       </ul>
     </div>
 
@@ -1402,7 +1438,7 @@ function collectAllFields() {
   });
 
   // Policy template
-  ['f-pt-course','f-pt-tools','f-pt-tasks','f-pt-because','f-pt-judgment'].forEach(id => {
+  ['f-pt-course','f-pt-tools','f-pt-tasks','f-pt-because','f-pt-judgment','f-pt-term','f-pt-review'].forEach(id => {
     const el = document.getElementById(id);
     if (el) data[id] = el.value;
   });
