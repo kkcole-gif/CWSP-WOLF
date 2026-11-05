@@ -433,3 +433,11 @@ body {
   .page-header-split .page-header-inner { grid-template-columns: 1fr; row-gap: 1.75rem; }
   .cert-badge { max-width: 240px; }
 }
+
+/* ── CWSP events calendar ─────────────────────────────────────────────────── */
+.cwsp-events { margin: 0 0 3rem; }
+.cwsp-events h2 { margin-bottom: 0.75rem; }
+.cwsp-events > p { max-width: 640px; margin-bottom: 1.25rem; }
+.cwsp-events iframe { display: block; background: #fff; }
+.cwsp-events-links { margin-top: 0.75rem !important; font-size: 0.9rem; }
+.cwsp-events-links a { color: var(--red); font-weight: 600; }
