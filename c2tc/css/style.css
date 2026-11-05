@@ -410,3 +410,26 @@ body {
   .hero.hero-split { grid-template-columns: 1fr; row-gap: 2rem; }
   .hero-split .hero-badge { justify-self: start; max-width: 280px; }
 }
+
+/* ── Certificate page headers with badge on the right ────────────────────── */
+.page-header-split .page-header-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+  column-gap: 3rem;
+  align-items: center;
+}
+.cert-eyebrow {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+.cert-badge { margin: 0; background: #fff; border-radius: 6px; padding: 0.9rem; }
+.cert-badge img { display: block; width: 100%; height: auto; }
+.cert-contact-note { margin-top: 1.25rem; margin-bottom: 0.75rem !important; }
+.btn-yellow { background: #FAC800; color: #1A1A1A; border-color: #FAC800; }
+.btn-yellow:hover { background: #D7A700; border-color: #D7A700; color: #1A1A1A; }
+@media (max-width: 760px) {
+  .page-header-split .page-header-inner { grid-template-columns: 1fr; row-gap: 1.75rem; }
+  .cert-badge { max-width: 240px; }
+}
