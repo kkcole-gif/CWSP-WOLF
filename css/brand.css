@@ -183,3 +183,34 @@ body :is(.sidebar, .wb-sidebar) :is(p, div, label, li) { font-size: 0.95rem !imp
 .pl-levels .lv-s { border-left-color: #D14905; }
 .pl-levels .lv-o { border-left-color: #CC0000; }
 @media (max-width: 640px) { .pl-facts { grid-template-columns: 1fr; gap: 0.15rem; } .pl-facts dd { margin-bottom: 0.75rem; } }
+
+/* ── Shared CWSP menu (tools/build_nav.py writes the markup) ── */
+.gnav { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; min-height: 64px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; }
+.gnav .nav-logo { color: #fff; font-weight: 800; font-size: 1.15rem; text-decoration: none; }
+.gnav .nav-logo span { color: var(--red); }
+.gnav-toggle { display: none; }
+.gnav-list { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 0.15rem; }
+.gnav-list > li > a, .gnav-group summary { display: flex; align-items: center; gap: 0.4rem; min-height: 44px; padding: 0 0.8rem; color: #fff; font-size: 0.95rem; font-weight: 600; text-decoration: none; cursor: pointer; border-radius: 3px; }
+.gnav-group summary { list-style: none; }
+.gnav-group summary::-webkit-details-marker { display: none; }
+.gnav-group summary::after { content: ""; width: 0.4rem; height: 0.4rem; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); }
+.gnav-group details[open] > summary::after { transform: translateY(1px) rotate(-135deg); }
+.gnav-list > li > a:hover, .gnav-group summary:hover { background: rgba(255,255,255,0.1); }
+.gnav-list > li > a[aria-current="page"], .gnav-list > li > a.gnav-active, .gnav-group summary.gnav-active { box-shadow: inset 0 -3px 0 var(--red); border-radius: 0; }
+.gnav-group { position: relative; }
+.gnav-sub { position: absolute; top: calc(100% + 4px); left: 0; z-index: 200; min-width: 250px; list-style: none; margin: 0; padding: 0.4rem 0; background: #fff; border: 1px solid #ddd; border-radius: 4px; box-shadow: 0 10px 28px rgba(0,0,0,0.16); }
+.gnav-sub a { display: block; padding: 0.65rem 1.1rem; color: #1a1a1a; font-size: 0.95rem; text-decoration: none; }
+.gnav-sub a:hover, .gnav-sub a[aria-current="page"] { background: #f4f4f4; color: var(--red); }
+.gnav-cta a { background: var(--red); font-weight: 700 !important; margin-left: 0.35rem; }
+.gnav-cta a:hover { background: var(--red-dark, #990000) !important; }
+.gnav-toggle:focus-visible, .gnav-list a:focus-visible, .gnav-group summary:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+@media (max-width: 860px) {
+  .gnav.js .gnav-toggle { display: inline-flex; align-items: center; min-height: 44px; padding: 0 1rem; background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.5); border-radius: 3px; font: inherit; font-weight: 600; cursor: pointer; }
+  .gnav.js .gnav-list { display: none; }
+  .gnav.js.open .gnav-list { display: flex; }
+  .gnav-list { width: 100%; flex-direction: column; align-items: stretch; padding-bottom: 1rem; }
+  .gnav-sub { position: static; min-width: 0; background: transparent; border: 0; box-shadow: none; padding: 0 0 0.5rem; }
+  .gnav-sub a { color: #fff; padding: 0.6rem 1.6rem; }
+  .gnav-sub a:hover, .gnav-sub a[aria-current="page"] { background: rgba(255,255,255,0.1); color: #fff; }
+  .gnav-cta a { margin: 0.5rem 0 0; justify-content: center; }
+}
