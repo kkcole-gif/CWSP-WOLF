@@ -522,3 +522,22 @@ a:hover { color: var(--red-dark); }
 
 /* Screen-reader-only text, used to announce links which open a new window */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ── Hero with program mark on the right ─────────────────────────────────── */
+.hero.hero-split {
+  grid-template-columns: minmax(0, 1fr) minmax(200px, 300px);
+  column-gap: 3rem;
+  align-items: center;
+}
+.hero-split .hero-badge { margin: 0; width: 100%; justify-self: end; }
+.hero-split .hero-badge img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+@media (max-width: 760px) {
+  .hero.hero-split { grid-template-columns: 1fr; row-gap: 2rem; }
+  .hero-split .hero-badge { justify-self: start; max-width: 220px; }
+}
