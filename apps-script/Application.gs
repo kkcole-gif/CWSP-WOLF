@@ -13,14 +13,16 @@
  *
  * Applying involves no selection. The form registers a participant with CWSP so that
  * CWSP knows which certificate they are working on, can send cohort session dates,
- * and can process the beta mini-grant.
+ * and can set up the Curriculum Development Stipend for participants who take it on.
  */
 
 var C2TC_APP = {
   TITLE: 'C²TC Application',
   SHEET_TITLE: 'C²TC Applications',
   PROP_FORM_ID: 'C2TC_APPLICATION_FORM_ID',
-  INTRO: 'The C²TC Communication Teaching Certificate is free professional development for NC State instructional faculty and graduate instructors, offered by the Campus Writing and Speaking Program.\n\nHow it works. Choose the Written Communication or Digital Communication certificate, or both. Each certificate has three core modules, one elective during the beta, and a capstone you design for a course you teach. Plan on 19 to 28 hours per certificate, self-paced over six to eight weeks or a semester. Four optional cohort sessions on Zoom each semester let you work alongside colleagues. CWSP reviews each capstone and emails your certificate once it is approved. The Oral Communication certificate is in development, and you can join its waitlist below.\n\nWhat applying does. There is no selection process and no prerequisite during the pilot. This form registers you with CWSP, so that we know which certificate you are working on, can send you cohort session dates, and can process the $500 mini-grant for beta participants. Every workbook is open now at cwspwolf.com/c2tc, so you can start before or after you apply.\n\nThe beta mini-grant. Participants in the Spring 2027 beta cohort receive $500 for helping CWSP refine the program. The grant adds one meeting with the CWSP co-directors per semester, and you can choose to help write elective or capstone materials. Payment runs through your department, which is why the form asks for your Faculty ID and your department head.\n\nThe form takes about five minutes. Questions go to Kirsti Cole, kkcole2@ncsu.edu.'
+  FACULTY_ID_HELP: 'Your NC State employee ID. CWSP uses it only to pay the $500 Curriculum Development Stipend, if you take it on.',
+  DEPT_HEAD_HELP: 'CWSP confirms the Curriculum Development Stipend with your department head before the work begins.',
+  INTRO: 'The C²TC Communication Teaching Certificate is free professional development for NC State instructional faculty and graduate instructors, offered by the Campus Writing and Speaking Program.\n\nHow it works. Choose the Written Communication or Digital Communication certificate, or both. Each certificate has three core modules, one elective, and a capstone you design for a course you teach. Plan on 19 to 28 hours per certificate, self-paced over six to eight weeks or a semester. Four optional cohort sessions on Zoom each semester let you work alongside colleagues. CWSP reviews each capstone and emails your certificate once it is approved. The Oral Communication certificate is in development, and you can join its waitlist below.\n\nWhat applying does. There is no selection process and no prerequisite during the pilot. This form registers you with CWSP, so that we know which certificate you are working on, can send you cohort session dates, and can set up the Curriculum Development Stipend if you take it on. Every workbook is open now at cwspwolf.com/c2tc, so you can start before or after you apply.\n\nThe Curriculum Development Stipend. Faculty in any C²TC cohort are eligible to apply for a $500 stipend for curriculum work the program needs, separate from their regular teaching assignment, in two parts: one teaching resource for the C²TC repository, written so that colleagues in other departments can adapt it, and a structured review of two modules, completed in a working session with the CWSP co-directors. Completing a certificate or redesigning your own course does not qualify on its own. CWSP confirms the scope of the work with your department head before you begin, and pays the stipend through your department once you submit both pieces, which is why the form asks for your Faculty ID and your department head.\n\nThe form takes about five minutes. Questions go to Kirsti Cole, kkcole2@ncsu.edu.'
 };
 
 function C2TC_buildApplicationForm() {
@@ -52,7 +54,7 @@ function C2TC_buildApplicationForm() {
     .setRequired(true);
   form.addTextItem()
     .setTitle('Faculty ID')
-    .setHelpText('Your NC State employee ID. CWSP uses it only to process the $500 mini-grant payment for beta participants.')
+    .setHelpText(C2TC_APP.FACULTY_ID_HELP)
     .setRequired(true);
   C2TC_addDepartmentHeadItems_(form);
   form.addCheckboxItem()
@@ -91,12 +93,12 @@ function C2TC_buildApplicationForm() {
   return form.getPublishedUrl();
 }
 
-/* The department head approves the mini-grant payment, so the form asks who that is.
+/* CWSP confirms the Curriculum Development Stipend with the department head, so the form asks who that is.
    Adds two questions after Faculty ID. */
 function C2TC_addDepartmentHeadItems_(form) {
   form.addTextItem()
     .setTitle('Department head name')
-    .setHelpText('CWSP sends the mini-grant paperwork to your department head for approval.')
+    .setHelpText(C2TC_APP.DEPT_HEAD_HELP)
     .setRequired(true);
   form.addTextItem()
     .setTitle('Department head email')
@@ -125,6 +127,18 @@ function C2TC_updateApplicationIntro() {
   Logger.log('Introduction updated (' + C2TC_APP.INTRO.length + ' characters).');
 }
 
+/* Brings the live form in line with the stipend wording: the introduction and the
+   Faculty ID and department head help text. Safe to run again. */
+function C2TC_updateStipendWording() {
+  var form = FormApp.openById(PropertiesService.getScriptProperties().getProperty(C2TC_APP.PROP_FORM_ID));
+  form.setDescription(C2TC_APP.INTRO);
+  var help = { 'Faculty ID': C2TC_APP.FACULTY_ID_HELP, 'Department head name': C2TC_APP.DEPT_HEAD_HELP };
+  form.getItems().forEach(function (it) {
+    if (help[it.getTitle()]) it.setHelpText(help[it.getTitle()]);
+  });
+  Logger.log('Stipend wording applied to the introduction, Faculty ID, and Department head name.');
+}
+
 /* Submit trigger. Emails the applicant a confirmation and sends Kirsti a copy. */
 function C2TC_applicationReceived(e) {
   var email = e.response.getRespondentEmail();
@@ -148,8 +162,8 @@ function C2TC_applicationReceived(e) {
         'CWSP has your C²TC registration for: ' + certs + '.\n\n' +
         'Every workbook is open now at ' + C2TC.SITE + '. Each module saves in your browser as you work, ' +
         'and "Save and email me a link" lets you continue on another computer.\n\n' +
-        'Cohort session dates for the Spring 2027 cohort will come by email. If you are a beta participant, ' +
-        'Kirsti will write separately about the mini-grant.\n\n' +
+        'Cohort session dates come by email and appear in the CWSP events calendar, https://go.ncsu.edu/cwspcal. ' +
+        'If you take on the Curriculum Development Stipend, Kirsti will write separately to confirm its scope with your department head.\n\n' +
         'Questions go to Kirsti Cole, ' + C2TC.REPLY_TO + '.\n\n' +
         'NC State Campus Writing and Speaking Program'
     });
