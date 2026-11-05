@@ -34,7 +34,13 @@ GROUPS = [
 ]
 TOP = [
     ("Events", "index.html#events"),
-    ("Research", "research.html"),
+]
+# Groups drawn after the top links, so Research keeps its place beside Events.
+TRAILING_GROUPS = [
+    ("Research", [
+        ("Research and presentations", "research.html"),
+        ("The State of Writing and Speaking", "state-of-writing-and-speaking.html"),
+    ]),
 ]
 CTA = ("Talk with CWSP", "contact.html")
 
@@ -54,20 +60,21 @@ def header(page, prefix):
         c = f' class="{cls}"' if cls else ""
         return f'<a href="{prefix}{href}"{c}{current}>{label}</a>'
 
-    group_of = {href: g for g, items in GROUPS for _, href in items}
+    group_of = {href: g for g, items in GROUPS + TRAILING_GROUPS for _, href in items}
     group_of.update(EXTRA_MEMBERS)
     active_group = group_of.get(page)
 
-    parts = []
-    for name, items in GROUPS:
+    def group(name, items):
         active = ' class="gnav-active"' if name == active_group else ""
         lis = "".join(f"<li>{link(l, h)}</li>" for l, h in items)
-        parts.append(
-            f'<li class="gnav-group"><details><summary{active}>{name}</summary>'
-            f'<ul class="gnav-sub">{lis}</ul></details></li>')
+        return (f'<li class="gnav-group"><details><summary{active}>{name}</summary>'
+                f'<ul class="gnav-sub">{lis}</ul></details></li>')
+
+    parts = [group(name, items) for name, items in GROUPS]
     for label, href in TOP:
         cls = "gnav-active" if label == active_group else ""
         parts.append(f"<li>{link(label, href, cls)}</li>")
+    parts += [group(name, items) for name, items in TRAILING_GROUPS]
     parts.append(f'<li class="gnav-cta">{link(CTA[0], CTA[1])}</li>')
 
     return (
