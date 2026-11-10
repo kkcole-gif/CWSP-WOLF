@@ -136,3 +136,10 @@ details.panel summary { cursor: pointer; padding: .6rem .9rem; font-weight: 700;
   body { font-size: 11pt; } h2 { break-before: auto; } .outcome, .policy { break-inside: avoid; }
   textarea { border: 1px solid #999; overflow: visible; }
 }
+.time { display: block; font-size: .85rem; color: var(--gray-mid); margin: .15rem 0 .6rem; }
+.steps .time { display: inline; margin: 0 0 0 .3rem; }
+.stuck { font-size: .86rem; color: #333; border-top: 1px dashed var(--line); padding-top: .6rem; margin-top: 1.5rem; }
+dl.glossary, dl.decisions { margin: .5rem 0 1rem; display: grid; gap: .5rem; }
+dl.glossary div, dl.decisions div { display: grid; grid-template-columns: 14rem 1fr; gap: .9rem; border-bottom: 1px solid var(--line); padding-bottom: .45rem; }
+dl.glossary dd, dl.decisions dd { font-size: .94rem; }
+@media (max-width: 860px) { dl.glossary div, dl.decisions div { grid-template-columns: 1fr; gap: .1rem; } }

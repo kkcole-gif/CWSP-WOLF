@@ -219,5 +219,7 @@
       "says": "NASP has a technical assistance brief on AI in school psychology training and task force recommendations for research and practice. Neither document was read in this run. A 2026 special issue of School Psychology describes guidance in the field as limited and scattered.",
       "glitch": "Reading pending. Retrieve the brief before the session, since the school psychology concentration answers to NASP standards as well as the APA's."
     }
-  ]
+  ],
+  "plain_finding": "Psychology's clearest rule comes from the APA and covers authors of journal articles: AI use is allowed if the author discloses it and checks everything the tool supplies. Two peer departments (Maryland and Georgia) apply the rule to graduate students, and no peer department has written guidance for undergraduates.",
+  "policy_minutes": 30
 }

@@ -26,6 +26,21 @@ PRODUCTS = [
      'One page recording the program\'s decisions and their reasons, kept as the Lab\'s written record.'),
 ]
 
+GLOSSARY = [
+    ('Learning outcome (as filed)', 'The statement a program submitted to the university\'s assessment system, quoted word for word.'),
+    ('Baseline', 'CWSP\'s reading of the unit\'s filed outcomes, prepared before any session.'),
+    ('Counted as communication', 'CWSP\'s code for an outcome naming writing, speaking, an audience, or visual and multimodal work.'),
+    ('The act', 'What a student writes, says, builds, or presents where an outcome is assessed, such as a seminar paper, a literature review, or a capstone talk.'),
+    ('The judgment the degree certifies', 'The part of an act faculty grade as evidence a student does the discipline\'s work, such as choosing which evidence matters.'),
+    ('Model', 'A generative AI system, such as Gemini, Copilot, ChatGPT, or Claude, producing text from patterns in prior writing.'),
+    ('Map', 'The record, for each outcome, of where students show it, who assesses it, what students do, and what a model does to the act.'),
+    ('Lab', 'The AI Policy Lab sessions in February and March, where the working group decides.'),
+    ('Use, Limit, Refuse', 'The three decisions the Lab records for each outcome, defined in Part 5.'),
+    ('Product', 'The written result of a decision: a revised outcome, an assignment policy, a rubric criterion, or a program statement.'),
+    ('Where the language breaks', 'A place in a policy where wording hedges, contradicts itself, or falls silent, which shows what its authors left unresolved.'),
+    ('Scribe', 'The member who holds the unit\'s draft of this workbook and types for the group.'),
+]
+
 PRINCIPLES = [
     ('Scope terms by function', 'Define AI by what it does (generates text, produces images, automates tasks), since product names date within a term.'),
     ('Date the policy', 'State the term the policy covers and commit to revision.'),
@@ -78,7 +93,7 @@ def decision_block(i, o, collapse):
     <p class="filed-small">{e(o["program"])}: {e(short(o["text"], 160))}</p>
     <p class="mirror" id="d{k}-act-mirror" aria-live="polite"></p>
     <div class="field"><label for="d{k}-decision">Decision</label>
-      <select id="d{k}-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+      <select id="d{k}-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select><p class="hint">Use, Limit, and Refuse are defined above the first decision in Part 5.</p></div>
     {field(f"d{k}-reason", "Reason, in the discipline's words", "The Lab treats a decision as finished once it carries a reason in the discipline's terms.", 4)}
     {field(f"d{k}-product", "Product the decision becomes", "A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.", 2)}
     {field(f"d{k}-owner", "Owner and date", "", 1)}'''
@@ -133,9 +148,13 @@ def build(u):
     prog_rows = ''.join(f'<tr><th scope="row">{e(r["program"])}</th><td>{r["on_file"]}</td><td>{r["learning"]}</td><td>{r["counted"]}</td></tr>' for r in u['program_rows'])
     readings = ''.join(f'<p class="reading"><strong>{e(r["program"])}.</strong> {e(r["reading"])}</p>' for r in u['program_rows'])
     filt = ''
+    filt_note = ''
     if len(progs) > 1:
         opts = ''.join(f'<option>{e(p)}</option>' for p in progs)
-        filt = f'<div class="filter"><label for="prog-filter">Show outcomes for</label><select id="prog-filter" onchange="filterPrograms()"><option value="">Every program</option>{opts}</select><p class="hint">The choice applies to the map and the Lab, and the browser remembers it. Every program stays in your downloads and your submission.</p></div>'
+        filt = f'<div class="filter"><label for="prog-filter">Your program</label><select id="prog-filter" onchange="filterPrograms()"><option value="">Every program</option>{opts}</select><p class="hint">Choose the program you work on, and the map and the Lab show only its outcomes. Choose Every program to see the whole department. Downloads and the submission always include every program.</p></div>'
+        filt_note = '<p class="small">The map shows the program chosen under <a href="#who">Who you are</a>.</p>'
+    stuck = '<p class="stuck">Stuck on this part? Email Kirsti Cole at <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a>.</p>'
+    glossary = ''.join(f'<div><dt>{e(t)}</dt><dd>{e(d)}</dd></div>' for t, d in GLOSSARY)
     base_rows = ''.join(f'<tr><td>{i+1}</td><td>{e(o["program"])}</td><td>{e(o["text"])}</td><td>{e(o["counted"])}</td><td>{e(o["codes"])}</td></tr>' for i, o in enumerate(u['outcomes']))
     base_open = '' if n > 6 else ' open'
     products = ''.join(f'''
@@ -182,14 +201,17 @@ def build(u):
     </details>
   </div>
   <nav aria-label="Workbook sections">
-    <p class="sidebar-part">Start</p>
-    <a href="#about">What this workbook is</a>
+    <p class="sidebar-part">Start here</p>
+    <a href="#produces">What your unit produces</a>
+    <a href="#about">How this works</a>
+    <a href="#terms">Terms used here</a>
     <a href="#who">Who you are</a>
     <p class="sidebar-part">1 · Literacy</p>
     <a href="#literacy">Three levels, in {e(u["short"])}</a>
     <p class="sidebar-part">2 · Baseline</p>
     <a href="#baseline">Your record</a>
     <p class="sidebar-part">3 · Map</p>
+    <a href="#tryit">Try one assignment</a>
     <a href="#example">Worked example</a>
     {nav_o}
     <p class="sidebar-part">4 · Policy</p>
@@ -207,22 +229,38 @@ def build(u):
 <main class="wb-main" id="main">
   <p class="eyebrow">Campus Writing and Speaking Program · CHASS Curriculum Accelerator</p>
   <h1>{e(u["unit"])}: AI Literacy and Policy Workbook</h1>
-  <p class="lede">The {e(u["short"])} working group and its chair use this workbook to move from the unit's filed learning outcomes to written decisions about AI, one outcome at a time, with the baseline and the policy findings already filled in by CWSP.</p>
+  <p class="lede">This workbook is for the {e(u["short"])} working group and its chair, including members who have not worked on learning outcomes or AI policy before. Working through it, the group moves from the unit's filed learning outcomes to written decisions about AI, one outcome at a time, and CWSP has already filled in the unit's record and the policy research.</p>
   <div id="banner-slot"></div>
 
-  <h2 id="about">What this workbook is</h2>
-  <p>For each outcome the Accelerator asks where students show it, what they do there, what a model now does to the act, and what the program decides about it. Since an outcome naming the thinking without the act gives a reader no way to tell a student's work from a model's, the outcome silent in the record and the AI question turn out to be one question, which is why the parts run in this order.</p>
+  <h2 id="produces">What your unit produces</h2>
+  <p>By the end of March the working group will have a decision and a reason for each of the unit's learning outcomes, and each decision becomes a short written product. CWSP prepared one finished example from {e(u["short"])} as an illustration, which the group's own work replaces:</p>
+  <table class="example"><caption>One finished outcome, as an illustration</caption><tbody>
+    <tr><th scope="row">The outcome as the program filed it</th><td>{e(ex["outcome"])}</td></tr>
+    <tr><th scope="row">The decision</th><td>{e(ex["decision"])}</td></tr>
+    <tr><th scope="row">The reason</th><td>{e(ex["reason"])}</td></tr>
+    <tr><th scope="row">The revised outcome</th><td>{e(ex["revised"])}</td></tr>
+  </tbody></table>
+  <p>Besides revised outcomes, the products include an AI policy for a single assignment, a rubric criterion for grading how students reason about AI, and a one-page statement of the program's position. Part 5 gives a fill-in frame for each.</p>
+
+  <h2 id="about">How this works</h2>
+  <p>Each learning outcome a program files with the university says what its students learn. Many outcomes name a kind of thinking (analyze, explain) without naming what students write, say, or make to show it, and when an outcome names only the thinking, a faculty member reading student work has no stated act to check, so a model's output and a student's work look alike against it. For this reason the questions run in a fixed order: where students show the outcome, what they do there, what a model now does to the act, and what the program decides.</p>
   <ol class="steps">
-    <li><strong>Literacy.</strong> Read the three levels (describe, analyze, decide) in your discipline's terms.</li>
-    <li><strong>Baseline.</strong> Check CWSP's reading of your filed outcomes.</li>
-    <li><strong>Map.</strong> For each outcome, name the course, the assessor, the act, and what a model does to it (January sessions).</li>
-    <li><strong>Policy.</strong> Read what peer units and the field have written, and where their language breaks.</li>
-    <li><strong>Lab.</strong> Decide, give the reason, and name the product (February and March sessions).</li>
+    <li><strong>Literacy.</strong> Read the three levels (describe, analyze, decide) in your discipline's terms. <span class="time">About 20 minutes, before the first session.</span></li>
+    <li><strong>Baseline.</strong> Check CWSP's reading of your filed outcomes. <span class="time">About 10 minutes, before the first session.</span></li>
+    <li><strong>Map.</strong> Try one of your own assignments in an AI tool, then name for each outcome the course, the assessor, the act, and what a model does to it. <span class="time">Ten minutes before January, then the January session.</span></li>
+    <li><strong>Policy.</strong> Read what peer departments and the field's societies have written. <span class="time">About {u["policy_minutes"]} minutes, before the first session.</span></li>
+    <li><strong>Lab.</strong> Decide, give the reason, and write the product. <span class="time">The Lab sessions, February and March.</span></li>
   </ol>
-  <p><strong>Before the first session,</strong> read Parts 1, 2, and 4 and answer their prompts. The working group fills in Part 3 together in January and Part 5 in the Lab. To submit, the group needs at least one outcome mapped in Part 3.</p>
+  <p>CWSP and your chair set the session dates. To submit, the group needs at least one outcome mapped in Part 3.</p>
+  <h3>One scribe, one draft</h3>
+  <p>Because the workbook saves in one browser at a time, the chair names one scribe (often the chair), who holds the unit's draft and types for the group during and between sessions. Other members read the same pages, and any member who wants to draft answers before a session types them in their own browser, where they stay private until the member brings them to the session. After each session the scribe downloads the worksheet rows at the end of the page and pastes them into the unit's <a href="{e(u["worksheet_url"])}" target="_blank" rel="noopener">Google Sheet worksheet<span class="sr-only"> (opens in a new window)</span></a>, which holds what the group agreed.</p>
   <details class="panel"><summary>How saving works</summary><div class="panel-body">
-    <p>Everything you type stays in this browser until you clear it. To continue on another computer, or to hand the draft to a colleague, select Save and email me a link, and whoever opens the link sees the draft as you left it. When the group finishes, Submit sends the workbook to CWSP and emails you a copy. The unit's <a href="{e(u["worksheet_url"])}" target="_blank" rel="noopener">Google Sheet worksheet<span class="sr-only"> (opens in a new window)</span></a> remains the record of decisions, and the spreadsheet download at the end of this page carries your rows into it.</p>
+    <p>Everything typed here stays in this browser until someone clears it. To continue on another computer, or to hand the draft to the next scribe, select Save and email me a link, and whoever opens the link sees the draft as it was left. When the group finishes, Submit sends the workbook to CWSP and emails the scribe a copy.</p>
   </div></details>
+  {stuck}
+
+  <h2 id="terms">Terms used here</h2>
+  <dl class="glossary">{glossary}</dl>
 
   <h2 id="who">Who you are</h2>
   <div class="activity">
@@ -231,22 +269,26 @@ def build(u):
       <div class="field"><label for="p-email">Your NC State email<span class="req" aria-hidden="true">*</span></label><input type="email" id="p-email" autocomplete="email" placeholder="unityid@ncsu.edu"></div>
       <div class="field"><label for="p-unit">Unit</label><input type="text" id="p-unit" value="{e(u["unit"])}" data-default="{e(u["unit"])}"></div>
       <div class="field"><label for="p-role">Your role</label>
-        <select id="p-role"><option value="">Choose one</option><option>Chair</option><option>Working group member</option><option>Facilitator</option><option>Other</option></select></div>
+        <select id="p-role"><option value="">Choose one</option><option>Scribe</option><option>Chair</option><option>Chair and scribe</option><option>Working group member</option><option>Facilitator</option><option>Other</option></select></div>
     </div>
-    <div class="field"><label for="p-others">Others contributing to this draft</label><input type="text" id="p-others" placeholder="Names, separated by commas"></div>
+    <div class="field"><label for="p-others">The unit's scribe and others contributing to this draft</label><input type="text" id="p-others" placeholder="Names, separated by commas"></div>
+    {filt}
   </div>
 
   <h2 id="literacy"><span class="part">Part 1 · Literacy</span>Three levels, in {e(u["short"])}</h2>
-  <p>Each row of the worksheet runs three levels in order. Above each prompt is CWSP's reading of the level in your discipline, which the working group corrects wherever it misdescribes the field.</p>
+  <p class="time">About 20 minutes, before the first session.</p>
+  <p>CWSP's framework reads AI at three levels, taken in order: describe what the system is and what it does to an act, analyze whose interests and labor it carries and what it leaves out, and decide what the program does about it. Above each prompt is CWSP's reading of the level in your discipline, which the working group corrects wherever it misdescribes the field.</p>
   <div class="level"><h3>Describe</h3><p class="reading">{e(u["literacy"]["describe"])}</p>
-    {field("lit-acts", "Name the acts your outcomes ask of students", "List what students write, say, build, or present in the program. These acts return in Part 3, one per outcome.", 3)}</div>
+    {field("lit-acts", "Name the acts your outcomes ask of students", "List what students write, say, build, or present in the program, such as a seminar paper, a poster, a lab report, or a capstone talk. These acts return in Part 3, one per outcome.", 3)}</div>
   <div class="level"><h3>Analyze</h3><p class="reading">{e(u["literacy"]["analyze"])}</p>
-    {field("lit-analyze", "What does a model carry into those acts, and what does it leave out?", "", 3)}</div>
+    {field("lit-analyze", "What does a model carry into those acts, and what does it leave out?", "A sentence or two is enough. The exercise at the start of Part 3 gives the group evidence for this answer.", 3)}</div>
   <div class="level"><h3>Decide</h3><p class="reading">{e(u["literacy"]["decide"])}</p>
-    {field("lit-certify", "Which acts are the judgment the degree certifies?", "Name two or three, which the Lab returns to.", 3)}</div>
+    {field("lit-certify", "Which acts are the judgment the degree certifies?", "Name two or three, which the Lab returns to. See Terms used here for what the phrase means.", 3)}</div>
+  {stuck}
 
   <h2 id="baseline"><span class="part">Part 2 · Baseline</span>Your record</h2>
-  <p>From SLO_Coded_2026, the CWSP coded export of the university assessment system, read under the CWSP Codebook 2026. {e(u["programs"])}. Because the codebook counts what the filed outcomes document, silence in the record shows what the outcomes leave unwritten and nothing about what the courses teach.</p>
+  <p class="time">About 10 minutes, before the first session.</p>
+  <p>CWSP read every learning outcome the unit's programs filed with the university (SLO_Coded_2026, the coded export of the university assessment system, read under the CWSP Codebook 2026). {e(u["programs"])}. Because the codebook counts what the filed outcomes document, silence in the record shows what the outcomes leave unwritten and nothing about what the courses teach.</p>
   <details class="panel"><summary>How the codebook counts</summary><div class="panel-body">
     <p>CWSP counts an outcome as documenting communication when the outcome, or the objective above it, names explicit communication (write, present, audience, rhetoric) or visual and multimodal work (visual, media, design). Genres (thesis, report), curricular sites (capstone, conference), and cognitive verbs (analyze, explain) are recorded and never counted, since each names a product, a place, or a kind of thinking without the act in which a student communicates it.</p>
   </div></details>
@@ -261,8 +303,16 @@ def build(u):
     <tbody>{base_rows}</tbody></table></div></details>
   <p class="small">Full baseline: <a href="{e(u["baseline_url"])}" target="_blank" rel="noopener">CWSP Unit Baseline, {e(u["short"])}<span class="sr-only"> (opens in a new window)</span></a>.</p>
   {field("base-hold", "Does the reading hold?", "Say where the reading matches the program you teach and where it misses.", 3)}
+  {stuck}
 
-  <h2 id="example"><span class="part">Part 3 · Map</span>Worked example</h2>
+  <h2 id="tryit"><span class="part">Part 3 · Map</span>Try one assignment</h2>
+  <p class="time">About ten minutes, before the January session.</p>
+  <p>Before mapping, each member tries one of their own assignments in the AI tool NC State provides (Gemini, signed in with your NC State account, or another tool on OIT's approved list, so the prompt stays within university data protections). Paste the assignment prompt as students receive it, read what comes back, and note what the response does well and what it gets wrong or leaves out for your discipline. The group brings these notes to the January session, where they become evidence for the column on what a model does to the act.</p>
+  {field("try-prompt", "The assignment you tried", "Name the course and paste or summarize the prompt.", 3)}
+  {field("try-output", "What came back", "Describe the response in a few sentences, or paste a short excerpt.", 4)}
+  {field("try-missing", "What the response got wrong or left out", "For example, the reasoning your discipline grades, sources it invented, or the audience it ignored.", 3)}
+
+  <h2 id="example">Worked example</h2>
   <p>CWSP completed one {e(u["short"])} row through the Lab so the working group sees the shape of a finished row, and the group's own decision and reason replace this illustration in the sessions.</p>
   <table class="example"><caption>Worked example, one row</caption><tbody>
     <tr><th scope="row">Outcome as filed</th><td>{e(ex["outcome"])}</td></tr>
@@ -275,34 +325,48 @@ def build(u):
     <tr><th scope="row">Reason</th><td>{e(ex["reason"])}</td></tr>
     <tr><th scope="row">Revised outcome this row produces</th><td>{e(ex["revised"])}</td></tr>
   </tbody></table>
-  {filt}
-  <p>Map each outcome below. Do the first one together, with the facilitator, before dividing the rest. The Start from the worked example button above each outcome copies the example's map into any empty boxes, where the group rewrites it for the outcome at hand.</p>
+  {filt_note}
+  <p>Map each outcome below during the January session. Do the first one together, with the facilitator, before dividing the rest. The Start from the worked example button above each outcome copies the example's map into any empty boxes, where the group rewrites it for the outcome at hand.</p>
   {grouped(u, lambda i, o, c: outcome_block(i, o, n, c), 'map')}
+  {stuck}
 
   <h2 id="policy"><span class="part">Part 4 · Policy</span>What peers and the field say</h2>
-  <p>{e(u["policy_intro"])}</p>
-  <p class="reading"><strong>Finding.</strong> {e(u["policy_finding"])}</p>
-  <div class="policies">{''.join(policy_card(p) for p in u["policies"])}</div>
+  <p class="time">About {u["policy_minutes"]} minutes, before the first session.</p>
+  <p>These readings let the working group see what other departments and the field's societies have written, and where their wording created problems for the people following it, so the unit's own statement avoids the same problems.</p>
+  <p class="reading"><strong>In brief.</strong> {e(u["plain_finding"])}</p>
+  <details class="panel"><summary>The full finding and each document ({len(u["policies"])})</summary><div class="panel-body">
+    <p>{e(u["policy_intro"])}</p>
+    <p class="reading">{e(u["policy_finding"])}</p>
+    <div class="policies">{''.join(policy_card(p) for p in u["policies"])}</div>
+  </div></details>
   <details class="panel"><summary>How to read a policy for where its language breaks</summary><div class="panel-body">
     <p>When authors write governance documents under institutional pressure, the language records more than they intended. Look for hedging (strongly discouraged), contradictions between sections or between two documents on one campus, silences where governance should be explicit, frameworks borrowed beyond their scope, and dates (language accurate when written and no longer true). The full method and the AI Governance Census are in the <a href="https://cwspwolf.com/ai-policy-workbook.html" target="_blank" rel="noopener">AI Policy Workbook<span class="sr-only"> (opens in a new window)</span></a>.</p>
   </div></details>
   <h3 id="policy-read">Your reading</h3>
-  {field("pol-nearest", "Which document comes nearest to what your program would write, and why?", "", 3)}
-  {field("pol-break", "Where does one of these documents break, in your reading?", "Choose one and name the sentence.", 3)}
-  {field("pol-genre", "What genre should your unit's statement take?", "Rule set, clause in an existing policy, declaration of principle, assignment-level policies, or something else.", 3)}
+  {field("pol-nearest", "Which document comes nearest to what your program would write, and why?", "Open the full finding above to see each document.", 3)}
+  {field("pol-break", "Where does one of these documents break, in your reading?", "Choose one and name the sentence. The panel above lists what to look for.", 3)}
+  {field("pol-genre", "What form should your unit's statement take?", "A set of rules, a clause added to an existing policy, a statement of principle, a policy for each assignment, or something else.", 3)}
+  {stuck}
 
   <h2 id="lab"><span class="part">Part 5 · Lab</span>Decisions</h2>
-  {'<p class="small">The program filter set in Part 3 applies here as well.</p>' if len(progs) > 1 else ''}
-  <p>Each outcome ends with a decision, the reason in the discipline's words, and the product the decision becomes. Since the Lab counts refusal with a reason as a decision, the three choices carry equal standing, and the act mapped in Part 3 appears above each decision for reference.</p>
+  <p class="time">The Lab sessions, February and March.</p>
+  {'<p class="small">The program chosen under Who you are applies here as well.</p>' if len(progs) > 1 else ''}
+  <p>Each outcome ends with a decision, the reason in the discipline's words, and the product the decision becomes. The Lab counts refusal with a reason as a decision, and the act mapped in Part 3 appears above each decision for reference.</p>
+  <dl class="decisions">
+    <div><dt>Use</dt><dd>Students are permitted to use AI for the act, and they disclose what the tool did.</dd></div>
+    <div><dt>Limit</dt><dd>Students are permitted to use AI for named parts of the act, do the rest themselves, and state what the tool supplied.</dd></div>
+    <div><dt>Refuse</dt><dd>Students do the act without AI, and the program states its reason.</dd></div>
+  </dl>
   {grouped(u, decision_block, 'lab')}
 
   <h2 id="products">Products</h2>
   <p>Each decision becomes one of four products. Insert a frame, then rewrite it in your program's words.</p>
   <details class="panel"><summary>Five principles for durable policy language</summary><div class="panel-body"><ol>{principles}</ol></div></details>
   {products}
+  {stuck}
 
   <h2 id="rows">Your worksheet rows</h2>
-  <p>The table assembles your map and decisions in the column order of the unit worksheet. Refresh it after editing, then download it and paste the rows into the Google Sheet.</p>
+  <p>The table assembles the map and the decisions in the column order of the unit worksheet. After each session, the scribe refreshes it, downloads it, and pastes the rows into the Google Sheet.</p>
   <button type="button" class="btn-small" onclick="renderRows()">Refresh the table</button>
   <button type="button" class="btn-small" onclick="downloadRows()">Download as spreadsheet</button>
   <div id="rows-table" class="table-wrap" tabindex="0" role="region" aria-label="Your worksheet rows"></div>
