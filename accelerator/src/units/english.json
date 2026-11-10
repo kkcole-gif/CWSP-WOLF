@@ -12,7 +12,7 @@
       "on_file": 5,
       "learning": 5,
       "counted": 4,
-      "reading": "Documented on four of five outcomes, with the widest multimodal vocabulary among the undergraduate records in the set (language-based, visual, verbal, multimedia, and digital texts and works, audiences and purposes, rhetorical situation, form). Outcome 4, projects drawing on a range of cultural texts, names the product and its sources without the act. The record names what students make and interpret; where the degree's judgment sits inside those acts differs by concentration, which is where the mapping session begins."
+      "reading": "Documented on four of five outcomes, with the widest multimodal vocabulary among the undergraduate records in the set (language-based, visual, verbal, multimedia, and digital texts and works, audiences and purposes, rhetorical situation, form). Outcome 4, projects drawing on a range of cultural texts, names the product and its sources without the act. The record names what students make and interpret, where the degree's judgment sits inside those acts differs by concentration, which is where the mapping session begins."
     },
     {
       "program": "English MA",
@@ -380,7 +380,7 @@
     "site": "Upper-division seminar in the concentration: interpretive essay (the working group names the course and the assignment)",
     "who": "Seminar instructor",
     "act": "Write an interpretation of a text applying a named critical framework, and adapt the argument to a stated audience",
-    "model": "A model produces a competent interpretation under a named framework on request, and the outcome as filed cannot distinguish the student's choice of framework and evidence from a generated one. What the generated reading omits is the student's account of why this framework and this passage.",
+    "model": "A model produces a competent interpretation under a named framework on request. As filed, the outcome gives a reader no way to separate the student's choice of framework and evidence from a generated one, and what the generated reading omits is the student's account of why this framework and this passage.",
     "decision": "Limit",
     "reason": "Interpretation is the judgment the degree certifies. Students are permitted to use a model to test a reading against counter-readings. They choose the framework and the evidence, write the interpretation themselves, and state what the tool supplied and why they kept or rejected it.",
     "revised": "Students will interpret language-based, visual, and digital texts for stated audiences and purposes by applying critical frameworks they choose and defend, and will state the reasons for their decisions about any AI use in doing so."
@@ -388,10 +388,10 @@
   "literacy": {
     "describe": "English studies the system's medium. A large language model produces text by predicting likely sequences from a corpus of prior writing, and the department's programs name the acts the model imitates: interpreting texts under a framework (BA, MA), making a work of original accomplishment (MFA), analyzing what writing technologies do to text, its invention, and its use (Technical Communication MS, outcome 2), and framing questions in a conceptual vocabulary (CRDM). Describing the system in the unit's terms means naming, program by program, which of these acts a model performs on the surface.",
     "analyze": "The structural questions belong to the field's own traditions: authorship and voice, the labor and the uncredited texts in a training corpus, whose language a model treats as standard, and what a generated reading or draft leaves out. The Technical Communication MS already states this analysis as an outcome. The CRDM PhD names ethical practice, including labor, in outcome 1d. Each program brings a different body of theory to the same question.",
-    "decide": "The operative question differs by program. A literary interpretation, a poem, a set of instructions for a user, and a dissertation chapter certify different judgments, so the department's decisions will differ by program and by assignment. Refusal with a reason is a decision. A decision without a reason is unfinished."
+    "decide": "The operative question differs by program, because a literary interpretation, a poem, a set of instructions for a user, and a dissertation chapter certify different judgments, so the department's decisions will differ by program and by assignment. For each outcome the Lab records the decision and its reason, counting refusal with a reason as a decision."
   },
-  "policy_intro": "The run read the unit-level record in English and writing programs at NC State's twelve official peers, then the statements of the field's societies: MLA, CCCC, AWP for creative writing, the IEEE Professional Communication Society for technical communication, and AWAC for writing across the curriculum. Each entry gives what the document governs and CWSP's reading of where its language breaks down. The readings are offered for the group to correct.",
-  "policy_finding": "Peer English departments have written statements of position, not rules. Rutgers English argues for critical AI literacy and leaves the decision to each instructor, the Georgia writing program declines a single policy, and Georgia Tech's writing program requires every instructor to hold one, chosen from four options. The field moved in the opposite direction from guidance to rights. The MLA-CCCC task force recommended policy set in tiers (institution, program, class) in 2024, and the CCCC resolution of March 2026 affirms a right of students and teachers to refuse generative AI in the writing classroom. A program-level policy at NC State would sit between the two: it decides at the level the 2024 guidance asks for and has to protect the refusal the 2026 resolution affirms. Each of the department's programs also answers to a different society, so the MFA, the Technical Communication MS, and the literature and rhetoric programs face different disciplinary statements.",
+  "policy_intro": "CWSP read the unit-level record in English and writing programs at NC State's twelve official peers, then the statements of the field's societies: MLA, CCCC, AWP for creative writing, the IEEE Professional Communication Society for technical communication, and AWAC for writing across the curriculum. For each document, the entry gives its scope and CWSP's reading of where its language breaks down, offered for the working group to correct.",
+  "policy_finding": "Peer English departments have written statements of position and left rules to instructors. Rutgers English argues for critical AI literacy and leaves the decision to each instructor, the Georgia writing program declines a single policy, and Georgia Tech's writing program requires every instructor to hold one, chosen from four options. Across the same years the field moved from guidance to rights: the MLA-CCCC task force recommended policy set in tiers (institution, program, class) in 2024, and in March 2026 CCCC affirmed a right of students and teachers to refuse generative AI in the writing classroom. A program writing policy at NC State would decide at the level the 2024 guidance asks for while protecting the refusal the 2026 resolution affirms. Because each of the department's programs also answers to a different society, the MFA, the Technical Communication MS, and the literature and rhetoric programs face different disciplinary statements.",
   "policies": [
     {
       "inst": "Rutgers University–New Brunswick",
@@ -402,7 +402,7 @@
       "peer": "NC State peer, land-grant",
       "governs": "Classroom instruction, advice to the administration",
       "says": "Sets no ban and no permission. Each instructor decides how AI is used against the course's learning goals. Calls generative AI the product of centuries of human labor, asks for critical AI literacies built with students, rejects detection tools as surveillance with faulty and discriminatory results, and asks the administration to consult faculty before buying or endorsing AI tools.",
-      "glitch": "The statement argues at the level of the department and decides at the level of the instructor, so the department's reasons reach a course only if each instructor carries them into a syllabus. It sets no date, so a reader cannot tell which state of the tools it answers."
+      "glitch": "Rutgers English argues at the level of the department and leaves the decision to the instructor, so the department's reasons reach a course only where an instructor carries them into a syllabus. Because the department dated nothing, readers have no way to tell which state of the tools the statement answers."
     },
     {
       "inst": "Georgia Institute of Technology",
@@ -413,7 +413,7 @@
       "peer": "NC State peer",
       "governs": "Course policies for every WCP instructor",
       "says": "Every instructor must have a policy. The recommended option allows AI in instances the instructor specifies. The others allow it broadly, bar it as an Honor Code matter, or let the instructor write a policy, each with the director's approval. Three principles bind students: responsibility, transparency, and documentation, with AI output cited as other sources are. Detectors are called unreliable and a ban hard to enforce.",
-      "glitch": "The page states its understanding as of July 2023 and promises development over 2023 and 2024, while citing a 2024 resource, so its date and its promise disagree. The option barring AI requires approval, which makes refusal the choice a teacher has to justify."
+      "glitch": "The program dated its understanding to July 2023 and promised development over 2023 and 2024, then cited a 2024 resource without changing the date. Since barring AI needs the director's approval and the recommended option does not, refusal becomes the choice a teacher has to justify."
     },
     {
       "inst": "University of Georgia",
@@ -435,7 +435,7 @@
       "peer": "NC State peer, land-grant",
       "governs": "Teaching advice across writing units",
       "says": "Treats writing as a mode of learning and advises redesigning assignments toward visual, recorded oral, and collaborative work. Holds a campus ban hard to enforce and likely to penalize students with communication disabilities or students who rely on grammar and tutoring tools.",
-      "glitch": "Written in the spring of 2023 against one product, ChatGPT, it is still linked from the university's AI page as current guidance, a temporal artifact of the kind the principle on dating a policy warns against."
+      "glitch": "Although the Coalition wrote the statement in spring 2023 against one product, ChatGPT, the university still links it from its AI page as current guidance, the kind of temporal artifact the principle on dating a policy addresses."
     },
     {
       "inst": "Texas A&M University",
@@ -468,7 +468,7 @@
       "peer": "Disciplinary societies",
       "governs": "Guidance for programs and institutions",
       "says": "Working Paper 1 sets principles and calls for critical AI literacy at every level. Working Paper 2 recommends policy set in tiers, institution, program or department, and class, so programs protect assessments requiring no AI while students build AI literacy. The task force ended in early 2025, succeeded by the MLA Task Force on AI in Research and Teaching.",
-      "glitch": "Guidance written for a tiered system presumes a program tier, which most peer departments in this run have not built."
+      "glitch": "The task force wrote for a tiered system and presumed a program tier, which most peer departments in this run have not built."
     },
     {
       "inst": "CCCC",
@@ -479,7 +479,7 @@
       "peer": "Disciplinary society",
       "governs": "Writing classrooms, assessment",
       "says": "Affirms the rights of students and teachers to refuse to sign up for, prompt, or otherwise use generative AI in the writing classroom, extending the 1974 Students' Right to Their Own Language. Asks for refusal to be accounted for in course design and assessment, against policing and punishing student use, for disclosure of AI in grading, and never to put student work into a model without consent.",
-      "glitch": "A right held by each teacher and each student sits uneasily with the program tier the 2024 working paper recommends. A program policy requiring AI in an assignment would have to provide an alternative for any student who refuses."
+      "glitch": "A right held by each teacher and each student sits uneasily with the program tier the 2024 working paper recommends, since a program requiring AI in an assignment would have to provide an alternative for any student who refuses."
     },
     {
       "inst": "MLA",
@@ -490,7 +490,7 @@
       "peer": "Disciplinary society",
       "governs": "Institutions, vendors, faculty governance",
       "says": "Addresses AI browser agents completing assignments inside learning management systems. Asks companies to reduce misuse, holds the burden of blocking agents should not fall to educators alone, and calls for faculty seats on the committees choosing educational technology.",
-      "glitch": "The statement locates the problem with vendors and procurement, outside any program's control, while the department's assignments sit inside the platforms it names."
+      "glitch": "The Executive Council locates the problem with vendors and procurement, outside any program's control, while the department's assignments sit inside the platforms the statement names."
     },
     {
       "inst": "AWP",
@@ -501,7 +501,7 @@
       "peer": "Disciplinary society (Creative Writing MFA)",
       "governs": "Teaching guidance for creative writing programs",
       "says": "AWP issued recommendations with resources and guidelines for teachers in 2025, followed by panels on AI pedagogy and publishing. The document sits behind member access and was not read in this run.",
-      "glitch": "The field's guidance for MFA programs is not public, so an MFA program citing it gives students a reason they cannot read."
+      "glitch": "Because AWP keeps its guidance for MFA programs behind member access, an MFA program citing it gives students a reason they have no way to read."
     },
     {
       "inst": "IEEE Professional Communication Society",

@@ -19,7 +19,7 @@
   <div class="sidebar-save">
     <p class="sidebar-part">Your progress</p>
     <div class="progress-bar"><span id="progress-label">0%</span><span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span></div>
-    <p class="sidebar-lead">This browser saves your work as you type.</p>
+    <p class="sidebar-lead">Progress counts the map and the decisions. This browser saves your work as you type.</p>
     <button type="button" class="btn-sidebar btn-primary-side" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
     <p class="sidebar-status" id="save-status" role="status"></p>
     <details class="save-more">
@@ -57,20 +57,21 @@
 <main class="wb-main" id="main">
   <p class="eyebrow">Campus Writing and Speaking Program · CHASS Curriculum Accelerator</p>
   <h1>Science, Technology and Society: AI Literacy and Policy Workbook</h1>
-  <p class="lede">For the STS working group and its chair. The workbook takes the unit from its filed learning outcomes to written decisions about AI, one outcome at a time. Your baseline and the policy findings are already filled in.</p>
+  <p class="lede">The STS working group and its chair use this workbook to move from the unit's filed learning outcomes to written decisions about AI, one outcome at a time, with the baseline and the policy findings already filled in by CWSP.</p>
   <div id="banner-slot"></div>
 
   <h2 id="about">What this workbook is</h2>
-  <p>The Accelerator asks each unit one question per outcome: where students show the outcome, what they do there, what a model now does to the act, and what the program decides about it. The order is the method. An outcome naming the thinking and not the act cannot tell a student's work from a model's, so the silent outcome and the AI question are the same question.</p>
+  <p>For each outcome the Accelerator asks where students show it, what they do there, what a model now does to the act, and what the program decides about it. Since an outcome naming the thinking without the act gives a reader no way to tell a student's work from a model's, the outcome silent in the record and the AI question turn out to be one question, which is why the parts run in this order.</p>
   <ol class="steps">
     <li><strong>Literacy.</strong> Read the three levels (describe, analyze, decide) in your discipline's terms.</li>
     <li><strong>Baseline.</strong> Check CWSP's reading of your filed outcomes.</li>
-    <li><strong>Map.</strong> For each outcome, name the course, the assessor, the act, and what a model does to it. January sessions.</li>
+    <li><strong>Map.</strong> For each outcome, name the course, the assessor, the act, and what a model does to it (January sessions).</li>
     <li><strong>Policy.</strong> Read what peer units and the field have written, and where their language breaks.</li>
-    <li><strong>Lab.</strong> Decide, give the reason, and name the product. February and March sessions.</li>
+    <li><strong>Lab.</strong> Decide, give the reason, and name the product (February and March sessions).</li>
   </ol>
+  <p><strong>Before the first session,</strong> read Parts 1, 2, and 4 and answer their prompts. The working group fills in Part 3 together in January and Part 5 in the Lab. To submit, the group needs at least one outcome mapped in Part 3.</p>
   <details class="panel"><summary>How saving works</summary><div class="panel-body">
-    <p>Everything you type stays in this browser. Use Save and email me a link to continue on another computer or to hand the draft to a colleague, who opens it from the link. Anyone holding the link sees the draft. Submit sends the finished workbook to CWSP and emails you a copy. The unit's <a href="https://docs.google.com/spreadsheets/d/1TsyC8udpZjqhvwnrlHxfLeUrYjj8btqtZF3op8eXGns/edit" target="_blank" rel="noopener">Google Sheet worksheet<span class="sr-only"> (opens in a new window)</span></a> stays the record of decisions. The spreadsheet download at the end carries your rows into it.</p>
+    <p>Everything you type stays in this browser until you clear it. To continue on another computer, or to hand the draft to a colleague, select Save and email me a link, and whoever opens the link sees the draft as you left it. When the group finishes, Submit sends the workbook to CWSP and emails you a copy. The unit's <a href="https://docs.google.com/spreadsheets/d/1TsyC8udpZjqhvwnrlHxfLeUrYjj8btqtZF3op8eXGns/edit" target="_blank" rel="noopener">Google Sheet worksheet<span class="sr-only"> (opens in a new window)</span></a> remains the record of decisions, and the spreadsheet download at the end of this page carries your rows into it.</p>
   </div></details>
 
   <h2 id="who">Who you are</h2>
@@ -86,91 +87,94 @@
   </div>
 
   <h2 id="literacy"><span class="part">Part 1 · Literacy</span>Three levels, in STS</h2>
-  <p>Each row of the worksheet runs three levels in order. CWSP's reading of each level in your discipline sits below its prompt. Correct the reading where it misdescribes the field.</p>
+  <p>Each row of the worksheet runs three levels in order. Above each prompt is CWSP's reading of the level in your discipline, which the working group corrects wherever it misdescribes the field.</p>
   <div class="level"><h3>Describe</h3><p class="reading">In STS the system under description is also the object of study. A large language model predicts likely text from a corpus assembled by particular firms, trained with particular labor, and run on particular infrastructure. Describing it in the unit&#x27;s own terms means naming the acts the outcomes ask of students (tracing a technology across accounts, explaining a concept, applying a method) and saying which of those acts a model performs on the surface.</p>
-    <div class="field"><label for="lit-acts">Name the acts your outcomes ask of students</label><p class="hint" id="lit-acts-hint">List what students write, say, build, or present in the program. These become column E.</p><textarea id="lit-acts" rows="3" aria-describedby="lit-acts-hint" data-default=""></textarea></div></div>
+    <div class="field"><label for="lit-acts">Name the acts your outcomes ask of students</label><p class="hint" id="lit-acts-hint">List what students write, say, build, or present in the program. These acts return in Part 3, one per outcome.</p><textarea id="lit-acts" rows="3" aria-describedby="lit-acts-hint" data-default=""></textarea></div></div>
   <div class="level"><h3>Analyze</h3><p class="reading">The structural question is the field&#x27;s home ground: whose data, labor, energy, and interests the tool carries into a student&#x27;s analysis, and what a generated synthesis leaves out of an account of a sociotechnical system. The proposed STS 214 unit on AI&#x27;s material and systemic dimensions places this analysis in the curriculum as content. The Accelerator asks the unit to apply the same analysis to its own assignments.</p>
     <div class="field"><label for="lit-analyze">What does a model carry into those acts, and what does it leave out?</label><textarea id="lit-analyze" rows="3" data-default=""></textarea></div></div>
-  <div class="level"><h3>Decide</h3><p class="reading">The operative question is which acts are the judgment the STS degree certifies, and what the program says about a tool supplying the surface of those acts. Refusal with a reason is a decision. A decision without a reason is unfinished.</p>
-    <div class="field"><label for="lit-certify">Which acts are the judgment the degree certifies?</label><p class="hint" id="lit-certify-hint">Name two or three. The Lab returns to these.</p><textarea id="lit-certify" rows="3" aria-describedby="lit-certify-hint" data-default=""></textarea></div></div>
+  <div class="level"><h3>Decide</h3><p class="reading">The operative question is which acts are the judgment the STS degree certifies, and what the program says about a tool supplying the surface of those acts. For each outcome the Lab records the decision and the reason the program gives for it, counting refusal with a reason as a decision.</p>
+    <div class="field"><label for="lit-certify">Which acts are the judgment the degree certifies?</label><p class="hint" id="lit-certify-hint">Name two or three, which the Lab returns to.</p><textarea id="lit-certify" rows="3" aria-describedby="lit-certify-hint" data-default=""></textarea></div></div>
 
   <h2 id="baseline"><span class="part">Part 2 · Baseline</span>Your record</h2>
-  <p>From SLO_Coded_2026, the CWSP coded export of the university assessment system, read under the CWSP Codebook 2026. STS BA and BS (one set of outcomes on file). The codebook measures documentation, not practice, and a silent record says nothing about what the courses teach.</p>
+  <p>From SLO_Coded_2026, the CWSP coded export of the university assessment system, read under the CWSP Codebook 2026. STS BA and BS (one set of outcomes on file). Because the codebook counts what the filed outcomes document, silence in the record shows what the outcomes leave unwritten and nothing about what the courses teach.</p>
+  <details class="panel"><summary>How the codebook counts</summary><div class="panel-body">
+    <p>CWSP counts an outcome as documenting communication when the outcome, or the objective above it, names explicit communication (write, present, audience, rhetoric) or visual and multimodal work (visual, media, design). Genres (thesis, report), curricular sites (capstone, conference), and cognitive verbs (analyze, explain) are recorded and never counted, since each names a product, a place, or a kind of thinking without the act in which a student communicates it.</p>
+  </div></details>
   <table class="counts"><caption>Counts by program</caption>
     <thead><tr><th scope="col">Program</th><th scope="col">Statements on file</th><th scope="col">Learning outcomes</th><th scope="col">Counted as communication</th></tr></thead>
     <tbody><tr><th scope="row">STS BA and BS</th><td>2</td><td>2</td><td>0</td></tr></tbody></table>
   <h3>CWSP's reading</h3>
   <p class="reading"><strong>STS BA and BS.</strong> Silent in the record. Two outcomes on file, both cognitive (analyze a topic across disciplines, explain and apply STS concepts), and neither names the writing or presentation in which a student shows the analysis. The program sits one sentence from documenting what it teaches. The proposal&#x27;s first intended outcome, revised program outcomes naming critical AI analysis, is the sentence the record is missing.</p>
-  <details class="panel" open><summary>Every outcome as filed (2)</summary><div class="panel-body table-wrap">
+  <details class="panel" open><summary>Every outcome as filed (2)</summary><div class="panel-body table-wrap" tabindex="0" role="region" aria-label="Every outcome as filed">
   <table class="baseline"><caption>Outcomes as filed</caption>
     <thead><tr><th scope="col">Row</th><th scope="col">Program</th><th scope="col">Outcome as filed</th><th scope="col">Counted</th><th scope="col">How the codebook reads it</th></tr></thead>
     <tbody><tr><td>1</td><td>STS BA and BS</td><td>Students will analyze a topic in ways that makes connections across diverse disciplines.</td><td>No</td><td>Cognitive verb only (analyze). Recorded, never counted.</td></tr><tr><td>2</td><td>STS BA and BS</td><td>Students will explain and apply key STS concepts, theories, practices, and methodological approaches.</td><td>No</td><td>Cognitive verb only (explain). Recorded, never counted.</td></tr></tbody></table></div></details>
   <p class="small">Full baseline: <a href="https://docs.google.com/spreadsheets/d/1ZCB3YD8tuJKnrfoTeF4kujB2dHmppA7VxcvY3EBDdTA/edit" target="_blank" rel="noopener">CWSP Unit Baseline, STS<span class="sr-only"> (opens in a new window)</span></a>.</p>
-  <div class="field"><label for="base-hold">Does the reading hold?</label><p class="hint" id="base-hold-hint">Say where it matches the program you teach and where it does not.</p><textarea id="base-hold" rows="3" aria-describedby="base-hold-hint" data-default=""></textarea></div>
+  <div class="field"><label for="base-hold">Does the reading hold?</label><p class="hint" id="base-hold-hint">Say where the reading matches the program you teach and where it misses.</p><textarea id="base-hold" rows="3" aria-describedby="base-hold-hint" data-default=""></textarea></div>
 
   <h2 id="example"><span class="part">Part 3 · Map</span>Worked example</h2>
-  <p>One STS row, completed through the Lab, to show the shape of a finished row. It is an illustration. The working group's own decision and reason replace it.</p>
+  <p>CWSP completed one STS row through the Lab so the working group sees the shape of a finished row, and the group's own decision and reason replace this illustration in the sessions.</p>
   <table class="example"><caption>Worked example, one row</caption><tbody>
     <tr><th scope="row">Outcome as filed</th><td>Students will analyze a topic in ways that makes connections across diverse disciplines.</td></tr>
     <tr><th scope="row">Counted as communication</th><td>No</td></tr>
     <tr><th scope="row">Where students show it</th><td>STS 214 (proposed unit on AI&#x27;s material and systemic dimensions) and the STS 403 capstone project and presentation</td></tr>
     <tr><th scope="row">Who assesses it</th><td>STS 403 instructor and the capstone committee</td></tr>
     <tr><th scope="row">The act</th><td>Write an analysis tracing a technology across historical, ethical, and material accounts, and present it to peers</td></tr>
-    <tr><th scope="row">What a model does to the act</th><td>A model produces a fluent cross-disciplinary synthesis on request. The outcome as filed cannot distinguish a student&#x27;s analysis from a generated one, and a generated synthesis omits what the student chose to connect and why. EAB evidence on AI competencies in STS alumni occupations enters here.</td></tr>
+    <tr><th scope="row">What a model does to the act</th><td>A model produces a fluent cross-disciplinary synthesis on request. As filed, the outcome gives a reader no way to distinguish a student&#x27;s analysis from a generated one, while a generated synthesis omits what the student chose to connect and why. EAB&#x27;s findings on AI competencies in the occupations STS graduates enter belong here.</td></tr>
     <tr><th scope="row">Decision</th><td>Limit</td></tr>
     <tr><th scope="row">Reason</th><td>The analysis is the judgment the degree certifies. Students are permitted to use a model to locate sources and to test their own synthesis against a generated one. They write the analysis themselves and state what the tool supplied, what it left out, and why they kept or rejected it.</td></tr>
     <tr><th scope="row">Revised outcome this row produces</th><td>Students will write and present an analysis of a technology connecting historical, ethical, and material accounts across disciplines, and will state the reasons for their decisions about any AI use in producing it.</td></tr>
   </tbody></table>
   
-  <p>Map each outcome below. Do the first one together, with the facilitator, before dividing the rest. The button above each outcome copies the example's map into empty boxes, for editing.</p>
-  <section class="outcome" id="o1" data-program="STS BA and BS" aria-labelledby="o1-h"><h4 id="o1-h">Outcome 1</h4>
+  <p>Map each outcome below. Do the first one together, with the facilitator, before dividing the rest. The Start from the worked example button above each outcome copies the example's map into any empty boxes, where the group rewrites it for the outcome at hand.</p>
+  <section class="outcome" id="o1" data-program="STS BA and BS" aria-labelledby="o1-h"><h3 id="o1-h">Outcome 1</h3>
     <dl class="asfiled">
       <div><dt>As filed</dt><dd class="filed">Students will analyze a topic in ways that makes connections across diverse disciplines.</dd></div>
       <div><dt>Program</dt><dd>STS BA and BS</dd></div>
       <div><dt>Counted as communication</dt><dd>No. Cognitive verb only (analyze). Recorded, never counted.</dd></div>
     </dl>
     <button type="button" class="btn-small" onclick="copyExample(1)">Start from the worked example</button>
-    <div class="field"><label for="m1-site">Where students show it: course and assignment</label><p class="hint" id="m1-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m1-site" rows="2" aria-describedby="m1-site-hint" data-default="STS 214 and the STS 403 capstone (named in the unit&#x27;s proposal)">STS 214 and the STS 403 capstone (named in the unit&#x27;s proposal)</textarea></div>
+    <div class="field"><label for="m1-site">Where students show it: course and assignment</label><p class="hint" id="m1-site-hint">Name the assignment as well as the course.</p><textarea id="m1-site" rows="2" aria-describedby="m1-site-hint" data-default="STS 214 and the STS 403 capstone (named in the unit&#x27;s proposal)">STS 214 and the STS 403 capstone (named in the unit&#x27;s proposal)</textarea></div>
     <div class="field"><label for="m1-who">Who assesses it</label><textarea id="m1-who" rows="2" data-default=""></textarea></div>
     <div class="field"><label for="m1-act">What students do there: the act</label><p class="hint" id="m1-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m1-act" rows="3" aria-describedby="m1-act-hint" data-default=""></textarea></div>
-    <div class="field"><label for="m1-model">What a model now does to this act in the discipline</label><p class="hint" id="m1-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m1-model" rows="4" aria-describedby="m1-model-hint" data-default=""></textarea></div></section><section class="outcome" id="o2" data-program="STS BA and BS" aria-labelledby="o2-h"><h4 id="o2-h">Outcome 2</h4>
+    <div class="field"><label for="m1-model">What a model now does to this act in the discipline</label><p class="hint" id="m1-model-hint">Describe, then analyze. Where EAB's findings on AI competencies in the occupations your graduates enter bear on the act, cite them here as evidence the faculty interpret.</p><textarea id="m1-model" rows="4" aria-describedby="m1-model-hint" data-default=""></textarea></div></section><section class="outcome" id="o2" data-program="STS BA and BS" aria-labelledby="o2-h"><h3 id="o2-h">Outcome 2</h3>
     <dl class="asfiled">
       <div><dt>As filed</dt><dd class="filed">Students will explain and apply key STS concepts, theories, practices, and methodological approaches.</dd></div>
       <div><dt>Program</dt><dd>STS BA and BS</dd></div>
       <div><dt>Counted as communication</dt><dd>No. Cognitive verb only (explain). Recorded, never counted.</dd></div>
     </dl>
     <button type="button" class="btn-small" onclick="copyExample(2)">Start from the worked example</button>
-    <div class="field"><label for="m2-site">Where students show it: course and assignment</label><p class="hint" id="m2-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m2-site" rows="2" aria-describedby="m2-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m2-site">Where students show it: course and assignment</label><p class="hint" id="m2-site-hint">Name the assignment as well as the course.</p><textarea id="m2-site" rows="2" aria-describedby="m2-site-hint" data-default=""></textarea></div>
     <div class="field"><label for="m2-who">Who assesses it</label><textarea id="m2-who" rows="2" data-default=""></textarea></div>
     <div class="field"><label for="m2-act">What students do there: the act</label><p class="hint" id="m2-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m2-act" rows="3" aria-describedby="m2-act-hint" data-default=""></textarea></div>
-    <div class="field"><label for="m2-model">What a model now does to this act in the discipline</label><p class="hint" id="m2-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m2-model" rows="4" aria-describedby="m2-model-hint" data-default=""></textarea></div></section>
+    <div class="field"><label for="m2-model">What a model now does to this act in the discipline</label><p class="hint" id="m2-model-hint">Describe, then analyze. Where EAB's findings on AI competencies in the occupations your graduates enter bear on the act, cite them here as evidence the faculty interpret.</p><textarea id="m2-model" rows="4" aria-describedby="m2-model-hint" data-default=""></textarea></div></section>
 
   <h2 id="policy"><span class="part">Part 4 · Policy</span>What peers and the field say</h2>
-  <p>The run read the unit-level record at NC State&#x27;s twelve official peers and the land-grant set used for FER, then the disciplinary societies, then the nearest STS-type departments outside both sets. Each entry gives what the document governs and CWSP&#x27;s reading of where its language breaks down. The readings are offered for the group to correct.</p>
-  <p class="reading"><strong>Finding.</strong> The peer record is silent at the unit level. The two STS units among NC State&#x27;s peers, Virginia Tech and UC Davis, have issued no AI policy and defer to campus guidance. Neither 4S nor SHOT has issued a position, though both now host panels on generative AI in teaching and research. The nearest unit-level texts come from outside the peer set, and they take four different genres: a set of default rules (Stony Brook), a clause folding AI into plagiarism (Georgia Tech), a declaration of principle for the humanities and social sciences (Cambridge), and a prohibition with a dissertation affirmation (Columbia History). NC State STS would write the first STS-specific statement among its peers, and the choice of genre is open.</p>
+  <p>CWSP read the unit-level record at NC State&#x27;s twelve official peers and the land-grant set used for FER, then the disciplinary societies and the nearest STS-type departments outside both sets. For each document, the entry gives its scope and CWSP&#x27;s reading of where its language breaks down, offered for the working group to correct.</p>
+  <p class="reading"><strong>Finding.</strong> At the unit level the peer record is silent, since the two STS units among NC State&#x27;s peers (Virginia Tech and UC Davis) have issued no AI policy and defer to campus guidance. Neither 4S nor SHOT has taken a position, although both now host panels on generative AI in teaching and research. The nearest unit-level texts come from outside the peer set, where departments have chosen four different genres: a set of default rules (Stony Brook), a clause folding AI into plagiarism (Georgia Tech), a declaration of principle for the humanities and social sciences (Cambridge), and a prohibition with a dissertation affirmation (Columbia History). NC State STS would write the first STS-specific statement among its peers, with the choice of genre open.</p>
   <div class="policies">
     <article class="policy">
-      <h4>Stony Brook University</h4>
+      <h3 class="policy-h">Stony Brook University</h3>
       <p class="policy-meta">Department of Technology, AI and Society · Outside the peer and land-grant sets</p>
       <dl>
         <div><dt>Document</dt><dd><a href="https://www.stonybrook.edu/dtas/about/code_conduct.html" target="_blank" rel="noopener">Policy for Using Generative AI and Large Language Models<span class="sr-only"> (opens in a new window)</span></a>, Undated (states it is updated regularly)</dd></div>
         <div><dt>Governs</dt><dd>Coursework and original work</dd></div>
         <div><dt>What it says</dt><dd>Seven default rules for courses and department work: attribution with software, version, and prompts, no wholesale substitution, limited use in serious academic work, students able to explain their work in person, and the policy on every syllabus.</dd></div>
-        <div><dt>Where the language breaks</dt><dd>A document stating it is updated regularly carries no date, so a reader cannot tell which edition governs a given term. The phrase limiting use in serious academic work leaves the line between serious and other work to the reader.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>Although the department says it updates the page regularly, it gives no date, so readers have no way to tell which edition governs a given term. Because the rule limits use in &quot;serious academic work&quot; without defining the phrase, each reader draws the line alone.</dd></div>
       </dl>
     </article>
     <article class="policy">
-      <h4>Georgia Institute of Technology</h4>
+      <h3 class="policy-h">Georgia Institute of Technology</h3>
       <p class="policy-meta">School of History and Sociology (MS and PhD, History and Sociology of Technology and Science) · NC State peer</p>
       <dl>
         <div><dt>Document</dt><dd><a href="https://hsoc.gatech.edu/sites/default/files/attachments/HSOC%20Graduate%20Handbook%202025.pdf" target="_blank" rel="noopener">Graduate Program Handbook<span class="sr-only"> (opens in a new window)</span></a>, September 2025</dd></div>
         <div><dt>Governs</dt><dd>Plagiarism definition</dd></div>
         <div><dt>What it says</dt><dd>One clause, under the written comprehensive exam: plagiarism includes inappropriate use of AI technologies.</dd></div>
-        <div><dt>Where the language breaks</dt><dd>Inappropriate is left undefined, and the clause sits under one examination, so the handbook is silent on AI in coursework, the thesis, and the dissertation.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>Because the school left &quot;inappropriate&quot; undefined and placed the clause under one examination, its graduate students find no AI rule for coursework, the thesis, or the dissertation.</dd></div>
       </dl>
     </article>
     <article class="policy">
-      <h4>Virginia Tech</h4>
+      <h3 class="policy-h">Virginia Tech</h3>
       <p class="policy-meta">Department of Science, Technology, and Society · NC State peer, land-grant</p>
       <dl>
         <div><dt>Document</dt><dd><a href="https://liberalarts.vt.edu/sts.html" target="_blank" rel="noopener">No unit-level AI policy found<span class="sr-only"> (opens in a new window)</span></a>, Checked November 10, 2026</dd></div>
@@ -180,7 +184,7 @@
       </dl>
     </article>
     <article class="policy">
-      <h4>University of California, Davis</h4>
+      <h3 class="policy-h">University of California, Davis</h3>
       <p class="policy-meta">Science and Technology Studies Program · NC State peer, land-grant</p>
       <dl>
         <div><dt>Document</dt><dd><a href="https://iet.ucdavis.edu/node/9021" target="_blank" rel="noopener">No unit-level AI policy found<span class="sr-only"> (opens in a new window)</span></a>, Checked November 10, 2026</dd></div>
@@ -190,28 +194,28 @@
       </dl>
     </article>
     <article class="policy">
-      <h4>University of Cambridge</h4>
+      <h3 class="policy-h">University of Cambridge</h3>
       <p class="policy-meta">School of the Humanities and Social Sciences · Disciplinary framework</p>
       <dl>
         <div><dt>Document</dt><dd><a href="https://www.cshss.cam.ac.uk/node/1612" target="_blank" rel="noopener">Manifesto and Principles for Generative AI in Scholarship<span class="sr-only"> (opens in a new window)</span></a>, Undated</dd></div>
         <div><dt>Governs</dt><dd>Permitted and prohibited uses, disclosure</dd></div>
         <div><dt>What it says</dt><dd>Asks if, rather than how, generative AI contributes to scholarship. Includes a student declaration template and a sample rubric.</dd></div>
-        <div><dt>Where the language breaks</dt><dd>The framework moves the question from procedure to warrant, which is the move this workbook asks of each row. Its declaration template records use without recording the reasons for it.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>The School&#x27;s authors move the question from procedure to warrant, the move this workbook asks of each row, yet the declaration template they supply records use without the reasons for it.</dd></div>
       </dl>
     </article>
     <article class="policy">
-      <h4>Columbia University</h4>
+      <h3 class="policy-h">Columbia University</h3>
       <p class="policy-meta">Department of History · Adjacent discipline</p>
       <dl>
         <div><dt>Document</dt><dd><a href="https://history.columbia.edu/a-i-policy/" target="_blank" rel="noopener">A.I. Policy<span class="sr-only"> (opens in a new window)</span></a>, November 19, 2025</dd></div>
         <div><dt>Governs</dt><dd>Coursework, thesis, dissertation</dd></div>
         <div><dt>What it says</dt><dd>Students should not use generative AI to create submitted text, including theses. Dissertations carry an affirmation of no AI-created text. Research uses are discussed with advisers and cited.</dd></div>
-        <div><dt>Where the language breaks</dt><dd>The rule is written against a product (AI-created text) rather than a function, and the line between created text and assisted research is drawn in conversation with an adviser rather than in the policy.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>The department wrote its rule against a product (AI-created text) and left the line between created text and assisted research to conversations with advisers, outside the policy itself.</dd></div>
       </dl>
     </article>
     <article class="policy">
-      <h4>4S and SHOT</h4>
-      <p class="policy-meta">Disciplinary societies · Disciplinary societies</p>
+      <h3 class="policy-h">4S and SHOT</h3>
+      <p class="policy-meta">Disciplinary societies</p>
       <dl>
         <div><dt>Document</dt><dd><a href="https://www.historyoftechnology.org/annual-meeting/2026-shot-annual-meeting/" target="_blank" rel="noopener">No society statement on generative AI found<span class="sr-only"> (opens in a new window)</span></a>, Checked November 10, 2026</dd></div>
         
@@ -220,7 +224,7 @@
       </dl>
     </article></div>
   <details class="panel"><summary>How to read a policy for where its language breaks</summary><div class="panel-body">
-    <p>A governance document written under institutional pressure says more than its authors intended. Look for hedging (strongly discouraged), contradictions between sections or between two documents on one campus, silences where governance should be explicit, frameworks borrowed beyond their scope, and dates (language accurate when written and no longer true). The full method and the AI Governance Census are in the <a href="https://cwspwolf.com/ai-policy-workbook.html" target="_blank" rel="noopener">AI Policy Workbook<span class="sr-only"> (opens in a new window)</span></a>.</p>
+    <p>When authors write governance documents under institutional pressure, the language records more than they intended. Look for hedging (strongly discouraged), contradictions between sections or between two documents on one campus, silences where governance should be explicit, frameworks borrowed beyond their scope, and dates (language accurate when written and no longer true). The full method and the AI Governance Census are in the <a href="https://cwspwolf.com/ai-policy-workbook.html" target="_blank" rel="noopener">AI Policy Workbook<span class="sr-only"> (opens in a new window)</span></a>.</p>
   </div></details>
   <h3 id="policy-read">Your reading</h3>
   <div class="field"><label for="pol-nearest">Which document comes nearest to what your program would write, and why?</label><textarea id="pol-nearest" rows="3" data-default=""></textarea></div>
@@ -228,27 +232,27 @@
   <div class="field"><label for="pol-genre">What genre should your unit's statement take?</label><p class="hint" id="pol-genre-hint">Rule set, clause in an existing policy, declaration of principle, assignment-level policies, or something else.</p><textarea id="pol-genre" rows="3" aria-describedby="pol-genre-hint" data-default=""></textarea></div>
 
   <h2 id="lab"><span class="part">Part 5 · Lab</span>Decisions</h2>
-  <p class="small">The program filter set in Part 3 applies here too.</p>
-  <p>For each outcome: a decision, the reason in the discipline's words, and the product it becomes. Refusal with a reason is a decision. The act you mapped in Part 3 appears above each decision.</p>
-  <section class="outcome" id="d1" data-program="STS BA and BS" aria-labelledby="d1-h"><h4 id="d1-h">Outcome 1</h4>
+  
+  <p>Each outcome ends with a decision, the reason in the discipline's words, and the product the decision becomes. Since the Lab counts refusal with a reason as a decision, the three choices carry equal standing, and the act mapped in Part 3 appears above each decision for reference.</p>
+  <section class="outcome" id="d1" data-program="STS BA and BS" aria-labelledby="d1-h"><h3 id="d1-h">Outcome 1: decision</h3>
     <p class="filed-small">STS BA and BS: Students will analyze a topic in ways that makes connections across diverse disciplines.</p>
     <p class="mirror" id="d1-act-mirror" aria-live="polite"></p>
     <div class="field"><label for="d1-decision">Decision</label>
       <select id="d1-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
-    <div class="field"><label for="d1-reason">Reason, in the discipline's words</label><p class="hint" id="d1-reason-hint">A decision without a reason is unfinished.</p><textarea id="d1-reason" rows="4" aria-describedby="d1-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d1-reason">Reason, in the discipline's words</label><p class="hint" id="d1-reason-hint">The Lab treats a decision as finished once it carries a reason in the discipline's terms.</p><textarea id="d1-reason" rows="4" aria-describedby="d1-reason-hint" data-default=""></textarea></div>
     <div class="field"><label for="d1-product">Product the decision becomes</label><p class="hint" id="d1-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d1-product" rows="2" aria-describedby="d1-product-hint" data-default=""></textarea></div>
-    <div class="field"><label for="d1-owner">Owner and date</label><textarea id="d1-owner" rows="1" data-default=""></textarea></div></section><section class="outcome" id="d2" data-program="STS BA and BS" aria-labelledby="d2-h"><h4 id="d2-h">Outcome 2</h4>
+    <div class="field"><label for="d1-owner">Owner and date</label><textarea id="d1-owner" rows="1" data-default=""></textarea></div></section><section class="outcome" id="d2" data-program="STS BA and BS" aria-labelledby="d2-h"><h3 id="d2-h">Outcome 2: decision</h3>
     <p class="filed-small">STS BA and BS: Students will explain and apply key STS concepts, theories, practices, and methodological approaches.</p>
     <p class="mirror" id="d2-act-mirror" aria-live="polite"></p>
     <div class="field"><label for="d2-decision">Decision</label>
       <select id="d2-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
-    <div class="field"><label for="d2-reason">Reason, in the discipline's words</label><p class="hint" id="d2-reason-hint">A decision without a reason is unfinished.</p><textarea id="d2-reason" rows="4" aria-describedby="d2-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d2-reason">Reason, in the discipline's words</label><p class="hint" id="d2-reason-hint">The Lab treats a decision as finished once it carries a reason in the discipline's terms.</p><textarea id="d2-reason" rows="4" aria-describedby="d2-reason-hint" data-default=""></textarea></div>
     <div class="field"><label for="d2-product">Product the decision becomes</label><p class="hint" id="d2-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d2-product" rows="2" aria-describedby="d2-product-hint" data-default=""></textarea></div>
     <div class="field"><label for="d2-owner">Owner and date</label><textarea id="d2-owner" rows="1" data-default=""></textarea></div></section>
 
   <h2 id="products">Products</h2>
   <p>Each decision becomes one of four products. Insert a frame, then rewrite it in your program's words.</p>
-  <details class="panel"><summary>Five principles for durable policy language</summary><div class="panel-body"><ol><li><strong>Scope terms by function.</strong> Define AI by what it does (generates text, produces images, automates tasks). Product names date quickly.</li><li><strong>Date the policy.</strong> State the term the policy covers and commit to revision.</li><li><strong>Name the revision trigger.</strong> Say what would prompt an update: new tools, new institutional guidance, or evidence of the policy producing the wrong outcomes.</li><li><strong>Separate principle from prohibition.</strong> State the commitment (what the program develops and assesses) apart from the rule (which functions are barred this term). The first outlasts the second.</li><li><strong>Give the reason.</strong> A policy with its reason is easier to follow, and a later reviewer knows what to keep when the tools change.</li></ol></div></details>
+  <details class="panel"><summary>Five principles for durable policy language</summary><div class="panel-body"><ol><li><strong>Scope terms by function.</strong> Define AI by what it does (generates text, produces images, automates tasks), since product names date within a term.</li><li><strong>Date the policy.</strong> State the term the policy covers and commit to revision.</li><li><strong>Name the revision trigger.</strong> Say what would prompt an update: new tools, new institutional guidance, or evidence of the policy producing the wrong outcomes.</li><li><strong>Separate principle from prohibition.</strong> State the commitment (what the program develops and assesses) apart from the rule (which functions are barred this term), because the commitment outlasts any one term&#x27;s rule.</li><li><strong>Give the reason.</strong> A policy with its reason is easier to follow, and a later reviewer knows what to keep when the tools change.</li></ol></div></details>
   
     <div class="product">
       <h3>Revised outcome</h3>
@@ -259,7 +263,7 @@
     </div>
     <div class="product">
       <h3>Assignment-level AI policy</h3>
-      <p class="hint">One policy per assignment, with its reason. A general clause in the syllabus does not do this work.</p>
+      <p class="hint">Write one policy for each assignment, with its reason, since a general syllabus clause gives students no reason tied to the task.</p>
       <div class="field"><label for="prod-policy">Your text</label>
       <textarea id="prod-policy" rows="5" data-frame="Assignment: [ ].
 Permitted: [function].
@@ -272,7 +276,7 @@ In effect for [term]. Reviewed [date]. Revised when [trigger]."></textarea></div
     </div>
     <div class="product">
       <h3>Rubric criterion for reasoning about use</h3>
-      <p class="hint">Grades the reasoning, not the choice. Refusal with reasons meets the criteria.</p>
+      <p class="hint">The criterion grades the student&#x27;s reasoning about use, so a student who refuses AI and gives reasons meets it.</p>
       <div class="field"><label for="prod-rubric">Your text</label>
       <textarea id="prod-rubric" rows="5" data-frame="Criteria: names the function used, gives reasons tied to the task, identifies what the output left out, states what the student did and why.
 Levels: [ ]."></textarea></div>
@@ -280,7 +284,7 @@ Levels: [ ]."></textarea></div>
     </div>
     <div class="product">
       <h3>Program philosophy of use</h3>
-      <p class="hint">The program-level account of decisions, one page. The Lab&#x27;s written record.</p>
+      <p class="hint">One page recording the program&#x27;s decisions and their reasons, kept as the Lab&#x27;s written record.</p>
       <div class="field"><label for="prod-philosophy">Your text</label>
       <textarea id="prod-philosophy" rows="5" data-frame="In [program], [acts] are the judgment the degree certifies. We [use, limit, refuse] AI for [acts] because [reasons grounded in the discipline]. Students are accountable for [ ]. Reviewed [when]."></textarea></div>
       <button type="button" class="btn-small" onclick="insertFrame('prod-philosophy')">Insert the frame to fill in</button>
@@ -290,7 +294,7 @@ Levels: [ ]."></textarea></div>
   <p>The table assembles your map and decisions in the column order of the unit worksheet. Refresh it after editing, then download it and paste the rows into the Google Sheet.</p>
   <button type="button" class="btn-small" onclick="renderRows()">Refresh the table</button>
   <button type="button" class="btn-small" onclick="downloadRows()">Download as spreadsheet</button>
-  <div id="rows-table" class="table-wrap"></div>
+  <div id="rows-table" class="table-wrap" tabindex="0" role="region" aria-label="Your worksheet rows"></div>
 
   <h2 id="submit">Submit to CWSP</h2>
   <div class="activity">
@@ -299,7 +303,7 @@ Levels: [ ]."></textarea></div>
       <input type="checkbox" id="p-permission">
       <label for="p-permission">CWSP has my permission to use what I submit, without my name, in its reports to CHASS and the AI Hub working group, in presentations and publications about the Accelerator, and as examples for other units. I withdraw this permission at any time by emailing kkcole2@ncsu.edu.</label>
     </div>
-    <p class="hint">Leaving the box empty still submits your work to CWSP for the Accelerator. CWSP uses it only to support your unit.</p>
+    <p class="hint">If the box stays empty, the submission still reaches CWSP, which then uses it only to support your unit.</p>
     <button type="button" class="btn-submit" id="submit-btn" onclick="submitWork()">Submit to CWSP</button>
     <p class="req-note" id="req-note" role="alert"></p>
     <p class="submit-status" id="submit-status" role="status"></p>
@@ -317,7 +321,7 @@ const KEY = 'acc-sts:';
 const MODULE = 'accelerator-sts';
 const UNIT = "Science, Technology and Society";
 const OUTCOMES = ["Students will analyze a topic in ways that makes connections across diverse disciplines.", "Students will explain and apply key STS concepts, theories, practices, and methodological approaches."];
-const EXAMPLE = {"site": "STS 214 (proposed unit on AI's material and systemic dimensions) and the STS 403 capstone project and presentation", "who": "STS 403 instructor and the capstone committee", "act": "Write an analysis tracing a technology across historical, ethical, and material accounts, and present it to peers", "model": "A model produces a fluent cross-disciplinary synthesis on request. The outcome as filed cannot distinguish a student's analysis from a generated one, and a generated synthesis omits what the student chose to connect and why. EAB evidence on AI competencies in STS alumni occupations enters here."};
+const EXAMPLE = {"site": "STS 214 (proposed unit on AI's material and systemic dimensions) and the STS 403 capstone project and presentation", "who": "STS 403 instructor and the capstone committee", "act": "Write an analysis tracing a technology across historical, ethical, and material accounts, and present it to peers", "model": "A model produces a fluent cross-disciplinary synthesis on request. As filed, the outcome gives a reader no way to distinguish a student's analysis from a generated one, while a generated synthesis omits what the student chose to connect and why. EAB's findings on AI competencies in the occupations STS graduates enter belong here."};
 </script>
 <script src="js/workbook.js"></script>
 </body>

@@ -115,10 +115,10 @@
   "literacy": {
     "describe": "Psychology studies the cognition a model imitates and runs the empirical method a model now enters at every stage. A large language model predicts likely text from a corpus. In the department's outcomes, the acts it performs on the surface are the graduate research acts (proposing a question, reviewing the literature, planning collection and analysis, critiquing a study) and, for the BA, explaining scientific results to an audience. Describing the system in the unit's terms means naming which of these acts a model performs and which it only appears to perform.",
     "analyze": "The structural questions come from the discipline's own commitments: research ethics and participant confidentiality (what happens to data entered into a tool), the validity of a generated citation or summary, bias in systems trained on unrepresentative text, and the APA's disclosure rules for authors. For students in school psychology and other applied concentrations, the same questions reach clients and schools through the APA's 2025 ethical guidance for practice and the guidance of NASP.",
-    "decide": "The operative question is which acts are the judgment the degree certifies. The baseline reading locates it in BA outcome 1 and in graduate outcomes 1, 2, 3, and 5, none of which names where a student performs it. Refusal with a reason is a decision. A decision without a reason is unfinished."
+    "decide": "The operative question is which acts are the judgment the degree certifies. CWSP's baseline reading places the judgment in BA outcome 1 and in graduate outcomes 1, 2, 3, and 5, none of which names where a student performs it. For each outcome the Lab records the decision and its reason, counting refusal with a reason as a decision."
   },
-  "policy_intro": "The run read the unit-level record in psychology departments at NC State's twelve official peers, then the American Psychological Association and its divisions, the National Association of School Psychologists, and the nearest department policies outside the peer set. Each entry gives what the document governs and CWSP's reading of where its language breaks down. The readings are offered for the group to correct.",
-  "policy_finding": "Psychology has the most developed disciplinary rule of the three Accelerator units, and it is a rule for authors. The APA's journal policy permits AI with disclosure in the methods section, requires authors to verify what a tool supplies, and bars editors and reviewers from entering manuscripts into a model. Peer departments have extended the publication rule to students rather than writing a rule for learning. Maryland's interim graduate policy and Georgia's guidelines both send students to the APA policy, both require disclosure, and both leave the decision to advisers, chairs, and instructors, with one fixed point at Maryland: first drafts of theses and dissertations are written without AI. Outside the peer set, Buffalo forbids AI for text, outlines, presentation scripts, and statistical analysis in graduate milestones. The undergraduate program has the least guidance anywhere in the record. NC State Psychology would decide whether the BA follows the author's rule of disclosure or a learner's rule about which acts a student performs unaided.",
+  "policy_intro": "CWSP read the unit-level record in psychology departments at NC State's twelve official peers, then the American Psychological Association and its divisions, the National Association of School Psychologists, and the nearest department policies outside the peer set. For each document, the entry gives its scope and CWSP's reading of where its language breaks down, offered for the working group to correct.",
+  "policy_finding": "Of the three Accelerator units, psychology has the most developed disciplinary rule, and it is a rule for authors. The APA permits authors in its journals to use AI with disclosure in the methods section, requires them to verify what a tool supplies, and bars editors and reviewers from entering manuscripts into a model. Peer departments have carried the publication rule over to students, and none has written a rule for learning. Maryland and Georgia both send graduate students to the APA policy, both require disclosure, and both leave the decision to advisers, chairs, and instructors, with one fixed point at Maryland, where first drafts of theses and dissertations are written without AI. Outside the peer set, Buffalo forbids AI for text, outlines, presentation scripts, and statistical analysis in graduate milestones. Since the undergraduate program has the least guidance anywhere in the record, NC State Psychology would decide whether the BA follows the author's rule of disclosure or a learner's rule about which acts a student performs unaided.",
   "policies": [
     {
       "inst": "University of Maryland",
@@ -129,7 +129,7 @@
       "peer": "NC State peer, land-grant",
       "governs": "Graduate coursework, research, TA work, comprehensive exams, theses and dissertations",
       "says": "Seven general rules: discuss AI at the start of every project, disclose AI-generated text, code, materials, images, and analysis (tool, version, prompts, and output), protect others' privacy, check every output, write first drafts of theses and dissertations without AI, let program areas set exam rules, and follow each supervisor's added rules. Checklists for each context leave the permitted and prohibited columns for supervisors to fill. Grammar checkers are not counted as generative AI.",
-      "glitch": "The clinical students' paragraph sends them to the clinic's AI policy with the words INSERT HERE where the reference belongs, so the students working with clients, where confidentiality matters most, are pointed to a policy the document has not located. The checklists are blank by design, which makes the policy a procedure for deciding rather than a decision."
+      "glitch": "Where the department directs clinical students to the clinic's AI policy, the words INSERT HERE stand in for the reference, so the students who work with clients, where confidentiality matters most, receive no location for the policy they are told to follow. Because the department left every checklist blank for supervisors to fill, the document sets a procedure for deciding and leaves each decision to a supervisor."
     },
     {
       "inst": "University of Georgia",
@@ -140,7 +140,7 @@
       "peer": "NC State peer, land-grant",
       "governs": "Coursework, theses and dissertations, instructors' course rules, publishing",
       "says": "Assembles Graduate School, teaching center, library, and APA rules. Generative AI in a thesis or dissertation counts as unauthorized assistance unless the advisory committee approves it, within the approved scope, with a statement in the document. In coursework, no AI unless the instructor approves it before submission. Manuscripts and others' materials stay out of AI tools.",
-      "glitch": "The department's guidance is a compilation of other offices' rules, so the reasons a psychology program would give appear only where the APA's publishing rules are quoted, and the undergraduate student meets a default prohibition without a disciplinary reason."
+      "glitch": "Because the department compiled other offices' rules, a psychology program's reasons appear only in the quoted APA publishing rules, and an undergraduate meets a default prohibition with no disciplinary reason attached."
     },
     {
       "inst": "Purdue, Illinois Urbana-Champaign, Minnesota, UC Davis, Virginia Tech, Texas A&M, Arizona, Rutgers, Georgia Tech, Michigan State",
@@ -162,7 +162,7 @@
       "peer": "Outside the peer set",
       "governs": "Second- and third-year projects, theses, dissertations, qualifying projects, comprehensive exams",
       "says": "States the goal of graduate training as independent scientists creating new knowledge. Forbids generative AI for text creation, outlines, scripts for proposal and defense presentations, and statistical analysis in milestone projects. Cautions against uploading data. Lists acceptable uses with disclosure under APA guidelines and asks students to settle expectations with committees at the start.",
-      "glitch": "The ban on AI for statistical analysis sits beside a research culture in which analysis code is increasingly written with assistants, and the policy does not say where generating analysis code ends and performing the analysis begins."
+      "glitch": "The ban on AI for statistical analysis sits beside a research culture in which assistants increasingly write analysis code, and the department does not say where generating analysis code ends and performing the analysis begins."
     },
     {
       "inst": "Stony Brook University",
@@ -173,7 +173,7 @@
       "peer": "Outside the peer set",
       "governs": "Exams, academic milestones, course assignments, publication",
       "says": "AI is barred from exams, milestones, and assignments unless an instructor permits it. Readability edits are allowed with acknowledgment. Students are told to develop their own ear for professional writing and warned against brainstorming with AI. Gives attribution templates, including a statement of no AI use, and quotes the APA and Elsevier publishing rules.",
-      "glitch": "The policy permits AI to improve readability while noting such edits lose information, and asks students to build their own ear for writing in the same list, so the one permitted use is the one the rationale doubts."
+      "glitch": "The department permits AI for readability while noting such edits lose information, and in the same list it asks students to build their own ear for writing, so it doubts the one use it permits."
     },
     {
       "inst": "American Psychological Association",
@@ -184,7 +184,7 @@
       "peer": "Disciplinary society",
       "governs": "Authors, editors, and reviewers of APA journals",
       "says": "Authors are permitted to use AI with disclosure and are responsible for verifying its output against original sources. Attribution is required when a tool generates ideas, content, analysis, code, or research elements. Confidential material, such as identifiable data or client notes, stays out of open tools. Editors and reviewers are barred from entering submitted manuscripts into AI. Authors are advised to keep prompts and output for their records.",
-      "glitch": "The policy governs publication, and the departments in this run carry it into coursework, where a student is not an author submitting a finished study but a learner whose acts the course is meant to train."
+      "glitch": "The APA wrote the policy for publication. When departments carry it into coursework, it reaches a student who is a learner whose acts the course exists to train, and an author only at the end."
     },
     {
       "inst": "American Psychological Association",
@@ -195,7 +195,7 @@
       "peer": "Disciplinary society (applied and practice concentrations)",
       "governs": "Practicing health service psychologists",
       "says": "Asks practitioners to obtain informed consent and explain AI use to clients, guard against bias, protect privacy and data, critically evaluate AI output, keep human judgment over clinical decisions, and consider liability. Supervisors in training contexts are asked to teach ethical and critical use.",
-      "glitch": "Written for licensed practice, the guidance assigns training to supervisors without saying what a graduate program teaches before supervision begins."
+      "glitch": "The APA committee wrote for licensed practice and assigned training to supervisors without saying what a graduate program teaches before supervision begins."
     },
     {
       "inst": "Society for the Teaching of Psychology (APA Division 2)",
@@ -206,7 +206,7 @@
       "peer": "Disciplinary society",
       "governs": "Teaching guidance, course by course",
       "says": "Organizes guidance by course (foundational, clinical and counseling, research methods and statistics) on the premise of psychology instructors being suited to help students engage AI ethically and developmentally. A 2025 article in Teaching of Psychology proposes a disclosure statement naming the model, the input, and how the student evaluated the output.",
-      "glitch": "Guidance arranged by course reaches each instructor and leaves the program level, where the BA's outcomes sit, without a statement."
+      "glitch": "Because STP arranged its guidance by course, it reaches each instructor, while the program level, where the BA's outcomes sit, goes without a statement."
     },
     {
       "inst": "National Association of School Psychologists",

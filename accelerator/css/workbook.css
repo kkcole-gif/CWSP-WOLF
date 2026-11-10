@@ -65,10 +65,10 @@ thead th { background: var(--wash); }
 table.counts { width: auto; } table.counts td { text-align: right; min-width: 3em; }
 table.example th { width: 28%; background: var(--wash); font-weight: 700; }
 .table-wrap { overflow-x: auto; } .table-wrap table { min-width: 900px; font-size: .82rem; }
-.empty { color: #777; font-style: italic; }
+.empty { color: #595959; font-style: italic; }
 
 .outcome { border: 1px solid var(--line); border-radius: 4px; padding: 1rem 1.25rem .5rem; margin: 1rem 0; scroll-margin-top: 72px; }
-.outcome h4 { margin-top: 0; font-size: 1.02rem; }
+.outcome h3 { margin-top: 0; font-size: 1.05rem; }
 details.outcome { padding: 0; }
 details.outcome > summary { cursor: pointer; padding: .75rem 1rem; display: grid; grid-template-columns: 1fr auto; gap: .6rem; align-items: baseline; list-style: none; font-size: .94rem; }
 details.outcome > summary::-webkit-details-marker { display: none; }
@@ -95,6 +95,7 @@ dd.filed { font-size: 1rem; }
 
 .policies { display: grid; gap: 1rem; margin: 1rem 0 1.5rem; }
 .policy { border: 1px solid var(--line); border-radius: 4px; padding: 1rem 1.25rem; }
+.policy-h { font-size: 1rem; margin: 0 0 .15rem; }
 .policy-meta { font-size: .84rem; color: var(--gray-mid); margin-bottom: .6rem; }
 .policy dl { margin: 0; display: grid; gap: .45rem; }
 .policy dl div { display: grid; grid-template-columns: 10rem 1fr; gap: .75rem; }

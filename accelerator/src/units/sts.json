@@ -28,7 +28,7 @@
     "site": "STS 214 (proposed unit on AI's material and systemic dimensions) and the STS 403 capstone project and presentation",
     "who": "STS 403 instructor and the capstone committee",
     "act": "Write an analysis tracing a technology across historical, ethical, and material accounts, and present it to peers",
-    "model": "A model produces a fluent cross-disciplinary synthesis on request. The outcome as filed cannot distinguish a student's analysis from a generated one, and a generated synthesis omits what the student chose to connect and why. EAB evidence on AI competencies in STS alumni occupations enters here.",
+    "model": "A model produces a fluent cross-disciplinary synthesis on request. As filed, the outcome gives a reader no way to distinguish a student's analysis from a generated one, while a generated synthesis omits what the student chose to connect and why. EAB's findings on AI competencies in the occupations STS graduates enter belong here.",
     "decision": "Limit",
     "reason": "The analysis is the judgment the degree certifies. Students are permitted to use a model to locate sources and to test their own synthesis against a generated one. They write the analysis themselves and state what the tool supplied, what it left out, and why they kept or rejected it.",
     "revised": "Students will write and present an analysis of a technology connecting historical, ethical, and material accounts across disciplines, and will state the reasons for their decisions about any AI use in producing it."
@@ -36,10 +36,10 @@
   "literacy": {
     "describe": "In STS the system under description is also the object of study. A large language model predicts likely text from a corpus assembled by particular firms, trained with particular labor, and run on particular infrastructure. Describing it in the unit's own terms means naming the acts the outcomes ask of students (tracing a technology across accounts, explaining a concept, applying a method) and saying which of those acts a model performs on the surface.",
     "analyze": "The structural question is the field's home ground: whose data, labor, energy, and interests the tool carries into a student's analysis, and what a generated synthesis leaves out of an account of a sociotechnical system. The proposed STS 214 unit on AI's material and systemic dimensions places this analysis in the curriculum as content. The Accelerator asks the unit to apply the same analysis to its own assignments.",
-    "decide": "The operative question is which acts are the judgment the STS degree certifies, and what the program says about a tool supplying the surface of those acts. Refusal with a reason is a decision. A decision without a reason is unfinished."
+    "decide": "The operative question is which acts are the judgment the STS degree certifies, and what the program says about a tool supplying the surface of those acts. For each outcome the Lab records the decision and the reason the program gives for it, counting refusal with a reason as a decision."
   },
-  "policy_intro": "The run read the unit-level record at NC State's twelve official peers and the land-grant set used for FER, then the disciplinary societies, then the nearest STS-type departments outside both sets. Each entry gives what the document governs and CWSP's reading of where its language breaks down. The readings are offered for the group to correct.",
-  "policy_finding": "The peer record is silent at the unit level. The two STS units among NC State's peers, Virginia Tech and UC Davis, have issued no AI policy and defer to campus guidance. Neither 4S nor SHOT has issued a position, though both now host panels on generative AI in teaching and research. The nearest unit-level texts come from outside the peer set, and they take four different genres: a set of default rules (Stony Brook), a clause folding AI into plagiarism (Georgia Tech), a declaration of principle for the humanities and social sciences (Cambridge), and a prohibition with a dissertation affirmation (Columbia History). NC State STS would write the first STS-specific statement among its peers, and the choice of genre is open.",
+  "policy_intro": "CWSP read the unit-level record at NC State's twelve official peers and the land-grant set used for FER, then the disciplinary societies and the nearest STS-type departments outside both sets. For each document, the entry gives its scope and CWSP's reading of where its language breaks down, offered for the working group to correct.",
+  "policy_finding": "At the unit level the peer record is silent, since the two STS units among NC State's peers (Virginia Tech and UC Davis) have issued no AI policy and defer to campus guidance. Neither 4S nor SHOT has taken a position, although both now host panels on generative AI in teaching and research. The nearest unit-level texts come from outside the peer set, where departments have chosen four different genres: a set of default rules (Stony Brook), a clause folding AI into plagiarism (Georgia Tech), a declaration of principle for the humanities and social sciences (Cambridge), and a prohibition with a dissertation affirmation (Columbia History). NC State STS would write the first STS-specific statement among its peers, with the choice of genre open.",
   "policies": [
     {
       "inst": "Stony Brook University",
@@ -50,7 +50,7 @@
       "peer": "Outside the peer and land-grant sets",
       "governs": "Coursework and original work",
       "says": "Seven default rules for courses and department work: attribution with software, version, and prompts, no wholesale substitution, limited use in serious academic work, students able to explain their work in person, and the policy on every syllabus.",
-      "glitch": "A document stating it is updated regularly carries no date, so a reader cannot tell which edition governs a given term. The phrase limiting use in serious academic work leaves the line between serious and other work to the reader."
+      "glitch": "Although the department says it updates the page regularly, it gives no date, so readers have no way to tell which edition governs a given term. Because the rule limits use in \"serious academic work\" without defining the phrase, each reader draws the line alone."
     },
     {
       "inst": "Georgia Institute of Technology",
@@ -61,7 +61,7 @@
       "peer": "NC State peer",
       "governs": "Plagiarism definition",
       "says": "One clause, under the written comprehensive exam: plagiarism includes inappropriate use of AI technologies.",
-      "glitch": "Inappropriate is left undefined, and the clause sits under one examination, so the handbook is silent on AI in coursework, the thesis, and the dissertation."
+      "glitch": "Because the school left \"inappropriate\" undefined and placed the clause under one examination, its graduate students find no AI rule for coursework, the thesis, or the dissertation."
     },
     {
       "inst": "Virginia Tech",
@@ -94,7 +94,7 @@
       "peer": "Disciplinary framework",
       "governs": "Permitted and prohibited uses, disclosure",
       "says": "Asks if, rather than how, generative AI contributes to scholarship. Includes a student declaration template and a sample rubric.",
-      "glitch": "The framework moves the question from procedure to warrant, which is the move this workbook asks of each row. Its declaration template records use without recording the reasons for it."
+      "glitch": "The School's authors move the question from procedure to warrant, the move this workbook asks of each row, yet the declaration template they supply records use without the reasons for it."
     },
     {
       "inst": "Columbia University",
@@ -105,7 +105,7 @@
       "peer": "Adjacent discipline",
       "governs": "Coursework, thesis, dissertation",
       "says": "Students should not use generative AI to create submitted text, including theses. Dissertations carry an affirmation of no AI-created text. Research uses are discussed with advisers and cited.",
-      "glitch": "The rule is written against a product (AI-created text) rather than a function, and the line between created text and assisted research is drawn in conversation with an adviser rather than in the policy."
+      "glitch": "The department wrote its rule against a product (AI-created text) and left the line between created text and assisted research to conversations with advisers, outside the policy itself."
     },
     {
       "inst": "4S and SHOT",
