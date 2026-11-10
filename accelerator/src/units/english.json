@@ -419,7 +419,7 @@
   "decide": "The operative question differs by program, because a literary interpretation, a poem, a set of instructions for a user, and a dissertation chapter certify different judgments, so the department's decisions will differ by program and by assignment. For each outcome the Lab records the decision and its reason, counting refusal with a reason as a decision."
  },
  "policy_intro": "CWSP read the unit-level record in English and writing programs at NC State's twelve official peers, then the statements of the field's societies: MLA, CCCC, AWP for creative writing, the IEEE Professional Communication Society for technical communication, and AWAC for writing across the curriculum. For each document, the entry gives its scope and CWSP's reading of where its language breaks down, offered for the working group to correct. For the AI Learning Pathway, CWSP added three certificates in AI and writing at other universities, two graduate and one undergraduate, read for their structure and for where ethics enters the requirements.",
- "policy_finding": "Peer English departments have written statements of position and left rules to instructors. Rutgers English argues for critical AI literacy and leaves the decision to each instructor, the Georgia writing program declines a single policy, and Georgia Tech's writing program requires every instructor to hold one, chosen from four options. Across the same years the field moved from guidance to rights: the MLA-CCCC task force recommended policy set in tiers (institution, program, class) in 2024, and in March 2026 CCCC affirmed a right of students and teachers to refuse generative AI in the writing classroom. A program writing policy at NC State would decide at the level the 2024 guidance asks for while protecting the refusal the 2026 resolution affirms. Because each of the department's programs also answers to a different society, the MFA, the Technical Communication MS, and the literature and rhetoric programs face different disciplinary statements.",
+ "policy_finding": "Peer English departments have written statements of position and left rules to instructors. Rutgers English argues for critical AI literacy and leaves the decision to each instructor. Texas A&M English offers instructors two syllabus paragraphs, documented use or prohibition, under a preamble standing against AI as a replacement for writing, the Georgia writing program declines a single policy, and Georgia Tech's writing program requires every instructor to hold one, chosen from four options. Across the same years the field moved from guidance to rights: the MLA-CCCC task force recommended policy set in tiers (institution, program, class) in 2024, and in March 2026 CCCC affirmed a right of students and teachers to refuse generative AI in the writing classroom. A program writing policy at NC State would decide at the level the 2024 guidance asks for while protecting the refusal the 2026 resolution affirms. Because each of the department's programs also answers to a different society, the MFA, the Technical Communication MS, and the literature and rhetoric programs face different disciplinary statements.",
  "policies": [
   {
    "inst": "Rutgers University–New Brunswick",
@@ -468,13 +468,13 @@
   {
    "inst": "Texas A&M University",
    "unit": "Department of English",
-   "doc": "Statement on Generative AI and Writing",
-   "date": "2024 (announced May 30, 2024)",
-   "url": "https://cte.tamu.edu/blog/genertive-ai-blog/authoring-the-statement-on-generative-ai-and-writing",
+   "doc": "Department of English Statement on Generative AI and Writing",
+   "date": "undated, announced May 2024 and drafted while Google's tool was still called Bard",
+   "url": "https://docs.google.com/document/d/1gMhYM1ArKmRi7FpX4XXgi6hoNlxu-pZKInApYajOP5M/edit",
    "peer": "NC State peer, land-grant",
-   "governs": "Confirm from the statement text",
-   "says": "The authors (Jason Crider and Andrew Pilsch) describe a department statement meant to demystify generative AI and explore it within the teaching of writing. The department has since announced an AI writing lab funded by an alumna's gift. The statement itself was not retrieved in this run.",
-   "glitch": "Reading pending. Retrieve the statement and correct this entry before the session."
+   "governs": "Syllabus statements for English courses, offered to instructors as options",
+   "says": "Written by Andrew Pilsch and Jason Crider. Offers instructors a shared preamble and two policy paragraphs to choose between. The preamble stands against generative AI \"as a replacement for the act of writing.\" The first option permits use with a one- to two-page GenAI Statement naming the tool, the prompts, how generated material entered the writing, and how use shaped the student's thinking, and it treats undocumented use as plagiarism. The second option treats any use as plagiarism. A closing section explains how the tools work and lists the concerns behind the statement: fluent text without sound reasoning, failed detection, opaque companies, training on writing taken without consent, and environmental cost.",
+   "glitch": "The department's public account of the statement describes moving past moral panic and prohibition, while one of the two paragraphs it offers instructors is a prohibition enforced through the plagiarism policy. Both options route AI through academic integrity, so an undocumented use and a factual error in generated text fall under the sanction for copying."
   },
   {
    "inst": "Purdue, Illinois Urbana-Champaign, Maryland, UC Davis, Virginia Tech, Michigan State, Minnesota",
@@ -524,11 +524,11 @@
    "inst": "AWP",
    "unit": "Association of Writers and Writing Programs",
    "doc": "Recommendations Regarding Generative Artificial Intelligence",
-   "date": "2025",
+   "date": "published late summer 2025",
    "url": "https://writerschronicle.awpwriter.org/TWC/2025-october/01-The-Big-Conversation.aspx",
    "peer": "Disciplinary society (Creative Writing MFA)",
-   "governs": "Teaching guidance for creative writing programs",
-   "says": "AWP issued recommendations with resources and guidelines for teachers in 2025, followed by panels on AI pedagogy and publishing. The document sits behind member access and was not read in this run.",
+   "governs": "Guidance for creative writing teachers and programs",
+   "says": "AWP published recommendations with resources and guidelines for teachers in late summer 2025, after a member survey on AI, and followed them with a member-only webinar in September 2025 (Matthew Kirschenbaum and Lillian-Yvonne Bertram) and panels on AI pedagogy and publishing. AWP's board chair describes AI as creating classroom problems largely by appropriating writers' work. The recommendations sit behind member login, and CWSP has not read their text.",
    "glitch": "Because AWP keeps its guidance for MFA programs behind member access, an MFA program citing it gives students a reason they have no way to read."
   },
   {

@@ -118,7 +118,7 @@
   "decide": "The operative question is which acts are the judgment the degree certifies. CWSP's baseline reading places the judgment in BA outcome 1 and in graduate outcomes 1, 2, 3, and 5, none of which names where a student performs it. For each outcome the Lab records the decision and its reason, counting refusal with a reason as a decision."
  },
  "policy_intro": "CWSP read the unit-level record in psychology departments at NC State's twelve official peers, then the American Psychological Association and its divisions, the National Association of School Psychologists, and the nearest department policies outside the peer set. For each document, the entry gives its scope and CWSP's reading of where its language breaks down, offered for the working group to correct.",
- "policy_finding": "Of the three Accelerator units, psychology has the most developed disciplinary rule, and it is a rule for authors. The APA permits authors in its journals to use AI with disclosure in the methods section, requires them to verify what a tool supplies, and bars editors and reviewers from entering manuscripts into a model. Peer departments have carried the publication rule over to students, and none has written a rule for learning. Maryland and Georgia both send graduate students to the APA policy, both require disclosure, and both leave the decision to advisers, chairs, and instructors, with one fixed point at Maryland, where first drafts of theses and dissertations are written without AI. Outside the peer set, Buffalo forbids AI for text, outlines, presentation scripts, and statistical analysis in graduate milestones. Since the undergraduate program has the least guidance anywhere in the record, NC State Psychology would decide whether the BA follows the author's rule of disclosure or a learner's rule about which acts a student performs unaided.",
+ "policy_finding": "Of the three Accelerator units, psychology has the most developed disciplinary rule, and it is a rule for authors. The APA permits authors in its journals to use AI with disclosure in the methods section, requires them to verify what a tool supplies, and bars editors and reviewers from entering manuscripts into a model. Peer departments have carried the publication rule over to students, and none has written a rule for learning. Maryland and Georgia both send graduate students to the APA policy, both require disclosure, and both leave the decision to advisers, chairs, and instructors, with one fixed point at Maryland, where first drafts of theses and dissertations are written without AI. Michigan State sets more fixed points, barring AI from theses, dissertations, comprehensive exams, and text a student presents as their own in manuscripts and grant proposals. Outside the peer set, Buffalo forbids AI for text, outlines, presentation scripts, and statistical analysis in graduate milestones. Since the undergraduate program has the least guidance anywhere in the record, NC State Psychology would decide whether the BA follows the author's rule of disclosure or a learner's rule about which acts a student performs unaided.",
  "policies": [
   {
    "inst": "University of Maryland",
@@ -143,14 +143,25 @@
    "glitch": "Because the department compiled other offices' rules, a psychology program's reasons appear only in the quoted APA publishing rules, and an undergraduate meets a default prohibition with no disciplinary reason attached."
   },
   {
-   "inst": "Purdue, Illinois Urbana-Champaign, Minnesota, UC Davis, Virginia Tech, Texas A&M, Arizona, Rutgers, Georgia Tech, Michigan State",
+   "inst": "Michigan State University",
+   "unit": "Department of Psychology, graduate program",
+   "doc": "Graduate Student Handbook 2025–2026, section 3.11, Academic Integrity",
+   "date": "August 2025",
+   "url": "https://psychology.msu.edu/_assets/pdfs/gradstudents-phdforms/PSY-Grad-Student-Handbook-2025-2026-Aug.pdf",
+   "peer": "NC State peer, land-grant",
+   "governs": "Graduate coursework, research, comprehensive exams, theses, and dissertations",
+   "says": "Explains generative AI as text produced from patterns in large training data, sends students to each syllabus or instructor for coursework, and requires disclosure of any use in the research process. Treats AI use in writing a thesis or dissertation, in answering comprehensive exam questions, and in producing text for manuscripts, grant proposals, or research assistant work presented as one's own as violations of academic integrity. Warns students about data submitted to AI platforms and about inaccuracies affecting their professional credibility.",
+   "glitch": "The handbook places its AI rules under academic integrity and leaves its sections on authorship and the responsible conduct of research silent, so students meet AI as a matter of misconduct and receive no guidance where the program teaches research ethics."
+  },
+  {
+   "inst": "Purdue, Illinois Urbana-Champaign, Minnesota, UC Davis, Virginia Tech, Texas A&M, Arizona, Rutgers, Georgia Tech",
    "unit": "Psychology departments",
    "doc": "No unit-level AI policy found",
    "date": "Checked November 10, 2026",
    "url": "https://psychology.msu.edu/_assets/pdfs/gradstudents-phdforms/PSY-Grad-Student-Handbook-2025-2026-Aug.pdf",
    "peer": "NC State peers",
    "governs": "",
-   "says": "Silent at the unit level in the documents checked. Michigan State's 2025 to 2026 graduate handbook carries no AI language in the portion read (through the doctoral requirements), and its academic integrity and research conduct sections were not checked. Each campus leaves AI to instructors and to graduate school guidance.",
+   "says": "Silent at the unit level in the documents checked. Each campus leaves AI to instructors and to graduate school guidance.",
    "glitch": "A discipline with a detailed author's rule leaves most of its peer departments without a student's rule, so the publication policy is the only psychology-specific text most students at these campuses meet."
   },
   {
@@ -210,17 +221,17 @@
   },
   {
    "inst": "National Association of School Psychologists",
-   "unit": "NASP AI Task Force",
-   "doc": "Use of AI in the Training of School Psychologists (technical assistance brief) and task force recommendations",
-   "date": "Undated in the sources found",
-   "url": "https://www.unlv.edu/news/accomplishments/s-kathleen-krach-0",
+   "unit": "Graduate Education Committee",
+   "doc": "Use of AI in the Training of School Psychologists (technical assistance brief)",
+   "date": "listed on NASP's site, November 2026, undated in public listings",
+   "url": "https://www.nasponline.org/resources-and-publications/graduate-educators/technical-assistance-briefs",
    "peer": "Disciplinary society (school psychology concentration)",
-   "governs": "Training programs and practitioners",
-   "says": "NASP has a technical assistance brief on AI in school psychology training and task force recommendations for research and practice. Neither document was read in this run. A 2026 special issue of School Psychology describes guidance in the field as limited and scattered.",
-   "glitch": "Reading pending. Retrieve the brief before the session, since the school psychology concentration answers to NASP standards as well as the APA's."
+   "governs": "School psychology graduate training programs",
+   "says": "Written by S. Kathleen Krach, Shengtian Wu, Dan Florell, and Sara Whitcomb. NASP describes the brief as addressing the trainer's role in preparing students to integrate established and emerging technologies, AI among them, and it also publishes a stoplight model for screening AI use in practice for ethical risk. Both sit behind member login, and CWSP has not read their text. A 2025 survey of 96 school psychology faculty (Dillon and colleagues, an OSF preprint) found AI policies in 23 percent of programs, and few program policies addressed monitoring AI's effects, transparency, or equitable access.",
+   "glitch": "NASP keeps its guidance for training programs behind member login, so a program citing it gives students a rule they have no way to read. With most programs lacking a policy, trainees apply NASP's general ethics standards, confidentiality of student records among them, to AI on their own."
   }
  ],
- "plain_finding": "Psychology's clearest rule comes from the APA and covers authors of journal articles: AI use is allowed if the author discloses it and checks everything the tool supplies. Two peer departments (Maryland and Georgia) apply the rule to graduate students, and no peer department has written guidance for undergraduates.",
+ "plain_finding": "Psychology's clearest rule comes from the APA and covers authors of journal articles: AI use is allowed if the author discloses it and checks everything the tool supplies. Three peer departments (Maryland, Georgia, and Michigan State) apply the rule to graduate students, and no peer department has written guidance for undergraduates.",
  "policy_minutes": 30,
  "group": "undergraduate committee",
  "default_program": "Psychology BA",
