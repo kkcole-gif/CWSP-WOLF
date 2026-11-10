@@ -46,7 +46,8 @@ var C2TC = {
   META_KEYS: ['shared_draft', 'module', 'timestamp', 'certificate_name', 'certificate_email', 'program', 'stage', 'wscp_table', 'rubric_writing', 'rubric_oral', 'nominations',
               'participant_name', 'participant_email', 'cert-name', 'cert-email',
               'cert-department', 'cert-role', 'type', 'submission_type',
-              'workbook_title', 'field_labels', 'field_sections']
+              'workbook_title', 'field_labels', 'field_sections',
+              'return_url', 'unit', 'page', 'worksheet_rows']
 };
 
 function C2TC_route(payload, docId) {
@@ -103,12 +104,14 @@ function C2TC_component_(module) {
                   : /^(wc|written)-/.test(m) ? 'Written Certificate'
                   : /^wolf/.test(m) ? 'WOLF'
                   : /^ai-literacies/.test(m) ? 'AI Literacies'
+                  : /^accelerator-/.test(m) ? 'CHASS Accelerator'
                   : 'Other';
   var n = (m.match(/(\d+)$/) || [])[1] || '';
   var component = /capstone/.test(m) ? 'Capstone'
                 : /elective/.test(m) ? 'Elective ' + n
                 : /module/.test(m) ? 'Module ' + n
                 : /^wolf-stage/.test(m) ? 'Stage ' + n
+                : /^accelerator-/.test(m) ? m.replace(/^accelerator-/, '').replace(/^sts$/, 'STS').replace(/^\w/, function (c) { return c.toUpperCase(); })
                 : module;
   return { certificate: certificate, component: component };
 }
@@ -678,7 +681,10 @@ function C2TC_loadDraft(key) {
 function C2TC_sendResumeLink_(who, where, p, page, key, when, completed, total) {
   /* WOLF and AI Literacies workbooks sit at the site root; C²TC pages sit under C2TC.SITE. */
   var root = /^(wolf-workbook|CWSP_AI_Literacies_Workbook)\.html$/i.test(page);
-  var link = (root ? 'https://cwspwolf.com/' : C2TC.SITE) + page + '?resume=' + key;
+  /* CHASS Accelerator workbooks sit in accelerator/ and send the page's own address as return_url. */
+  var back = String(p.return_url || '');
+  var link = /^https:\/\/cwspwolf\.com\/accelerator\/[a-z-]+\.html$/.test(back) ? back + '?resume=' + key
+           : (root ? 'https://cwspwolf.com/' : C2TC.SITE) + page + '?resume=' + key;
   var what = where.certificate + ', ' + (p.workbook_title || where.component);
   var lay = C2TC_LAYOUTS[C2TC_layoutKey_(p)];
   var uses = lay && lay.student && lay.student.length

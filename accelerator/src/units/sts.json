@@ -1,0 +1,131 @@
+{
+  "slug": "sts",
+  "module": "accelerator-sts",
+  "unit": "Science, Technology and Society",
+  "short": "STS",
+  "programs": "STS BA and BS (one set of outcomes on file)",
+  "worksheet_url": "https://docs.google.com/spreadsheets/d/1TsyC8udpZjqhvwnrlHxfLeUrYjj8btqtZF3op8eXGns/edit",
+  "baseline_url": "https://docs.google.com/spreadsheets/d/1ZCB3YD8tuJKnrfoTeF4kujB2dHmppA7VxcvY3EBDdTA/edit",
+  "outcomes": [
+    {
+      "program": "STS BA and BS",
+      "text": "Students will analyze a topic in ways that makes connections across diverse disciplines.",
+      "counted": "No",
+      "codes": "Cognitive verb only (analyze). Recorded, never counted.",
+      "site": "STS 214 and the STS 403 capstone (named in the unit's proposal)"
+    },
+    {
+      "program": "STS BA and BS",
+      "text": "Students will explain and apply key STS concepts, theories, practices, and methodological approaches.",
+      "counted": "No",
+      "codes": "Cognitive verb only (explain). Recorded, never counted.",
+      "site": ""
+    }
+  ],
+  "example": {
+    "outcome": "Students will analyze a topic in ways that makes connections across diverse disciplines.",
+    "counted": "No",
+    "site": "STS 214 (proposed unit on AI's material and systemic dimensions) and the STS 403 capstone project and presentation",
+    "who": "STS 403 instructor and the capstone committee",
+    "act": "Write an analysis tracing a technology across historical, ethical, and material accounts, and present it to peers",
+    "model": "A model produces a fluent cross-disciplinary synthesis on request. The outcome as filed cannot distinguish a student's analysis from a generated one, and a generated synthesis omits what the student chose to connect and why. EAB evidence on AI competencies in STS alumni occupations enters here.",
+    "decision": "Limit",
+    "reason": "The analysis is the judgment the degree certifies. Students are permitted to use a model to locate sources and to test their own synthesis against a generated one. They write the analysis themselves and state what the tool supplied, what it left out, and why they kept or rejected it.",
+    "revised": "Students will write and present an analysis of a technology connecting historical, ethical, and material accounts across disciplines, and will state the reasons for their decisions about any AI use in producing it."
+  },
+  "literacy": {
+    "describe": "In STS the system under description is also the object of study. A large language model predicts likely text from a corpus assembled by particular firms, trained with particular labor, and run on particular infrastructure. Describing it in the unit's own terms means naming the acts the outcomes ask of students (tracing a technology across accounts, explaining a concept, applying a method) and saying which of those acts a model performs on the surface.",
+    "analyze": "The structural question is the field's home ground: whose data, labor, energy, and interests the tool carries into a student's analysis, and what a generated synthesis leaves out of an account of a sociotechnical system. The proposed STS 214 unit on AI's material and systemic dimensions places this analysis in the curriculum as content. The Accelerator asks the unit to apply the same analysis to its own assignments.",
+    "decide": "The operative question is which acts are the judgment the STS degree certifies, and what the program says about a tool supplying the surface of those acts. Refusal with a reason is a decision. A decision without a reason is unfinished."
+  },
+  "policy_intro": "The run read the unit-level record at NC State's twelve official peers and the land-grant set used for FER, then the disciplinary societies, then the nearest STS-type departments outside both sets. Each entry gives what the document governs and CWSP's reading of where its language breaks down. The readings are offered for the group to correct.",
+  "policy_finding": "The peer record is silent at the unit level. The two STS units among NC State's peers, Virginia Tech and UC Davis, have issued no AI policy and defer to campus guidance. Neither 4S nor SHOT has issued a position, though both now host panels on generative AI in teaching and research. The nearest unit-level texts come from outside the peer set, and they take four different genres: a set of default rules (Stony Brook), a clause folding AI into plagiarism (Georgia Tech), a declaration of principle for the humanities and social sciences (Cambridge), and a prohibition with a dissertation affirmation (Columbia History). NC State STS would write the first STS-specific statement among its peers, and the choice of genre is open.",
+  "policies": [
+    {
+      "inst": "Stony Brook University",
+      "unit": "Department of Technology, AI and Society",
+      "doc": "Policy for Using Generative AI and Large Language Models",
+      "date": "Undated (states it is updated regularly)",
+      "url": "https://www.stonybrook.edu/dtas/about/code_conduct.html",
+      "peer": "Outside the peer and land-grant sets",
+      "governs": "Coursework and original work",
+      "says": "Seven default rules for courses and department work: attribution with software, version, and prompts, no wholesale substitution, limited use in serious academic work, students able to explain their work in person, and the policy on every syllabus.",
+      "glitch": "A document stating it is updated regularly carries no date, so a reader cannot tell which edition governs a given term. The phrase limiting use in serious academic work leaves the line between serious and other work to the reader."
+    },
+    {
+      "inst": "Georgia Institute of Technology",
+      "unit": "School of History and Sociology (MS and PhD, History and Sociology of Technology and Science)",
+      "doc": "Graduate Program Handbook",
+      "date": "September 2025",
+      "url": "https://hsoc.gatech.edu/sites/default/files/attachments/HSOC%20Graduate%20Handbook%202025.pdf",
+      "peer": "NC State peer",
+      "governs": "Plagiarism definition",
+      "says": "One clause, under the written comprehensive exam: plagiarism includes inappropriate use of AI technologies.",
+      "glitch": "Inappropriate is left undefined, and the clause sits under one examination, so the handbook is silent on AI in coursework, the thesis, and the dissertation."
+    },
+    {
+      "inst": "Virginia Tech",
+      "unit": "Department of Science, Technology, and Society",
+      "doc": "No unit-level AI policy found",
+      "date": "Checked November 10, 2026",
+      "url": "https://liberalarts.vt.edu/sts.html",
+      "peer": "NC State peer, land-grant",
+      "governs": "",
+      "says": "Silent at the unit level. University guidance (TLOS, Responsible and Ethical AI Principles) applies.",
+      "glitch": "A department whose subject is the governance of technology governs its own students' use of one through principles written for the whole university."
+    },
+    {
+      "inst": "University of California, Davis",
+      "unit": "Science and Technology Studies Program",
+      "doc": "No unit-level AI policy found",
+      "date": "Checked November 10, 2026",
+      "url": "https://iet.ucdavis.edu/node/9021",
+      "peer": "NC State peer, land-grant",
+      "governs": "",
+      "says": "Silent at the unit level. The campus Code of Academic Conduct treats AI use without instructor permission as misconduct, and the campus does not require syllabus AI statements.",
+      "glitch": "Misconduct turns on instructor permission, and no document is required to state it, so a student's standing depends on a statement the course is not obliged to write."
+    },
+    {
+      "inst": "University of Cambridge",
+      "unit": "School of the Humanities and Social Sciences",
+      "doc": "Manifesto and Principles for Generative AI in Scholarship",
+      "date": "Undated",
+      "url": "https://www.cshss.cam.ac.uk/node/1612",
+      "peer": "Disciplinary framework",
+      "governs": "Permitted and prohibited uses, disclosure",
+      "says": "Asks if, rather than how, generative AI contributes to scholarship. Includes a student declaration template and a sample rubric.",
+      "glitch": "The framework moves the question from procedure to warrant, which is the move this workbook asks of each row. Its declaration template records use without recording the reasons for it."
+    },
+    {
+      "inst": "Columbia University",
+      "unit": "Department of History",
+      "doc": "A.I. Policy",
+      "date": "November 19, 2025",
+      "url": "https://history.columbia.edu/a-i-policy/",
+      "peer": "Adjacent discipline",
+      "governs": "Coursework, thesis, dissertation",
+      "says": "Students should not use generative AI to create submitted text, including theses. Dissertations carry an affirmation of no AI-created text. Research uses are discussed with advisers and cited.",
+      "glitch": "The rule is written against a product (AI-created text) rather than a function, and the line between created text and assisted research is drawn in conversation with an adviser rather than in the policy."
+    },
+    {
+      "inst": "4S and SHOT",
+      "unit": "Disciplinary societies",
+      "doc": "No society statement on generative AI found",
+      "date": "Checked November 10, 2026",
+      "url": "https://www.historyoftechnology.org/annual-meeting/2026-shot-annual-meeting/",
+      "peer": "Disciplinary societies",
+      "governs": "",
+      "says": "Neither society has issued a position. 4S 2026 hosts an open panel on generative AI including refusal. SHOT held a 2025 roundtable on AI in teaching the history of technology, and its 2026 meeting invites workshops on the subject.",
+      "glitch": "The field discusses the question at its meetings and leaves the decision to departments, which places the first disciplinary statement with a unit such as NC State STS."
+    }
+  ],
+  "program_rows": [
+    {
+      "program": "STS BA and BS",
+      "on_file": 2,
+      "learning": 2,
+      "counted": 0,
+      "reading": "Silent in the record. Two outcomes on file, both cognitive (analyze a topic across disciplines, explain and apply STS concepts), and neither names the writing or presentation in which a student shows the analysis. The program sits one sentence from documenting what it teaches. The proposal's first intended outcome, revised program outcomes naming critical AI analysis, is the sentence the record is missing."
+    }
+  ]
+}

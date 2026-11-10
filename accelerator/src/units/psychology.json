@@ -1,0 +1,223 @@
+{
+  "slug": "psychology",
+  "module": "accelerator-psychology",
+  "unit": "Psychology",
+  "short": "Psychology",
+  "programs": "Psychology BA, MS, and PhD. The MS and PhD file the same six outcomes, so the graduate rows appear once, and the PhD concentrations (among them school psychology) file no separate outcomes",
+  "worksheet_url": "https://docs.google.com/spreadsheets/d/1Pg-LFe7_ydfoRrQjJ8NpR-7y2BIrcjXGHLkOMIY5Om8/edit",
+  "baseline_url": "https://docs.google.com/spreadsheets/d/1soOTYe-L4vtKV3_DM4XithCTh3n4WsBC-JAB8Pabo5c/edit",
+  "program_rows": [
+    {
+      "program": "Psychology BA",
+      "on_file": 5,
+      "learning": 5,
+      "counted": 1,
+      "reading": "Documented on one of five outcomes. Outcome 2 names the act (explaining and describing scientific results to an audience in professional style) and is the only outcome naming a piece of writing or a presentation in which a student shows it. Outcome 1 holds the judgment the degree certifies (critical and creative thinking, skeptical inquiry, the scientific approach) without naming where a student performs it, so the outcome a model most affects and the outcome the record documents are different outcomes. Outcomes 3 through 5 name knowledge, professional readiness, and ethical standards."
+    },
+    {
+      "program": "Psychology MS and PhD",
+      "on_file": "6 each",
+      "learning": "6 each",
+      "counted": "1 each",
+      "reading": "Documented on one of six outcomes. The MS and PhD file the same six statements. Outcome 6 names professional communication in the genre with its style guidelines, which in psychology means APA style and the empirical report. Outcomes 1 through 5 name research acts (propose questions, review the literature, plan collection and analysis, apply a critical perspective to one's own and others' research) without a communicative code, and these are the acts a current model performs most readily, the literature review above all. Outcome 2 is where the Lab's question is sharpest for this program. Documented on one of six outcomes for the PhD, on the same record. For the doctorate the question of which outcomes carry the degree's judgment turns on outcomes 1, 3, and 5, since the dissertation is the site where a student proposes, plans, and critiques, and the record names none of those sites."
+    }
+  ],
+  "outcomes": [
+    {
+      "program": "Psychology BA",
+      "text": "2. Demonstrate effective communication skills by applying professional style in explaining and describing scientific results to an audience.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: communicate, audience. Tier 5, cognitive verb: explain, describe.",
+      "site": ""
+    },
+    {
+      "program": "Psychology BA",
+      "text": "1. Use critical and creative thinking, skeptical inquiry, and, when possible, the scientific approach to solve problems related to behavior and mental processes.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Psychology BA",
+      "text": "3. Demonstrate familiarity with concepts, theoretical perspectives, empirical findings, and historical trends in psychology.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Psychology BA",
+      "text": "4. Display professional skills indicating readiness for post-baccalaureate employment, graduate school, or professional school.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Psychology BA",
+      "text": "5. Demonstrate adherence to professional values and applying ethical standards that will help to work effectively with members of diverse groups.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Psychology MS and PhD",
+      "text": "6. Demonstrate mastery of professional communication in this genre and apply that to research, along with appropriate style guidelines.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Psychology MS and PhD",
+      "text": "1. Demonstrate ability to propose research questions that are pertinent to the field of study and provide a focus for making a significant contribution to the field.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Psychology MS and PhD",
+      "text": "2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a critical perspective toward the literature.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Psychology MS and PhD",
+      "text": "3. Provide sound plans for collecting, analyzing, and interpreting data in a way that adds to the understanding of the field of study.",
+      "counted": "No",
+      "codes": "Codes: Tier 5, cognitive verb: analyze, interpret.",
+      "site": ""
+    },
+    {
+      "program": "Psychology MS and PhD",
+      "text": "4. Demonstrate an understanding of research and statistical methodology appropriate to inquiry in the field of study.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Psychology MS and PhD",
+      "text": "5. Apply a critical perspective to their own research and to that of others, noting strengths and weaknesses of the research.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    }
+  ],
+  "example": {
+    "outcome": "2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a critical perspective toward the literature.",
+    "counted": "No",
+    "site": "Thesis or dissertation proposal: the literature review chapter",
+    "who": "Thesis or dissertation committee",
+    "act": "Write a literature review in APA style synthesizing prior research, identifying its limits, and positioning the student's research question",
+    "model": "A model produces a fluent literature review on request, including citations to studies which do not exist, and the outcome as filed names no act a committee reads for the student's own judgment. What a generated review omits is the student's account of which studies matter, why, and where the field is weak.",
+    "decision": "Limit",
+    "reason": "The critical perspective on the literature is the judgment the degree certifies. Students are permitted to use a model to locate and sort studies. They read the studies they cite, write the synthesis and the critique themselves, verify every citation, and state in the proposal what the tool supplied.",
+    "revised": "Students will write a review of the literature related to their research questions which synthesizes and critiques prior studies they have read and verified, and will state the reasons for their decisions about any AI use in producing it."
+  },
+  "literacy": {
+    "describe": "Psychology studies the cognition a model imitates and runs the empirical method a model now enters at every stage. A large language model predicts likely text from a corpus. In the department's outcomes, the acts it performs on the surface are the graduate research acts (proposing a question, reviewing the literature, planning collection and analysis, critiquing a study) and, for the BA, explaining scientific results to an audience. Describing the system in the unit's terms means naming which of these acts a model performs and which it only appears to perform.",
+    "analyze": "The structural questions come from the discipline's own commitments: research ethics and participant confidentiality (what happens to data entered into a tool), the validity of a generated citation or summary, bias in systems trained on unrepresentative text, and the APA's disclosure rules for authors. For students in school psychology and other applied concentrations, the same questions reach clients and schools through the APA's 2025 ethical guidance for practice and the guidance of NASP.",
+    "decide": "The operative question is which acts are the judgment the degree certifies. The baseline reading locates it in BA outcome 1 and in graduate outcomes 1, 2, 3, and 5, none of which names where a student performs it. Refusal with a reason is a decision. A decision without a reason is unfinished."
+  },
+  "policy_intro": "The run read the unit-level record in psychology departments at NC State's twelve official peers, then the American Psychological Association and its divisions, the National Association of School Psychologists, and the nearest department policies outside the peer set. Each entry gives what the document governs and CWSP's reading of where its language breaks down. The readings are offered for the group to correct.",
+  "policy_finding": "Psychology has the most developed disciplinary rule of the three Accelerator units, and it is a rule for authors. The APA's journal policy permits AI with disclosure in the methods section, requires authors to verify what a tool supplies, and bars editors and reviewers from entering manuscripts into a model. Peer departments have extended the publication rule to students rather than writing a rule for learning. Maryland's interim graduate policy and Georgia's guidelines both send students to the APA policy, both require disclosure, and both leave the decision to advisers, chairs, and instructors, with one fixed point at Maryland: first drafts of theses and dissertations are written without AI. Outside the peer set, Buffalo forbids AI for text, outlines, presentation scripts, and statistical analysis in graduate milestones. The undergraduate program has the least guidance anywhere in the record. NC State Psychology would decide whether the BA follows the author's rule of disclosure or a learner's rule about which acts a student performs unaided.",
+  "policies": [
+    {
+      "inst": "University of Maryland",
+      "unit": "Department of Psychology",
+      "doc": "INTERIM Policy on Generative/Agentic AI Usage for Graduate Students",
+      "date": "Last updated April 29, 2026",
+      "url": "https://psyc.umd.edu/sites/psyc.umd.edu/files/UMD_Grad_AI_interim_policy2026.pdf",
+      "peer": "NC State peer, land-grant",
+      "governs": "Graduate coursework, research, TA work, comprehensive exams, theses and dissertations",
+      "says": "Seven general rules: discuss AI at the start of every project, disclose AI-generated text, code, materials, images, and analysis (tool, version, prompts, and output), protect others' privacy, check every output, write first drafts of theses and dissertations without AI, let program areas set exam rules, and follow each supervisor's added rules. Checklists for each context leave the permitted and prohibited columns for supervisors to fill. Grammar checkers are not counted as generative AI.",
+      "glitch": "The clinical students' paragraph sends them to the clinic's AI policy with the words INSERT HERE where the reference belongs, so the students working with clients, where confidentiality matters most, are pointed to a policy the document has not located. The checklists are blank by design, which makes the policy a procedure for deciding rather than a decision."
+    },
+    {
+      "inst": "University of Georgia",
+      "unit": "Department of Psychology",
+      "doc": "Guidelines on the Use of AI",
+      "date": "October 4, 2024",
+      "url": "https://psyc.franklin.uga.edu/sites/default/files/Guidelines%20on%20the%20Use%20of%20AI.pdf",
+      "peer": "NC State peer, land-grant",
+      "governs": "Coursework, theses and dissertations, instructors' course rules, publishing",
+      "says": "Assembles Graduate School, teaching center, library, and APA rules. Generative AI in a thesis or dissertation counts as unauthorized assistance unless the advisory committee approves it, within the approved scope, with a statement in the document. In coursework, no AI unless the instructor approves it before submission. Manuscripts and others' materials stay out of AI tools.",
+      "glitch": "The department's guidance is a compilation of other offices' rules, so the reasons a psychology program would give appear only where the APA's publishing rules are quoted, and the undergraduate student meets a default prohibition without a disciplinary reason."
+    },
+    {
+      "inst": "Purdue, Illinois Urbana-Champaign, Minnesota, UC Davis, Virginia Tech, Texas A&M, Arizona, Rutgers, Georgia Tech, Michigan State",
+      "unit": "Psychology departments",
+      "doc": "No unit-level AI policy found",
+      "date": "Checked November 10, 2026",
+      "url": "https://psychology.msu.edu/_assets/pdfs/gradstudents-phdforms/PSY-Grad-Student-Handbook-2025-2026-Aug.pdf",
+      "peer": "NC State peers",
+      "governs": "",
+      "says": "Silent at the unit level in the documents checked. Michigan State's 2025 to 2026 graduate handbook carries no AI language in the portion read (through the doctoral requirements), and its academic integrity and research conduct sections were not checked. Each campus leaves AI to instructors and to graduate school guidance.",
+      "glitch": "A discipline with a detailed author's rule leaves most of its peer departments without a student's rule, so the publication policy is the only psychology-specific text most students at these campuses meet."
+    },
+    {
+      "inst": "University at Buffalo",
+      "unit": "Department of Psychology",
+      "doc": "AI Use in Graduate Milestone Projects",
+      "date": "Adopted March 2026",
+      "url": "https://arts-sciences.buffalo.edu/psychology/info/faculty-staff/ai-use-milestone-projects.html",
+      "peer": "Outside the peer set",
+      "governs": "Second- and third-year projects, theses, dissertations, qualifying projects, comprehensive exams",
+      "says": "States the goal of graduate training as independent scientists creating new knowledge. Forbids generative AI for text creation, outlines, scripts for proposal and defense presentations, and statistical analysis in milestone projects. Cautions against uploading data. Lists acceptable uses with disclosure under APA guidelines and asks students to settle expectations with committees at the start.",
+      "glitch": "The ban on AI for statistical analysis sits beside a research culture in which analysis code is increasingly written with assistants, and the policy does not say where generating analysis code ends and performing the analysis begins."
+    },
+    {
+      "inst": "Stony Brook University",
+      "unit": "Department of Psychology",
+      "doc": "Psychology Department Generative AI Policy",
+      "date": "July 2, 2025",
+      "url": "https://www.stonybrook.edu/psychology/department-ai-policy.html",
+      "peer": "Outside the peer set",
+      "governs": "Exams, academic milestones, course assignments, publication",
+      "says": "AI is barred from exams, milestones, and assignments unless an instructor permits it. Readability edits are allowed with acknowledgment. Students are told to develop their own ear for professional writing and warned against brainstorming with AI. Gives attribution templates, including a statement of no AI use, and quotes the APA and Elsevier publishing rules.",
+      "glitch": "The policy permits AI to improve readability while noting such edits lose information, and asks students to build their own ear for writing in the same list, so the one permitted use is the one the rationale doubts."
+    },
+    {
+      "inst": "American Psychological Association",
+      "unit": "APA Journals",
+      "doc": "APA Journals Policy on Generative AI: Additional Guidance",
+      "date": "Current page, checked November 10, 2026",
+      "url": "https://www.apa.org/pubs/journals/resources/publishing-tips/policy-generative-ai",
+      "peer": "Disciplinary society",
+      "governs": "Authors, editors, and reviewers of APA journals",
+      "says": "Authors are permitted to use AI with disclosure and are responsible for verifying its output against original sources. Attribution is required when a tool generates ideas, content, analysis, code, or research elements. Confidential material, such as identifiable data or client notes, stays out of open tools. Editors and reviewers are barred from entering submitted manuscripts into AI. Authors are advised to keep prompts and output for their records.",
+      "glitch": "The policy governs publication, and the departments in this run carry it into coursework, where a student is not an author submitting a finished study but a learner whose acts the course is meant to train."
+    },
+    {
+      "inst": "American Psychological Association",
+      "unit": "Mental Health Technology Advisory Committee",
+      "doc": "Ethical Guidance for AI in the Professional Practice of Health Service Psychology",
+      "date": "June 2025",
+      "url": "https://www.apa.org/topics/artificial-intelligence-machine-learning/ethical-guidance-ai-professional-practice",
+      "peer": "Disciplinary society (applied and practice concentrations)",
+      "governs": "Practicing health service psychologists",
+      "says": "Asks practitioners to obtain informed consent and explain AI use to clients, guard against bias, protect privacy and data, critically evaluate AI output, keep human judgment over clinical decisions, and consider liability. Supervisors in training contexts are asked to teach ethical and critical use.",
+      "glitch": "Written for licensed practice, the guidance assigns training to supervisors without saying what a graduate program teaches before supervision begins."
+    },
+    {
+      "inst": "Society for the Teaching of Psychology (APA Division 2)",
+      "unit": "STP e-books",
+      "doc": "Integrating Generative AI in Psychology Courses (edited volume)",
+      "date": "2026",
+      "url": "https://teachpsych.org/ebooks/genai",
+      "peer": "Disciplinary society",
+      "governs": "Teaching guidance, course by course",
+      "says": "Organizes guidance by course (foundational, clinical and counseling, research methods and statistics) on the premise of psychology instructors being suited to help students engage AI ethically and developmentally. A 2025 article in Teaching of Psychology proposes a disclosure statement naming the model, the input, and how the student evaluated the output.",
+      "glitch": "Guidance arranged by course reaches each instructor and leaves the program level, where the BA's outcomes sit, without a statement."
+    },
+    {
+      "inst": "National Association of School Psychologists",
+      "unit": "NASP AI Task Force",
+      "doc": "Use of AI in the Training of School Psychologists (technical assistance brief) and task force recommendations",
+      "date": "Undated in the sources found",
+      "url": "https://www.unlv.edu/news/accomplishments/s-kathleen-krach-0",
+      "peer": "Disciplinary society (school psychology concentration)",
+      "governs": "Training programs and practitioners",
+      "says": "NASP has a technical assistance brief on AI in school psychology training and task force recommendations for research and practice. Neither document was read in this run. A 2026 special issue of School Psychology describes guidance in the field as limited and scattered.",
+      "glitch": "Reading pending. Retrieve the brief before the session, since the school psychology concentration answers to NASP standards as well as the APA's."
+    }
+  ]
+}

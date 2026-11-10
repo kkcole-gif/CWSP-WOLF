@@ -1,0 +1,518 @@
+{
+  "slug": "english",
+  "module": "accelerator-english",
+  "unit": "English",
+  "short": "English",
+  "programs": "English BA, English MA, Creative Writing MFA, and Technical Communication MS, administered by the department, with the CRDM PhD and the Digital Humanities graduate certificate, in which English faculty teach. The BA's concentrations file one set of outcomes. Service courses (ENG 101, the ENG 33x sequence) have no program-level record, so their rows come from course outcomes",
+  "worksheet_url": "https://docs.google.com/spreadsheets/d/1-npUJrL4BN72ovVEIyr3IfLIn-PoPh6kcdspkzQjSVs/edit",
+  "baseline_url": "https://docs.google.com/spreadsheets/d/1z9q_tteKa24pVQYin_WSLekbonhiZop3Gd-kDsnixd8/edit",
+  "program_rows": [
+    {
+      "program": "English BA",
+      "on_file": 5,
+      "learning": 5,
+      "counted": 4,
+      "reading": "Documented on four of five outcomes, with the widest multimodal vocabulary among the undergraduate records in the set (language-based, visual, verbal, multimedia, and digital texts and works, audiences and purposes, rhetorical situation, form). Outcome 4, projects drawing on a range of cultural texts, names the product and its sources without the act. The record names what students make and interpret; where the degree's judgment sits inside those acts differs by concentration, which is where the mapping session begins."
+    },
+    {
+      "program": "English MA",
+      "on_file": 18,
+      "learning": 11,
+      "counted": 3,
+      "reading": "Documented on three outcomes (present, write, edit). Seven of eighteen statements are departmental commitments about funding, recruiting, mentoring, and time to degree, which the codebook sets aside. One outcome names documentation as a genre without the act."
+    },
+    {
+      "program": "Creative Writing MFA",
+      "on_file": 8,
+      "learning": 3,
+      "counted": 0,
+      "reading": "Silent in the record. Three learning outcomes name the thesis as a product (novel, collection), critical reading of fiction and poetry, and knowledge of the profession, and none names the act of writing as such. Five statements are faculty expectations."
+    },
+    {
+      "program": "Technical Communication MS",
+      "on_file": 13,
+      "learning": 10,
+      "counted": 10,
+      "reading": "Documented on ten of ten learning outcomes, several through the parent objective on professional development in technical communication. The program names genres and media (visual, verbal, multimedia, interactive), rhetorical situations and audiences, and, in outcome 2, what writing technologies do to the understanding of text, which is the AI question in the vocabulary the program already uses. Three statements are program commitments about recruiting and faculty."
+    },
+    {
+      "program": "CRDM PhD",
+      "on_file": 15,
+      "learning": 10,
+      "counted": 6,
+      "reading": "Documented on six of ten learning outcomes, carried by the parent objective on professional success and by publication and presentation venues. Outcome 1d names ethical practices, including labor, as part of professional expectations. Five statements are program commitments (recruiting, placement, mentoring, progress to degree) and are not learning outcomes. CRDM is co-housed by English and Communication."
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "on_file": 13,
+      "learning": 7,
+      "counted": 7,
+      "reading": "Documented on all seven learning outcomes, with the widest multimodal vocabulary in the graduate set (visual, multimodal, digital, media, design, scholarly communication in print and online). The remaining six statements are certificate satisfaction items. Included because English faculty teach in it and because, as an existing CHASS certificate with filed outcomes, it is the nearest template for the AI Learning Pathway certificate."
+    }
+  ],
+  "outcomes": [
+    {
+      "program": "English BA",
+      "text": "1. Interpret a variety of language-based, visual, and digital texts for different audiences and purposes by applying appropriate critical frameworks.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: audience. Tier 3, visual and multimodal: visual, digital. Tier 5, cognitive verb: interpret.",
+      "site": ""
+    },
+    {
+      "program": "English BA",
+      "text": "2. Create projects that effectively use visual, verbal, and/or multimedia content in ways that are appropriate to their concentration.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: verbal. Tier 3, visual and multimodal: visual, media.",
+      "site": ""
+    },
+    {
+      "program": "English BA",
+      "text": "3. Conduct research that draws on their understanding of literature, language, film and/or digital media and relies on associated interpretive frameworks and topics, including but not limited to the historical, biographical or autobiographical, rhetorical, cultural, philosophical, linguistic, or sociopolitical.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: rhetoric. Tier 3, visual and multimodal: media, digital. Tier 5, cognitive verb: interpret.",
+      "site": ""
+    },
+    {
+      "program": "English BA",
+      "text": "5. Create language-based, visual & multimedia works that demonstrate an understanding of form, including structure, diction/voice, syntax, rhetorical situation, point of view, and/or other pertinent genre elements as appropriate, students may deviate from conventional form to achieve a situationally-appropriate effect.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: rhetoric. Tier 3, visual and multimodal: visual, media.",
+      "site": ""
+    },
+    {
+      "program": "English BA",
+      "text": "4. Create projects that draw upon a range of cultural texts and viewpoints, as evidenced in the choice of topic, cited material, etc.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "2. Present their work effectively to pertinent professional or public audiences.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: presentation, audience.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "4. Think and write critically and creatively.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: write.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "6. Become skillful and independent editors of (others' and their own) writing.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: write.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "1. Develop knowledge of disciplinary content, theory, and method.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "10. Become flexible and versatile thinkers.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "11. Develop effective close-reading skills.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "3. Read and research skillfully.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "5. Understand and appreciate the history and development of their field of interest.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "7. Gain facility with diverse theories and methods appropriate to their fields.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "8. Increase their knowledge of disciplinary content and organizational principles, such as canons, periods, and genres of literature.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "English MA",
+      "text": "9. Learn how to find, apply, and document information appropriately.",
+      "counted": "No",
+      "codes": "Codes: Tier 2, genre: document.",
+      "site": ""
+    },
+    {
+      "program": "Creative Writing MFA",
+      "text": "1. Create a work of original accomplishment in their thesis (i.e., a novel, a collection of short stories, or a collection of poetry) that will attract editors and agents, resulting in publication.",
+      "counted": "No",
+      "codes": "Codes: Tier 2, genre: thesis, publish.",
+      "site": ""
+    },
+    {
+      "program": "Creative Writing MFA",
+      "text": "2. Critically read and analyze published works of fiction and poetry and their own peers' work in progress.",
+      "counted": "No",
+      "codes": "Codes: Tier 2, genre: publish. Tier 5, cognitive verb: analyze.",
+      "site": ""
+    },
+    {
+      "program": "Creative Writing MFA",
+      "text": "3. Demonstrate a knowledge of their respective profession (poetry or fiction) in traditional terms as well as the contemporary scene.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "1. Demonstrate a conceptual inventory, a theoretical framework for a variety of genres and media, including visual, verbal, multimedia, and interactive modes.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: verbal. Tier 3, visual and multimodal: visual, media. parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "12. Interact with professional organizations, corporations, non-profit organizations, and governmental agencies to assess their communication needs, to provide opportunities for cooperative and internship experiences, and to enhance employment prospects for students and alumni.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "2. Demonstrate an awareness of what writing technologies do to our understanding of text, its invention, and its use.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: write. parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "3. Demonstrate an understanding of the conventions of scientific and technological discourse and where they came from.",
+      "counted": "Yes",
+      "codes": "Codes: parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "4. Demonstrate conceptual and critical understanding of the role of communication in science and technology and of the broad social effects of such communication.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: communicate. parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "5. Apply theory to real tasks, using a problem-solving approach.",
+      "counted": "Yes",
+      "codes": "Codes: parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "6. Locate and evaluate critically relevant research, and apply it to both theoretical and practical uses.",
+      "counted": "Yes",
+      "codes": "Codes: parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "7. Demonstrate the capacity to be reflective practitioners, who understand rhetorical situations and strategies, including diverse strategies for gathering information about audiences.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: rhetoric, audience. parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "8. Work collaboratively or independently, and work successfully with technological and scientific colleagues.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 5, cognitive verb: collaborate. parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "Technical Communication MS",
+      "text": "9. Actively participate as professionals in technical communication, including membership in professional organizations and leadership roles in the field.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: communicate. parent objective: communicate.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "1a. Become familiar with international, national, and regional publication and presentation venues appropriate to their areas of interest, including journals and conferences, and will have opportunities to publish and present their work.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: presentation. Tier 2, genre: publish. Tier 4, curricular site: conference.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "3a. Become independent, self-motivated researchers with the ability to formulate significant research questions in their field of expertise and produce answers with potential for making significant contributions to the research literature.",
+      "counted": "Yes",
+      "codes": "Codes: parent objective: communicate, rhetoric, media, digital.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "3b. Develop a conceptual vocabulary that they can use to frame questions, interpret data, and test other vocabularies.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 5, cognitive verb: interpret. parent objective: communicate, rhetoric, media, digital.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "3c. Develop a mastery of research and analytical methods appropriate to inquiry in one or more of the research fronts in this interdisciplinary area.",
+      "counted": "Yes",
+      "codes": "Codes: parent objective: communicate, rhetoric, media, digital.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "3d. Establish a productive line of research that can extend their doctoral research beyond graduate school.",
+      "counted": "Yes",
+      "codes": "Codes: parent objective: communicate, rhetoric, media, digital.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "3e. Read and review the literature in their area of study in such a way that reveals a comprehensive understanding of and a critical perspective toward current issues.",
+      "counted": "Yes",
+      "codes": "Codes: parent objective: communicate, rhetoric, media, digital.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "1b. Become familiar with the primary professional societies related to their areas of interest and be encouraged to contribute appropriately to the work of those societies.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "1c. Develop teaching skills through experience assisting in and instructing a variety of courses appropriate to their program focus.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "1d. Understand professional expectations and ethical practices (including issues of race, gender, and labor) as they pertain to academic, disciplinary, and interdisciplinary work.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "CRDM PhD",
+      "text": "1e. Understand the academic career system including entry-level placement, promotion and tenure processes, mentoring, and the professional roles associated with various career stages.",
+      "counted": "No",
+      "codes": "No communication codes matched.",
+      "site": ""
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "text": "1a. Apply digital pedagogy and course design.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 3, visual and multimodal: digital. parent objective: media, digital.",
+      "site": ""
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "text": "1b. Apply the digital humanities to one or more technical application environments, such as media production, critical decision making, application programming, text encoding, data mining, text analysis, visualization, network analysis, geospatial representation, game design, animation, and metadata creation.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 3, visual and multimodal: visualize, media, digital, design. Tier 5, cognitive verb: analyze. parent objective: media, digital.",
+      "site": ""
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "text": "1c. Communicate effectively in visual and multimodal forms.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: communicate. Tier 3, visual and multimodal: visual, media. parent objective: media, digital.",
+      "site": ""
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "text": "1d. Design, manage, and collaborate in building digital humanities projects.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 3, visual and multimodal: digital. Tier 5, cognitive verb: collaborate. parent objective: media, digital.",
+      "site": ""
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "text": "1e. Develop prospectuses and proposals for future projects and funding agencies.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 2, genre: proposal. parent objective: media, digital.",
+      "site": ""
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "text": "1f. Digitize, describe, and curate cultural materials and new media objects.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 3, visual and multimodal: media. Tier 5, cognitive verb: describe. parent objective: media, digital.",
+      "site": ""
+    },
+    {
+      "program": "Digital Humanities certificate",
+      "text": "1g. Engage in public outreach and scholarly communication in multiple print and online environments.",
+      "counted": "Yes",
+      "codes": "Codes: Tier 1, explicit communication: communicate. parent objective: media, digital.",
+      "site": ""
+    }
+  ],
+  "example": {
+    "outcome": "1. Interpret a variety of language-based, visual, and digital texts for different audiences and purposes by applying appropriate critical frameworks.",
+    "counted": "Yes",
+    "site": "Upper-division seminar in the concentration: interpretive essay (the working group names the course and the assignment)",
+    "who": "Seminar instructor",
+    "act": "Write an interpretation of a text applying a named critical framework, and adapt the argument to a stated audience",
+    "model": "A model produces a competent interpretation under a named framework on request, and the outcome as filed cannot distinguish the student's choice of framework and evidence from a generated one. What the generated reading omits is the student's account of why this framework and this passage.",
+    "decision": "Limit",
+    "reason": "Interpretation is the judgment the degree certifies. Students are permitted to use a model to test a reading against counter-readings. They choose the framework and the evidence, write the interpretation themselves, and state what the tool supplied and why they kept or rejected it.",
+    "revised": "Students will interpret language-based, visual, and digital texts for stated audiences and purposes by applying critical frameworks they choose and defend, and will state the reasons for their decisions about any AI use in doing so."
+  },
+  "literacy": {
+    "describe": "English studies the system's medium. A large language model produces text by predicting likely sequences from a corpus of prior writing, and the department's programs name the acts the model imitates: interpreting texts under a framework (BA, MA), making a work of original accomplishment (MFA), analyzing what writing technologies do to text, its invention, and its use (Technical Communication MS, outcome 2), and framing questions in a conceptual vocabulary (CRDM). Describing the system in the unit's terms means naming, program by program, which of these acts a model performs on the surface.",
+    "analyze": "The structural questions belong to the field's own traditions: authorship and voice, the labor and the uncredited texts in a training corpus, whose language a model treats as standard, and what a generated reading or draft leaves out. The Technical Communication MS already states this analysis as an outcome. The CRDM PhD names ethical practice, including labor, in outcome 1d. Each program brings a different body of theory to the same question.",
+    "decide": "The operative question differs by program. A literary interpretation, a poem, a set of instructions for a user, and a dissertation chapter certify different judgments, so the department's decisions will differ by program and by assignment. Refusal with a reason is a decision. A decision without a reason is unfinished."
+  },
+  "policy_intro": "The run read the unit-level record in English and writing programs at NC State's twelve official peers, then the statements of the field's societies: MLA, CCCC, AWP for creative writing, the IEEE Professional Communication Society for technical communication, and AWAC for writing across the curriculum. Each entry gives what the document governs and CWSP's reading of where its language breaks down. The readings are offered for the group to correct.",
+  "policy_finding": "Peer English departments have written statements of position, not rules. Rutgers English argues for critical AI literacy and leaves the decision to each instructor, the Georgia writing program declines a single policy, and Georgia Tech's writing program requires every instructor to hold one, chosen from four options. The field moved in the opposite direction from guidance to rights. The MLA-CCCC task force recommended policy set in tiers (institution, program, class) in 2024, and the CCCC resolution of March 2026 affirms a right of students and teachers to refuse generative AI in the writing classroom. A program-level policy at NC State would sit between the two: it decides at the level the 2024 guidance asks for and has to protect the refusal the 2026 resolution affirms. Each of the department's programs also answers to a different society, so the MFA, the Technical Communication MS, and the literature and rhetoric programs face different disciplinary statements.",
+  "policies": [
+    {
+      "inst": "Rutgers University–New Brunswick",
+      "unit": "Department of English",
+      "doc": "Department Statement on AI",
+      "date": "Undated",
+      "url": "https://english.rutgers.edu/about-us/department-statement-on-ai.html",
+      "peer": "NC State peer, land-grant",
+      "governs": "Classroom instruction, advice to the administration",
+      "says": "Sets no ban and no permission. Each instructor decides how AI is used against the course's learning goals. Calls generative AI the product of centuries of human labor, asks for critical AI literacies built with students, rejects detection tools as surveillance with faulty and discriminatory results, and asks the administration to consult faculty before buying or endorsing AI tools.",
+      "glitch": "The statement argues at the level of the department and decides at the level of the instructor, so the department's reasons reach a course only if each instructor carries them into a syllabus. It sets no date, so a reader cannot tell which state of the tools it answers."
+    },
+    {
+      "inst": "Georgia Institute of Technology",
+      "unit": "Writing and Communication Program (Brittain Fellowship)",
+      "doc": "Requirements for Developing Generative AI Tool Policies in WCP Courses",
+      "date": "2023, revised after June 2024",
+      "url": "https://sites.gatech.edu/bfhandbook/?p=388",
+      "peer": "NC State peer",
+      "governs": "Course policies for every WCP instructor",
+      "says": "Every instructor must have a policy. The recommended option allows AI in instances the instructor specifies. The others allow it broadly, bar it as an Honor Code matter, or let the instructor write a policy, each with the director's approval. Three principles bind students: responsibility, transparency, and documentation, with AI output cited as other sources are. Detectors are called unreliable and a ban hard to enforce.",
+      "glitch": "The page states its understanding as of July 2023 and promises development over 2023 and 2024, while citing a 2024 resource, so its date and its promise disagree. The option barring AI requires approval, which makes refusal the choice a teacher has to justify."
+    },
+    {
+      "inst": "University of Georgia",
+      "unit": "First-year Writing Program, Department of English",
+      "doc": "FYW Guidebook, Chapter 7: Generative AI and First-Year Writing",
+      "date": "2026 edition",
+      "url": "https://engl.franklin.uga.edu/sites/default/files/2026%20FYW%20Guidebook_Part7.pdf",
+      "peer": "NC State peer, land-grant",
+      "governs": "First-year writing courses",
+      "says": "Has not designated a single, standardized AI policy, because instructor approaches vary. Students are expected to be the sole author of every submission, and even authorized uses require credit or citation. The university's default prohibits AI in coursework unless an instructor allows it.",
+      "glitch": "Sole authorship and authorized use sit side by side: a student permitted to use AI and required to credit it is no longer the sole author the same paragraph demands."
+    },
+    {
+      "inst": "University of Arizona",
+      "unit": "Coalition of Writing Across the Curriculum (includes the UA Writing Program)",
+      "doc": "Coalition of Writing Statement on AI Writing",
+      "date": "April 27, 2023",
+      "url": "https://ucatt.arizona.edu/sites/default/files/2023-05/Coalition%20of%20Writing%20Statement%20on%20AI%20Writing.pdf",
+      "peer": "NC State peer, land-grant",
+      "governs": "Teaching advice across writing units",
+      "says": "Treats writing as a mode of learning and advises redesigning assignments toward visual, recorded oral, and collaborative work. Holds a campus ban hard to enforce and likely to penalize students with communication disabilities or students who rely on grammar and tutoring tools.",
+      "glitch": "Written in the spring of 2023 against one product, ChatGPT, it is still linked from the university's AI page as current guidance, a temporal artifact of the kind the principle on dating a policy warns against."
+    },
+    {
+      "inst": "Texas A&M University",
+      "unit": "Department of English",
+      "doc": "Statement on Generative AI and Writing",
+      "date": "2024 (announced May 30, 2024)",
+      "url": "https://cte.tamu.edu/blog/genertive-ai-blog/authoring-the-statement-on-generative-ai-and-writing",
+      "peer": "NC State peer, land-grant",
+      "governs": "Confirm from the statement text",
+      "says": "The authors (Jason Crider and Andrew Pilsch) describe a department statement meant to demystify generative AI and explore it within the teaching of writing. The department has since announced an AI writing lab funded by an alumna's gift. The statement itself was not retrieved in this run.",
+      "glitch": "Reading pending. Retrieve the statement and correct this entry before the session."
+    },
+    {
+      "inst": "Purdue, Illinois Urbana-Champaign, Maryland, UC Davis, Virginia Tech, Michigan State, Minnesota",
+      "unit": "English departments and writing programs",
+      "doc": "No unit-level AI policy found",
+      "date": "Checked November 10, 2026",
+      "url": "https://www.purdue.edu/innovativelearning/teaching/module-category/generative-ai/",
+      "peer": "NC State peers",
+      "governs": "",
+      "says": "Silent at the unit level. Each campus leaves AI policy to the instructor through syllabus guidance. Minnesota's first-year writing program, by its directors' account, expects every section to state its policy and discuss AI with students, without a common policy.",
+      "glitch": "The departments whose faculty write the field's scholarship on AI and writing have left the policy to the syllabus, where the reasons a program holds in common are written once per course."
+    },
+    {
+      "inst": "MLA and CCCC",
+      "unit": "MLA-CCCC Joint Task Force on Writing and AI",
+      "doc": "Working Papers 1 to 3",
+      "date": "July 2023, April 2024, and later",
+      "url": "https://mlaai.hcommons.org/working-papers/",
+      "peer": "Disciplinary societies",
+      "governs": "Guidance for programs and institutions",
+      "says": "Working Paper 1 sets principles and calls for critical AI literacy at every level. Working Paper 2 recommends policy set in tiers, institution, program or department, and class, so programs protect assessments requiring no AI while students build AI literacy. The task force ended in early 2025, succeeded by the MLA Task Force on AI in Research and Teaching.",
+      "glitch": "Guidance written for a tiered system presumes a program tier, which most peer departments in this run have not built."
+    },
+    {
+      "inst": "CCCC",
+      "unit": "Conference on College Composition and Communication",
+      "doc": "2026 Resolution 2 (right to refuse generative AI)",
+      "date": "March 6, 2026",
+      "url": "https://cccc.ncte.org/?p=11260",
+      "peer": "Disciplinary society",
+      "governs": "Writing classrooms, assessment",
+      "says": "Affirms the rights of students and teachers to refuse to sign up for, prompt, or otherwise use generative AI in the writing classroom, extending the 1974 Students' Right to Their Own Language. Asks for refusal to be accounted for in course design and assessment, against policing and punishing student use, for disclosure of AI in grading, and never to put student work into a model without consent.",
+      "glitch": "A right held by each teacher and each student sits uneasily with the program tier the 2024 working paper recommends. A program policy requiring AI in an assignment would have to provide an alternative for any student who refuses."
+    },
+    {
+      "inst": "MLA",
+      "unit": "Executive Council, drafted by the MLA Task Force on AI in Research and Teaching",
+      "doc": "Statement on Educational Technologies and AI Agents",
+      "date": "October 2025",
+      "url": "https://news.mla.hcommons.org/2026/01/30/educational-technologies-and-ai-agents/",
+      "peer": "Disciplinary society",
+      "governs": "Institutions, vendors, faculty governance",
+      "says": "Addresses AI browser agents completing assignments inside learning management systems. Asks companies to reduce misuse, holds the burden of blocking agents should not fall to educators alone, and calls for faculty seats on the committees choosing educational technology.",
+      "glitch": "The statement locates the problem with vendors and procurement, outside any program's control, while the department's assignments sit inside the platforms it names."
+    },
+    {
+      "inst": "AWP",
+      "unit": "Association of Writers and Writing Programs",
+      "doc": "Recommendations Regarding Generative Artificial Intelligence",
+      "date": "2025",
+      "url": "https://writerschronicle.awpwriter.org/TWC/2025-october/01-The-Big-Conversation.aspx",
+      "peer": "Disciplinary society (Creative Writing MFA)",
+      "governs": "Teaching guidance for creative writing programs",
+      "says": "AWP issued recommendations with resources and guidelines for teachers in 2025, followed by panels on AI pedagogy and publishing. The document sits behind member access and was not read in this run.",
+      "glitch": "The field's guidance for MFA programs is not public, so an MFA program citing it gives students a reason they cannot read."
+    },
+    {
+      "inst": "IEEE Professional Communication Society",
+      "unit": "ProComm AI Working Group",
+      "doc": "Professional Guidance on Artificial Intelligence in Professional Communication",
+      "date": "Approved December 2025",
+      "url": "https://procomm.ieee.org/ieee-procomm-professional-guidance-on-artificial-intelligence-in-professional-communication/",
+      "peer": "Disciplinary society (Technical Communication MS)",
+      "governs": "Professional practice and technical communication education",
+      "says": "Treats AI as part of technical information systems, asks programs to integrate AI literacy into communication design and education, and casts communicators as stewards of ethical technology use. ATTW has issued no statement.",
+      "glitch": "The working group disclosed using ChatGPT to draft and refine the guidance, a disclosure of the kind it asks of practitioners, made without saying which passages the tool shaped."
+    }
+  ]
+}

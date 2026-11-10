@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Psychology Accelerator Workbook | CHASS Curriculum Accelerator · NC State CWSP</title>
+<link rel="stylesheet" href="css/workbook.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <p class="brand">CWSP · NC State</p>
+  <p class="brand-sub">CHASS Curriculum Accelerator · Psychology</p>
+</header>
+
+<div class="wb-layout">
+<aside class="wb-sidebar" aria-label="Progress and sections">
+  <div class="sidebar-save">
+    <p class="sidebar-part">Your progress</p>
+    <div class="progress-bar"><span id="progress-label">0%</span><span class="progress-track"><span class="progress-fill" id="progress-fill"></span></span></div>
+    <p class="sidebar-lead">This browser saves your work as you type.</p>
+    <button type="button" class="btn-sidebar btn-primary-side" id="save-btn" onclick="saveDraft()">Save and email me a link</button>
+    <p class="sidebar-status" id="save-status" role="status"></p>
+    <details class="save-more">
+      <summary>Other ways to keep a copy</summary>
+      <button type="button" class="btn-sidebar" onclick="window.print()">Download as PDF, or print</button>
+      <button type="button" class="btn-sidebar" onclick="downloadAnswers()">Download my answers (Word)</button>
+      <button type="button" class="btn-sidebar" onclick="downloadRows()">Download worksheet rows (spreadsheet)</button>
+      <p class="sidebar-help">The emailed link opens your work on any computer. The spreadsheet file holds one row per outcome, in the column order of the unit worksheet, ready to paste.</p>
+      <button type="button" class="btn-clear" onclick="clearWork()">Clear my work from this browser</button>
+    </details>
+  </div>
+  <nav aria-label="Workbook sections">
+    <p class="sidebar-part">Start</p>
+    <a href="#about">What this workbook is</a>
+    <a href="#who">Who you are</a>
+    <p class="sidebar-part">1 · Literacy</p>
+    <a href="#literacy">Three levels, in Psychology</a>
+    <p class="sidebar-part">2 · Baseline</p>
+    <a href="#baseline">Your record</a>
+    <p class="sidebar-part">3 · Map</p>
+    <a href="#example">Worked example</a>
+    <a href="#map-psychology-ba" class="sub">Psychology BA</a><a href="#map-psychology-ms-and-phd" class="sub">Psychology MS and PhD</a>
+    <p class="sidebar-part">4 · Policy</p>
+    <a href="#policy">What peers and the field say</a>
+    <a href="#policy-read">Your reading</a>
+    <p class="sidebar-part">5 · Lab</p>
+    <a href="#lab-psychology-ba" class="sub">Psychology BA</a><a href="#lab-psychology-ms-and-phd" class="sub">Psychology MS and PhD</a>
+    <a href="#products">Products</a>
+    <p class="sidebar-part">Finish</p>
+    <a href="#rows">Your worksheet rows</a>
+    <a href="#submit">Submit to CWSP</a>
+  </nav>
+</aside>
+
+<main class="wb-main" id="main">
+  <p class="eyebrow">Campus Writing and Speaking Program · CHASS Curriculum Accelerator</p>
+  <h1>Psychology: AI Literacy and Policy Workbook</h1>
+  <p class="lede">For the Psychology working group and its chair. The workbook takes the unit from its filed learning outcomes to written decisions about AI, one outcome at a time. Your baseline and the policy findings are already filled in.</p>
+  <div id="banner-slot"></div>
+
+  <h2 id="about">What this workbook is</h2>
+  <p>The Accelerator asks each unit one question per outcome: where students show the outcome, what they do there, what a model now does to the act, and what the program decides about it. The order is the method. An outcome naming the thinking and not the act cannot tell a student's work from a model's, so the silent outcome and the AI question are the same question.</p>
+  <ol class="steps">
+    <li><strong>Literacy.</strong> Read the three levels (describe, analyze, decide) in your discipline's terms.</li>
+    <li><strong>Baseline.</strong> Check CWSP's reading of your filed outcomes.</li>
+    <li><strong>Map.</strong> For each outcome, name the course, the assessor, the act, and what a model does to it. January sessions.</li>
+    <li><strong>Policy.</strong> Read what peer units and the field have written, and where their language breaks.</li>
+    <li><strong>Lab.</strong> Decide, give the reason, and name the product. February and March sessions.</li>
+  </ol>
+  <details class="panel"><summary>How saving works</summary><div class="panel-body">
+    <p>Everything you type stays in this browser. Use Save and email me a link to continue on another computer or to hand the draft to a colleague, who opens it from the link. Anyone holding the link sees the draft. Submit sends the finished workbook to CWSP and emails you a copy. The unit's <a href="https://docs.google.com/spreadsheets/d/1Pg-LFe7_ydfoRrQjJ8NpR-7y2BIrcjXGHLkOMIY5Om8/edit" target="_blank" rel="noopener">Google Sheet worksheet<span class="sr-only"> (opens in a new window)</span></a> stays the record of decisions. The spreadsheet download at the end carries your rows into it.</p>
+  </div></details>
+
+  <h2 id="who">Who you are</h2>
+  <div class="activity">
+    <div class="grid2">
+      <div class="field"><label for="p-name">Your name<span class="req" aria-hidden="true">*</span></label><input type="text" id="p-name" autocomplete="name"></div>
+      <div class="field"><label for="p-email">Your NC State email<span class="req" aria-hidden="true">*</span></label><input type="email" id="p-email" autocomplete="email" placeholder="unityid@ncsu.edu"></div>
+      <div class="field"><label for="p-unit">Unit</label><input type="text" id="p-unit" value="Psychology" data-default="Psychology"></div>
+      <div class="field"><label for="p-role">Your role</label>
+        <select id="p-role"><option value="">Choose one</option><option>Chair</option><option>Working group member</option><option>Facilitator</option><option>Other</option></select></div>
+    </div>
+    <div class="field"><label for="p-others">Others contributing to this draft</label><input type="text" id="p-others" placeholder="Names, separated by commas"></div>
+  </div>
+
+  <h2 id="literacy"><span class="part">Part 1 · Literacy</span>Three levels, in Psychology</h2>
+  <p>Each row of the worksheet runs three levels in order. CWSP's reading of each level in your discipline sits below its prompt. Correct the reading where it misdescribes the field.</p>
+  <div class="level"><h3>Describe</h3><p class="reading">Psychology studies the cognition a model imitates and runs the empirical method a model now enters at every stage. A large language model predicts likely text from a corpus. In the department&#x27;s outcomes, the acts it performs on the surface are the graduate research acts (proposing a question, reviewing the literature, planning collection and analysis, critiquing a study) and, for the BA, explaining scientific results to an audience. Describing the system in the unit&#x27;s terms means naming which of these acts a model performs and which it only appears to perform.</p>
+    <div class="field"><label for="lit-acts">Name the acts your outcomes ask of students</label><p class="hint" id="lit-acts-hint">List what students write, say, build, or present in the program. These become column E.</p><textarea id="lit-acts" rows="3" aria-describedby="lit-acts-hint" data-default=""></textarea></div></div>
+  <div class="level"><h3>Analyze</h3><p class="reading">The structural questions come from the discipline&#x27;s own commitments: research ethics and participant confidentiality (what happens to data entered into a tool), the validity of a generated citation or summary, bias in systems trained on unrepresentative text, and the APA&#x27;s disclosure rules for authors. For students in school psychology and other applied concentrations, the same questions reach clients and schools through the APA&#x27;s 2025 ethical guidance for practice and the guidance of NASP.</p>
+    <div class="field"><label for="lit-analyze">What does a model carry into those acts, and what does it leave out?</label><textarea id="lit-analyze" rows="3" data-default=""></textarea></div></div>
+  <div class="level"><h3>Decide</h3><p class="reading">The operative question is which acts are the judgment the degree certifies. The baseline reading locates it in BA outcome 1 and in graduate outcomes 1, 2, 3, and 5, none of which names where a student performs it. Refusal with a reason is a decision. A decision without a reason is unfinished.</p>
+    <div class="field"><label for="lit-certify">Which acts are the judgment the degree certifies?</label><p class="hint" id="lit-certify-hint">Name two or three. The Lab returns to these.</p><textarea id="lit-certify" rows="3" aria-describedby="lit-certify-hint" data-default=""></textarea></div></div>
+
+  <h2 id="baseline"><span class="part">Part 2 · Baseline</span>Your record</h2>
+  <p>From SLO_Coded_2026, the CWSP coded export of the university assessment system, read under the CWSP Codebook 2026. Psychology BA, MS, and PhD. The MS and PhD file the same six outcomes, so the graduate rows appear once, and the PhD concentrations (among them school psychology) file no separate outcomes. The codebook measures documentation, not practice, and a silent record says nothing about what the courses teach.</p>
+  <table class="counts"><caption>Counts by program</caption>
+    <thead><tr><th scope="col">Program</th><th scope="col">Statements on file</th><th scope="col">Learning outcomes</th><th scope="col">Counted as communication</th></tr></thead>
+    <tbody><tr><th scope="row">Psychology BA</th><td>5</td><td>5</td><td>1</td></tr><tr><th scope="row">Psychology MS and PhD</th><td>6 each</td><td>6 each</td><td>1 each</td></tr></tbody></table>
+  <h3>CWSP's reading</h3>
+  <p class="reading"><strong>Psychology BA.</strong> Documented on one of five outcomes. Outcome 2 names the act (explaining and describing scientific results to an audience in professional style) and is the only outcome naming a piece of writing or a presentation in which a student shows it. Outcome 1 holds the judgment the degree certifies (critical and creative thinking, skeptical inquiry, the scientific approach) without naming where a student performs it, so the outcome a model most affects and the outcome the record documents are different outcomes. Outcomes 3 through 5 name knowledge, professional readiness, and ethical standards.</p><p class="reading"><strong>Psychology MS and PhD.</strong> Documented on one of six outcomes. The MS and PhD file the same six statements. Outcome 6 names professional communication in the genre with its style guidelines, which in psychology means APA style and the empirical report. Outcomes 1 through 5 name research acts (propose questions, review the literature, plan collection and analysis, apply a critical perspective to one&#x27;s own and others&#x27; research) without a communicative code, and these are the acts a current model performs most readily, the literature review above all. Outcome 2 is where the Lab&#x27;s question is sharpest for this program. Documented on one of six outcomes for the PhD, on the same record. For the doctorate the question of which outcomes carry the degree&#x27;s judgment turns on outcomes 1, 3, and 5, since the dissertation is the site where a student proposes, plans, and critiques, and the record names none of those sites.</p>
+  <details class="panel"><summary>Every outcome as filed (11)</summary><div class="panel-body table-wrap">
+  <table class="baseline"><caption>Outcomes as filed</caption>
+    <thead><tr><th scope="col">Row</th><th scope="col">Program</th><th scope="col">Outcome as filed</th><th scope="col">Counted</th><th scope="col">How the codebook reads it</th></tr></thead>
+    <tbody><tr><td>1</td><td>Psychology BA</td><td>2. Demonstrate effective communication skills by applying professional style in explaining and describing scientific results to an audience.</td><td>Yes</td><td>Codes: Tier 1, explicit communication: communicate, audience. Tier 5, cognitive verb: explain, describe.</td></tr><tr><td>2</td><td>Psychology BA</td><td>1. Use critical and creative thinking, skeptical inquiry, and, when possible, the scientific approach to solve problems related to behavior and mental processes.</td><td>No</td><td>No communication codes matched.</td></tr><tr><td>3</td><td>Psychology BA</td><td>3. Demonstrate familiarity with concepts, theoretical perspectives, empirical findings, and historical trends in psychology.</td><td>No</td><td>No communication codes matched.</td></tr><tr><td>4</td><td>Psychology BA</td><td>4. Display professional skills indicating readiness for post-baccalaureate employment, graduate school, or professional school.</td><td>No</td><td>No communication codes matched.</td></tr><tr><td>5</td><td>Psychology BA</td><td>5. Demonstrate adherence to professional values and applying ethical standards that will help to work effectively with members of diverse groups.</td><td>No</td><td>No communication codes matched.</td></tr><tr><td>6</td><td>Psychology MS and PhD</td><td>6. Demonstrate mastery of professional communication in this genre and apply that to research, along with appropriate style guidelines.</td><td>Yes</td><td>Codes: Tier 1, explicit communication: communicate.</td></tr><tr><td>7</td><td>Psychology MS and PhD</td><td>1. Demonstrate ability to propose research questions that are pertinent to the field of study and provide a focus for making a significant contribution to the field.</td><td>No</td><td>No communication codes matched.</td></tr><tr><td>8</td><td>Psychology MS and PhD</td><td>2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a critical perspective toward the literature.</td><td>No</td><td>No communication codes matched.</td></tr><tr><td>9</td><td>Psychology MS and PhD</td><td>3. Provide sound plans for collecting, analyzing, and interpreting data in a way that adds to the understanding of the field of study.</td><td>No</td><td>Codes: Tier 5, cognitive verb: analyze, interpret.</td></tr><tr><td>10</td><td>Psychology MS and PhD</td><td>4. Demonstrate an understanding of research and statistical methodology appropriate to inquiry in the field of study.</td><td>No</td><td>No communication codes matched.</td></tr><tr><td>11</td><td>Psychology MS and PhD</td><td>5. Apply a critical perspective to their own research and to that of others, noting strengths and weaknesses of the research.</td><td>No</td><td>No communication codes matched.</td></tr></tbody></table></div></details>
+  <p class="small">Full baseline: <a href="https://docs.google.com/spreadsheets/d/1soOTYe-L4vtKV3_DM4XithCTh3n4WsBC-JAB8Pabo5c/edit" target="_blank" rel="noopener">CWSP Unit Baseline, Psychology<span class="sr-only"> (opens in a new window)</span></a>.</p>
+  <div class="field"><label for="base-hold">Does the reading hold?</label><p class="hint" id="base-hold-hint">Say where it matches the program you teach and where it does not.</p><textarea id="base-hold" rows="3" aria-describedby="base-hold-hint" data-default=""></textarea></div>
+
+  <h2 id="example"><span class="part">Part 3 · Map</span>Worked example</h2>
+  <p>One Psychology row, completed through the Lab, to show the shape of a finished row. It is an illustration. The working group's own decision and reason replace it.</p>
+  <table class="example"><caption>Worked example, one row</caption><tbody>
+    <tr><th scope="row">Outcome as filed</th><td>2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a critical perspective toward the literature.</td></tr>
+    <tr><th scope="row">Counted as communication</th><td>No</td></tr>
+    <tr><th scope="row">Where students show it</th><td>Thesis or dissertation proposal: the literature review chapter</td></tr>
+    <tr><th scope="row">Who assesses it</th><td>Thesis or dissertation committee</td></tr>
+    <tr><th scope="row">The act</th><td>Write a literature review in APA style synthesizing prior research, identifying its limits, and positioning the student&#x27;s research question</td></tr>
+    <tr><th scope="row">What a model does to the act</th><td>A model produces a fluent literature review on request, including citations to studies which do not exist, and the outcome as filed names no act a committee reads for the student&#x27;s own judgment. What a generated review omits is the student&#x27;s account of which studies matter, why, and where the field is weak.</td></tr>
+    <tr><th scope="row">Decision</th><td>Limit</td></tr>
+    <tr><th scope="row">Reason</th><td>The critical perspective on the literature is the judgment the degree certifies. Students are permitted to use a model to locate and sort studies. They read the studies they cite, write the synthesis and the critique themselves, verify every citation, and state in the proposal what the tool supplied.</td></tr>
+    <tr><th scope="row">Revised outcome this row produces</th><td>Students will write a review of the literature related to their research questions which synthesizes and critiques prior studies they have read and verified, and will state the reasons for their decisions about any AI use in producing it.</td></tr>
+  </tbody></table>
+  <div class="filter"><label for="prog-filter">Show outcomes for</label><select id="prog-filter" onchange="filterPrograms()"><option value="">Every program</option><option>Psychology BA</option><option>Psychology MS and PhD</option></select><p class="hint">The choice applies to the map and the Lab, and the browser remembers it. Every program stays in your downloads and your submission.</p></div>
+  <p>Map each outcome below. Do the first one together, with the facilitator, before dividing the rest. The button above each outcome copies the example's map into empty boxes, for editing.</p>
+  <h3 class="prog-h" id="map-psychology-ba" data-program="Psychology BA">Psychology BA <span class="prog-count">5 outcomes</span></h3><details class="outcome" id="o1" data-program="Psychology BA"><summary><span class="o-text">2. Demonstrate effective communication skills by applying professional style in explaining and describing scientific…</span><span class="o-state" id="o1-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">2. Demonstrate effective communication skills by applying professional style in explaining and describing scientific results to an audience.</dd></div>
+      <div><dt>Program</dt><dd>Psychology BA</dd></div>
+      <div><dt>Counted as communication</dt><dd>Yes. Codes: Tier 1, explicit communication: communicate, audience. Tier 5, cognitive verb: explain, describe.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(1)">Start from the worked example</button>
+    <div class="field"><label for="m1-site">Where students show it: course and assignment</label><p class="hint" id="m1-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m1-site" rows="2" aria-describedby="m1-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m1-who">Who assesses it</label><textarea id="m1-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m1-act">What students do there: the act</label><p class="hint" id="m1-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m1-act" rows="3" aria-describedby="m1-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m1-model">What a model now does to this act in the discipline</label><p class="hint" id="m1-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m1-model" rows="4" aria-describedby="m1-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o2" data-program="Psychology BA"><summary><span class="o-text">1. Use critical and creative thinking, skeptical inquiry, and, when possible, the scientific approach to solve…</span><span class="o-state" id="o2-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">1. Use critical and creative thinking, skeptical inquiry, and, when possible, the scientific approach to solve problems related to behavior and mental processes.</dd></div>
+      <div><dt>Program</dt><dd>Psychology BA</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(2)">Start from the worked example</button>
+    <div class="field"><label for="m2-site">Where students show it: course and assignment</label><p class="hint" id="m2-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m2-site" rows="2" aria-describedby="m2-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m2-who">Who assesses it</label><textarea id="m2-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m2-act">What students do there: the act</label><p class="hint" id="m2-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m2-act" rows="3" aria-describedby="m2-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m2-model">What a model now does to this act in the discipline</label><p class="hint" id="m2-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m2-model" rows="4" aria-describedby="m2-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o3" data-program="Psychology BA"><summary><span class="o-text">3. Demonstrate familiarity with concepts, theoretical perspectives, empirical findings, and historical trends in…</span><span class="o-state" id="o3-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">3. Demonstrate familiarity with concepts, theoretical perspectives, empirical findings, and historical trends in psychology.</dd></div>
+      <div><dt>Program</dt><dd>Psychology BA</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(3)">Start from the worked example</button>
+    <div class="field"><label for="m3-site">Where students show it: course and assignment</label><p class="hint" id="m3-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m3-site" rows="2" aria-describedby="m3-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m3-who">Who assesses it</label><textarea id="m3-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m3-act">What students do there: the act</label><p class="hint" id="m3-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m3-act" rows="3" aria-describedby="m3-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m3-model">What a model now does to this act in the discipline</label><p class="hint" id="m3-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m3-model" rows="4" aria-describedby="m3-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o4" data-program="Psychology BA"><summary><span class="o-text">4. Display professional skills indicating readiness for post-baccalaureate employment, graduate school, or…</span><span class="o-state" id="o4-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">4. Display professional skills indicating readiness for post-baccalaureate employment, graduate school, or professional school.</dd></div>
+      <div><dt>Program</dt><dd>Psychology BA</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(4)">Start from the worked example</button>
+    <div class="field"><label for="m4-site">Where students show it: course and assignment</label><p class="hint" id="m4-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m4-site" rows="2" aria-describedby="m4-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m4-who">Who assesses it</label><textarea id="m4-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m4-act">What students do there: the act</label><p class="hint" id="m4-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m4-act" rows="3" aria-describedby="m4-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m4-model">What a model now does to this act in the discipline</label><p class="hint" id="m4-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m4-model" rows="4" aria-describedby="m4-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o5" data-program="Psychology BA"><summary><span class="o-text">5. Demonstrate adherence to professional values and applying ethical standards that will help to work effectively…</span><span class="o-state" id="o5-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">5. Demonstrate adherence to professional values and applying ethical standards that will help to work effectively with members of diverse groups.</dd></div>
+      <div><dt>Program</dt><dd>Psychology BA</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(5)">Start from the worked example</button>
+    <div class="field"><label for="m5-site">Where students show it: course and assignment</label><p class="hint" id="m5-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m5-site" rows="2" aria-describedby="m5-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m5-who">Who assesses it</label><textarea id="m5-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m5-act">What students do there: the act</label><p class="hint" id="m5-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m5-act" rows="3" aria-describedby="m5-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m5-model">What a model now does to this act in the discipline</label><p class="hint" id="m5-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m5-model" rows="4" aria-describedby="m5-model-hint" data-default=""></textarea></div></div></details><h3 class="prog-h" id="map-psychology-ms-and-phd" data-program="Psychology MS and PhD">Psychology MS and PhD <span class="prog-count">6 outcomes</span></h3><details class="outcome" id="o6" data-program="Psychology MS and PhD"><summary><span class="o-text">6. Demonstrate mastery of professional communication in this genre and apply that to research, along with…</span><span class="o-state" id="o6-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">6. Demonstrate mastery of professional communication in this genre and apply that to research, along with appropriate style guidelines.</dd></div>
+      <div><dt>Program</dt><dd>Psychology MS and PhD</dd></div>
+      <div><dt>Counted as communication</dt><dd>Yes. Codes: Tier 1, explicit communication: communicate.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(6)">Start from the worked example</button>
+    <div class="field"><label for="m6-site">Where students show it: course and assignment</label><p class="hint" id="m6-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m6-site" rows="2" aria-describedby="m6-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m6-who">Who assesses it</label><textarea id="m6-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m6-act">What students do there: the act</label><p class="hint" id="m6-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m6-act" rows="3" aria-describedby="m6-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m6-model">What a model now does to this act in the discipline</label><p class="hint" id="m6-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m6-model" rows="4" aria-describedby="m6-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o7" data-program="Psychology MS and PhD"><summary><span class="o-text">1. Demonstrate ability to propose research questions that are pertinent to the field of study and provide a focus…</span><span class="o-state" id="o7-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">1. Demonstrate ability to propose research questions that are pertinent to the field of study and provide a focus for making a significant contribution to the field.</dd></div>
+      <div><dt>Program</dt><dd>Psychology MS and PhD</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(7)">Start from the worked example</button>
+    <div class="field"><label for="m7-site">Where students show it: course and assignment</label><p class="hint" id="m7-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m7-site" rows="2" aria-describedby="m7-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m7-who">Who assesses it</label><textarea id="m7-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m7-act">What students do there: the act</label><p class="hint" id="m7-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m7-act" rows="3" aria-describedby="m7-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m7-model">What a model now does to this act in the discipline</label><p class="hint" id="m7-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m7-model" rows="4" aria-describedby="m7-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o8" data-program="Psychology MS and PhD"><summary><span class="o-text">2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a…</span><span class="o-state" id="o8-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a critical perspective toward the literature.</dd></div>
+      <div><dt>Program</dt><dd>Psychology MS and PhD</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(8)">Start from the worked example</button>
+    <div class="field"><label for="m8-site">Where students show it: course and assignment</label><p class="hint" id="m8-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m8-site" rows="2" aria-describedby="m8-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m8-who">Who assesses it</label><textarea id="m8-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m8-act">What students do there: the act</label><p class="hint" id="m8-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m8-act" rows="3" aria-describedby="m8-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m8-model">What a model now does to this act in the discipline</label><p class="hint" id="m8-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m8-model" rows="4" aria-describedby="m8-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o9" data-program="Psychology MS and PhD"><summary><span class="o-text">3. Provide sound plans for collecting, analyzing, and interpreting data in a way that adds to the understanding of…</span><span class="o-state" id="o9-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">3. Provide sound plans for collecting, analyzing, and interpreting data in a way that adds to the understanding of the field of study.</dd></div>
+      <div><dt>Program</dt><dd>Psychology MS and PhD</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. Codes: Tier 5, cognitive verb: analyze, interpret.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(9)">Start from the worked example</button>
+    <div class="field"><label for="m9-site">Where students show it: course and assignment</label><p class="hint" id="m9-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m9-site" rows="2" aria-describedby="m9-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m9-who">Who assesses it</label><textarea id="m9-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m9-act">What students do there: the act</label><p class="hint" id="m9-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m9-act" rows="3" aria-describedby="m9-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m9-model">What a model now does to this act in the discipline</label><p class="hint" id="m9-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m9-model" rows="4" aria-describedby="m9-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o10" data-program="Psychology MS and PhD"><summary><span class="o-text">4. Demonstrate an understanding of research and statistical methodology appropriate to inquiry in the field of study.</span><span class="o-state" id="o10-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">4. Demonstrate an understanding of research and statistical methodology appropriate to inquiry in the field of study.</dd></div>
+      <div><dt>Program</dt><dd>Psychology MS and PhD</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(10)">Start from the worked example</button>
+    <div class="field"><label for="m10-site">Where students show it: course and assignment</label><p class="hint" id="m10-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m10-site" rows="2" aria-describedby="m10-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m10-who">Who assesses it</label><textarea id="m10-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m10-act">What students do there: the act</label><p class="hint" id="m10-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m10-act" rows="3" aria-describedby="m10-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m10-model">What a model now does to this act in the discipline</label><p class="hint" id="m10-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m10-model" rows="4" aria-describedby="m10-model-hint" data-default=""></textarea></div></div></details><details class="outcome" id="o11" data-program="Psychology MS and PhD"><summary><span class="o-text">5. Apply a critical perspective to their own research and to that of others, noting strengths and weaknesses of the…</span><span class="o-state" id="o11-state"></span></summary><div class="o-body">
+    <dl class="asfiled">
+      <div><dt>As filed</dt><dd class="filed">5. Apply a critical perspective to their own research and to that of others, noting strengths and weaknesses of the research.</dd></div>
+      <div><dt>Program</dt><dd>Psychology MS and PhD</dd></div>
+      <div><dt>Counted as communication</dt><dd>No. No communication codes matched.</dd></div>
+    </dl>
+    <button type="button" class="btn-small" onclick="copyExample(11)">Start from the worked example</button>
+    <div class="field"><label for="m11-site">Where students show it: course and assignment</label><p class="hint" id="m11-site-hint">Name the course and the assignment, not the course alone.</p><textarea id="m11-site" rows="2" aria-describedby="m11-site-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m11-who">Who assesses it</label><textarea id="m11-who" rows="2" data-default=""></textarea></div>
+    <div class="field"><label for="m11-act">What students do there: the act</label><p class="hint" id="m11-act-hint">If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.</p><textarea id="m11-act" rows="3" aria-describedby="m11-act-hint" data-default=""></textarea></div>
+    <div class="field"><label for="m11-model">What a model now does to this act in the discipline</label><p class="hint" id="m11-model-hint">Describe, then analyze. EAB evidence enters here, as evidence the faculty interpret.</p><textarea id="m11-model" rows="4" aria-describedby="m11-model-hint" data-default=""></textarea></div></div></details>
+
+  <h2 id="policy"><span class="part">Part 4 · Policy</span>What peers and the field say</h2>
+  <p>The run read the unit-level record in psychology departments at NC State&#x27;s twelve official peers, then the American Psychological Association and its divisions, the National Association of School Psychologists, and the nearest department policies outside the peer set. Each entry gives what the document governs and CWSP&#x27;s reading of where its language breaks down. The readings are offered for the group to correct.</p>
+  <p class="reading"><strong>Finding.</strong> Psychology has the most developed disciplinary rule of the three Accelerator units, and it is a rule for authors. The APA&#x27;s journal policy permits AI with disclosure in the methods section, requires authors to verify what a tool supplies, and bars editors and reviewers from entering manuscripts into a model. Peer departments have extended the publication rule to students rather than writing a rule for learning. Maryland&#x27;s interim graduate policy and Georgia&#x27;s guidelines both send students to the APA policy, both require disclosure, and both leave the decision to advisers, chairs, and instructors, with one fixed point at Maryland: first drafts of theses and dissertations are written without AI. Outside the peer set, Buffalo forbids AI for text, outlines, presentation scripts, and statistical analysis in graduate milestones. The undergraduate program has the least guidance anywhere in the record. NC State Psychology would decide whether the BA follows the author&#x27;s rule of disclosure or a learner&#x27;s rule about which acts a student performs unaided.</p>
+  <div class="policies">
+    <article class="policy">
+      <h4>University of Maryland</h4>
+      <p class="policy-meta">Department of Psychology · NC State peer, land-grant</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://psyc.umd.edu/sites/psyc.umd.edu/files/UMD_Grad_AI_interim_policy2026.pdf" target="_blank" rel="noopener">INTERIM Policy on Generative/Agentic AI Usage for Graduate Students<span class="sr-only"> (opens in a new window)</span></a>, Last updated April 29, 2026</dd></div>
+        <div><dt>Governs</dt><dd>Graduate coursework, research, TA work, comprehensive exams, theses and dissertations</dd></div>
+        <div><dt>What it says</dt><dd>Seven general rules: discuss AI at the start of every project, disclose AI-generated text, code, materials, images, and analysis (tool, version, prompts, and output), protect others&#x27; privacy, check every output, write first drafts of theses and dissertations without AI, let program areas set exam rules, and follow each supervisor&#x27;s added rules. Checklists for each context leave the permitted and prohibited columns for supervisors to fill. Grammar checkers are not counted as generative AI.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>The clinical students&#x27; paragraph sends them to the clinic&#x27;s AI policy with the words INSERT HERE where the reference belongs, so the students working with clients, where confidentiality matters most, are pointed to a policy the document has not located. The checklists are blank by design, which makes the policy a procedure for deciding rather than a decision.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>University of Georgia</h4>
+      <p class="policy-meta">Department of Psychology · NC State peer, land-grant</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://psyc.franklin.uga.edu/sites/default/files/Guidelines%20on%20the%20Use%20of%20AI.pdf" target="_blank" rel="noopener">Guidelines on the Use of AI<span class="sr-only"> (opens in a new window)</span></a>, October 4, 2024</dd></div>
+        <div><dt>Governs</dt><dd>Coursework, theses and dissertations, instructors&#x27; course rules, publishing</dd></div>
+        <div><dt>What it says</dt><dd>Assembles Graduate School, teaching center, library, and APA rules. Generative AI in a thesis or dissertation counts as unauthorized assistance unless the advisory committee approves it, within the approved scope, with a statement in the document. In coursework, no AI unless the instructor approves it before submission. Manuscripts and others&#x27; materials stay out of AI tools.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>The department&#x27;s guidance is a compilation of other offices&#x27; rules, so the reasons a psychology program would give appear only where the APA&#x27;s publishing rules are quoted, and the undergraduate student meets a default prohibition without a disciplinary reason.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>Purdue, Illinois Urbana-Champaign, Minnesota, UC Davis, Virginia Tech, Texas A&amp;M, Arizona, Rutgers, Georgia Tech, Michigan State</h4>
+      <p class="policy-meta">Psychology departments · NC State peers</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://psychology.msu.edu/_assets/pdfs/gradstudents-phdforms/PSY-Grad-Student-Handbook-2025-2026-Aug.pdf" target="_blank" rel="noopener">No unit-level AI policy found<span class="sr-only"> (opens in a new window)</span></a>, Checked November 10, 2026</dd></div>
+        
+        <div><dt>What it says</dt><dd>Silent at the unit level in the documents checked. Michigan State&#x27;s 2025 to 2026 graduate handbook carries no AI language in the portion read (through the doctoral requirements), and its academic integrity and research conduct sections were not checked. Each campus leaves AI to instructors and to graduate school guidance.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>A discipline with a detailed author&#x27;s rule leaves most of its peer departments without a student&#x27;s rule, so the publication policy is the only psychology-specific text most students at these campuses meet.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>University at Buffalo</h4>
+      <p class="policy-meta">Department of Psychology · Outside the peer set</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://arts-sciences.buffalo.edu/psychology/info/faculty-staff/ai-use-milestone-projects.html" target="_blank" rel="noopener">AI Use in Graduate Milestone Projects<span class="sr-only"> (opens in a new window)</span></a>, Adopted March 2026</dd></div>
+        <div><dt>Governs</dt><dd>Second- and third-year projects, theses, dissertations, qualifying projects, comprehensive exams</dd></div>
+        <div><dt>What it says</dt><dd>States the goal of graduate training as independent scientists creating new knowledge. Forbids generative AI for text creation, outlines, scripts for proposal and defense presentations, and statistical analysis in milestone projects. Cautions against uploading data. Lists acceptable uses with disclosure under APA guidelines and asks students to settle expectations with committees at the start.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>The ban on AI for statistical analysis sits beside a research culture in which analysis code is increasingly written with assistants, and the policy does not say where generating analysis code ends and performing the analysis begins.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>Stony Brook University</h4>
+      <p class="policy-meta">Department of Psychology · Outside the peer set</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://www.stonybrook.edu/psychology/department-ai-policy.html" target="_blank" rel="noopener">Psychology Department Generative AI Policy<span class="sr-only"> (opens in a new window)</span></a>, July 2, 2025</dd></div>
+        <div><dt>Governs</dt><dd>Exams, academic milestones, course assignments, publication</dd></div>
+        <div><dt>What it says</dt><dd>AI is barred from exams, milestones, and assignments unless an instructor permits it. Readability edits are allowed with acknowledgment. Students are told to develop their own ear for professional writing and warned against brainstorming with AI. Gives attribution templates, including a statement of no AI use, and quotes the APA and Elsevier publishing rules.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>The policy permits AI to improve readability while noting such edits lose information, and asks students to build their own ear for writing in the same list, so the one permitted use is the one the rationale doubts.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>American Psychological Association</h4>
+      <p class="policy-meta">APA Journals · Disciplinary society</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://www.apa.org/pubs/journals/resources/publishing-tips/policy-generative-ai" target="_blank" rel="noopener">APA Journals Policy on Generative AI: Additional Guidance<span class="sr-only"> (opens in a new window)</span></a>, Current page, checked November 10, 2026</dd></div>
+        <div><dt>Governs</dt><dd>Authors, editors, and reviewers of APA journals</dd></div>
+        <div><dt>What it says</dt><dd>Authors are permitted to use AI with disclosure and are responsible for verifying its output against original sources. Attribution is required when a tool generates ideas, content, analysis, code, or research elements. Confidential material, such as identifiable data or client notes, stays out of open tools. Editors and reviewers are barred from entering submitted manuscripts into AI. Authors are advised to keep prompts and output for their records.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>The policy governs publication, and the departments in this run carry it into coursework, where a student is not an author submitting a finished study but a learner whose acts the course is meant to train.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>American Psychological Association</h4>
+      <p class="policy-meta">Mental Health Technology Advisory Committee · Disciplinary society (applied and practice concentrations)</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://www.apa.org/topics/artificial-intelligence-machine-learning/ethical-guidance-ai-professional-practice" target="_blank" rel="noopener">Ethical Guidance for AI in the Professional Practice of Health Service Psychology<span class="sr-only"> (opens in a new window)</span></a>, June 2025</dd></div>
+        <div><dt>Governs</dt><dd>Practicing health service psychologists</dd></div>
+        <div><dt>What it says</dt><dd>Asks practitioners to obtain informed consent and explain AI use to clients, guard against bias, protect privacy and data, critically evaluate AI output, keep human judgment over clinical decisions, and consider liability. Supervisors in training contexts are asked to teach ethical and critical use.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>Written for licensed practice, the guidance assigns training to supervisors without saying what a graduate program teaches before supervision begins.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>Society for the Teaching of Psychology (APA Division 2)</h4>
+      <p class="policy-meta">STP e-books · Disciplinary society</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://teachpsych.org/ebooks/genai" target="_blank" rel="noopener">Integrating Generative AI in Psychology Courses (edited volume)<span class="sr-only"> (opens in a new window)</span></a>, 2026</dd></div>
+        <div><dt>Governs</dt><dd>Teaching guidance, course by course</dd></div>
+        <div><dt>What it says</dt><dd>Organizes guidance by course (foundational, clinical and counseling, research methods and statistics) on the premise of psychology instructors being suited to help students engage AI ethically and developmentally. A 2025 article in Teaching of Psychology proposes a disclosure statement naming the model, the input, and how the student evaluated the output.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>Guidance arranged by course reaches each instructor and leaves the program level, where the BA&#x27;s outcomes sit, without a statement.</dd></div>
+      </dl>
+    </article>
+    <article class="policy">
+      <h4>National Association of School Psychologists</h4>
+      <p class="policy-meta">NASP AI Task Force · Disciplinary society (school psychology concentration)</p>
+      <dl>
+        <div><dt>Document</dt><dd><a href="https://www.unlv.edu/news/accomplishments/s-kathleen-krach-0" target="_blank" rel="noopener">Use of AI in the Training of School Psychologists (technical assistance brief) and task force recommendations<span class="sr-only"> (opens in a new window)</span></a>, Undated in the sources found</dd></div>
+        <div><dt>Governs</dt><dd>Training programs and practitioners</dd></div>
+        <div><dt>What it says</dt><dd>NASP has a technical assistance brief on AI in school psychology training and task force recommendations for research and practice. Neither document was read in this run. A 2026 special issue of School Psychology describes guidance in the field as limited and scattered.</dd></div>
+        <div><dt>Where the language breaks</dt><dd>Reading pending. Retrieve the brief before the session, since the school psychology concentration answers to NASP standards as well as the APA&#x27;s.</dd></div>
+      </dl>
+    </article></div>
+  <details class="panel"><summary>How to read a policy for where its language breaks</summary><div class="panel-body">
+    <p>A governance document written under institutional pressure says more than its authors intended. Look for hedging (strongly discouraged), contradictions between sections or between two documents on one campus, silences where governance should be explicit, frameworks borrowed beyond their scope, and dates (language accurate when written and no longer true). The full method and the AI Governance Census are in the <a href="https://cwspwolf.com/ai-policy-workbook.html" target="_blank" rel="noopener">AI Policy Workbook<span class="sr-only"> (opens in a new window)</span></a>.</p>
+  </div></details>
+  <h3 id="policy-read">Your reading</h3>
+  <div class="field"><label for="pol-nearest">Which document comes nearest to what your program would write, and why?</label><textarea id="pol-nearest" rows="3" data-default=""></textarea></div>
+  <div class="field"><label for="pol-break">Where does one of these documents break, in your reading?</label><p class="hint" id="pol-break-hint">Choose one and name the sentence.</p><textarea id="pol-break" rows="3" aria-describedby="pol-break-hint" data-default=""></textarea></div>
+  <div class="field"><label for="pol-genre">What genre should your unit's statement take?</label><p class="hint" id="pol-genre-hint">Rule set, clause in an existing policy, declaration of principle, assignment-level policies, or something else.</p><textarea id="pol-genre" rows="3" aria-describedby="pol-genre-hint" data-default=""></textarea></div>
+
+  <h2 id="lab"><span class="part">Part 5 · Lab</span>Decisions</h2>
+  <p class="small">The program filter set in Part 3 applies here too.</p>
+  <p>For each outcome: a decision, the reason in the discipline's words, and the product it becomes. Refusal with a reason is a decision. The act you mapped in Part 3 appears above each decision.</p>
+  <h3 class="prog-h" id="lab-psychology-ba" data-program="Psychology BA">Psychology BA <span class="prog-count">5 outcomes</span></h3><details class="outcome" id="d1" data-program="Psychology BA"><summary><span class="o-text">2. Demonstrate effective communication skills by applying professional style in explaining and describing scientific…</span><span class="o-state" id="d1-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology BA: 2. Demonstrate effective communication skills by applying professional style in explaining and describing scientific results to an audience.</p>
+    <p class="mirror" id="d1-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d1-decision">Decision</label>
+      <select id="d1-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d1-reason">Reason, in the discipline's words</label><p class="hint" id="d1-reason-hint">A decision without a reason is unfinished.</p><textarea id="d1-reason" rows="4" aria-describedby="d1-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d1-product">Product the decision becomes</label><p class="hint" id="d1-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d1-product" rows="2" aria-describedby="d1-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d1-owner">Owner and date</label><textarea id="d1-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d2" data-program="Psychology BA"><summary><span class="o-text">1. Use critical and creative thinking, skeptical inquiry, and, when possible, the scientific approach to solve…</span><span class="o-state" id="d2-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology BA: 1. Use critical and creative thinking, skeptical inquiry, and, when possible, the scientific approach to solve problems related to behavior and mental…</p>
+    <p class="mirror" id="d2-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d2-decision">Decision</label>
+      <select id="d2-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d2-reason">Reason, in the discipline's words</label><p class="hint" id="d2-reason-hint">A decision without a reason is unfinished.</p><textarea id="d2-reason" rows="4" aria-describedby="d2-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d2-product">Product the decision becomes</label><p class="hint" id="d2-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d2-product" rows="2" aria-describedby="d2-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d2-owner">Owner and date</label><textarea id="d2-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d3" data-program="Psychology BA"><summary><span class="o-text">3. Demonstrate familiarity with concepts, theoretical perspectives, empirical findings, and historical trends in…</span><span class="o-state" id="d3-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology BA: 3. Demonstrate familiarity with concepts, theoretical perspectives, empirical findings, and historical trends in psychology.</p>
+    <p class="mirror" id="d3-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d3-decision">Decision</label>
+      <select id="d3-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d3-reason">Reason, in the discipline's words</label><p class="hint" id="d3-reason-hint">A decision without a reason is unfinished.</p><textarea id="d3-reason" rows="4" aria-describedby="d3-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d3-product">Product the decision becomes</label><p class="hint" id="d3-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d3-product" rows="2" aria-describedby="d3-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d3-owner">Owner and date</label><textarea id="d3-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d4" data-program="Psychology BA"><summary><span class="o-text">4. Display professional skills indicating readiness for post-baccalaureate employment, graduate school, or…</span><span class="o-state" id="d4-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology BA: 4. Display professional skills indicating readiness for post-baccalaureate employment, graduate school, or professional school.</p>
+    <p class="mirror" id="d4-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d4-decision">Decision</label>
+      <select id="d4-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d4-reason">Reason, in the discipline's words</label><p class="hint" id="d4-reason-hint">A decision without a reason is unfinished.</p><textarea id="d4-reason" rows="4" aria-describedby="d4-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d4-product">Product the decision becomes</label><p class="hint" id="d4-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d4-product" rows="2" aria-describedby="d4-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d4-owner">Owner and date</label><textarea id="d4-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d5" data-program="Psychology BA"><summary><span class="o-text">5. Demonstrate adherence to professional values and applying ethical standards that will help to work effectively…</span><span class="o-state" id="d5-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology BA: 5. Demonstrate adherence to professional values and applying ethical standards that will help to work effectively with members of diverse groups.</p>
+    <p class="mirror" id="d5-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d5-decision">Decision</label>
+      <select id="d5-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d5-reason">Reason, in the discipline's words</label><p class="hint" id="d5-reason-hint">A decision without a reason is unfinished.</p><textarea id="d5-reason" rows="4" aria-describedby="d5-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d5-product">Product the decision becomes</label><p class="hint" id="d5-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d5-product" rows="2" aria-describedby="d5-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d5-owner">Owner and date</label><textarea id="d5-owner" rows="1" data-default=""></textarea></div></div></details><h3 class="prog-h" id="lab-psychology-ms-and-phd" data-program="Psychology MS and PhD">Psychology MS and PhD <span class="prog-count">6 outcomes</span></h3><details class="outcome" id="d6" data-program="Psychology MS and PhD"><summary><span class="o-text">6. Demonstrate mastery of professional communication in this genre and apply that to research, along with…</span><span class="o-state" id="d6-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology MS and PhD: 6. Demonstrate mastery of professional communication in this genre and apply that to research, along with appropriate style guidelines.</p>
+    <p class="mirror" id="d6-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d6-decision">Decision</label>
+      <select id="d6-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d6-reason">Reason, in the discipline's words</label><p class="hint" id="d6-reason-hint">A decision without a reason is unfinished.</p><textarea id="d6-reason" rows="4" aria-describedby="d6-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d6-product">Product the decision becomes</label><p class="hint" id="d6-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d6-product" rows="2" aria-describedby="d6-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d6-owner">Owner and date</label><textarea id="d6-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d7" data-program="Psychology MS and PhD"><summary><span class="o-text">1. Demonstrate ability to propose research questions that are pertinent to the field of study and provide a focus…</span><span class="o-state" id="d7-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology MS and PhD: 1. Demonstrate ability to propose research questions that are pertinent to the field of study and provide a focus for making a significant contribution to…</p>
+    <p class="mirror" id="d7-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d7-decision">Decision</label>
+      <select id="d7-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d7-reason">Reason, in the discipline's words</label><p class="hint" id="d7-reason-hint">A decision without a reason is unfinished.</p><textarea id="d7-reason" rows="4" aria-describedby="d7-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d7-product">Product the decision becomes</label><p class="hint" id="d7-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d7-product" rows="2" aria-describedby="d7-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d7-owner">Owner and date</label><textarea id="d7-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d8" data-program="Psychology MS and PhD"><summary><span class="o-text">2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a…</span><span class="o-state" id="d8-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology MS and PhD: 2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a critical perspective toward the literature.</p>
+    <p class="mirror" id="d8-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d8-decision">Decision</label>
+      <select id="d8-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d8-reason">Reason, in the discipline's words</label><p class="hint" id="d8-reason-hint">A decision without a reason is unfinished.</p><textarea id="d8-reason" rows="4" aria-describedby="d8-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d8-product">Product the decision becomes</label><p class="hint" id="d8-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d8-product" rows="2" aria-describedby="d8-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d8-owner">Owner and date</label><textarea id="d8-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d9" data-program="Psychology MS and PhD"><summary><span class="o-text">3. Provide sound plans for collecting, analyzing, and interpreting data in a way that adds to the understanding of…</span><span class="o-state" id="d9-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology MS and PhD: 3. Provide sound plans for collecting, analyzing, and interpreting data in a way that adds to the understanding of the field of study.</p>
+    <p class="mirror" id="d9-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d9-decision">Decision</label>
+      <select id="d9-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d9-reason">Reason, in the discipline's words</label><p class="hint" id="d9-reason-hint">A decision without a reason is unfinished.</p><textarea id="d9-reason" rows="4" aria-describedby="d9-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d9-product">Product the decision becomes</label><p class="hint" id="d9-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d9-product" rows="2" aria-describedby="d9-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d9-owner">Owner and date</label><textarea id="d9-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d10" data-program="Psychology MS and PhD"><summary><span class="o-text">4. Demonstrate an understanding of research and statistical methodology appropriate to inquiry in the field of study.</span><span class="o-state" id="d10-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology MS and PhD: 4. Demonstrate an understanding of research and statistical methodology appropriate to inquiry in the field of study.</p>
+    <p class="mirror" id="d10-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d10-decision">Decision</label>
+      <select id="d10-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d10-reason">Reason, in the discipline's words</label><p class="hint" id="d10-reason-hint">A decision without a reason is unfinished.</p><textarea id="d10-reason" rows="4" aria-describedby="d10-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d10-product">Product the decision becomes</label><p class="hint" id="d10-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d10-product" rows="2" aria-describedby="d10-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d10-owner">Owner and date</label><textarea id="d10-owner" rows="1" data-default=""></textarea></div></div></details><details class="outcome" id="d11" data-program="Psychology MS and PhD"><summary><span class="o-text">5. Apply a critical perspective to their own research and to that of others, noting strengths and weaknesses of the…</span><span class="o-state" id="d11-state"></span></summary><div class="o-body">
+    <p class="filed-small">Psychology MS and PhD: 5. Apply a critical perspective to their own research and to that of others, noting strengths and weaknesses of the research.</p>
+    <p class="mirror" id="d11-act-mirror" aria-live="polite"></p>
+    <div class="field"><label for="d11-decision">Decision</label>
+      <select id="d11-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select></div>
+    <div class="field"><label for="d11-reason">Reason, in the discipline's words</label><p class="hint" id="d11-reason-hint">A decision without a reason is unfinished.</p><textarea id="d11-reason" rows="4" aria-describedby="d11-reason-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d11-product">Product the decision becomes</label><p class="hint" id="d11-product-hint">A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.</p><textarea id="d11-product" rows="2" aria-describedby="d11-product-hint" data-default=""></textarea></div>
+    <div class="field"><label for="d11-owner">Owner and date</label><textarea id="d11-owner" rows="1" data-default=""></textarea></div></div></details>
+
+  <h2 id="products">Products</h2>
+  <p>Each decision becomes one of four products. Insert a frame, then rewrite it in your program's words.</p>
+  <details class="panel"><summary>Five principles for durable policy language</summary><div class="panel-body"><ol><li><strong>Scope terms by function.</strong> Define AI by what it does (generates text, produces images, automates tasks). Product names date quickly.</li><li><strong>Date the policy.</strong> State the term the policy covers and commit to revision.</li><li><strong>Name the revision trigger.</strong> Say what would prompt an update: new tools, new institutional guidance, or evidence of the policy producing the wrong outcomes.</li><li><strong>Separate principle from prohibition.</strong> State the commitment (what the program develops and assesses) apart from the rule (which functions are barred this term). The first outlasts the second.</li><li><strong>Give the reason.</strong> A policy with its reason is easier to follow, and a later reviewer knows what to keep when the tools change.</li></ol></div></details>
+  
+    <div class="product">
+      <h3>Revised outcome</h3>
+      <p class="hint">For an outcome naming only the thinking. Name the act, the object, the audience, and the student&#x27;s accountability for AI decisions.</p>
+      <div class="field"><label for="prod-outcome">Your text</label>
+      <textarea id="prod-outcome" rows="5" data-frame="Students will [act] [object] for [audience], and will state the reasons for their decisions about AI use in doing so."></textarea></div>
+      <button type="button" class="btn-small" onclick="insertFrame('prod-outcome')">Insert the frame to fill in</button>
+    </div>
+    <div class="product">
+      <h3>Assignment-level AI policy</h3>
+      <p class="hint">One policy per assignment, with its reason. A general clause in the syllabus does not do this work.</p>
+      <div class="field"><label for="prod-policy">Your text</label>
+      <textarea id="prod-policy" rows="5" data-frame="Assignment: [ ].
+Permitted: [function].
+Limited: [function], because [ ].
+Refused: [function], because [ ].
+Disclosure: students note what was used and how, as a source is cited.
+Accommodation: [path, from the start].
+In effect for [term]. Reviewed [date]. Revised when [trigger]."></textarea></div>
+      <button type="button" class="btn-small" onclick="insertFrame('prod-policy')">Insert the frame to fill in</button>
+    </div>
+    <div class="product">
+      <h3>Rubric criterion for reasoning about use</h3>
+      <p class="hint">Grades the reasoning, not the choice. Refusal with reasons meets the criteria.</p>
+      <div class="field"><label for="prod-rubric">Your text</label>
+      <textarea id="prod-rubric" rows="5" data-frame="Criteria: names the function used, gives reasons tied to the task, identifies what the output left out, states what the student did and why.
+Levels: [ ]."></textarea></div>
+      <button type="button" class="btn-small" onclick="insertFrame('prod-rubric')">Insert the frame to fill in</button>
+    </div>
+    <div class="product">
+      <h3>Program philosophy of use</h3>
+      <p class="hint">The program-level account of decisions, one page. The Lab&#x27;s written record.</p>
+      <div class="field"><label for="prod-philosophy">Your text</label>
+      <textarea id="prod-philosophy" rows="5" data-frame="In [program], [acts] are the judgment the degree certifies. We [use, limit, refuse] AI for [acts] because [reasons grounded in the discipline]. Students are accountable for [ ]. Reviewed [when]."></textarea></div>
+      <button type="button" class="btn-small" onclick="insertFrame('prod-philosophy')">Insert the frame to fill in</button>
+    </div>
+
+  <h2 id="rows">Your worksheet rows</h2>
+  <p>The table assembles your map and decisions in the column order of the unit worksheet. Refresh it after editing, then download it and paste the rows into the Google Sheet.</p>
+  <button type="button" class="btn-small" onclick="renderRows()">Refresh the table</button>
+  <button type="button" class="btn-small" onclick="downloadRows()">Download as spreadsheet</button>
+  <div id="rows-table" class="table-wrap"></div>
+
+  <h2 id="submit">Submit to CWSP</h2>
+  <div class="activity">
+    <div class="field"><label for="sub-notes">Anything CWSP should know before the next session</label><textarea id="sub-notes" rows="3" data-default=""></textarea></div>
+    <div class="consent">
+      <input type="checkbox" id="p-permission">
+      <label for="p-permission">CWSP has my permission to use what I submit, without my name, in its reports to CHASS and the AI Hub working group, in presentations and publications about the Accelerator, and as examples for other units. I withdraw this permission at any time by emailing kkcole2@ncsu.edu.</label>
+    </div>
+    <p class="hint">Leaving the box empty still submits your work to CWSP for the Accelerator. CWSP uses it only to support your unit.</p>
+    <button type="button" class="btn-submit" id="submit-btn" onclick="submitWork()">Submit to CWSP</button>
+    <p class="req-note" id="req-note" role="alert"></p>
+    <p class="submit-status" id="submit-status" role="status"></p>
+  </div>
+</main>
+</div>
+
+<footer class="site-footer">
+  <p>The CHASS Curriculum Accelerator is supported by the <a href="https://go.ncsu.edu/cwsp" target="_blank" rel="noopener">NC State Campus Writing and Speaking Program<span class="sr-only"> (opens in a new window)</span></a> · <a href="mailto:kkcole2@ncsu.edu">kkcole2@ncsu.edu</a></p>
+</footer>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxNTj5zUq93DTE6M8zV73jibkZ4-rnYqhK5uHd8lNby9M62XzuXvttBMZTSAYTQWqTE/exec';
+const KEY = 'acc-psychology:';
+const MODULE = 'accelerator-psychology';
+const UNIT = "Psychology";
+const OUTCOMES = ["2. Demonstrate effective communication skills by applying professional style in explaining and describing scientific results to an audience.", "1. Use critical and creative thinking, skeptical inquiry, and, when possible, the scientific approach to solve problems related to behavior and mental processes.", "3. Demonstrate familiarity with concepts, theoretical perspectives, empirical findings, and historical trends in psychology.", "4. Display professional skills indicating readiness for post-baccalaureate employment, graduate school, or professional school.", "5. Demonstrate adherence to professional values and applying ethical standards that will help to work effectively with members of diverse groups.", "6. Demonstrate mastery of professional communication in this genre and apply that to research, along with appropriate style guidelines.", "1. Demonstrate ability to propose research questions that are pertinent to the field of study and provide a focus for making a significant contribution to the field.", "2. Review the literature related to their research questions, demonstrating a comprehensive understanding of and a critical perspective toward the literature.", "3. Provide sound plans for collecting, analyzing, and interpreting data in a way that adds to the understanding of the field of study.", "4. Demonstrate an understanding of research and statistical methodology appropriate to inquiry in the field of study.", "5. Apply a critical perspective to their own research and to that of others, noting strengths and weaknesses of the research."];
+const EXAMPLE = {"site": "Thesis or dissertation proposal: the literature review chapter", "who": "Thesis or dissertation committee", "act": "Write a literature review in APA style synthesizing prior research, identifying its limits, and positioning the student's research question", "model": "A model produces a fluent literature review on request, including citations to studies which do not exist, and the outcome as filed names no act a committee reads for the student's own judgment. What a generated review omits is the student's account of which studies matter, why, and where the field is weak."};
+</script>
+<script src="js/workbook.js"></script>
+</body>
+</html>
