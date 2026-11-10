@@ -107,9 +107,9 @@
     "site": "Thesis or dissertation proposal: the literature review chapter",
     "who": "Thesis or dissertation committee",
     "act": "Write a literature review in APA style synthesizing prior research, identifying its limits, and positioning the student's research question",
-    "model": "A model produces a fluent literature review on request, including citations to studies which do not exist, and the outcome as filed names no act a committee reads for the student's own judgment. What a generated review omits is the student's account of which studies matter, why, and where the field is weak.",
+    "model": "Asked to, an AI tool writes a fluent literature review, sometimes citing studies which do not exist. The outcome as filed names nothing a committee reads for the student's own judgment, and the generated review leaves out the student's account of which studies matter, why, and where the field is weak.",
     "decision": "Limit",
-    "reason": "The critical perspective on the literature is the judgment the degree certifies. Students are permitted to use a model to locate and sort studies. They read the studies they cite, write the synthesis and the critique themselves, verify every citation, and state in the proposal what the tool supplied.",
+    "reason": "Because a critical view of the literature is the judgment the degree certifies, students use an AI tool only to find and sort studies, then read every study they cite, write the synthesis and the critique themselves, check each citation, and state in the proposal what the tool supplied.",
     "revised": "Students will write a review of the literature related to their research questions which synthesizes and critiques prior studies they have read and verified, and will state the reasons for their decisions about any AI use in producing it."
   },
   "literacy": {

@@ -61,7 +61,7 @@ function mirrorActs() {
     const k = i + 1, m = document.getElementById('d' + k + '-act-mirror');
     if (!m) return;
     const act = val('m' + k + '-act');
-    m.textContent = act ? 'The act: ' + act : 'The act for this outcome is not yet mapped in Part 3.';
+    m.textContent = act ? 'What students produce there: ' + act : 'Question 2 for this outcome is not yet answered in Part 3.';
   });
 }
 
@@ -80,7 +80,7 @@ function insertFrame(id) {
 }
 
 /* Worksheet rows, in the column order of the unit's Google Sheet. */
-const HEADERS = ['Outcome as filed', 'Where students show it', 'Who assesses it', 'The act', 'What a model now does to this act', 'Decision', 'Reason', 'Product', 'Owner and date'];
+const HEADERS = ['Outcome as filed', 'Where students show it', 'Who grades it', 'What students produce there', 'What an AI tool does with this work', 'Decision', 'Why', 'What the decision becomes', 'Who writes it, and by when'];
 function rows() {
   return OUTCOMES.map((t, i) => { const k = i + 1; return [t, val('m' + k + '-site'), val('m' + k + '-who'), val('m' + k + '-act'), val('m' + k + '-model'), val('d' + k + '-decision'), val('d' + k + '-reason'), val('d' + k + '-product'), val('d' + k + '-owner')]; });
 }

@@ -380,9 +380,9 @@
     "site": "Upper-division seminar in the concentration: interpretive essay (the working group names the course and the assignment)",
     "who": "Seminar instructor",
     "act": "Write an interpretation of a text applying a named critical framework, and adapt the argument to a stated audience",
-    "model": "A model produces a competent interpretation under a named framework on request. As filed, the outcome gives a reader no way to separate the student's choice of framework and evidence from a generated one, and what the generated reading omits is the student's account of why this framework and this passage.",
+    "model": "Asked to, an AI tool writes a competent interpretation using whatever critical framework the prompt names. Because the outcome as filed does not say what the student must show, a grader has no stated standard for separating the student's choice of framework and evidence from a generated one, and the generated reading leaves out why this framework and this passage.",
     "decision": "Limit",
-    "reason": "Interpretation is the judgment the degree certifies. Students are permitted to use a model to test a reading against counter-readings. They choose the framework and the evidence, write the interpretation themselves, and state what the tool supplied and why they kept or rejected it.",
+    "reason": "Because interpretation is the judgment the English degree certifies, students use an AI tool only to test their reading against other readings, then choose the framework and the evidence, write the interpretation themselves, and note what the tool supplied and why they kept or rejected it.",
     "revised": "Students will interpret language-based, visual, and digital texts for stated audiences and purposes by applying critical frameworks they choose and defend, and will state the reasons for their decisions about any AI use in doing so."
   },
   "literacy": {

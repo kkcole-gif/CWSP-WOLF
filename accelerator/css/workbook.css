@@ -143,3 +143,4 @@ dl.glossary, dl.decisions { margin: .5rem 0 1rem; display: grid; gap: .5rem; }
 dl.glossary div, dl.decisions div { display: grid; grid-template-columns: 14rem 1fr; gap: .9rem; border-bottom: 1px solid var(--line); padding-bottom: .45rem; }
 dl.glossary dd, dl.decisions dd { font-size: .94rem; }
 @media (max-width: 860px) { dl.glossary div, dl.decisions div { grid-template-columns: 1fr; gap: .1rem; } }
+.questions li { margin-bottom: .3rem; }

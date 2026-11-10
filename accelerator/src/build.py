@@ -38,7 +38,8 @@ GLOSSARY = [
     ('Use, Limit, Refuse', 'The three decisions the Lab records for each outcome, defined in Part 5.'),
     ('Product', 'The written result of a decision: a revised outcome, an assignment policy, a rubric criterion, or a program statement.'),
     ('Where the language breaks', 'A place in a policy where wording hedges, contradicts itself, or falls silent, which shows what its authors left unresolved.'),
-    ('Scribe', 'The member who holds the unit\'s draft of this workbook and types for the group.'),
+    ('Department head', 'The head of the unit, who convenes the working group and names its recorder.'),
+    ('Recorder', 'The working group member who keeps the unit\'s copy of this workbook and types for the group.'),
 ]
 
 PRINCIPLES = [
@@ -80,10 +81,10 @@ def outcome_block(i, o, n, collapse):
       <div><dt>Counted as communication</dt><dd>{e(o["counted"])}. {e(o["codes"])}</dd></div>
     </dl>
     <button type="button" class="btn-small" onclick="copyExample({k})">Start from the worked example</button>
-    {field(f"m{k}-site", "Where students show it: course and assignment", "Name the assignment as well as the course.", 2, o.get("site", ""))}
-    {field(f"m{k}-who", "Who assesses it", "", 2)}
-    {field(f"m{k}-act", "What students do there: the act", "If the outcome names only thinking (analyze, explain), write the sentence it is missing: what a student writes, says, builds, or presents.", 3)}
-    {field(f"m{k}-model", "What a model now does to this act in the discipline", "Describe, then analyze. Where EAB's findings on AI competencies in the occupations your graduates enter bear on the act, cite them here as evidence the faculty interpret.", 4)}'''
+    {field(f"m{k}-site", "1. Where do students show this outcome?", "Name the course and the assignment, for example a capstone paper in a 400-level course.", 2, o.get("site", ""))}
+    {field(f"m{k}-who", "Who grades it?", "The instructor, a committee, a program review, or someone else.", 2)}
+    {field(f"m{k}-act", "2. What do students produce or perform there?", "Describe the work in a sentence, for example a ten-page paper presented to the class. Where the outcome names only thinking (analyze, explain), this sentence supplies what it leaves out.", 3)}
+    {field(f"m{k}-model", "3. What does an AI tool do with this kind of work?", "Use your notes from the exercise at the start of Part 3. Say what the tool did well and what it got wrong or left out, and, where EAB's findings on AI skills in your graduates' occupations apply, what they show.", 4)}'''
     return wrap(k, 'o', o['text'], body, collapse, o['program'])
 
 
@@ -92,11 +93,11 @@ def decision_block(i, o, collapse):
     body = f'''
     <p class="filed-small">{e(o["program"])}: {e(short(o["text"], 160))}</p>
     <p class="mirror" id="d{k}-act-mirror" aria-live="polite"></p>
-    <div class="field"><label for="d{k}-decision">Decision</label>
+    <div class="field"><label for="d{k}-decision">4. The decision</label>
       <select id="d{k}-decision"><option value="">Not yet decided</option><option>Use</option><option>Limit</option><option>Refuse</option></select><p class="hint">Use, Limit, and Refuse are defined above the first decision in Part 5.</p></div>
-    {field(f"d{k}-reason", "Reason, in the discipline's words", "The Lab treats a decision as finished once it carries a reason in the discipline's terms.", 4)}
-    {field(f"d{k}-product", "Product the decision becomes", "A revised outcome, an assignment policy, a rubric criterion, or a line in the program philosophy.", 2)}
-    {field(f"d{k}-owner", "Owner and date", "", 1)}'''
+    {field(f"d{k}-reason", "Why, in your discipline's terms", "The Lab treats a decision as finished once it has a reason.", 4)}
+    {field(f"d{k}-product", "What the decision becomes", "A revised outcome, a policy for one assignment, a rubric criterion, or a line in the program's statement.", 2)}
+    {field(f"d{k}-owner", "Who writes it, and by when", "", 1)}'''
     return wrap(k, 'd', o['text'], body, collapse, o['program'])
 
 
@@ -229,33 +230,41 @@ def build(u):
 <main class="wb-main" id="main">
   <p class="eyebrow">Campus Writing and Speaking Program · CHASS Curriculum Accelerator</p>
   <h1>{e(u["unit"])}: AI Literacy and Policy Workbook</h1>
-  <p class="lede">This workbook is for the {e(u["short"])} working group and its chair, including members who have not worked on learning outcomes or AI policy before. Working through it, the group moves from the unit's filed learning outcomes to written decisions about AI, one outcome at a time, and CWSP has already filled in the unit's record and the policy research.</p>
+  <p class="lede">This workbook is for the {e(u["short"])} working group and its department head, including members who have not worked on learning outcomes or AI policy before. Working through it, the group decides what the program does about AI for each of its learning outcomes, and CWSP has already filled in the unit's record and the policy research.</p>
   <div id="banner-slot"></div>
 
   <h2 id="produces">What your unit produces</h2>
-  <p>By the end of March the working group will have a decision and a reason for each of the unit's learning outcomes, and each decision becomes a short written product. CWSP prepared one finished example from {e(u["short"])} as an illustration, which the group's own work replaces:</p>
+  <p>By the end of March, the working group will have decided, for each of the unit's learning outcomes, whether students use AI in the work showing the outcome and why, and each decision becomes a short written product. CWSP prepared the finished example below from {e(u["short"])} as an illustration, which the group's own decisions replace:</p>
   <table class="example"><caption>One finished outcome, as an illustration</caption><tbody>
-    <tr><th scope="row">The outcome as the program filed it</th><td>{e(ex["outcome"])}</td></tr>
-    <tr><th scope="row">The decision</th><td>{e(ex["decision"])}</td></tr>
-    <tr><th scope="row">The reason</th><td>{e(ex["reason"])}</td></tr>
-    <tr><th scope="row">The revised outcome</th><td>{e(ex["revised"])}</td></tr>
+    <tr><th scope="row">The outcome as the program wrote it</th><td>{e(ex["outcome"])}</td></tr>
+    <tr><th scope="row">What the group decided</th><td>{e(ex["decision"])} (students use AI only for named parts of the work)</td></tr>
+    <tr><th scope="row">Why</th><td>{e(ex["reason"])}</td></tr>
+    <tr><th scope="row">How the outcome reads now</th><td>{e(ex["revised"])}</td></tr>
   </tbody></table>
-  <p>Besides revised outcomes, the products include an AI policy for a single assignment, a rubric criterion for grading how students reason about AI, and a one-page statement of the program's position. Part 5 gives a fill-in frame for each.</p>
+  <p>Besides revised outcomes, the group writes AI policies for single assignments, rubric criteria for grading how students reason about AI, and a one-page statement of the program's position. Part 5 gives a fill-in frame for each.</p>
 
   <h2 id="about">How this works</h2>
-  <p>Each learning outcome a program files with the university says what its students learn. Many outcomes name a kind of thinking (analyze, explain) without naming what students write, say, or make to show it, and when an outcome names only the thinking, a faculty member reading student work has no stated act to check, so a model's output and a student's work look alike against it. For this reason the questions run in a fixed order: where students show the outcome, what they do there, what a model now does to the act, and what the program decides.</p>
-  <ol class="steps">
-    <li><strong>Literacy.</strong> Read the three levels (describe, analyze, decide) in your discipline's terms. <span class="time">About 20 minutes, before the first session.</span></li>
-    <li><strong>Baseline.</strong> Check CWSP's reading of your filed outcomes. <span class="time">About 10 minutes, before the first session.</span></li>
-    <li><strong>Map.</strong> Try one of your own assignments in an AI tool, then name for each outcome the course, the assessor, the act, and what a model does to it. <span class="time">Ten minutes before January, then the January session.</span></li>
-    <li><strong>Policy.</strong> Read what peer departments and the field's societies have written. <span class="time">About {u["policy_minutes"]} minutes, before the first session.</span></li>
-    <li><strong>Lab.</strong> Decide, give the reason, and write the product. <span class="time">The Lab sessions, February and March.</span></li>
+  <p>Every program files learning outcomes with the university, short statements of what its students learn. In this workbook the working group takes those outcomes one at a time and answers four questions about each:</p>
+  <ol class="questions">
+    <li>Where do students show this outcome? (the course and the assignment)</li>
+    <li>What do students produce or perform there? (a paper, a talk, a lab report, a poster)</li>
+    <li>What does an AI tool do with this kind of work?</li>
+    <li>What should the program decide about AI for it, and why?</li>
   </ol>
-  <p>CWSP and your chair set the session dates. To submit, the group needs at least one outcome mapped in Part 3.</p>
-  <h3>One scribe, one draft</h3>
-  <p>Because the workbook saves in one browser at a time, the chair names one scribe (often the chair), who holds the unit's draft and types for the group during and between sessions. Other members read the same pages, and any member who wants to draft answers before a session types them in their own browser, where they stay private until the member brings them to the session. After each session the scribe downloads the worksheet rows at the end of the page and pastes them into the unit's <a href="{e(u["worksheet_url"])}" target="_blank" rel="noopener">Google Sheet worksheet<span class="sr-only"> (opens in a new window)</span></a>, which holds what the group agreed.</p>
+  <p>Many outcomes name a kind of thinking, such as "analyze" or "explain," without saying what students write or present to show it. When an outcome says only "analyze," a grader has nothing specific to check, so a student's analysis and one an AI tool generated look much the same against the outcome. The second question supplies what such an outcome leaves out, which is why the questions come in this order.</p>
+  <h3>The five parts, and when to do them</h3>
+  <ol class="steps">
+    <li><strong>Part 1, Literacy.</strong> Read CWSP's short account of AI in your discipline and answer three questions. <span class="time">About 20 minutes, before the first session.</span></li>
+    <li><strong>Part 2, Baseline.</strong> Look over the outcomes your programs filed and CWSP's notes on them. <span class="time">About 10 minutes, before the first session.</span></li>
+    <li><strong>Part 3, Map.</strong> Try one of your own assignments in an AI tool, then, in the January session, answer the first three questions for each outcome. <span class="time">Ten minutes before January, then the session.</span></li>
+    <li><strong>Part 4, Policy.</strong> Read a short summary of what other departments and the field's organizations have decided. <span class="time">About {u["policy_minutes"]} minutes, before the first session.</span></li>
+    <li><strong>Part 5, Lab.</strong> Answer the fourth question for each outcome, give the reason, and write up the decision. <span class="time">The Lab sessions, February and March.</span></li>
+  </ol>
+  <p>CWSP and your department head set the session dates. To submit, the group needs answers for at least one outcome in Part 3.</p>
+  <h3>One recorder, one copy</h3>
+  <p>Because the workbook saves in one web browser at a time, the department head names one recorder (often the head), who keeps the unit's copy and types for the group during and between sessions. Everyone else reads the same pages. Members who want to jot down answers before a session do so in their own browser, where no one else sees them until they bring them to the session. After each session the recorder downloads the rows at the end of the page and pastes them into the unit's <a href="{e(u["worksheet_url"])}" target="_blank" rel="noopener">Google Sheet<span class="sr-only"> (opens in a new window)</span></a>, which holds what the group agreed.</p>
   <details class="panel"><summary>How saving works</summary><div class="panel-body">
-    <p>Everything typed here stays in this browser until someone clears it. To continue on another computer, or to hand the draft to the next scribe, select Save and email me a link, and whoever opens the link sees the draft as it was left. When the group finishes, Submit sends the workbook to CWSP and emails the scribe a copy.</p>
+    <p>Everything typed here stays in this browser until someone clears it. To continue on another computer, or to hand the copy to a new recorder, select Save and email me a link, and whoever opens the link sees the copy as it was left. When the group finishes, Submit sends the workbook to CWSP and emails the recorder a copy.</p>
   </div></details>
   {stuck}
 
@@ -269,9 +278,9 @@ def build(u):
       <div class="field"><label for="p-email">Your NC State email<span class="req" aria-hidden="true">*</span></label><input type="email" id="p-email" autocomplete="email" placeholder="unityid@ncsu.edu"></div>
       <div class="field"><label for="p-unit">Unit</label><input type="text" id="p-unit" value="{e(u["unit"])}" data-default="{e(u["unit"])}"></div>
       <div class="field"><label for="p-role">Your role</label>
-        <select id="p-role"><option value="">Choose one</option><option>Scribe</option><option>Chair</option><option>Chair and scribe</option><option>Working group member</option><option>Facilitator</option><option>Other</option></select></div>
+        <select id="p-role"><option value="">Choose one</option><option>Recorder</option><option>Department head</option><option>Department head and recorder</option><option>Working group member</option><option>Facilitator</option><option>Other</option></select></div>
     </div>
-    <div class="field"><label for="p-others">The unit's scribe and others contributing to this draft</label><input type="text" id="p-others" placeholder="Names, separated by commas"></div>
+    <div class="field"><label for="p-others">The unit's recorder and others contributing to this copy</label><input type="text" id="p-others" placeholder="Names, separated by commas"></div>
     {filt}
   </div>
 
@@ -313,20 +322,20 @@ def build(u):
   {field("try-missing", "What the response got wrong or left out", "For example, the reasoning your discipline grades, sources it invented, or the audience it ignored.", 3)}
 
   <h2 id="example">Worked example</h2>
-  <p>CWSP completed one {e(u["short"])} row through the Lab so the working group sees the shape of a finished row, and the group's own decision and reason replace this illustration in the sessions.</p>
-  <table class="example"><caption>Worked example, one row</caption><tbody>
-    <tr><th scope="row">Outcome as filed</th><td>{e(ex["outcome"])}</td></tr>
-    <tr><th scope="row">Counted as communication</th><td>{e(ex["counted"])}</td></tr>
-    <tr><th scope="row">Where students show it</th><td>{e(ex["site"])}</td></tr>
-    <tr><th scope="row">Who assesses it</th><td>{e(ex["who"])}</td></tr>
-    <tr><th scope="row">The act</th><td>{e(ex["act"])}</td></tr>
-    <tr><th scope="row">What a model does to the act</th><td>{e(ex["model"])}</td></tr>
-    <tr><th scope="row">Decision</th><td>{e(ex["decision"])}</td></tr>
-    <tr><th scope="row">Reason</th><td>{e(ex["reason"])}</td></tr>
-    <tr><th scope="row">Revised outcome this row produces</th><td>{e(ex["revised"])}</td></tr>
+  <p>The row below answers the four questions for one {e(u["short"])} outcome, the way the working group will answer them for its own. Read it before mapping, and use the button above each outcome to copy its first three answers in as a starting point.</p>
+  <table class="example"><caption>Worked example: the four questions for one outcome</caption><tbody>
+    <tr><th scope="row">The outcome as filed</th><td>{e(ex["outcome"])}</td></tr>
+    <tr><th scope="row">Counted as communication in the record?</th><td>{e(ex["counted"])}</td></tr>
+    <tr><th scope="row">1. Where students show it</th><td>{e(ex["site"])}</td></tr>
+    <tr><th scope="row">Who grades it</th><td>{e(ex["who"])}</td></tr>
+    <tr><th scope="row">2. What students produce there</th><td>{e(ex["act"])}</td></tr>
+    <tr><th scope="row">3. What an AI tool does with this work</th><td>{e(ex["model"])}</td></tr>
+    <tr><th scope="row">4. The decision (made in the Lab)</th><td>{e(ex["decision"])}</td></tr>
+    <tr><th scope="row">Why</th><td>{e(ex["reason"])}</td></tr>
+    <tr><th scope="row">How the outcome reads now</th><td>{e(ex["revised"])}</td></tr>
   </tbody></table>
   {filt_note}
-  <p>Map each outcome below during the January session. Do the first one together, with the facilitator, before dividing the rest. The Start from the worked example button above each outcome copies the example's map into any empty boxes, where the group rewrites it for the outcome at hand.</p>
+  <p>In the January session, answer the first three questions for each outcome below. Do the first outcome together, with the facilitator, before dividing the rest. The Start from the worked example button copies the example's answers into any empty boxes, where the group rewrites them for the outcome at hand.</p>
   {grouped(u, lambda i, o, c: outcome_block(i, o, n, c), 'map')}
   {stuck}
 
@@ -351,7 +360,7 @@ def build(u):
   <h2 id="lab"><span class="part">Part 5 · Lab</span>Decisions</h2>
   <p class="time">The Lab sessions, February and March.</p>
   {'<p class="small">The program chosen under Who you are applies here as well.</p>' if len(progs) > 1 else ''}
-  <p>Each outcome ends with a decision, the reason in the discipline's words, and the product the decision becomes. The Lab counts refusal with a reason as a decision, and the act mapped in Part 3 appears above each decision for reference.</p>
+  <p>In the Lab, the group answers the fourth question for each outcome: a decision, the reason in the discipline's terms, and what the decision becomes in writing. The Lab counts refusal with a reason as a decision. The answer to question 2 from Part 3 appears above each decision for reference.</p>
   <dl class="decisions">
     <div><dt>Use</dt><dd>Students are permitted to use AI for the act, and they disclose what the tool did.</dd></div>
     <div><dt>Limit</dt><dd>Students are permitted to use AI for named parts of the act, do the rest themselves, and state what the tool supplied.</dd></div>
@@ -366,7 +375,7 @@ def build(u):
   {stuck}
 
   <h2 id="rows">Your worksheet rows</h2>
-  <p>The table assembles the map and the decisions in the column order of the unit worksheet. After each session, the scribe refreshes it, downloads it, and pastes the rows into the Google Sheet.</p>
+  <p>The table assembles the map and the decisions in the column order of the unit worksheet. After each session, the recorder refreshes it, downloads it, and pastes the rows into the Google Sheet.</p>
   <button type="button" class="btn-small" onclick="renderRows()">Refresh the table</button>
   <button type="button" class="btn-small" onclick="downloadRows()">Download as spreadsheet</button>
   <div id="rows-table" class="table-wrap" tabindex="0" role="region" aria-label="Your worksheet rows"></div>

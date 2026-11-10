@@ -28,9 +28,9 @@
     "site": "STS 214 (proposed unit on AI's material and systemic dimensions) and the STS 403 capstone project and presentation",
     "who": "STS 403 instructor and the capstone committee",
     "act": "Write an analysis tracing a technology across historical, ethical, and material accounts, and present it to peers",
-    "model": "A model produces a fluent cross-disciplinary synthesis on request. As filed, the outcome gives a reader no way to distinguish a student's analysis from a generated one, while a generated synthesis omits what the student chose to connect and why. EAB's findings on AI competencies in the occupations STS graduates enter belong here.",
+    "model": "Asked to, an AI tool writes a smooth analysis linking several disciplines within seconds. Because the outcome says only \"analyze,\" a grader has no stated standard for telling a student's analysis from a generated one, and the generated version leaves out what the student chose to connect and why. EAB's findings on AI skills in the occupations STS graduates enter belong here.",
     "decision": "Limit",
-    "reason": "The analysis is the judgment the degree certifies. Students are permitted to use a model to locate sources and to test their own synthesis against a generated one. They write the analysis themselves and state what the tool supplied, what it left out, and why they kept or rejected it.",
+    "reason": "Because the analysis is the judgment the STS degree certifies, students use an AI tool only to find sources and to compare their own analysis with a generated one, then write the analysis themselves and note what the tool supplied, what it left out, and why they kept or rejected it.",
     "revised": "Students will write and present an analysis of a technology connecting historical, ethical, and material accounts across disciplines, and will state the reasons for their decisions about any AI use in producing it."
   },
   "literacy": {
