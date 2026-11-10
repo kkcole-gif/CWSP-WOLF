@@ -34,12 +34,13 @@ GLOSSARY = [
     ('The judgment the degree certifies', 'The part of an act faculty grade as evidence a student does the discipline\'s work, such as choosing which evidence matters.'),
     ('Model', 'A generative AI system, such as Gemini, Copilot, ChatGPT, or Claude, producing text from patterns in prior writing.'),
     ('Map', 'The record, for each outcome, of where students show it, who assesses it, what students do, and what a model does to the act.'),
-    ('Lab', 'The AI Policy Lab sessions in February and March, where the working group decides.'),
+    ('Lab', 'The AI Policy Lab sessions, where the group decides.'),
     ('Use, Limit, Refuse', 'The three decisions the Lab records for each outcome, defined in Part 5.'),
     ('Product', 'The written result of a decision: a revised outcome, an assignment policy, a rubric criterion, or a program statement.'),
     ('Where the language breaks', 'A place in a policy where wording hedges, contradicts itself, or falls silent, which shows what its authors left unresolved.'),
-    ('Department head', 'The head of the unit, who convenes the working group and names its recorder.'),
-    ('Recorder', 'The working group member who keeps the unit\'s copy of this workbook and types for the group.'),
+    ('Department head', 'The head of the unit, who convenes the group and names its recorder.'),
+    ('Recorder', 'The group member who keeps the unit\'s copy of this workbook and types for the group.'),
+    ('Introduced, reinforced, assessed', 'Where a course first teaches a skill, where later courses practice it, and where the program grades it as evidence of learning.'),
 ]
 
 PRINCIPLES = [
@@ -89,6 +90,7 @@ def outcome_block(i, o, n, collapse):
 
 
 def decision_block(i, o, collapse):
+    # decision options are fixed; definitions shown above the first decision come from the unit
     k = i + 1
     body = f'''
     <p class="filed-small">{e(o["program"])}: {e(short(o["text"], 160))}</p>
@@ -101,6 +103,27 @@ def decision_block(i, o, collapse):
     return wrap(k, 'd', o['text'], body, collapse, o['program'])
 
 
+LEVELS = ['Introduced', 'Reinforced', 'Assessed', 'Not addressed']
+AI_ROLE = ['AI as a subject studied', 'AI as a tool students use', 'Both', 'Not yet']
+
+
+def inventory(rows=15, shown=6):
+    """One row per course: where AI thinking is introduced, reinforced, or assessed, and in what role."""
+    def row(k):
+        lv = ''.join(f'<option>{x}</option>' for x in LEVELS)
+        ai = ''.join(f'<option>{x}</option>' for x in AI_ROLE)
+        return (f'<tr><td><label class="sr-only" for="ci{k}-course">Course {k}</label><input type="text" id="ci{k}-course" placeholder="Course number and title"></td>'
+                f'<td><label class="sr-only" for="ci{k}-level">Course {k} level</label><select id="ci{k}-level"><option value="">Choose</option>{lv}</select></td>'
+                f'<td><label class="sr-only" for="ci{k}-ai">Course {k} role of AI</label><select id="ci{k}-ai"><option value="">Choose</option>{ai}</select></td>'
+                f'<td><label class="sr-only" for="ci{k}-notes">Course {k} notes</label><input type="text" id="ci{k}-notes" placeholder="Assignment, module, or gap"></td></tr>')
+    head = '<thead><tr><th scope="col">Course</th><th scope="col">Critical AI thinking is</th><th scope="col">Role of AI</th><th scope="col">Where, or what is missing</th></tr></thead>'
+    first = ''.join(row(k) for k in range(1, shown + 1))
+    rest = ''.join(row(k) for k in range(shown + 1, rows + 1))
+    return (f'<div class="table-wrap" tabindex="0" role="region" aria-label="Course inventory"><table class="inventory"><caption>Course inventory</caption>{head}<tbody>{first}</tbody></table></div>'
+            f'<details class="panel"><summary>More rows ({rows - shown})</summary><div class="panel-body table-wrap"><table class="inventory"><caption class="sr-only">Course inventory, more rows</caption>{head}<tbody>{rest}</tbody></table></div></details>'
+            '<button type="button" class="btn-small" onclick="downloadInventory()">Download the inventory as a spreadsheet</button>')
+
+
 def grouped(u, fn, kind):
     """Outcome cards under a heading per program, in the order the programs first appear."""
     progs = list(dict.fromkeys(o['program'] for o in u['outcomes']))
@@ -109,7 +132,10 @@ def grouped(u, fn, kind):
     for p in progs:
         idx = [i for i, o in enumerate(u['outcomes']) if o['program'] == p]
         if len(progs) > 1:
-            out += f'<h3 class="prog-h" id="{kind}-{slug(p)}" data-program="{e(p)}">{e(p)} <span class="prog-count">{len(idx)} outcome{"s" if len(idx) > 1 else ""}</span></h3>'
+            out += f'<h3 class="prog-h" id="{kind}-{slug(p)}" data-program="{e(p)}">{e(p)} <span class="prog-count">{len(idx)} {"row" if p in u.get("planned_programs", []) else "outcome"}{"s" if len(idx) > 1 else ""}</span></h3>'
+            note = u.get('program_notes', {}).get(p)
+            if note:
+                out += f'<p class="prog-note" data-program="{e(p)}">{e(note)}</p>'
         out += ''.join(fn(i, u['outcomes'][i], collapse) for i in idx)
     return out
 
@@ -167,6 +193,44 @@ def build(u):
       <button type="button" class="btn-small" onclick="insertFrame('{pid}')">Insert the frame to fill in</button>
     </div>''' for pid, name, frame, when in PRODUCTS)
     principles = ''.join(f'<li><strong>{e(a)}.</strong> {e(b)}</li>' for a, b in PRINCIPLES)
+    G = u.get('group', 'working group')
+    sch = {'lit': 'About 20 minutes, before the first session.', 'base': 'About 10 minutes, before the first session.',
+           'map': 'Ten minutes before January, then the January session.', 'policy': f'About {u["policy_minutes"]} minutes, before the first session.',
+           'lab': 'The Lab sessions, February and March.', 'by': 'By the end of March', 'try': 'About ten minutes, before the January session.',
+           'map_session': 'In the January session'}
+    sch.update(u.get('schedule', {}))
+    dd = {'Use': 'Students are permitted to use AI for the act, and they disclose what the tool did.',
+          'Limit': 'Students are permitted to use AI for named parts of the act, do the rest themselves, and state what the tool supplied.',
+          'Refuse': 'Students do the act without AI, and the program states its reason.'}
+    dd.update(u.get('decision_defs', {}))
+    gloss = {'Use': 'students use AI and disclose it', 'Limit': 'students use AI only for named parts of the work', 'Refuse': 'students do the work without AI'}
+    decisions_dl = ''.join(f'<div><dt>{k}</dt><dd>{e(v)}</dd></div>' for k, v in dd.items())
+    for pid, name, frame, when in u.get('extra_products', []):
+        products += f'''
+    <div class="product">
+      <h3>{e(name)}</h3>
+      <p class="hint">{e(when)}</p>
+      <div class="field"><label for="{pid}">Your text</label>
+      <textarea id="{pid}" rows="6" data-frame="{e(frame)}"></textarea></div>
+      <button type="button" class="btn-small" onclick="insertFrame('{pid}')">Insert the frame to fill in</button>
+    </div>'''
+    if u.get('philosophy_frame'):
+        products = products.replace(e(PRODUCTS[3][2]), e(u['philosophy_frame']))
+    extras3 = ''.join(field(fid, lab, hint, 4) for fid, lab, hint in u.get('part3_prompts', []))
+    pr = u.get('project')
+    project = ''
+    if pr:
+        qs = ''.join(f'<li>{e(q)}</li>' for q in pr['questions'])
+        outs = ''.join(f'<tr><td>{e(a)}</td><td>{e(b)}</td></tr>' for a, b in pr['outcomes'])
+        project = f'''  <h2 id="project">Your project</h2>
+  <p>{e(pr["intro"])}</p>
+  <h3>The questions your proposal asks</h3>
+  <ol class="questions">{qs}</ol>
+  <table class="project-map"><caption>Where this workbook produces each outcome your proposal names</caption>
+    <thead><tr><th scope="col">Outcome in the proposal</th><th scope="col">Where it comes from here</th></tr></thead>
+    <tbody>{outs}</tbody></table>
+  {''.join(f'<p>{e(x)}</p>' for x in pr.get('notes', []))}
+'''
 
     return f'''<!DOCTYPE html>
 <html lang="en">
@@ -175,6 +239,9 @@ def build(u):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>{e(u["short"])} Accelerator Workbook | CHASS Curriculum Accelerator · NC State CWSP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
 <link rel="stylesheet" href="css/workbook.css">
 </head>
 <body>
@@ -203,6 +270,7 @@ def build(u):
   </div>
   <nav aria-label="Workbook sections">
     <p class="sidebar-part">Start here</p>
+    {'<a href="#project">Your project</a>' if pr else ''}
     <a href="#produces">What your unit produces</a>
     <a href="#about">How this works</a>
     <a href="#terms">Terms used here</a>
@@ -213,6 +281,7 @@ def build(u):
     <a href="#baseline">Your record</a>
     <p class="sidebar-part">3 · Map</p>
     <a href="#tryit">Try one assignment</a>
+    <a href="#inventory">Course inventory</a>
     <a href="#example">Worked example</a>
     {nav_o}
     <p class="sidebar-part">4 · Policy</p>
@@ -230,21 +299,22 @@ def build(u):
 <main class="wb-main" id="main">
   <p class="eyebrow">Campus Writing and Speaking Program · CHASS Curriculum Accelerator</p>
   <h1>{e(u["unit"])}: AI Literacy and Policy Workbook</h1>
-  <p class="lede">This workbook is for the {e(u["short"])} working group and its department head, including members who have not worked on learning outcomes or AI policy before. Working through it, the group decides what the program does about AI for each of its learning outcomes, and CWSP has already filled in the unit's record and the policy research.</p>
+  <p class="lede">This workbook is for the {e(u["short"])} {e(G)} and its department head, including members who have not worked on learning outcomes or AI policy before. Working through it, the group decides what the program does about AI for each of its learning outcomes, and CWSP has already filled in the unit's record and the policy research.</p>
   <div id="banner-slot"></div>
 
+{project}
   <h2 id="produces">What your unit produces</h2>
-  <p>By the end of March, the working group will have decided, for each of the unit's learning outcomes, whether students use AI in the work showing the outcome and why, and each decision becomes a short written product. CWSP prepared the finished example below from {e(u["short"])} as an illustration, which the group's own decisions replace:</p>
+  <p>{sch['by']}, the {e(G)} will have decided, for each of the unit's learning outcomes, whether students use AI in the work showing the outcome and why, and each decision becomes a short written product. CWSP prepared the finished example below from {e(u["short"])} as an illustration, which the group's own decisions replace:</p>
   <table class="example"><caption>One finished outcome, as an illustration</caption><tbody>
     <tr><th scope="row">The outcome as the program wrote it</th><td>{e(ex["outcome"])}</td></tr>
-    <tr><th scope="row">What the group decided</th><td>{e(ex["decision"])} (students use AI only for named parts of the work)</td></tr>
+    <tr><th scope="row">What the group decided</th><td>{e(ex["decision"])} ({gloss.get(ex["decision"], "")})</td></tr>
     <tr><th scope="row">Why</th><td>{e(ex["reason"])}</td></tr>
     <tr><th scope="row">How the outcome reads now</th><td>{e(ex["revised"])}</td></tr>
   </tbody></table>
   <p>Besides revised outcomes, the group writes AI policies for single assignments, rubric criteria for grading how students reason about AI, and a one-page statement of the program's position. Part 5 gives a fill-in frame for each.</p>
 
   <h2 id="about">How this works</h2>
-  <p>Every program files learning outcomes with the university, short statements of what its students learn. In this workbook the working group takes those outcomes one at a time and answers four questions about each:</p>
+  <p>Every program files learning outcomes with the university, short statements of what its students learn. In this workbook the {e(G)} takes those outcomes one at a time and answers four questions about each:</p>
   <ol class="questions">
     <li>Where do students show this outcome? (the course and the assignment)</li>
     <li>What do students produce or perform there? (a paper, a talk, a lab report, a poster)</li>
@@ -254,11 +324,11 @@ def build(u):
   <p>Many outcomes name a kind of thinking, such as "analyze" or "explain," without saying what students write or present to show it. When an outcome says only "analyze," a grader has nothing specific to check, so a student's analysis and one an AI tool generated look much the same against the outcome. The second question supplies what such an outcome leaves out, which is why the questions come in this order.</p>
   <h3>The five parts, and when to do them</h3>
   <ol class="steps">
-    <li><strong>Part 1, Literacy.</strong> Read CWSP's short account of AI in your discipline and answer three questions. <span class="time">About 20 minutes, before the first session.</span></li>
-    <li><strong>Part 2, Baseline.</strong> Look over the outcomes your programs filed and CWSP's notes on them. <span class="time">About 10 minutes, before the first session.</span></li>
-    <li><strong>Part 3, Map.</strong> Try one of your own assignments in an AI tool, then, in the January session, answer the first three questions for each outcome. <span class="time">Ten minutes before January, then the session.</span></li>
-    <li><strong>Part 4, Policy.</strong> Read a short summary of what other departments and the field's organizations have decided. <span class="time">About {u["policy_minutes"]} minutes, before the first session.</span></li>
-    <li><strong>Part 5, Lab.</strong> Answer the fourth question for each outcome, give the reason, and write up the decision. <span class="time">The Lab sessions, February and March.</span></li>
+    <li><strong>Part 1, Literacy.</strong> Read CWSP's short account of AI in your discipline and answer three questions. <span class="time">{sch["lit"]}</span></li>
+    <li><strong>Part 2, Baseline.</strong> Look over the outcomes your programs filed and CWSP's notes on them. <span class="time">{sch["base"]}</span></li>
+    <li><strong>Part 3, Map.</strong> Try one of your own assignments in an AI tool, then answer the first three questions for each outcome in a session. <span class="time">{sch["map"]}</span></li>
+    <li><strong>Part 4, Policy.</strong> Read a short summary of what other departments and the field's organizations have decided. <span class="time">{sch["policy"]}</span></li>
+    <li><strong>Part 5, Lab.</strong> Answer the fourth question for each outcome, give the reason, and write up the decision. <span class="time">{sch["lab"]}</span></li>
   </ol>
   <p>CWSP and your department head set the session dates. To submit, the group needs answers for at least one outcome in Part 3.</p>
   <h3>One recorder, one copy</h3>
@@ -285,8 +355,8 @@ def build(u):
   </div>
 
   <h2 id="literacy"><span class="part">Part 1 · Literacy</span>Three levels, in {e(u["short"])}</h2>
-  <p class="time">About 20 minutes, before the first session.</p>
-  <p>CWSP's framework reads AI at three levels, taken in order: describe what the system is and what it does to an act, analyze whose interests and labor it carries and what it leaves out, and decide what the program does about it. Above each prompt is CWSP's reading of the level in your discipline, which the working group corrects wherever it misdescribes the field.</p>
+  <p class="time">{sch["lit"]}</p>
+  <p>CWSP's framework reads AI at three levels, taken in order: describe what the system is and what it does to an act, analyze whose interests and labor it carries and what it leaves out, and decide what the program does about it. Above each prompt is CWSP's reading of the level in your discipline, which the {e(G)} corrects wherever it misdescribes the field.</p>
   <div class="level"><h3>Describe</h3><p class="reading">{e(u["literacy"]["describe"])}</p>
     {field("lit-acts", "Name the acts your outcomes ask of students", "List what students write, say, build, or present in the program, such as a seminar paper, a poster, a lab report, or a capstone talk. These acts return in Part 3, one per outcome.", 3)}</div>
   <div class="level"><h3>Analyze</h3><p class="reading">{e(u["literacy"]["analyze"])}</p>
@@ -296,7 +366,7 @@ def build(u):
   {stuck}
 
   <h2 id="baseline"><span class="part">Part 2 · Baseline</span>Your record</h2>
-  <p class="time">About 10 minutes, before the first session.</p>
+  <p class="time">{sch["base"]}</p>
   <p>CWSP read every learning outcome the unit's programs filed with the university (SLO_Coded_2026, the coded export of the university assessment system, read under the CWSP Codebook 2026). {e(u["programs"])}. Because the codebook counts what the filed outcomes document, silence in the record shows what the outcomes leave unwritten and nothing about what the courses teach.</p>
   <details class="panel"><summary>How the codebook counts</summary><div class="panel-body">
     <p>CWSP counts an outcome as documenting communication when the outcome, or the objective above it, names explicit communication (write, present, audience, rhetoric) or visual and multimodal work (visual, media, design). Genres (thesis, report), curricular sites (capstone, conference), and cognitive verbs (analyze, explain) are recorded and never counted, since each names a product, a place, or a kind of thinking without the act in which a student communicates it.</p>
@@ -315,14 +385,19 @@ def build(u):
   {stuck}
 
   <h2 id="tryit"><span class="part">Part 3 · Map</span>Try one assignment</h2>
-  <p class="time">About ten minutes, before the January session.</p>
-  <p>Before mapping, each member tries one of their own assignments in the AI tool NC State provides (Gemini, signed in with your NC State account, or another tool on OIT's approved list, so the prompt stays within university data protections). Paste the assignment prompt as students receive it, read what comes back, and note what the response does well and what it gets wrong or leaves out for your discipline. The group brings these notes to the January session, where they become evidence for the column on what a model does to the act.</p>
+  <p class="time">{sch["try"]}</p>
+  <p>Before mapping, each member tries one of their own assignments in the AI tool NC State provides (Gemini, signed in with your NC State account, or another tool on OIT's approved list, so the prompt stays within university data protections). Paste the assignment prompt as students receive it, read what comes back, and note what the response does well and what it gets wrong or leaves out for your discipline. The group brings these notes to the mapping session, where they become evidence for the column on what a model does to the act.</p>
   {field("try-prompt", "The assignment you tried", "Name the course and paste or summarize the prompt.", 3)}
   {field("try-output", "What came back", "Describe the response in a few sentences, or paste a short excerpt.", 4)}
   {field("try-missing", "What the response got wrong or left out", "For example, the reasoning your discipline grades, sources it invented, or the audience it ignored.", 3)}
 
+  <h2 id="inventory">Course inventory</h2>
+  <p>Before the outcome-by-outcome map, list the courses in the program and mark where critical thinking about AI is introduced, reinforced, or assessed, and whether AI appears as a subject students study, a tool they use, or both. The inventory shows where AI is taught without being assessed and which courses leave it out, and it gives the group a view of the whole curriculum before the outcome rows below.</p>
+  {inventory()}
+  {extras3}
+
   <h2 id="example">Worked example</h2>
-  <p>The row below answers the four questions for one {e(u["short"])} outcome, the way the working group will answer them for its own. Read it before mapping, and use the button above each outcome to copy its first three answers in as a starting point.</p>
+  <p>The row below answers the four questions for one {e(u["short"])} outcome, the way the {e(G)} will answer them for its own. Read it before mapping, and use the button above each outcome to copy its first three answers in as a starting point.</p>
   <table class="example"><caption>Worked example: the four questions for one outcome</caption><tbody>
     <tr><th scope="row">The outcome as filed</th><td>{e(ex["outcome"])}</td></tr>
     <tr><th scope="row">Counted as communication in the record?</th><td>{e(ex["counted"])}</td></tr>
@@ -335,13 +410,14 @@ def build(u):
     <tr><th scope="row">How the outcome reads now</th><td>{e(ex["revised"])}</td></tr>
   </tbody></table>
   {filt_note}
-  <p>In the January session, answer the first three questions for each outcome below. Do the first outcome together, with the facilitator, before dividing the rest. The Start from the worked example button copies the example's answers into any empty boxes, where the group rewrites them for the outcome at hand.</p>
+  <p>{sch['map_session']}, answer the first three questions for each outcome below. Do the first outcome together, with the facilitator, before dividing the rest. The Start from the worked example button copies the example's answers into any empty boxes, where the group rewrites them for the outcome at hand.</p>
   {grouped(u, lambda i, o, c: outcome_block(i, o, n, c), 'map')}
   {stuck}
 
   <h2 id="policy"><span class="part">Part 4 · Policy</span>What peers and the field say</h2>
-  <p class="time">About {u["policy_minutes"]} minutes, before the first session.</p>
-  <p>These readings let the working group see what other departments and the field's societies have written, and where their wording created problems for the people following it, so the unit's own statement avoids the same problems.</p>
+  <p class="time">{sch["policy"]}</p>
+  <p>These readings let the {e(G)} see what other departments and the field's societies have written, and where their wording created problems for the people following it, so the unit's own statement avoids the same problems.</p>
+  {f'<p>{e(u["policy_note"])}</p>' if u.get("policy_note") else ''}
   <p class="reading"><strong>In brief.</strong> {e(u["plain_finding"])}</p>
   <details class="panel"><summary>The full finding and each document ({len(u["policies"])})</summary><div class="panel-body">
     <p>{e(u["policy_intro"])}</p>
@@ -358,14 +434,10 @@ def build(u):
   {stuck}
 
   <h2 id="lab"><span class="part">Part 5 · Lab</span>Decisions</h2>
-  <p class="time">The Lab sessions, February and March.</p>
+  <p class="time">{sch["lab"]}</p>
   {'<p class="small">The program chosen under Who you are applies here as well.</p>' if len(progs) > 1 else ''}
   <p>In the Lab, the group answers the fourth question for each outcome: a decision, the reason in the discipline's terms, and what the decision becomes in writing. The Lab counts refusal with a reason as a decision. The answer to question 2 from Part 3 appears above each decision for reference.</p>
-  <dl class="decisions">
-    <div><dt>Use</dt><dd>Students are permitted to use AI for the act, and they disclose what the tool did.</dd></div>
-    <div><dt>Limit</dt><dd>Students are permitted to use AI for named parts of the act, do the rest themselves, and state what the tool supplied.</dd></div>
-    <div><dt>Refuse</dt><dd>Students do the act without AI, and the program states its reason.</dd></div>
-  </dl>
+  <dl class="decisions">{decisions_dl}</dl>
   {grouped(u, decision_block, 'lab')}
 
   <h2 id="products">Products</h2>
@@ -406,6 +478,7 @@ const MODULE = '{u["module"]}';
 const UNIT = {json.dumps(u["unit"])};
 const OUTCOMES = {outcomes_js};
 const EXAMPLE = {example_js};
+const DEFAULT_PROGRAM = {json.dumps(u.get('default_program', ''))};
 </script>
 <script src="js/workbook.js"></script>
 </body>

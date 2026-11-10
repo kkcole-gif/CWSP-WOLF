@@ -22,7 +22,7 @@ function load() {
     if (v === null) return;
     if (el.type === 'checkbox') el.checked = v === 'true'; else el.value = v;
   });
-  const f = document.getElementById('prog-filter'); if (f) { f.value = get(KEY + 'filter') || ''; filterPrograms(); }
+  const f = document.getElementById('prog-filter'); if (f) { const saved = get(KEY + 'filter'); f.value = saved === null ? (typeof DEFAULT_PROGRAM !== 'undefined' ? DEFAULT_PROGRAM : '') : saved; filterPrograms(); }
   updateProgress(); mirrorActs(); markStates();
 }
 
@@ -94,6 +94,12 @@ function downloadRows() {
   const csv = [HEADERS].concat(rows()).map(r => r.map(q).join(',')).join('\r\n');
   const blob = new Blob(['﻿' + csv], { type: 'text/csv' });
   dl(blob, 'Accelerator worksheet rows - ' + UNIT + '.csv');
+}
+function downloadInventory() {
+  const q = c => '"' + String(c).replace(/"/g, '""') + '"';
+  const rows = [['Course', 'Critical AI thinking is', 'Role of AI', 'Where, or what is missing']];
+  for (let k = 1; k <= 15; k++) { const r = ['course', 'level', 'ai', 'notes'].map(f => val('ci' + k + '-' + f)); if (r.some(Boolean)) rows.push(r); }
+  dl(new Blob(['\ufeff' + rows.map(r => r.map(q).join(',')).join('\r\n')], { type: 'text/csv' }), 'Accelerator course inventory - ' + UNIT + '.csv');
 }
 function dl(blob, name) {
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name.replace(/[^\w\s.,-]/g, '');
