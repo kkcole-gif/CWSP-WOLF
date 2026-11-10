@@ -248,7 +248,8 @@ function C2TC_writeDoc_(title, who, where, p, when) {
   var first = body.getParagraphs()[0];
   first.setText(p.workbook_title || (where.certificate + ', ' + where.component));
   first.setHeading(H.TITLE);
-  body.appendParagraph((where.certificate === 'WOLF' ? 'WOLF · ' : 'C²TC · ' + where.certificate + ' · ') + where.component).setHeading(H.SUBTITLE);
+  var accDoc = where.certificate === 'CHASS Accelerator';
+  body.appendParagraph((where.certificate === 'WOLF' ? 'WOLF · ' : accDoc ? 'CHASS Accelerator · ' : 'C²TC · ' + where.certificate + ' · ') + where.component).setHeading(H.SUBTITLE);
   body.appendParagraph(who.name + ' · ' + who.email + (p.shared_draft ? ' · Shared draft, ' : ' · Submitted ') +
       Utilities.formatDate(when, 'America/New_York', 'MMMM d, yyyy'));
 
@@ -345,10 +346,24 @@ function C2TC_writeDoc_(title, who, where, p, when) {
     body.appendParagraph('You agreed to share the themes of these activities with the C²TC Teaching Materials Repository: ' +
         shared.join(', ') + '.');
   }
+  /* CHASS Accelerator: the worksheet rows, in the unit worksheet's column order, and the permission choice. */
+  if (accDoc && Array.isArray(p.worksheet_rows) && p.worksheet_rows.length > 1) {
+    body.appendParagraph('Worksheet rows').setHeading(H.HEADING2);
+    body.appendParagraph('One row per outcome, in the column order of the unit worksheet, ready to paste into the Google Sheet.');
+    var rowsTable = body.appendTable(p.worksheet_rows.map(function (r) { return r.map(function (c) { return String(c == null ? '' : c); }); }));
+    rowsTable.editAsText().setFontSize(8);
+    rowsTable.getRow(0).editAsText().setBold(true);
+  }
+  if (accDoc) {
+    body.appendParagraph('Permission').setHeading(H.HEADING2);
+    body.appendParagraph(p.permission_cwsp_use === true
+      ? 'CWSP may use this submission, without names, in reports, presentations, publications, and as an example for other units.'
+      : 'Not given. CWSP uses this submission only to support the unit.');
+  }
   body.appendHorizontalRule();
-  body.appendParagraph('Campus Writing and Speaking Program, NC State University. ' + C2TC.SITE).editAsText().setFontSize(9);
+  body.appendParagraph('Campus Writing and Speaking Program, NC State University. ' + (accDoc ? 'cwspwolf.com/accelerator' : C2TC.SITE)).editAsText().setFontSize(9);
 
-  body.editAsText().setFontFamily('Georgia');
+  body.editAsText().setFontFamily(accDoc ? 'Arial' : 'Georgia');
   doc.saveAndClose();
   return doc.getId();
 }
@@ -364,9 +379,12 @@ function C2TC_sendCopy_(file, who, where, p, when) {
   }).getBlob().setName(base + '.docx');
 
   var wolf = where.certificate === 'WOLF';
-  var what = wolf ? (p.workbook_title || ('WOLF ' + where.component)) : where.certificate + ', ' + (p.workbook_title || where.component);
+  var acc = where.certificate === 'CHASS Accelerator';
+  var what = acc ? (p.workbook_title || 'CHASS Accelerator Workbook, ' + where.component) : wolf ? (p.workbook_title || ('WOLF ' + where.component)) : where.certificate + ', ' + (p.workbook_title || where.component);
   var lay = C2TC_LAYOUTS[C2TC_layoutKey_(p)];
-  var uses = wolf
+  var uses = acc
+    ? 'The worksheet rows near the end are ready to paste into your unit\'s Google Sheet, and CWSP works from this record in the next session.'
+    : wolf
     ? (where.component === 'Stage 2'
         ? 'The plan opens the file, Parts 1 through 5 and the approval block, ready for your chair to sign, and your reflection follows it.'
         : where.component === 'Stage 3'
@@ -375,14 +393,16 @@ function C2TC_sendCopy_(file, who, where, p, when) {
     : lay && lay.student && lay.student.length
     ? 'The pages written to students are ready to copy into your syllabus or course site, and your teaching notes follow them. Keep the file as a record of your teaching development for annual review.'
     : 'Keep it as a record of your teaching development for annual review, or draw on your notes as you plan the course.';
-  var program = wolf ? 'WOLF' : 'C²TC';
+  var program = acc ? 'CHASS Accelerator' : wolf ? 'WOLF' : 'C²TC';
   /* WOLF: the liaison edits the Doc itself, so the plan has one shared working copy CWSP owns. */
   var docLink = '';
   if (wolf && who.email) {
     try { file.addEditor(who.email); docLink = file.getUrl(); } catch (shareErr) { console.error('WOLF share error:', shareErr); }
   }
-  var site = wolf ? 'https://cwspwolf.com/wolf-workbook.html' : C2TC.SITE;
-  var siteName = wolf ? 'WOLF Workbook' : 'C²TC site';
+  var accBack = String(p.return_url || '');
+  var site = acc ? (/^https:\/\/cwspwolf\.com\/accelerator\/[a-z-]+\.html$/.test(accBack) ? accBack : 'https://cwspwolf.com/accelerator/')
+           : wolf ? 'https://cwspwolf.com/wolf-workbook.html' : C2TC.SITE;
+  var siteName = acc ? 'workbook' : wolf ? 'WOLF Workbook' : 'C²TC site';
   var date = Utilities.formatDate(when, 'America/New_York', 'MMMM d, yyyy');
   var html =
     '<div style="font-family: Garamond, \'EB Garamond\', Georgia, serif; font-size: large; line-height: 1.45;">' +
@@ -399,7 +419,7 @@ function C2TC_sendCopy_(file, who, where, p, when) {
 
   MailApp.sendEmail({
     to: who.email,
-    subject: wolf ? 'Your WOLF ' + where.component + ' document' : 'Your C²TC responses: ' + where.certificate + ', ' + where.component,
+    subject: acc ? 'Your CHASS Accelerator workbook: ' + where.component : wolf ? 'Your WOLF ' + where.component + ' document' : 'Your C²TC responses: ' + where.certificate + ', ' + where.component,
     htmlBody: html,
     body: 'Attached is a copy of your responses to ' + what + ', submitted ' + date + '.',
     attachments: [docx, pdf],
@@ -685,7 +705,8 @@ function C2TC_sendResumeLink_(who, where, p, page, key, when, completed, total) 
   var back = String(p.return_url || '');
   var link = /^https:\/\/cwspwolf\.com\/accelerator\/[a-z-]+\.html$/.test(back) ? back + '?resume=' + key
            : (root ? 'https://cwspwolf.com/' : C2TC.SITE) + page + '?resume=' + key;
-  var what = where.certificate + ', ' + (p.workbook_title || where.component);
+  var acc = where.certificate === 'CHASS Accelerator';
+  var what = acc ? (p.workbook_title || 'CHASS Accelerator Workbook, ' + where.component) : where.certificate + ', ' + (p.workbook_title || where.component);
   var lay = C2TC_LAYOUTS[C2TC_layoutKey_(p)];
   var uses = lay && lay.student && lay.student.length
     ? 'The pages written to students are ready to copy into your syllabus or course site, and your teaching notes follow them. Keep the file as a record of your teaching development for annual review.'
@@ -705,10 +726,10 @@ function C2TC_sendResumeLink_(who, where, p, page, key, when, completed, total) 
     '<p>Kirsti K. Cole<br>Co-Director, Campus Writing and Speaking Program<br>NC State University</p></div>';
   MailApp.sendEmail({
     to: who.email,
-    subject: 'Continue your C²TC work: ' + where.certificate + ', ' + where.component,
+    subject: acc ? 'Continue your CHASS Accelerator workbook: ' + where.component : 'Continue your C²TC work: ' + where.certificate + ', ' + where.component,
     htmlBody: html,
     body: 'Continue where you left off: ' + link,
-    name: (where.certificate === 'WOLF' ? 'WOLF' : 'C²TC') + ', Campus Writing and Speaking Program',
+    name: (acc ? 'CHASS Accelerator' : where.certificate === 'WOLF' ? 'WOLF' : 'C²TC') + ', Campus Writing and Speaking Program',
     replyTo: C2TC.REPLY_TO
   });
 }
