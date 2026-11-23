@@ -419,6 +419,7 @@ def build(u):
   <p>These readings let the {e(G)} see what other departments and the field's societies have written, and where their wording created problems for the people following it, so the unit's own statement avoids the same problems.</p>
   {f'<p>{e(u["policy_note"])}</p>' if u.get("policy_note") else ''}
   <p class="reading"><strong>In brief.</strong> {e(u["plain_finding"])}</p>
+  <p class="small">Full peer record: <a href="{e(u["unit_baseline_doc_url"])}" target="_blank" rel="noopener">Writing AI Policy in {e(u["unit"])}: Unit Baseline<span class="sr-only"> (opens in a new window)</span></a>, read from the AI Governance Census department layer (31 institutions, November 2026), with the menu and the Lab frames. It sits in the unit's <a href="{e(u["unit_folder_url"])}" target="_blank" rel="noopener">AI Policy Lab folder<span class="sr-only"> (opens in a new window)</span></a> beside this workbook's Google Sheet and baseline.</p>
   <details class="panel"><summary>The full finding and each document ({len(u["policies"])})</summary><div class="panel-body">
     <p>{e(u["policy_intro"])}</p>
     <p class="reading">{e(u["policy_finding"])}</p>
